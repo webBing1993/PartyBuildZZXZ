@@ -11,7 +11,6 @@ namespace app\home\controller;
 use app\home\model\WechatTest;
 use app\user\controller\Index;
 use app\user\model\WechatUser;
-use app\home\model\Years;
 use think\Config;
 use think\Controller;
 use com\wechat\TPQYWechat;

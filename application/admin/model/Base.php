@@ -13,4 +13,14 @@ use think\Model;
 class Base extends Model
 {
     protected $autoWriteTimestamp = false;
+
+    //获取新增用户名称
+    public function cuser(){
+        return $this->hasOne('Member','id','create_user');
+    }
+
+    //获取更新用户
+    public function uuser(){
+        return $this->hasOne('Member','id','update_user');
+    }
 }
