@@ -178,6 +178,7 @@ body {
 }
 .listbox .service .box.summary p,
 .listbox .town .box.summary p {
+  margin-top: 2vw;
   text-indent: 2em;
   font-size: 13px;
   line-height: 20px;
@@ -186,12 +187,14 @@ body {
 .listbox .town .box .lists {
   padding: 13px;
   color: #333333;
+  font-size: 14px;
 }
 .listbox .service .box .lists .name1,
 .listbox .town .box .lists .name1 {
   display: inline-block;
   width: 100%;
   height: 45px;
+  font-size: 14px;
   line-height: 45px;
   border-bottom: 1px solid #f1f1f1;
 }
@@ -225,6 +228,7 @@ body {
   width: 90%;
   height: 45px;
   margin-left: 30px;
+  font-size: 14px;
   color: #333333;
   line-height: 45px;
   border-bottom: 1px solid #f1f1f1;
