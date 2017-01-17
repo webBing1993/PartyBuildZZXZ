@@ -161,7 +161,8 @@ function tab(a,b){
 			a.removeClass('hidden');
 		}
 		ww = ww * index;
-		box.animate({left: -ww +'px'},500,function(){
+		box.stop();
+		box.animate({left: -ww +'px'},300,function(){
 			if(index == 1){
 				a.addClass('hidden');
 			}else{

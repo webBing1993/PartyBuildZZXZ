@@ -1,0 +1,300 @@
+@charset "utf-8";
+@s _big
+@s_title: 1.4rem;
+.t_b {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+@keyframes todown {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(15deg);
+  }
+  30% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  70% {
+    transform: rotate(60deg);
+  }
+  90% {
+    transform: rotate(75deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@-webkit-keyframes todown {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(15deg);
+  }
+  30% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  70% {
+    transform: rotate(60deg);
+  }
+  90% {
+    transform: rotate(75deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@keyframes toup {
+  0% {
+    transform: rotate(90deg);
+  }
+  10% {
+    transform: rotate(75deg);
+  }
+  30% {
+    transform: rotate(60deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  70% {
+    transform: rotate(30deg);
+  }
+  90% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes toup {
+  0% {
+    transform: rotate(90deg);
+  }
+  10% {
+    transform: rotate(75deg);
+  }
+  30% {
+    transform: rotate(60deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  70% {
+    transform: rotate(30deg);
+  }
+  90% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+a:active {
+  background-color: #f7f7f7;
+}
+body {
+  overflow-x: hidden;
+}
+.banner {
+  width: 100vw;
+  height: 50vw;
+}
+.banner .banner-img {
+  width: 100%;
+  height: 100%;
+}
+.tabs {
+  width: 100vw;
+  height: 44px;
+  padding: 8px 0;
+  background: #f1f1f1;
+}
+.tabs .tab {
+  display: inline-block;
+  width: 49vw;
+  height: 100%;
+  color: #333333;
+  font-size: 1.5rem;
+  line-height: 28px;
+  text-align: center;
+}
+.tabs .tab:first-child {
+  border-right: 1px solid #e5e5e5;
+}
+.tabs .active {
+  color: #fd6743;
+}
+.listbox {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 64vw;
+}
+.listbox .service,
+.listbox .town {
+  position: absolute;
+  top: 0;
+  width: 99vw;
+}
+.listbox .service .box,
+.listbox .town .box {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  margin: 4vw 5vw 0 5vw;
+  padding-top: 6vw;
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+.listbox .service .box:before,
+.listbox .town .box:before {
+  content: '组织架构';
+  position: absolute;
+  top: 3vw;
+  left: -7px;
+  width: 76px;
+  height: 30px;
+  background: url('/home/images/structure/tag.png') 0 0 no-repeat;
+  background-size: 76px 30px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 22px;
+}
+.listbox .service .box.summary,
+.listbox .town .box.summary {
+  padding: 11vw 3vw 6vw 3vw;
+}
+.listbox .service .box.summary p,
+.listbox .town .box.summary p {
+  text-indent: 2em;
+  font-size: 13px;
+  line-height: 20px;
+}
+.listbox .service .box .lists,
+.listbox .town .box .lists {
+  padding: 13px;
+  color: #333333;
+}
+.listbox .service .box .lists .name1,
+.listbox .town .box .lists .name1 {
+  display: inline-block;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.listbox .service .box .lists .party1,
+.listbox .town .box .lists .party1 {
+  position: relative;
+  top: 0;
+  font-size: 1.6rem;
+  padding-left: 15px;
+  line-height: 30px;
+}
+.listbox .service .box .lists .party1 .tri,
+.listbox .town .box .lists .party1 .tri {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  content: '';
+  height: 10px;
+  width: 10px;
+  background: url('/home/images/structure/tri.png') 0 0 no-repeat;
+  background-size: 10px 10px;
+}
+.listbox .service .box .lists .detail1,
+.listbox .town .box .lists .detail1 {
+  display: none;
+  width: 100%;
+}
+.listbox .service .box .lists .detail1 .name2,
+.listbox .town .box .lists .detail1 .name2 {
+  display: inline-block;
+  width: 90%;
+  height: 45px;
+  margin-left: 30px;
+  color: #333333;
+  line-height: 45px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.listbox .service .box .lists .todown,
+.listbox .town .box .lists .todown {
+  -webkit-animation: todown 0.4s linear alternate;
+  animation: todown 0.4s linear alternate;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+.listbox .service .box .lists .toup,
+.listbox .town .box .lists .toup {
+  -webkit-animation: toup 0.4s linear alternate;
+  animation: toup 0.4s linear alternate;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+}
+.listbox .town {
+  left: 0;
+}
+.listbox .service {
+  left: 100vw;
+}
+.table .party {
+  width: 30vw;
+}
+.table .position {
+  width: 40vw;
+}
+.table .name {
+  width: 30vw;
+}
+.table .thead .th {
+  display: inline-block;
+  height: 46px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: "Microsoft YaHei", sans-serif;
+  line-height: 46px;
+  text-align: center;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.table .tbody {
+  height: 100%;
+}
+.table .tbody .tb {
+  padding: 20px 10px;
+  font-size: 1.3rem;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+.table .tbody .tb span {
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.table .tbody .party {
+  vertical-align: middle;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  overflow: hidden;
+}
+.table .tbody .party span {
+  display: inline-block;
+  height: auto;
+  vertical-align: middle;
+  line-height: 20px;
+}
