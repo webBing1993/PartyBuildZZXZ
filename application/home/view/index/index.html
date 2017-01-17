@@ -1,11 +1,20 @@
 {extend name="public/common"}
 
 {block name="style"}
-
+<style>
+	a{
+		display: block;
+		height: 40px;
+		color: #666666;
+		line-height: 40px;
+		text-align: center;
+	}
+</style>
 {/block}
 
 {block name="body"}
-
+<a href="{:Url('News/index')}">第一聚焦</a>
+<a href="{:Url('Structure/index')}">组织架构</a>
 {/block}
 
 {block name="script"}

@@ -1,0 +1,189 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/structure.css">
+{/block}
+
+{block name="body"}
+<div class="banner">
+	<img src="/home/images/test/1.jpg" alt="组织架构banner" class="banner-img">
+</div>
+<div class="tabs">
+	<span class="tab active">小镇党委</span>
+	<span class="tab">服务中心</span>
+</div>
+<div class="listbox">
+	<div class="town active">
+		<!--小镇党委-->
+		<div class="box">
+			<div class="lists">
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">企业联合党支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">流动党员支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">企业员支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+			</div>
+		</div>
+		<div class="box summary">
+			<p>
+				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
+			</p>
+			<p>
+				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
+			</p>
+		</div>
+		<!--/小镇党委-->
+	</div>
+	<div class="service hidden">
+		<!--服务中心-->
+		<div class="box">
+			<div class="lists">
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">企业联合党支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">流动党员支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+
+				<!--第一层-->
+				<div class="list clear">
+					<div class="party1">
+						<div class="tri"></div>
+						<div class="name1">企业员支部</div>
+					</div>
+					<!--第二层-->
+					<div class="down detail1">
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/index')}">企业联合第一党支部</a>
+					</div>
+					<!--/第二层-->
+				</div>
+				<!--/第一层-->
+			</div>
+		</div>
+		<div class="box summary">
+			<p>
+				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
+			</p>
+			<p>
+				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
+			</p>
+		</div>
+		<!--/服务中心-->
+	</div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+$('title' ).text('组织架构');
+$(function(){
+	//组织架构切换
+	slide();
+	//tab切换
+	tab($('.town' ),$('.service' ));
+});
+function tab(a,b){
+	//切换卡
+	$('.tab' ).off('click').on('click',function(){
+		var this_ = this ;
+		var box = $('.listbox');
+		var index = $(this_ ).index();
+		var ww = $('.tabs' ).width();
+		$(this_ ).addClass('active' );
+		$(this_ ).siblings('.tab').removeClass('active');
+		if(index == 1){
+			b.removeClass('hidden');
+		}else{
+			a.removeClass('hidden');
+		}
+		ww = ww * index;
+		box.animate({left: -ww +'px'},500,function(){
+			if(index == 1){
+				a.addClass('hidden');
+			}else{
+				b.addClass('hidden');
+			}
+		});
+	})
+}
+function slide(){
+	$('.lists .party1' ).on('click',function(){
+		var it = $(this);
+		var detail = it.next('.detail1' );
+		if(detail.hasClass('down')){
+			detail.slideDown();
+			it.find('.tri').removeClass('toup').addClass('todown');
+		}else{
+			detail.slideUp();
+			it.find('.tri').removeClass('todown').addClass('toup');
+		}
+		detail.toggleClass('down');
+	});
+}
+
+</script>
+{/block}
