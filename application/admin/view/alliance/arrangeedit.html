@@ -9,10 +9,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>人才创业</h2>
+        <h2>活动安排</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Talent/index')}">信息列表</a>
+                <a href="{:Url('Alliance/arrange')}">信息列表</a>
             </li>
             <li class="active">
                 <strong>{eq name="msg" value=""}新增{else/}修改{/eq}</strong>
@@ -40,22 +40,34 @@
                     <form id="form" class="form-horizontal" method="post">
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>类型:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <select class="form-control" name="type">
-                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>人才政策</option>
-                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>国千计划</option>
-                                    <option value="3" {eq name="msg.type" value="3"}selected{/eq}>省千计划</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
                                 <label>标题:</label>
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>主题:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入主题" class="form-control form_title" name="theme" value="{$msg.theme || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>时间:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入时间" class="form-control form_title" name="time" value="{$msg.time || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>地点:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入地点" class="form-control form_title" name="address" value="{$msg.address || default=''}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -68,14 +80,6 @@
                                         <script id="container" name="content" type="text/plain">{$msg.content || default=''}</script>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>发布人:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
                             </div>
                         </div>
 
@@ -109,7 +113,7 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Talent/index')}");
+        highlight_subnav("{:Url('Alliance/arrange')}");
 
         var ue = UE.getEditor('container',{
             initialFrameHeight:400
@@ -120,10 +124,11 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
-                type:$("select[name='type']").val(),
                 title:$("input[name='title']").val(),
+                theme:$("input[name='theme']").val(),
+                time:$("input[name='time']").val(),
+                address:$("input[name='address']").val(),
                 content:ue.getContent(),
-                publisher:$("input[name='publisher']").val(),
             };
             $.ajax({
                 type:"post",

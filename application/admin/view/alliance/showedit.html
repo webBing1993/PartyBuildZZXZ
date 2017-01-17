@@ -12,7 +12,7 @@
         <h2>人才创业</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Talent/index')}">信息列表</a>
+                <a href="{:Url('Alliance/show')}">信息列表</a>
             </li>
             <li class="active">
                 <strong>{eq name="msg" value=""}新增{else/}修改{/eq}</strong>
@@ -44,9 +44,10 @@
                             </div>
                             <div class="col-lg-11">
                                 <select class="form-control" name="type">
-                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>人才政策</option>
-                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>国千计划</option>
-                                    <option value="3" {eq name="msg.type" value="3"}selected{/eq}>省千计划</option>
+                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>周轮值</option>
+                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>月主题</option>
+                                    <option value="3" {eq name="msg.type" value="3"}selected{/eq}>季交流</option>
+                                    <option value="4" {eq name="msg.type" value="4"}selected{/eq}>年考核</option>
                                 </select>
                             </div>
                         </div>
@@ -109,7 +110,7 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Talent/index')}");
+        highlight_subnav("{:Url('Alliance/show')}");
 
         var ue = UE.getEditor('container',{
             initialFrameHeight:400

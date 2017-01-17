@@ -9,13 +9,13 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>人才创业</h2>
+        <h2>活动展示</h2>
         <ol class="breadcrumb">
             <li>
-                人才创业
+                活动展示
             </li>
             <li class="active">
-                <strong><a href="{:Url('Talent/index')}">列表页</a></strong>
+                <strong><a href="{:Url('Alliance/arrange')}">列表页</a></strong>
             </li>
         </ol>
     </div>
@@ -30,9 +30,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>信息列表</h5>
+                    <h5>展示列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Talent/add')}">添加</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Alliance/showadd')}">添加活动展示</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -44,10 +44,8 @@
                                 <th>标题</th>
                                 <th>类型</th>
                                 <th>发布人</th>
-                                <th>创建人 </th>
+                                <th>创建人</th>
                                 <th>创建时间</th>
-                                <th>修改人</th>
-                                <th>修改时间</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -56,17 +54,15 @@
                             {volist name="list" id="vo"}
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>{$vo.title}</td>
+                                <td>{$vo.title|}</td>
                                 <td>{$vo.type_text}</td>
                                 <td>{$vo.publisher}</td>
                                 <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
-                                <td>{$vo->uuser->nickname}</td>
-                                <td>{$vo.update_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('Talent/edit?id='.$vo['id'])}">修改</a>
-                                    <a href="{:Url('Talent/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('Alliance/showedit?id='.$vo['id'])}">修改</a>
+                                    <a href="{:Url('Alliance/showdel?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}
@@ -93,6 +89,8 @@
 <script src="/admin/js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function(){
+        highlight_subnav("{:Url('Alliance/show')}");
+
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
