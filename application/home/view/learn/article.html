@@ -106,7 +106,7 @@ var isGood = function(e,id,comment_id,userid,cla){
 	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
 		type:"post",
-		url:"{:Url('News/like')}",
+		url:"{:Url('Base/like')}",
 		data:{
 			type:type,
 			id:id,
@@ -128,7 +128,7 @@ var isCollect = function(e,id,type){
 	$(e).toggleClass('star' ).toggleClass('star_');
 	$.ajax({
 		type:"post",
-		url:"{:Url('News/collect')}",
+		url:"{:Url('Base/collect')}",
 		data:{
 			id:id,
 			type:type
@@ -147,7 +147,7 @@ var send = function(e,id){
 	if(it.val() != ''){
 		$.ajax({
 			type:"post",
-			url:"{:Url('News/comment')}",
+			url:"{:Url('Base/comment')}",
 			data:{
 				learn_id:id,
 				content:it.val()
@@ -226,7 +226,7 @@ function loadScroll(){
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"{:Url('News/morecontent')}",
+				url:"{:Url('Base/morecontent')}",
 				data:{
 					learn_id:id,
 					length:len
