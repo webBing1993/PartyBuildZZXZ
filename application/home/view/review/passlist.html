@@ -1,0 +1,210 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
+<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
+<style>
+    body{
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        font-family: "Microsoft yahei",sans-serif;
+    }
+    .top {
+        width: 100%;
+        background: #fff;
+        height: 44px;
+        color: #666;
+        font-size:16px;
+        line-height: 44px;
+        text-align: center;
+    }
+    .list-block {
+        margin: 10px 0;
+    }
+    .list-block li {
+        margin: 10px 0;
+        background-color: #fff;
+        height:90px;
+    }
+    .list-block ul {
+        background-color: #f1f1f1;
+    }
+    .swipeout-content{
+        height:90px;
+        padding-left: 10px;
+    }
+    .swipeout-content img {
+        border-radius: 4px;
+        margin: 10px 0;
+        width: 70px;
+        height: 70px;
+        float: left;
+    }
+    .list{
+        float:left;
+        height:90px;
+        width:68%;
+        position:relative;
+    }
+    .list .title {
+        float: left;
+        margin: 10px 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        width:100%; white-space:nowrap;font-size:14px;color:#333;
+    }
+    .list .sent_time {
+        display: block;
+        width: 62vw;
+        font-size: 12px;
+        color: #999;
+        padding-left: 10px;
+        position:absolute;
+        bottom:10px;
+    }
+    .list .sent_time>span:last-child{
+        display:inline-block;
+        float:right;
+    }
+    .arrow{
+        float:right;
+        width:26px;
+        height:90px;
+    }
+
+    .list-block .swipeout-actions-right a {
+        padding: 0 15px;
+    }
+    .green{
+        background-color:#2CAF2C !important;
+    }
+    .red{
+        background-color:#E84F41 !important;
+    }
+
+    .navTop>a{
+        color: #666;
+        font-size: 16px;
+        line-height: 44px;
+        display:block;
+        float:left;
+        width:50vw;
+        text-align: center;
+    }
+    .navTop>img{
+        width:20px;
+        height:20px;
+        position:absolute;
+        right: 10px;
+        top:12px;
+        z-index:100;
+    }
+
+
+    .list-block .swipeout-actions-left a, .list-block .swipeout-actions-right a {
+        padding: 0 20px;
+        font-size:15px;
+    }
+
+    .weui_dialog>.head>p{
+        height:60px;
+        line-height: 60px;
+        font-size: 14px;
+        color:#333;
+        margin:0;
+    }
+    .weui_dialog>.head>div{
+        height:45px;
+        color:#999;
+    }
+
+    .weui_dialog_ft>a {
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+        color:#333;
+    }
+
+    .modal1>p{
+        font-size: 14px;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    .title{
+
+    }
+</style>
+
+{/block}
+{block name="body"}
+<div class="views">
+    <div class="list-block" id="list-block-company">
+        <div style="margin-top:100px;margin-left:calc(50% - 50px)" id="wuxiaoxi">
+            <img src="/home/images/wuxiaoxi.png" alt="" style="width:100px;">
+        </div>
+        <ul>
+            <li class="swipeout">
+                <div class="swipeout-content">
+                    <img src="/admin/images/p1.jpg" alt="封面图片">
+                    <div class="list">
+                        <span class="title" >111</span>
+                        <span class="sent_time">
+                            <span style="margin-right: 5px;font-weight: bolder;display: block;height:25px;line-height:25px;">222</span>
+                            <span>审核人：333</span>
+                            <span>444</span>
+                        </span>
+                    </div>
+                    <div class="arrow green">
+                        <img src="/home/images/review/yes.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">
+                    </div>
+                    <div class="arrow red">
+                        <img src="/home/images/review/tanhao.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">
+                    </div>
+                </div>
+            </li>
+            <li class="swipeout">
+                <div class="swipeout-content">
+                    <img src="/admin/images/p1.jpg" alt="封面图片">
+                    <div class="list">
+                        <span class="title" >111</span>
+                        <span class="sent_time">
+                            <span style="margin-right: 5px;font-weight: bolder;display: block;height:25px;line-height:25px;">222</span>
+                            <span>审核人：333</span>
+                            <span>444</span>
+                        </span>
+                    </div>
+                    <!--<div class="arrow green">-->
+                        <!--<img src="/home/images/review/yes.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">-->
+                    <!--</div>-->
+                    <div class="arrow red">
+                        <img src="/home/images/review/tanhao.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    //document.title="审核列表";
+    $('#navTop>a').click(function(){
+        $('#navTop>a.active').removeClass('active');
+        $('.list-block').hide();
+        $(this).addClass('active');
+        $($(this).attr('data-number')).show();
+    });
+    //
+    if($("ul").find("li").length > 0){
+        $('#wuxiaoxi').hide()
+    }
+    else{
+        $('#wuxiaoxi').show()
+    }
+</script>
+{/block}

@@ -1,0 +1,294 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
+<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
+<link rel="stylesheet" href="/static/framework7/weui.css">
+<style>
+    body{
+        background-color: #f1f1f1;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+        font-family: "Microsoft yahei",sans-serif;
+    }
+
+    .list-block ul:before,.list-block ul:after{
+        height:0;
+    }
+    .list-block {
+        margin: 10px 0;
+    }
+    .list-block li {
+        margin: 10px 0;
+        background-color: #fff;
+        height:90px;
+    }
+    .list-block ul {
+        background-color: #f1f1f1;
+    }
+    .swipeout-content{
+        height:90px;
+        padding-left: 10px;
+    }
+    .swipeout-content img {
+        border-radius: 4px;
+        margin: 10px 0;
+        width: 70px;
+        height: 70px;
+        float: left;
+    }
+    .list{
+        float:left;
+        height:90px;
+        width:70%;
+        position:relative;
+    }
+    .list .title {
+        float: left;
+        margin: 10px 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        width:100%; white-space:nowrap;font-size:14px;color:#333;
+    }
+    .list .sent_time {
+        display: block;
+        width: 62vw;
+        font-size: 12px;
+        color: #999;
+        padding-left: 10px;
+        position:absolute;
+        bottom:10px;
+    }
+    .list .sent_time>span:last-child{
+        display:inline-block;
+        float:right;
+    }
+    .arrow{
+        float:left;
+    }
+    .arrow>img{
+        width:15px;
+        height:15px;
+        display:block;
+        margin-top:35px;
+    }
+    .list-block .swipeout-actions-right a {
+        padding: 0 15px;
+    }
+    .green{
+        background-color:#2CAF2C !important;
+    }
+    .red{
+        background-color:#E84F41!important;
+    }
+
+    .navTop>a{
+        color: #666;
+        font-size: 16px;
+        line-height: 44px;
+        display:block;
+        float:left;
+        width:50vw;
+        text-align: center;
+    }
+    .navTop>img{
+        width:20px;
+        height:20px;
+        position:absolute;
+        right: 10px;
+        top:12px;
+        z-index:100;
+    }
+
+    .weui_mask {
+        position: fixed;
+        z-index: 10000;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+    }
+    .list-block .swipeout-actions-left a, .list-block .swipeout-actions-right a {
+        padding: 0 20px;
+        font-size:15px;
+    }
+
+    .weui_dialog{
+        width:70.6vw;
+        border-radius: 6px;
+        z-index:10001;
+    }
+    .weui_dialog>.head{
+        text-align: center;
+        color:#333;
+        font-size:14px;
+    }
+    .weui_dialog>.head>p{
+        height:60px;
+        line-height: 60px;
+        font-size: 14px;
+        color:#333;
+        margin:0;
+    }
+    .weui_dialog>.head>div{
+        height:45px;
+        color:#999;
+    }
+    .weui_dialog_ft {
+        margin: 0;
+    }
+    .weui_dialog_ft>a {
+        height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+        color:#333;
+    }
+    .red1{
+        color:#e51c23!important;
+    }
+
+    .modal1>p{
+        font-size: 14px;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+
+    .swiper-slide>span{
+        font-size: 14px;
+    }
+
+    .swiper-slide img {
+        text-align:center;
+        display:block;
+        height:97vh;
+        width:97vw;
+        margin:0 auto;
+        margin-top:3vh;
+    }
+    .page-content>img{
+        width:30px;
+        height:30px;
+        position:fixed;
+        right:0;
+        top:0;
+        z-index: 400;
+    }
+</style>
+{/block}
+
+{block name="body"}
+<div class="views">
+    <div class="list-block" id="list-block-company">
+        <div style="margin-top:100px;margin-left:calc(50% - 50px)" id="wuxiaoxi">
+            <img src="/home/images/review/wuxiaoxi.png" alt="" style="width:100px;">
+        </div>
+        <ul>
+
+            <li class="swipeout">
+                <div class="swipeout-content" onclick="">
+                    <img src="/admin/images/p1.jpg" alt="封面图片">
+                    <div class="list">
+                        <span class="title" >123123</span>
+                        <span class="sent_time">
+                            <span style="margin-right: 5px;font-weight: bolder;display: block;">111111</span>
+                            <span style="">发布人：222222</span>
+                            <span>111111111</span>
+                        </span>
+                    </div>
+                    <div class="arrow">
+                        <img src="/home/images/right.png" alt="">
+                    </div>
+                </div>
+                <div class="swipeout-actions-right">
+                    <a class="green" onclick="">通&emsp;过</a>
+                    <a class="red" onclick="">不通过</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!--用户确认弹出框-->
+<div class="weui_dialog_confirm" id="alert" style="display:none">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="head">
+            <p>提醒</p>
+            <div>确认当前操作吗？</div>
+        </div>
+        <div class="weui_dialog_ft">
+            <a class="weui_btn_dialog red1 ok" id="ok">确认</a>
+            <a class="weui_btn_dialog default " id="cancel1">取消</a>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+//    document.title="游泳动态审核";
+    var myApp=new Framework7;
+    var $$=Dom7;
+    //    帮助打开界面
+    $('#help').click(function(){
+        $('#page-content').css('height','100vh').css('visibility','visible');
+        $('.views').css('overflow','hidden');
+    });
+    //    帮助关闭按钮
+    $('#close').click(function(){
+        $('#page-content').css('height','0').css('visibility','hidden');
+        $('.views').css('overflow','auto');
+    });
+    $('#navTop>a').click(function(){
+        $('#navTop>a.active').removeClass('active');
+        $('.list-block').hide();
+        $(this).addClass('active');
+        $($(this).attr('data-number')).show();
+    });
+    //提醒取消
+    $('#cancel1').click(function(){
+        $('.weui_dialog_confirm').hide();
+    });
+    //  新闻动态 游泳百科  审核
+    function dispose(i,id,type,status){
+        var me=i;//this保存
+        $('#alert').show();
+        $('#ok').unbind('click');
+        $('#ok').one('click', function(){
+            $.ajax({
+                type: "post",
+                url: "",
+                data: {id:id,type:type,status:status},
+                dataType: "json",
+                success: function(data){
+                    $('#alert').hide();
+                    $(me).parent().parent().hide();//当前点击的隐藏;
+                    history.go(0);
+                }
+            });
+        })
+    }
+    var mySwiper = myApp.swiper('.swiper-container', {
+        pagination:'.swiper-pagination'
+    });
+    //跳转事件
+    function skip(a){
+        var linkRegx = /^((https|http)?:\/\/)[^\s\/$]+/g;
+        var group = window.location.href.match(linkRegx);
+        location.href= group+'/home/news/news_unreview/id/'+a+'.html';
+    }
+
+    //
+    if($("ul").find("li").length > 0){
+        $('#wuxiaoxi').hide()
+    }
+    else{
+        $('#wuxiaoxi').show()
+    }
+</script>
+{/block}

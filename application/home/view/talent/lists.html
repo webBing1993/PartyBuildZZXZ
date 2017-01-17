@@ -1,0 +1,146 @@
+{extend name="public/common"}
+
+{block name="style"}
+<style>
+
+    .navbar>.content-block>img{
+        width:100%;height:50vw;
+    }
+
+    .list-block .item-content,.list-block .item-inner{
+        padding:0;
+    }
+    .item-content{
+        height:70px;
+    }
+    .item-content>.item-inner>div:nth-child(1){
+        position:relative;width:100%;border-bottom:1px solid #f1f1f1;padding:0 12px;height:30px;line-height: 30px;
+    }
+    .item-content>.item-inner>div:nth-child(1)>span:nth-child(1){
+        color:#df4934;font-size:12px;font-weight: bold;
+    }
+    .item-content>.item-inner>div:nth-child(1)>span:nth-child(2){
+        position:absolute;right:12px;font-size:12px;color:#999;;
+    }
+    .item-content>.item-inner>div:nth-child(1){
+        width:100%;height:70px;border-bottom:1px solid #f1f1f1;padding:0 12px;
+    }
+    .item-content>.item-inner>div:nth-child(1)>div:nth-child(1){
+        width:100%;font-size:14px;color:#333;height:40px;line-height:50px;
+    }
+    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2){
+        position:relative;width:100%;height:30px;line-height:15px;
+    }
+    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2)>span,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>span{
+        font-size:12px;color:#999;
+    }
+    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2)>img,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>img{
+        width:12px;height:12px;position:absolute;top:3px;right:0;
+    }
+    .item-content>.item-inner>div:nth-child(2){
+        width:100%;height:70px;padding:0 12px;
+    }
+    .item-content>.item-inner>div:nth-child(2)>div:nth-child(1){
+        width:100%;font-size:14px;color:#333;height:40px;line-height:50px;
+    }
+    .item-content>.item-inner>div:nth-child(2)>div:nth-child(2){
+        position:relative;width:100%;height:30px;line-height:20px;
+    }
+
+</style>
+{/block}
+
+{block name="body"}
+<div class="views">
+    <!-- Your main view -->
+    <div class="view view-main">
+        <!-- Pages -->
+
+        <div class="pages" >
+            <div class="page" data-page="home">
+                <div class="page-content">
+                    <div class="list-block" style="">
+                        <ul>
+                            <li class="item-content" onclick=window.location.href="{:Url('talent/detail')}">
+                                <div class="item-inner" >
+                                    <div>
+                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div>
+                                            <span>2017-1-1</span>
+                                            <img src="/home/images/right.png" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="item-content" >
+                                <div class="item-inner" >
+                                    <div>
+                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div>
+                                            <span>2017-1-1</span>
+                                            <img src="/home/images/right.png" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li class="item-content" >
+                                <div class="item-inner" >
+                                    <div>
+                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div>
+                                            <span>2017-1-1</span>
+                                            <img src="/home/images/right.png" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div  style="text-align: center;width:100%;height:30px;font-size:14px;margin-top:5px;color:#666;margin-bottom:20px;" class="add1">点击加载更多...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+
+<script>
+    //点击加载更多
+    $('.add1').click(function(){
+        var b=$('#num1>ul>li').length;
+        $.ajax({
+            type:"post",
+            url:"",
+            data:{id:b},
+            success:function(data){
+                var html='';
+                if (data == 0){
+                    $('.add1').text('没有更多了');
+                }else {
+                    for(var i=0; i< 3;i++){
+                        html+='<li class="item-content" style="">'+
+                            '<div class="item-inner" style="">'+
+                            '<div>'+
+                            '<div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>'+
+                            '<div>'+
+                            '<span>2017-1-1</span>'+
+                            '<img src="/home/images/right.png" alt="">'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</li>';
+                    }
+                    console.log($(this).parent().find('div.list-block').find('ul'))
+                    $('.list-block ul').append(html);
+                }
+            }
+        })
+
+    })
+</script>
+{/block}
