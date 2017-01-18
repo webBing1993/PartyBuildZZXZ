@@ -8,6 +8,8 @@
 namespace app\admin\controller;
 
 use app\admin\model\Learn as LearnModel;
+use think\Url;
+
 /**
  * Class Learn
  * @package 两学一做
@@ -120,6 +122,130 @@ class Learn extends Admin {
             return $this->success("删除成功");
         }else{
             return $this->error("删除失败");
+        }
+    }
+    /*
+     * 专题讨论
+     */
+    public function workshop(){
+        $map = array(
+            'status' => 0,
+            'type' => 4
+        );
+        $list = $this->lists('Learn',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"已发布"),
+            'recommend' => array(0=>"否",1=>"是"),
+            'type' => array(4=>"专题讨论")
+        ));
+        $this->assign('list',$list);
+
+        return $this->fetch();
+    }
+    /*
+     * 专题 添加 修改
+     */
+    public function workshopadd(){
+        $id = input('id');
+        if($id){
+            // 修改
+           if(IS_POST){
+                $data = input('post.');
+               $learnModel = new LearnModel();
+               $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+               $model = $learnModel->validate('Learn')->where(['id' => $id])->update($data);
+               if($model){
+                   return $this->success('修改成功',Url("Learn/workshop"));
+               }else{
+                   return $this->error($learnModel->getError());
+               }
+           }else{
+               $msg = LearnModel::where(['id' => $id,'status' => 0])->find();
+               $this->assign('msg',$msg);
+               return $this->fetch();
+           }
+        }else{
+            // 添加
+            if(IS_POST){
+                $data = input('post.');
+                if(empty($data['id'])) {
+                    unset($data['id']);
+                }
+                $learnModel = new LearnModel();
+                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+                $model = $learnModel->validate('Learn')->save($data);
+                if($model){
+                    return $this->success('新增成功!',Url("Learn/workshop"));
+                }else{
+                    return $this->error($learnModel->getError());
+                }
+            }else{
+                $this->default_pic();
+                $this->assign('msg','');
+                return $this->fetch();
+            }
+        }
+
+    }
+    /*
+     * 党性体验
+     */
+    public function experience(){
+        $map = array(
+            'status' => 0,
+            'type' => 5
+        );
+        $list = $this->lists('Learn',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"已发布"),
+            'recommend' => array(0=>"否",1=>"是"),
+            'type' => array(5=>"党性体验")
+        ));
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+    /*
+     * 党性体验  添加  修改
+     */
+    public function experienceadd(){
+        $id = input('id');
+        if($id){
+           // 修改
+            if(IS_POST){
+                $data = input('post.');
+                $learnModel = new LearnModel();
+                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+                $model = $learnModel->validate('Learn')->where(['id' => $id])->update($data);
+                if($model){
+                    return $this->success('修改成功',Url("Learn/experience"));
+                }else{
+                    return $this->error($learnModel->getError());
+                }
+            }else{
+                $msg = LearnModel::where(['id' => $id,'status' => 0])->find();
+                $this->assign('msg',$msg);
+                return $this->fetch();
+            }
+        }else{
+            // 添加
+            if(IS_POST){
+                $data = input('post.');
+                if(empty($data['id'])) {
+                    unset($data['id']);
+                }
+                $learnModel = new LearnModel();
+                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+                $model = $learnModel->validate('Learn')->save($data);
+                if($model){
+                    return $this->success('新增成功!',Url("Learn/experience"));
+                }else{
+                    return $this->error($learnModel->getError());
+                }
+            }else{
+                $this->default_pic();
+                $this->assign('msg','');
+                return $this->fetch();
+            }
         }
     }
 }
