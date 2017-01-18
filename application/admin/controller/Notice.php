@@ -266,8 +266,65 @@ class Notice extends Admin {
             return $this->error("删除失败");
         }
     }
+    /*
+     * 创意组织生活
+     *  type:6
+     */
+    public function regular(){
+        $map = array(
+            'type' => 6,
+            'status' => array('egt',0),
+        );
+        $list = $this->lists('Notice',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"待审核",1=>"已发布",2=>"审核不通过",3=>"草稿"),
+        ));
+        $this->assign('list',$list);
 
-
-
-
+        return $this->fetch();
+    }
+    /*
+     * 创意组织生活  添加 修改
+     */
+    public function regularadd(){
+        $id = input('param.id');
+        if($id){
+            // 修改
+            if(IS_POST){
+                $data = input('post.');
+                $noticeModel = new NoticeModel();
+                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+                $model = $noticeModel->validate('Learn')->where(['id' => $id])->update($data);
+                if($model){
+                    return $this->success('修改成功',Url("Notice/regular"));
+                }else{
+                    return $this->error($noticeModel->getError());
+                }
+            }else{
+                $msg = NoticeModel::where(['id' => $id,'status' => 1])->find();
+                $this->assign('msg',$msg);
+                return $this->fetch();
+            }
+        }else{
+            // 添加
+            if(IS_POST){
+                $data = input('post.');
+                if(empty($data['id'])) {
+                    unset($data['id']);
+                }
+                $noticeModel = new NoticeModel();
+                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+                $model = $noticeModel->validate('Learn')->save($data);
+                if($model){
+                    return $this->success('新增成功!',Url("Notice/regular"));
+                }else{
+                    return $this->error($noticeModel->getError());
+                }
+            }else{
+                $this->default_pic();
+                $this->assign('msg','');
+                return $this->fetch();
+            }
+        }
+    }
 }
