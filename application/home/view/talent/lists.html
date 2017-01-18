@@ -61,42 +61,20 @@
                 <div class="page-content">
                     <div class="list-block" style="">
                         <ul>
-                            <li class="item-content" onclick=window.location.href="{:Url('talent/detail')}">
+                            {volist name="list" id="vo"}
+                            <li class="item-content" onclick=window.location.href="{:Url('talent/detail?id='.$vo['id'])}">
                                 <div class="item-inner" >
                                     <div>
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div class="limit">{$vo.title}</div>
                                         <div>
-                                            <span>2017-1-1</span>
+                                            <span>{$vo.create_time|time_format='Y-m-d'}</span>
                                             <img src="/home/images/right.png" alt="">
                                         </div>
                                     </div>
 
                                 </div>
                             </li>
-                            <li class="item-content" >
-                                <div class="item-inner" >
-                                    <div>
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
-                                        <div>
-                                            <span>2017-1-1</span>
-                                            <img src="/home/images/right.png" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
-                            <li class="item-content" >
-                                <div class="item-inner" >
-                                    <div>
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
-                                        <div>
-                                            <span>2017-1-1</span>
-                                            <img src="/home/images/right.png" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </li>
+                            {/volist}
                         </ul>
                     </div>
                     <div  style="text-align: center;width:100%;height:30px;font-size:14px;margin-top:5px;color:#666;margin-bottom:20px;" class="add1">点击加载更多...</div>

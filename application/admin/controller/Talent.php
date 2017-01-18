@@ -27,7 +27,7 @@ class Talent extends Admin {
         $list = $this->lists('Talent',$map);
         int_to_string($list,array(
             'status' => array(0=>"待审核",1=>"已发布",2=>"不通过"),
-            'type' => array(1=>"人才政策",2=>"国千计划",3=>"省千计划"),
+            'type' => array(1=>"政策解读",2=>"申请流程",3=>"创业支持"),
         ));
         $this->assign('list',$list);
         return $this->fetch();

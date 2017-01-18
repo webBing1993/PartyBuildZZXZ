@@ -75,68 +75,53 @@
                         <ul>
                             <li class="item-content" style="">
                                 <div class="item-inner" style="">
-                                    <div onclick=window.location.href="{:Url('talent/lists')}">
+                                    <div onclick=window.location.href="{:Url('talent/lists?type=1')}">
                                         <span >政策解读</span>
                                         <span >更多</span>
                                     </div>
-                                    <div onclick=window.location.href="{:Url('talent/detail')}">
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                    {volist name="list1" id="vo1"}
+                                    <div onclick=window.location.href="{:Url('talent/detail?id='.$vo1['id'])}">
+                                        <div class="limit">{$vo1.title}</div>
                                         <div>
-                                            <span>2017-1-1</span>
+                                            <span>{$vo1.create_time|time_format='Y-m-d'}</span>
                                             <img src="/home/images/right.png" alt="">
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="limit" >测试测试测试测试吃的是ceiling测嘿嘿1</div>
-                                        <div>
-                                            <span>2017-1-1</span>
-                                            <img src="/home/images/right.png" alt="">
-                                        </div>
-                                    </div>
+                                    {/volist}
                                 </div>
                             </li>
                             <li class="item-content" style="">
                                 <div class="item-inner" style="">
-                                    <div>
+                                    <div onclick=window.location.href="{:Url('talent/lists?type=2')}">
                                         <span style="color:#e56f20">申请流程</span>
                                         <span >更多</span>
                                     </div>
+                                    {volist name="list2" id="vo2"}
                                     <div>
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div class="limit">{$vo2.title}</div>
                                         <div>
-                                            <span>2017-1-1</span>
+                                            <span>{$vo2.create_time|time_format='Y-m-d'}</span>
                                             <img src="/home/images/right.png" alt="">
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="limit">测试测试测试测试吃的是ceiling测嘿嘿1</div>
-                                        <div>
-                                            <span>2017-1-1</span>
-                                            <img src="/home/images/right.png" alt="">
-                                        </div>
-                                    </div>
+                                    {/volist}
                                 </div>
                             </li>
                             <li class="item-content" style="">
                                 <div class="item-inner" style="">
-                                    <div>
+                                    <div onclick=window.location.href="{:Url('talent/lists?type=3')}">
                                         <span style="color: #e2a214">创业支持</span>
                                         <span >更多</span>
                                     </div>
+                                    {volist name="list3" id="vo3"}
                                     <div>
-                                        <div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>
+                                        <div class="limit">{$vo3.title}</div>
                                         <div>
-                                            <span>2017-1-1</span>
+                                            <span>{$vo3.create_time|time_format='Y-m-d'}</span>
                                             <img src="/home/images/right.png" alt="">
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="limit" >测试测试测试测试吃的是ceiling测嘿嘿1</div>
-                                        <div>
-                                            <span >2017-1-1</span>
-                                            <img src="/home/images/right.png" alt="">
-                                        </div>
-                                    </div>
+                                    {/volist}
                                 </div>
                             </li>
                         </ul>
