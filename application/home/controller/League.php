@@ -23,13 +23,13 @@ class League extends Base{
         return $this->fetch();
     }
     /*
-     * 地信红盟详情页
+     * 通知详情页
      */
     public function informdetail(){
         return $this->fetch();
     }
     /*
-     * 地信红盟详情页
+     * 文章详情页
      */
     public function articledetail(){
         return $this->fetch();
