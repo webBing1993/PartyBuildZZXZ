@@ -13,40 +13,44 @@
     .item-content{
         height:70px;
     }
-    .item-content>.item-inner>div:nth-child(1){
+    .item-content .item-inner>div:nth-child(1){
         position:relative;width:100%;border-bottom:1px solid #f1f1f1;padding:0 12px;height:30px;line-height: 30px;
     }
-    .item-content>.item-inner>div:nth-child(1)>span:nth-child(1){
+    .item-content .item-inner>div:nth-child(1)>span:nth-child(1){
         color:#df4934;font-size:12px;font-weight: bold;
     }
-    .item-content>.item-inner>div:nth-child(1)>span:nth-child(2){
+    .item-content .item-inner>div:nth-child(1)>span:nth-child(2){
         position:absolute;right:12px;font-size:12px;color:#999;;
     }
-    .item-content>.item-inner>div:nth-child(1){
+    .item-content .item-inner>div:nth-child(1){
         width:100%;height:70px;border-bottom:1px solid #f1f1f1;padding:0 12px;
     }
-    .item-content>.item-inner>div:nth-child(1)>div:nth-child(1){
-        width:100%;font-size:14px;color:#333;height:40px;line-height:50px;
+    .item-content .item-inner>div:nth-child(1)>div:nth-child(1){
+        width:100%;font-size:15px;color:#333;height:40px;line-height:50px;
     }
-    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2){
+    .item-content .item-inner>div:nth-child(1)>div:nth-child(2){
         position:relative;width:100%;height:30px;line-height:15px;
     }
-    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2)>span,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>span{
+    .item-content .item-inner>div:nth-child(1)>div:nth-child(2)>span,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>span{
         font-size:12px;color:#999;
     }
-    .item-content>.item-inner>div:nth-child(1)>div:nth-child(2)>img,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>img{
+    .item-content .item-inner>div:nth-child(1)>div:nth-child(2)>img,.item-content>.item-inner>div:nth-child(3)>div:nth-child(2)>img{
         width:12px;height:12px;position:absolute;top:3px;right:0;
     }
-    .item-content>.item-inner>div:nth-child(2){
+    .item-content .item-inner>div:nth-child(2){
         width:100%;height:70px;padding:0 12px;
     }
-    .item-content>.item-inner>div:nth-child(2)>div:nth-child(1){
+    .item-content .item-inner>div:nth-child(2)>div:nth-child(1){
         width:100%;font-size:14px;color:#333;height:40px;line-height:50px;
     }
-    .item-content>.item-inner>div:nth-child(2)>div:nth-child(2){
+    .item-content .item-inner>div:nth-child(2)>div:nth-child(2){
         position:relative;width:100%;height:30px;line-height:20px;
     }
 
+    /*add1*/
+    .add1{
+        text-align: center;width:100%;height:30px;font-size:14px;margin-top:5px;color:#666;margin-bottom:20px;
+    }
 </style>
 {/block}
 
@@ -55,7 +59,7 @@
     <!-- Your main view -->
     <div class="view view-main">
         <!-- Pages -->
-
+        <!--<div class="title">政策解读</div>-->
         <div class="pages" >
             <div class="page" data-page="home">
                 <div class="page-content">
@@ -71,13 +75,12 @@
                                             <img src="/home/images/right.png" alt="">
                                         </div>
                                     </div>
-
                                 </div>
                             </li>
                             {/volist}
                         </ul>
                     </div>
-                    <div  style="text-align: center;width:100%;height:30px;font-size:14px;margin-top:5px;color:#666;margin-bottom:20px;" class="add1">点击加载更多...</div>
+                    <div class="add1">点击加载更多...</div>
                 </div>
             </div>
         </div>
@@ -88,32 +91,50 @@
 {block name="script"}
 
 <script>
+    document.title='人才服务';
+
     //点击加载更多
-    $('.add1').click(function(){
-        var b=$('#num1>ul>li').length;
+    $('.add1').click(function(e){
+        var str=location.href;
+        console.log(str);
+        var aa=str.substring(str.length-6,str.length);
+        var a=aa.split('.')[0];
+        console.log(a);
+
+        var b=$('.list-block>ul>li').length;
         $.ajax({
             type:"post",
-            url:"",
-            data:{id:b},
+            url:" {:Url('Talent/listmore')}",
+            data:{
+                type:a,
+                length:b
+            },
             success:function(data){
+                var lists = data.data;
+                console.log(lists[0]);
+                var len = lists.length;
+                console.log(len);
                 var html='';
-                if (data == 0){
-                    $('.add1').text('没有更多了');
+                if (len == 0){
+                    $('.add1').text('没有更多了...');
                 }else {
-                    for(var i=0; i< 3;i++){
-                        html+='<li class="item-content" style="">'+
-                            '<div class="item-inner" style="">'+
+                    for(var i=0; i< len;i++){
+                        var list = lists[i];
+                        html+='<li class="item-content">'+
+                            '<a href="/home/talent/detail/id/'+list.id+'.html">'+
+                            '<div class="item-inner">'+
                             '<div>'+
-                            '<div class="limit">测试测试测试测试123sdfg dsf gdsfg dsfg dsfg sdfasdfasdfasdfasdfasdfasdfa sdf asdf asd fasd f吃的是ceiling测嘿嘿1</div>'+
+                            '<div class="limit">'+list.title+'</div>'+
                             '<div>'+
-                            '<span>2017-1-1</span>'+
+                            '<span>'+list.create_time+'</span>'+
                             '<img src="/home/images/right.png" alt="">'+
                             '</div>'+
                             '</div>'+
                             '</div>'+
+                            '</a>'+
                             '</li>';
                     }
-                    console.log($(this).parent().find('div.list-block').find('ul'))
+                    //console.log($(this).parent().find('div.list-block').find('ul'))
                     $('.list-block ul').append(html);
                 }
             }

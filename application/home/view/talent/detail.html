@@ -2,9 +2,31 @@
 
 {block name="style"}
 <style>
-.limit{
-    text-align: center;width:100%;font-size:16px;color:#333;font-weight: bold;height:50px;line-height:50px;
-}
+    .limit{
+        text-align: center;width:100%;font-size:16px;color:#333;font-weight: bold;height:50px;line-height:50px;
+    }
+    .content{
+        text-indent:2em;line-height:20px;margin-top:8px;margin-bottom:10px;
+    }
+    .content *{
+        width:100%;
+    }
+    .good_{
+        background: url('/home/images/detail/good.png') 0 0 no-repeat;
+    }
+    .good {
+        background: url('/home/images/detail/good_.png') 0 0 no-repeat;
+    }
+
+    .scan{
+       background: url('/home/images/detail/scan.png') 0 2px no-repeat;display: inline-block;margin-right:15px;
+    }
+    .isgood{
+        background-size: 15px 15px;padding-left: 18px;font-size:12px;color:#999;margin-bottom:20px;
+    }
+    .isgood_{
+        background-size: 15px 10px;padding-left: 18px;font-size:12px;color:#999;margin-bottom:20px;
+    }
 
 </style>
 {/block}
@@ -26,8 +48,12 @@
                                 <span>{$talent.publisher}</span>
                             </div>
                         </div>
-                        <div style="text-indent:2em;line-height:20px;margin-top:8px;">
+                        <div class="content">
                             {$talent.content}
+                        </div>
+                        <div>
+                            <div class="fl isgood_ scan">123</div>
+                            <div class="fl isgood good_" onclick="" >111</div>
                         </div>
                     </div>
                 </div>
@@ -40,6 +66,26 @@
 {block name="script"}
 
 <script>
+    document.title='人才服务';
 
+    $('.isgood').click(function(){
+        $(this).toggleClass('good').toggleClass('good_');
+    });
+    //点赞
+    function isGood(e,id){
+        $.ajax({
+            type:"post",
+            url:"",
+            data:{
+                id:id
+            },
+            success:function(data){
+                var n = $(e ).text();
+                $(e).toggleClass('good' ).toggleClass('good_');
+                $(e ).hasClass('good')?n--:n++;
+                $(e ).text(n);
+            }
+        })
+    };
 </script>
 {/block}

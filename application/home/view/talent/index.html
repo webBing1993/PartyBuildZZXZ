@@ -18,7 +18,7 @@
         padding:0;
     }
     .item-content{
-       border-radius: 8px;box-shadow:  1px 3px 8px rgba(102,102,102,.2);height:170px;margin-bottom:12px;
+       border-radius: 8px;box-shadow:  1px 3px 8px rgba(102,102,102,.2);min-height:100px;margin-bottom:12px;
     }
     .item-content>.item-inner>div:nth-child(1){
         position:relative;width:100%;border-bottom:1px solid #f1f1f1;padding:0 12px;height:30px;line-height: 30px;
@@ -97,7 +97,7 @@
                                         <span >更多</span>
                                     </div>
                                     {volist name="list2" id="vo2"}
-                                    <div>
+                                    <div onclick=window.location.href="{:Url('talent/detail?id='.$vo2['id'])}">
                                         <div class="limit">{$vo2.title}</div>
                                         <div>
                                             <span>{$vo2.create_time|time_format='Y-m-d'}</span>
@@ -112,9 +112,9 @@
                                     <div onclick=window.location.href="{:Url('talent/lists?type=3')}">
                                         <span style="color: #e2a214">创业支持</span>
                                         <span >更多</span>
-                                    </div>
+                                    </div >
                                     {volist name="list3" id="vo3"}
-                                    <div>
+                                    <div onclick=window.location.href="{:Url('talent/detail?id='.$vo3['id'])}">
                                         <div class="limit">{$vo3.title}</div>
                                         <div>
                                             <span>{$vo3.create_time|time_format='Y-m-d'}</span>
@@ -137,7 +137,6 @@
 {block name="script"}
 
 <script>
-    var myApp = new Framework7();
-    var $$ = Dom7;
+
 </script>
 {/block}
