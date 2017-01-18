@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 
+use app\home\model\Picture;
 use think\Controller;
 use app\home\model\Talent as TalentModel;
 
@@ -64,6 +65,24 @@ class Talent extends Base{
         $talent = $talentModel->get($id);
         $this->assign('talent',$talent);
         return $this->fetch();
+    }
+    
+    /**
+     * 加载更多
+     */
+    public function listmore() {
+        $len = input('length');
+        $type = input('type');
+        $map = array(
+            'type' => $type,
+            'status' => array('eq',1),
+        );
+        $list = TalentModel::where($map)->order('create_time desc')->limit($len,10)->select();
+        if($list){
+            return $this->success("加载成功",'',$list);
+        }else{
+            return $this->error("加载失败");
+        }
     }
     
 }
