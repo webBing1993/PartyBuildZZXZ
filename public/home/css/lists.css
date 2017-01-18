@@ -44,6 +44,12 @@ textarea::-webkit-input-placeholder {
   font-size: 14px;
   text-align: right;
 }
+.lists .list .note span.wait {
+  color: #378040;
+}
+.lists .list .note span.over {
+  color: #ff313e;
+}
 .lists .tip {
   height: 40px;
   text-align: center;
