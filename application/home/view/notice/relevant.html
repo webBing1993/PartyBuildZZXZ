@@ -1,0 +1,319 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="/home/css/relevant.css">
+{/block}
+
+{block name="body"}
+<div class="banner">
+	<div class="swiper-container">
+		<div class="imgs swiper-wrapper">
+			{volist name="list.carousel" id="ca"}
+			<div class="swiper-slide"><img src="{$ca|get_cover='path'}" alt="轮播{$key+1}" class="carousel"></div>
+			{/volist}
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<img src="/home/images/notice/bottom.png" alt="圆弧" class="arc">
+</div>
+<div class="content">
+	<div class="top">
+		<div class="title limit_">{$list.title}</div>
+		<div class="note">
+			<span class="read">{$list.views}</span>
+			<span class="col"><span>{$list.collect}</span></span>
+
+		</div>
+	</div>
+	<div class="message">
+		<div><span class="limit">{$list.sponsor}</span></div>
+		<div><span class="limit">{$list.cost}</span></div>
+		<div><span class="limit">{$list.start_time|time_format="Y-m-d H:i"} -- {$list.end_time|time_format="Y-m-d H:i"}</span></div>
+		<div><span class="limit">{$list.telephone}</span></div>
+		<div><span class="limit">{$list.address}</span></div>
+	</div>
+	<div class="article">{$list.content}</div>
+	<div class="comment">
+		<div class="sum">共<span>{$list.comments}</span>条评论</div>
+		<div class="lists">
+			{volist name="comment" id="co"}
+			<div class="list clear">
+				<div class="fl">
+					<img src="{$co.header}" alt="用户" class="user">
+				</div>
+				<div class="fl mid">
+					<div class="name limit">{$co.nickname}</div>
+					<div class="content" >{$co.content}</div>
+					<div class="time">{$co.create_time|time_format="Y-m-d"}</div>
+				</div>
+				{eq name="visit" value="0"}
+				{eq name="co.is_like" value="1"}
+				<div class="fr isgood good_" onclick="isGood(this,{$list.id},{$co.id},'{$co.create_user}',2)">{$co.likes}</div>
+				{else/}
+				<div class="fr isgood good" onclick="isGood(this,{$list.id},{$co.id},'{$co.create_user}',2)">{$co.likes}</div>
+				{/eq}
+				{/eq}
+			</div>
+			{/volist}
+		</div>
+		<div class="tip"></div>
+		<div class="loading hidden">
+			<div class="typing_loader"></div>
+		</div>
+	</div>
+</div>
+{eq name="visit" value="0"}
+<div class="bottom clear">
+	{eq name="$list.is_collect" value="1"}
+	<div class="collect fl star_" onclick="isCollect(this,{$list.id},2)"></div>
+	{else/}
+	<div class="collect fl star" onclick="isCollect(this,{$list.id},2)"></div>
+	{/eq}
+	<div class="myword fl">
+		<input type="text" placeholder="说说你的感想！">
+	</div>
+	<div class="send fl" onclick="send(this,{$list['id']})">发送</div>
+	<div class="not">
+		<div class="bg"></div>
+		<div class="msg">
+			您的评论不能为空
+			<div class="confirm">确定</div>
+		</div>
+	</div>
+</div>
+{/eq}
+
+{/block}
+
+{block name="script"}
+<script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
+<script>
+$(function(){
+	//模块标题
+	$('title' ).text('支部活动');
+	//reset
+	var len = $(".list" ).length;
+	if(len >= 7){
+		$('.tip' ).text('上拉加载更多');
+	}
+	//上拉加载评论
+	loadScroll();
+	//ios fix兼容
+	tofixed();
+	//ue限定
+	ueLimit();
+	//轮播
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 3000,
+		loop:true,
+		pagination : '.swiper-pagination',
+		paginationType : 'bullets',
+		autoplayDisableOnInteraction:false,
+	})
+
+});
+/**
+ * 点赞
+ * @param e
+ */
+var isGood = function(e,id,comment_id,userid,cla){
+	//样式变化，移到suc
+	var n = $(e ).text();
+	$(e).toggleClass('good' ).toggleClass('good_');
+	$(e ).hasClass('good')?n--:n++;
+	$(e ).text(n);
+	//type：1文章，2评论
+	var type = $(e ).hasClass('fr')?2:1;
+	$.ajax({
+		type:"post",
+		url:"{:Url('News/like')}",
+		data:{
+			type:type,
+			id:id,
+			comment_id:comment_id,
+			user_id:userid,
+			class:cla,
+		},
+		success:function(data){
+
+		}
+	})
+};
+/**
+ * 收藏
+ * @param e
+ */
+var isCollect = function(e,id,type){
+	//样式变化，移到suc
+	$(e).toggleClass('star' ).toggleClass('star_');
+	$.ajax({
+		type:"post",
+		url:"{:Url('News/collect')}",
+		data:{
+			id:id,
+			type:type
+		},
+		success:function(data){
+			var col = $('.col span' );
+			if($(e).hasClass('star' )){
+				col.text(parseInt(col.text())-1)
+			}else{
+				col.text(parseInt(col.text())+1)
+			}
+		}
+	})
+};
+/**
+ * 发送评论
+ * @param e
+ */
+var send = function(e,id){
+	var it = $(e ).prev().find('input');
+	if(it.val() != ''){
+		$.ajax({
+			type:"post",
+			url:"{:Url('News/comment')}",
+			data:{
+				notice_id:id,
+				content:it.val()
+			},
+			success:function(data){
+				var data = data.data;
+				var userid = "'"+data.create_user+"'";
+				var html = '';
+				html += '<div class="list clear">'+
+						'<div class="fl">'+
+						'<img src="'+data.header+'" alt="用户头像" class="user">'+
+						'</div>'+
+						'<div class="fl mid">'+
+						'<div class="name limit">'+data.nickname+'</div>'+
+						'<div class="content" >'+it.val()+'</div>'+
+						'<div class="time">'+data.time+'</div>'+
+						'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,'+data.notice_id+','+data.id+','+userid+','+2+')">'+data.likes+'</div>'+
+						'</div>';
+				$('.lists' ).append(html);
+				it.val('');
+				var sum = $('.sum span' );
+				sum.text(parseInt(sum.text())+1)
+			}
+		});
+	}else{
+		var not = $('.not');
+		not.fadeIn();
+		document.body.style.overflow='hidden';
+		$('.confirm,.not .bg' ).on('click',function(){
+			not.fadeOut();
+			document.body.style.overflow='scroll';
+		})
+	}
+};
+var tofixed = function(){
+	var u = navigator.userAgent;
+	var word = $('.myword input');
+	var bottom =$('.bottom');
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+	//var ua = window.navigator.appVersion;
+	//alert(u);
+	if(isiOS){
+		//兼容ios7
+		$(document).scrollTop(1);
+		word.focus(function(){
+			var noInputViewHeight = $(window).height() - bottom.height();
+			var contentHeight = $(document).height() - bottom.height();
+			contentHeight = contentHeight > noInputViewHeight ? contentHeight : noInputViewHeight;
+			setTimeout(function(){
+				var inputTopHeight = bottom.offset().top - $(window).scrollTop()+1;
+				var inputTopPos = bottom.offset().top + inputTopHeight+1;
+				inputTopPos = inputTopPos > contentHeight ? contentHeight : inputTopPos;
+				bottom.css({'position':'absolute', 'top':inputTopPos });
+				$(window).on('touchstart', function(){
+					word.blur();
+				});
+			}, 100);
+		});
+		word.on('blur',function(){
+			//输入框失焦后还原初始状态
+			var a =$(window).height()-45;
+			bottom.css({'position': 'fixed','top':'','bottom':'0'});
+		})
+	}
+};
+function loadScroll(){
+	$(window ).off("scroll" ).on("scroll",function(){
+		var dh = $(document).height();
+		var end = $(window).height() + $(window ).scrollTop();
+		var len = $(".list" ).length;
+		var tip = $(".tip");
+		var loading = $('.loading');
+		var id = {$list['id']};
+		if(dh == end){
+			$.ajax({
+				type:"post",
+				url:"{:Url('News/morecontent')}",
+				data:{
+					notice_id:id,
+					length:len
+				},
+				beforeSend: function(XMLHttpRequest){
+					tip.hide();
+					loading.toggleClass('hidden');
+				},
+				success:function(data){
+					loading.toggleClass('hidden');
+					tip.show();
+					if(data.code == 1){
+						addComment(data);
+						var dataLen =data.data.length;
+						if(data.data.length == 5){
+							tip.text('上拉加载更多');
+						}
+					}else{
+						tip.text('没有更多了');
+						$(window ).off("scroll");
+					}
+				}
+			})
+		}
+	})
+}
+function addComment(data){
+	//is_like : 1为已点赞 0为未点赞
+	var html = '';
+	var lists = data.data;
+	var len = lists.length;
+	for(var i = 0; i< len;i++){
+		var list = lists[i];
+		var userid = "'"+data.create_user+"'";
+		html += '<div class="list clear">'+
+				'<div class="fl">'+
+				'<img src="'+list.header+'" alt="用户" class="user">'+
+				'</div>'+
+				'<div class="fl mid">'+
+				'<div class="name limit">'+ list.nickname+'</div>'+
+				'<div class="content" >'+ list.content+'</div>'+
+				'<div class="time">'+ list.time+'</div>'+
+				'</div>';
+		if(list.is_like == 0){
+			html+='<div class="fr isgood good" onclick="isGood(this,'+list.notice_id+','+list.id+','+userid+','+2+')">'+list.likes+'</div>'
+		}else{
+			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.notice_id+','+list.id+','+userid+','+2+')">'+list.likes+'</div>'
+		}
+		html+=
+				'</div>';
+	}
+	$(".lists" ).append(html);
+}
+function ueLimit(){
+	var imgs = $('.content img');
+	var ww = $('.content').width();
+	imgs.each(function(){
+		if($(this ).width() > ww){
+			$(this ).width(ww)
+		}
+	});
+}
+
+</script>
+{/block}
