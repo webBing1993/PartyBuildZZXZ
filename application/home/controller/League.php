@@ -22,4 +22,11 @@ class League extends Base{
     public function detail(){
         return $this->fetch();
     }
+    /*
+     * 活动安排更多页
+     */
+    public function lists(){
+        return $this->fetch();
+    }
+
 }
