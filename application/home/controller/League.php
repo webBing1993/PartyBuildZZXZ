@@ -9,15 +9,15 @@ namespace app\home\controller;
 use app\home\model\WechatTest;
 use app\home\model\WechatUser;
 
-class Structure extends Base{
+class League extends Base{
     /*
-     * 组织架构主页
+     * 地信红盟主页
      */
     public function index(){
         return $this->fetch();
     }
     /*
-     * 组织架构详情页
+     * 地信红盟详情页
      */
     public function detail(){
         return $this->fetch();
