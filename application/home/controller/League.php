@@ -17,15 +17,21 @@ class League extends Base{
         return $this->fetch();
     }
     /*
-     * 地信红盟详情页
-     */
-    public function detail(){
-        return $this->fetch();
-    }
-    /*
      * 活动安排更多页
      */
     public function lists(){
+        return $this->fetch();
+    }
+    /*
+     * 地信红盟详情页
+     */
+    public function informdetail(){
+        return $this->fetch();
+    }
+    /*
+     * 地信红盟详情页
+     */
+    public function articledetail(){
         return $this->fetch();
     }
 
