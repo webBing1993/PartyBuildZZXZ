@@ -1,0 +1,178 @@
+@charset "utf-8";
+.t_b {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.shadow {
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+}
+a {
+  display: inline-block;
+}
+a:active {
+  background-color: #ebebeb;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #d9d9d9;
+}
+.banner {
+  width: 100vw;
+  height: 50vw;
+}
+.banner .banner-img {
+  width: 100%;
+  height: 100%;
+}
+.yearbox .year {
+  width: 100%;
+  height: 30px;
+  padding: 0 4vw;
+  color: #df4934;
+  font-size: 1.6rem;
+  line-height: 30px;
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+}
+.yearbox .plan {
+  width: 90vw;
+  margin: 0 auto 10px auto;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+}
+.yearbox .plan > .title {
+  width: 100%;
+  height: 28px;
+  padding: 0 4vw;
+  border: 1px solid #f1f1f1;
+}
+.yearbox .plan > .title span,
+.yearbox .plan > .title a {
+  display: inline-block;
+  width: 49%;
+  font-size: 1.3rem;
+  line-height: 28px;
+}
+.yearbox .plan > .title span {
+  color: #df4934;
+  font-weight: 600;
+}
+.yearbox .plan > .title a {
+  color: #999999;
+  text-align: right;
+}
+.yearbox .plan .list {
+  width: 100%;
+  padding: 0 4vw;
+  border: 1px solid #f1f1f1;
+}
+.yearbox .plan .list .title {
+  color: #333333;
+  font-size: 1.5rem;
+  line-height: 30px;
+}
+.yearbox .plan .list .content {
+  color: #999999;
+  font-size: 1.3rem;
+  line-height: 18px;
+}
+.yearbox .plan .list .note {
+  color: #999999;
+  font-size: 1.2rem;
+  line-height: 26px;
+}
+.yearbox .plan .list .note span {
+  display: inline-block;
+  width: 49%;
+}
+.yearbox .plan .list .note span:nth-child(2) {
+  font-size: 14px;
+  text-align: right;
+}
+.yearbox .quarter .box {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 90vw;
+  margin: 0 auto 10px auto;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+}
+.yearbox .quarter .box .tag {
+  position: relative;
+  top: 3vw;
+  left: -7px;
+  width: 83px;
+  height: 30px;
+  padding-left: 2px;
+  margin-bottom: 1vw;
+  color: #ffffff;
+  font-size: 1.2rem;
+  line-height: 20px;
+  text-align: center;
+}
+.yearbox .quarter .box .list {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  padding: 11px 4vw;
+  border-bottom: 1px solid #f1f1f1;
+}
+.yearbox .quarter .box .list:last-child {
+  border: none;
+}
+.yearbox .quarter .box .list.tag-mon:after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: 4vw;
+  width: 20px;
+  height: 20px;
+}
+.yearbox .quarter .box .list .title {
+  color: #333333;
+  font-size: 1.5rem;
+  line-height: 30px;
+}
+.yearbox .quarter .box .list .note {
+  color: #999999;
+  font-size: 1.2rem;
+  line-height: 18px;
+}
+.yearbox .quarter .box .list .note span {
+  display: inline-block;
+  width: 49%;
+}
+.yearbox .quarter .box .list .note span:nth-child(2) {
+  font-size: 14px;
+  text-align: right;
+}
+.yearbox .quarter .box:nth-child(1) .tag {
+  background: url('/home/images/league/tag00.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(2) .tag {
+  background: url('/home/images/league/tag01.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(2) .tag-mon:after {
+  background: url('/home/images/league/mon01.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(3) .tag {
+  background: url('/home/images/league/tag02.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(3) .tag-mon:after {
+  background: url('/home/images/league/mon02.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(4) .tag {
+  background: url('/home/images/league/tag03.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .quarter .box:nth-child(4) .tag-mon:after {
+  background: url('/home/images/league/mon02.png') 0 0 no-repeat;
+  background-size: contain;
+}
