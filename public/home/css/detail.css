@@ -12,6 +12,9 @@
   height: 100%;
   width: 100%;
 }
+.uecontent *{
+  width: 100%;
+}
 /*文章*/
 .article {
   width: 100%;

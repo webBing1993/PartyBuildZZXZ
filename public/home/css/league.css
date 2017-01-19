@@ -24,73 +24,74 @@ textarea::-webkit-input-placeholder {
   width: 100%;
   height: 100%;
 }
-.yearbox .year {
-  width: 100%;
-  height: 30px;
-  padding: 0 4vw;
-  color: #df4934;
-  font-size: 1.6rem;
-  line-height: 30px;
-  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
-}
-.yearbox .plan {
+.plan {
   width: 90vw;
-  margin: 0 auto 10px auto;
+  margin: 12px auto 10px auto;
   -webkit-border-radius: 8px;
   border-radius: 8px;
   box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
 }
-.yearbox .plan > .title {
+.plan > .title {
   width: 100%;
   height: 35px;
   padding: 0 4vw;
   border: 1px solid #f1f1f1;
 }
-.yearbox .plan > .title span,
-.yearbox .plan > .title a {
+.plan > .title span,
+.plan > .title a {
   display: inline-block;
   width: 49%;
   font-size: 1.3rem;
   line-height: 35px;
 }
-.yearbox .plan > .title span {
+.plan > .title span {
   color: #df4934;
   font-weight: 600;
 }
-.yearbox .plan > .title a {
+.plan > .title a {
   color: #999999;
   text-align: right;
 }
-.yearbox .plan > .title a:active {
+.plan > .title a:active {
   background: transparent;
 }
-.yearbox .plan .list {
+.plan .list {
   width: 100%;
   padding: 0 4vw;
   border: 1px solid #f1f1f1;
 }
-.yearbox .plan .list .title {
+.plan .list .title {
   color: #333333;
   font-size: 1.5rem;
   line-height: 30px;
 }
-.yearbox .plan .list .content {
+.plan .list .content {
   color: #999999;
   font-size: 1.3rem;
   line-height: 18px;
 }
-.yearbox .plan .list .note {
+.plan .list .note {
   color: #999999;
   font-size: 1.2rem;
   line-height: 26px;
 }
-.yearbox .plan .list .note span {
+.plan .list .note span {
   display: inline-block;
   width: 49%;
 }
-.yearbox .plan .list .note span:nth-child(2) {
+.plan .list .note span:nth-child(2) {
   font-size: 14px;
   text-align: right;
+}
+.yearbox .year {
+  width: 100%;
+  height: 30px;
+  padding: 0 4vw;
+  text-align: center;
+  color: #df4934;
+  font-size: 1.6rem;
+  line-height: 30px;
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
 }
 .yearbox .quarter .box {
   position: relative;
