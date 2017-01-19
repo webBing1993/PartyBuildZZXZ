@@ -51,6 +51,29 @@
     .add1{
         text-align: center;width:100%;height:30px;font-size:14px;margin-top:5px;color:#666;margin-bottom:20px;
     }
+    /**/
+    /*加载动画*/
+    .tip {
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #c1c1c1;
+    }
+    .loading {
+        width: 100%;
+        height: 40px;
+    }
+    .typing_loader {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        -webkit-animation: typing 1s linear infinite alternate;
+        -moz-animation: Typing 1s linear infinite alternate;
+        animation: typing 1s linear infinite alternate;
+        position: relative;
+        top: 17px;
+        left: calc( 50vw - 20px );
+    }
 </style>
 {/block}
 
@@ -80,7 +103,10 @@
                             {/volist}
                         </ul>
                     </div>
-                    <div class="add1">点击加载更多...</div>
+                    <div class="tip"></div>
+                    <div class="loading hidden">
+                        <div class="typing_loader"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,53 +119,87 @@
 <script>
     document.title='人才服务';
 
-    //点击加载更多
-    $('.add1').click(function(e){
-        var str=location.href;
-        console.log(str);
-        var aa=str.substring(str.length-6,str.length);
-        var a=aa.split('.')[0];
-        console.log(a);
+
+    $(function(){
+        //模块标题
+        $('title' ).text('支部活动');
+        //reset
 
         var b=$('.list-block>ul>li').length;
-        $.ajax({
-            type:"post",
-            url:" {:Url('Talent/listmore')}",
-            data:{
-                type:a,
-                length:b
-            },
-            success:function(data){
-                var lists = data.data;
-                console.log(lists[0]);
-                var len = lists.length;
-                console.log(len);
-                var html='';
-                if (len == 0){
-                    $('.add1').text('没有更多了...');
-                }else {
-                    for(var i=0; i< len;i++){
-                        var list = lists[i];
-                        html+='<li class="item-content">'+
-                            '<a href="/home/talent/detail/id/'+list.id+'.html">'+
-                            '<div class="item-inner">'+
-                            '<div>'+
-                            '<div class="limit">'+list.title+'</div>'+
-                            '<div>'+
-                            '<span>'+list.time+'</span>'+
-                            '<img src="/home/images/right.png" alt="">'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>'+
-                            '</a>'+
-                            '</li>';
+        if(b >= 7){
+            $('.add1' ).text('上拉加载更多');
+        }
+        //上拉加载
+        loadScroll();
+    });
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var str=location.href;
+            console.log(str);
+            var aa=str.substring(str.length-6,str.length);
+            var a=aa.split('.')[0];
+            console.log(a);
+            var b=$('.list-block>ul>li').length;
+
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            //var len = $(".list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end){
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Talent/listmore')}",
+                    data:{
+                        type:a,
+                        length:b
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addMeets(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
                     }
-                    //console.log($(this).parent().find('div.list-block').find('ul'))
-                    $('.list-block ul').append(html);
-                }
+                })
             }
         })
+    }
+    function addMeets(data){
+        var html = '';
+        var lists = data.data;
+        console.log(lists);
+        var b = lists.length;
+        for(var i=0; i< b;i++){
+            var list = lists[i];
+            html+='<li class="item-content">'+
+                '<a href="/home/talent/detail/id/'+list.id+'.html">'+
+                '<div class="item-inner">'+
+                '<div>'+
+                '<div class="limit">'+list.title+'</div>'+
+                '<div>'+
+                '<span>'+list.time+'</span>'+
+                '<img src="/home/images/right.png" alt="">'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</a>'+
+                '</li>';
+        }
+        //console.log($(this).parent().find('div.list-block').find('ul'))
+        $('.list-block ul').append(html);
+    }
 
-    })
 </script>
 {/block}
