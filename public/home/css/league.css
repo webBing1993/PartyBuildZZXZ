@@ -93,6 +93,29 @@ textarea::-webkit-input-placeholder {
   line-height: 30px;
   box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
 }
+.yearbox .year span {
+  position: relative;
+}
+.yearbox .year span:before {
+  position: absolute;
+  top: 3px;
+  left: -20px;
+  content: '';
+  width: 10px ;
+  height: 10px;
+  background: url('/home/images/league/cir.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.yearbox .year span:after {
+  position: absolute;
+  top: 3px;
+  right: -20px;
+  content: '';
+  width: 10px ;
+  height: 10px;
+  background: url('/home/images/league/cir.png') 0 0 no-repeat;
+  background-size: contain;
+}
 .yearbox .quarter .box {
   position: relative;
   top: 0;
