@@ -20,7 +20,8 @@ class Learn extends Admin {
      */
     public function index(){
         $map = array(
-            'status' => 0
+            'status' => 0,
+            'type'=> array('in',[1,2,3])
         );
         $list = $this->lists('Learn',$map);
         int_to_string($list,array(
