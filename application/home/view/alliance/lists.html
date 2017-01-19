@@ -6,23 +6,21 @@
 
 {block name="body"}
 <div class="lists">
-	<a href="{:Url('League/informdetail')}" class="list">
-		<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
-		<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>
+	{volist name="list" id="vo"}
+	<a href="{:Url('Alliance/informdetail?id='.$vo['id'])}" class="list">
+		<div class="title limit">{$vo.title}</div>
+		<div class="content limit_">{$vo.theme}</div>
 		<div class="note">
 			<!--未开始：wait,已结束：over-->
+			{eq name="vo.begin" value="0"}
 			<span class="wait">未开始</span>
-			<span class="time">2016-01-01</span>
-		</div>
-	</a>
-	<a href="{:Url('League/informdetail')}" class="list">
-		<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
-		<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>
-		<div class="note">
+			{else/}
 			<span class="over">已结束</span>
-			<span class="time">2016-01-01</span>
+			{/eq}
+			<span class="time">{$vo.time|time_format="Y-m-d"}</span>
 		</div>
 	</a>
+	{/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
@@ -49,7 +47,7 @@ function loadScroll(){
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('Alliance/listsmore')}",
 				data:{
 					length:len
 				},

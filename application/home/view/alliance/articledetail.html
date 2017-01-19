@@ -6,21 +6,21 @@
 
 {block name="body"}
 <div class="article">
-	<div class="title limit_">关于召开德清县"一月一主题"活动的安排</div>
+	<div class="title limit_">{$info.title}</div>
 	<div class="note">
-		<span>2016-01-01</span>
+		<span>{$info.create_time|time_format="Y-m-d"}</span>
 	</div>
 	<div class="content">
-		6月10日在德清小镇关于召开德清县"一月一主题"活动的安排
+		{$info.content}
 		<div class="note">
-			<span class="read">1</span>
+			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
-			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">2</span>
+			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">{$info.likes}</span>
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>222</span>条评论</div>
+	<div class="sum">共<span>{$info.comments}</span>条评论</div>
 	<div class="lists">
 		<div class="list clear">
 			<div class="fl">

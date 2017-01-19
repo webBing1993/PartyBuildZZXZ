@@ -9,7 +9,6 @@
 namespace app\home\controller;
 
 use app\user\controller\Index;
-use app\home\model\Browse;
 use app\home\model\Collect;
 use app\home\model\Comment;
 use app\home\model\Learn;
@@ -24,7 +23,7 @@ use think\Log;
 
 class Base extends Controller {
     public function _initialize(){
-//        session('userId','wangzhichao');
+        session('userId','lb');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -56,6 +55,13 @@ class Base extends Controller {
                 session('jsapiticket', $Wechat->getJsTicket()); // 官方7200,设置7000防止误差
             }
         }
+    }
+
+    public function setComment() {
+        $comment = new Comment();
+        $res = $comment->addComment($this->moduleName,1);
+        return $res;
+
     }
    
     /**

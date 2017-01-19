@@ -57,7 +57,7 @@
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.title}</td>
                                 <td>{$vo.theme}</td>
-                                <td>{$vo.time}</td>
+                                <td>{$vo.time|time_format='Y-m-d'}</td>
                                 <td>{$vo.address}</td>
                                 <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>

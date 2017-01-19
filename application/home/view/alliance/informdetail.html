@@ -10,19 +10,19 @@
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_">关于召开德清县"一月一主题"活动的安排</div>
+		<div class="title limit_">{$info.title}</div>
 		<div class="note">
-			<span class="read">111</span>
+			<span class="read">{$info.views}</span>
 		</div>
 	</div>
 	<div class="message">
-		<div><span class="limit">主题主题</span></div>
-		<div><span class="limit">2016-02-01</span></div>
-		<div><span class="limit">地点</span></div>
+		<div><span class="limit">{$info.theme}</span></div>
+		<div><span class="limit">{$info.create_time|time_format='Y-m-d'}</span></div>
+		<div><span class="limit">{$info.address}</span></div>
 	</div>
-	<div class="article">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>
+	<div class="article">{$info.content}</div>
 	<div class="comment">
-		<div class="sum">共<span>111</span>条评论</div>
+		<div class="sum">共<span>{$info.comments}</span>条评论</div>
 		<div class="lists">
 			<div class="list clear">
 				<div class="fl">

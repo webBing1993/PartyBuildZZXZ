@@ -21,7 +21,7 @@ class Alliance extends Admin {
      */
     public function arrange() {
         $map = array(
-            'status' => 1
+            'status' => array('egt',0)
         );
         $list = $this->lists('AllianceArrange',$map);
         int_to_string($list,array(
@@ -39,6 +39,7 @@ class Alliance extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+            $data['time'] = strtotime($data['time']);
             $arrangeModel = new AllianceArrange();
             $model = $arrangeModel->validate('Alliance.arrange')->save($data);
             if($model) {
@@ -60,6 +61,7 @@ class Alliance extends Admin {
             $data = input('post.');
             $data['update_time'] = time();
             $data['update_user'] = $_SESSION['think']['user_auth']['id'];
+            $data['time'] = strtotime($data['time']);
             $arrangeModel = new AllianceArrange();
             $model = $arrangeModel->validate('Alliance.arrange')->save($data,['id'=>$data['id']]);
             if($model) {
@@ -98,7 +100,7 @@ class Alliance extends Admin {
      */
     public function show() {
         $map = array(
-            'status' => 1
+            'status' => array('egt',0)
         );
         $list = $this->lists('AllianceShow',$map);
         int_to_string($list,array(
