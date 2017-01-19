@@ -14,84 +14,94 @@
 		<span>活动安排</span>
 		<a href="{:Url('Alliance/lists')}">更多</a>
 	</div>
-	<a href="{:Url('Alliance/informdetail')}" class="list">
-		<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
-		<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>
+	{volist name="arrange" id="arr"}
+	<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
+		<div class="title limit">{$arr.title}</div>
+		<div class="content limit_">{$arr.content}</div>
 		<div class="note">
-			<span class="time">2016-01-01</span>
+			<span class="time">{$arr.time|time_format='Y-m-d'}</span>
 			<span class="fa fa-angle-right"></span>
 		</div>
 	</a>
-	<a href="{:Url('Alliance/informdetail')}" class="list">
-		<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
-		<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>
-		<div class="note">
-			<span class="time">2016-01-01</span>
-			<span class="fa fa-angle-right"></span>
-		</div>
-	</a>
+	{/volist}
 </div>
 <!--/活动安排-->
+{volist name="list" id="vo"}
 <!--一年-->
 <div class="yearbox">
-	<div class="year"><span>2017</span></div>
+	<div class="year"><span>{$key}年</span></div>
 	<!--一个季度-->
+	{volist name="vo" id="vo1"}
 	<div class="quarter">
 		<!--季度文章-->
 		<div class="box">
-			<div class="tag">第一季度文章</div>
-			<a href="{:Url('Alliance/articledetail')}" class="list">
-				<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>
-				<div class="note">2016-01-01</div>
+			<div class="tag">第{$key}季度文章</div>
+			{notempty name="vo1.data"}
+			{volist name="vo1.data" id="da"}
+			<a href="{:Url('Alliance/articledetail?id='.$da['id'])}" class="list">
+				<div class="title limit">{$da.title}</div>
+				<div class="note">{$da.create_time|time_format='Y-m-d'}</div>
 			</a>
+			{/volist}
+			{/notempty}
 		</div>
 		<!--/季度文章-->
 		<!--一个月-->
+		{volist name="vo1.msg" id="msg"}
 		<div class="box">
-			<div class="tag">3月文章</div>
+			<div class="tag">{$key}月文章</div>
+			{volist name="msg.data" id="info"}
 			<!--月文章的list带tag-mon -->
-			<a href="{:Url('Alliance/articledetail')}" class="list tag-mon">
-				<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>
+			{eq name="info.type" value="2"}
+			<a href="{:Url('Alliance/articledetail?id='.$info['id'])}" class="list tag-mon">
+				{else/}
+				<a href="{:Url('Alliance/articledetail?id='.$info['id'])}" class="list">
+				{/eq}
+				<div class="title limit">{$info.title}</div>
 				<div class="note">
-					<span class="time">2016-01-01</span>
+					<span class="time">{$info.create_time|time_format='Y-m-d'}</span>
 					<span class="fa fa-angle-right"></span>
 				</div>
 			</a>
-			<!--月文章-->
-			<!--周文章的list不带tag-mon-->
-			<a href="{:Url('Alliance/articledetail')}" class="list">
-				<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>
-				<div class="note">
-					<span class="time">2016-01-01</span>
-					<span class="fa fa-angle-right"></span>
-				</div>
-			</a>
-			<!--/周文章-->
+			{/volist}
+			<!--&lt;!&ndash;月文章&ndash;&gt;-->
+			<!--&lt;!&ndash;周文章的list不带tag-mon&ndash;&gt;-->
+			<!--<a href="{:Url('Alliance/articledetail')}" class="list">-->
+				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
+				<!--<div class="note">-->
+					<!--<span class="time">2016-01-01</span>-->
+					<!--<span class="fa fa-angle-right"></span>-->
+				<!--</div>-->
+			<!--</a>-->
+			<!--&lt;!&ndash;/周文章&ndash;&gt;-->
 		</div>
+		{/volist}
 		<!--/一个月-->
-		<div class="box">
-			<div class="tag">2月文章</div>
-			<a href="{:Url('Alliance/articledetail')}" class="list tag-mon">
-				<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>
-				<div class="note">
-					<span class="time">2016-01-01</span>
-					<span class="fa fa-angle-right"></span>
-				</div>
-			</a>
-		</div>
-		<div class="box">
-			<div class="tag">1月文章</div>
-			<a href="{:Url('Alliance/articledetail')}" class="list">
-				<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>
-				<div class="note">
-					<span class="time">2016-01-01</span>
-					<span class="fa fa-angle-right"></span>
-				</div>
-			</a>
-		</div>
+		<!--<div class="box">-->
+			<!--<div class="tag">2月文章</div>-->
+			<!--<a href="{:Url('Alliance/articledetail')}" class="list tag-mon">-->
+				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
+				<!--<div class="note">-->
+					<!--<span class="time">2016-01-01</span>-->
+					<!--<span class="fa fa-angle-right"></span>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</div>-->
+		<!--<div class="box">-->
+			<!--<div class="tag">1月文章</div>-->
+			<!--<a href="{:Url('Alliance/articledetail')}" class="list">-->
+				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
+				<!--<div class="note">-->
+					<!--<span class="time">2016-01-01</span>-->
+					<!--<span class="fa fa-angle-right"></span>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</div>-->
 	</div>
+	{/volist}
 	<!--/一个季度-->
 </div>
+{/volist}
 <!--/一年-->
 {/block}
 

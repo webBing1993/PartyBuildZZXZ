@@ -15,26 +15,35 @@ class Alliance extends Base{
      * 地信红盟主页
      */
     public function index(){
-        $model = new AllianceShow();
-        $data = $model->getShow();
+        //活动安排
+        $arrangeModel = new AllianceArrange();
+        $map['status'] = 1;
+        $arrange = $arrangeModel->where($map)->order('create_time desc')->limit(2)->select();
+        $this->assign('arrange',$arrange);
+
+        //活动展示
+        $showModel = new AllianceShow();
+        $order = array('type desc','create_time desc');
+        $data = $showModel->where($map)->order($order)->select();
         if (empty($data)) {
             return $this->error("没有取到数据!");
         }
         $list = [];
         foreach($data as $value)
         {
-            $year = date('Y',$value['create_time']);
-            $month = date('m',$value['create_time']);
-            $quarter = $month%3 +1;
+            $year = date('Y',$value['create_time']);    //年
+            $month = date('n',$value['create_time']);   //月
+            $quarter = $month%3 == 0?$month/3:intval($month/3+1);   //季
             switch ($value['type']) {
                 case "1":
-                    $list[$year][$quarter][$month][] = $value;
+                    $list[$year][$quarter]['msg'][$month]['data'][] = $value->toArray();
                     break;
                 case "2":
-                    $list[$year][$quarter][$month][] = $value;
+                    $list[$year][$quarter]['msg'][$month]['data'][] = $value->toArray();
                     break;
                 case "3":
-                    $list[$year][$quarter][] = $value;
+                    $list[$year][$quarter]['data'][] = $value->toArray();
+                    $list[$year][$quarter]['quarter'] = $quarter;
                     break;
                 default:
                     Log::error("");
@@ -42,9 +51,6 @@ class Alliance extends Base{
             }
         }
         $this->assign('list',$list);
-        dump($list);
-        
-        
         return $this->fetch();
     }
 
