@@ -6,61 +6,47 @@
 
 {block name="body"}
 <div class="article">
-	<div class="title limit_">{$article.title}</div>
+	<div class="title limit_">关于召开德清县"一月一主题"活动的安排</div>
 	<div class="note">
-		<span>{$article.create_time|time_format="Y-m-d"}</span>
-		<span>{$article.publisher}</span>
+		<span>2016-01-01</span>
 	</div>
 	<div class="content">
 		<div class="uecontent">
-			{$article.content}
+			6月10日在德清小镇关于召开德清县"一月一主题"活动的安排
 		</div>
 		<div class="note">
-			<span class="read">{$article.views}</span>
-			{eq name="visit" value="0"}
-			{eq name="article.is_like" value="1"}
-			<span class="isgood good_" onclick="isGood(this,{$article.id},null,null,3)">{$article.likes}</span>
-			{else/}
-			<span class="isgood good" onclick="isGood(this,{$article.id},null,null,3)">{$article.likes}</span>
-			{/eq}
-			{/eq}
+			<span class="read">1</span>
+			<!--未点赞：good,已点赞good_-->
+			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">2</span>
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>{$article.comments}</span>条评论</div>
+	<div class="sum">共<span>222</span>条评论</div>
 	<div class="lists">
-		{volist name="comment" id="co"}
 		<div class="list clear">
 			<div class="fl">
-				<img src="{$co.header}" alt="用户" class="user">
+				<img src="" alt="用户" class="user">
 			</div>
 			<div class="fl mid">
-				<div class="name limit">{$co.nickname}</div>
-				<div class="content" >{$co.content}</div>
-				<div class="time">{$co.create_time|time_format="Y-m-d"}</div>
+				<div class="name limit">阿丹</div>
+				<div class="content" >好好好</div>
+				<div class="time">2016-01-01</div>
 			</div>
-			{eq name="visit" value="0"}
-			{eq name="co.is_like" value="1"}
-			<div class="fr isgood good_" onclick="isGood(this,{$article.id},{$co.id},'{$co.create_user}',3)">{$co.likes}</div>
-			{else/}
-			<div class="fr isgood good" onclick="isGood(this,{$article.id},{$co.id},'{$co.create_user}',3)">{$co.likes}</div>
-			{/eq}
-			{/eq}
+			<!--未点赞：good,已点赞good_-->
+			<div class="fr isgood good_" onclick="isGood(this,'co.id','co.create_user',3)">2</div>
 		</div>
-		{/volist}
 	</div>
 	<div class="tip"></div>
 	<div class="loading hidden">
 		<div class="typing_loader"></div>
 	</div>
 </div>
-{eq name="visit" value="0"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,{$article['id']})">发送</div>
+	<div class="send fl" onclick="send(this,'id')">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -69,34 +55,22 @@
 		</div>
 	</div>
 </div>
-{/eq}
 {/block}
 
 {block name="script"}
 <script>
 $(function(){
-	//模块标题
-	$('title' ).text('两学一做');
-	//reset
 	var len = $(".list" ).length;
-	if(len >= 5){
+	if(len >= 7){
 		$('.tip' ).text('上拉加载更多');
+		//上拉加载评论
+		loadScroll();
 	}
-	//上拉加载评论
-	loadScroll();
 	//ios fix兼容
 	tofixed();
 });
-/**
- * 点赞
- * @param e
- */
-var isGood = function(e,id,comment_id,userid,cla){
-	//样式变化，移到suc
-	var n = $(e ).text();
-	$(e).toggleClass('good' ).toggleClass('good_');
-	$(e ).hasClass('good')?n--:n++;
-	$(e ).text(n);
+//点赞
+function isGood(e,id,comment_id,userid,cla){
 	//type：1文章，2评论
 	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
@@ -110,34 +84,15 @@ var isGood = function(e,id,comment_id,userid,cla){
 			class:cla,
 		},
 		success:function(data){
-
+			var n = $(e ).text();
+			$(e).toggleClass('good' ).toggleClass('good_');
+			$(e ).hasClass('good')?n--:n++;
+			$(e ).text(n);
 		}
 	})
-};
-/**
- * 收藏
- * @param e
- */
-var isCollect = function(e,id,type){
-	//样式变化，移到suc
-	$(e).toggleClass('star' ).toggleClass('star_');
-	$.ajax({
-		type:"post",
-		url:"{:Url('Base/collect')}",
-		data:{
-			id:id,
-			type:type
-		},
-		success:function(data){
-
-		}
-	})
-};
-/**
- * 发送评论
- * @param e
- */
-var send = function(e,id){
+}
+//评论
+function send(e,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
@@ -178,38 +133,8 @@ var send = function(e,id){
 		})
 	}
 
-};
-var tofixed = function(){
-	var u = navigator.userAgent;
-	var word = $('.myword input');
-	var bottom =$('.bottom');
-	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-	//var ua = window.navigator.appVersion;
-	//alert(u);
-	if(isiOS){
-		//兼容ios7
-		$(document).scrollTop(1);
-		word.focus(function(){
-			var noInputViewHeight = $(window).height() - bottom.height();
-			var contentHeight = $(document).height() - bottom.height();
-			contentHeight = contentHeight > noInputViewHeight ? contentHeight : noInputViewHeight;
-			setTimeout(function(){
-				var inputTopHeight = bottom.offset().top - $(window).scrollTop()+1;
-				var inputTopPos = bottom.offset().top + inputTopHeight+1;
-				inputTopPos = inputTopPos > contentHeight ? contentHeight : inputTopPos;
-				bottom.css({'position':'absolute', 'top':inputTopPos });
-				$(window).on('touchstart', function(){
-					word.blur();
-				});
-			}, 100);
-		});
-		word.on('blur',function(){
-			//输入框失焦后还原初始状态
-			var a =$(window).height()-45;
-			bottom.css({'position': 'fixed','top':'','bottom':'0'});
-		})
-	}
-};
+}
+//加载更多
 function loadScroll(){
 	$(window ).off("scroll" ).on("scroll",function(){
 		var dh = $(document).height();
@@ -217,11 +142,10 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var id = {$article['id']};
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"{:Url('Base/morecontent')}",
+				url:"",
 				data:{
 					learn_id:id,
 					length:len
@@ -274,6 +198,42 @@ function addComment(data){
 				'</div>';
 	}
 	$(".lists" ).append(html);
+}
+//--------------------------------------------------------------------------
+//
+//  Class style
+//
+//--------------------------------------------------------------------------
+//模块标题
+$('title' ).text('地信红盟');
+function tofixed(){
+	var u = navigator.userAgent;
+	var word = $('.myword input');
+	var bottom =$('.bottom');
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+	if(isiOS){
+		//兼容ios7
+		$(document).scrollTop(1);
+		word.focus(function(){
+			var noInputViewHeight = $(window).height() - bottom.height();
+			var contentHeight = $(document).height() - bottom.height();
+			contentHeight = contentHeight > noInputViewHeight ? contentHeight : noInputViewHeight;
+			setTimeout(function(){
+				var inputTopHeight = bottom.offset().top - $(window).scrollTop()+1;
+				var inputTopPos = bottom.offset().top + inputTopHeight+1;
+				inputTopPos = inputTopPos > contentHeight ? contentHeight : inputTopPos;
+				bottom.css({'position':'absolute', 'top':inputTopPos });
+				$(window).on('touchstart', function(){
+					word.blur();
+				});
+			}, 100);
+		});
+		word.on('blur',function(){
+			//输入框失焦后还原初始状态
+			var a =$(window).height()-45;
+			bottom.css({'position': 'fixed','top':'','bottom':'0'});
+		})
+	}
 }
 </script>
 {/block}

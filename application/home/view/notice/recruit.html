@@ -1,36 +1,24 @@
 {extend name="public/common"}
 
 {block name="style"}
-<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
 <link rel="stylesheet" href="/home/css/relevant.css">
 {/block}
 
 {block name="body"}
 <div class="banner">
-	<div class="swiper-container">
-		<div class="imgs swiper-wrapper">
-			{volist name="list.carousel" id="ca"}
-			<div class="swiper-slide"><img src="{$ca|get_cover='path'}" alt="轮播{$key+1}" class="carousel"></div>
-			{/volist}
-		</div>
-		<div class="swiper-pagination"></div>
-	</div>
-	<img src="/home/images/notice/bottom.png" alt="圆弧" class="arc">
+	<img src="/home/images/test/3.png" alt="支部活动banner" class="banner-img">
 </div>
 <div class="content">
 	<div class="top">
 		<div class="title limit_">{$list.title}</div>
 		<div class="note">
 			<span class="read">{$list.views}</span>
-			<span class="col"><span>{$list.collect}</span></span>
 		</div>
 	</div>
 	<div class="message">
-		<div><span class="limit">{$list.sponsor}</span></div>
-		<div><span class="limit">{$list.cost}</span></div>
-		<div><span class="limit">{$list.create_time|time_format="Y-m-d H:i"} -- {$list.end_time|time_format="Y-m-d H:i"}</span></div>
-		<div><span class="limit">{$list.telephone}</span></div>
-		<div><span class="limit">{$list.address}</span></div>
+		<div class="name limit">{$list.nickname}</div>
+		<div class="content" >{$list.content}</div>
+		<div class="time">{$list.create_time|time_format="Y-m-d"}</div>
 	</div>
 	<div class="article">{$list.content}</div>
 	<div class="comment">
@@ -64,11 +52,6 @@
 </div>
 {eq name="visit" value="0"}
 <div class="bottom clear">
-	{eq name="$list.is_collect" value="1"}
-	<div class="collect fl star_" onclick="isCollect(this,{$list.id},2)"></div>
-	{else/}
-	<div class="collect fl star" onclick="isCollect(this,{$list.id},2)"></div>
-	{/eq}
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
@@ -99,17 +82,6 @@
 		loadScroll();
 		//ios fix兼容
 		tofixed();
-		//ue限定
-		ueLimit();
-		//轮播
-		var mySwiper = new Swiper('.swiper-container', {
-			autoplay: 3000,
-			loop:true,
-			pagination : '.swiper-pagination',
-			paginationType : 'bullets',
-			autoplayDisableOnInteraction:false,
-		})
-
 	});
 	/**
 	 * 点赞
@@ -303,15 +275,5 @@
 		}
 		$(".lists" ).append(html);
 	}
-	function ueLimit(){
-		var imgs = $('.content img');
-		var ww = $('.content').width();
-		imgs.each(function(){
-			if($(this ).width() > ww){
-				$(this ).width(ww)
-			}
-		});
-	}
-
 </script>
 {/block}

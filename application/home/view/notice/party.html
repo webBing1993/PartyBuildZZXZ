@@ -6,26 +6,15 @@
 
 {block name="body"}
 <!--新增-->
-<div class="head">
-	<img src="{$party['front_cover']|get_cover='path'}" alt="" style="height:180px;width:100%;">
+<div class="banner">
+	<img src="/home/images/test/3.png" alt="支部活动banner" class="banner-img">
 </div>
 <div class="title" style="margin:10px auto ;width:90%;text-align: center">
 	<span style="color:#333;font-size:16px;">{$party['title']}</span>
 </div>
 <!--新增-->
-<!--新增-->
-<div class="place" style="position:relative;width:100%;border-top:1px solid #f1f1f1;padding-left:3%;height:40px;line-height:40px;">
-	<img src="/home/images/notice/appmeet_place.jpg" alt="" style="height:20px;position:absolute;top:10px;left:10px;">
-    <span style="color:#666;display: inline-block;width:93%;font-size:13px;margin-left:7%;border-bottom:1px dotted #f1f1f1;" class="limit">{$party.meet_home}</span>
-</div>
-<div class="place" style="position:relative;width:100%;padding-left:3%;height:40px;line-height:40px;border-bottom:1px solid #f1f1f1;">
-	<img src="/home/images/notice/appmeet_time.jpg" alt="" style="height:18px;position:absolute;top:10px;left:10px;">
-    <span style="color:#666;display: inline-block;width:93%;font-size:13px;margin-left:7%;" class="limit">{$party.meet_time|date="Y-m-d H:i:s",###}</span>
-</div>
-<!--新增-->
 <div class="article">
 	<div class="content">
-
 		{volist name="$party.images" id="img"}
 		<img src="{$img}" alt="笔记图片" class="img" style="width:100%">
 		{/volist}
@@ -73,11 +62,6 @@
 </div>
 {eq name="visit" value="0"}
 <div class="bottom clear">
-	{eq name="$party.is_collect" value="1"}
-	<div class="collect fl star_" onclick="isCollect(this,{$party.id},2)"></div>
-	{else/}
-	<div class="collect fl star" onclick="isCollect(this,{$party.id},2)"></div>
-	{/eq}
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
