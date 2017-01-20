@@ -17,4 +17,15 @@ class Like extends Model {
         'score' => 2,
         'status' => 0,
     ];
+
+    public function getLike($type,$aid,$uid) {
+        $map = array(
+            'type' => $type,
+            'aid' => $aid,
+            'uid' => $uid,
+        );
+        $like = Like::where($map)->find();
+        ($like) ? $res = 1 : $res = 0;
+        return $res;
+    }
 }
