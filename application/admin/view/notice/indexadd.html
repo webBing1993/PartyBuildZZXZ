@@ -47,11 +47,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>{if condition="$type eq 1"}相关通知{elseif condition="$type eq 4"/}活动通知{else/}志愿发布{/if}管理</h2>
+        <h2>{if condition="$type eq 1"}相关通知{else/}活动通知{/if}管理</h2>
         <ol class="breadcrumb">
             <li>
-                {if condition="$type eq 1"}<a href="{:Url('Notice/index')}">相关通知</a>{elseif condition="$type eq 4"/}
-                <a href="{:Url('Notice/recruit')}"></a>活动招募{else/}<a href="{:Url('Notice/volunteer')}">志愿发布</a>{/if}
+                {if condition="$type eq 1"}<a href="{:Url('Notice/index')}">相关通知</a>{else/}<a href="{:Url('Notice/recruit')}">活动通知</a>{/if}
             </li>
             <li class="active">
                 <strong>新增</strong>
@@ -70,7 +69,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>{if condition="$type eq 1"}相关通知{elseif condition="$type eq 4"/}活动招募{else/}志愿发布{/if}</h5>
+                    <h5>{if condition="$type eq 1"}相关通知{else/}活动通知{/if}</h5>
                     <div class="ibox-tools">
                         <a href="javascript:window.history.go(-1);" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
                     </div>
@@ -85,10 +84,8 @@
                                 <select class="form-control" name="type" disabled>
                                     {if condition="$type eq 1"}
                                     <option value="1">相关通知</option>
-                                    {elseif condition="$type eq 4"/}
-                                    <option value="4">活动招募</option>
                                     {else/}
-                                    <option value="6">志愿发布</option>
+                                    <option value="4">活动通知</option>
                                     {/if}
                                 </select>
                             </div>
@@ -145,6 +142,14 @@
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入名称" class="form-control form_title" name="title" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>主题:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入主题" class="form-control form_title" name="topic" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -258,10 +263,8 @@
     var type = $("select[name='type']").val();
     if(type == 1){
         highlight_subnav("{:Url('Notice/index')}");
-    }else if(type == 4){
-        highlight_subnav("{:Url('Notice/recruit')}");
     }else{
-        highlight_subnav("{:Url('Notice/volunteer')}");
+        highlight_subnav("{:Url('Notice/recruit')}");
     }
 
     //上传图片
@@ -335,6 +338,7 @@
                 front_cover:$("input[name='front_cover']").val(),
                 carousel_images:carousel_images,
                 title:$("input[name='title']").val(),
+                topic:$("input[name='topic']").val(),
                 description:$("textarea[name='description']").val(),
                 content:ue.getContent(),
                 sponsor:$("input[name='sponsor']").val(),

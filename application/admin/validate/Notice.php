@@ -16,6 +16,7 @@ class Notice extends Validate {
         'front_cover' => 'require',
         'carousel_images' => 'require',
         'title' => 'require|max:150',
+        'topic' => 'require',
         'description' => 'require',
         'content' => 'require',
         'sponsor' => 'require',
@@ -32,6 +33,7 @@ class Notice extends Validate {
     protected $message = [
         'title.require' => '名称不能为空',
         'title.max' => '名称长度不能超过50个字',
+        'topic.require' => '主题不能为空',
         'front_cover.require' => '封面图片不能为空',
         'carousel_images.require' => '轮播图片不能为空',
         'description.require' => '简介不能为空',
@@ -50,7 +52,7 @@ class Notice extends Validate {
     ];
 
     protected $scene = [
-        'act' => ['front_cover','title','description','content','sponsor','telephone','cost','start_time','end_time','address','publisher'],
+        'act' => ['front_cover','title','topic','description','content','sponsor','telephone','cost','start_time','end_time','address','publisher'],
         'other' => ['front_cover','title','content','publisher','meet_time','meet_home'],
     ];
 
