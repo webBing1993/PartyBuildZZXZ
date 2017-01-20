@@ -1,0 +1,94 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+@c_ph: #d9d9d9;
+@c_active: #ebebeb;
+//字体大小
+@s_big: 1.6rem;
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+.font(@c,@f,@h){
+	color:@c;
+	font-size: @f;
+	line-height:@h ;
+}
+.shadow{
+	box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.20);
+}
+//public
+a{display: inline-block}
+a:active { background-color: @c_active }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: @c_ph;
+}
+//animate
+
+//layout
+.lists{
+	.list{
+		width: 100%;
+		padding: 0 4vw;
+		border:1px solid @c_border;
+		.title{
+			.font(@c_title,1.5rem,30px);
+		}
+		.content{
+			.font(@c_note,1.3rem,18px);
+		}
+		.note{
+			.font(@c_note,1.2rem,26px);
+			span{
+				display: inline-block;
+				width: 49%;
+				&:nth-child(2){
+					font-size: 14px;
+					text-align: right;
+				}
+				&.wait{
+					color: #378040;
+				}
+				&.over{
+					color: #ff313e;
+				}
+			}
+		}
+	}
+	.tip{
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		color:#c1c1c1;
+	}
+}
+/*加载动画*/
+.loading {
+	width: 100%;
+	height: 40px;
+}
+.typing_loader {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	-webkit-animation: typing 1s linear infinite alternate;
+	-moz-animation: Typing 1s linear infinite alternate;
+	animation: typing 1s linear infinite alternate;
+	position: relative;
+	top: 17px;
+	left: calc( 50vw - 20px );
+}
