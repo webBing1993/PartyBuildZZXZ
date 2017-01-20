@@ -16,17 +16,17 @@
 <div class="listbox">
 	<div class="town box active">
 		<!--小镇党委-->
-		<div class="box">
+		<div class="box_">
 			<div class="lists">
 				<!--第一层-->
 				<div class="list clear">
 					<div class="party1">
 						<div class="tri"></div>
-						<div class="name1">企业联合党支部</div>
+						<div class="name1">企业联合党支部企业联合党支部企业联</div>
 					</div>
 					<!--第二层-->
 					<div class="down detail1">
-						<a class="name2" href="{:Url('Structure/detail')}">企业联合第一党支部</a>
+						<a class="name2" href="{:Url('Structure/detail')}">镇领导班子成员</a>
 						<a class="name2" href="{:Url('Structure/detail')}">企业联合第一党支部</a>
 					</div>
 					<!--/第二层-->
@@ -61,7 +61,7 @@
 				<!--/第一层-->
 			</div>
 		</div>
-		<div class="box summary">
+		<div class="box_ summary">
 			<p>
 				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
 			</p>
@@ -73,13 +73,13 @@
 	</div>
 	<div class="service box hidden">
 		<!--服务中心-->
-		<div class="box">
+		<div class="box_">
 			<div class="lists">
 				<!--第一层-->
 				<div class="list clear">
 					<div class="party1">
 						<div class="tri"></div>
-						<div class="name1">企业联合党支部</div>
+						<div class="name1">1企业联合党支部</div>
 					</div>
 					<!--第二层-->
 					<div class="down detail1">
@@ -88,7 +88,6 @@
 					<!--/第二层-->
 				</div>
 				<!--/第一层-->
-
 				<!--第一层-->
 				<div class="list clear">
 					<div class="party1">
@@ -118,7 +117,7 @@
 				<!--/第一层-->
 			</div>
 		</div>
-		<div class="box summary">
+		<div class="box_ summary">
 			<p>
 				德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个，流动党员党支部1个，共有党员114人。德清地理信息小镇党委于2016年正式成立，下辖9个党支部，其中单建企业党支部5个，联建企业党支部3个。
 			</p>
@@ -128,7 +127,7 @@
 		</div>
 		<!--/服务中心-->
 	</div>
-	<div class="vr box">
+	<div class="vr box hidden">
 		<a href="http://720yun.com/t/e3cjO5mvuO2?pano_id=2107800">
 			<div class="title">德清地理信息小镇党群服务中心全景展示</div>
 			<img src="/home/images/structure/vr.jpg" alt="vr封面">
@@ -142,33 +141,62 @@
 <script>
 $('title' ).text('组织架构');
 $(function(){
+	//tab值记录
+	tabRecord('.tab' ,'.box');
 	//组织架构切换
 	slide();
 	//tab切换
-	tab($('.town' ),$('.service' ));
+	tabSwitch('.tab' ,'.box');
+	$('.name2' ).each(function(){
+		var t = $(this ).text();
+		var href = '/home/structure/detail?party='+t+'';
+		$(this ).attr('href', href);
+	})
+
 });
-function tab(a,b){
-	//切换卡
-	$('.tab' ).off('click').on('click',function(){
-		var this_ = this ;
-		var box = $('.listbox');
-		var index = $(this_ ).index();
-		var ww = $('.tabs' ).width();
-		$(this_ ).addClass('active' );
-		$(this_ ).siblings('.tab').removeClass('active');
-		if(index == 1){
-			b.removeClass('hidden');
-		}else{
-			a.removeClass('hidden');
-		}
+function pushHistory(){
+	var sta = {
+		title: "title"
+	};
+	if( window.history.state === null ){
+		window.history.pushState( sta, "title" );
+	}
+}
+function tabRecord(a,b){
+	var tab = getCookie('tab');
+	if(tab){
+		var index = tab;
+		var box = $(b ).parent();
+		var ww = $(b ).parent().width();
+		$(a).eq(index).addClass('active');
+		$(a).eq(index).siblings(a).removeClass('active');
+		$(b).eq(index).removeClass('active');
+		$(b).eq(index).siblings(b).addClass('active');
+		$(b).removeClass('hidden');
 		ww = ww * index;
-		box.stop();
-		box.animate({left: -ww +'px'},300,function(){
-			if(index == 1){
-				a.addClass('hidden');
-			}else{
-				b.addClass('hidden');
-			}
+		box.css({left: -ww +'px'},300,function(){
+			$(b).eq(index).siblings(b).addClass('hidden');
+		});
+	}
+	pushHistory();
+	window.addEventListener( "popstate", function( e ){
+		delCookie( 'tab' );
+		window.history.go( -1 );
+	}, false );
+}
+function tabSwitch(a,b){
+	$(a).off('click').on('click',function(){
+		var this_ = this ;
+		var box = $(b ).parent();
+		var index = $(this_ ).index();
+		var ww = $(b ).parent().width();
+		$(this_ ).addClass('active' );
+		$(this_ ).siblings(a).removeClass('active');
+		$(b).removeClass('hidden');
+		ww = ww * index;
+		box.stop().animate({left: -ww +'px'},300,function(){
+			$(b).eq(index).siblings(b).addClass('hidden');
+			setCookie( 'tab', index )
 		});
 	})
 }
@@ -186,6 +214,25 @@ function slide(){
 		detail.toggleClass('down');
 	});
 }
-
+function setCookie( name, value ){
+	var Days = 30;
+	var exp = new Date();
+	exp.setTime( exp.getTime() + Days * 24 * 60 * 60 * 1000 );
+	document.cookie = name + "=" + value + ";expires=" + exp.toGMTString();
+}
+function getCookie( name ){
+	var arr, reg = new RegExp( "(^| )" + name + "=([^;]*)(;|$)" );
+	if( arr = document.cookie.match( reg ) )
+		return arr[ 2 ];
+	else
+		return null;
+}
+function delCookie( name ){
+	var exp = new Date();
+	exp.setTime( exp.getTime() - 1 );
+	var cval = getCookie( name );
+	if( cval != null )
+		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+}
 </script>
 {/block}

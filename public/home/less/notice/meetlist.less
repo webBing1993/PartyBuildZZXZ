@@ -1,0 +1,116 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+//字体大小
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+//动画
+@-webkit-keyframes typing{
+	0%{
+		background-color: rgba(0,0,0, 0.8);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.2),
+		24px 0 0 0 rgba(0,0,0,0.2);
+	}
+	25%{
+		background-color: rgba(0,0,0, 0.4);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.8),
+		24px 0 0 0 rgba(0,0,0,0.2);
+	}
+	75%{ background-color: rgba(0,0,0, 0.4);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.2),
+		24px 0 0 0 rgba(0,0,0,0.8);
+	}
+}
+@keyframes typing{
+	0%{
+		background-color: rgba(0,0,0, 0.8);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.2),
+		24px 0 0 0 rgba(0,0,0,0.2);
+	}
+	25%{
+		background-color: rgba(0,0,0, 0.4);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.8),
+		24px 0 0 0 rgba(0,0,0,0.2);
+	}
+	75%{ background-color: rgba(0,0,0, 0.4);
+		box-shadow: 12px 0 0 0 rgba(0,0,0,0.2),
+		24px 0 0 0 rgba(0,0,0,0.8);
+	}
+}
+//public
+a:active { background-color: #ebebeb }
+//layout
+.lists{
+	width: 100%;
+	.list{
+		display: block;
+		.content(13px);
+		height: 90px;
+		border-bottom: 1px solid #f1f1f1;
+		color:@c_content;
+		.title{
+			color:@c_title;
+			font-size: @s_title;
+			line-height: 20px;
+			height:38px;
+			margin-top: 5px;
+		}
+		.content{
+			font-size: @s_content;
+		}
+		.time{
+			margin-top: 5px;
+			font-size: @s_note;
+		}
+		.fl img{
+			width: 80px;
+			height: 60px;
+			margin-top: 15px;
+		}
+		.right{
+			width:e("calc(100% - 90px)");
+			height: 60px;
+			margin-top: 10px;
+			margin-left: 10px;
+		}
+	}
+
+}
+/*加载动画*/
+.tip{
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	color:#c1c1c1;
+}
+.loading{
+	width: 100%;
+	height: 40px;
+}
+.typing_loader{
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	-webkit-animation: typing 1s linear infinite alternate;
+	-moz-animation: Typing 1s linear infinite alternate;
+	animation: typing 1s linear infinite alternate;
+	position: relative;
+	top: 17px;
+	left: e("calc( 50vw - 20px )");
+}

@@ -1,0 +1,226 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+@c_ph: #d9d9d9;
+@c_active: #ebebeb;
+//字体大小
+@s_big: 1.6rem;
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+.font(@c,@f,@h){
+	color:@c;
+	font-size: @f;
+	line-height:@h ;
+}
+.shadow{
+	box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.20);
+}
+//public
+a{display: inline-block}
+a:active { background-color: @c_active }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: @c_ph;
+}
+//animate
+//layout
+.banner{
+	width: 100vw;
+	height: 50vw;
+	.banner-img{
+		width: 100%;
+		height: 100%;
+	}
+}
+.plan{
+	width: 90vw;
+	margin: 12px auto 10px auto;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	.shadow;
+	&>.title{
+		width: 100%;
+		height: 35px;
+		padding: 0 4vw;
+		border:1px solid @c_border;
+		span,a{
+			display: inline-block;
+			width: 49%;
+			font-size: 1.3rem;
+			line-height: 35px;
+		}
+		span{
+			color:#df4934;
+			font-weight: 600;
+		}
+
+		a{
+			color:@c_note;
+			text-align: right;
+			&:active{
+				background: transparent;
+			}
+		}
+	}
+	.list{
+		width: 100%;
+		padding: 0 4vw;
+		border:1px solid @c_border;
+		.title{
+			.font(@c_title,1.5rem,30px);
+		}
+		.content{
+			.font(@c_note,1.3rem,18px);
+		}
+		.note{
+			.font(@c_note,1.2rem,26px);
+			span{
+				display: inline-block;
+				width: 49%;
+				&:nth-child(2){
+					font-size: 14px;
+					text-align: right;
+				}
+			}
+		}
+	}
+}
+.yearbox{
+	.year{
+		width: 100%;
+		height: 30px;
+		padding: 0 4vw;
+		text-align: center;
+		.font(#df4934,1.6rem,30px);
+		.shadow;
+		span{
+			position: relative;
+			&:before{
+				position: absolute;
+				top:3px;
+				left:-20px;
+				content: '';
+				width: 10px ;
+				height: 10px;
+				background: url('/home/images/league/cir.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+			&:after{
+				position: absolute;
+				top:3px;
+				right:-20px;
+				content: '';
+				width: 10px ;
+				height: 10px;
+				background: url('/home/images/league/cir.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+		}
+	}
+	.quarter{
+		.box{
+			position:relative;
+			top:0;
+			left:0;
+			width: 90vw;
+			margin: 0 auto 10px auto;
+			-webkit-border-radius:8px;
+			border-radius:8px;
+			.shadow;
+			.tag{
+				position:relative;
+				top:3vw;
+				left:-7px;
+				width: 83px;
+				height: 30px;
+				padding-left: 2px;
+				margin-bottom: 1vw;
+				.font(#ffffff,1.2rem,20px);
+				text-align: center;
+			}
+			.list{
+				position:relative;
+				width: 100%;
+				height: 70px;
+				padding: 11px 4vw;
+				border-bottom:1px solid @c_border;
+				&:last-child{
+					border:none;
+				}
+				&.tag-mon:after{
+					content:'';
+					position: absolute;
+					top:-1px;
+					right: 4vw;
+					width: 20px;
+					height: 20px;
+				}
+				.title{
+					.font(@c_title,1.5rem,30px);
+				}
+				.note{
+					.font(@c_note,1.2rem,18px);
+					span{
+						display: inline-block;
+						width: 49%;
+						&:nth-child(2){
+							font-size: 14px;
+							text-align: right;
+						}
+					}
+				}
+			}
+			&:nth-child(1){
+				.tag{
+					background: url('/home/images/league/tag00.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+			}
+			&:nth-child(2){
+				.tag{
+					background: url('/home/images/league/tag01.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+				.tag-mon:after{
+					background: url('/home/images/league/mon01.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+			}
+			&:nth-child(3){
+				.tag{
+					background: url('/home/images/league/tag02.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+				.tag-mon:after{
+					background: url('/home/images/league/mon02.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+			}
+			&:nth-child(4){
+				.tag{
+					background: url('/home/images/league/tag03.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+				.tag-mon:after{
+					background: url('/home/images/league/mon02.png') 0 0 no-repeat;
+					background-size: contain;
+				}
+			}
+		}
+	}
+}
