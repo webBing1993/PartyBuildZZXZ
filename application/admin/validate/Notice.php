@@ -25,8 +25,6 @@ class Notice extends Validate {
         'start_time' => 'require',
         'end_time' => 'require',
         'address' => 'require',
-        'meet_time' => 'require',
-        'meet_home' => 'require',
         'publisher' => 'require|max:15',
     ];
 
@@ -46,14 +44,12 @@ class Notice extends Validate {
         'telephone.require' => '联系电话不能为空',
         'address.require' => '地址不能为空',
         'publisher.require' => '发布人不能为空',
-        'meet_time.require' => '时间不能为空',
-        'meet_home.require' => '地点不能为空',
         'publisher.max' => '发布人长度不能超过5个字',
     ];
 
     protected $scene = [
         'act' => ['front_cover','title','topic','description','content','sponsor','telephone','cost','start_time','end_time','address','publisher'],
-        'other' => ['front_cover','title','content','publisher','meet_time','meet_home'],
+        'other' => ['front_cover','title','content','publisher'],
     ];
 
 }

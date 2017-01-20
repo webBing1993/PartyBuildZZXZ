@@ -140,22 +140,22 @@
                             </div>
                         </div>
                         {eq name="msg.class" value="1"}
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>时间:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入时间" class="form-control datetimepicker form_title" name="meet_time" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>地点:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入地点" class="form-control form_title" name="meet_home" value="">
-                            </div>
-                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-1 text-right control-label">-->
+                                <!--<label>时间:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-11">-->
+                                <!--<input type="text" placeholder="请输入时间" class="form-control datetimepicker form_title" name="meet_time" value="">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-1 text-right control-label">-->
+                                <!--<label>地点:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-11">-->
+                                <!--<input type="text" placeholder="请输入地点" class="form-control form_title" name="meet_home" value="">-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>发布人:</label>
@@ -165,22 +165,22 @@
                             </div>
                         </div>
                         {else/}
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>时间:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入时间" class="form-control datetimepicker form_title" name="meet_time" value="{$msg.meet_time|time_format='Y-m-d H:i:s' || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>地点:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入地点" class="form-control form_title" name="meet_home" value="{$msg.meet_home || default=''}">
-                            </div>
-                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-1 text-right control-label">-->
+                                <!--<label>时间:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-11">-->
+                                <!--<input type="text" placeholder="请输入时间" class="form-control datetimepicker form_title" name="meet_time" value="{$msg.meet_time|time_format='Y-m-d H:i:s' || default=''}">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-1 text-right control-label">-->
+                                <!--<label>地点:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-11">-->
+                                <!--<input type="text" placeholder="请输入地点" class="form-control form_title" name="meet_home" value="{$msg.meet_home || default=''}">-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>发布人:</label>
@@ -289,8 +289,8 @@
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
                 publisher:$("input[name='publisher']").val(),
-                meet_time:$("input[name='meet_time']").val(),
-                meet_home:$("input[name='meet_home']").val(),
+//                meet_time:$("input[name='meet_time']").val(),
+//                meet_home:$("input[name='meet_home']").val(),
                 status:1
             };
             $.ajax({

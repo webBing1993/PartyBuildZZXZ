@@ -192,7 +192,7 @@ class Notice extends Admin {
                 unset($data['id']);
             }
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['meet_time'] = strtotime($data['meet_time']);
+//            $data['meet_time'] = strtotime($data['meet_time']);
             $model = $noticeModel->validate('Notice.other')->save($data);
             if($model){
                if ($data['type'] == 3){
@@ -223,7 +223,7 @@ class Notice extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $noticeModel = new NoticeModel();
-            $data['meet_time'] = strtotime($data['meet_time']);
+//            $data['meet_time'] = strtotime($data['meet_time']);
             $model = $noticeModel->validate('Notice.other')->save($data,['id'=> input('id')]);
             if($model){
                 if ($data['type'] == 3){
