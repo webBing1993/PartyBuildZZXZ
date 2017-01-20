@@ -15,25 +15,35 @@
 		<div class="note">
 			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
-			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">{$info.likes}</span>
+			{eq name="$info.is_like" value="0"}
+			<span class="isgood good" onclick="isGood(this,4,{$info.id})">{$info.likes}</span>
+			{else/}
+			<span class="isgood good_" onclick="isGood(this,4,{$info.id})">{$info.likes}</span>
+			{/eq}
 		</div>
 	</div>
 </div>
 <div class="comment">
 	<div class="sum">共<span>{$info.comments}</span>条评论</div>
 	<div class="lists">
+		{volist name="comment" id="com"}
 		<div class="list clear">
 			<div class="fl">
-				<img src="" alt="用户" class="user">
+				<img src="{$com.header}" alt="用户" class="user">
 			</div>
 			<div class="fl mid">
-				<div class="name limit">阿丹</div>
-				<div class="content" >好好好</div>
-				<div class="time">2016-01-01</div>
+				<div class="name limit">{$com.nickname}</div>
+				<div class="content" >{$com.content}</div>
+				<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
 			</div>
 			<!--未点赞：good,已点赞good_-->
-			<div class="fr isgood good_" onclick="isGood(this,'co.id','co.create_user',3)">2</div>
+			{eq name="com.is_like" value="0"}
+			<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{else/}
+			<div class="fr isgood good_" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{/eq}
 		</div>
+		{/volist}
 	</div>
 	<div class="tip"></div>
 	<div class="loading hidden">
@@ -44,7 +54,7 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,'id')">发送</div>
+	<div class="send fl" onclick="send(this,4,{$info.id})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -68,18 +78,15 @@ $(function(){
 	tofixed();
 });
 //点赞
-function isGood(e,id,comment_id,userid,cla){
+function isGood(e,type,id){
 	//type：1文章，2评论
-	var type = $(e ).hasClass('fr')?2:1;
+//	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
 		type:"post",
 		url:"{:Url('Base/like')}",
 		data:{
 			type:type,
-			id:id,
-			comment_id:comment_id,
-			user_id:userid,
-			class:cla,
+			aid:id,
 		},
 		success:function(data){
 			var n = $(e ).text();
@@ -90,19 +97,20 @@ function isGood(e,id,comment_id,userid,cla){
 	})
 }
 //评论
-function send(e,id){
+function send(e,type,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
 			type:"post",
 			url:"{:Url('Base/comment')}",
 			data:{
-				learn_id:id,
+				type: type,
+				aid:id,
 				content:it.val()
 			},
 			success:function(data){
 				var data = data.data;
-				var userid = "'"+data.create_user+"'";
+				var userid = "'"+data.uid+"'";
 				var html = '';
 				html += '<div class="list clear">'+
 						'<div class="fl">'+
@@ -113,7 +121,7 @@ function send(e,id){
 						'<div class="content" >'+it.val()+'</div>'+
 						'<div class="time">'+data.time+'</div>'+
 						'</div>'+
-						'<div class="fr isgood good" onclick="isGood(this,'+data.learn_id+','+data.id+','+userid+','+3+')">'+data.likes+'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,0'+data.id+')">'+data.likes+'</div>'+
 						'</div>';
 				$('.lists' ).append(html);
 				it.val('');
@@ -140,12 +148,14 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
+		var id = {$info.id};
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('Base/morecomment')}",
 				data:{
-					learn_id:id,
+					type: 4,
+					aid: id,
 					length:len
 				},
 				beforeSend: function(XMLHttpRequest){
@@ -188,9 +198,9 @@ function addComment(data){
 				'<div class="time">'+ list.time+'</div>'+
 				'</div>';
 		if(list.is_like == 0){
-			html+='<div class="fr isgood good" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}else{
-			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}
 		html+=
 				'</div>';

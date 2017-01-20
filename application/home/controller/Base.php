@@ -277,7 +277,7 @@ class Base extends Controller {
     /**
      * 加载更多评论
      */
-    public function morecontent(){
+    public function morecomment(){
         $len = input('length');
         $map = array(
             'type' => input('type'),

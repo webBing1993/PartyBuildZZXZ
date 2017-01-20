@@ -8,6 +8,8 @@
 namespace app\home\controller;
 use app\home\model\AllianceArrange;
 use app\home\model\AllianceShow;
+use app\home\model\Comment;
+use app\home\model\Like;
 use think\Log;
 
 class Alliance extends Base{
@@ -99,10 +101,25 @@ class Alliance extends Base{
      * 通知详情页
      */
     public function informdetail(){
+        $uid = session('userId');
         $id = input('id');
         $arrangeModel = new AllianceArrange();
-        $info = $arrangeModel->get($id);
+
+        $arrangeModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $arrangeModel->get($id);     //获取基本数据
+
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(3,$id,$uid);
+        $info['is_like'] = $like;
         $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(3,$id);
+        $this->assign('comment',$comment);
+
         return $this->fetch();
     }
 
@@ -110,10 +127,22 @@ class Alliance extends Base{
      * 文章详情页
      */
     public function articledetail(){
+        $uid = session('userId');
         $id = input('id');
         $showModel = new AllianceShow();
+        $showModel::where('id',$id)->setInc('views');     //浏览加一
+
         $info = $showModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(4,$id,$uid);
+        $info['is_like'] = $like;
         $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(4,$id);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 
