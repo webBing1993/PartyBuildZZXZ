@@ -38,7 +38,9 @@
         background:url('/home/images/tutor/1.png') 50% 3px no-repeat;
     }
 
-
+    .list-block ul:before,.list-block ul:after{
+        height:0;
+    }
     /*main*/
     .banner img{
         width:100%;
@@ -58,38 +60,41 @@
     .tongzhi>span>span{
         color:#df4934;
     }
-    .content-block ul{
-        margin:0 12px;border-radius: 3px;height:215px;background:#fff;box-shadow: 1px 1px 2px 2px rgba(196,196,196, .3);
+     .content-block ul{
+        margin:0 12px;border-radius: 3px;height:215px;background:#fff;box-shadow: 0px 0px 6px 1px rgba(196,196,196, .3);
     }
-    .content-block ul li {
+    #tab2 .content-block ul,#tab2 .content-block ul li{
+        height:200px;
+    }
+    #tab1 .content-block ul li {
         padding-top:8px;
     }
-    .content-block ul li>div{
+    #tab1 .content-block ul li>div{
         border-radius: 3px;;
     }
-    .content-block ul li>div:nth-child(1){
+    #tab1 .content-block ul li>div:nth-child(1){
         height:91px;background:#f9f9f9;margin:1% 1%  10px;
     }
-    .content-block ul li>div:nth-child(2){
+    #tab1 .content-block ul li>div:nth-child(2){
         height:64px;line-height:25px;
     }
-    .content-block ul li>div:nth-child(2)>.limit_{
+    #tab1 .content-block ul li>div:nth-child(2)>.limit_{
         width:48%;height:64px;background:#f9f9f9;position:relative;padding:10px 12px;
     }
-    .content-block ul li>div:nth-child(2)>.limit_:nth-child(1){
+    #tab1 .content-block ul li>div:nth-child(2)>.limit_:nth-child(1){
         margin-right:2%;margin-left:1%;
     }
-    .content-block ul li>div:nth-child(2)>.limit_>img{
+    #tab1 .content-block ul li>div:nth-child(2)>.limit_>img{
         position:absolute;left:0;top:0;width:30px;
     }
 
-    .bottom{
+    #tab1 .bottom{
         position:relative;margin-bottom:20px;
     }
-    .bottom>img{
+    #tab1 .bottom>img{
         width:100%;position:absolute;bottom:-4px;
     }
-    .swiper-slide{
+    #tab1 .swiper-slide{
         width:100%;
     }
     .left_{
@@ -109,6 +114,64 @@
 
         z-index: 10;
         left:70%;
+    }
+
+    /*tab2*/
+    #tab2 ul{
+        margin-bottom:20px;
+    }
+    #tab2 ul li .list_img{
+        height:30px;
+    }
+    #tab2 ul li .list_img>img:nth-child(1){
+        position:absolute;left:-6px;top:8px;width:85px;
+    }
+    #tab2 ul li .list_img>img:nth-child(2){
+        position:absolute;right:12px;top:13px;width:25px;
+    }
+    #tab2 ul li>div:nth-child(2),#tab2 ul li>div:nth-child(3){
+        height:85px;width:100%;display: block;position:relative;border-bottom:1px solid #f1f1f1;
+    }
+    #tab2 ul li>div:nth-child(2)>img.fl,#tab2 ul li>div:nth-child(3)>img.fl{
+        width:60px;height:60px;border-radius: 3px;margin-left:11px;margin-top:12px;
+    }
+    #tab2 ul li>div:nth-child(2)>span.limit,#tab2 ul li>div:nth-child(3)>span.limit{
+        width:72%;display: block;font-size:14px;height:85px;line-height:85px;margin-left:11px;
+    }
+    /*tab3*/
+    #tab3 ul{
+        margin-bottom:20px;
+    }
+    #tab3 ul li .list_img{
+        height:30px;
+    }
+
+    #tab3 ul li>div{
+        height:85px;width:100%;display: block;position:relative;border-bottom:1px solid #f1f1f1;
+    }
+    #tab3 ul li>div>img.fl{
+        width:60px;height:60px;border-radius: 3px;margin-left:11px;margin-top:12px;
+    }
+    #tab3 ul li>div>span.limit_{
+        width:90%;font-size:14px;height:55px;margin-left:11px;line-height:22px;padding-top:10px;
+    }
+    .tab_main{
+        height:30px;line-height:30px;width:200px;;margin:0 auto;text-align: center;background:#f9f9f9;border-radius: 3px;margin-bottom:3px;
+    }
+    .btn1{
+        width:96px;text-align: center;display: inline-block;;border-radius: 3px;color:#999;font-size:15px;
+    }
+    .tab_active{
+        background:#DF4934;color:#fff
+    }
+    .none{
+        display: none;
+    }
+    #tab3 #tab_main1>li>div>span:nth-child(2),#tab3 #tab_main2>li>div>span:nth-child(2){
+        margin-left:12px;font-size:12px;color:#999;
+    }
+    #tab3 #tab_main1>li>div>img:nth-child(3),#tab3 #tab_main2>li>div>img:nth-child(3){
+        width:12px;height:12px;margin-top:8px;margin-right:12px;
     }
 </style>
 {/block}
@@ -275,20 +338,73 @@
                     <div id="tab2" class="tab" >
                         <div class="content-block">
                             <div class="list-block" id="num2">
+                                <div class="banner" style="margin-bottom:20px;">
+                                    <img src="/home/images/tutor/1.jpg" alt="">
+                                </div>
                                 <ul>
-                                    <li class="item-content" onclick=window.location.href="">
-                                        <div class="item-inner news_list">
-                                            <div class="item-title">
-
-                                            </div>
+                                    <li>
+                                        <div style="height:30px;" class="list_img">
+                                            <img src="/home/images/tutor/3-2.png" alt="">
+                                            <img src="/home/images/tutor/3-3.png" alt="">
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
                                         </div>
                                     </li>
-                                    <div class="default">
-                                        <img src="/home/images/nomessage.png" alt="暂无消息">
-                                    </div>
-
                                 </ul>
-
+                                <ul>
+                                    <li>
+                                        <div style="height:30px;" class="list_img">
+                                            <img src="/home/images/tutor/4-2.png" alt="">
+                                            <img src="/home/images/tutor/4-3.png" alt="">
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <div style="height:30px;" class="list_img">
+                                            <img src="/home/images/tutor/5-2.png" alt="">
+                                            <img src="/home/images/tutor/5-3.png" alt="">
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <div style="height:30px;" class="list_img">
+                                            <img src="/home/images/tutor/6-2.png" alt="">
+                                            <img src="/home/images/tutor/6-3.png" alt="">
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                        <div>
+                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
 
@@ -296,8 +412,69 @@
 
                     <!-- Tab 3 -->
                     <div id="tab3" class="tab" >
+                        <div class="list-block" id="num3">
+                            <div class="banner" style="margin-bottom:15px;">
+                                <img src="/home/images/tutor/1.jpg" alt="">
+                            </div>
+                            <div class="tab_main">
+                                <div class="btn1 tab_active" >通知发布</div>
+                                <div class="btn1 " >论坛开展</div>
+                            </div>
 
-
+                            <ul id="tab_main1">
+                                <li>
+                                    <div>
+                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul id="tab_main2" class="none">
+                                <li>
+                                    <div>
+                                        <span class="limit_ fl">11党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">222党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">33党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                    <div>
+                                        <span class="limit_ fl">44党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
+                                        <span>2017-1-20</span>
+                                        <img src="/home/images/right.png" alt="" class="fr">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,7 +491,7 @@
 
     var mySwiper1 = new Swiper('.swiper-container', {
         autoplay:3000,//可选选项，自动滑动
-        speed:1000,
+        speed:2500,
         loop:true,
         autoplayDisableOnInteraction : false,
         pagination : '.swiper-pagination',
@@ -323,7 +500,7 @@
     });
     var mySwiper2 = new Swiper('.swiper-container2', {
         autoplay:3000,//可选选项，自动滑动
-        speed:1000,
+        speed:2750,
         loop:true,
         autoplayDisableOnInteraction : false,
         pagination : '.swiper-pagination',
@@ -332,7 +509,7 @@
     });
     var mySwiper3 = new Swiper('.swiper-container3', {
         autoplay:3000,//可选选项，自动滑动
-        speed:1000,
+        speed:3000,
         loop:true,
         autoplayDisableOnInteraction : false,
         pagination : '.swiper-pagination',
@@ -341,7 +518,7 @@
     });
     var mySwiper4 = new Swiper('.swiper-container4', {
         autoplay:3000,//可选选项，自动滑动
-        speed:1000,
+        speed:3000,
         loop:true,
         autoplayDisableOnInteraction : false,
         pagination : '.swiper-pagination',
@@ -350,5 +527,12 @@
         prevButton:'.left_',
         nextButton:'.right_'
     });
+
+    //#tab3
+    $('.btn1').click(function(){
+        $(this).toggleClass('tab_active');
+        $(this).siblings().toggleClass('tab_active');
+        $(this).parent().parent().find('ul').toggleClass('none')
+    })
 </script>
 {/block}

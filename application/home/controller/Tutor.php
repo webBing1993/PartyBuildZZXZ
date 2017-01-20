@@ -20,5 +20,9 @@ class Tutor extends Base{
         return $this->fetch();
     }
 
+    public function tutor_card(){
+
+        return $this->fetch();
+    }
 
 }
