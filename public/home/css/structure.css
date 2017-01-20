@@ -119,7 +119,7 @@ body {
 }
 .tabs .tab {
   display: inline-block;
-  width: 49vw;
+  width: 32.5vw;
   height: 100%;
   color: #333333;
   font-size: 1.5rem;
@@ -127,6 +127,9 @@ body {
   text-align: center;
 }
 .tabs .tab:first-child {
+  border-right: 1px solid #e5e5e5;
+}
+.tabs .tab:nth-child(2) {
   border-right: 1px solid #e5e5e5;
 }
 .tabs .active {
@@ -139,14 +142,12 @@ body {
   width: 100vw;
   min-height: 64vw;
 }
-.listbox .service,
-.listbox .town {
+.listbox .box {
   position: absolute;
   top: 0;
   width: 99vw;
 }
-.listbox .service .box,
-.listbox .town .box {
+.listbox .box .box {
   position: relative;
   top: 0;
   left: 0;
@@ -157,8 +158,7 @@ body {
   -webkit-border-radius: 8px;
   border-radius: 8px;
 }
-.listbox .service .box:before,
-.listbox .town .box:before {
+.listbox .box .box:before {
   content: '组织架构';
   position: absolute;
   top: 3vw;
@@ -172,25 +172,21 @@ body {
   font-size: 1.2rem;
   line-height: 22px;
 }
-.listbox .service .box.summary,
-.listbox .town .box.summary {
+.listbox .box .box.summary {
   padding: 11vw 3vw 6vw 3vw;
 }
-.listbox .service .box.summary p,
-.listbox .town .box.summary p {
+.listbox .box .box.summary p {
   margin-top: 2vw;
   text-indent: 2em;
   font-size: 13px;
   line-height: 20px;
 }
-.listbox .service .box .lists,
-.listbox .town .box .lists {
+.listbox .box .box .lists {
   padding: 13px;
   color: #333333;
   font-size: 14px;
 }
-.listbox .service .box .lists .name1,
-.listbox .town .box .lists .name1 {
+.listbox .box .box .lists .name1 {
   display: inline-block;
   width: 100%;
   height: 45px;
@@ -198,16 +194,14 @@ body {
   line-height: 45px;
   border-bottom: 1px solid #f1f1f1;
 }
-.listbox .service .box .lists .party1,
-.listbox .town .box .lists .party1 {
+.listbox .box .box .lists .party1 {
   position: relative;
   top: 0;
   font-size: 1.6rem;
   padding-left: 15px;
   line-height: 30px;
 }
-.listbox .service .box .lists .party1 .tri,
-.listbox .town .box .lists .party1 .tri {
+.listbox .box .box .lists .party1 .tri {
   position: absolute;
   top: 15px;
   left: 0;
@@ -217,13 +211,11 @@ body {
   background: url('/home/images/structure/tri.png') 0 0 no-repeat;
   background-size: 10px 10px;
 }
-.listbox .service .box .lists .detail1,
-.listbox .town .box .lists .detail1 {
+.listbox .box .box .lists .detail1 {
   display: none;
   width: 100%;
 }
-.listbox .service .box .lists .detail1 .name2,
-.listbox .town .box .lists .detail1 .name2 {
+.listbox .box .box .lists .detail1 .name2 {
   display: inline-block;
   width: 90%;
   height: 45px;
@@ -233,15 +225,13 @@ body {
   line-height: 45px;
   border-bottom: 1px solid #f1f1f1;
 }
-.listbox .service .box .lists .todown,
-.listbox .town .box .lists .todown {
+.listbox .box .box .lists .todown {
   -webkit-animation: todown 0.4s linear alternate;
   animation: todown 0.4s linear alternate;
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
 }
-.listbox .service .box .lists .toup,
-.listbox .town .box .lists .toup {
+.listbox .box .box .lists .toup {
   -webkit-animation: toup 0.4s linear alternate;
   animation: toup 0.4s linear alternate;
   transform: rotate(0deg);
@@ -252,6 +242,23 @@ body {
 }
 .listbox .service {
   left: 100vw;
+}
+.listbox .vr {
+  left: 200vw;
+}
+.listbox .vr a {
+  display: inline-block;
+  width: 100vw;
+}
+.listbox .vr .title {
+  width: 100vw;
+  font-size: 1.6rem;
+  color: #333333;
+  line-height: 60px;
+  text-align: center;
+}
+.listbox .vr img {
+  width: 100vw;
 }
 .table .party {
   width: 30vw;

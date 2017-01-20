@@ -128,10 +128,8 @@ class Notice extends Admin {
             if($id){
                 if($data['type'] == 1){
                     return $this->success("新增相关通知成功",Url('Notice/index'));
-                }else if($data['type'] == 4){
-                    return $this->success("新增活动招募成功",Url('Notice/recruit'));
                 }else{
-                    return $this->success("新增志愿发布成功",Url('Notice/volunteer'));
+                    return $this->success("新增活动通知成功",Url('Notice/recruit'));
                 }
             }else{
                 return $this->error($noticeModel->getError());
@@ -160,10 +158,8 @@ class Notice extends Admin {
             if($id){
                 if($data['type'] == 1){
                     return $this->success("修改相关通知成功",Url('Notice/index'));
-                }else if($data['type'] == 4){
-                    return $this->success("修改活动招募成功",Url('Notice/recruit'));
                 }else{
-                    return $this->success("修改志愿发布成功",Url('Notice/volunteer'));
+                    return $this->success("修改活动招募成功",Url('Notice/recruit'));
                 }
             }else{
                 return $this->error($noticeModel->getError());
@@ -181,7 +177,6 @@ class Notice extends Admin {
                 }
             }
             $this->assign('msg',$msg);
-
             return $this->fetch();
         }
     }
@@ -197,7 +192,7 @@ class Notice extends Admin {
                 unset($data['id']);
             }
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['meet_time'] = strtotime($data['meet_time']);
+//            $data['meet_time'] = strtotime($data['meet_time']);
             $model = $noticeModel->validate('Notice.other')->save($data);
             if($model){
                if ($data['type'] == 3){
@@ -228,7 +223,7 @@ class Notice extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $noticeModel = new NoticeModel();
-            $data['meet_time'] = strtotime($data['meet_time']);
+//            $data['meet_time'] = strtotime($data['meet_time']);
             $model = $noticeModel->validate('Notice.other')->save($data,['id'=> input('id')]);
             if($model){
                 if ($data['type'] == 3){

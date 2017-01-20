@@ -79,10 +79,8 @@
                                 <select class="form-control" name="type" disabled>
                                     {if condition="$msg.type eq 1"}
                                     <option value="1">相关通知</option>
-                                    {elseif condition="$msg.type eq 4"/}
-                                    <option value="4">活动招募</option>
                                     {else/}
-                                    <option value="6">志愿发布</option>
+                                    <option value="4">活动通知</option>
                                     {/if}
                                 </select>
                             </div>
@@ -163,6 +161,14 @@
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入名称" class="form-control form_title" name="title" value="{$msg.title}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>主题:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入主题" class="form-control form_title" name="topic" value="{$msg.topic}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -275,10 +281,8 @@
         var type = $("select[name='type']").val();
         if(type == 1){
             highlight_subnav("{:Url('Notice/index')}");
-        }else if(type == 4){
-            highlight_subnav("{:Url('Notice/recruit')}");
         }else{
-            highlight_subnav("{:Url('Notice/volunteer')}");
+            highlight_subnav("{:Url('Notice/recruit')}");
         }
 
         //上传图片
@@ -353,6 +357,7 @@
                 list_image:$("input[name='list_image']").val(),
                 carousel_images:carousel_images,
                 title:$("input[name='title']").val(),
+                topic:$("input[name='topic']").val(),
                 description:$("textarea[name='description']").val(),
                 content:ue.getContent(),
                 sponsor:$("input[name='sponsor']").val(),

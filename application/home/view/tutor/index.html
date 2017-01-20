@@ -1,0 +1,354 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/framework7/framework7.ios.min.css">
+<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.min.css">
+
+<style>
+    /*reset*/
+    .page{
+        padding-top:36px;background:#fff;
+    }
+    .content-block,.list-block,.list-block .item-inner,.list-block .item-content{
+        padding:0;margin:0;
+    }
+
+    .navbar{
+        height:36px;min-height:36px;border:none;background:#f9f9f9;
+    }
+    .navbar:after{
+        height:0;
+    }
+    .button{
+        height:36px;line-height:36px;border:none;color:#999;font-size:16px;
+    }
+    .buttons-row .button:first-child,.buttons-row .button:last-child{
+        border-radius:0; border-left-width:0;
+    }
+    .button.active{
+        background:none;color:#df4934;position:relative;
+    }
+    .button.active:after{
+        content:'';
+        position:absolute;
+        bottom:0;
+        height:10px;
+        width:60%;
+        left:20%;
+        background:url('/home/images/tutor/1.png') 50% 3px no-repeat;
+    }
+
+
+    /*main*/
+    .banner img{
+        width:100%;
+    }
+    .tongzhi{
+        width:100%;position:relative;background:#f9f9f9;height:30px;margin-bottom:18px;font-size:15px;color:#333;
+    }
+    
+    .tongzhi .limit{
+        display: inline-block;padding-left:12px;
+        height:30px;line-height:30px;
+        width:85%;
+    }
+    .tongzhi img{
+        width:30px;position:absolute;right:12px;top:0;margin-top:5px;
+    }
+    .tongzhi>span>span{
+        color:#df4934;
+    }
+    .content-block ul{
+        margin:0 12px;border-radius: 3px;height:215px;background:#fff;box-shadow: 1px 1px 2px 2px rgba(196,196,196, .3);
+    }
+    .content-block ul li {
+        padding-top:8px;
+    }
+    .content-block ul li>div{
+        border-radius: 3px;;
+    }
+    .content-block ul li>div:nth-child(1){
+        height:91px;background:#f9f9f9;margin:1% 1%  10px;
+    }
+    .content-block ul li>div:nth-child(2){
+        height:64px;line-height:25px;
+    }
+    .content-block ul li>div:nth-child(2)>.limit_{
+        width:48%;height:64px;background:#f9f9f9;position:relative;padding:10px 12px;
+    }
+    .content-block ul li>div:nth-child(2)>.limit_:nth-child(1){
+        margin-right:2%;margin-left:1%;
+    }
+    .content-block ul li>div:nth-child(2)>.limit_>img{
+        position:absolute;left:0;top:0;width:30px;
+    }
+
+    .bottom{
+        position:relative;margin-bottom:20px;
+    }
+    .bottom>img{
+        width:100%;position:absolute;bottom:-4px;
+    }
+    .swiper-slide{
+        width:100%;
+    }
+    .left_{
+        height:91px;
+        position: absolute;
+        top: 17px;
+        left:16%;
+        width: 27px;
+
+        z-index: 10;
+    }
+    .right_{
+        height:91px;
+        position: absolute;
+        top: 17px;
+        width: 27px;
+
+        z-index: 10;
+        left:70%;
+    }
+</style>
+{/block}
+
+{block name="body"}
+<div class="views">
+    <div class="view view-main">
+        <div class="navbar">
+            <div class="content-block ">
+                <!-- Buttons row as tabs controller -->
+                <div class="buttons-row">
+                    <!-- Link to 1st tab, active -->
+                    <a href="#tab1" class="tab-link button active">红领导师</a>
+                    <!-- Link to 2nd tab -->
+                    <a href="#tab2" class="tab-link button">红领带动</a>
+                    <!-- Link to 3rd tab -->
+                    <a href="#tab3" class="tab-link button">红色论坛</a>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="page-content">
+                <!-- Tabs, tabs wrapper -->
+                <div class="tabs">
+                    <!-- Tab 1, active by default -->
+                    <div id="tab1" class="tab active" >
+                        <div class="content-block">
+                            <div class="banner">
+                                <img src="/home/images/tutor/1.jpg" alt="">
+                            </div>
+                            <div class="tongzhi">
+                                <span class="limit"><span>通知：</span>关于展开习总书记治国理政思想解读关于展开习总书记治国理政思想解读</span>
+                                <img src="/home/images/tutor/2.png" alt="">
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="swiper-container swiper-container1" >
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <div>
+                                                    <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
+                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <div class='limit_ fl'>
+                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                            <img src="/home/images/tutor/3-1.png" alt="" style="">
+                                        </div>
+                                        <div class='limit_ fl' >
+                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
+                                            <img src="/home/images/tutor/3-1.png" alt="" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="bottom">
+                                <img src="/home/images/tutor/3.png" alt="" >
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="swiper-container swiper-container2" >
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <div>
+                                                    <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
+                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div class='limit_ fl'>
+                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                            <img src="/home/images/tutor/4-1.png" alt="" style="">
+                                        </div>
+                                        <div class='limit_ fl' >
+                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
+                                            <img src="/home/images/tutor/4-1.png" alt="" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="bottom">
+                                <img src="/home/images/tutor/4.png" alt="" >
+                            </div>
+                            <ul >
+                                <li>
+                                    <div class="swiper-container swiper-container3" >
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <div>
+                                                    <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
+                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div class='limit_ fl'>
+                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                            <img src="/home/images/tutor/5-1.png" alt="" style="">
+                                        </div>
+                                        <div class='limit_ fl' >
+                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
+                                            <img src="/home/images/tutor/5-1.png" alt="" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="bottom">
+                                <img src="/home/images/tutor/5.png" alt="" >
+                            </div>
+                            <ul >
+                                <li>
+                                    <div class="swiper-container swiper-container4" >
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <div>
+                                                    <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
+                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="left_" >-->
+                                        <!--<img src="/home/images/tutor/3-2.png" alt="">-->
+                                        <!--</div>-->
+                                        <!--<div class="right_">-->
+                                        <!--<img src="/home/images/tutor/3-3.png" alt="">-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div>
+                                        <div class='limit_ fl'>
+                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                            <img src="/home/images/tutor/6-1.png" alt="" style="">
+                                        </div>
+                                        <div class='limit_ fl' >
+                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
+                                            <img src="/home/images/tutor/6-1.png" alt="" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="bottom">
+                                <img src="/home/images/tutor/6.png" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab 2 -->
+                    <div id="tab2" class="tab" >
+                        <div class="content-block">
+                            <div class="list-block" id="num2">
+                                <ul>
+                                    <li class="item-content" onclick=window.location.href="">
+                                        <div class="item-inner news_list">
+                                            <div class="item-title">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="default">
+                                        <img src="/home/images/nomessage.png" alt="暂无消息">
+                                    </div>
+
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Tab 3 -->
+                    <div id="tab3" class="tab" >
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/framework7/framework7.js"></script>
+<script>
+    var myApp = new Framework7();
+    var $$ = Dom7;
+
+    var mySwiper1 = new Swiper('.swiper-container', {
+        autoplay:3000,//可选选项，自动滑动
+        speed:1000,
+        loop:true,
+        autoplayDisableOnInteraction : false,
+        pagination : '.swiper-pagination',
+        observer:true,
+        observeParents:true
+    });
+    var mySwiper2 = new Swiper('.swiper-container2', {
+        autoplay:3000,//可选选项，自动滑动
+        speed:1000,
+        loop:true,
+        autoplayDisableOnInteraction : false,
+        pagination : '.swiper-pagination',
+        observer:true,
+        observeParents:true
+    });
+    var mySwiper3 = new Swiper('.swiper-container3', {
+        autoplay:3000,//可选选项，自动滑动
+        speed:1000,
+        loop:true,
+        autoplayDisableOnInteraction : false,
+        pagination : '.swiper-pagination',
+        observer:true,
+        observeParents:true
+    });
+    var mySwiper4 = new Swiper('.swiper-container4', {
+        autoplay:3000,//可选选项，自动滑动
+        speed:1000,
+        loop:true,
+        autoplayDisableOnInteraction : false,
+        pagination : '.swiper-pagination',
+        observer:true,
+        observeParents:true,
+        prevButton:'.left_',
+        nextButton:'.right_'
+    });
+</script>
+{/block}

@@ -9,7 +9,7 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>活动招募</h2>
+        <h2>活动通知</h2>
         <ol class="breadcrumb">
             <li>
                 活动管理
@@ -42,6 +42,7 @@
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
                                 <th>标题</th>
+                                <th>主题</th>
                                 <th>发布人</th>
                                 <th>创建人 </th>
                                 <th>创建时间</th>
@@ -54,6 +55,7 @@
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.title}</td>
+                                <td>{$vo.topic}</td>
                                 <td>{$vo.publisher}</td>
                                 {eq name="vo.userid" value=""}
                                 <td>{$vo->user->nickname}</td>
