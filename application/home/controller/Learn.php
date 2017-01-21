@@ -9,7 +9,6 @@
 namespace app\home\controller;
 use app\admin\model\Picture;
 use app\home\model\Browse;
-use app\home\model\Collect;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\WechatUser;
@@ -27,7 +26,8 @@ class Learn extends Base {
     public function index(){
         //推荐
         $map1 = array(
-            'status' => array('egt',0),
+            'type' => array('in',[1,2,3]),
+            'status' => 0,
             'recommend' => 1
         );
         $list1 = LearnModel::where($map1)->limit(3)->order('id desc')->select();
@@ -35,6 +35,7 @@ class Learn extends Base {
 
         //数据列表
         $map2 = array(
+            'type' => array('in',[1,2,3]),
             'status' => array('egt',0),
         );
         $list2 = LearnModel::where($map2)->limit(5)->order('id desc')->select();
@@ -49,6 +50,7 @@ class Learn extends Base {
     public function indexmore(){
         $len = input('length');
         $map = array(
+            'type' => array('in',[1,2,3]),
             'status' => array('eq',0),
         );
         $list = LearnModel::where($map)->order('id desc')->limit($len,5)->select();
@@ -90,7 +92,6 @@ class Learn extends Base {
                 WechatUser::where('userid',$userId)->update($s);
             }
         }
-
         $video = $learnModel::get($id);
         $video['user'] = session('userId');
         //分享图片及链接及描述
@@ -99,65 +100,16 @@ class Learn extends Base {
         $video['link'] = $_SERVER['REDIRECT_URL'];
         $video['desc'] = str_replace('&nbsp;','',strip_tags($video['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'learn_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $video['is_like'] = 1;
-        }else{
-            $video['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $video['is_collect'] = 1;
-        }else {
-            $video['is_collect'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(1,$id,$userId);
+        $video['is_like'] = $like;
         $this->assign('video',$video);
 
-        //评论
-        $map = array(
-            'learn_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(1,$id,$userId);
         $this->assign('comment',$comment);
-
         return $this->fetch();
     }
 
@@ -196,63 +148,15 @@ class Learn extends Base {
         $article['link'] = $_SERVER['REDIRECT_URL'];
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'learn_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $article['is_like'] = 1;
-        }else{
-            $article['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $article['is_collect'] = 1;
-        }else {
-            $article['is_collect'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(1,$id,$userId);
+        $article['is_like'] = $like;
         $this->assign('article',$article);
 
-        //评论
-        $map = array(
-            'learn_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(1,$id,$userId);
         $this->assign('comment',$comment);
 
         return $this->fetch();

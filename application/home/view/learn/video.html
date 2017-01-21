@@ -27,9 +27,9 @@
 			<span class="read">{$video.views}</span>
 			{eq name="visit" value="0"}
 			{eq name="video.is_like" value="1"}
-			<span class="isgood good_" onclick="isGood(this,{$video.id},null,null,3)">{$video.likes}</span>
+			<span class="isgood good_" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
 			{else/}
-			<span class="isgood good" onclick="isGood(this,{$video.id},null,null,3)">{$video.likes}</span>
+			<span class="isgood good" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
 			{/eq}
 			{/eq}
 		</div>
@@ -50,9 +50,9 @@
 			</div>
 			{eq name="visit" value="0"}
 			{eq name="co.is_like" value="1"}
-			<div class="fr isgood good_" onclick="isGood(this,{$video.id},{$co.id},'{$co.create_user}',3)">{$co.likes}</div>
+			<div class="fr isgood good_" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
 			{else/}
-			<div class="fr isgood good" onclick="isGood(this,{$video.id},{$co.id},'{$co.create_user}',3)">{$co.likes}</div>
+			<div class="fr isgood good" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
 			{/eq}
 			{/eq}
 		</div>
@@ -68,7 +68,7 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,{$video['id']})">发送</div>
+	<div class="send fl" onclick="send(this,1,{$video['id']})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -105,65 +105,46 @@ $(function(){
  * 点赞
  * @param e
  */
-var isGood = function(e,id,comment_id,userid,cla){
+var isGood = function(e,type,id){
 	//样式变化，移到suc
 	var n = $(e ).text();
 	$(e).toggleClass('good' ).toggleClass('good_');
 	$(e ).hasClass('good')?n--:n++;
 	$(e ).text(n);
 	//type：1文章，2评论
-	var type = $(e ).hasClass('fr')?2:1;
+//	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
 		type:"post",
 		url:"{:Url('Base/like')}",
 		data:{
 			type:type,
-			id:id,
-			comment_id:comment_id,
-			user_id:userid,
-			class:cla,
+			aid:id,
 		},
 		success:function(data){
 
 		}
 	})
 };
-/**
- * 收藏
- * @param e
- */
-var isCollect = function(e,id,type){
-	//样式变化，移到suc
-	$(e).toggleClass('star' ).toggleClass('star_');
-	$.ajax({
-		type:"post",
-		url:"{:Url('Base/collect')}",
-		data:{
-			id:id,
-			type:type
-		},
-		success:function(data){
 
-		}
-	})
-};
 /**
  * 发送评论
  * @param e
  */
-var send = function(e,id){
+var send = function(e,type,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
 			type:"post",
 			url:"{:Url('Base/comment')}",
 			data:{
-				learn_id:id,
+				type:type,
+				aid:id,
 				content:it.val()
 			},
 			success:function(data){
-				console.log(data)
+
 				var data = data.data;
+				console.log(data.header);
 				var userid = "'"+data.create_user+"'";
 				var html = '';
 				html += '<div class="list clear">'+
@@ -175,7 +156,7 @@ var send = function(e,id){
 						'<div class="content" >'+it.val()+'</div>'+
 						'<div class="time">'+data.time+'</div>'+
 						'</div>'+
-						'<div class="fr isgood good" onclick="isGood(this,'+data.learn_id+','+data.id+','+userid+','+3+')">'+data.likes+'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
 						'</div>';
 				$('.lists' ).append(html);
 				it.val('');
@@ -250,9 +231,10 @@ function loadScroll(){
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"{:Url('Base/morecontent')}",
+				url:"{:Url('Base/morecomment')}",
 				data:{
-					learn_id:id,
+					type:1,
+					aid:id,
 					length:len
 				},
 				beforeSend: function(XMLHttpRequest){
@@ -295,9 +277,9 @@ function addComment(data){
 				'<div class="time">'+ list.time+'</div>'+
 				'</div>';
 		if(list.is_like == 0){
-			html+='<div class="fr isgood good" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}else{
-			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}
 		html+=
 				'</div>';

@@ -83,10 +83,10 @@
 	</div>
 	<!--组织活动：两个模块（活动通知、活动情况）-->
 	<div class="notices hidden">
-		<!--活动招募-->
+		<!--活动通知-->
 		<div class="notice">
 			<a href="{:Url('Notice/recruitlist')}" class="tab clear" >
-				<span class="fl">活动情况</span>
+				<span class="fl">活动通知</span>
 				<span class="fr">更多</span>
 			</a>
 			{volist name="recruit" id="rec"}
@@ -246,7 +246,7 @@ function loadScroll(type){
 		}else if(type == 2){
 			url = "{:Url('Notice/activitymore')}";
 		}else{
-			url = "{:Url('Notice/situationmore')}";
+			url = "{:Url('Notice/regularmore')}";
 		}
 		if(dh == end){
 			$.ajax({

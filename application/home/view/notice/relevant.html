@@ -6,17 +6,17 @@
 
 {block name="body"}
 <div class="banner">
-	<img src="/home/images/test/3.png" alt="支部活动banner" class="banner-img">
+	<img src="{$list.front_cover|get_cover='path'}" alt="支部活动banner" class="banner-img">
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_">{$list.title}</div>
+		<div class="title limit_" style="text-align:center;">{$list.title}</div>
 		<div class="note">
 			<span class="read">{$list.views}</span>
 		</div>
 	</div>
 	<div class="message">
-		<div><span class="limit">主题主题</span></div>
+		<div><span class="limit">{$list.topic}</span></div>
 		<div><span class="limit">{$list.start_time|time_format="Y-m-d H:i"} -- {$list.end_time|time_format="Y-m-d H:i"}</span></div>
 		<div><span class="limit">{$list.address}</span></div>
 	</div>
@@ -36,9 +36,9 @@
 				</div>
 				{eq name="visit" value="0"}
 				{eq name="co.is_like" value="1"}
-				<div class="fr isgood good_" onclick="isGood(this,{$list.id},{$co.id},'{$co.create_user}',2)">{$co.likes}</div>
+				<div class="fr isgood good_" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
 				{else/}
-				<div class="fr isgood good" onclick="isGood(this,{$list.id},{$co.id},'{$co.create_user}',2)">{$co.likes}</div>
+				<div class="fr isgood good" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
 				{/eq}
 				{/eq}
 			</div>
@@ -55,7 +55,7 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,{$list['id']})">发送</div>
+	<div class="send fl" onclick="send(this,2,{$list['id']})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -89,23 +89,20 @@ $(function(){
  * 点赞
  * @param e
  */
-var isGood = function(e,id,comment_id,userid,cla){
+var isGood = function(e,type,id){
 	//样式变化，移到suc
 	var n = $(e ).text();
 	$(e).toggleClass('good' ).toggleClass('good_');
 	$(e ).hasClass('good')?n--:n++;
 	$(e ).text(n);
 	//type：1文章，2评论
-	var type = $(e ).hasClass('fr')?2:1;
+//	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
 		type:"post",
-		url:"{:Url('News/like')}",
+		url:"{:Url('Base/like')}",
 		data:{
 			type:type,
-			id:id,
-			comment_id:comment_id,
-			user_id:userid,
-			class:cla,
+			aid:id,
 		},
 		success:function(data){
 
@@ -113,41 +110,18 @@ var isGood = function(e,id,comment_id,userid,cla){
 	})
 };
 /**
- * 收藏
- * @param e
- */
-var isCollect = function(e,id,type){
-	//样式变化，移到suc
-	$(e).toggleClass('star' ).toggleClass('star_');
-	$.ajax({
-		type:"post",
-		url:"{:Url('News/collect')}",
-		data:{
-			id:id,
-			type:type
-		},
-		success:function(data){
-			var col = $('.col span' );
-			if($(e).hasClass('star' )){
-				col.text(parseInt(col.text())-1)
-			}else{
-				col.text(parseInt(col.text())+1)
-			}
-		}
-	})
-};
-/**
  * 发送评论
  * @param e
  */
-var send = function(e,id){
+var send = function(e,type,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
 			type:"post",
-			url:"{:Url('News/comment')}",
+			url:"{:Url('Base/comment')}",
 			data:{
-				notice_id:id,
+				type:type,
+				aid:id,
 				content:it.val()
 			},
 			success:function(data){
@@ -163,7 +137,7 @@ var send = function(e,id){
 						'<div class="content" >'+it.val()+'</div>'+
 						'<div class="time">'+data.time+'</div>'+
 						'</div>'+
-						'<div class="fr isgood good" onclick="isGood(this,'+data.notice_id+','+data.id+','+userid+','+2+')">'+data.likes+'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
 						'</div>';
 				$('.lists' ).append(html);
 				it.val('');
@@ -223,9 +197,10 @@ function loadScroll(){
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"{:Url('News/morecontent')}",
+				url:"{:Url('Base/morecomment')}",
 				data:{
-					notice_id:id,
+					type:2,
+					aid:id,
 					length:len
 				},
 				beforeSend: function(XMLHttpRequest){
@@ -268,9 +243,9 @@ function addComment(data){
 				'<div class="time">'+ list.time+'</div>'+
 				'</div>';
 		if(list.is_like == 0){
-			html+='<div class="fr isgood good" onclick="isGood(this,'+list.notice_id+','+list.id+','+userid+','+2+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}else{
-			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.notice_id+','+list.id+','+userid+','+2+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}
 		html+=
 				'</div>';

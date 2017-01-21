@@ -11,26 +11,18 @@
 <div class="lists">
 	<!--无消息时显示-->
 	<!--<img src="/home/images/nomessage.png" alt="暂无消息" class="nomessage">-->
-	<a href="{:Url('Topic/detail')}" class="list">
-		<img src="/home/images/test/t.jpg" alt="小图">
+	{volist name="list" id="vo"}
+	<a href="{:Url('Topic/detail?id='.$vo.id)}" class="list">
+		<img src="{$vo.front_cover|get_cover='path'}" alt="小图">
 		<div class="content">
-			<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
+			<div class="title limit">{$vo.title}</div>
 			<div class="note">
-				<span class="time">2016-01-01</span>
+				<span class="time">{$vo.create_time|date="Y-m-d",###}</span>
 				<span class="fa fa-angle-right"></span>
 			</div>
 		</div>
 	</a>
-	<a href="{:Url('Topic/detail')}" class="list">
-		<img src="/home/images/test/t.jpg" alt="小图">
-		<div class="content">
-			<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>
-			<div class="note">
-				<span class="time">2016-01-01</span>
-				<span class="fa fa-angle-right"></span>
-			</div>
-		</div>
-	</a>
+	{/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
@@ -40,7 +32,7 @@
 
 {block name="script"}
 <script>
-$('title' ).text('地信红盟');
+$('title' ).text('专题讨论');
 $(function(){
 	var len = $(".list" ).length;
 	if(len >= 7){$('.tip' ).text('上拉加载更多');}
@@ -57,7 +49,7 @@ function loadScroll(){
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('Topic/more')}",
 				data:{
 					length:len
 				},
@@ -89,13 +81,14 @@ function addList(data){
 	var len = lists.length;
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
+		var url = "{:Url('Topic/detail?id='."+list.id+")}";
 		html +=
-			'<a href="" class="list">'+
-			'<img src="/home/images/test/t.jpg" alt="小图">'+
+			'<a href="'+url+'" class="list">'+
+			'<img src="'+list.path+'" alt="小图">'+
 			'<div class="content">'+
-			'<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>'+
+			'<div class="title limit">'+list.title+'</div>'+
 			'<div class="note">'+
-			'<span class="time">2016-01-01</span>'+
+			'<span class="time">'+list.time+'</span>'+
 			'<span class="fa fa-angle-right"></span>'+
 			'</div>'+
 			'</div>'+

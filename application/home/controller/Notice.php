@@ -87,7 +87,7 @@ class Notice extends Base {
         //是否具备我的发布权限,具备为1，无则为0
         $map = array(
             'userid' => $userId,
-            'tagid' => 0, //权限标签id
+            'tagid' => 11, //权限标签id
         );
         $info = WechatUserTag::where($map)->find();
         if($info) {
@@ -104,7 +104,6 @@ class Notice extends Base {
     public function relevant(){
         //判断是否是游客
         $this->anonymous();
-
         $this->jssdk();
 
         $userId = session('userId');
@@ -139,63 +138,11 @@ class Notice extends Base {
         $list['link'] = $_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $list['is_like'] = 1;
-        }else{
-            $list['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $list['is_collect'] = 1;
-        }else {
-            $list['is_collect'] = 0;
-        }
         $this->assign('list',$list);
 
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
 
         return $this->fetch();
@@ -292,66 +239,17 @@ class Notice extends Base {
         $meet['link'] = $_SERVER['REDIRECT_URL'];
         $meet['desc'] = str_replace('&nbsp;','',strip_tags($meet['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $meet['is_like'] = 1;
-        }else{
-            $meet['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $meet['is_collect'] = 1;
-        }else {
-            $meet['is_collect'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(2,$id,$userId);
+        $meet['is_like'] = $like;
         $meet['images'] = json_decode($meet['images']);
         $this->assign('meet',$meet);
 
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
-
         return $this->fetch();
     }
 
@@ -359,55 +257,18 @@ class Notice extends Base {
      * 会议情况列表页面
      */
     public function meetlist(){
-        $userId = session('userId');
         //会议情况 type = 2
-        $dept = Db::table('pb_notice')
-            ->alias('a')
-            ->join('pb_notice_send b','a.id = b.notice_id','LEFT')
-            ->join('pb_wechat_department_user c','b.departmentid = c.departmentid','LEFT')
-            ->field('a.id,a.title,a.front_cover,a.create_time')
-            ->where('c.userid',$userId)
-            ->where('a.status','eq',1)
-            ->where('a.type','eq',2)
-            ->order('a.id desc')
-            ->limit(7)
-            ->select();
-        //获取标签关联活动
-        $tag = Db::table('pb_notice')
-            ->alias('a')
-            ->join('pb_notice_send b','a.id = b.notice_id','LEFT')
-            ->join('pb_wechat_user_tag c','b.tagid = c.tagid','LEFT')
-            ->field('a.id,a.title,a.front_cover,a.create_time')
-            ->where('c.userid',$userId)
-            ->where('a.status','eq',1)
-            ->where('a.type','eq',2)
-            ->order('a.id desc')
-            ->limit(7)
-            ->select();
-        $file = array_merge($dept,$tag); //合并需要合并的俩个数组
-        if(!empty($file)){
-            $key = 'id';//去重条件
-            $tmp_arr = array();//声明数组
-            foreach($file as $k => $v) {
-                if(in_array($v[$key], $tmp_arr)) {
-                    //搜索$v[$key]是否在$tmp_arr数组中存在，若存在返回true
-                    unset($file[$k]); //删除掉数组（$arr）里相同ID的数组
-                }else {
-                    $tmp_arr[] = $v[$key]; //记录已有的id
-                }
-            }
-
-            $list = array();
-            foreach ($file as $key => $value){
-                if($key < 7){
-                    $list[] = $value;
-                }
-            }
-            rsort($list); // 排序
-            $this->assign('show',1);
-        }else{
-            $list = "";
+        $map = array(
+            'status' => array('eq',1),
+            'type' => 2,
+        );
+        $noticeModel = new NoticeModel();
+        $list = $noticeModel::where($map)->order('id desc')->limit(7)->select();
+        //判断是否为空
+        if (empty($list)){
             $this->assign('show',0);
+        }else{
+            $this->assign('show',1);
         }
         $this->assign('meet',$list);
         return $this->fetch();
@@ -418,53 +279,19 @@ class Notice extends Base {
      */
     public function meetmore(){
         $len = input('length');
-        $userId = session('userId');
         //会议情况 type = 2
-        $dept = Db::table('pb_notice')
-            ->alias('a')
-            ->join('pb_notice_send b','a.id = b.notice_id','LEFT')
-            ->join('pb_wechat_department_user c','b.departmentid = c.departmentid','LEFT')
-            ->field('a.id,a.title,a.front_cover,a.create_time')
-            ->where('c.userid',$userId)
-            ->where('a.status','eq',1)
-            ->where('a.type','eq',2)
-            ->order('a.id desc')
-            ->select();
-        //获取标签关联活动
-        $tag = Db::table('pb_notice')
-            ->alias('a')
-            ->join('pb_notice_send b','a.id = b.notice_id','LEFT')
-            ->join('pb_wechat_user_tag c','b.tagid = c.tagid','LEFT')
-            ->field('a.id,a.title,a.front_cover,a.create_time')
-            ->where('c.userid',$userId)
-            ->where('a.status','eq',1)
-            ->where('a.type','eq',2)
-            ->order('a.id desc')
-            ->select();
-        $file = array_merge($dept,$tag); //合并需要合并的俩个数组
-        $key = 'id';//去重条件
-        $tmp_arr = array();//声明数组
-        foreach($file as $k => $v) {
-            if(in_array($v[$key], $tmp_arr)) {
-                //搜索$v[$key]是否在$tmp_arr数组中存在，若存在返回true
-                unset($file[$k]); //删除掉数组（$arr）里相同ID的数组
-            }else {
-                $tmp_arr[] = $v[$key]; //记录已有的id
-            }
-        }
-
-        $list = array();
-        foreach ($file as $key => $value){
+        $map = array(
+            'type' => 2,
+            'status' => array('eq',1),
+        );
+        $list = NoticeModel::where($map)->order('id desc')->limit($len,7)->select();
+        foreach($list as $value){
             $value['time'] = date("Y-m-d",$value['create_time']);
             $img = Picture::get($value['front_cover']);
             $value['path'] = $img['path'];
-            if($key >= $len && $key < $len+7){
-                $list[] = $value;
-            }
         }
-        rsort($list); // 排序
         if($list){
-            return $this->success("加载成功","",$list);
+            return $this->success("加载成功",'',$list);
         }else{
             return $this->error("加载失败");
         }
@@ -508,66 +335,17 @@ class Notice extends Base {
         $party['link'] = $_SERVER['REDIRECT_URL'];
         $party['desc'] = str_replace('&nbsp;','',strip_tags($party['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $party['is_like'] = 1;
-        }else{
-            $party['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $party['is_collect'] = 1;
-        }else {
-            $party['is_collect'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(2,$id,$userId);
+        $party['is_like'] = $like;
         $party['images'] = json_decode($party['images']);
         $this->assign('party',$party);
 
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
-
         return $this->fetch();
     }
 
@@ -621,9 +399,7 @@ class Notice extends Base {
 
         //判断是否是游客
         $this->anonymous();
-
         $this->jssdk();
-
         $userId = session('userId');
         $id = input('id');
         $noticeModel = new NoticeModel();
@@ -655,65 +431,12 @@ class Notice extends Base {
         $list['link'] = $_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $list['is_like'] = 1;
-        }else{
-            $list['is_like'] = 0;
-        }
-
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $list['is_collect'] = 1;
-        }else {
-            $list['is_collect'] = 0;
-        }
         $this->assign('list',$list);
 
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
-        
         return $this->fetch();
     }
 
@@ -808,64 +531,16 @@ class Notice extends Base {
         $activity['link'] = $_SERVER['REDIRECT_URL'];
         $activity['desc'] = str_replace('&nbsp;','',strip_tags($activity['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $activity['is_like'] = 1;
-        }else{
-            $activity['is_like'] = 0;
-        }
-        
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $activity['is_collect'] = 1;
-        }else {
-            $activity['is_collect'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(2,$id,$userId);
+        $activity['is_like'] = $like;
         $activity['images'] = json_decode($activity['images']);
         $this->assign('activity',$activity);
 
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
 
         return $this->fetch();
@@ -919,7 +594,6 @@ class Notice extends Base {
      * 创意组织生活
      */
     public function regular() {
-
         //判断是否是游客
         $this->anonymous();
 
@@ -956,66 +630,16 @@ class Notice extends Base {
         $list['link'] = $_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
-        //文章点赞是否存在
-        $map2 = array(
-            'notice_id' => $id,
-            'create_user' => $userId,
-            'status' => 0,
-            'type' => 1,
-        );
-        $msg = Like::where($map2)->find();
-        if($msg) {
-            $list['is_like'] = 1;
-        }else{
-            $list['is_like'] = 0;
-        }
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(2,$id,$userId);
+        $list['is_like'] = $like;
+        $this->assign('regular',$list);
 
-        //收藏是否存在
-        unset($map2['type']);
-        $col = Collect::where($map2)->find();
-        if($col) {
-            $list['is_collect'] = 1;
-        }else {
-            $list['is_collect'] = 0;
-        }
-        $this->assign('list',$list);
-
-        //评论
-        $map = array(
-            'notice_id' => $id,
-            'status' => 0
-        );
-        //敏感词屏蔽
-        $badword = array(
-            '法轮功','法轮','FLG','六四','6.4','flg'
-        );
-        $badword1 = array_combine($badword,array_fill(0,count($badword),'***'));
-        $comment = Comment::where($map)->limit(0,5)->order('likes desc,id desc')->select();
-        foreach($comment as $value){
-            $content = $value['content'];
-            $str = strtr($content, $badword1);
-            $value['content'] = $str;
-            if($value['create_user'] == $userId){
-                $value['self'] = 1;
-            }else{
-                $value['self'] = 0;
-            }
-            $map1 = array(
-                'create_user' => $userId,
-                'comment_id' => $value['id'],
-                'status' => array('egt',0),
-                'type' => 2, //评论点赞
-            );
-
-            $like = Like::where($map1)->find();
-            ($like)?$value['is_like'] = 1:$value['is_like'] = 0;
-            $users = WechatUser::where('userid',$value['create_user'])->find();
-            $value['header'] = ($users['header']) ? $users['header'] : $users['avatar'];
-            $value['nickname'] = ($users['nickname']) ? $users['nickname'] : $users['name'];
-        }
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,$userId);
         $this->assign('comment',$comment);
-
-
         return $this->fetch();
     }
 
@@ -1082,25 +706,23 @@ class Notice extends Base {
             $data['end_time'] = strtotime($data['end_time']);
             $data['userid'] = session('userId');
             if($data['id']) {
+                 // 修改
                 $model = $noticeModel->save($data,['id' => $data['id']]);
             }else {
+                 //  添加
                 unset($data['id']);
-                //随机轮播图
-                $a = array('1'=>'a','2'=>'b','3'=>'c','4'=>'d','5'=>'e','6'=>'f','7'=>'g','8'=>'h','9'=>'i','10'=>'j','11'=>'k','12'=>'l','13'=>'m','14'=>'n','15'=>'o',
-                    '16'=>'p','17'=>'q','18'=>'r','19'=>'s','20'=>'t','21'=>'u','22'=>'v','23'=>'w','24'=>'x','25'=>'y','26'=>'z');
-                $data['carousel_images'] = '["'.array_rand($a,1).'",'.'"'.array_rand($a,1).'",'.'"'.array_rand($a,1).'"]';
-                $data['front_cover'] = array_rand($a,1);
                 $data['create_time'] = time();
                 $data['create_user'] = session('userId');
                 $model = $noticeModel->create($data);
             }
-            if($model) {
+            if($model && $data['status'] == 0) { // 去审核
                 $map['status'] = 0;
                 $count = $noticeModel->where($map)->count();
                 $content = "您有".$count."条[支部活动]审核消息，请点击【文章审核】及时查看。";
                 $Wechat = new TPQYWechat(Config::get('party'));
                 $message = array(
-                    "totag" => 3,
+//                    "totag" => 3,
+                "touser" => 'wangzhichao',
                     "msgtype" => 'text',
                     "agentid" => 13,
                     "text" => array(
@@ -1131,24 +753,15 @@ class Notice extends Base {
         $userId = session('userId');
         if(IS_POST) {
             $data = input('post.');
-            $data['meet_time'] = strtotime($data['meet_time']);
-            if($data['type'] == 2){
-                //获取发布用的所在部门
-                $departmentid = WechatDepartmentUser::where('userid',$userId)->select();
-                $depart = array();
-                foreach ($departmentid as $key => $value) {
-                    $depart[] = (string)$value['departmentid'];
-                }
-                $data['departmentid'] = json_encode($depart);
-                $data['tag'] = 0;
-            }
             $data['userid'] = $userId;
             if(isset($data['images'])) {
                 $data['images'] = json_encode($data['images']);
             }
             if($data['id']) {
+                // 修改
                 $model = $noticeModel->save($data,['id' => $data['id']]);
             }else {
+                // 添加
                 unset($data['id']);
                 $a = array('1'=>'a','2'=>'b','3'=>'c','4'=>'d','5'=>'e','6'=>'f','7'=>'g','8'=>'h','9'=>'i','10'=>'j','11'=>'k','12'=>'l','13'=>'m','14'=>'n','15'=>'o',
                     '16'=>'p','17'=>'q','18'=>'r','19'=>'s','20'=>'t','21'=>'u','22'=>'v','23'=>'w','24'=>'x','25'=>'y','26'=>'z');
@@ -1157,13 +770,14 @@ class Notice extends Base {
                 $data['create_user'] = session('userId');
                 $model = $noticeModel->create($data);
             }
-            if($model) {
-                $map['status'] = 0;
+            if($model && $data['status'] == 0) { //  待审核
+                $map['status'] = 0; //  待审核
                 $count = $noticeModel->where($map)->count();
                 $content = "您有".$count."条[支部活动]审核消息，请点击【文章审核】进行查看。";
-                $Wechat = new TPQYWechat(Config::get('party'));
+                $Wechat = new TPQYWechat(Config::get('Party'));
                 $message = array(
                     "totag" => 3,
+//                "touser" => 'wangzhichao',
                     "msgtype" => 'text',
                     "agentid" => 13,
                     "text" => array(

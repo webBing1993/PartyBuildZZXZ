@@ -1,0 +1,106 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/list.css">
+<style>
+    .lists .list .content {
+        display: inline-block;
+        width: 92vw;
+        margin-left: 0;
+    }
+</style>
+{/block}
+
+{block name="body"}
+<div class="banner">
+    <img src="/home/images/test/3.png" alt="支部活动banner" class="banner-img">
+</div>
+<div class="lists">
+    <!--无消息时显示-->
+    <!--<img src="/home/images/nomessage.png" alt="暂无消息" class="nomessage">-->
+    {volist name="list" id="vo"}
+    <a href="{:Url('Topic/detail?id='.$vo.id)}" class="list">
+        <!--<img src="{$vo.front_cover|get_cover='path'}" alt="小图">-->
+        <div class="content">
+            <div class="title limit">{$vo.title}</div>
+            <div class="note">
+                <span class="time">{$vo.create_time|date="Y-m-d",###}</span>
+                <span class="fa fa-angle-right"></span>
+            </div>
+        </div>
+    </a>
+    {/volist}
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    $('title' ).text('党性体检');
+    $(function(){
+        var len = $(".list" ).length;
+        if(len >= 7){$('.tip' ).text('上拉加载更多');}
+        //上拉加载评论
+        loadScroll();
+    });
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $(".list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end){
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Topic/experiencemore')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addList(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                    }
+                })
+            }
+        })
+    }
+    function addList(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var list = lists[i];
+            var url = "{:Url('Topic/detail?id='."+list.id+")}";
+            html +=
+                    '<a href="'+url+'" class="list">'+
+                    '<div class="content">'+
+                    '<div class="title limit">'+list.title+'</div>'+
+                    '<div class="note">'+
+                    '<span class="time">'+list.time+'</span>'+
+                    '<span class="fa fa-angle-right"></span>'+
+                    '</div>'+
+                    '</div>'+
+                    '</a>'
+        }
+        $(".lists" ).append(html);
+    }
+</script>
+{/block}

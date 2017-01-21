@@ -20,7 +20,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-        session('userId','18768112486');
+        session('userId','wangzhichao');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -278,6 +278,7 @@ class Base extends Controller {
      * 加载更多评论
      */
     public function morecomment(){
+        $uid = session('userId');
         $len = input('length');
         $map = array(
             'type' => input('type'),
@@ -299,7 +300,7 @@ class Base extends Controller {
                 $map1 = array(
                     'type' => 0,
                     'aid' => $value['id'],
-                    'uid' => $value['uid'],
+                    'uid' => $uid,
                     'status' => 0,
                 );
                 $like = Like::where($map1)->find();

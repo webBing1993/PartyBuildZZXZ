@@ -62,24 +62,9 @@
 		<span>标&emsp;题</span>
 		<input type="text" placeholder="请输入标题..." name="title" value="{$note.title || default=''}" style="width:80%;">
 	</div>
-	<div class="list">
-		<span>地&emsp;点</span>
-		<input type="text" placeholder="请输入地点..." name="place" value="{$note.meet_home || default=''}" style="width:80%;">
-	</div>
-
-    <div class="item-input list" style="border-bottom: 1px solid #f1f1f1;">
-        <span>日&emsp;期</span>
-        <!--<input type="text" placeholder="请输入日期..." name="date" readonly id="calendar-disabled" value="{$note.meet_time || default =''}">-->
-		{eq name="class" value="1"}
-		<input type="text" placeholder="请输入时间..." class="form-control datetimepicker form_title" name="meet_time" style="border:none;-webkit-box-shadow:none;box-shadow:none;-webkit-transition:none;transition:none;padding:0;width:80%;" value="{$note.meet_time |time_format='Y-m-d H:i'}">
-		{else/}
-		<input type="text" placeholder="请输入时间..." class="form-control datetimepicker form_title" name="meet_time" style="border:none;-webkit-box-shadow:none;box-shadow:none;-webkit-transition:none;transition:none;padding:0;width:80%;" value="">
-		{/eq}
-    </div>
-
 </div>
 <div class="block">
-	<textarea name="content" id="text" placeholder="请输入内容..." style="text-indent:2em;">{$note.content || default=''}</textarea>
+	<textarea name="content" id="text" placeholder="请输入内容..." style="text-indent:2em;min-height: 220px">{$note.content || default=''}</textarea>
 	<div class="imgs clear" style="position:relative;">
 		{eq name="class" value="1"}
 		{volist name="note.images" id="img"}
@@ -110,7 +95,6 @@
 	<li>会议情况</li>
 	<li>党课情况</li>
 	<li>活动情况</li>
-	<li>志愿情况</li>
 </ul>
 <div class="tips">
 </div>
@@ -186,7 +170,7 @@ $(function(){
 	});
 
 	//模块标题
-	$('title').text('支部活动');
+	$('title').text('情况发布');
 	//初始发布栏
 	var sel = $('.select');
 	var text;
@@ -198,8 +182,6 @@ $(function(){
 			text = '党课情况'
 		}else if(value == 5 ){
 			text = '活动情况'
-		}else if(value == 7){
-			text = '志愿情况'
 		}
 		selchange(text,value);
 	}
@@ -230,8 +212,6 @@ $(function(){
 				value = 3
 			}else if(value == 3){
 				value = 5
-			}else if(value == 4){
-				value = 7
 			}
 			var text = $(this ).text();
 			selchange(text,value);
@@ -306,8 +286,6 @@ $(function(){
 			type:$(".select").attr('data-tab'),
 			title:$("input[name='title']").val(),
 			content:$("textarea[name='content']").val(),
-			meet_home:$("input[name='place']").val(),
-			meet_time:$("input[name='meet_time']").val(),
 		};
 		console.log(data.meet_time);
 		var all = true;
@@ -359,8 +337,6 @@ $(function(){
 			type:$(".select").attr('data-tab'),
 			title:$("input[name='title']").val(),
 			content:$("textarea[name='content']").val(),
-			meet_home:$("input[name='place']").val(),
-			meet_time:$("input[name='meet_time']").val(),
 		};
 		console.log(data);
 		var single = false;

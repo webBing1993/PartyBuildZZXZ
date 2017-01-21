@@ -24,11 +24,12 @@ class Comment extends Model {
      * 获取评论
      * @param $type
      * @param $aid
+     * @param $uid
      * @return false|\PDOStatement|string|\think\Collection
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      */
-    public function getComment($type,$aid) {
+    public function getComment($type,$aid,$uid) {
         $map = array(
             'type' => $type,
             'aid' => $aid,
@@ -42,7 +43,7 @@ class Comment extends Model {
             $map1 = array(
                 'type' => 0,
                 'aid' => $value['id'],
-                'uid' => $value['uid'],
+                'uid' => $uid,
                 'status' => 0,
             );
             $like = Like::where($map1)->find();
