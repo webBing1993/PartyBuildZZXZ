@@ -117,7 +117,7 @@ class Alliance extends Base{
 
         //获取评论
         $commentModel = new Comment();
-        $comment = $commentModel->getComment(3,$id);
+        $comment = $commentModel->getComment(3,$id,$uid);
         $this->assign('comment',$comment);
 
         return $this->fetch();
@@ -141,7 +141,7 @@ class Alliance extends Base{
 
         //获取评论
         $commentModel = new Comment();
-        $comment = $commentModel->getComment(4,$id);
+        $comment = $commentModel->getComment(4,$id,$uid);
         $this->assign('comment',$comment);
         return $this->fetch();
     }

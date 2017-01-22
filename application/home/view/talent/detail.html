@@ -52,8 +52,12 @@
                             {$talent.content}
                         </div>
                         <div>
-                            <div class="fl isgood_ scan">123</div>
-                            <div class="fl isgood good_" onclick="" >111</div>
+                            <div class="fl isgood_ scan">{$talent.views}</div>
+                            {eq name="$talent.is_like" value="0"}
+                            <div class="fl isgood good_" onclick="isGood(this,5,{$talent.id})" >{$talent.likes}</div>
+                            {else/}
+                            <div class="fl isgood good" onclick="isGood(this,5,{$talent.id})" >{$talent.likes}</div>
+                            {/eq}
                         </div>
                     </div>
                 </div>
@@ -72,12 +76,13 @@
         $(this).toggleClass('good').toggleClass('good_');
     });
     //点赞
-    function isGood(e,id){
+    function isGood(e,type,id){
         $.ajax({
             type:"post",
-            url:"",
+            url:"{:Url('Base/like')}",
             data:{
-                id:id
+                type:type,
+                aid:id
             },
             success:function(data){
                 var n = $(e ).text();

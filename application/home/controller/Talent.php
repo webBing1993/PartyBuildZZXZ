@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 
+use app\home\model\Like;
 use app\home\model\Picture;
 use think\Controller;
 use app\home\model\Talent as TalentModel;
@@ -60,9 +61,15 @@ class Talent extends Base{
      *人才创业详情页
      */
     public function detail(){
+        $uid = session('userId');
         $id = input('id');
         $talentModel = new TalentModel();
+        $talentModel::where('id',$id)->setInc('views');     //浏览加一
         $talent = $talentModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(5,$id,$uid);
+        $talent['is_like'] = $like;
         $this->assign('talent',$talent);
         return $this->fetch();
     }
