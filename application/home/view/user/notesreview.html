@@ -1,0 +1,68 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/detail.css">
+{/block}
+
+{block name="body"}
+<!--<div class="article">-->
+	<!--<div class="title limit_">{$note.title}</div>-->
+	<!--<div class="note">-->
+		<!--<span>{$note.create_time|time_format="Y-m-d"}</span>-->
+		<!--<span>{$note.publisher}</span>-->
+	<!--</div>-->
+	<!--<div class="content">-->
+		<!--{volist name="$note.images" id="img"}-->
+		<!--<img src="{$img}" alt="笔记图片" class="img" >-->
+		<!--{/volist}-->
+		<!--<div>-->
+			<!--{$note.content}-->
+		<!--</div>-->
+
+	<!--</div>-->
+<!--</div>-->
+<!--新增-->
+<div class="head">
+	<img src="{$note['front_cover']|get_cover='path'}" alt="" style="height:180px;width:100%;">
+</div>
+<div class="title" style="margin:0 auto;width:90%;text-align: center;min-height:30px;;line-height: 25px;margin-top:5px;">
+	<span style="color:#333;font-size: 16px;">{$note['title']}</span>
+</div>
+<!--新增-->
+<!--新增-->
+<div class="place " style="width:100%;border-top:1px solid #f1f1f1;padding-left:2.8%;height:30px;line-height:30px;">
+	<img src="/home/images/notice/appmeet_place.jpg" alt="" style="height:20px;margin-top:4px;" >
+	<span style="color:#666;display: inline-block;width:90%;font-size:13px;" class="limit">{$note.meet_home}</span>
+</div>
+<div class="place" style="width:100%;border-top:1px solid #f1f1f1;padding-left: 2.8%;height:32px;line-height:32px;border-bottom:1px solid #f1f1f1;">
+	<img src="/home/images/notice/appmeet_time.jpg" alt="" style="height:18px;margin-top:6px;">
+	<span style="color:#666;display: inline-block;width:90%;font-size:13px;" class="limit">{$note.meet_time|date="Y-m-d H:i:s",###}</span>
+</div>
+<!--新增-->
+<div class="article" style="padding-top:0;margin:10px 0">
+	<div class="content">
+
+		{volist name="$note.images" id="img"}
+		<img src="{$img}" alt="笔记图片" class="img" style="width:100%;">
+		{/volist}
+        <div style="text-indent:2em;">{$note.content}</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+$(function(){
+	//初始图片
+	var src1 = $('.content .img:nth-child(1)' ).attr('src');
+	var src2 = $('.content .img:nth-child(2)' ).attr('src');
+	if(src1 != undefined){
+		if(src1 == ''){
+			$('.img').remove();
+		}else if(src1 != '' && src2 == ''){
+			$('.content .img').eq(1).remove();
+		}
+	}
+})
+</script>
+{/block}
