@@ -177,7 +177,7 @@ body{
 				margin-bottom: 5vw;
 			}
 			&:before{
-				content:'组织架构';
+				content:'中心概况';
 				position: absolute;
 				top:3vw;
 				left:-7px;
@@ -189,6 +189,9 @@ body{
 				text-align: center;
 				font-size: @s_note;
 				line-height: 22px;
+			}
+			&.or:before{
+				content:'组织架构';
 			}
 			&.summary{
 				padding: 11vw 3vw 6vw 3vw;
@@ -241,6 +244,11 @@ body{
 						line-height: 45px;
 						border-bottom: 1px solid @c_border;
 					}
+					@media screen and (max-width: 320px) {
+						.name2 {
+							font-size:12px;
+						}
+					}
 				}
 				.todown{
 					-webkit-animation: todown 0.4s linear alternate;
@@ -277,17 +285,18 @@ body{
 			text-align: center;
 		}
 		img{
-			width: 100vw;
+			margin: 10vw;
+			width: 80vw;
 		}
 	}
 }
 
 .table{
 	.party{
-		width: 30vw;
+		width: 40vw;
 	}
 	.position{
-		width: 40vw;
+		width: 30vw;
 	}
 	.name{
 		width: 30vw;
@@ -308,7 +317,7 @@ body{
 	.tbody{
 		height: 100%;
 		.tb{
-			padding: 20px 10px;
+			padding: 50px 10px;
 			font-size: 1.3rem;
 			border-right: 1px solid @c_bg;
 			border-bottom: 1px solid @c_bg;

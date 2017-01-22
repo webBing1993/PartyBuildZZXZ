@@ -1,0 +1,80 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/team.css">
+{/block}
+
+{block name="body"}
+<div class="banner">
+	<img src="/home/images/test/3.png" alt="服务团队banner" class="banner-img">
+</div>
+<div class="tabs">
+	<span class="tab active"><span>爱心帮扶</span></span>
+	<span class="tab"><span>环境美化</span></span>
+	<span class="tab"><span>平安巡查</span></span>
+</div>
+<div class="boxs">
+	<div class="box active">
+		<div class="lists">
+			<!--爱心帮扶列表-->
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖1</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
+			<!--/爱心帮扶列表-->
+		</div>
+	</div>
+	<div class="box hidden">
+		<div class="lists">
+			<!--环境美化列表-->
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖2</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
+			<!--/环境美化列表-->
+		</div>
+	</div>
+	<div class="box">
+		<div class="lists">
+			<!--平安巡查列表-->
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖3</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
+			<!--/平安巡查列表-->
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/home/js/reset.js"></script>
+<script>
+$(function(){
+	//标题
+	$('title' ).text('服务团队');
+	//tab值记录
+	tabRecord('.tab' ,'.box');
+	//tab切换
+	tabSwitch('.tab' ,'.box');
+});
+</script>
+{/block}
