@@ -252,7 +252,17 @@ class Redtutor extends Admin {
      * 课程删除
      */
     public function coursedel() {
-
+        $id = input('id');
+        $map = array(
+            'status' => -1,
+        );
+        $courseModel = new RedtutorCourse();
+        $model = $courseModel->where('id',$id)->update($map);
+        if($model) {
+            return $this->success("删除成功");
+        }else{
+            return $this->error("删除失败");
+        }
     }
 
 
