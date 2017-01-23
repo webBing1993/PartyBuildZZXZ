@@ -28,6 +28,7 @@
 				</div>
 			</a>
 			<!--/爱心帮扶列表-->
+			<div class="tip"></div>
 		</div>
 	</div>
 	<div class="box hidden">
@@ -43,7 +44,18 @@
 					</div>
 				</div>
 			</a>
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖2</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
 			<!--/环境美化列表-->
+			<div class="tip"></div>
 		</div>
 	</div>
 	<div class="box">
@@ -59,10 +71,32 @@
 					</div>
 				</div>
 			</a>
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖2</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
+			<a href="{:Url('Volunteer/teamdetail')}" class="list">
+				<img src="/home/images/test/3.png" alt="列表图" class="left">
+				<div class="content">
+					<div class="title limit">走进德清老年协会送温暖3</div>
+					<div class="note">
+						<div class="time">2017-01-01</div>
+						<div class="angle"><span class="fa fa-angle-right"></span></div>
+					</div>
+				</div>
+			</a>
 			<!--/平安巡查列表-->
+			<div class="tip"></div>
 		</div>
 	</div>
 </div>
+
 {/block}
 
 {block name="script"}
@@ -74,7 +108,87 @@ $(function(){
 	//tab值记录
 	tabRecord('.tab' ,'.box');
 	//tab切换
-	tabSwitch('.tab' ,'.box');
+	tabSwitch('.tab' ,'.box',loadScroll);
+	//上拉加载
+	loadScroll(getType(),'url',7,5);
 });
+/**
+ * 上拉加载
+ * @param type	类型1：爱心帮扶，2：环境美化，3：平安巡查
+ * @param url	方法
+ * @param a		初始加载数据的长度
+ * @param b		每次加载的数据长度
+ */
+function loadScroll(type,url,a,b){
+	var box = $('.box' ).eq(type - 1 );
+	var tip = box.find('.tip' );
+	var len = box.find('.list').length;
+	if(len >= a){
+		tip.text('上拉加载更多');
+	}
+	//console.log('len'+len);
+	//console.log('tab'+type);
+	$(window ).off("scroll" ).on("scroll",function(){
+		var dh = $(document).height();
+		var end = $(window).height() + $(window ).scrollTop();
+		//var loading = $('.loading');
+		if(dh == end){
+			$.ajax({
+				type:"post",
+				url:url,
+				data:{
+					type:type,
+					length:len
+				},
+				beforeSend: function(XMLHttpRequest){
+					//tip.hide();
+					//loading.toggleClass('hidden');
+				},
+				success:function(data){
+					//loading.toggleClass('hidden');
+					if(data.code == 1){
+						addLists(data,type);
+						var dataLen =data.data.length;
+						if(data.data.length == b){
+							tip.text('上拉加载更多');
+						}
+					}else{
+						tip.text('没有更多了');
+						$(window ).off("scroll");
+					}
+				}
+			})
+		}
+	})
+}
+function addLists(data,type){
+	var html = '';
+	var lists = data.data;
+	var len = lists.length;
+	for(var i = 0; i< len;i++){
+		var list = lists[i];
+		html +=
+			'<a href="" class="list">'+
+			'<img src="/home/images/test/3.png" alt="列表图" class="left">'+
+			'<div class="content">'+
+			'<div class="title limit">走进德清老年协会送温暖2</div>'+
+			'<div class="note">'+
+			'<div class="time">2017-01-01</div>'+
+			'<div class="angle"><span class="fa fa-angle-right"></span></div>'+
+			'</div>'+
+			'</div>'+
+			'</a>'
+	}
+	$('.box' ).eq(type - 1 ).find('.lists' ).append(html);
+}
+function getType(){
+	var tab = getCookie('tab');
+	if(!tab){
+		tab = 1
+	}else{
+		tab++
+	}
+	return tab;
+}
 </script>
 {/block}

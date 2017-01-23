@@ -1,0 +1,91 @@
+@charset "utf-8";
+.t_b {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.shadow {
+  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+}
+a:active {
+  background-color: #ebebeb;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #d9d9d9;
+}
+.banner {
+  width: 100vw;
+  height: 50vw;
+}
+.banner .banner-img {
+  width: 100%;
+  height: 100%;
+}
+.lists .list {
+  display: inline-block;
+  width: 100vw;
+  height: 24vw;
+  padding: 0 4vw;
+  border-bottom: 1px solid #f1f1f1;
+}
+.lists .list .left {
+  width: 24vw;
+  height: 16vw;
+  margin: 4vw 0;
+  overflow: hidden;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+.lists .list .content {
+  display: inline-block;
+  width: 63vw;
+  margin-left: 3vw;
+  margin-top: 3vw;
+}
+.lists .list .content .title {
+  width: 100%;
+  color: #333333;
+  font-size: 1.4rem;
+  line-height: 30px;
+}
+.lists .list .content .note {
+  width: 100%;
+  color: #999999;
+  font-size: 1.2rem;
+  line-height: 12px;
+  margin-top: 6vw;
+}
+.lists .list .content .note .num {
+  position: relative;
+  left: 0;
+  padding-left: 14px;
+}
+.lists .list .content .note .num:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 12px;
+  content: '';
+  background: url('/home/images/detail/man.jpg') 0 0 no-repeat;
+  background-size: contain;
+}
+.lists .list .content .note .time {
+  width: 72%;
+  text-align: right;
+}
+.lists .list .content .note .time span {
+  display: inline-block;
+  width: 50%;
+  padding-right: 5px;
+}
+.lists .list .content .note > div {
+  display: inline-block;
+}
+.lists .list .right {
+  width: 1vw;
+  height: 100%;
+  color: #999999;
+  font-size: 1.3rem;
+  line-height: 24vw;
+}

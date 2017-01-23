@@ -1,0 +1,71 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/orderdetail.css">
+{/block}
+
+{block name="body"}
+<div class="content">
+	<div class="title">为永昌小学某某某小朋友送冬衣</div>
+	<div class="time">2017-01-11</div>
+	<img src="/home/images/test/3.png" alt="服务订单图">
+	<div class="summary">陆麒诚小朋友，来自松溪小学，男，身高140.5厘米，体重34.1公斤，穿37码的鞋子。需求尺码合适的冬衣外套一件，保暖新鞋一双，总价值300元左</div>
+	<div class="lists">
+		<div class="list">
+			<span class="tag">所属单位：</span>
+			<span>区直机关工委</span>
+		</div>
+		<div class="list">
+			<span class="tag">认领人数：</span>
+			<span>0/1</span>
+		</div>
+		<div class="list">
+			<span class="tag">联系人：</span>
+			<span>采访用</span>
+		</div>
+		<div class="list">
+			<span class="tag">联系方式：</span>
+			<span><a href="tel:13800000000">13800000000</a> </span>
+		</div>
+	</div>
+	<!--可报名状态-->
+	<div class="get yes">我要报名</div>
+	<!--/可报名状态-->
+	<!--不可报名状态：已领-->
+	<!--<div class="get no">已领取</div>-->
+	<!--/不可报名状态-->
+	<!--不可报名状态：名满-->
+	<!--<div class="get no">我要报名</div>-->
+	<!--<div class="gettext">（当前招募人数已满，下次早点来哦）</div>-->
+	<!--/不可报名状态-->
+</div>
+<div class="enroll">
+	<div class="title">报名名单</div>
+	<div class="lists">
+		<div class="list">
+			<img src="/home/images/test/t.jpg" alt="头像">
+			<span class="name limit">赵婷赵婷</span>
+			<span class="publish limit">第三党支部</span>
+			<span class="time limit">2017-01-09</span>
+		</div>
+		<div class="list">
+			<img src="/home/images/test/t.jpg" alt="头像">
+			<span class="name limit">赵婷赵婷</span>
+			<span class="publish limit">第三党支部</span>
+			<span class="time limit">2017-01-09</span>
+		</div>
+		<div class="list">
+			<img src="/home/images/test/t.jpg" alt="头像">
+			<span class="name limit">赵婷赵婷</span>
+			<span class="publish limit">第三党支部</span>
+			<span class="time limit">2017-01-09</span>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+$('title' ).text('服务订单')
+</script>
+{/block}

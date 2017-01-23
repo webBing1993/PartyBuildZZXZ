@@ -1,0 +1,112 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+@c_ph: #d9d9d9;
+@c_active: #ebebeb;
+//字体大小
+@s_big: 1.6rem;
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+.font(@c,@f,@h) {
+	color: @c;
+	font-size: @f;
+	line-height: @h;
+}
+.wh(@w,@h){
+	width: @w;
+	height: @h;
+}
+.shadow {
+	box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.20);
+}
+//public
+a:active { background-color: @c_active }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: @c_ph;
+}
+//animate
+
+//layout
+.banner{
+	.wh(100vw,50vw);
+	.banner-img{
+		.wh(100%,100%);
+	}
+}
+.lists{
+	.list{
+		display: inline-block;
+		.wh(100vw,24vw);
+		padding: 0 4vw;
+		border-bottom: 1px solid @c_border;
+		.left{
+			.wh(24vw,16vw);
+			margin: 4vw 0;
+			overflow: hidden;
+			-webkit-border-radius:6px;
+			border-radius:6px;
+		}
+		.content{
+			display: inline-block;
+			width: 63vw;
+			margin-left: 3vw;
+			margin-top: 3vw;
+			.title{
+				width: 100%;
+				.font(@c_title,@s_title,30px);
+			}
+			.note{
+				width: 100%;
+				.font(@c_note,@s_note,12px);
+				margin-top: 6vw;
+				.num{
+					position: relative;
+					left: 0;
+					padding-left: 14px;
+					&:before{
+						position: absolute;
+						top:0;
+						left:0;
+						width: 10px;
+						height: 12px;
+						content: '';
+						background: url('/home/images/detail/man.jpg') 0 0 no-repeat;
+						background-size: contain;
+					}
+				}
+				.time{
+					width: 72%;
+					text-align: right;
+					span{
+						display:inline-block;
+						width: 50%;
+						padding-right: 5px;
+					}
+				}
+				&>div{
+					display: inline-block;
+				}
+			}
+		}
+		.right{
+			.wh(1vw,100%);
+			.font(@c_note,@s_content,24vw);
+		}
+	}
+}
