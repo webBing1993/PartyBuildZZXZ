@@ -1,0 +1,58 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="/home/css/relevant.css">
+{/block}
+
+{block name="body"}
+<div class="banner">
+	<div class="swiper-container">
+		<div class="imgs swiper-wrapper">
+			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
+			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
+			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<img src="/home/images/notice/bottom.png" alt="圆弧" class="arc">
+</div>
+<div class="content">
+	<div class="top">
+		<div class="title limit_">{$publish.title}</div>
+	</div>
+	<div class="message">
+		<div><span class="limit">{$publish.sponsor}</span></div>
+		<div><span class="limit">{$publish.cost}</span></div>
+		<div><span class="limit">{$publish.start_time|time_format="Y-m-d H:i"}--{$publish.end_time|time_format="Y-m-d H:i"}</span></div>
+		<div><span class="limit">{$publish.telephone}</span></div>
+		<div><span class="limit">{$publish.address}</span></div>
+	</div>
+	<div class="article">{$publish.content}</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
+<script>
+$(function(){
+	//随机图片
+	var ns = [];
+	var n;
+	for(var i = 1 ;i<4 ;i++){
+		n = parseInt(Math.random()*26)+1;
+		while ($.inArray(n,ns) != -1){n = parseInt(Math.random()*26)+1}
+		ns.push(n);
+		$('.swiper-slide:nth-child('+i+') img' ).attr('src','/home/images/default/1-'+ns[i-1]+'.png');
+	}
+	//轮播
+	var mySwiper = new Swiper('.swiper-container', {
+		autoplay: 3000,
+		loop:true,
+		pagination : '.swiper-pagination',
+		paginationType : 'bullets',
+		autoplayDisableOnInteraction:false
+	})
+});
+</script>
+{/block}

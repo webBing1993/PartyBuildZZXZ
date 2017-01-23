@@ -1,0 +1,133 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+@c_ph: #d9d9d9;
+@c_active: #ebebeb;
+//字体大小
+@s_big: 1.6rem;
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+.wh(@w,@h){
+	width: @w;
+	height: @h;
+}
+.font(@c,@f,@h) {
+	color: @c;
+	font-size: @f;
+	line-height: @h;
+}
+.shadow {
+	box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.20);
+}
+//public
+body{ overflow-x: hidden; }
+a:active { background-color: @c_active }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: @c_ph;
+}
+//animate
+
+//layout
+.banner{
+	.wh(100vw,50vw);
+	.banner-img{
+		.wh(100%,100%);
+	}
+}
+//切换卡
+.tabs{
+	width: 100vw;
+	height: 30px;
+	background: #f1f1f1;
+	margin-top: 10px;
+	.tab{
+		display: inline-block;
+		width: 32.5vw;
+		height: 100%;
+		.font(@c_title,1.4rem,30px);
+		text-align: center;
+	}
+	.active{
+		span{
+			height: 100%;
+			display: inline-block;
+			border-bottom: 2px solid #f03b41;
+		}
+	}
+}
+.boxs{
+	position: relative;
+	top:0;
+	left:0;
+	width: 100vw;
+	min-height: 64vw;
+	.box{
+		position: absolute;
+		top: 0;
+		width: 99vw;
+		&:nth-child(1){
+			left: 0;
+		}
+		&:nth-child(2){
+			left: 100vw;
+		}
+		&:nth-child(3){
+			left: 200vw;
+		}
+		.lists{
+			.list{
+				display: inline-block;
+				.wh(100vw,24vw);
+				padding: 0 4vw;
+				border-bottom: 1px solid @c_border;
+				&>div{
+					display: inline-block;
+				}
+				.left{
+					.wh(24vw,16vw);
+					margin: 4vw 0;
+					overflow: hidden;
+					-webkit-border-radius:6px;
+					border-radius:6px;
+				}
+				.content{
+					width: 63vw;
+					margin-left: 3vw;
+					margin-top: 2vw;
+					.title{
+						width: 100%;
+						.font(@c_title,@s_title,12vw);
+					}
+					.note{
+						width: 100%;
+						.font(@c_note,@s_note,6vw);
+						&>div{
+							display: inline-block;
+							width: 49%;
+						}
+						.angle{
+							text-align: right;
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

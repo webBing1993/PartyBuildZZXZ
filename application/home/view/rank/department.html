@@ -1,0 +1,245 @@
+{extend name="public/common"}
+
+{block name="style"}
+<style type="text/css">
+    *{margin: 0;padding: 0;}
+    body,html{overflow-x:hidden;}
+    ul{margin:0;}
+    ul li {list-style: none;}
+    .top{height: 190px;width: 100%; background: -webkit-linear-gradient(left,#e4672d, #e9ad2c);border-bottom: 10px solid #efeef3;}
+    .top .top_top{width: 100%;height: 140px;text-align: center;font-size: 13px;}
+    .top .top_top img{width: 80px;height: 80px;border-radius: 40px;margin-top: 12px;}
+    .top .top_top p{margin: -25px 0 30px 0;color: #fff;font-size: 13px;text-align: center;}
+    .top .top_body{height: 40px;width: 100%;position: relative;}
+    .top .top_body ul li{height: 100%;width: 49.5%;float: left;text-align: center;}
+    .top .top_body span{width: 0;height: 32px;border-right: 1px solid #fff;position: absolute;left: 49.5%;top: 4px;}
+    .top .top_body p{font-size: 12px;color: #fff;margin-bottom: 3px;}
+    .top .top_body a{position: absolute;right: 0;top: 0;width: 50%;height: 100%;z-index: 1;}
+    .body{width:100%;border-top: 1px solid #e4e4e4;}
+    .body .body_top{margin-bottom: 24px;}
+    .body .body_top img{width: 20px;}
+    .body .body_top span{font-size: 12px;color: #666;position: relative;top: 5px;}
+    .body .body_body{width: 100%;height: 37px;}
+    .body .body_body ul li{width: 33.33%;float: left;font-size: 16px;color: #231815;font-weight: 600;text-align: center;}
+    .body .body_body ul li p{position: relative;padding-bottom: 12px;margin: 0;}
+    .body .body_body ul li:first-child{padding-left: 40px;}
+    .body .body_body ul li:nth-child(2){padding: 0 20px;}
+    .body .body_body ul li:last-child{padding-right: 40px;}
+    .body .body_body .active p{border-bottom: 3px solid #ee7919;}
+    .foot{width: 100%;}
+    .foot .rank{width: 100%;}
+    .foot .rank ul li{line-height: 60px;border-bottom: 1px solid #ecebeb;color: #231815;font-weight: 500;}
+    .foot .rank ul li .ranking{display:inline-block;width:25px;font-size: 12px;margin-left: 16px;}
+    .foot .rank ul li:first-child .ranking{color: #eba52c;}
+    .foot .rank ul li:nth-child(2) .ranking{color: #c5c5c5;}
+    .foot .rank ul li:nth-child(3) .ranking{color: #dd8723;}
+    .foot .rank ul li .department{font-size: 14px;margin-left: 10px;}
+    .foot .rank ul li .int{font-size: 12px;float: right;margin-right: 20px;}
+    #score{position:relative;top: -70%;right: -49%;color:#fff;}
+    #score span{position: relative;top: 28px;left:-40px;}
+    .modal-content{background-color: rgba(240, 221, 145, 0.97);width: 95%;}
+    #close{position: relative;top:80px;left:43.5%;}
+    #myModalLabel{text-align: center;font-size: 22px;}
+    .modal-dialog {margin-top: -2%;position: fixed;}
+    #myModal{overflow-x: hidden;position: fixed;}
+
+    .overHide{overflow: hidden;height: 100%;}
+    .cc{ overflow-y:auto;}
+    /*适配pad，iphone*/
+    @media screen and (min-width:767px) and (max-width:991px){
+        .top .top_top img{ margin-left: 45%; }
+        #close{left: 46%;}
+        .modal-content {
+            height: 100%;
+            font-size: 22px;
+        }
+        #myModalLabel {
+            font-size: 30px;
+        }
+        h5{
+            font-size: 22px;
+        }
+    }
+    @media screen and (min-width: 435px) and (max-width: 767px){
+        #score {
+            right: -51%;
+        }
+        #close {
+            left: 44%;
+        }
+    }
+    @media screen and (min-width: 411px) and (max-width: 414px){
+        #close {
+            left: 43.5%;
+        }
+        #score {
+            right: -50.5%;
+        }
+    }
+    @media screen and (min-width:360px) and (max-width:374px){
+        #close {
+            left: 42.5%;
+        }
+        #score {
+            right: -49%;
+        }
+    }
+    @media screen and (min-width:320px) and (max-width:359px){
+        .modal-dialog {
+            margin-top: -10%;
+        }
+        #close {
+            left: 41.5%;
+        }
+        #score {
+            right: -48%;
+        }
+    }
+</style>
+{/block}
+
+{block name="body"}
+<div>
+    <div class="top">
+        <div class="top_top">
+            {eq name="visit" value="1"}
+            <img src="/home/images/vistor.jpg">
+            <p>游客</p>
+            {else/}
+            <img src="/home/images/partybuild.png">
+            <div id="score" style="margin-right:10px;">
+                <img src="/home/images/score.png" alt="规则" style="width:20px;height:20px;margin-bottom: 5px">
+                <span data-toggle="modal" data-target="#myModal" style="line-height: 30px;">积分规则</span>
+            </div>
+            <p>{$personal.name}</p>
+            {/eq}
+            <!--<p>杭州</p>-->
+        </div>
+        <div class="top_body">
+            <ul>
+                <li>
+                    <p>部门所有积分</p>
+                    {eq name="visit" value="1"}<p>无</p>{else/}<p>{$personal.score}</p>{/eq}
+                </li>
+                <span></span>
+                <li>
+                    <p>部门所在排名</p>
+                    {eq name="visit" value="1"}<p>无</p>{else/}
+                    {eq name="$personal.score" value="0"}
+                    <p>无</p>
+                    {else/}
+                    <p>{$personal.rank}</p>
+                    {/eq}
+                    {/eq}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div id="close">
+                <img src="/home/images/close.png" alt="规则" data-dismiss="modal" aria-hidden="true" style="width:50px;height:50px">
+            </div>
+            <div class="modal-content" style="margin:130px auto">
+                <div style="width: 0;height: 54px;border-right: 2px solid rgba(237, 218, 145, 0.63);margin: -54px auto 0;"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        <b>积分规则</b>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-indent: 2em;font-weight: normal">
+                        部门排行榜由部门中每个成员的个人积分累加得到。积分可以累积，并在周榜，季榜和总榜按部门积分的高低进行排名。
+                    </h4>
+                </div>
+                <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
+    <div class="body">
+        <div class="body_top">
+            <img src="/home/images/int.jpg">
+            <span>系统积分排行榜</span>
+        </div>
+        <div class="body_body" id="title">
+            <ul>
+                <li class="active" name="1">
+                    <p>周榜</p>
+                </li>
+                <li name="2">
+                    <p>季榜</p>
+                </li>
+                <li name="3">
+                    <p>总榜</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="foot" id="body">
+        <div class="rank" age="1">
+            <ul>
+                {volist name="week" id="fi" key="k"}
+                <li>
+                    <span class="ranking">{$k}</span>
+                    <span class="department">{$fi.name}</span>
+                    <span class="int">积分{$fi.score}分</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="rank" age="2" style="display: none;">
+            <ul>
+                {volist name="month" id="mo" key="k"}
+                <li>
+                    <span class="ranking">{$k}</span>
+                    <span class="department">{$mo.name}</span>
+                    <span class="int">积分{$mo.score}分</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="rank" age="3" style="display: none;">
+            <ul>
+                {volist name="all" id="vo" key="k"}
+                <li>
+                    <span class="ranking">{$k}</span>
+                    <span class="department">{$vo.name}</span>
+                    <span class="int">积分{$vo.score}分</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+//切换
+$(function(){
+    $("#title").find("li").each(function(){
+        $(this).on('click',function(){
+           $(this).addClass("active").siblings().removeClass();
+            var name = $(this).attr("name");
+            $("#body").find(".rank").each(function(){
+               var age = $(this).attr("age");
+                if(name == age) {
+                    $(this).show().siblings().hide();
+                }
+            });
+        });
+    });
+})
+//    积分规则
+    $(function () {
+        $('#score span').click(function () {
+            $('#myModal').show();
+        });
+    });
+</script>
+{/block}
