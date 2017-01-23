@@ -38,6 +38,7 @@ class Alliance extends Admin {
     public function arrangeadd() {
         if(IS_POST) {
             $data = input('post.');
+            unset($data['id']);
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             $data['time'] = strtotime($data['time']);
             $arrangeModel = new AllianceArrange();
@@ -118,6 +119,7 @@ class Alliance extends Admin {
     public function showadd() {
         if(IS_POST) {
             $data = input('post.');
+            unset($data['id']);
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             $showModel = new AllianceShow();
             $model = $showModel->validate('Alliance.show')->save($data);
