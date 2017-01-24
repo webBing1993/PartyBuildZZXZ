@@ -30,11 +30,11 @@ return [
     
     /* 企业配置 */
     'party' => array(
-        'login' => 'http://xspb.0571ztnet.com/home/index/login',
+        'login' => 'http://dqpb.0571ztnet.com/home/index/login',
         'token' => 'N3mIjNX',
         'encodingaeskey' => 'RxanruTaFxW7X5r5Cx2xRrI91dhRgNUx77KM3paUfS7',
-        'appid' => 'wxc98739d457b9dad6',
-        'appsecret' => 'xjE71dUqVMv7Q_FpCx_4AuWcLYr77PRRrDH8lrn1oi9yYJtG1dztCUXQ1lGmXkk-',
+        'appid' => 'wx8caedf8a60d0795c',
+        'appsecret' => 'tjW0mBglK5t361LXB3DdlHGdnTdP0k2FevqUGjwiU8c1BVReg6mpG1CfsilPtG14',
         'agentid' => 1
     ),
     

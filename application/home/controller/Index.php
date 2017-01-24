@@ -48,7 +48,7 @@ class Index extends Controller {
                 $this->redirect(session('url'));
                 session('url','');
             }else{
-                $this->redirect("Activity/index");
+                $this->redirect("Structure/index");
             }
         } else {
             // 用户不存在通讯录默认为游客，跳转到url;

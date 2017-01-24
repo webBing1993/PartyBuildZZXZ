@@ -20,7 +20,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-        session('userId','wangzhichao');
+//        session('userId','wangzhichao');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -126,7 +126,7 @@ class Base extends Controller {
             session("nickname", isset($user['nickname'])?:"");
             session("header", isset($user['header'])?:"");
 
-            $this->redirect("News/index");
+            $this->redirect("Structure/index");
         } else {
             return $this->error("企业成员未授权");
         }
