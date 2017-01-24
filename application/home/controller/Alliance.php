@@ -101,6 +101,8 @@ class Alliance extends Base{
      * 通知详情页
      */
     public function informdetail(){
+        $this->anonymous(); //判断是否是游客
+
         $uid = session('userId');
         $id = input('id');
         $arrangeModel = new AllianceArrange();
@@ -127,6 +129,8 @@ class Alliance extends Base{
      * 文章详情页
      */
     public function articledetail(){
+        $this->anonymous(); //判断是否是游客
+
         $uid = session('userId');
         $id = input('id');
         $showModel = new AllianceShow();

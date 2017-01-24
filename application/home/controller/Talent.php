@@ -61,6 +61,8 @@ class Talent extends Base{
      *人才创业详情页
      */
     public function detail(){
+        $this->anonymous(); //判断是否是游客
+
         $uid = session('userId');
         $id = input('id');
         $talentModel = new TalentModel();

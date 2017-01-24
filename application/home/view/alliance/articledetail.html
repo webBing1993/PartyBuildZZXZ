@@ -37,10 +37,12 @@
 				<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
 			</div>
 			<!--未点赞：good,已点赞good_-->
+			{eq name="visit" value="0"}
 			{eq name="com.is_like" value="0"}
 			<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
 			{else/}
 			<div class="fr isgood good_" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{/eq}
 			{/eq}
 		</div>
 		{/volist}
@@ -50,6 +52,7 @@
 		<div class="typing_loader"></div>
 	</div>
 </div>
+{eq name="visit" value="1"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
@@ -63,6 +66,7 @@
 		</div>
 	</div>
 </div>
+{/eq}
 {/block}
 
 {block name="script"}
