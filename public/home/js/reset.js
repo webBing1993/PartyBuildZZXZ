@@ -1,7 +1,7 @@
 /**
  * Created by rawraw on 2017/1/22.
  */
-function tabSwitch(a,b){
+function tabSwitch(a,b,fn){
 	$(a).off('click').on('click',function(){
 		var this_ = this ;
 		var box = $(b ).parent();
@@ -13,8 +13,13 @@ function tabSwitch(a,b){
 		ww = ww * index;
 		box.stop().animate({left: -ww +'px'},300,function(){
 			$(b).eq(index).siblings(b).addClass('hidden');
-			setCookie( 'tab', index )
+			setCookie( 'tab', index );
+			if(fn){
+				var tab = $('.active' ).index() + 1;
+				fn(tab,'',7,5);
+			}
 		});
+
 	})
 }
 function tabRecord(a,b){

@@ -1,12 +1,29 @@
 {extend name="public/common"}
 
 {block name="style"}
-
+<link rel="stylesheet" href="/home/css/order.css">
 {/block}
 
 {block name="body"}
 <div class="banner">
 	<img src="/home/images/test/3.png" alt="服务团队banner" class="banner-img">
+</div>
+<div class="lists">
+	<a href="{:Url('Volunteer/orderdetail')}" class="list clear">
+		<img src="/home/images/test/3.png" alt="列表图" class="left fl">
+		<div class="content fl">
+			<div class="title limit">走进德清老年协会送温暖3走进德清老年协会送温暖走进德清老年协会送温暖</div>
+			<div class="note">
+				<div class="num">0 / 1 人</div>
+				<div class="time">2017-01-01</div>
+			</div>
+		</div>
+		<div class="right fr"><span class="fa fa-angle-right"></span></div>
+	</a>
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+<div class="typing_loader"></div>
 </div>
 {/block}
 
@@ -15,6 +32,75 @@
 $(function(){
 	//标题
 	$('title' ).text('服务订单');
+	//上拉加载
+	loadScroll('url',7,5);
 });
+/**
+ * 上拉加载
+ * @param url	方法
+ * @param a		初始加载数据的长度
+ * @param b		每次加载的数据长度
+ */
+function loadScroll(url,a,b){
+	var tip = $('.tip' );
+	var len = $('.list').length;
+	if(len >= a){
+		tip.text('上拉加载更多');
+	}
+	$(window ).off("scroll" ).on("scroll",function(){
+		var dh = $(document).height();
+		var end = $(window).height() + $(window ).scrollTop();
+		var loading = $('.loading');
+		if(dh == end){
+			$.ajax({
+				type:"post",
+				url:url,
+				data:{
+					length:len
+				},
+				beforeSend: function(XMLHttpRequest){
+					tip.hide();
+					loading.toggleClass('hidden');
+				},
+				success:function(data){
+					loading.toggleClass('hidden');
+					tip.show();
+					if(data.code == 1){
+						addLists(data,type);
+						var dataLen =data.data.length;
+						if(data.data.length == b){
+							tip.text('上拉加载更多');
+						}
+					}else{
+						tip.text('没有更多了');
+						$(window ).off("scroll");
+					}
+				}
+			})
+		}
+	})
+}
+function addLists(data){
+	var html = '';
+	var lists = data.data;
+	var len = lists.length;
+	for(var i = 0; i< len;i++){
+		var list = lists[i];
+		var url = "{:Url('Volunteer/orderdetail')}";
+		html +=
+			'<a href='+url+' class="list clear">'+
+			'<img src="/home/images/test/3.png" alt="列表图" class="left fl">'+
+			'<div class="content fl">'+
+			'<div class="title limit">走进德清老年协会送温暖3走进德清老年协会送温暖走进德清老年协会送温暖</div>'+
+			'<div class="note">'+
+			'<div class="num">0 / 1 人</div>'+
+			'<div class="time">2017-01-01</div>'+
+			'</div>'+
+			'</div>'+
+			'<div class="right fr"><span class="fa fa-angle-right"></span></div>'+
+			'</a>'
+	}
+	$('.lists' ).append(html);
+}
 </script>
 {/block}

@@ -1,0 +1,147 @@
+@charset "utf-8";
+//颜色
+@c_title: #333333;
+@c_content: #666666;
+@c_note: #999999;
+@c_bg: #eeeeee;
+@c_border: #f1f1f1;
+@c_ph: #d9d9d9;
+@c_active: #ebebeb;
+//字体大小
+@s_big: 1.6rem;
+@s_title: 1.4rem;
+@s_content: 1.3rem;
+@s_note: 1.2rem;
+//位置
+//自身
+.t_b {
+	font-size: 1.8rem;
+	font-weight: 600;
+}
+.content(@lr:13px) {
+	width: 100%;
+	padding-left: @lr;
+	padding-right: @lr;
+}
+.wh(@w,@h) {
+	width: @w;
+	height: @h;
+}
+.font(@c,@f,@h) {
+	color: @c;
+	font-size: @f;
+	line-height: @h;
+}
+.shadow {
+	box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.20);
+}
+//public
+a:active { background-color: @c_active }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: @c_ph;
+}
+//animate
+
+//layout
+.content{
+	width: 100vw;
+	padding: 4vw;
+	.title{
+		width: 100%;
+		text-align: center;
+		font-weight: 600;
+		.font(@c_title,@s_big,26px)
+	}
+	.time{
+		width: 100%;
+		text-align: right;
+		.font(@c_note,@s_note,16px)
+	}
+	img{
+		max-width: 100%;
+		margin: 4vw auto;
+	}
+	.summary{
+		.font(@c_content,@s_content,20px)
+	}
+	.lists{
+		.list{
+			span{
+				display: inline-block;
+				&:nth-child(2){
+					width: 72%;
+					.font(@c_content,@s_content,40px);
+				}
+			}
+			.tag{
+				width: 26%;
+				.font(@c_title,@s_title,40px);
+			}
+
+	}
+	}
+	.get{
+		.wh(70vw,8vw);
+		margin: 2vw auto;
+		text-align: center;
+		.font(#ffffff,@s_content,8vw);
+		-webkit-border-radius:6px;
+		border-radius:6px;
+		&.yes{
+			background: #e84f41;
+		}
+		&.no{
+			background: #9a9a9a;
+		}
+	}
+	.gettext{
+		width: 100%;
+		text-align: center;
+		font-size: 12px;
+	}
+}
+.enroll{
+	.title{
+		position: relative;
+		top:0;
+		left:0;
+		.wh(100vw,40px);
+		padding-left: 48px;
+		background: #f0f0f2;
+		.font(@c_title,@s_title,40px);
+		&:before{
+			position: absolute;
+			left:4vw;
+			top:10px;
+			content: '';
+			.wh(20px,20px);
+			background: url('/home/images/detail/love.png') 0 0 no-repeat;
+			background-size: contain;
+		}
+	}
+	.lists{
+		.list{
+			padding: 2vw 4vw;
+			&>*{
+				display: inline-block;
+				.font(@c_content,@s_content,10vw)
+			}
+			img{
+				.wh(10vw,10vw);
+				-webkit-border-radius:50%;
+				border-radius:50%;
+			}
+			.name{
+				width: 18vw;
+				padding-left: 5px;
+			}
+			.publish{
+				width: 38vw;
+			}
+			.time{
+				width: 22vw;
+				text-align: right;
+			}
+		}
+	}
+}
