@@ -1,27 +1,4 @@
-@charset "utf-8";
-//颜色
-@c_title: #333333;
-@c_content: #666666;
-@c_note: #999999;
-@c_bg: #eeeeee;
-@c_border: #f1f1f1;
-//字体大小
-@s_title: 1.4rem;
-@s_content: 1.3rem;
-@s_note: 1.2rem;
-//位置
-//自身
-.t_b {
-	font-size: 1.8rem;
-	font-weight: 600;
-}
-.content(@lr:13px) {
-	width: 100%;
-	padding-left: @lr;
-	padding-right: @lr;
-}
-
-//动画
+@import (reference) "../common";
 //public
 .title{
 	font-size: @s_title;

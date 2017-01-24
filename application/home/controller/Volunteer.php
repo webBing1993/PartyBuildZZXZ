@@ -46,4 +46,10 @@ class Volunteer extends Base{
     public function recruitdetail(){
         return $this->fetch();
     }
+    /*
+     * 志愿发布页
+     */
+    public function publish(){
+        return $this->fetch();
+    }
 }
