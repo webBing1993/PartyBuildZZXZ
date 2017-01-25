@@ -11,10 +11,10 @@
     .content *{
         width:100%;
     }
-    .good_{
+    .good{
         background: url('/home/images/detail/good.png') 0 0 no-repeat;
     }
-    .good {
+    .good_{
         background: url('/home/images/detail/good_.png') 0 0 no-repeat;
     }
 
@@ -55,9 +55,9 @@
                             <div class="fl isgood_ scan">{$talent.views}</div>
                             {eq name="visit" value="1"}
                             {eq name="$talent.is_like" value="0"}
-                            <div class="fl isgood good_" onclick="isGood(this,5,{$talent.id})" >{$talent.likes}</div>
-                            {else/}
                             <div class="fl isgood good" onclick="isGood(this,5,{$talent.id})" >{$talent.likes}</div>
+                            {else/}
+                            <div class="fl isgood good_" onclick="isGood(this,5,{$talent.id})" >{$talent.likes}</div>
                             {/eq}
                             {/eq}
                         </div>
@@ -74,9 +74,7 @@
 <script>
     document.title='人才服务';
 
-    $('.isgood').click(function(){
-        $(this).toggleClass('good').toggleClass('good_');
-    });
+
     //点赞
     function isGood(e,type,id){
         $.ajax({
@@ -89,7 +87,7 @@
             success:function(data){
                 var n = $(e ).text();
                 $(e).toggleClass('good' ).toggleClass('good_');
-                $(e ).hasClass('good')?n--:n++;
+                $(e ).hasClass('good_')?n++:n--;
                 $(e ).text(n);
             }
         })
