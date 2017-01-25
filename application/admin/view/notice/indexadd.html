@@ -279,7 +279,7 @@
                 topic:$("input[name='topic']").val(),
                 description:$("textarea[name='description']").val(),
                 content:ue.getContent(),
-                time:$("input[name='start_time']").val(),
+                start_time:$("input[name='start_time']").val(),
                 //date:$("input[name='date']").val(),
                 address:$("input[name='address']").val(),
                 //publisher:$("input[name='publisher']").val(),
@@ -290,6 +290,7 @@
                 url:$("#form").attr("action"),
                 data:data,
                 success:function(data){
+                    console.log(data);
                     if(data.code == 1){
                         if (data.url) {
                             updateAlert(data.msg + ' 页面即将自动跳转~','success');

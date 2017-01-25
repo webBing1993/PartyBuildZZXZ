@@ -121,9 +121,9 @@ class Notice extends Admin {
             $data = input('post.');
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             $noticeModel = new NoticeModel();
-            $data['carousel_images'] = json_encode($data['carousel_images']);  //将数组转为字符串存入数据库，用到时解码
+//            $data['carousel_images'] = json_encode($data['carousel_images']);  //将数组转为字符串存入数据库，用到时解码
             $data['start_time'] = strtotime($data['start_time']);
-            $data['end_time'] = strtotime($data['end_time']);
+//            $data['end_time'] = strtotime($data['end_time']);
             $id = $noticeModel->validate('Notice.act')->save($data);
             if($id){
                 if($data['type'] == 1){
@@ -151,9 +151,9 @@ class Notice extends Admin {
             $data = input('post.');
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             $noticeModel = new NoticeModel();
-            $data['carousel_images'] = json_encode($data['carousel_images']);  //将数组转为字符串存入数据库，用到时解码
+//            $data['carousel_images'] = json_encode($data['carousel_images']);  //将数组转为字符串存入数据库，用到时解码
             $data['start_time'] = strtotime($data['start_time']);
-            $data['end_time'] = strtotime($data['end_time']);
+//            $data['end_time'] = strtotime($data['end_time']);
             $id = $noticeModel->validate('Notice.act')->save($data,['id'=>input('id')]);
             if($id){
                 if($data['type'] == 1){
@@ -169,13 +169,6 @@ class Notice extends Admin {
 
             $id = input('id');
             $msg = NoticeModel::get($id);
-            //轮播图片重组
-            if($msg['carousel_images']){
-                $images = json_decode($msg['carousel_images']);
-                foreach($images as $k => $val){
-                    $msg['carousel_images'.($k+1)] = $val;
-                }
-            }
             $this->assign('msg',$msg);
             return $this->fetch();
         }

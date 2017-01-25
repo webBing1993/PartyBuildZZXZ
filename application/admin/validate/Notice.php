@@ -48,7 +48,7 @@ class Notice extends Validate {
     ];
 
     protected $scene = [
-        'act' => ['front_cover','title','topic','description','content','sponsor','telephone','cost','start_time','end_time','address','publisher'],
+        'act' => ['front_cover','title','topic','description','content','start_time','address'],
         'other' => ['front_cover','title','content','publisher'],
     ];
 
