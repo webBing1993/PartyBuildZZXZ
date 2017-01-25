@@ -60,7 +60,6 @@ $(function(){
 			tel:$("input[name='tel']").val(),
 			content:$("textarea[name='content']").val(),
 			topic:$("input[name='topic']").val()
-
 		};
 		var all = true;
 		for(var key in data){
@@ -70,6 +69,10 @@ $(function(){
 			}
 		}
 		if(all){
+			var img = $('.img img' ).attr('src');
+			if(img){
+
+			}
 			$.ajax({
 				type:"post",
 				url:"",

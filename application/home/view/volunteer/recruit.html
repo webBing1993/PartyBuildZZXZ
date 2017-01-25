@@ -21,7 +21,7 @@
 		<div class="right fr"><span class="fa fa-angle-right"></span></div>
 	</a>
 </div>
-<a href="{:Url('Volunteer/publish')}" class="publish"></a>
+<a href="{:Url('Volunteer/publish')}" class="publish" id="publish"></a>
 <div class="tip"></div>
 <div class="loading hidden">
 	<div class="typing_loader"></div>
@@ -29,12 +29,14 @@
 {/block}
 
 {block name="script"}
+<script src="/home/js/reset.js"></script>
 <script>
 $(function(){
 	//标题
 	$('title' ).text('志愿招募');
 	//上拉加载
 	loadScroll('url',7,5);
+	moveanyway($('.publish'));
 });
 /**
  * 上拉加载
