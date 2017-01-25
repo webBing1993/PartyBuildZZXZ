@@ -107,38 +107,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>轮播图片:</label>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="imggroup imgfileGroup">
-                                    <img src="{$carousel_pic1|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
-                                    <input type="file" class="imgfile"  accept="image/png , image/jpg ,image/jpeg ,image/gif">
-                                    <input type="hidden" name="carousel_images1" class="img"  value="{$carousel_pic1}" required="">
-                                </div>
-                                <b>推荐尺寸：700*360px</b>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class=" plus">+</div>
-                                <div class="imggroup imgfileGroup plusimg">
-                                    <img src="{$carousel_pic2|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
-                                    <input type="file" class="imgfile"  accept="image/png , image/jpg ,image/jpeg ,image/gif">
-                                    <input type="hidden" name="carousel_images2" class="img"  value="{$carousel_pic2}" required="">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="plus plus2">+</div>
-                                <div class="imggroup imgfileGroup plusimg">
-                                    <img src="{$carousel_pic3|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
-                                    <input type="file" class="imgfile"  accept="image/png , image/jpg ,image/jpeg ,image/gif">
-                                    <input type="hidden" name="carousel_images3" class="img"  value="{$carousel_pic3}" required="">
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>名称:</label>
+                                <label>标题:</label>
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入名称" class="form-control form_title" name="title" value="">
@@ -176,46 +145,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>主办方:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入主办方" class="form-control form_title" name="sponsor" value="">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>联系电话:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入联系电话" class="form-control form_title" name="telephone" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>花费:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入花费 ，单位：元" class="form-control form_title" name="cost" value="">
-                            </div>
-                        </div>
                         <div class="form-group" id="timeRange">
                             <div class="col-lg-1 text-right control-label">
                                 <label>活动时间:</label>
                             </div>
-                            <div class="col-lg-5">
-                                <div class=" input-group" >
+                            <div class="col-lg-11">
                                     <div class="date">
-                                        <input type="text" class="form-control datetimepicker text-center" name="start_time"  value=""/>
-                                    </div>
-                                    <span class="input-group-addon">至</span>
-                                    <div class="date">
-                                        <input type="text" class="form-control datetimepicker text-center" name="end_time"  value=""/>
+                                        <input type="text" class="form-control datetimepicker" name="start_time"  value=""/>
                                     </div>
 
-                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -226,14 +164,14 @@
                                 <input type="text" placeholder="请输入详细地址" class="form-control form_title" name="address" value="">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>发布人:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="">
-                            </div>
-                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-lg-1 text-right control-label">-->
+                                <!--<label>发布人:</label>-->
+                            <!--</div>-->
+                            <!--<div class="col-lg-11">-->
+                                <!--<input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="">-->
+                            <!--</div>-->
+                        <!--</div>-->
 
                         <div class="form-group">
                             <div class="col-lg-11 col-lg-offset-1">
@@ -336,19 +274,15 @@
             var data = {
                 type:$("select[name='type']").val(),
                 front_cover:$("input[name='front_cover']").val(),
-                carousel_images:carousel_images,
+                //carousel_images:carousel_images,
                 title:$("input[name='title']").val(),
                 topic:$("input[name='topic']").val(),
                 description:$("textarea[name='description']").val(),
                 content:ue.getContent(),
-                sponsor:$("input[name='sponsor']").val(),
-                telephone:$("input[name='telephone']").val(),
-                cost:$("input[name='cost']").val(),
-                start_time:$("input[name='start_time']").val(),
-                end_time:$("input[name='end_time']").val(),
-                date:$("input[name='date']").val(),
+                time:$("input[name='start_time']").val(),
+                //date:$("input[name='date']").val(),
                 address:$("input[name='address']").val(),
-                publisher:$("input[name='publisher']").val(),
+                //publisher:$("input[name='publisher']").val(),
                 status:1,
             };
             $.ajax({
@@ -394,7 +328,8 @@
         //    时间日历
         $( ".datetimepicker" ).datetimepicker( {
             language:  'cn',
-            format: 'yyyy-mm-dd hh:ii',
+            format: 'yyyy-mm-dd',
+            minView: "month",
             forceParse: false,
             todayBtn: true,
             autoclose: true,
