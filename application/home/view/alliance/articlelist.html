@@ -1,0 +1,85 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/lists.css">
+{/block}
+
+{block name="body"}
+<div class="lists">
+	<a href="{:Url('Alliance/articledetail" class="list">
+		<div class="title limit">标题</div>
+		<div class="note">
+			<span class="time">2012-01-01</span>
+		</div>
+	</a>
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+	<div class="typing_loader"></div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+$('titel' ).text('地信红盟');
+$(function(){
+	var len = $(".list" ).length;
+	if(len >= 7){$('.tip' ).text('上拉加载更多');}
+	//上拉加载评论
+	loadScroll();
+});
+function loadScroll(){
+	$(window ).off("scroll" ).on("scroll",function(){
+		var dh = $(document).height();
+		var end = $(window).height() + $(window ).scrollTop();
+		var len = $(".list" ).length;
+		var tip = $(".tip");
+		var loading = $('.loading');
+		if(dh == end){
+			$.ajax({
+				type:"post",
+				url:"",
+				data:{
+					length:len
+				},
+				beforeSend: function(XMLHttpRequest){
+					tip.hide();
+					loading.toggleClass('hidden');
+				},
+				success:function(data){
+					loading.toggleClass('hidden');
+					tip.show();
+					if(data.code == 1){
+						addList(data);
+						var dataLen =data.data.length;
+						if(data.data.length == 5){
+							tip.text('上拉加载更多');
+						}
+					}else{
+						tip.text('没有更多了');
+						$(window ).off("scroll");
+					}
+				}
+			})
+		}
+	})
+}
+function addList(data){
+	var html = '';
+	var lists = data.data;
+	var len = lists.length;
+	for(var i = 0; i< len;i++){
+		var list = lists[i];
+		html +=
+				'<a href="" class="list">'+
+				'<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>'+
+				'<div class="note">'+
+				'<span class="time">2016-01-01</span>'+
+				'<span class="fa fa-angle-right"></span>'+
+				'</div>'+
+				'</a>';
+	}
+	$(".lists" ).append(html);
+}
+</script>
+{/block}

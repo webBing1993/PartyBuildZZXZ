@@ -1,3 +1,6 @@
+a {
+  display: inline-block;
+}
 .banner {
   width: 100vw;
   height: 50vw;
@@ -7,11 +10,10 @@
   height: 100%;
 }
 .plan {
-  width: 90vw;
+  width: 100vw;
   margin: 12px auto 10px auto;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
 }
 .plan > .title {
   width: 100%;
@@ -48,6 +50,7 @@
   line-height: 30px;
 }
 .plan .list .content {
+  height: 36px;
   color: #999999;
   font-size: 1.3rem;
   line-height: 18px;

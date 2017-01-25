@@ -121,3 +121,18 @@ function moveanyway(){
 		e.preventDefault();
 	}
 }
+function imgresize(){
+	setTimeout(function(){
+		var img = $('.img img' );
+		img.each(function(){
+			if($(this).width() == $(this).height()){
+				$(this).height('78px');
+				$(this).width('78px');
+			}else if($(this).width() > $(this).height()){
+				$(this).height('78px' ).css({'left':-$(this).width()/2+78/2});
+			}else{
+				$(this).width('78px').css({'top':-$(this).height()/2+78/2});
+			}
+		});
+	},100);
+}

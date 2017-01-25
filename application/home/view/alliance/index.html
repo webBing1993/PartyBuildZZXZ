@@ -15,14 +15,16 @@
 		<a href="{:Url('Alliance/lists')}">更多</a>
 	</div>
 	{volist name="arrange" id="arr"}
-	<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
-		<div class="title limit">{$arr.title}</div>
-		<div class="content limit_">{$arr.content}</div>
-		<div class="note">
-			<span class="time">{$arr.time|time_format='Y-m-d'}</span>
-			<span class="fa fa-angle-right"></span>
-		</div>
-	</a>
+	<div class="lists">
+		<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
+			<div class="title limit">{$arr.title}</div>
+			<div class="content limit_">{$arr.content}</div>
+			<div class="note">
+				<span class="time">{$arr.time|time_format='Y-m-d'}</span>
+				<span class="fa fa-angle-right"></span>
+			</div>
+		</a>
+	</div>
 	{/volist}
 </div>
 <!--/活动安排-->

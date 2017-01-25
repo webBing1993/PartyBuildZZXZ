@@ -1,3 +1,6 @@
+a {
+  display: inline-block;
+}
 .lists .list {
   width: 100%;
   padding: 0 4vw;
@@ -9,6 +12,7 @@
   line-height: 30px;
 }
 .lists .list .content {
+  height: 36px;
   color: #999999;
   font-size: 1.3rem;
   line-height: 18px;

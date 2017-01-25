@@ -17,7 +17,7 @@
 	</div>
 	<div class="list">
 		<span class="tag">地&emsp;点</span>
-		<input type="text" placeholder="请输入地点" name="place">
+		<input type="text" placeholder="请输入地点" name="address">
 	</div>
 	<div class="list">
 		<span class="tag">联 系 人</span>
@@ -48,6 +48,7 @@
 
 {block name="script"}
 <script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
+<script src="/home/js/reset.js"></script>
 <script>
 $(function(){
 	//提交
@@ -65,13 +66,14 @@ $(function(){
 		for(var key in data){
 			if(data[key]== ''){
 				all = false;
+				alert(key);
 				break;
 			}
 		}
 		if(all){
 			var img = $('.img img' ).attr('src');
 			if(img){
-
+				data[image] = img ;
 			}
 			$.ajax({
 				type:"post",
@@ -80,7 +82,7 @@ $(function(){
 				beforeSend: function(XMLHttpRequest){
 				},
 				success:function(e){
-					window.location.href = "{:Url('Notice/index?c=1')}";
+					window.location.href = "{:Url('Volunteer/recruit')}";
 				}
 			});
 		}else{
@@ -108,9 +110,11 @@ $(function(){
 							if(this_.hasClass('add')){
 								$('.img').removeClass('hide').append('<img src='+msg.data.path+' alt="笔记图片">');
 								$('.add' ).hide();
+								imgresize();
 							}else{
 								this_.find('img').remove();
 								$('.img').append('<img src='+msg.data.path+' alt="笔记图片">');
+								imgresize();
 							}
 						} else {
 							alert('上传失败');

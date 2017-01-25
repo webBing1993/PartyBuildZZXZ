@@ -149,5 +149,11 @@ class Alliance extends Base{
         $this->assign('comment',$comment);
         return $this->fetch();
     }
+    /*
+     * 文章列表页
+     */
+    public function articlelist(){
+        return $this->fetch();
+    }
 
 }
