@@ -34,6 +34,12 @@ class Volunteer extends Base{
     public function teamdetail(){
         return $this->fetch();
     }
+    public function teamdetail2_1(){
+        return $this->fetch();
+    }
+    public function teamdetail3_1(){
+        return $this->fetch();
+    }
     /*
      * 服务订单详情页
      */
