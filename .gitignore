@@ -2,8 +2,8 @@
 application/database.php
 runtime/
 thinkphp/
-vendor/
 data/
+vendor/
 composer.lock
 public/ueditor/
 public/uploads/
