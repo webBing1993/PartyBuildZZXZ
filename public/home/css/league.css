@@ -1,7 +1,14 @@
 a {
   display: inline-block;
 }
+#model {
+  z-index: 999;
+}
 .tabs_ {
+  z-index: 2;
+  position: fixed;
+  top: 50vw;
+  width: 100vw;
   padding: 15px 0;
   background: #f1f1f1;
 }
@@ -38,6 +45,8 @@ a {
   background: #f1f1f1;
 }
 .banner {
+  z-index: 9;
+  position: fixed;
   width: 100vw;
   height: 50vw;
 }
@@ -140,19 +149,79 @@ a {
   background: url('/home/images/league/t04.png') 0 0 no-repeat;
   background-size: contain;
 }
-.block .member {
+.blocks .block {
+  padding-top: 67.6vw;
+}
+.blocks .block .member {
   padding: 4vw 4vw 0 4vw;
   color: #666666;
   font-size: 1.3rem;
   line-height: 20px;
 }
-.block .member span {
+.blocks .block .member span {
   font-size: #333333;
   font-weight: 600;
 }
-.block .member .detail {
+.blocks .block .member .detail {
   text-indent: 2em;
   padding: 2vw;
+}
+.blocks .block.slist {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.blocks .block.slist .line {
+  position: absolute;
+  left: 20vw;
+  width: 2px;
+  height: 100%;
+  background: #fcc011;
+}
+.blocks .block.slist .ul {
+  padding: 0 4vw;
+  width: 60vw;
+  margin-left: 30vw;
+}
+.blocks .block.slist .ul .title {
+  position: relative;
+  top: 0;
+  color: #333333;
+  font-size: 1.6rem;
+  line-height: 66px;
+  font-weight: 600;
+}
+.blocks .block.slist .ul .title:before {
+  position: absolute;
+  top: 3vw;
+  left: -19vw;
+  content: '';
+  width: 10vw;
+  height: 10vw;
+  background: #ffffff;
+  border: 4px solid #f1f1f1;
+  box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.3);
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.blocks .block.slist .ul .li {
+  position: relative;
+  top: 0;
+  color: #666666;
+  font-size: 1.4rem;
+  line-height: 40px;
+}
+.blocks .block.slist .ul .li:before {
+  position: absolute;
+  top: 2vw;
+  left: -16.4vw;
+  content: '';
+  width: 5vw;
+  height: 5vw;
+  background: #ffffff;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.3);
 }
 .yearbox .year {
   width: 100%;

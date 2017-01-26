@@ -1,11 +1,17 @@
 @import (reference) "../common";
 //layout
 a{display: inline-block};
+#model{
+	z-index: 999;
+}
 .tabs_{
+	z-index: 2;
+	position: fixed;
+	top:50vw;
+	width: 100vw;
 	padding: 15px 0;
 	background: @c_bg;
 }
-
 .tabs{
 	position: relative;
 	top:0;
@@ -35,6 +41,8 @@ a{display: inline-block};
 	}
 }
 .banner{
+	z-index:9;
+	position: fixed;
 	width: 100vw;
 	height: 50vw;
 	.banner-img{
@@ -131,20 +139,76 @@ a{display: inline-block};
 		}
 	}
 }
-.block{
-	.member{
-		padding: 4vw 4vw 0 4vw;
-		.font(@c_content,@s_content,20px);
-		span{
-			font-size: @c_title;
-			font-weight: 600;
+.blocks{
+	.block{
+		padding-top: 67.6vw;
+		.member{
+			padding: 4vw 4vw 0 4vw;
+			.font(@c_content,@s_content,20px);
+			span{
+				font-size: @c_title;
+				font-weight: 600;
+			}
+			.detail{
+				text-indent: 2em;
+				padding: 2vw;
+			}
 		}
-		.detail{
-			text-indent: 2em;
-			padding: 2vw;
+		&.slist{
+			position: relative;
+			top:0;
+			left:0;
+			.line{
+				position: absolute;
+				left:20vw;
+				width: 2px;
+				height: 100%;
+				background: #fcc011;
+			}
+			.ul{
+				padding: 0 4vw;
+				width: 60vw;
+				margin-left: 30vw;
+				.title{
+					position: relative;
+					top:0;
+					.font(@c_title,@s_big,66px);
+					font-weight: 600;
+					&:before{
+						position: absolute;
+						top:3vw;
+						left:-19vw;
+						content:'';
+						.wh(10vw,10vw);
+						background: #ffffff;
+						border:4px solid #f1f1f1;
+						box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.30);
+						-webkit-border-radius:50%;
+						border-radius:50%;
+					}
+				}
+				.li{
+					position: relative;
+					top:0;
+					.font(@c_content,@s_title,40px);
+					&:before{
+						position: absolute;
+						top:2vw;
+						left:-16.4vw;
+						content:'';
+						.wh(5vw,5vw);
+						background: #ffffff;
+						-webkit-border-radius:50%;
+						border-radius:50%;
+						box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.30);
+					}
+				}
+			}
 		}
+
 	}
 }
+
 .yearbox{
 	.year{
 		width: 100%;

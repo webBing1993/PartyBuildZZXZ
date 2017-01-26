@@ -5,8 +5,36 @@
 {/block}
 
 {block name="body"}
+<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+	 aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"
+						data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					模态框（Modal）标题
+				</h4>
+			</div>
+			<div class="modal-body">
+				在这里添加一些文本
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"
+						data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary">
+					提交更改
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div>
+</div>
+<div class="modelbg"></div>
 <div class="banner">
-	<img src="/home/images/test/3.png" alt="地信红盟banner" class="banner-img">
+	<img src="/home/images/banner/5.jpg" alt="地信红盟banner" class="banner-img">
 </div>
 <div class="tabs_">
 	<div class="tabs clear">
@@ -29,7 +57,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="block">
+	<div class="block hidden">
 		<div class="plan">
 			<div class="title">
 				<span>活动安排</span>
@@ -58,10 +86,33 @@
 			</div>
 		</div>
 	</div>
-	<div class="block hidden">
-		<p>
-			3
-		</p>
+	<div class="block slist">
+		<span class="line"></span>
+		<div class="ul">
+			<div class="title">党员服务</div>
+			<div class="li" data-toggle="modal" href="#model">驻点服务单位</div>
+			<div class="li">服务内容及服务清单</div>
+			<div class="li">备注</div>
+		</div>
+		<div class="ul">
+			<div class="title">人才服务</div>
+			<div class="li">驻点服务单位</div>
+			<div class="li">服务内容及服务清单</div>
+			<div class="li">备注</div>
+		</div>
+		<div class="ul">
+			<div class="title">志愿服务</div>
+			<div class="li">驻点服务单位</div>
+			<div class="li">服务内容及服务清单</div>
+			<div class="li">备注</div>
+		</div>
+		<div class="ul">
+			<div class="title">创业服务</div>
+			<div class="li">驻点服务单位</div>
+			<div class="li">服务内容及服务清单</div>
+			<div class="li">备注</div>
+		</div>
+
 	</div>
 </div>
 
