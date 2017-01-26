@@ -15,6 +15,6 @@ class AllianceArrange extends Base {
         'views' => 0,
         'comments' => 0,
         'create_time' => NOW_TIME,
-        'status' => 0,
+        'status' => 1,
     ];
 }
