@@ -1,6 +1,42 @@
 a {
   display: inline-block;
 }
+.tabs_ {
+  padding: 15px 0;
+  background: #f1f1f1;
+}
+.tabs {
+  position: relative;
+  top: 0;
+  width: 90vw;
+  height: 35px;
+  background: #ffffff;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.tabs .tab {
+  display: inline-block;
+  width: 30vw;
+  height: 35px;
+  text-align: center;
+  color: #666666;
+  font-size: 1.5rem;
+  line-height: 35px;
+}
+.tabs .tab.active {
+  background: #fd4f43;
+  color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 1px 2px 6px rgba(253, 79, 67, 0.78);
+}
+.tabs .line {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  width: 1px;
+  height: 19px;
+  background: #f1f1f1;
+}
 .banner {
   width: 100vw;
   height: 50vw;
@@ -11,15 +47,13 @@ a {
 }
 .plan {
   width: 100vw;
-  margin: 12px auto 10px auto;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  background: #ffffff;
+  margin-top: 12px;
 }
 .plan > .title {
   width: 100%;
   height: 35px;
   padding: 0 4vw;
-  border: 1px solid #f1f1f1;
 }
 .plan > .title span,
 .plan > .title a {
@@ -29,7 +63,7 @@ a {
   line-height: 35px;
 }
 .plan > .title span {
-  color: #df4934;
+  color: #f5874e;
   font-weight: 600;
 }
 .plan > .title a {
@@ -42,7 +76,7 @@ a {
 .plan .list {
   width: 100%;
   padding: 0 4vw;
-  border: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
 }
 .plan .list .title {
   color: #333333;
@@ -50,7 +84,7 @@ a {
   line-height: 30px;
 }
 .plan .list .content {
-  height: 36px;
+  height: 40px;
   color: #999999;
   font-size: 1.3rem;
   line-height: 18px;
@@ -67,6 +101,58 @@ a {
 .plan .list .note span:nth-child(2) {
   font-size: 14px;
   text-align: right;
+}
+.display {
+  width: 100vw;
+  background: #ffffff;
+}
+.display .title {
+  width: 100%;
+  height: 35px;
+  padding: 0 4vw;
+  color: #f5af46;
+  font-size: 1.3rem;
+  line-height: 35px;
+  font-weight: 600;
+}
+.display .tags {
+  width: 100vw;
+  padding: 2vw 1vw 4vw 5vw;
+}
+.display .tags a {
+  display: inline-block;
+  width: 22vw;
+  height: 22vw;
+}
+.display .tags a:nth-child(1) {
+  background: url('/home/images/league/t01.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.display .tags a:nth-child(2) {
+  background: url('/home/images/league/t02.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.display .tags a:nth-child(3) {
+  background: url('/home/images/league/t03.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.display .tags a:nth-child(4) {
+  background: url('/home/images/league/t04.png') 0 0 no-repeat;
+  background-size: contain;
+}
+.block .member {
+  padding: 4vw 4vw 0 4vw;
+  color: #666666;
+  font-size: 1.3rem;
+  line-height: 20px;
+}
+.block .member span {
+  font-size: #333333;
+  font-weight: 600;
+}
+.block .member .detail {
+  text-indent: 2em;
+  padding: 2vw;
 }
 .yearbox .year {
   width: 100%;

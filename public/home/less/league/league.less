@@ -1,6 +1,39 @@
 @import (reference) "../common";
 //layout
-a{display: inline-block}
+a{display: inline-block};
+.tabs_{
+	padding: 15px 0;
+	background: @c_bg;
+}
+
+.tabs{
+	position: relative;
+	top:0;
+	.wh(90vw,35px);
+	background: #ffffff;
+	margin: 0 auto;
+	border-radius: 4px;
+	.tab{
+		display: inline-block;
+		.wh(30vw,35px);
+		text-align: center;
+		.font(@c_content,1.5rem,35px);
+		&.active{
+			background: #fd4f43;
+			color:#ffffff;
+			border-radius: 4px;
+			box-shadow: 1px 2px 6px rgba(253, 79, 67, 0.78);
+		}
+	}
+	.line{
+		position: absolute;
+		top:8px;
+		right:0;
+		width: 1px;
+		height: 19px;
+		background: #f1f1f1;
+	}
+}
 .banner{
 	width: 100vw;
 	height: 50vw;
@@ -11,14 +44,13 @@ a{display: inline-block}
 }
 .plan{
 	width: 100vw;
-	margin: 12px auto 10px auto;
-	-webkit-border-radius:8px;
-	border-radius:8px;
+	background: #ffffff;
+	margin-top: 12px;
 	&>.title{
 		width: 100%;
 		height: 35px;
 		padding: 0 4vw;
-		border:1px solid @c_border;
+		//border:1px solid @c_border;
 		span,a{
 			display: inline-block;
 			width: 49%;
@@ -26,7 +58,7 @@ a{display: inline-block}
 			line-height: 35px;
 		}
 		span{
-			color:#df4934;
+			color: #f5874e;
 			font-weight: 600;
 		}
 
@@ -41,12 +73,12 @@ a{display: inline-block}
 	.list{
 		width: 100%;
 		padding: 0 4vw;
-		border:1px solid @c_border;
+		border-bottom:1px solid @c_border;
 		.title{
 			.font(@c_title,1.5rem,30px);
 		}
 		.content{
-			height:36px;
+			height:40px;
 			.font(@c_note,1.3rem,18px);
 		}
 		.note{
@@ -59,6 +91,57 @@ a{display: inline-block}
 					text-align: right;
 				}
 			}
+		}
+	}
+}
+.display{
+	width: 100vw;
+	background: #ffffff;
+	.title{
+		width: 100%;
+		height: 35px;
+		padding: 0 4vw;
+		color: #f5af46;
+		font-size: 1.3rem;
+		line-height: 35px;
+		font-weight: 600;
+	}
+	.tags{
+		width: 100vw;
+		padding: 2vw 1vw 4vw 5vw;
+		a{
+			display: inline-block;
+			.wh(22vw,22vw);
+			&:nth-child(1){
+				background: url('/home/images/league/t01.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+			&:nth-child(2){
+				background: url('/home/images/league/t02.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+			&:nth-child(3){
+				background: url('/home/images/league/t03.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+			&:nth-child(4){
+				background: url('/home/images/league/t04.png') 0 0 no-repeat;
+				background-size: contain;
+			}
+		}
+	}
+}
+.block{
+	.member{
+		padding: 4vw 4vw 0 4vw;
+		.font(@c_content,@s_content,20px);
+		span{
+			font-size: @c_title;
+			font-weight: 600;
+		}
+		.detail{
+			text-indent: 2em;
+			padding: 2vw;
 		}
 	}
 }

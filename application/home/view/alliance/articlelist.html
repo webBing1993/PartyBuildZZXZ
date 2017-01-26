@@ -5,11 +5,40 @@
 {/block}
 
 {block name="body"}
-<div class="lists">
-	<a href="{:Url('Alliance/articledetail" class="list">
+<div class="lists_">
+	<a href="{:Url('Alliance/articledetail')}" class="list">
 		<div class="title limit">标题</div>
 		<div class="note">
 			<span class="time">2012-01-01</span>
+			<span class="fa fa-angle-right"></span>
+		</div>
+	</a>
+	<a href="{:Url('Alliance/articledetail')}" class="list">
+		<div class="title limit">标题</div>
+		<div class="note">
+			<span class="time">2012-01-01</span>
+			<span class="fa fa-angle-right"></span>
+		</div>
+	</a>
+	<a href="{:Url('Alliance/articledetail')}" class="list">
+		<div class="title limit">标题</div>
+		<div class="note">
+			<span class="time">2012-01-01</span>
+			<span class="fa fa-angle-right"></span>
+		</div>
+	</a>
+	<a href="{:Url('Alliance/articledetail')}" class="list">
+		<div class="title limit">标题</div>
+		<div class="note">
+			<span class="time">2012-01-01</span>
+			<span class="fa fa-angle-right"></span>
+		</div>
+	</a>
+	<a href="{:Url('Alliance/articledetail')}" class="list">
+		<div class="title limit">标题</div>
+		<div class="note">
+			<span class="time">2012-01-01</span>
+			<span class="fa fa-angle-right"></span>
 		</div>
 	</a>
 </div>
@@ -21,7 +50,7 @@
 
 {block name="script"}
 <script>
-$('titel' ).text('地信红盟');
+$('title' ).text('地信红盟');
 $(function(){
 	var len = $(".list" ).length;
 	if(len >= 7){$('.tip' ).text('上拉加载更多');}
@@ -73,6 +102,7 @@ function addList(data){
 		html +=
 				'<a href="" class="list">'+
 				'<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>'+
+				'<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>'+
 				'<div class="note">'+
 				'<span class="time">2016-01-01</span>'+
 				'<span class="fa fa-angle-right"></span>'+

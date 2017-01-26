@@ -41,6 +41,43 @@ a{
 		color:#c1c1c1;
 	}
 }
+.lists_{
+	.list{
+		width: 100%;
+		padding: 2vw 4vw;
+		border:1px solid @c_border;
+		.title{
+			.font(@c_title,1.5rem,30px);
+		}
+		.content{
+			height: 36px;
+			.font(@c_note,1.3rem,18px);
+		}
+		.note{
+			.font(@c_note,1.2rem,26px);
+			span{
+				display: inline-block;
+				width: 49%;
+				&:nth-child(2){
+					font-size: 14px;
+					text-align: right;
+				}
+				&.wait{
+					color: #378040;
+				}
+				&.over{
+					color: #ff313e;
+				}
+			}
+		}
+	}
+	.tip{
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		color:#c1c1c1;
+	}
+}
 /*加载动画*/
 .loading {
 	width: 100%;

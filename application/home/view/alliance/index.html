@@ -8,107 +8,86 @@
 <div class="banner">
 	<img src="/home/images/test/3.png" alt="地信红盟banner" class="banner-img">
 </div>
-<!--活动安排-->
-<div class="plan">
-	<div class="title">
-		<span>活动安排</span>
-		<a href="{:Url('Alliance/lists')}">更多</a>
+<div class="tabs_">
+	<div class="tabs clear">
+		<span class="tab fl">红色盟员</span>
+		<span class="tab fl active">地信红盟</span>
+		<span class="tab fl">服务清单</span>
+		<span class="line"></span>
 	</div>
-	{volist name="arrange" id="arr"}
-	<div class="lists">
-		<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
-			<div class="title limit">{$arr.title}</div>
-			<div class="content limit_">{$arr.content}</div>
-			<div class="note">
-				<span class="time">{$arr.time|time_format='Y-m-d'}</span>
-				<span class="fa fa-angle-right"></span>
+</div>
+<div class="blocks">
+	<div class="block hidden">
+		<div class="member">
+			<span>县级有关部门：</span>
+			<div class="detail">县委组织部（两新工委）、县委党校、县总工会、团县委、县妇联、县科协、县发改委、县经信委、县金融办、县安监局、县教育局、县科技局、县民政局、县财政局（地税局）、县人力社保局、县商务局、县市场监管局、县新居民事务局、县国税局。</div>
+		</div>
+		<div class="member">
+			<span>社会组织：</span>
+			<div class="detail">
+				县晨曦社工、县志愿者协会、县社会工作协会、县晨曦社会工作服务中心、县清禾公益事业发展中心、县彩虹桥社会工作服务中心、县山鹰救援队、县金阳光百姓互助中心、县优来公益服务中心、县晨曦青少年事务发展中心、县爱之家家庭教育服务中心、县翼扬社会工作服务中心、县四叶草亲子成长服务中心、县阳光里程社会工作服务中心、县民信公益服务中心、县尚风社会工作服务中心、正立会计师事务所、莫干山律师事务所等。
 			</div>
-		</a>
-	</div>
-	{/volist}
-</div>
-<!--/活动安排-->
-{volist name="list" id="vo"}
-<!--一年-->
-<div class="yearbox">
-	<div class="year"><span>{$key}年</span></div>
-	<!--一个季度-->
-	{volist name="vo" id="vo1"}
-	<div class="quarter">
-		<!--季度文章-->
-		<div class="box">
-			<div class="tag">第{$key}季度文章</div>
-			{notempty name="vo1.data"}
-			{volist name="vo1.data" id="da"}
-			<a href="{:Url('Alliance/articledetail?id='.$da['id'])}" class="list">
-				<div class="title limit">{$da.title}</div>
-				<div class="note">{$da.create_time|time_format='Y-m-d'}</div>
-			</a>
-			{/volist}
-			{/notempty}
 		</div>
-		<!--/季度文章-->
-		<!--一个月-->
-		{volist name="vo1.msg" id="msg"}
-		<div class="box">
-			<div class="tag">{$key}月文章</div>
-			{volist name="msg.data" id="info"}
-			<!--月文章的list带tag-mon -->
-			{eq name="info.type" value="2"}
-			<a href="{:Url('Alliance/articledetail?id='.$info['id'])}" class="list tag-mon">
-				{else/}
-				<a href="{:Url('Alliance/articledetail?id='.$info['id'])}" class="list">
-				{/eq}
-				<div class="title limit">{$info.title}</div>
-				<div class="note">
-					<span class="time">{$info.create_time|time_format='Y-m-d'}</span>
-					<span class="fa fa-angle-right"></span>
-				</div>
-			</a>
-			{/volist}
-			<!--&lt;!&ndash;月文章&ndash;&gt;-->
-			<!--&lt;!&ndash;周文章的list不带tag-mon&ndash;&gt;-->
-			<!--<a href="{:Url('Alliance/articledetail')}" class="list">-->
-				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
-				<!--<div class="note">-->
-					<!--<span class="time">2016-01-01</span>-->
-					<!--<span class="fa fa-angle-right"></span>-->
-				<!--</div>-->
-			<!--</a>-->
-			<!--&lt;!&ndash;/周文章&ndash;&gt;-->
-		</div>
-		{/volist}
-		<!--/一个月-->
-		<!--<div class="box">-->
-			<!--<div class="tag">2月文章</div>-->
-			<!--<a href="{:Url('Alliance/articledetail')}" class="list tag-mon">-->
-				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
-				<!--<div class="note">-->
-					<!--<span class="time">2016-01-01</span>-->
-					<!--<span class="fa fa-angle-right"></span>-->
-				<!--</div>-->
-			<!--</a>-->
-		<!--</div>-->
-		<!--<div class="box">-->
-			<!--<div class="tag">1月文章</div>-->
-			<!--<a href="{:Url('Alliance/articledetail')}" class="list">-->
-				<!--<div class="title limit">小镇当红娘地信企业赴校引才收获大</div>-->
-				<!--<div class="note">-->
-					<!--<span class="time">2016-01-01</span>-->
-					<!--<span class="fa fa-angle-right"></span>-->
-				<!--</div>-->
-			<!--</a>-->
-		<!--</div>-->
 	</div>
-	{/volist}
-	<!--/一个季度-->
+	<div class="block">
+		<div class="plan">
+			<div class="title">
+				<span>活动安排</span>
+				<a href="{:Url('Alliance/lists')}">更多</a>
+			</div>
+			{volist name="arrange" id="arr"}
+			<div class="lists">
+				<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
+					<div class="title limit">{$arr.title}</div>
+					<div class="content limit_">{$arr.content}</div>
+					<div class="note">
+						<span class="time">{$arr.time|time_format='Y-m-d'}</span>
+						<span class="fa fa-angle-right"></span>
+					</div>
+				</a>
+			</div>
+			{/volist}
+		</div>
+		<div class="display">
+			<div class="title">活动展示</div>
+			<div class="tags">
+				<a href="{:Url('Alliance/articlelist')}"></a>
+				<a href="{:Url('Alliance/articlelist')}"></a>
+				<a href="{:Url('Alliance/articlelist')}"></a>
+				<a href="{:Url('Alliance/articlelist')}"></a>
+			</div>
+		</div>
+	</div>
+	<div class="block hidden">
+		<p>
+			3
+		</p>
+	</div>
 </div>
-{/volist}
-<!--/一年-->
+
 {/block}
 
 {block name="script"}
 <script>
-$('title' ).text('地信红盟')
+$('title' ).text('地信红盟');
+$(function(){
+	$('.tab' ).off('click' ).on('click',function(){
+		var this_ = $(this );
+		var block = $('.block');
+		var w = $('.tab' ).width();
+		var n = this_.index();
+		this_.siblings('.tab' ).removeClass('active');
+		this_.addClass('active');
+		block.eq(n ).siblings('.block' ).addClass('hidden');
+		block.eq(n ).removeClass('hidden');
+		if(n == 0){
+			$('.line').css('right',w+'px')
+		}else if(n == 1){
+			$('.line').css('right',0)
+		}else{
+			$('.line').css('right',2*w+'px')
+		}
+	})
+});
 </script>
 {/block}
