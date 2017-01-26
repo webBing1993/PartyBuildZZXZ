@@ -5,34 +5,18 @@
 {/block}
 
 {block name="body"}
-<div class="modal fade" id="modal" tabindex="-1" role="dialog"
-	 aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- 模态框 -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close"
-						data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-				<h4 class="modal-title" id="myModalLabel">
-					模态框（Modal）标题
-				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title text-center" id="myModalLabel">驻点服务单位</h4>
 			</div>
-			<div class="modal-body">
-				在这里添加一些文本
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default"
-						data-dismiss="modal">关闭
-				</button>
-				<button type="button" class="btn btn-primary">
-					提交更改
-				</button>
-			</div>
-		</div><!-- /.modal-content -->
+			<div class="modal-body">在这里添加一些文本</div>
+		</div>
 	</div>
 </div>
-<div class="modelbg"></div>
 <div class="banner">
 	<img src="/home/images/banner/5.jpg" alt="地信红盟banner" class="banner-img">
 </div>
@@ -90,27 +74,27 @@
 		<span class="line"></span>
 		<div class="ul">
 			<div class="title">党员服务</div>
-			<div class="li" data-toggle="modal" href="#model">驻点服务单位</div>
-			<div class="li">服务内容及服务清单</div>
-			<div class="li">备注</div>
+			<div class="li" data-tag="company"  data-toggle="modal" data-target="#modal">驻点服务单位</div>
+			<div class="li" data-tag="content" data-toggle="modal" data-target="#modal">服务内容及服务清单</div>
+			<div class="li" data-tag="tip" data-toggle="modal" data-target="#modal">备注</div>
 		</div>
 		<div class="ul">
-			<div class="title">人才服务</div>
-			<div class="li">驻点服务单位</div>
-			<div class="li">服务内容及服务清单</div>
-			<div class="li">备注</div>
+			<div class="title" data-toggle="modal" data-target="#modal">人才服务</div>
+			<div class="li" data-tag="company" data-toggle="modal" data-target="#modal">驻点服务单位</div>
+			<div class="li" data-tag="content" data-toggle="modal" data-target="#modal">服务内容及服务清单</div>
+			<div class="li" data-tag="tip" data-toggle="modal" data-target="#modal">备注</div>
 		</div>
 		<div class="ul">
 			<div class="title">志愿服务</div>
-			<div class="li">驻点服务单位</div>
-			<div class="li">服务内容及服务清单</div>
-			<div class="li">备注</div>
+			<div class="li" data-tag="company" data-toggle="modal" data-target="#modal">驻点服务单位</div>
+			<div class="li" data-tag="content" data-toggle="modal" data-target="#modal">服务内容及服务清单</div>
+			<div class="li" data-tag="tip" data-toggle="modal" data-target="#modal">备注</div>
 		</div>
 		<div class="ul">
 			<div class="title">创业服务</div>
-			<div class="li">驻点服务单位</div>
-			<div class="li">服务内容及服务清单</div>
-			<div class="li">备注</div>
+			<div class="li" data-tag="company" data-toggle="modal" data-target="#modal">驻点服务单位</div>
+			<div class="li" data-tag="content" data-toggle="modal" data-target="#modal">服务内容及服务清单</div>
+			<div class="li" data-tag="tip" data-toggle="modal" data-target="#modal">备注</div>
 		</div>
 
 	</div>
@@ -122,6 +106,32 @@
 <script>
 $('title' ).text('地信红盟');
 $(function(){
+	$('.li').on('click',function(){
+		var data=[{
+			'company':'县委组织部（县两新工委）、县党群服务中心',
+			'content':'主要提供入党申请、组织关系转接、流动党员管理服务以及组织党员固定活动日等服务',
+			'tip':'县级有关部门'
+		},{
+				'company':'县委人才办、县人力社保局、县教育局、县科协以及县高层次人才服务中心等',
+				'content':'主要提供人才引进、人才安居等政策咨询落实以及子女就学等日常事务协调等服务。',
+				'tip':'县级有关部门'
+			},{
+			'company':'团县委、妇联、工会、民政局等部门，以及清禾公益、优来公益、晨曦社工组织、县志愿者协会等社会组织',
+			'content':'主要提供志愿者招募、义工活动组织、微心愿认领以及社区结对送温暖等服务。',
+			'tip':'县级有关部门以及部分社会组织'
+		},{
+			'company':'县金融办、县市场监管局、县国税局、县财政（地税）局、县科技局、县发改委、县经信委以及正立会计事务所、莫干山律师事务所、佐力小贷、工商银行等主要',
+			'content':'主要提供融资帮扶、创业咨询、创业实习、创业培训以及组织举办创业论坛等服务。',
+			'tip':'县级有关部门以及部分社会组织'
+		}];
+		var title = $(this ).text();
+		var tip = $(this ).attr('data-tag');
+		var index = $(this ).parents('.ul' ).index() - 1;
+		var tt = data[index][tip];
+		$('#myModalLabel' ).text(title);
+		$('.modal-body' ).text(tt);
+		$('#model').modal('show');
+	});
 	$('.tab' ).off('click' ).on('click',function(){
 		var this_ = $(this );
 		var block = $('.block');
