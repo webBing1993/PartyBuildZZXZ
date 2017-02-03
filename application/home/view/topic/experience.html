@@ -19,7 +19,7 @@
     {volist name="list" id="vo"}
     <a href="{:Url('Topic/detail?id='.$vo.id)}" class="list clear">
         <!--<img src="{$vo.front_cover|get_cover='path'}" alt="小图">-->
-        <div class="fr right">
+        <div class="fl right">
             <div class="title limit">{$vo.title}</div>
             <div class="clear time">
                 <span class="fl">{$vo.create_time|date="Y-m-d",###}</span>
@@ -28,15 +28,6 @@
         </div>
     </a>
     {/volist}
-    <a href="" class="list clear">
-        <div class="lr right">
-            <div class="title limit_">11</div>
-            <div class="clear time">
-                <span class="fl">2011111111</span>
-                <span class="fr fa fa-angle-right"></span>
-            </div>
-        </div>
-    </a>
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
