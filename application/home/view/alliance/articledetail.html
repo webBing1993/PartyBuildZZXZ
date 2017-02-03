@@ -7,12 +7,13 @@
 {block name="body"}
 <div class="article">
 	<div class="title limit_">{$info.title}</div>
-	<div class="note">
+	<div class="note note_ clear">
+		<span class="fl">{$info.publisher}</span>
 		<span>{$info.create_time|time_format="Y-m-d"}</span>
 	</div>
 	<div class="content">
 		{$info.content}
-		<div class="note">
+		<div class="note note_">
 			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
 			{eq name="$info.is_like" value="0"}

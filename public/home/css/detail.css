@@ -16,6 +16,7 @@
   width: 100%;
 }
 .title{
+  text-align: center;
   font-size: 16px;
   font-weight: 600;
 }
@@ -24,6 +25,9 @@
   font-size: 12px;
   padding: 0 4vw;
   text-align: right;
+}
+.note_{
+  padding: 0;
 }
 /*文章*/
 .article {
@@ -44,6 +48,9 @@
 }
 .article .note span {
   margin-right: 10px;
+}
+.article .note_ span {
+  margin-right: 0;
 }
 .article .content {
   width: 100%;
@@ -90,6 +97,9 @@
   display: inline-block;
   margin-right: 10px;
   line-height: 40px;
+}
+.article .content .note_ span{
+  margin-right: 0;
 }
 .article .content .note .read {
   background: url('/home/images/detail/scan_.png') 0 12px no-repeat;
