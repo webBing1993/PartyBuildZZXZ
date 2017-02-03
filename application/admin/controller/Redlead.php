@@ -80,6 +80,16 @@ class Redlead extends Admin {
      * 删除
      */
     public function del() {
-
+        $id = input('id');
+        $map = array(
+            'status' => -1,
+        );
+        $leadModel = new RedleadModel();
+        $model = $leadModel->where('id',$id)->update($map);
+        if($model) {
+            return $this->success("删除成功");
+        }else{
+            return $this->error("删除失败");
+        }
     }
 }

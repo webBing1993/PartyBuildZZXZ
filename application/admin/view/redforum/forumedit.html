@@ -9,10 +9,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>红领带动</h2>
+        <h2>红领论坛</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Redlead/index')}">主页</a>
+                <a href="{:Url('Redforum/forum')}">主题列表</a>
             </li>
             <li class="active">
                 <strong>{eq name="msg" value=""}新增{else/}修改{/eq}</strong>
@@ -43,11 +43,10 @@
                                 <label>所属类别:</label>
                             </div>
                             <div class="col-lg-11">
-                                <select class="form-control" name="type">
-                                    <option value="1" {eq name="$msg.type" value="1"}selected{/eq}>领衔攻坚</option>
-                                    <option value="2" {eq name="$msg.type" value="2"}selected{/eq}>岗位师范</option>
-                                    <option value="3" {eq name="$msg.type" value="3"}selected{/eq}>师徒结对</option>
-                                    <option value="4" {eq name="$msg.type" value="4"}selected{/eq}>志愿帮扶</option>
+                                <select class="form-control" name="nid">
+                                    {volist name="notice" id="not"}
+                                    <option value="{$not.id}" {eq name="$msg.nid" value="$not.id"}selected{/eq}>{$not.title}</option>
+                                    {/volist}
                                 </select>
                             </div>
                         </div>
@@ -57,26 +56,6 @@
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 control-label">
-                                <label>内容:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <div class=" float-e-margins">
-                                    <div class="ibox-content no-padding borders">
-                                        <script id="container" name="content" type="text/plain">{$msg.content || default=''}</script>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>发布人:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
                             </div>
                         </div>
 
@@ -121,21 +100,15 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Redlead/index')}");
-
-        var ue = UE.getEditor('container',{
-            initialFrameHeight:400
-        });
+        highlight_subnav("{:Url('Redforum/forum')}");
 
         //发布
         $(".post-put").off('click').on("click",function(){
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
-                type:$("select[name='type']").val(),
+                nid:$("select[name='nid']").val(),
                 title:$("input[name='title']").val(),
-                content:ue.getContent(),
-                publisher:$("input[name='publisher']").val(),
             };
             $.ajax({
                 type:"post",

@@ -9,10 +9,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>红领带动</h2>
+        <h2>红领论坛</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Redlead/index')}">主页</a>
+                <a href="{:Url('Redforum/detail')}">主页</a>
             </li>
             <li class="active">
                 <strong>{eq name="msg" value=""}新增{else/}修改{/eq}</strong>
@@ -43,11 +43,10 @@
                                 <label>所属类别:</label>
                             </div>
                             <div class="col-lg-11">
-                                <select class="form-control" name="type">
-                                    <option value="1" {eq name="$msg.type" value="1"}selected{/eq}>领衔攻坚</option>
-                                    <option value="2" {eq name="$msg.type" value="2"}selected{/eq}>岗位师范</option>
-                                    <option value="3" {eq name="$msg.type" value="3"}selected{/eq}>师徒结对</option>
-                                    <option value="4" {eq name="$msg.type" value="4"}selected{/eq}>志愿帮扶</option>
+                                <select class="form-control" name="rid">
+                                    {volist name="theme" id="the"}
+                                    <option value="{$the.id}" {eq name="$msg.nid" value="$the.id"}selected{/eq}>{$the.title}</option>
+                                    {/volist}
                                 </select>
                             </div>
                         </div>
@@ -132,7 +131,7 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
-                type:$("select[name='type']").val(),
+                rid:$("select[name='rid']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
                 publisher:$("input[name='publisher']").val(),
