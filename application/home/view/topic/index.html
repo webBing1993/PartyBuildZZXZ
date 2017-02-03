@@ -83,16 +83,17 @@ function addList(data){
 	var len = lists.length;
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
-		var url = "{:Url('Topic/detail?id='."+list.id+")}";
 		html +=
-			'<a href="'+url+'" class="list">'+
-			'<img src="'+list.path+'" alt="小图">'+
-			'<div class="content">'+
-			'<div class="title limit">'+list.title+'</div>'+
-			'<div class="note">'+
-			'<span class="time">'+list.time+'</span>'+
-			'<span class="fa fa-angle-right"></span>'+
+			'<a href="/home/topic/detail/id/'+ list.id+'.html" class="list">'+
+			'<div class="fl">'+
+			'<img src="'+list.path+'" alt="小图" >'+
 			'</div>'+
+			'<div class="fr right">'+
+				'<div class="title limit_">'+list.title+'</div>'+
+					'<div class="clear time">'+
+							'<span class="fl">'+list.time+'</span>'+
+					'<span class="fr fa fa-angle-right"></span>'+
+				'</div>'+
 			'</div>'+
 			'</a>'
 	}

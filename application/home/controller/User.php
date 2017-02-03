@@ -36,7 +36,7 @@ class User extends Base {
         //是否具备我的发布权限,具备为1，无则为0
         $map = array(
             'userid' => $userId,
-            'tagid' => 3, //权限标签id
+            'tagid' => 5, //权限标签id
         );
         $info = WechatUserTag::where($map)->find();
         if($info) {
