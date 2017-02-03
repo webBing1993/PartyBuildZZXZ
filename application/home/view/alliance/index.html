@@ -51,9 +51,9 @@
 			<div class="lists">
 				<a href="{:Url('Alliance/informdetail?id='.$arr['id'])}" class="list">
 					<div class="title limit">{$arr.title}</div>
-					<div class="content limit_">{$arr.content}</div>
+					<div class="content limit_">{$arr.theme}</div>
 					<div class="note">
-						<span class="time">{$arr.time|time_format='Y-m-d'}</span>
+						<span class="time">{$arr.create_time|time_format='Y-m-d'}</span>
 						<span class="fa fa-angle-right"></span>
 					</div>
 				</a>
@@ -63,10 +63,10 @@
 		<div class="display">
 			<div class="title">活动展示</div>
 			<div class="tags">
-				<a href="{:Url('Alliance/articlelist')}"></a>
-				<a href="{:Url('Alliance/articlelist')}"></a>
-				<a href="{:Url('Alliance/articlelist')}"></a>
-				<a href="{:Url('Alliance/articlelist')}"></a>
+				<a href="{:Url('Alliance/articlelist?type=1')}"></a>
+				<a href="{:Url('Alliance/articlelist?type=2')}"></a>
+				<a href="{:Url('Alliance/articlelist?type=3')}"></a>
+				<a href="{:Url('Alliance/articlelist?type=4')}"></a>
 			</div>
 		</div>
 	</div>

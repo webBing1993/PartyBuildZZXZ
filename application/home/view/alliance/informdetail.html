@@ -17,10 +17,11 @@
 	</div>
 	<div class="message">
 		<div><span class="limit">{$info.theme}</span></div>
-		<div><span class="limit">{$info.create_time|time_format='Y-m-d'}</span></div>
+		<div><span class="limit">{$info.time|time_format='Y-m-d'}</span></div>
 		<div><span class="limit">{$info.address}</span></div>
 	</div>
 	<div class="article">{$info.content}</div>
+	{eq name="visit" value="0"}
 	<div class="comment">
 		<div class="sum">共<span>{$info.comments}</span>条评论</div>
 		<div class="lists">
@@ -49,8 +50,9 @@
 			<div class="typing_loader"></div>
 		</div>
 	</div>
+	{/eq}
 </div>
-{eq name="visit" value="1"}
+{eq name="visit" value="0"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
