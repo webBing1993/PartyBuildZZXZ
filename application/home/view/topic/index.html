@@ -12,13 +12,15 @@
 	<!--无消息时显示-->
 	<!--<img src="/home/images/nomessage.png" alt="暂无消息" class="nomessage">-->
 	{volist name="list" id="vo"}
-	<a href="{:Url('Topic/detail?id='.$vo.id)}" class="list">
-		<img src="{$vo.front_cover|get_cover='path'}" alt="小图">
-		<div class="content">
-			<div class="title limit">{$vo.title}</div>
-			<div class="note">
-				<span class="time">{$vo.create_time|date="Y-m-d",###}</span>
-				<span class="fa fa-angle-right"></span>
+	<a href="{:Url('Topic/detail?id='.$vo.id)}" class="list clear">
+		<div class="fl">
+			<img src="{$vo.front_cover|get_cover='path'}" alt="小图">
+		</div>
+		<div class="fr right">
+			<div class="title limit_">{$vo.title}</div>
+			<div class="clear time">
+				<span class="fl">{$vo.create_time|date="Y-m-d",###}</span>
+				<span class="fr fa-angle-right"></span>
 			</div>
 		</div>
 	</a>
