@@ -162,13 +162,13 @@ $(function(){
 		this_.addClass('active');
 		block.eq(n ).siblings('.block' ).addClass('hidden');
 		block.eq(n ).removeClass('hidden');
-//		if(n == 0){
-//			$('.line').css({'right':w+'px'})
-//		}else if(n == 1){
-//			$('.line').css({'right':0})
-//		}else{
-//			$('.line').css({'right':2*w+'px'})
-//		}
+		if(n == 0){
+			$('.line').css({'right':w+'px'})
+		}else if(n == 1){
+			$('.line').css({'right':0})
+		}else{
+			$('.line').css({'right':2*w+'px'})
+		}
 	})
 });
 </script>
