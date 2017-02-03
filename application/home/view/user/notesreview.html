@@ -28,16 +28,7 @@
 <div class="title" style="margin:0 auto;width:90%;text-align: center;min-height:30px;;line-height: 25px;margin-top:5px;">
 	<span style="color:#333;font-size: 16px;">{$note['title']}</span>
 </div>
-<!--新增-->
-<!--新增-->
-<div class="place " style="width:100%;border-top:1px solid #f1f1f1;padding-left:2.8%;height:30px;line-height:30px;">
-	<img src="/home/images/notice/appmeet_place.jpg" alt="" style="height:20px;margin-top:4px;" >
-	<span style="color:#666;display: inline-block;width:90%;font-size:13px;" class="limit">{$note.meet_home}</span>
-</div>
-<div class="place" style="width:100%;border-top:1px solid #f1f1f1;padding-left: 2.8%;height:32px;line-height:32px;border-bottom:1px solid #f1f1f1;">
-	<img src="/home/images/notice/appmeet_time.jpg" alt="" style="height:18px;margin-top:6px;">
-	<span style="color:#666;display: inline-block;width:90%;font-size:13px;" class="limit">{$note.meet_time|date="Y-m-d H:i:s",###}</span>
-</div>
+<div class="note">{$note.create_time|time_format="Y-m-d"}</div>
 <!--新增-->
 <div class="article" style="padding-top:0;margin:10px 0">
 	<div class="content">

@@ -5,32 +5,28 @@
 {/block}
 
 {block name="body"}
-<!--新增-->
-<div class="title" style="margin:10px auto;width:90%;text-align: center">
-	<span style="color:#333;font-size:16px;">{$activity['title']}</span>
-</div>
-<div class="note">{$activity.create_time|time_format="Y-m-d"}</div>
-<!--新增-->
 <div class="article">
+	<div class="title limit_">{$new.title}</div>
+	<div class="note">
+		<span>{$new.create_time|time_format="Y-m-d"}</span>
+		<span>{$new.publisher}</span>
+	</div>
 	<div class="content">
-		{volist name="$activity.images" id="img"}
-		<img src="{$img}" alt="笔记图片" class="img" style="width:100%;">
-		{/volist}
-        <div style="text-indent:2em;">{$activity.content}</div>
+		{$new.content}
 		<div class="note">
-			<span class="read">{$activity.views}</span>
+			<span class="read">{$new.views}</span>
 			{eq name="visit" value="0"}
-			{eq name="activity.is_like" value="1"}
-			<span class="isgood good_" onclick="isGood(this,2,{$activity.id})">{$activity.likes}</span>
+			{eq name="new.is_like" value="1"}
+			<span class="isgood good_" onclick="isGood(this,6,{$new.id})">{$new.likes}</span>
 			{else/}
-			<span class="isgood good" onclick="isGood(this,2,{$activity.id})">{$activity.likes}</span>
+			<span class="isgood good" onclick="isGood(this,6,{$new.id})">{$new.likes}</span>
 			{/eq}
 			{/eq}
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>{$activity.comments}</span>条评论</div>
+	<div class="sum">共<span>{$new.comments}</span>条评论</div>
 	<div class="lists">
 		{volist name="comment" id="co"}
 		<div class="list clear">
@@ -62,7 +58,7 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,2,{$activity['id']})">发送</div>
+	<div class="send fl" onclick="send(this,6,{$new['id']})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -79,7 +75,7 @@
 <script>
 $(function(){
 	//模块标题
-	$('title' ).text('支部活动');
+	$('title' ).text('第一聚焦');
 	//reset
 	var len = $(".list" ).length;
 	if(len >= 7){
@@ -91,16 +87,6 @@ $(function(){
 	tofixed();
 	//ue限定
 	ueLimit();
-	//初始图片
-	var src1 = $('.content .img:nth-child(1)' ).attr('src');
-	var src2 = $('.content .img:nth-child(2)' ).attr('src');
-	if(src1 != undefined){
-		if(src1 == ''){
-			$('.img').remove();
-		}else if(src1 != '' && src2 == ''){
-			$('.content .img').eq(1).remove();
-		}
-	}
 });
 /**
  * 点赞
@@ -141,8 +127,8 @@ var send = function(e,type,id){
 				aid:id,
 				content:it.val()
 			},
-			success:function(data){
-				var data = data.data;
+			success:function(msg){
+				var data = msg.data;
 				var userid = "'"+data.create_user+"'";
 				var html = '';
 				html += '<div class="list clear">'+
@@ -210,13 +196,13 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var id = {$activity['id']};
+		var id = {$new['id']};
 		if(dh == end){
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
 				data:{
-					type:2,
+					type:6,
 					aid:id,
 					length:len
 				},
@@ -260,9 +246,9 @@ function addComment(data){
 				'<div class="time">'+ list.time+'</div>'+
 				'</div>';
 		if(list.is_like == 0){
-			html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+1+')">'+list.likes+'</div>'
 		}else{
-			html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+1+')">'+list.likes+'</div>'
 		}
 		html+=
 				'</div>';
@@ -278,7 +264,5 @@ function ueLimit(){
 		}
 	});
 }
-
-
 </script>
 {/block}

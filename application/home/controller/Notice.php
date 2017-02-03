@@ -87,7 +87,7 @@ class Notice extends Base {
         //是否具备我的发布权限,具备为1，无则为0
         $map = array(
             'userid' => $userId,
-            'tagid' => 11, //权限标签id
+            'tagid' => 5, //权限标签id
         );
         $info = WechatUserTag::where($map)->find();
         if($info) {
@@ -618,7 +618,6 @@ class Notice extends Base {
                 WechatUser::where('userid',$userId)->update($s);
             }
         }
-
         //活动基本信息
         $list = $noticeModel::get($id);
         //重组轮播图片
@@ -711,6 +710,9 @@ class Notice extends Base {
             }else {
                  //  添加
                 unset($data['id']);
+                $a = array('1'=>'a','2'=>'b','3'=>'c','4'=>'d','5'=>'e','6'=>'f','7'=>'g','8'=>'h','9'=>'i','10'=>'j','11'=>'k','12'=>'l','13'=>'m','14'=>'n','15'=>'o',
+                    '16'=>'p','17'=>'q','18'=>'r','19'=>'s','20'=>'t','21'=>'u','22'=>'v','23'=>'w','24'=>'x','25'=>'y','26'=>'z');
+                $data['front_cover'] = array_rand($a,1);
                 $data['create_time'] = time();
                 $data['create_user'] = session('userId');
                 $model = $noticeModel->create($data);
@@ -721,10 +723,9 @@ class Notice extends Base {
                 $content = "您有".$count."条[支部活动]审核消息，请点击【文章审核】及时查看。";
                 $Wechat = new TPQYWechat(Config::get('party'));
                 $message = array(
-//                    "totag" => 3,
-                "touser" => 'wangzhichao',
+                    "totag" => 4,  // 审核
                     "msgtype" => 'text',
-                    "agentid" => 13,
+                    "agentid" => 11,  // 消息审核
                     "text" => array(
                         "content" => $content
                     ),
@@ -776,10 +777,9 @@ class Notice extends Base {
                 $content = "您有".$count."条[支部活动]审核消息，请点击【文章审核】进行查看。";
                 $Wechat = new TPQYWechat(Config::get('Party'));
                 $message = array(
-                    "totag" => 3,
-//                "touser" => 'wangzhichao',
+                    "totag" => 4, //  审核
                     "msgtype" => 'text',
-                    "agentid" => 13,
+                    "agentid" => 11, // 消息审核
                     "text" => array(
                         "content" => $content
                     ),

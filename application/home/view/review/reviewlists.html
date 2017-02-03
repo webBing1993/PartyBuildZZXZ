@@ -1,0 +1,123 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
+<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
+<link rel="stylesheet" href="/static/framework7/weui.css">
+<link rel="stylesheet" href="/home/css/review.css">
+{/block}
+
+{block name="body"}
+<div class="views">
+	<div class="list-block" id="list-block-company">
+		{eq name="list" value=""}
+		<div style="margin-top:100px;margin-left:calc(50% - 50px)" id="wuxiaoxi">
+			<img src="/home/images/nomessage.png" alt="" style="width:100px;">
+		</div>
+		{else/}
+		<ul>
+			{volist name="list" id="vo"}
+			<li class="swipeout">
+				{in name="vo.type" value="1,4,6"}
+				<div class="swipeout-content" onclick='location="{:Url('User/publishreview?id='.$vo.id)}"'>
+				{else/}
+				<div class="swipeout-content" onclick='location="{:Url('User/notesreview?id='.$vo.id)}"'>
+				{/in}
+				<img src="{$vo.front_cover|get_cover='path'}" alt="封面图片">
+				<div class="list">
+					<span class="title" style="font-size:14px;width:90%;">{$vo.title}</span>
+					<span class="sent_time">
+						<span style="margin-right: 5px;font-weight: bolder;">{$vo.type_name}</span>
+						<span>创建人：{$vo.username}</span>
+						<span>{$vo.create_time|time_format='Y-m-d'}</span>
+					</span>
+				</div>
+				<div class="arrow">
+					<img src="/home/images/rightArrow.png" alt="">
+				</div>
+	</div>
+	<div class="swipeout-actions-right">
+		<a class="green" onclick="dispose(this,{$vo.id},'{$vo.userid}',1)">通&emsp;过</a>
+		<a class="red" onclick="dispose(this,{$vo.id},'{$vo.userid}',2)">不通过</a>
+	</div>
+	</li>
+	{/volist}
+	</ul>
+	{/eq}
+</div>
+</div>
+<!--用户确认弹出框-->
+<div class="weui_dialog_confirm" id="alert" style="display:none">
+	<div class="weui_mask"></div>
+	<div class="weui_dialog">
+		<div class="head">
+			<p>提醒</p>
+			<div>确认当前操作吗？</div>
+		</div>
+		<div class="weui_dialog_ft">
+			<a class="weui_btn_dialog red1 ok" id="ok">确认</a>
+			<a class="weui_btn_dialog default " id="cancel1">取消</a>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/framework7/framework7.js"></script>
+<script>
+	var myApp=new Framework7;
+	var $$=Dom7;
+	//    帮助打开界面
+	$('#help').click(function(){
+		$('#page-content').css('height','100vh').css('visibility','visible');
+		$('.views').css('overflow','hidden');
+	});
+	//    帮助关闭按钮
+	$('#close').click(function(){
+		$('#page-content').css('height','0').css('visibility','hidden');
+		$('.views').css('overflow','auto');
+	});
+	$('#navTop>a').click(function(){
+		$('#navTop>a.active').removeClass('active');
+		$('.list-block').hide();
+		$(this).addClass('active');
+		$($(this).attr('data-number')).show();
+	});
+	//提醒取消
+	$('#cancel1').click(function(){
+		$('.weui_dialog_confirm').hide();
+	});
+	var ww = $('body').width();
+	if(ww<= 320){
+		$('.arrow' ).remove();
+	}
+	function dispose(i,id,userid,status){
+		var me=i;//this保存
+		$('#alert').show();
+		$('#ok').unbind('click');
+		$('#ok').one('click', function(){
+			$.ajax({
+				type: "post",
+				url: "{:Url('Review/reviews')}",
+				data: {id:id,userid:userid,status:status},
+				success: function(data){
+					$('#alert').hide();
+					$(me).parent().parent().hide();//当前点击的隐藏;
+					history.go(0);
+				}
+			});
+
+		})
+	}
+	var mySwiper = myApp.swiper('.swiper-container', {
+		pagination:'.swiper-pagination'
+	});
+	//
+	if($("ul").find("li").length > 0){
+		$('#wuxiaoxi').hide()
+	}
+	else{
+		$('#wuxiaoxi').show()
+	}
+</script>
+{/block}

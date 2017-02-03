@@ -20,7 +20,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-        session('userId','wangzhichao');
+        session('userId','15036667391');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -141,6 +141,7 @@ class Base extends Controller {
      * 3 AllianceArrange
      * 4 AllianceShow
      * 5 Talent
+     * 6 News
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -164,6 +165,9 @@ class Base extends Controller {
                 break;
             case 5:
                 $table = "talent";
+                break;
+            case 6:
+                $table = "news";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -214,6 +218,7 @@ class Base extends Controller {
      * 3 AllianceArrange
      * 4 AllianceShow
      * 5 Talent
+     * 6 News
      */
     public function comment(){
         if(IS_POST){
@@ -235,6 +240,9 @@ class Base extends Controller {
                     break;
                 case 5:
                     $table = "talent";
+                    break;
+                case 6:
+                    $table = "news";
                     break;
                 default:
                     return $this->error("无该数据表");

@@ -7,25 +7,15 @@
 
 {block name="body"}
 <div class="banner">
-	<div class="swiper-container">
-		<div class="imgs swiper-wrapper">
-			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
-			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
-			<div class="swiper-slide"><img src="" alt="轮播" class="carousel"></div>
-		</div>
-		<div class="swiper-pagination"></div>
-	</div>
-	<img src="/home/images/notice/bottom.png" alt="圆弧" class="arc">
+	<img src="{$publish.front_cover|get_cover='path'}" alt="支部活动banner" class="banner-img">
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_">{$publish.title}</div>
+		<div class="title limit_" style="text-align:center;" >{$publish.title}</div>
 	</div>
 	<div class="message">
-		<div><span class="limit">{$publish.sponsor}</span></div>
-		<div><span class="limit">{$publish.cost}</span></div>
-		<div><span class="limit">{$publish.start_time|time_format="Y-m-d H:i"}--{$publish.end_time|time_format="Y-m-d H:i"}</span></div>
-		<div><span class="limit">{$publish.telephone}</span></div>
+		<div><span class="limit">{$publish.topic}</span></div>
+		<div><span class="limit">{$publish.start_time|time_format="Y-m-d"}</span></div>
 		<div><span class="limit">{$publish.address}</span></div>
 	</div>
 	<div class="article">{$publish.content}</div>

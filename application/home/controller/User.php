@@ -9,6 +9,7 @@
 namespace app\home\controller;
 use app\home\model\Comment;
 use app\home\model\Learn;
+use app\home\model\Years;
 use app\home\model\Notice;
 use app\home\model\Picture;
 use app\home\model\WechatUser;
@@ -91,9 +92,6 @@ class User extends Base {
      * 我的笔记
      */
     public function mynotes(){
-        $this->push_card(); //判断是否推送贺卡
-//        $this->party_day(); //判断是否推送建党节推送
-//        $this->birthday(); //判断是否推送生日
 
         $userid = session('userId');
         $noticeModel = new Notice();
@@ -121,9 +119,6 @@ class User extends Base {
      * 我的发布
      */
     public function mypublish(){
-        $this->push_card(); //判断是否推送贺卡
-//        $this->party_day(); //判断是否推送建党节推送
-//        $this->birthday(); //判断是否推送生日
 
         $noticeModel = new Notice();
         $userid = session('userId');
@@ -232,13 +227,6 @@ class User extends Base {
      * 我的消息
      */
     public function history(){
-        //判断是否推送贺卡
-        $this->push_card();
-//        //判断是否推送建党节推送
-//        $this->party_day();
-//        //是否推送生日祝福
-//        $this->birthday();
-
         $userId = session('userId');
         $Year = new Years();
         $map = array(
@@ -248,56 +236,5 @@ class User extends Base {
         $this->assign('list',$list);
         return $this->fetch();
     }
-    /*
-     * 周年推送贺卡详情
-     */
-    public function heka(){
-        $id = input('param.id');
-        $Year = new Years();
-        $map = array("id"=>$id);
-        $info = $Year->where($map)->find();
-        $this->assign('name',$info['name']);
-        $this->assign('time',$info['years']);
-        return $this->fetch();
-    }
-    /*
-     * 贺卡删除
-     */
-    public function hekadel(){
-        $id = input('post.id');
-        $Year = new Years();
-        $map = array("id"=>$id);
-        $info = $Year->where($map)->delete();
-        if($info){
-            return $this->success("删除成功","",1);
-        }else{
-            return $this->error('删除失败',0);
-        }
-    }
-    /*
-     * 建党节推送详情
-     */
-    public function party(){
-        $userid = session('userId');
-        $Years = new Years();
-        $map = array(
-            "userid"=>$userid,
-            'type' =>2
-        );
-        $info = $Years->where($map)->find();
-        $this->assign('content',$info['years']);
-        return $this->fetch();
-    }
-    /*
-     * 生日推送详情
-     */
-    public function birth(){
-        $id = input('param.id');
-        $Year = new Years();
-        $map = array('id'=>$id);
-        $info = $Year->where($map)->find();
-        $this->assign('name',$info['name']);
-        $this->assign('years',$info['years']);
-        return $this->fetch();
-    }
+
 }
