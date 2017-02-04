@@ -287,7 +287,6 @@ $(function(){
 			title:$("input[name='title']").val(),
 			content:$("textarea[name='content']").val(),
 		};
-		console.log(data.meet_time);
 		var all = true;
 		for(var key in data){
 			if(data[key]== ''){
@@ -373,6 +372,7 @@ $(function(){
 				}
 			});
 		}else{
+			window.scrollTo(0,0);
 			$('.typebg' ).fadeIn();
 			$('.tips' ).html('<div class="text">请您输入至少一项信息 </div>' ).fadeIn();
 			setTimeout(function(){
