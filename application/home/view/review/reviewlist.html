@@ -17,27 +17,27 @@
 			{volist name="list" id="vo"}
 			<li class="swipeout">
 				<div class="swipeout-content" onclick="jump({$vo.focus_main})">
-				<img src="{$vo.front_cover|get_cover='path'}" alt="封面图片">
-				<div class="list">
-					<span class="title" style="font-size:14px;width:90%;">{$vo.title}</span>
-					<span class="sent_time">
-						<span style="margin-right: 5px;font-weight: bolder;">{$vo.type_name}</span>
-						<span>发布人：{$vo.publisher}</span>
-						<span>{$vo.create_time|time_format='Y-m-d'}</span>
-					</span>
+					<img src="{$vo.front_cover|get_cover='path'}" alt="封面图片">
+					<div class="list">
+						<span class="title" style="font-size:14px;width:90%;">{$vo.title}</span>
+						<span class="sent_time">
+							<span style="margin-right: 5px;font-weight: bolder;">{$vo.type_name}</span>
+							<span>发布人：{$vo.publisher}</span>
+							<span>{$vo.create_time|time_format='Y-m-d'}</span>
+						</span>
+					</div>
+					<div class="arrow">
+						<img src="/home/images/rightArrow.png" alt="">
+					</div>
 				</div>
-				<div class="arrow">
-					<img src="/home/images/rightArrow.png" alt="">
+				<div class="swipeout-actions-right">
+					<a class="green" onclick='dispose(this,{$vo.id},1)'>通&emsp;过</a>
+					<a class="red" onclick='dispose(this,{$vo.id},-1)'>不通过</a>
 				</div>
+			</li>
+			{/volist}
+		</ul>
 	</div>
-	<div class="swipeout-actions-right">
-		<a class="green" onclick='dispose(this,{$vo.id},1)'>通&emsp;过</a>
-		<a class="red" onclick='dispose(this,{$vo.id},-1)'>不通过</a>
-	</div>
-	</li>
-	{/volist}
-	</ul>
-</div>
 </div>
 
 <!--用户确认弹出框-->
