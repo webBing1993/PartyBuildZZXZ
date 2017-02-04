@@ -10,18 +10,20 @@
 <!--</div>-->
 
 <div class="lists">
-	<a href="{:Url('College/leaddetail')}" class="list clear">
+	{volist name="list" id="vo"}
+	<a href="{:Url('College/leaddetail?id='.$vo['id'])}" class="list clear">
 		<div class="fl">
 			<img src="/home/images/test/1.jpg" alt="图片">
 		</div>
 		<div class="fr right">
-			<div class="title limit_">标题</div>
+			<div class="title limit_">{$vo.title}</div>
 			<div class="clear time">
-				<span class="fl">2012-01-01</span>
+				<span class="fl">{$vo.create_time|time_format='Y-m-d'}</span>
 				<span class="fr fa fa-angle-right"></span>
 			</div>
 		</div>
 	</a>
+	{/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
@@ -48,11 +50,13 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
+		var type = '1';
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('College/leadlistmore')}",
 				data:{
+					type:type,
 					length:len
 				},
 				beforeSend: function(XMLHttpRequest){

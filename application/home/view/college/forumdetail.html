@@ -7,49 +7,62 @@
 {block name="body"}
 <!--新增-->
 <div class="title limit_" style="margin:10px auto;width:90%;text-align: center;min-height:30px;line-height: 25px;">
-	<span style="color:#333;font-size:16px;">标题</span>
+	<span style="color:#333;font-size:16px;">{$info.title}</span>
 </div>
 <div class="note">
-	<span class="fl">地信小镇</span>
-	2012-01-01
+	<span class="fl">{$info.publisher}</span>
+	{$info.create_time|time_format='Y-m-d'}
 </div>
 <!--新增-->
 <div class="article" style="padding-top:0;margin-top:10px;">
 	<div class="content">
 		<img src="" alt="笔记图片" class="img" style="width:100%;">
-		<div style="text-indent:2em;">内容</div>
+		<div style="text-indent:2em;">{$info.content}</div>
 		<div class="note">
-			<span class="read">1</span>
-			<span class="isgood good_" onclick="isGood(this,2,'id')">1</span>
-
+			<span class="read">{$info.views}</span>
+			{eq name="$info.is_like" value="0"}
+			<span class="isgood good" onclick="isGood(this,10,{$info.id})">{$info.likes}</span>
+			{else/}
+			<span class="isgood good_" onclick="isGood(this,10,{$info.id})">{$info.likes}</span>
+			{/eq}
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>1</span>条评论</div>
+	<div class="sum">共<span>{$info.comments}</span>条评论</div>
 	<div class="lists">
+		{volist name="comment" id="com"}
 		<div class="list clear">
 			<div class="fl">
-				<img src="" alt="用户" class="user">
+				<img src="{$com.header}" alt="用户" class="user">
 			</div>
 			<div class="fl mid">
-				<div class="name limit">zhangsan</div>
-				<div class="content" >你好</div>
-				<div class="time">2012-01-01</div>
+				<div class="name limit">{$com.nickname}</div>
+				<div class="content" >{$com.content}</div>
+				<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
 			</div>
-			<div class="fr isgood good_" onclick="isGood(this,0,'id')">1</div>
+			<!--未点赞：good,已点赞good_-->
+			{eq name="visit" value="0"}
+			{eq name="com.is_like" value="0"}
+			<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{else/}
+			<div class="fr isgood good_" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{/eq}
+			{/eq}
 		</div>
+		{/volist}
 	</div>
 	<div class="tip"></div>
 	<div class="loading hidden">
 		<div class="typing_loader"></div>
 	</div>
 </div>
+{eq name="visit" value="0"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,2,'id')">发送</div>
+	<div class="send fl" onclick="send(this,10,{$info.id})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -58,8 +71,7 @@
 		</div>
 	</div>
 </div>
-
-
+{/eq}
 {/block}
 
 {block name="script"}
@@ -188,13 +200,13 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var id = 'id';
+		var id = {$info.id};
 		if(dh == end){
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
 				data:{
-					type:2,
+					type:10,
 					aid:id,
 					length:len
 				},

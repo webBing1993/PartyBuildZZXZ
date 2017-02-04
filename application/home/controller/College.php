@@ -7,7 +7,10 @@
  */
 namespace app\home\controller;
 
+use app\home\model\Comment;
+use app\home\model\Like;
 use app\home\model\Redforum;
+use app\home\model\RedforumDetail;
 use app\home\model\RedforumNotice;
 use app\home\model\Redlead;
 use app\home\model\RedtutorCourse;
@@ -201,10 +204,25 @@ class College extends Base{
      * 导师详情
      */
     public function tutordetail() {
-        $id = input('id');
-        $detail = RedtutorCourse::where('id',$id)->find();
-        $this->assign('detail',$detail);
+        $this->anonymous(); //判断是否是游客
 
+        $uid = session('userId');
+        $id = input('id');
+        $courseModel = new RedtutorCourse();
+        $courseModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $courseModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(7,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(7,$id,$uid);
+        $this->assign('comment',$comment);
+        
         return $this->fetch();
     }
 
@@ -212,10 +230,24 @@ class College extends Base{
      * 通知详情
      */
     public function tutornotice() {
-        $id = input('id');
-        $notice = RedtutorNotice::where('id',$id)->find();
-        $this->assign('notice',$notice);
+        $this->anonymous(); //判断是否是游客
 
+        $uid = session('userId');
+        $id = input('id');
+        $noticeModel = new RedtutorNotice();
+        $noticeModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $noticeModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(8,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(8,$id,$uid);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 
@@ -226,17 +258,55 @@ class College extends Base{
         $map = array(
             'status' => 1,
         );
-        $list = RedtutorNotice::where($map)->order('create_time desc')->select();
+        $list = RedtutorNotice::where($map)->order('create_time desc')->limit(9)->select();
         $this->assign('list',$list);
 
         return $this->fetch();
     }
 
     /**
+     * 通知列表加载更多
+     */
+    public function listmore() {
+        $len = input('length');
+        $map =  array(
+            'status' => 1,
+        );
+        $noticeModel = new RedtutorNotice();
+        $list = $noticeModel->where($map)->order('create_time desc')->limit($len,9)->select();
+        foreach ($list as $value) {
+            $value['time'] = date('Y-m-d',$value['time']);
+        }
+        if($list) {
+            return $this->success("加载成功","",$list);
+        }else{
+            return $this->error("加载失败");
+        }
+    }
+    
+    /**
      * 红领带动详情
      */
     public function leaddetail() {
+        $this->anonymous(); //判断是否是游客
 
+        $uid = session('userId');
+        $id = input('id');
+        $leadModel = new Redlead();
+        $leadModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $leadModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(9,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(9,$id,$uid);
+        $this->assign('comment',$comment);
+        
         return $this->fetch();
     }
 
@@ -244,15 +314,59 @@ class College extends Base{
      * 红领带动列表
      */
     public function leadlist() {
+        $map = array(
+            'status' => 1,
+            'type' => input('type'),
+        );
+        $list = Redlead::where($map)->order('create_time desc')->limit(7)->select();
+        $this->assign('list',$list);
 
         return $this->fetch();
+    }
+
+    /*
+     * 加载更多
+     */
+    public function leadlistmore() {
+        $len = input('length');
+        $map =  array(
+            'status' => 1,
+            'type' => input('type'),
+        );
+        $leadModel = new Redlead();
+        $list = $leadModel->where($map)->order('create_time desc')->limit($len,7)->select();
+        foreach ($list as $value) {
+            $value['time'] = date('Y-m-d',$value['time']);
+        }
+        if($list) {
+            return $this->success("加载成功","",$list);
+        }else{
+            return $this->error("加载失败");
+        }
     }
 
     /**
      * 红领论坛通知
      */
     public function forumnotice() {
+        $this->anonymous(); //判断是否是游客
 
+        $uid = session('userId');
+        $id = input('id');
+        $noticeModel = new RedforumNotice();
+        $noticeModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $noticeModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(11,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(11,$id,$uid);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 
@@ -260,7 +374,20 @@ class College extends Base{
      * 红领论坛详情
      */
     public function forum() {
-        
+        $id = input('id');
+        $forum = Redforum::where('id',$id)->find();
+        //获取论坛回顾
+        $notice = RedforumNotice::where('id',$forum['nid'])->field('theme,time,address')->find();
+        $forum['notice'] = $notice;
+        //获取论坛展示
+        $map = array(
+            'status' => 1,
+            'rid' => $forum['id']
+        );
+        $detail = RedforumDetail::where($map)->order('create_time desc')->select();
+        $forum['detail'] = $detail;
+
+        $this->assign('forum',$forum);
         return $this->fetch();
     }
     
@@ -268,9 +395,26 @@ class College extends Base{
      * 情况详情
      */
     public function forumdetail() {
+        $this->anonymous(); //判断是否是游客
+
+        $uid = session('userId');
+        $id = input('id');
+        $detailModel = new RedforumDetail();
+        $detailModel::where('id',$id)->setInc('views');     //浏览加一
+
+        $info = $detailModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(10,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(10,$id,$uid);
+        $this->assign('comment',$comment);
         
         return $this->fetch();
     }
-    
     
 }

@@ -10,31 +10,40 @@
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_" style="text-align: center">{$notice.title}</div>
+		<div class="title limit_" style="text-align: center">{$info.title}</div>
 		<div class="note">
-			<span class="read">{$notice.views}</span>
+			<span class="read">{$info.views}</span>
 		</div>
 	</div>
 	<div class="message">
-		<div class="name limit">{$notice.theme}</div>
-		<div class="content" >{$notice.time|time_format='Y-m-d'}</div>
-		<div class="time">{$notice.address}</div>
+		<div class="name limit">{$info.theme}</div>
+		<div class="content" >{$info.time|time_format='Y-m-d'}</div>
+		<div class="time">{$info.address}</div>
 	</div>
-	<div class="article">{$notice.content}</div>
+	<div class="article">{$info.content}</div>
 	<div class="comment">
-		<div class="sum">共<span>{$notice.comments}</span>条评论</div>
+		<div class="sum">共<span>{$info.comments}</span>条评论</div>
 		<div class="lists">
+			{volist name="comment" id="com"}
 			<div class="list clear">
 				<div class="fl">
-					<img src="" alt="用户" class="user">
+					<img src="{$com.header}" alt="用户" class="user">
 				</div>
 				<div class="fl mid">
-					<div class="name limit">张一</div>
-					<div class="content" >挺好</div>
-					<div class="time">2012-01-01</div>
+					<div class="name limit">{$com.nickname}</div>
+					<div class="content" >{$com.content}</div>
+					<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
 				</div>
-				<div class="fr isgood good_" onclick="isGood(this,0,'id')">1</div>
+				<!--未点赞：good,已点赞good_-->
+				{eq name="visit" value="0"}
+				{eq name="com.is_like" value="0"}
+				<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+				{else/}
+				<div class="fr isgood good_" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+				{/eq}
+				{/eq}
 			</div>
+			{/volist}
 		</div>
 		<div class="tip"></div>
 		<div class="loading hidden">
@@ -42,11 +51,12 @@
 		</div>
 	</div>
 </div>
+{eq name="visit" value="0"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,2,'id')">发送</div>
+	<div class="send fl" onclick="send(this,8,{$info.id})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -55,6 +65,7 @@
 		</div>
 	</div>
 </div>
+{/eq}
 {/block}
 
 {block name="script"}
@@ -173,13 +184,13 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var id = 'id';
+		var id = {$info.id};
 		if(dh == end){
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
 				data:{
-					type:2,
+					type:8,
 					aid:id,
 					length:len
 				},

@@ -20,7 +20,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-        session('userId','15036667391');
+//        session('userId','15036667391');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -142,6 +142,11 @@ class Base extends Controller {
      * 4 AllianceShow
      * 5 Talent
      * 6 News
+     * 7 RedtutorCourse
+     * 8 RedtutorNotice
+     * 9 Redlead
+     * 10 RedforumDetail
+     * 11 RedforumNotice
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -168,6 +173,21 @@ class Base extends Controller {
                 break;
             case 6:
                 $table = "news";
+                break;
+            case 7:
+                $table = "redtutor_course";
+                break;
+            case 8:
+                $table = "redtutor_notice";
+                break;
+            case 9:
+                $table = "redlead";
+                break;
+            case 10:
+                $table = "redforum_detail";
+                break;
+            case 11:
+                $table = "redforum_notice";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -219,6 +239,11 @@ class Base extends Controller {
      * 4 AllianceShow
      * 5 Talent
      * 6 News
+     * 7 RedtutorCourse
+     * 8 RedtutorNotice
+     * 9 Redlead
+     * 10 RedforumDetail
+     * 11 RedforumNotice
      */
     public function comment(){
         if(IS_POST){
@@ -243,6 +268,21 @@ class Base extends Controller {
                     break;
                 case 6:
                     $table = "news";
+                    break;
+                case 7:
+                    $table = "redtutor_course";
+                    break;
+                case 8:
+                    $table = "redtutor_notice";
+                    break;
+                case 9:
+                    $table = "redlead";
+                    break;
+                case 10:
+                    $table = "redforum_detail";
+                    break;
+                case 11:
+                    $table = "redforum_notice";
                     break;
                 default:
                     return $this->error("无该数据表");

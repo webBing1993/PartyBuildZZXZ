@@ -8,36 +8,24 @@
 <div class="banner">
 	<img src="/home/images/test/1.jpg" class="banner-img" alt="banner">
 </div>
-<div class="title">十月高技术论坛在地信信息小镇</div>
+<div class="title">{$forum.title}</div>
 <div class="block review">
 	<span class="tag">论坛回顾</span>
-	<div class="list_">论坛主题：高精度室内定位技术与应用论坛</div>
-	<div class="list_">举办时间：2017年01月01日</div>
-	<div class="list_">举办地点：地理信息小镇大礼堂</div>
+	<div class="list_">论坛主题：{$forum.notice.theme}</div>
+	<div class="list_">举办时间：{$forum.notice.time|time_format='Y-m-d'}</div>
+	<div class="list_">举办地点：{$forum.notice.address}</div>
 </div>
 <div class="block">
 	<span class="tag">论坛展示</span>
-	<a class="list">
-		<div class="title limit">小镇官方：高精度室内定位技术与应用论坛报道</div>
+	{volist name="$forum.detail" id="detail"}
+	<a class="list" href="{:Url('College/forumdetail?id='.$detail['id'])}">
+		<div class="title limit">{$detail.publisher}：{$detail.title}</div>
 		<div class="note">
-			<span class="time">2012-01-01</span>
-			<span class="comment"><i>220</i></span>
+			<span class="time">{$detail.create_time|time_format='Y-m-d'}</span>
+			<span class="comment"><i>{$detail.views}</i></span>
 		</div>
 	</a>
-	<a class="list">
-		<div class="title limit">小镇官方：高精度室内定位技术与应用论坛报道</div>
-		<div class="note">
-			<span class="time">2012-01-01</span>
-			<span class="comment"><i>220</i></span>
-		</div>
-	</a>
-	<a class="list">
-		<div class="title limit">小镇官方：高精度室内定位技术与应用论坛报道</div>
-		<div class="note">
-			<span class="time">2012-01-01</span>
-			<span class="comment"><i>220</i></span>
-		</div>
-	</a>
+	{/volist}
 </div>
 {/block}
 
