@@ -23,13 +23,13 @@
 <div class="tabs_">
 	<div class="tabs clear">
 		<span class="tab fl">红色盟员</span>
-		<span class="tab fl active">地信红盟</span>
+		<span class="tab fl">地信红盟</span>
 		<span class="tab fl">服务清单</span>
 		<span class="line"></span>
 	</div>
 </div>
 <div class="blocks">
-	<div class="block hidden">
+	<div class="block">
 		<div class="member">
 			<span>县级有关部门：</span>
 			<div class="detail">县委组织部（两新工委）、县委党校、县总工会、团县委、县妇联、县科协、县发改委、县经信委、县金融办、县安监局、县教育局、县科技局、县民政局、县财政局（地税局）、县人力社保局、县商务局、县市场监管局、县新居民事务局、县国税局。</div>
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="block hidden slist">
+	<div class="block slist">
 		<span class="line"></span>
 		<div class="ul">
 			<div class="title">党员服务</div>
@@ -106,16 +106,35 @@
 <script>
 $('title' ).text('地信红盟');
 $(function(){
+	init();
+	$('.tab' ).off('click' ).on('click',function(){
+			var this_ = $(this );
+			var block = $('.block');
+		var w = $('.tab' ).width();
+		var n = this_.index();
+		window.scrollTo(0,0);
+		this_.siblings('.tab' ).removeClass('active');
+		this_.addClass('active');
+		block.eq(n ).siblings('.block' ).addClass('hidden');
+		block.eq(n ).removeClass('hidden');
+		if(n == 0){
+			$('.line').css({'right':w+'px'})
+		}else if(n == 1){
+			$('.line').css({'right':0})
+		}else{
+			$('.line').css({'right':2*w+'px'})
+		}
+	});
 	$('.li').on('click',function(){
 		var data=[{
 			'company':'县委组织部（县两新工委）、县党群服务中心',
 			'content':'主要提供入党申请、组织关系转接、流动党员管理服务以及组织党员固定活动日等服务',
 			'tip':'县级有关部门'
 		},{
-				'company':'县委人才办、县人力社保局、县教育局、县科协以及县高层次人才服务中心等',
-				'content':'主要提供人才引进、人才安居等政策咨询落实以及子女就学等日常事务协调等服务。',
-				'tip':'县级有关部门'
-			},{
+			'company':'县委人才办、县人力社保局、县教育局、县科协以及县高层次人才服务中心等',
+			'content':'主要提供人才引进、人才安居等政策咨询落实以及子女就学等日常事务协调等服务。',
+			'tip':'县级有关部门'
+		},{
 			'company':'团县委、妇联、工会、民政局等部门，以及清禾公益、优来公益、晨曦社工组织、县志愿者协会等社会组织',
 			'content':'主要提供志愿者招募、义工活动组织、微心愿认领以及社区结对送温暖等服务。',
 			'tip':'县级有关部门以及部分社会组织'
@@ -132,24 +151,22 @@ $(function(){
 		$('.modal-body' ).text(tt);
 		$('#model').modal('show');
 	});
-	$('.tab' ).off('click' ).on('click',function(){
-		var this_ = $(this );
-		var block = $('.block');
-		var w = $('.tab' ).width();
-		var n = this_.index();
-		window.scrollTo(0,0);
-		this_.siblings('.tab' ).removeClass('active');
-		this_.addClass('active');
-		block.eq(n ).siblings('.block' ).addClass('hidden');
-		block.eq(n ).removeClass('hidden');
-		if(n == 0){
-			$('.line').css({'right':w+'px'})
-		}else if(n == 1){
-			$('.line').css({'right':0})
-		}else{
-			$('.line').css({'right':2*w+'px'})
-		}
-	})
 });
+function init(){
+	var tab =$('.tab' );
+	var c =  parseInt(window.location.href.split("index/c/")[1]);
+	tab.eq(c - 1 ).addClass('active');
+	$('.block').eq(c-1 ).siblings('.block' ).addClass('hidden');
+	var w = tab.width();
+	var n = c -1 ;
+	if(n == 0){
+		$('.line').css({'right':w+'px'})
+	}else if(n == 1){
+		$('.line').css({'right':0})
+	}else{
+		$('.line').css({'right':2*w+'px'})
+	}
+}
+
 </script>
 {/block}
