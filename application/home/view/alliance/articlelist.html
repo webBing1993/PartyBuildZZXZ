@@ -27,7 +27,7 @@
 $('title' ).text('地信红盟');
 $(function(){
 	var len = $(".list" ).length;
-	if(len >= 7){$('.tip' ).text('上拉加载更多');}
+	if(len >= 9){$('.tip' ).text('上拉加载更多');}
 	//上拉加载评论
 	loadScroll();
 });
@@ -38,7 +38,7 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var type = 1;
+		var type =  parseInt(window.location.href.split("type/")[1]);
 		if(dh == end){
 			$.ajax({
 				type:"post",
@@ -54,6 +54,7 @@ function loadScroll(){
 				success:function(data){
 					loading.toggleClass('hidden');
 					tip.show();
+					console.log(data)
 					if(data.code == 1){
 						addList(data);
 						var dataLen =data.data.length;
@@ -77,15 +78,15 @@ function addList(data){
 		var list = lists[i];
 		html +=
 				'<a href="" class="list">'+
-				'<div class="title limit">关于召开德清县"一月一主题"活动的安排</div>'+
-				'<div class="content limit_">6月10日在德清小镇关于召开德清县"一月一主题"活动的安排</div>'+
+				'<div class="title limit">'+list.title+'</div>'+
+				'<div class="content limit_">'+list.content+'</div>'+
 				'<div class="note">'+
-				'<span class="time">2016-01-01</span>'+
+				'<span class="time">'+list.time+'</span>'+
 				'<span class="fa fa-angle-right"></span>'+
 				'</div>'+
 				'</a>';
 	}
-	$(".lists" ).append(html);
+	$(".lists_" ).append(html);
 }
 </script>
 {/block}
