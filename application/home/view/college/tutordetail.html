@@ -5,21 +5,21 @@
 {/block}
 
 {block name="body"}
-<div class="banner">
-	<iframe class="banner-img" frameborder="0" src='http://player.youku.com/embed/XMjY4NjM0NzQw' allowfullscreen></iframe>
-</div>
+<!--<div class="banner">-->
+	<!--<iframe class="banner-img" frameborder="0" src='http://player.youku.com/embed/XMjY4NjM0NzQw' allowfullscreen></iframe>-->
+<!--</div>-->
 <div class="article">
 	<div class="content">
-		6月10日在德清小镇关于召开德清县"一月一主题"活动的安排
+		{$detail.content}
 		<div class="note">
-			<span class="read">1</span>
+			<span class="read">{$detail.views}</span>
 			<!--未点赞：good,已点赞good_-->
-			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">2</span>
+			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">{$detail.likes}</span>
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>222</span>条评论</div>
+	<div class="sum">共<span>{$detail.comments}</span>条评论</div>
 	<div class="lists">
 		<div class="list clear">
 			<div class="fl">

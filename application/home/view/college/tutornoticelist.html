@@ -6,20 +6,15 @@
 
 {block name="body"}
 <div class="lists_">
-	<a href="{:Url('College/tutordetail" class="list">
-		<div class="title limit">标题</div>
+	{volist name="list" id="vo"}
+	<a href="{:Url('College/tutordetail?id='.$vo['id'])}" class="list">
+		<div class="title limit">{$vo.title}</div>
 		<div class="note">
-			<span class="time">2016-01-01</span>
+			<span class="time">{$vo.create_time|time_format='Y-m-d'}</span>
 			<span class="fa fa-angle-right"></span>
 		</div>
 	</a>
-	<a href="{:Url('College/tutordetail" class="list">
-		<div class="title limit">标题</div>
-		<div class="note">
-			<span class="time">2016-01-01</span>
-			<span class="fa fa-angle-right"></span>
-		</div>
-	</a>
+	{/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">

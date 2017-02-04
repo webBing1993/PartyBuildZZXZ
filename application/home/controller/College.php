@@ -187,7 +187,13 @@ class College extends Base{
      * 导师页面
      */
     public function tutor() {
-
+        $id = input('id');
+        $tutor = RedtutorTutor::where('id',$id)->find();
+        $course = RedtutorCourse::where('tid',$id)->order('create_time desc')->select();
+        $tutor['number'] = count($course);
+        $tutor['course'] = $course;
+        $this->assign('tutor',$tutor);
+        
         return $this->fetch();
     }
 
@@ -195,6 +201,9 @@ class College extends Base{
      * 导师详情
      */
     public function tutordetail() {
+        $id = input('id');
+        $detail = RedtutorCourse::where('id',$id)->find();
+        $this->assign('detail',$detail);
 
         return $this->fetch();
     }
@@ -203,6 +212,9 @@ class College extends Base{
      * 通知详情
      */
     public function tutornotice() {
+        $id = input('id');
+        $notice = RedtutorNotice::where('id',$id)->find();
+        $this->assign('notice',$notice);
 
         return $this->fetch();
     }
@@ -211,6 +223,11 @@ class College extends Base{
      * 通知列表
      */
     public function tutornoticelist() {
+        $map = array(
+            'status' => 1,
+        );
+        $list = RedtutorNotice::where($map)->order('create_time desc')->select();
+        $this->assign('list',$list);
 
         return $this->fetch();
     }

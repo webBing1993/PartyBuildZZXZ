@@ -10,19 +10,19 @@
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_" style="text-align: center">标题</div>
+		<div class="title limit_" style="text-align: center">{$notice.title}</div>
 		<div class="note">
-			<span class="read">1</span>
+			<span class="read">{$notice.views}</span>
 		</div>
 	</div>
 	<div class="message">
-		<div class="name limit">主题</div>
-		<div class="content" >2012-01-01</div>
-		<div class="time">地址</div>
+		<div class="name limit">{$notice.theme}</div>
+		<div class="content" >{$notice.time|time_format='Y-m-d'}</div>
+		<div class="time">{$notice.address}</div>
 	</div>
-	<div class="article">你好你好</div>
+	<div class="article">{$notice.content}</div>
 	<div class="comment">
-		<div class="sum">共<span>1</span>条评论</div>
+		<div class="sum">共<span>{$notice.comments}</span>条评论</div>
 		<div class="lists">
 			<div class="list clear">
 				<div class="fl">

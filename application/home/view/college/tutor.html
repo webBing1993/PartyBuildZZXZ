@@ -104,61 +104,36 @@
         <div class="banner">
             <img src="/home/images/tutor/bg.png" alt="背景" class="bg">
             <div class="header">
-                <img src="/home/images/test/tt.png" alt="头像" class="header_">
+                <img src="{$tutor.header|get_cover='path'}" alt="头像" class="header_">
             </div>
             <div class="content">
-                <span class="name">郭亚丁</span>
-                <span class="detail">现任全国党的建设研究会特邀研究员，浙江省委党校党史党建教研部副主任、党建研究所所长。</span>
+                <span class="name">{$tutor.name}</span>
+                <span class="detail">{$tutor.title}</span>
             </div>
         </div>
         <div class="tab_main">
-            <div class="btn11 tab_active" >课程列表（18）</div>
+            <div class="btn11 tab_active" >课程列表（{$tutor.number}）</div>
             <div class="btn11 " >专家简介</div>
         </div>
 
         <ul id="tab_main1" class="">
             <li>
-                <div>
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl ">
-                    <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                    <span>2017-1-20</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
-
-                </div>
-                <div>
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl" >
-                    <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                    <span>2017-1-20</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
-
-                </div>
-                <div>
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl" >
-                    <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                    <span>2017-1-20</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
-
-                </div>
-                <div>
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl" >
-                    <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                    <span>2017-1-20</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
-
-                </div>
-                <div>
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl" style="width:92px;height:68px;border-radius: 3px;">
-                    <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                    <span>2017-1-20</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
-
-                </div>
+                {volist name="tutor.course" id="course"}
+                <a href="{:Url('College/tutordetail?id='.$course['id'])}">
+                    <div>
+                        <img src="/home/images/tutor/1.jpg" alt="" class="fl ">
+                        <span class="limit_ fl">{$course.title}</span>
+                        <span>{$course.create_time|time_format='Y-m-d'}</span>
+                        <img src="/home/images/right.png" alt="" class="fr">
+                    </div>
+                </a>
+                {/volist}
             </li>
         </ul>
         <ul id="tab_main2" class=" none">
             <li>
                 <div style="text-indent:2em;padding:20px 12px;">
-                    现任全国党的建设研究会特邀研究员，浙江省委党校党史党建教研部副主任、党建研究所所长。
+                    {$tutor.content}
                 </div>
             </li>
         </ul>
