@@ -7,7 +7,7 @@
 {block name="body"}
 <div class="lists_">
 	{volist name="list" id="vo"}
-	<a href="{:Url('College/tutordetail?id='.$vo['id'])}" class="list">
+	<a href="{:Url('College/tutornotice?id='.$vo['id'])}" class="list">
 		<div class="title limit">{$vo.title}</div>
 		<div class="note">
 			<span class="time">{$vo.create_time|time_format='Y-m-d'}</span>
