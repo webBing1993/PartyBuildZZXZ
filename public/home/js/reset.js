@@ -105,16 +105,13 @@ function moveanyway(){
 	block.addEventListener("touchend",function() {
 		document.removeEventListener("touchmove",defaultEvent,false);
 		if(touch_start != touch_end && touch_end){
-			//alert(touch_start);
-			//alert(touch_end);
 			var d = document.documentElement.clientWidth - block.offsetWidth;
-			if(block.offsetLeft>=(document.documentElement.clientWidth - block.offsetWidth)/2) {
+			if(block.offsetLeft<(document.documentElement.clientWidth - block.offsetWidth)/2) {
 				d = 0 ;
 			}
-			//console.log(d);
-			//$(block).animate({
-			//	right:d+'px'
-			//},300)
+			$(block).animate({
+				left:d+'px'
+			},300)
 		}
 	},false);
 	function defaultEvent(e) {
