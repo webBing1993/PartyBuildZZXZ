@@ -157,7 +157,7 @@ class Alliance extends Base{
             'status' => 1,
         );
         $showModel = new AllianceShow();
-        $list = $showModel->where($map)->order('create_time desc')->limit(7)->select();
+        $list = $showModel->where($map)->order('create_time desc')->limit(9)->select();
         $this->assign('list',$list);
 
         return $this->fetch();
