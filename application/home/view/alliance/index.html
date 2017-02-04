@@ -103,27 +103,22 @@
 {/block}
 
 {block name="script"}
+<script src="/home/js/reset.js"></script>
 <script>
 $('title' ).text('地信红盟');
 $(function(){
 	init();
 	$('.tab' ).off('click' ).on('click',function(){
-			var this_ = $(this );
-			var block = $('.block');
-		var w = $('.tab' ).width();
+		var this_ = $(this );
+		var block = $('.block');
 		var n = this_.index();
 		window.scrollTo(0,0);
 		this_.siblings('.tab' ).removeClass('active');
 		this_.addClass('active');
 		block.eq(n ).siblings('.block' ).addClass('hidden');
 		block.eq(n ).removeClass('hidden');
-		if(n == 0){
-			$('.line').css({'right':w+'px'})
-		}else if(n == 1){
-			$('.line').css({'right':0})
-		}else{
-			$('.line').css({'right':2*w+'px'})
-		}
+		setCookie("type",n + 1);
+		line(n);
 	});
 	$('.li').on('click',function(){
 		var data=[{
@@ -155,10 +150,20 @@ $(function(){
 function init(){
 	var tab =$('.tab' );
 	var c =  parseInt(window.location.href.split("index/c/")[1]);
+	var co = getCookie("type");
+	if(co){c = co;}
 	tab.eq(c - 1 ).addClass('active');
 	$('.block').eq(c-1 ).siblings('.block' ).addClass('hidden');
-	var w = tab.width();
 	var n = c -1 ;
+	line(n);
+	pushHistory();
+	window.addEventListener( "popstate", function( e ){
+		delCookie( 'type' );
+		window.history.go( -1 );
+	}, false );
+}
+function line(n){
+	var w = $('.tab').width();
 	if(n == 0){
 		$('.line').css({'right':w+'px'})
 	}else if(n == 1){
