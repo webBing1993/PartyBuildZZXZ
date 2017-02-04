@@ -126,16 +126,16 @@
     #tab2 ul li .list_img>img:nth-child(1){
         position:absolute;left:-6px;top:8px;width:85px;
     }
-    #tab2 ul li .list_img>img:nth-child(2){
+    #tab2 ul li .list_img>a>img{
         position:absolute;right:12px;top:13px;width:25px;
     }
-    #tab2 ul li>div:nth-child(2),#tab2 ul li>div:nth-child(3){
+    #tab2 ul li>a:nth-child(2),#tab2 ul li>a:nth-child(3){
         height:85px;width:100%;display: block;position:relative;border-bottom:1px solid #f1f1f1;
     }
-    #tab2 ul li>div:nth-child(2)>img.fl,#tab2 ul li>div:nth-child(3)>img.fl{
+    #tab2 ul li>a:nth-child(2)>img.fl,#tab2 ul li>a:nth-child(3)>img.fl{
         width:60px;height:60px;border-radius: 3px;margin-left:11px;margin-top:12px;
     }
-    #tab2 ul li>div:nth-child(2)>span.limit,#tab2 ul li>div:nth-child(3)>span.limit{
+    #tab2 ul li>a:nth-child(2)>span.limit,#tab2 ul li>a:nth-child(3)>span.limit{
         width:72%;display: block;font-size:14px;height:85px;line-height:85px;margin-left:11px;
     }
     /*tab3*/
@@ -152,7 +152,7 @@
     #tab3 ul li>div>img.fl{
         width:60px;height:60px;border-radius: 3px;margin-left:11px;margin-top:12px;
     }
-    #tab3 ul li>div>span.limit_{
+    #tab3 ul li>a>span.limit_{
         width:90%;font-size:14px;height:55px;margin-left:11px;line-height:22px;padding-top:10px;
     }
     .tab_main{
@@ -167,11 +167,15 @@
     .none{
         display: none;
     }
-    #tab3 #tab_main1>li>div>span:nth-child(2),#tab3 #tab_main2>li>div>span:nth-child(2){
+    #tab3 #tab_main1>li>a>span:nth-child(2),#tab3 #tab_main2>li>a>span:nth-child(2){
         margin-left:12px;font-size:12px;color:#999;
     }
-    #tab3 #tab_main1>li>div>img:nth-child(3),#tab3 #tab_main2>li>div>img:nth-child(3){
+    #tab3 #tab_main1>li>a>img:nth-child(3),#tab3 #tab_main2>li>a>img:nth-child(3){
         width:12px;height:12px;margin-top:5px;margin-right:10px;
+    }
+    a{
+        display: inline-block;
+        color:#666666;
     }
 </style>
 {/block}
@@ -211,26 +215,26 @@
                                     <div class="swiper-container swiper-container1" >
                                         <div class="swiper-wrapper">
 
-                                            <div class="swiper-slide">
+                                            <a href="" class="swiper-slide">
                                                 <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
-                                                <div>
+                                                <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
 
                                     </div>
 
                                     <div>
-                                        <div class='limit_ fl'>
+                                        <a href="" class='limit_ fl'>
                                             2016测绘地理信息工作成就2016测绘地理信息工作成就
                                             <img src="/home/images/tutor/3-1.png" alt="" style="">
-                                        </div>
-                                        <div class='limit_ fl' >
+                                        </a>
+                                        <a href="" class='limit_ fl' >
                                             2017测绘地理信息工作成就2017测绘地理信息工作成就
                                             <img src="/home/images/tutor/3-1.png" alt="" >
-                                        </div>
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -242,25 +246,25 @@
                                     <div class="swiper-container swiper-container2" >
                                         <div class="swiper-wrapper">
 
-                                            <div class="swiper-slide">
+                                            <a href=""  class="swiper-slide">
                                                 <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
-                                                <div>
+                                                <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
 
                                     </div>
                                     <div>
-                                        <div class='limit_ fl'>
+                                        <a href="" class='limit_ fl'>
                                             2016测绘地理信息工作成就2016测绘地理信息工作成就
                                             <img src="/home/images/tutor/4-1.png" alt="" style="">
-                                        </div>
-                                        <div class='limit_ fl' >
+                                        </a>
+                                        <a href="" class='limit_ fl' >
                                             2017测绘地理信息工作成就2017测绘地理信息工作成就
                                             <img src="/home/images/tutor/4-1.png" alt="" >
-                                        </div>
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -272,25 +276,25 @@
                                     <div class="swiper-container swiper-container3" >
                                         <div class="swiper-wrapper">
 
-                                            <div class="swiper-slide">
+                                            <a href="" class="swiper-slide">
                                                 <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
-                                                <div>
+                                                <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
 
                                     </div>
                                     <div>
-                                        <div class='limit_ fl'>
+                                        <a href="" class='limit_ fl'>
                                             2016测绘地理信息工作成就2016测绘地理信息工作成就
                                             <img src="/home/images/tutor/5-1.png" alt="" style="">
-                                        </div>
-                                        <div class='limit_ fl' >
+                                        </a>
+                                        <a href="" class='limit_ fl' >
                                             2017测绘地理信息工作成就2017测绘地理信息工作成就
                                             <img src="/home/images/tutor/5-1.png" alt="" >
-                                        </div>
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -302,13 +306,13 @@
                                     <div class="swiper-container swiper-container4" >
                                         <div class="swiper-wrapper">
 
-                                            <div class="swiper-slide">
+                                            <a href="" class="swiper-slide">
                                                 <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
                                                 <div>
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <!--<div class="left_" >-->
                                         <!--<img src="/home/images/tutor/3-2.png" alt="">-->
@@ -318,14 +322,14 @@
                                         <!--</div>-->
                                     </div>
                                     <div>
-                                        <div class='limit_ fl'>
+                                        <a href="" class='limit_ fl'>
                                             2016测绘地理信息工作成就2016测绘地理信息工作成就
                                             <img src="/home/images/tutor/6-1.png" alt="" style="">
-                                        </div>
-                                        <div class='limit_ fl' >
+                                        </a>
+                                        <a href="" class='limit_ fl' >
                                             2017测绘地理信息工作成就2017测绘地理信息工作成就
                                             <img src="/home/images/tutor/6-1.png" alt="" >
-                                        </div>
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -345,64 +349,72 @@
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/3-2.png" alt="">
-                                            <img src="/home/images/tutor/3-3.png" alt="">
+                                            <a href="">
+                                                <img src="/home/images/tutor/3-3.png" alt="">
+                                            </a>
                                         </div>
-                                        <div>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
-                                        <div>
+                                        </a>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
+                                        </a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/4-2.png" alt="">
-                                            <img src="/home/images/tutor/4-3.png" alt="">
+                                            <a href="">
+                                                <img src="/home/images/tutor/4-3.png" alt="">
+                                            </a>
                                         </div>
-                                        <div>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
-                                        <div>
+                                        </a>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
+                                        </a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/5-2.png" alt="">
-                                            <img src="/home/images/tutor/5-3.png" alt="">
+                                            <a href="">
+                                                <img src="/home/images/tutor/5-3.png" alt="">
+                                            </a>
                                         </div>
-                                        <div>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
-                                        <div>
+                                        </a>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
+                                        </a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/6-2.png" alt="">
-                                            <img src="/home/images/tutor/6-3.png" alt="">
+                                            <a href="">
+                                                <img src="/home/images/tutor/6-3.png" alt="">
+                                            </a>
                                         </div>
-                                        <div>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
-                                        <div>
+                                        </a>
+                                        <a href="">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
                                             <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </div>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -423,55 +435,45 @@
 
                             <ul id="tab_main1">
                                 <li>
-                                    <div>
+                                    <a href="">
                                         <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
+                                    </a>
+                                    <a href="">
                                         <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
+                                    </a>
+                                    <a href="">
                                         <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
+                                    </a>
+                                    <a href="">
                                         <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
-                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
+                                    </a>
                                 </li>
                             </ul>
                             <ul id="tab_main2" class="none">
                                 <li>
-                                    <div>
+                                    <a href="">
                                         <span class="limit_ fl">11党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
-                                        <span class="limit_ fl">222党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
+                                    </a>
+                                    <a href="">
                                         <span class="limit_ fl">33党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
-                                    <div>
+                                    </a>
+                                    <a href="">
                                         <span class="limit_ fl">44党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
                                         <span>2017-1-20</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
-                                    </div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
