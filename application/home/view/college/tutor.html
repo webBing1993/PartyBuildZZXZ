@@ -10,15 +10,13 @@
     #tab3 ul{
         margin-bottom:20px;
     }
-
-
-    #tab3 ul li>div{
+    #tab3 ul li>a{
         height:86px;width:100%;display: block;position:relative;
     }
-    #tab3 ul li>div>img.fl{
+    #tab3 ul li>a>img.fl{
         width:92px;height:68px;border-radius: 3px;margin-left:12px;margin-top:9px;
     }
-    #tab3 ul li>div>span.limit_{
+    #tab3 ul li>a>span.limit_{
         width:60%;font-size:14px;height:55px;margin-left:11px;line-height:22px;padding-top:10px;
     }
     .tab_main{
@@ -33,10 +31,10 @@
     .none{
         display: none;
     }
-    #tab3 #tab_main1>li>div>span:nth-child(3),#tab3 #tab_main2>li>div>span:nth-child(3){
+    #tab3 #tab_main1>li>a>span:nth-child(3),#tab3 #tab_main2>li>a>span:nth-child(3){
         margin-left:12px;font-size:12px;color:#999;
     }
-    #tab3 #tab_main1>li>div>img:nth-child(4),#tab3 #tab_main2>li>div>img:nth-child(4){
+    #tab3 #tab_main1>li>a>img:nth-child(4),#tab3 #tab_main2>li>a>img:nth-child(4){
         width:12px;height:12px;margin-top:5px;margin-right:10px;
     }
 
@@ -120,12 +118,10 @@
             <li>
                 {volist name="tutor.course" id="course"}
                 <a href="{:Url('College/tutordetail?id='.$course['id'])}">
-                    <div>
-                        <img src="/home/images/tutor/1.jpg" alt="" class="fl ">
-                        <span class="limit_ fl">{$course.title}</span>
-                        <span>{$course.create_time|time_format='Y-m-d'}</span>
-                        <img src="/home/images/right.png" alt="" class="fr">
-                    </div>
+                    <img src="/home/images/tutor/1.jpg" alt="" class="fl ">
+                    <span class="limit_ fl" style="color:#333333">{$course.title}</span>
+                    <span>{$course.create_time|time_format='Y-m-d'}</span>
+                    <img src="/home/images/right.png" alt="" class="fr">
                 </a>
                 {/volist}
             </li>
@@ -148,6 +144,11 @@
         $(this).toggleClass('tab_active');
         $(this).siblings().toggleClass('tab_active');
         $(this).parent().parent().find('ul').toggleClass('none')
+    })
+    $(function(){
+        $('a').off('click' ).on('click',function(){
+            window.location.href  =$(this ).attr('href');
+        })
     })
 </script>
 {/block}
