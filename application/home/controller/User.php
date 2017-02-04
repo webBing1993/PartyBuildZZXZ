@@ -236,5 +236,11 @@ class User extends Base {
         $this->assign('list',$list);
         return $this->fetch();
     }
+    /**
+     * 临时党员信息
+     */
+    public function eg() {
+        return $this->fetch();
+    }
 
 }
