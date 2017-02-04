@@ -106,7 +106,7 @@ class Alliance extends Admin {
         $list = $this->lists('AllianceShow',$map);
         int_to_string($list,array(
             'status' => array(0=>"待审核",1=>"已发布",2=>"不通过"),
-            'type' => array(1=>"周轮值",2=>"月主题",3=>"季交流",4=>"年排行"),
+            'type' => array(1=>"周轮值",2=>"月主题",3=>"季交流",4=>"年考核"),
         ));
         $this->assign('list',$list);
 
