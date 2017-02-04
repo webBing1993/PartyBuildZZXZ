@@ -208,7 +208,7 @@
                             </div>
                             <div class="tongzhi">
                                 <span class="limit"><span>通知：</span>{$notice.title}</span>
-                                <img src="/home/images/tutor/2.png" alt="">
+                                <a href="{:Url('College/tutornoticelist')}"><img src="/home/images/tutor/2.png" alt=""></a>
                             </div>
                             <ul  style="box-shadow: 0px 0px 6px 0px rgba(223,73,52, .5);">
                                 <li>
@@ -415,7 +415,7 @@
                             <ul id="tab_main1">
                                 <li>
                                     {volist name="fnotice" id="fno"}
-                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}">
+                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}" style="width: 100%">
                                         <span class="limit_ fl">{$fno['title']}</span>
                                         <span>{$fno['create_time']|time_format='Y-m-d'}</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
@@ -426,7 +426,7 @@
                             <ul id="tab_main2" class="none">
                                 <li>
                                     {volist name="fnotice" id="fno"}
-                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}">
+                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}" style="width: 100%">
                                         <span class="limit_ fl">{$fno['title']}</span>
                                         <span>{$fno['create_time']|time_format='Y-m-d'}</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
@@ -487,12 +487,16 @@
         prevButton:'.left_',
         nextButton:'.right_'
     });
-
     //#tab3
     $('.btn1').click(function(){
         $(this).toggleClass('tab_active');
         $(this).siblings().toggleClass('tab_active');
         $(this).parent().parent().find('ul').toggleClass('none')
+    });
+    $(function(){
+        $('a').off('click' ).on('click',function(){
+            window.location.href  =$(this ).attr('href');
+        })
     })
 </script>
 {/block}
