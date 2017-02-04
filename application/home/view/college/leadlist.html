@@ -39,9 +39,10 @@ $(function(){
 	var len = $(".list" ).length;
 	if(len >= 7){
 		$('.tip' ).text('上拉加载更多');
+		//上拉加载
+		loadScroll();
 	}
-	//上拉加载
-	loadScroll();
+
 });
 function loadScroll(){
 	$(window ).off("scroll" ).on("scroll",function(){
@@ -50,7 +51,7 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		var type = '1';
+		var type =  parseInt(window.location.href.split("type/")[1]);
 		if(dh == end){
 			$.ajax({
 				type:"post",
@@ -90,7 +91,7 @@ function addMeets(data){
 		html +=
 				'<a href="/home/college/leaddetail/id/'+ list.id+'.html" class="list clear">'+
 				'<div class="fl">'+
-				'<img src="'+list.path+'" alt="图片">'+
+				'<img src="/home/images/test/1.jpg" alt="图片">'+
 				'</div>'+
 				'<div class="fr right">'+
 				'<div class="title limit_">'+list.title+'</div>'+
