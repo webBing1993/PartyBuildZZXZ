@@ -207,34 +207,31 @@
                                 <img src="/home/images/banner/2.jpg" alt="">
                             </div>
                             <div class="tongzhi">
-                                <span class="limit"><span>通知：</span>关于展开习总书记治国理政思想解读关于展开习总书记治国理政思想解读</span>
+                                <span class="limit"><span>通知：</span>{$notice.title}</span>
                                 <img src="/home/images/tutor/2.png" alt="">
                             </div>
                             <ul  style="box-shadow: 0px 0px 6px 0px rgba(223,73,52, .5);">
                                 <li>
                                     <div class="swiper-container swiper-container1" >
                                         <div class="swiper-wrapper">
-
-                                            <a href="forumdetail.html" class="swiper-slide">
-                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                            {volist name="tutor1" id="tu1"}
+                                            <a href="{:Url('College/tutor?id='.$tu1['id'])}" class="swiper-slide">
+                                                <img src="{$tu1.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
-                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                    <div style="width:100%;text-align: center;">{$tu1.name}——{$tu1.title}</div>
                                                 </div>
                                             </a>
+                                            {/volist}
                                         </div>
-
                                     </div>
-
                                     <div>
-                                        <a href="" class='limit_ fl'>
-                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                        {volist name="course1" id="cou1"}
+                                        <a href="{:Url('College/tutordetail?id='.$cou1['id'])}" class='limit_ fl'>
+                                            {$cou1.title}
                                             <img src="/home/images/tutor/3-1.png" alt="" style="">
                                         </a>
-                                        <a href="" class='limit_ fl' >
-                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
-                                            <img src="/home/images/tutor/3-1.png" alt="" >
-                                        </a>
+                                        {/volist}
                                     </div>
                                 </li>
                             </ul>
@@ -245,26 +242,24 @@
                                 <li>
                                     <div class="swiper-container swiper-container2" >
                                         <div class="swiper-wrapper">
-
-                                            <a href=""  class="swiper-slide">
-                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                            {volist name="tutor2" id="tu2"}
+                                            <a href="{:Url('College/tutor?id='.$tu2['id'])}" class="swiper-slide">
+                                                <img src="{$tu2.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
-                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                    <div style="width:100%;text-align: center;">{$tu2.name}——{$tu2.title}</div>
                                                 </div>
                                             </a>
+                                            {/volist}
                                         </div>
-
                                     </div>
                                     <div>
-                                        <a href="" class='limit_ fl'>
-                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                        {volist name="course2" id="cou2"}
+                                        <a href="{:Url('College/tutordetail?id='.$cou2['id'])}" class='limit_ fl'>
+                                            {$cou2.title}
                                             <img src="/home/images/tutor/4-1.png" alt="" style="">
                                         </a>
-                                        <a href="" class='limit_ fl' >
-                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
-                                            <img src="/home/images/tutor/4-1.png" alt="" >
-                                        </a>
+                                        {/volist}
                                     </div>
                                 </li>
                             </ul>
@@ -275,26 +270,25 @@
                                 <li>
                                     <div class="swiper-container swiper-container3" >
                                         <div class="swiper-wrapper">
-
-                                            <a href="" class="swiper-slide">
-                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                            {volist name="tutor3" id="tu3"}
+                                            <a href="{:Url('College/tutor?id='.$tu3['id'])}" class="swiper-slide">
+                                                <img src="{$tu3.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
-                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                    <div style="width:100%;text-align: center;">{$tu3.name}——{$tu3.title}</div>
                                                 </div>
                                             </a>
+                                            {/volist}
                                         </div>
 
                                     </div>
                                     <div>
-                                        <a href="" class='limit_ fl'>
-                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                        {volist name="course3" id="cou3"}
+                                        <a href="{:Url('College/tutordetail?id='.$cou3['id'])}" class='limit_ fl'>
+                                            {$cou3.title}
                                             <img src="/home/images/tutor/5-1.png" alt="" style="">
                                         </a>
-                                        <a href="" class='limit_ fl' >
-                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
-                                            <img src="/home/images/tutor/5-1.png" alt="" >
-                                        </a>
+                                        {/volist}
                                     </div>
                                 </li>
                             </ul>
@@ -305,31 +299,24 @@
                                 <li>
                                     <div class="swiper-container swiper-container4" >
                                         <div class="swiper-wrapper">
-
-                                            <a href="" class="swiper-slide">
-                                                <img src="/home/images/tutor/1.jpg" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
-                                                <div>
+                                            {volist name="tutor4" id="tu4"}
+                                            <a href="{:Url('College/tutor?id='.$tu4['id'])}" class="swiper-slide">
+                                                <img src="{$tu4.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
-                                                    <div style="width:100%;text-align: center;">全国党的建设研究会特约研究员——郭亚丁</div>
+                                                    <div style="width:100%;text-align: center;">{$tu4.name}——{$tu4.title}</div>
                                                 </div>
                                             </a>
+                                            {/volist}
                                         </div>
-                                        <!--<div class="left_" >-->
-                                        <!--<img src="/home/images/tutor/3-2.png" alt="">-->
-                                        <!--</div>-->
-                                        <!--<div class="right_">-->
-                                        <!--<img src="/home/images/tutor/3-3.png" alt="">-->
-                                        <!--</div>-->
                                     </div>
                                     <div>
-                                        <a href="" class='limit_ fl'>
-                                            2016测绘地理信息工作成就2016测绘地理信息工作成就
+                                        {volist name="course4" id="cou4"}
+                                        <a href="{:Url('College/tutordetail?id='.$cou4['id'])}" class='limit_ fl'>
+                                            {$cou4.title}
                                             <img src="/home/images/tutor/6-1.png" alt="" style="">
                                         </a>
-                                        <a href="" class='limit_ fl' >
-                                            2017测绘地理信息工作成就2017测绘地理信息工作成就
-                                            <img src="/home/images/tutor/6-1.png" alt="" >
-                                        </a>
+                                        {/volist}
                                     </div>
                                 </li>
                             </ul>
@@ -349,72 +336,64 @@
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/3-2.png" alt="">
-                                            <a href="">
+                                            <a href="{:Url('College/leadlist?type=1')}">
                                                 <img src="/home/images/tutor/3-3.png" alt="">
                                             </a>
                                         </div>
-                                        <a href="">
+                                        {volist name="lead1" id="le1"}
+                                        <a href="{:Url('College/leaddetail?id='.$le1['id'])}">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                            <span class="limit fl">{$le1.title}</span>
                                         </a>
-                                        <a href="">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </a>
+                                        {/volist}
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/4-2.png" alt="">
-                                            <a href="">
+                                            <a href="{:Url('College/leadlist?type=2')}">
                                                 <img src="/home/images/tutor/4-3.png" alt="">
                                             </a>
                                         </div>
-                                        <a href="">
+                                        {volist name="lead2" id="le2"}
+                                        <a href="{:Url('College/leaddetail?id='.$le2['id'])}">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                            <span class="limit fl">{$le2.title}</span>
                                         </a>
-                                        <a href="">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </a>
+                                        {/volist}
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/5-2.png" alt="">
-                                            <a href="">
+                                            <a href="{:Url('College/leadlist?type=3')}">
                                                 <img src="/home/images/tutor/5-3.png" alt="">
                                             </a>
                                         </div>
-                                        <a href="">
+                                        {volist name="lead3" id="le3"}
+                                        <a href="{:Url('College/leaddetail?id='.$le3['id'])}">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                            <span class="limit fl">{$le3.title}</span>
                                         </a>
-                                        <a href="">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </a>
+                                        {/volist}
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
                                         <div style="height:30px;" class="list_img">
                                             <img src="/home/images/tutor/6-2.png" alt="">
-                                            <a href="">
+                                            <a href="{:Url('College/leadlist?type=4')}">
                                                 <img src="/home/images/tutor/6-3.png" alt="">
                                             </a>
                                         </div>
-                                        <a href="">
+                                        {volist name="lead4" id="le4"}
+                                        <a href="{:Url('College/leaddetail?id='.$le4['id'])}">
                                             <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl">党员转角爱典型：储消和领军型科技人才党员转角爱典型：储消和领军型科技人才</span>
+                                            <span class="limit fl">{$le4.title}</span>
                                         </a>
-                                        <a href="">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
-                                            <span class="limit fl" >党员转角爱典型：储消和领军型科技人才</span>
-                                        </a>
+                                        {/volist}
                                     </li>
                                 </ul>
                             </div>
@@ -435,45 +414,24 @@
 
                             <ul id="tab_main1">
                                 <li>
-                                    <a href="">
-                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
+                                    {volist name="fnotice" id="fno"}
+                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}">
+                                        <span class="limit_ fl">{$fno['title']}</span>
+                                        <span>{$fno['create_time']|time_format='Y-m-d'}</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
                                     </a>
-                                    <a href="">
-                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </a>
-                                    <a href="">
-                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </a>
-                                    <a href="">
-                                        <span class="limit_ fl">党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </a>
+                                    {/volist}
                                 </li>
                             </ul>
                             <ul id="tab_main2" class="none">
                                 <li>
-                                    <a href="">
-                                        <span class="limit_ fl">11党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
+                                    {volist name="fnotice" id="fno"}
+                                    <a href="{:Url('College/forumnotice?id='.$fno['id'])}">
+                                        <span class="limit_ fl">{$fno['title']}</span>
+                                        <span>{$fno['create_time']|time_format='Y-m-d'}</span>
                                         <img src="/home/images/right.png" alt="" class="fr">
                                     </a>
-                                    <a href="">
-                                        <span class="limit_ fl">33党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </a>
-                                    <a href="">
-                                        <span class="limit_ fl">44党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才,党员转角爱典型：储消和领军型科技人才</span>
-                                        <span>2017-1-20</span>
-                                        <img src="/home/images/right.png" alt="" class="fr">
-                                    </a>
+                                    {/volist}
                                 </li>
                             </ul>
                         </div>
