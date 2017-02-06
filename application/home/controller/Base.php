@@ -20,7 +20,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-//        session('userId','15036667391');
+//        session('userId','15067197970');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -204,8 +204,8 @@ class Base extends Controller {
         if(empty($like)) {  //点赞
             $res = $likeModel->create($data);
             if($res) {
-                //点赞成功积分+2
-                WechatUser::where('userid',$uid)->setInc('score',2);
+                //点赞成功积分+1
+                WechatUser::where('userid',$uid)->setInc('score',1);
                 
                 //更新数据
                 Db::name($table)->where('id',$aid)->setInc('likes');
@@ -217,8 +217,8 @@ class Base extends Controller {
         }else { //取消
             $result = $likeModel::where($data)->delete();
             if($result) {
-                //取消成功积分-2
-                WechatUser::where('userid',$uid)->setDec('score',2);
+                //取消成功积分-1
+                WechatUser::where('userid',$uid)->setDec('score',1);
 
                 Db::name($table)->where('id',$aid)->setDec('likes');
 
@@ -298,8 +298,8 @@ class Base extends Controller {
             );
             $res = $commentModel->create($data);
             if($res) {  //返回comment数组
-                //评论成功增加三分
-                WechatUser::where('userid',$uid)->setInc('score',3);
+                //评论成功增加1分
+                WechatUser::where('userid',$uid)->setInc('score',1);
 
                 //更新主表数据
                 $map['id'] = $res['aid'];   //文章id

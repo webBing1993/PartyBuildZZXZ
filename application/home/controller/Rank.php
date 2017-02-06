@@ -35,10 +35,15 @@ class Rank extends Base {
             ->where('a.userid',$userId)
             ->find();
 
+        // 是否关注企业号  关注积分变化
+        $temp = $wechatModel::where('userid',$userId)->find();
+        if(($temp['status']) == 1 && ($temp['score']<10) ){  //  关注企业号
+            $info['score'] = array('exp','`score`+10');
+            $wechatModel::where('userid',$userId)->update($info);
+        }
         //个人信息
         $personal = $wechatModel::where('userid',$userId)->find();
         $personal['dpname'] = $dp['name'];
-
         //总榜
         $con['score'] = array('neq',0);
         $all  = $wechatModel->where($con)->order('score desc')->limit(60)->select();
