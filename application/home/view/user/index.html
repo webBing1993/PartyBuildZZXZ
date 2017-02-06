@@ -96,6 +96,8 @@ $(function(){
 						image.onload = function(){
 							if(image.width > image.height){
 								up.css({"background-size":'auto 70px'});
+							}else{
+								up.css({"background-size":'70px auto'});
 							}
 						};
 						$.ajax({
