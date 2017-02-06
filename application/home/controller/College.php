@@ -9,6 +9,7 @@ namespace app\home\controller;
 
 use app\home\model\Comment;
 use app\home\model\Like;
+use app\home\model\Picture;
 use app\home\model\Redforum;
 use app\home\model\RedforumDetail;
 use app\home\model\RedforumNotice;
@@ -336,6 +337,8 @@ class College extends Base{
         $leadModel = new Redlead();
         $list = $leadModel->where($map)->order('create_time desc')->limit($len,7)->select();
         foreach ($list as $value) {
+            $img = Picture::get($value['list_image']);
+            $value['path'] = $img['path'];
             $value['time'] = date('Y-m-d',$value['time']);
         }
         if($list) {

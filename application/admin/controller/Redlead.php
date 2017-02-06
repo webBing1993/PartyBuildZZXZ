@@ -47,6 +47,7 @@ class Redlead extends Admin {
                 return $this->error($leadModel->getError());
             }
         }else {
+            $this->default_pic();
             $this->assign('msg',null);
             return $this->fetch('edit');
         }
@@ -68,6 +69,8 @@ class Redlead extends Admin {
                 return $this->error($leadModel->getError());
             }
         }else {
+            $this->default_pic();
+
             $id = input('id');
             $msg = RedleadModel::get($id);
             $this->assign('msg',$msg);

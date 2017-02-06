@@ -342,7 +342,7 @@
                                         </div>
                                         {volist name="lead1" id="le1"}
                                         <a href="{:Url('College/leaddetail?id='.$le1['id'])}">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <img class="fl" src="{$le1.list_image|get_cover='path'}" alt="">
                                             <span class="limit fl">{$le1.title}</span>
                                         </a>
                                         {/volist}
@@ -358,7 +358,7 @@
                                         </div>
                                         {volist name="lead2" id="le2"}
                                         <a href="{:Url('College/leaddetail?id='.$le2['id'])}">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <img class="fl" src="{$le2.list_image|get_cover='path'}" alt="">
                                             <span class="limit fl">{$le2.title}</span>
                                         </a>
                                         {/volist}
@@ -374,7 +374,7 @@
                                         </div>
                                         {volist name="lead3" id="le3"}
                                         <a href="{:Url('College/leaddetail?id='.$le3['id'])}">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <img class="fl" src="{$le3.list_image|get_cover='path'}" alt="">
                                             <span class="limit fl">{$le3.title}</span>
                                         </a>
                                         {/volist}
@@ -390,7 +390,7 @@
                                         </div>
                                         {volist name="lead4" id="le4"}
                                         <a href="{:Url('College/leaddetail?id='.$le4['id'])}">
-                                            <img class="fl" src="/home/images/tutor/1.jpg" alt="">
+                                            <img class="fl" src="{$le4.list_image|get_cover='path'}" alt="">
                                             <span class="limit fl">{$le4.title}</span>
                                         </a>
                                         {/volist}

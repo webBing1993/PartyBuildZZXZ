@@ -22,9 +22,9 @@
 			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
 			{eq name="$info.is_like" value="0"}
-			<span class="isgood good" onclick="isGood(this,11,{$info.id})">{$info.likes}</span>
+			<span class="isgood good" onclick="isGood(this,9,{$info.id})">{$info.likes}</span>
 			{else/}
-			<span class="isgood good_" onclick="isGood(this,11,{$info.id})">{$info.likes}</span>
+			<span class="isgood good_" onclick="isGood(this,9,{$info.id})">{$info.likes}</span>
 			{/eq}
 		</div>
 	</div>
