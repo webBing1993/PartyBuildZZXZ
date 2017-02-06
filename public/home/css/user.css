@@ -17,7 +17,8 @@ body {
   background-size: 100% 100%;
   text-align: center;
 }
-.banner img {
+.banner .up {
+  display: inline-block;
   width: 70px;
   height: 70px;
   overflow: hidden;
@@ -26,6 +27,8 @@ body {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.31);
+  background: url("/home/images/test/1.jpg") center no-repeat;
+  background-size:70px auto;
 }
 .banner .name {
   width: 60%;
@@ -72,10 +75,14 @@ body {
   background-size: 28px 28px;
 }
 .lists .list:nth-child(4) span {
-  background: url("/home/images/user/notes.png") 0 11px no-repeat;
+  background: url("/home/images/user/score.png") 0 11px no-repeat;
   background-size: 28px 28px;
 }
 .lists .list:nth-child(5) span {
+  background: url("/home/images/user/notes.png") 0 11px no-repeat;
+  background-size: 28px 28px;
+}
+.lists .list:nth-child(6) span {
   background: url("/home/images/user/publish.png") 0 11px no-repeat;
   background-size: 28px 28px;
 }

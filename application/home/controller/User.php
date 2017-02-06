@@ -242,5 +242,11 @@ class User extends Base {
     public function eg() {
         return $this->fetch();
     }
+    /**
+     * 积分商城
+     */
+    public function score() {
+        return $this->fetch();
+    }
 
 }
