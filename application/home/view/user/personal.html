@@ -21,9 +21,9 @@
 		<span class="fl">姓名</span>
 		<span class="fr">{$user.name}</span>
 	</div>
-	<div class="list clear">
+	<div class="list clear toshow"  data-toggle="modal" data-target="#modal">
 		<span class="fl">二维码</span>
-		<span class="fr" data-toggle="modal" data-target="#modal"><img src="/home/images/user/er.png" alt="" class="er"><i class="fa fa-angle-right"></i></span>
+		<span class="fr"><img src="/home/images/user/er.png" alt="" class="er"><i class="fa fa-angle-right"></i></span>
 	</div>
 	<div class="list clear">
 		<span class="fl">性别</span>
@@ -56,15 +56,15 @@
 	</div>
 	<div class="list clear">
 		<span class="fl">活动情况</span>
-		<span class="fr">30/60</span>
+		<span class="fr">0/0</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">学习情况</span>
-		<span class="fr">30/60</span>
+		<span class="fr">0/0</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">会议情况</span>
-		<span class="fr">30/60</span>
+		<span class="fr">0/0</span>
 	</div>
 </div>
 <div class="lists">
@@ -72,17 +72,16 @@
 		<span class="fl">党员缴费</span>
 	</div>
 	<div class="list clear">
-		<span class="fl">2016年10月</span>
-		<span class="fr">10</span>
+		<span class="fl">暂无</span>
+		<!--<span class="fr">10</span>-->
 	</div>
-	<div class="list clear">
-		<span class="fl">2016年10月</span>
-		<span class="fr">10</span>
-	</div>
-	<div class="list clear">
-	<span class="fl">2016年10月</span>
-	<span class="fr">10</span>
-</div>
+	<!--<div class="list clear">-->
+		<!--<span class="fl">2016年10月</span>-->
+		<!--<span class="fr">10</span>-->
+	<!--</div>-->
+	<!--<div class="list clear">-->
+	<!--<span class="fl">2016年10月</span>-->
+	<!--<span class="fr">10</span>-->
 </div>
 <!-- 二维码 -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -97,6 +96,9 @@
 {block name="script"}
 <script>
 $(function(){
+	$('.toshow' ).on('click',function(){
+		$('#model').modal('show');
+	});
 	//隐藏手机号中间四位
 //	var tel = $('.list').eq(4 ).find('.fr');
 //	var t = tel.text().split('');
