@@ -209,6 +209,8 @@ class Redtutor extends Admin {
                 return $this->error($courseModel->getError());
             }
         }else {
+            $this->default_pic();
+
             //获取导师列表
             $map = array('status' => 1,);
             $list = RedtutorTutor::where($map)->field('id,name')->select();
@@ -235,6 +237,8 @@ class Redtutor extends Admin {
                 return $this->error($courseModel->getError());
             }
         }else {
+            $this->default_pic();
+
             //获取导师列表
             $map = array('status' => 1,);
             $list = RedtutorTutor::where($map)->field('id,name')->select();

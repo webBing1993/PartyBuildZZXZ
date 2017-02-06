@@ -193,9 +193,14 @@ class College extends Base{
     public function tutor() {
         $id = input('id');
         $tutor = RedtutorTutor::where('id',$id)->find();
-        $course = RedtutorCourse::where('tid',$id)->order('create_time desc')->select();
+        $map = array(
+            'tid' => $id,
+            'status' => 1,
+        );
+        $course = RedtutorCourse::where($map)->order('create_time desc')->select(); //获取导师通知
         $tutor['number'] = count($course);
         $tutor['course'] = $course;
+
         $this->assign('tutor',$tutor);
         
         return $this->fetch();

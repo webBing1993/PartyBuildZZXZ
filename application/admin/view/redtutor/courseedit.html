@@ -4,6 +4,24 @@
 <link rel="stylesheet" href="/static/datepicker/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="/static/iCheck/custom.css">
 <link rel="stylesheet" href="/admin/css/chosen/chosen.css">
+<style>
+    .imggroup{
+        position: relative;
+    }
+    .imgbox{
+        height: 140px;
+        width: 160px;
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+    .imgfile{
+        height: 140px;
+        width: 160px;
+        position: absolute;
+        top:0;
+        opacity: 0;
+    }
+</style>
 {/block}
 
 {block name="page-header"}
@@ -49,6 +67,30 @@
                                     {/volist}
                                 </select>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>列表封面:</label>
+                            </div>
+                            {eq name="msg" value=""}
+                            <div class="col-lg-5">
+                                <div class="imggroup">
+                                    <img src="{$front_pic|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
+                                    <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
+                                    <input type="hidden" name="list_image" class="img"  value="{$front_pic}" required="">
+                                </div>
+                                <b>推荐尺寸：160*140px</b>
+                            </div>
+                            {else/}
+                            <div class="col-lg-5">
+                                <div class="imggroup">
+                                    <img src="{$msg.list_image|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
+                                    <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
+                                    <input type="hidden" name="list_image" class="img"  value="{$msg.list_image}" required="">
+                                </div>
+                                <b>推荐尺寸：160*140px</b>
+                            </div>
+                            {/eq}
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
@@ -114,6 +156,51 @@
 
         highlight_subnav("{:Url('Redtutor/course')}");
 
+        //上传图片
+        var plus = $('.plus');
+        var imgnum = 1;
+        plus.on('click',function(){
+            var it = $(this);
+            it.hide().next().fadeIn();
+            imgnum = 3;
+            if(!it.hasClass('plus2')){
+                plus.eq(1).fadeIn();
+                imgnum = 2
+            }
+        });
+        $(".imgfile").on("change",function(){
+            var size = ($(this)[0].files[0].size / 1024).toFixed(2);
+            var imgBox = $(this);
+            if(size <= 2048){
+                var img = $(this)[0].files[0];
+                var formData = new FormData();
+                var pic=$(this);
+                formData.append("picture",img);
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('File/uploadPicture')}",
+                    data:formData,
+                    processData : false,
+                    contentType : false,
+                    success:function(msg){
+                        var msg = $.parseJSON(msg);
+                        var path = msg.data.path;
+                        if(msg['code'] == 1){
+                            imgBox.siblings(".img").val(msg.data["id"]);
+                            //显示图片缩略图
+                            pic.parent().find("img" ).attr({src:path});
+                        } else {
+                            warning({msg:msg['msg']});
+                            return;
+                        }
+                    }
+                });
+            } else {
+                warning({msg:"您选择的图片超过2mb，请重新选择"});
+                return;
+            }
+        });
+
         var ue = UE.getEditor('container',{
             initialFrameHeight:400
         });
@@ -123,6 +210,7 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
+                list_image:$("input[name='list_image']").val(),
                 tid:$("select[name='tid']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),

@@ -118,7 +118,7 @@
             <li>
                 {volist name="tutor.course" id="course"}
                 <a href="{:Url('College/tutordetail?id='.$course['id'])}">
-                    <img src="/home/images/tutor/1.jpg" alt="" class="fl ">
+                    <img src="{$course.list_image|get_cover='path'}" alt="" class="fl ">
                     <span class="limit_ fl" style="color:#333333">{$course.title}</span>
                     <span class="fl">{$course.create_time|time_format='Y-m-d'}</span>
                     <img src="/home/images/right.png" alt="" class="fr">
