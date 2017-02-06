@@ -13,9 +13,9 @@
 {else/}
 <div class="banner">
 	{eq name="user.header" value=""}
-	<img src="{$user.avatar}" alt="个人头像" class="up">
+	<div class="up" data-tab="{$user.avatar}"></div>
 	{else/}
-	<img src="{$user.header}" alt="个人头像" class="up">
+	<div class="up" data-tab="{$user.header}"></div>
 	{/eq}
 	<div class="name">{$user.name}</div>
 	<input type="file" class="hide" id="upload" accept="image/jpg, image/png, image/gif, image/jpeg">
@@ -38,6 +38,10 @@
 		<span>支部排行榜</span>
 		<i class="fa fa-angle-right fr"></i>
 	</a>
+	<a href="{:Url('User/score')}" class="list clear">
+		<span>积分商城</span>
+		<i class="fa fa-angle-right fr"></i>
+	</a>
 	{eq name="is" value="1"}
 	<a href="{:Url('User/mynotes')}" class="list clear">
 		<span>我的笔记</span>
@@ -55,8 +59,19 @@
 {block name="script"}
 <script>
 $(function(){
+	//头像大小
+	var up = $('.up' );
+	var path = up.attr('data-tab');
+	var image = new Image();
+	image.src = path ;
+	up.css({"background-image":'url('+path+')'});
+	image.onload = function(){
+		if(image.width > image.height){
+			up.css({"background-size":'auto 70px'});
+		}
+	};
 	//触发上传按钮
-	$('.up').off("click").on('click',function(){
+	up.off("click").on('click',function(){
 		$('#upload').click();
 	});
 	//上传图片并获取信息
@@ -75,7 +90,16 @@ $(function(){
 				success:function(data){
 					var msg = $.parseJSON(data);
 					if(msg.code == 1){
-						$('.up' ).attr('src',msg.data.path)
+						var image = new Image();
+						image.src = msg.data.path ;
+						up.css({"background-image":'url('+msg.data.path+')'});
+						image.onload = function(){
+							if(image.width > image.height){
+								up.css({"background-size":'auto 70px'});
+							}else{
+								up.css({"background-size":'70px auto'});
+							}
+						};
 						$.ajax({
 							type:"post",
 							url:"{:Url('User/setHeader')}",

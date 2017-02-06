@@ -14,7 +14,7 @@ use think\Model;
 class Like extends Model {
     protected $insert = [
         'create_time' => NOW_TIME,
-        'score' => 2,
+        'score' => 1,
         'status' => 0,
     ];
 

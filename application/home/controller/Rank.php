@@ -35,10 +35,17 @@ class Rank extends Base {
             ->where('a.userid',$userId)
             ->find();
 
+        // 是否关注企业号  关注后积分变化
+        $temp = $wechatModel::where('status',1)->select();
+        foreach($temp as $value){
+            if($value['score'] < 10){
+                $info['score'] = array('exp','`score`+10');
+                $wechatModel::where('userid',$value['userid'])->update($info);
+            }
+        }
         //个人信息
         $personal = $wechatModel::where('userid',$userId)->find();
         $personal['dpname'] = $dp['name'];
-
         //总榜
         $con['score'] = array('neq',0);
         $all  = $wechatModel->where($con)->order('score desc')->limit(60)->select();
@@ -96,7 +103,7 @@ class Rank extends Base {
         $comment = Comment::where($map)->select();
         $list2 = array();
         foreach ($comment as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list2[$k][] = $value;
         }
         $new2 = array();
@@ -110,7 +117,7 @@ class Rank extends Base {
         $like = Like::where($map)->select();
         $list3 = array();
         foreach ($like as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list3[$k][] = $value;
         }
         $new3 = array();
@@ -206,7 +213,7 @@ class Rank extends Base {
         $comment_m = Comment::where($map)->select();
         $list2_m = array();
         foreach ($comment_m as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list2_m[$k][] = $value;
         }
         $new2_m = array();
@@ -221,7 +228,7 @@ class Rank extends Base {
         $like_m = Like::where($map)->select();
         $list3_m = array();
         foreach ($like_m as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list3_m[$k][] = $value;
         }
         $new3_m = array();
@@ -413,7 +420,7 @@ class Rank extends Base {
         $comment = Comment::where($map)->select();
         $list2 = array();
         foreach ($comment as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list2[$k][] = $value;
         }
         $new2 = array();
@@ -427,7 +434,7 @@ class Rank extends Base {
         $like = Like::where($map)->select();
         $list3 = array();
         foreach ($like as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list3[$k][] = $value;
         }
         $new3 = array();
@@ -535,12 +542,11 @@ class Rank extends Base {
             $cen['score'] = $count;
             $new1_m[] = $cen;
         }
-
         //本月评论
         $comment_m = Comment::where($map)->select();
         $list2_m = array();
         foreach ($comment_m as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list2_m[$k][] = $value;
         }
         $new2_m = array();
@@ -555,7 +561,7 @@ class Rank extends Base {
         $like_m = Like::where($map)->select();
         $list3_m = array();
         foreach ($like_m as $value){
-            $k = $value['create_user'];
+            $k = $value['uid'];
             $list3_m[$k][] = $value;
         }
         $new3_m = array();

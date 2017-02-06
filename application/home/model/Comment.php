@@ -17,7 +17,7 @@ class Comment extends Model {
         'likes' => 0,
         'create_time' => NOW_TIME,
         'status' => 0,
-        'score' => 3,
+        'score' => 1,
     ];
 
     /**
