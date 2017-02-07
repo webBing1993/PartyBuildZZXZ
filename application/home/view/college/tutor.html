@@ -37,7 +37,9 @@
     #tab3 #tab_main1>li>a>img:nth-child(4),#tab3 #tab_main2>li>a>img:nth-child(4){
         width:12px;height:12px;margin-top:5px;margin-right:10px;
     }
-
+    #tab_main1>li>a{
+        border-bottom: 1px solid #f1f1f1;
+    }
     .can_look{
         display: block;
     }
@@ -144,7 +146,7 @@
         $(this).toggleClass('tab_active');
         $(this).siblings().toggleClass('tab_active');
         $(this).parent().parent().find('ul').toggleClass('none')
-    })
+    });
     $(function(){
         $('a').off('click' ).on('click',function(){
             window.location.href  =$(this ).attr('href');
