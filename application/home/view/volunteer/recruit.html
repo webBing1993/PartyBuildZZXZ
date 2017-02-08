@@ -10,6 +10,7 @@
 <div class="lists">
 	{volist name="list" id="vo"}
 	<a href="{:Url('Volunteer/recruitdetail?id='.$vo['id'])}" class="list clear">
+		<div class="tag">已领</div>
 		<img src="{$vo.list_image|get_cover='path'}" alt="列表图" class="left fl">
 		<div class="content fl">
 			<div class="title limit">{$vo.title}</div>
@@ -70,7 +71,7 @@ function loadScroll(url,a,b){
 						loading.toggleClass('hidden');
 						tip.show();
 						if(data.code == 1){
-							addLists(data,type);
+							addLists(data);
 							var dataLen =data.data.length;
 							if(data.data.length == b){
 								tip.text('上拉加载更多');
@@ -91,15 +92,14 @@ function addLists(data){
 	var len = lists.length;
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
-		var url = "{:Url('Volunteer/recruitdetail')}";
 		html +=
-				'<a href='+url+' class="list clear">'+
-				'<img src="/home/images/test/3.png" alt="列表图" class="left fl">'+
+				'<a href="/home/volunteer/recruitdetail/id/'+ list.id+'.html" class="list clear">'+
+				'<img src='+list.path+' alt="列表图" class="left fl">'+
 				'<div class="content fl">'+
-				'<div class="title limit">走进德清老年协会送温暖3走进德清老年协会送温暖走进德清老年协会送温暖</div>'+
+				'<div class="title limit">'+list.title+'</div>'+
 				'<div class="note">'+
-				'<div class="num">0 / 1 人</div>'+
-				'<div class="time">2017-01-01</div>'+
+				'<div class="num">'+list.receive_number+' / '+list.demand_number+' 人</div>'+
+				'<div class="time">'+list.time+'</div>'+
 				'</div>'+
 				'</div>'+
 				'<div class="right fr"><span class="fa fa-angle-right"></span></div>'+
