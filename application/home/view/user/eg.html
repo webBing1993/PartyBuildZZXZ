@@ -9,37 +9,45 @@
 	<div class="list clear tag">
 		<span class="fl">党员信息</span>
 	</div>
+	<!--<div class="list clear">-->
+	<!--<span class="fl">头像</span>-->
+	<!--{eq name="user.header" value=""}-->
+	<!--<img src="{$user.avatar}" alt="个人头像" class="fr">-->
+	<!--{else/}-->
+	<!--<img src="{$user.header}" alt="个人头像" class="fr">-->
+	<!--{/eq}-->
+	<!--</div>-->
 	<div class="list clear">
 		<span class="fl">姓名</span>
-		<span class="fr">蔡</span>
+		<span class="fr">{$user.name}</span>
 	</div>
-	<div class="list clear">
-		<span class="fl">二维码</span>
-		<span class="fr" data-toggle="modal" data-target="#modal"><img src="/home/images/user/er.png" alt="" class="er"><i class="fa fa-angle-right"></i></span>
-	</div>
+	<!--<div class="list clear toshow"  data-toggle="modal" data-target="#modal">-->
+		<!--<span class="fl">二维码</span>-->
+		<!--<span class="fr"><img src="/home/images/user/er.png" alt="" class="er"><i class="fa fa-angle-right"></i></span>-->
+	<!--</div>-->
 	<div class="list clear">
 		<span class="fl">性别</span>
-		<span class="fr">男</span>
+		<span class="fr">{$user.sex}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">出生日期</span>
-		<span class="fr">1985-02-03</span>
+		<span class="fr">{$user.birthday}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">手机号</span>
-		<span class="fr">15067198358</span>
+		<span class="fr">{$user.mobile}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">学历</span>
-		<span class="fr">本科</span>
+		<span class="fr">{$user.education}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">入党时间</span>
-		<span class="fr">2012-02-25</span>
+		<span class="fr">{$user.partytime}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">所在支部</span>
-		<span class="fr">第一支部</span>
+		<span class="fr">{$user.branch}</span>
 	</div>
 </div>
 <div class="lists">
@@ -65,21 +73,49 @@
 	</div>
 	<div class="list clear">
 		<span class="fl">暂无</span>
+		<!--<span class="fr">10</span>-->
 	</div>
+	<!--<div class="list clear">-->
+	<!--<span class="fl">2016年10月</span>-->
+	<!--<span class="fr">10</span>-->
+	<!--</div>-->
+	<!--<div class="list clear">-->
+	<!--<span class="fl">2016年10月</span>-->
+	<!--<span class="fr">10</span>-->
 </div>
 <!-- 二维码 -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<img src="/home/images/user/code.png" alt="二维码" class="code">
+			<div class="code">
+				<div id="qrcode"></div>
+			</div>
+			{eq name="user.header" value=""}
+			<img src="{$user.avatar}" alt="个人头像" class="header">
+			{else/}
+			<img src="{$user.header}" alt="个人头像" class="header">
+			{/eq}
 		</div>
 	</div>
 </div>
 {/block}
 
 {block name="script"}
+<script src="/static/code/jquery.qrcode.min.js"></script>
 <script>
 $(function(){
+	$('.toshow' ).on('click',function(){
+		$('#model').modal('show');
+	});
+	var code = $('.code' );
+	var ww = code.width();
+	var hh = code.height();
+	var id = '{$user.id}';
+	jQuery('#qrcode').qrcode({
+		width: ww,
+		height:hh,
+		text: 'http://dqpb.0571ztnet.com/home/user/personal/id/'+id
+	});
 	//隐藏手机号中间四位
 	//	var tel = $('.list').eq(4 ).find('.fr');
 	//	var t = tel.text().split('');

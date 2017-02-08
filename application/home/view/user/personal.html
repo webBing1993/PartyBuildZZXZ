@@ -87,17 +87,34 @@
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<img src="/home/images/user/code.png" alt="二维码" class="code">
+			<div class="code">
+				<div id="qrcode"></div>
+			</div>
+			{eq name="user.header" value=""}
+			<img src="{$user.avatar}" alt="个人头像" class="header">
+			{else/}
+			<img src="{$user.header}" alt="个人头像" class="header">
+			{/eq}
 		</div>
 	</div>
 </div>
 {/block}
 
 {block name="script"}
+<script src="/static/code/jquery.qrcode.min.js"></script>
 <script>
 $(function(){
 	$('.toshow' ).on('click',function(){
 		$('#model').modal('show');
+	});
+	var code = $('.code' );
+	var ww = code.width();
+	var hh = code.height();
+	var id = '{$user.userid}';
+	jQuery('#qrcode').qrcode({
+		width: ww,
+		height:hh,
+		text: 'http://dqpb.0571ztnet.com/home/user/eg/id/'+id
 	});
 	//隐藏手机号中间四位
 //	var tel = $('.list').eq(4 ).find('.fr');

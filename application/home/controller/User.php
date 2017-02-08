@@ -240,6 +240,22 @@ class User extends Base {
      * 临时党员信息
      */
     public function eg() {
+        $id = input('id');
+        $user = WechatUser::where('userid',$id)->find();
+        switch ($user['gender']) {
+            case 0:
+                $user['sex'] = "未定义";
+                break;
+            case 1:
+                $user['sex'] = "男";
+                break;
+            case 2:
+                $user['sex'] = "女";
+                break;
+            default:
+                break;
+        }
+        $this->assign('user',$user);
         return $this->fetch();
     }
     /**
