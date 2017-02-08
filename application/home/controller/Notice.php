@@ -769,7 +769,7 @@ class Notice extends Base {
                 $data['front_cover'] = array_rand($a,1);
                 $data['create_time'] = time();
                 $data['create_user'] = session('userId');
-                $model = $noticeModel->create($data);
+                $model = NoticeModel::create($data);
             }
             if($model && $data['status'] == 0) { //  待审核
                 $map['status'] = 0; //  待审核
@@ -786,9 +786,10 @@ class Notice extends Base {
                     "safe" => "0"
                 );
                 $Wechat->sendMessage($message);  //审核通过，向用户推送提示
-                return $this->success("编辑成功");
+                return $this->success("提交成功");
             }else{
-                return $this->error("编辑失败");
+                return $this->success("保存成功");
+
             }
         }else{
             $id = input('id') ? input('id') : "";

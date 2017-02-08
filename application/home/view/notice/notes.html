@@ -347,6 +347,10 @@ $(function(){
 		if($('.img:nth-child(1) img').attr('src')!= undefined){
 			single = true;
 		}
+		if(!data.type){
+			alert('请选择发布栏');
+			return ;
+		}
 		if(single){
 			data['status'] = 3;
 			data['id'] = $("input[name='id']").val();
