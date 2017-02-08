@@ -9,12 +9,13 @@ namespace app\home\controller;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\Picture;
+use app\home\model\VolunteerOrder;
+use app\home\model\VolunteerRecruit;
 use app\home\model\VolunteerTeam;
-use app\home\model\WechatTest;
-use app\home\model\WechatUser;
+
 
 class Volunteer extends Base{
-    /*
+    /**
      * 服务团队
      */
     public function team(){
@@ -57,7 +58,7 @@ class Volunteer extends Base{
         foreach ($list as $value) {
             $img = Picture::get($value['list_image']);
             $value['path'] = $img['path'];
-            $value['time'] = date('Y-m-d',$value['time']);
+            $value['time'] = date('Y-m-d',$value['create_time']);
         }
         if($list) {
             return $this->success("加载成功","",$list);
@@ -66,19 +67,7 @@ class Volunteer extends Base{
         }
     }
 
-    /*
-     * 服务订单
-     */
-    public function order(){
-        return $this->fetch();
-    }
-    /*
-     * 志愿招募
-     */
-    public function recruit(){
-        return $this->fetch();
-    }
-    /*
+    /**
      * 服务团队详情页
      */
     public function teamdetail(){
@@ -87,6 +76,7 @@ class Volunteer extends Base{
         $uid = session('userId');
         $id = input('id');
         $teamModel = new VolunteerTeam();
+        $teamModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $teamModel->get($id);
         //点赞
@@ -103,19 +93,93 @@ class Volunteer extends Base{
         return $this->fetch();
     }
 
-    /*
+    /**
+     * 服务订单
+     */
+    public function order(){
+        $orderModel = new VolunteerOrder();
+        $map = array(
+            'status' => array('egt',1)
+        );
+        $list = $orderModel->where($map)->order('create_time desc')->limit(7)->select();
+        $this->assign('list',$list);
+
+        return $this->fetch();
+    }
+
+    /**
+     * 服务订单更多
+     */
+    public function ordermore() {
+        $len = input('length');
+        $map =  array(
+            'status' => array('egt',1)
+        );
+        $orderModel = new VolunteerOrder();
+        $list = $orderModel->where($map)->order('create_time desc')->limit($len,5)->select();
+        foreach ($list as $value) {
+            $img = Picture::get($value['list_image']);
+            $value['path'] = $img['path'];
+            $value['time'] = date('Y-m-d',$value['create_time']);
+        }
+        if($list) {
+            return $this->success("加载成功","",$list);
+        }else{
+            return $this->error("加载失败");
+        }
+    }
+
+    /**
      * 服务订单详情页
      */
     public function orderdetail(){
         return $this->fetch();
     }
-    /*
+
+    /**
+     * 志愿招募
+     */
+    public function recruit(){
+        $recruitModel = new VolunteerRecruit();
+        $map = array(
+            'status' => array('eq',1)
+        );
+        $list = $recruitModel->where($map)->order('create_time desc')->limit(7)->select();
+        $this->assign('list',$list);
+
+        return $this->fetch();
+    }
+
+    /**
+     * 志愿招募
+     */
+    public function recruitmore() {
+        $len = input('length');
+        $map =  array(
+            'status' => array('eq',1)
+        );
+        $recruitModel = new VolunteerRecruit();
+        $list = $recruitModel->where($map)->order('create_time desc')->limit($len,5)->select();
+        foreach ($list as $value) {
+            $img = Picture::get($value['list_image']);
+            $value['path'] = $img['path'];
+            $value['time'] = date('Y-m-d',$value['create_time']);
+        }
+        if($list) {
+            return $this->success("加载成功","",$list);
+        }else{
+            return $this->error("加载失败");
+        }
+    }
+
+    /**
      * 志愿招募详情页
      */
     public function recruitdetail(){
         return $this->fetch();
     }
-    /*
+
+    /**
      * 志愿发布页
      */
     public function publish(){

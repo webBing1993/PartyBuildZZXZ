@@ -67,9 +67,9 @@ class Alliance extends Base{
         $list = $arrangeModel->where($map)->order('create_time desc')->limit(7)->select();
         foreach ($list as $value) {
             if($value['time'] < time()) {
-                $value['begin'] = 0;    //未开始
+                $value['begin'] = 1;    //未开始
             }else{
-                $value['begin'] = 1;    //已结束
+                $value['begin'] = 0;    //已结束
             }
         }
         $this->assign('list',$list);
@@ -87,7 +87,7 @@ class Alliance extends Base{
         $arrangeModel = new AllianceArrange();
         $list = $arrangeModel->where($map)->order('create_time desc')->limit($len,7)->select();
         foreach ($list as $value) {
-            $value['time'] = date('Y-m-d',$value['time']);
+            $value['time'] = date('Y-m-d',$value['create_time']);
         }
         if($list) {
             return $this->success("加载成功","",$list);
@@ -175,7 +175,7 @@ class Alliance extends Base{
         $showModel = new AllianceShow();
         $list = $showModel->where($map)->order('create_time desc')->limit($len,7)->select();
         foreach ($list as $value) {
-            $value['time'] = date('Y-m-d',$value['time']);
+            $value['time'] = date('Y-m-d',$value['create_time']);
         }
         if($list) {
             return $this->success("加载成功","",$list);

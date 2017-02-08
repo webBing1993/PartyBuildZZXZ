@@ -126,7 +126,7 @@ function send(e,type,id){
 						'<div class="content" >'+it.val()+'</div>'+
 						'<div class="time">'+data.time+'</div>'+
 						'</div>'+
-						'<div class="fr isgood good" onclick="isGood(this,0'+data.id+')">'+data.likes+'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
 						'</div>';
 				$('.lists' ).append(html);
 				it.val('');

@@ -282,7 +282,7 @@ class College extends Base{
         $noticeModel = new RedtutorNotice();
         $list = $noticeModel->where($map)->order('create_time desc')->limit($len,9)->select();
         foreach ($list as $value) {
-            $value['time'] = date('Y-m-d',$value['time']);
+            $value['time'] = date('Y-m-d',$value['create_time']);
         }
         if($list) {
             return $this->success("加载成功","",$list);
@@ -345,7 +345,7 @@ class College extends Base{
         foreach ($list as $value) {
             $img = Picture::get($value['list_image']);
             $value['path'] = $img['path'];
-            $value['time'] = date('Y-m-d',$value['time']);
+            $value['time'] = date('Y-m-d',$value['create_time']);
         }
         if($list) {
             return $this->success("加载成功","",$list);
