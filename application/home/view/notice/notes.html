@@ -168,7 +168,6 @@ $(function(){
 		minuteStep: 5
 
 	});
-
 	//模块标题
 	$('title').text('情况发布');
 	//初始发布栏
@@ -359,7 +358,7 @@ $(function(){
 				success:function(data){
 					console.log(data);
 					$('.typebg' ).fadeIn();
-					$('.tips' ).css({'line-height': '30px'}).html('恭喜您，保存成功！<br>请至个人中心——我的笔记中查看').fadeIn();
+					$('.tips' ).css({'line-height': '30px'}).html('恭喜您，保存成功！<br>请至个人中心——情况发布中查看').fadeIn();
 					$('.typebg,.tips').off('click');
 					setTimeout(function(){
 						window.location.href = "{:Url('Notice/index?c=1')}";

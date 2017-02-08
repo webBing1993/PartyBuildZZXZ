@@ -294,7 +294,7 @@
 					data:data,
 					success:function(data){
 						$('.typebg' ).fadeIn();
-						$('.tips' ).css({'line-height': '30px'}).html('恭喜您，保存成功！<br>请至个人中心——我的发布中查看').fadeIn();
+						$('.tips' ).css({'line-height': '30px'}).html('恭喜您，保存成功！<br>请至个人中心——通知发布中查看').fadeIn();
 						$('.typebg,.tips').off('click');
 						setTimeout(function(){
 							window.location.href = "{:Url('Notice/index?c=1')}";
@@ -302,6 +302,7 @@
 					}
 				});
 			}else{
+				window.scrollTo(0,0);
 				$('.typebg' ).fadeIn();
 				$('.tips' ).html('<div class="text">请您输入至少一项信息 </div>' ).fadeIn();
 				setTimeout(function(){
