@@ -16,16 +16,18 @@
 	<div class="box active">
 		<div class="lists">
 			<!--爱心帮扶列表-->
-			<a href="{:Url('Volunteer/teamdetail')}" class="list">
-				<img src="/home/images/test/3.png" alt="列表图" class="left">
+			{volist name="list1" id="li1"}
+			<a href="{:Url('Volunteer/teamdetail?id='.$li1['id'])}" class="list">
+				<img src="{$li1['list_image']|get_cover='path'}" alt="列表图" class="left">
 				<div class="content">
-					<div class="title limit">爱心帮扶志愿服务</div>
+					<div class="title limit">{$li1['title']}</div>
 					<div class="note">
-						<div class="time">2017-01-01</div>
+						<div class="time">{$li1['create_time']|time_format='Y-m-d'}</div>
 						<div class="angle"><span class="fa fa-angle-right"></span></div>
 					</div>
 				</div>
 			</a>
+			{/volist}
 			<!--/爱心帮扶列表-->
 			<div class="tip"></div>
 		</div>
@@ -33,17 +35,18 @@
 	<div class="box hidden">
 		<div class="lists">
 			<!--环境美化列表-->
-			<a href="{:Url('Volunteer/teamdetail2_1')}" class="list">
-				<img src="/home/images/volunteer/huanjing.jpg" alt="列表图" class="left">
+			{volist name="list2" id="li2"}
+			<a href="{:Url('Volunteer/teamdetail?id='.$li2['id'])}" class="list">
+				<img src="{$li2['list_image']|get_cover='path'}" alt="列表图" class="left">
 				<div class="content">
-					<div class="title limit">环境美化志愿服务</div>
+					<div class="title limit">{$li2['title']}</div>
 					<div class="note">
-						<div class="time">2016-03-12</div>
+						<div class="time">{$li2['create_time']|time_format='Y-m-d'}</div>
 						<div class="angle"><span class="fa fa-angle-right"></span></div>
 					</div>
 				</div>
 			</a>
-
+			{/volist}
 			<!--/环境美化列表-->
 			<div class="tip"></div>
 		</div>
@@ -51,17 +54,18 @@
 	<div class="box">
 		<div class="lists">
 			<!--平安巡查列表-->
-			<a href="{:Url('Volunteer/teamdetail3_1')}" class="list">
-				<img src="/home/images/test/3.png" alt="列表图" class="left">
+			{volist name="list3" id="li3"}
+			<a href="{:Url('Volunteer/teamdetail?id='.$li3['id'])}" class="list">
+				<img src="{$li3['list_image']|get_cover='path'}" alt="列表图" class="left">
 				<div class="content">
-					<div class="title limit">平安巡查志愿服务</div>
+					<div class="title limit">{$li3['title']}</div>
 					<div class="note">
-						<div class="time">2016-12-01</div>
+						<div class="time">{$li3['create_time']|time_format='Y-m-d'}</div>
 						<div class="angle"><span class="fa fa-angle-right"></span></div>
 					</div>
 				</div>
 			</a>
-
+			{/volist}
 			<!--/平安巡查列表-->
 			<div class="tip"></div>
 		</div>
@@ -81,7 +85,7 @@ $(function(){
 	//tab切换
 	tabSwitch('.tab' ,'.box',loadScroll);
 	//上拉加载
-	loadScroll(getType(),'url',7,5);
+	loadScroll(getType(),"{:Url('Volunteer/listmore')}",7,5);
 });
 /**
  * 上拉加载
