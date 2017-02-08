@@ -98,8 +98,10 @@ function loadScroll(type,url,a,b){
 	var box = $('.box' ).eq(type - 1 );
 	var tip = box.find('.tip' );
 	var len = box.find('.list').length;
-	if(len >= a){
+	if(len == a){
 		tip.text('上拉加载更多');
+	}else if(len > a){
+		tip.text('没有更多了');
 	}
 	$(window ).off("scroll" ).on("scroll",function(){
 		var dh = $(document).height();
