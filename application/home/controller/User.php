@@ -329,7 +329,7 @@ class User extends Base {
         $meetAll = $Notice->where($mapss)->count(); // 会议情况 总数
         $Brower = new Browse();
         $map1 = array(
-            'user_id' => $userId,
+            'user_id' => $id,
             'notice_id' => array('exp',"is not null")
         );
         $activity = $Brower->where($map1)->select(); // 浏览notice总记录
