@@ -140,7 +140,7 @@ class Review extends Base {
 //                   'totag' => "4", //审核标签用户
                    "touser" => "@all",   //发送给全体，@all
                     "msgtype" => 'news',
-                    "agentid" =>10,  // 小镇动态
+                    "agentid" =>15,  // 小镇动态
                     "news" => $send,
                     "safe" => "0"
                 );
