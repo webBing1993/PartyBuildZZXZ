@@ -207,7 +207,7 @@
                                 <img src="/home/images/banner/2.jpg" alt="">
                             </div>
                             <div class="tongzhi">
-                                <span class="limit"><span>通知：</span>{$notice.title}</span>
+                                <span class="limit"><span>通知：</span><a href="">{$notice.title}</a></span>
                                 <a href="{:Url('College/tutornoticelist')}"><img src="/home/images/tutor/2.png" alt=""></a>
                             </div>
                             <ul  style="box-shadow: 0px 0px 6px 0px rgba(223,73,52, .5);">
@@ -446,16 +446,17 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
+    var c =  parseInt(window.location.href.split("index/c/")[1]);
     $(document).ready(function(){
-        if({$c} ==1){
+        if(c ==1){
             $('.buttons-row a:nth-child(1)').addClass('active');
             $('.tabs div:nth-child(1)').addClass('active');
         }
-        if({$c} ==2){
+        if(c ==2){
             $('.buttons-row a:nth-child(2)').addClass('active');
             $('.tabs div:nth-child(2)').addClass('active');
         }
-        if({$c} ==3){
+        if(c ==3){
             $('.buttons-row a:nth-child(3)').addClass('active');
             $('.tabs div:nth-child(3)').addClass('active');
         }

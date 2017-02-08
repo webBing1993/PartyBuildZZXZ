@@ -39,9 +39,6 @@ class College extends Base{
         $tutorModel = new RedtutorTutor();
         $courseModel = new RedtutorCourse();
 
-        // 红领学院中 红领导师、红领带动、红色论坛切换
-        $c = input('c');
-        $this->assign('c',$c);
 
         //党建理论 type:1
         $map1 = array(
