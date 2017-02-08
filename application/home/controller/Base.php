@@ -147,6 +147,7 @@ class Base extends Controller {
      * 9 Redlead
      * 10 RedforumDetail
      * 11 RedforumNotice
+     * 12 VolunteerTeam
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -188,6 +189,9 @@ class Base extends Controller {
                 break;
             case 11:
                 $table = "redforum_notice";
+                break;
+            case 12:
+                $table = "volunteer_team";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -244,6 +248,7 @@ class Base extends Controller {
      * 9 Redlead
      * 10 RedforumDetail
      * 11 RedforumNotice
+     * 12 VolunteerTeam
      */
     public function comment(){
         if(IS_POST){
@@ -283,6 +288,9 @@ class Base extends Controller {
                     break;
                 case 11:
                     $table = "redforum_notice";
+                    break;
+                case 12:
+                    $table = "volunteer_team";
                     break;
                 default:
                     return $this->error("无该数据表");

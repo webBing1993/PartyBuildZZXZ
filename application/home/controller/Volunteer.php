@@ -82,7 +82,23 @@ class Volunteer extends Base{
      * 服务团队详情页
      */
     public function teamdetail(){
+        $this->anonymous(); //判断是否是游客
 
+        $uid = session('userId');
+        $id = input('id');
+        $teamModel = new VolunteerTeam();
+
+        $info = $teamModel->get($id);
+        //点赞
+        $likeModel = new Like();
+        $like = $likeModel->getLike(12,$id,$uid);
+        $info['is_like'] = $like;
+        $this->assign('info',$info);
+
+        //获取评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(12,$id,$uid);
+        $this->assign('comment',$comment);
 
         return $this->fetch();
     }

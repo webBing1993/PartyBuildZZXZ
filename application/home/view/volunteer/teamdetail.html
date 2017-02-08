@@ -5,51 +5,58 @@
 {/block}
 {block name="body"}
 <div class="article">
-	<div class="title limit_">爱心帮扶志愿服务</div>
+	<div class="title limit_">{$info.title}</div>
 	<div class="note">
-		<span>2017-01-01</span>
+		<span>{$info.create_time|time_format='Y-m-d'}</span>
 	</div>
 	<div class="content">
-        <p>队长：夏洁人（高新区团委书记）</p>
-        <p>副队长：王峰（高新区工会）、陈爱俊（高新区团委副书记）</p>
-        <p>成员：冯涛丽（国遥党支部书记）、陈青海（杭州经纬党支部书记）、杭丹维（中海达团支部书记）、叶澜（正元团支部书记）、陈晨、唐亮、胡益轩、张洁、地信企业员工15人左右。</p>
-        <p>建议组织开展：</p>
-        <p>1、看望慰问社会福利院的失独、体弱老人，提供志愿服务；</p>
-        <p>2、为实验小学的小学生进行交通引导志愿服务；</p>
-        <p>3、为企业“小候鸟”送温暖、为职工高温送清凉活动等等。</p>
+        {$info.content}
 		<div class="note">
-			<span class="read">1</span>
+			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
-			<span class="isgood good" onclick="isGood(this,'id',null,null,3)">2</span>
+			{eq name="$info.is_like" value="0"}
+			<span class="isgood good" onclick="isGood(this,12,{$info.id})">{$info.likes}</span>
+			{else/}
+			<span class="isgood good_" onclick="isGood(this,12,{$info.id})">{$info.likes}</span>
+			{/eq}
 		</div>
 	</div>
 </div>
 <div class="comment">
-	<div class="sum">共<span>0</span>条评论</div>
+	<div class="sum">共<span>{$info.comments}</span>条评论</div>
 	<div class="lists">
-		<!--<div class="list clear">-->
-			<!--<div class="fl">-->
-				<!--<img src="/home/images/test/3.png" alt="用户" class="user">-->
-			<!--</div>-->
-			<!--<div class="fl mid">-->
-				<!--<div class="name limit">阿丹</div>-->
-				<!--<div class="content" >好好好</div>-->
-				<!--<div class="time">2016-01-01</div>-->
-			<!--</div>-->
-			<!--&lt;!&ndash;未点赞：good,已点赞good_&ndash;&gt;-->
-			<!--<div class="fr isgood good_" onclick="isGood(this,'co.id','co.create_user',3)">2</div>-->
-		<!--</div>-->
+		{volist name="comment" id="com"}
+		<div class="list clear">
+			<div class="fl">
+				<img src="{$com.header}" alt="用户" class="user">
+			</div>
+			<div class="fl mid">
+				<div class="name limit">{$com.nickname}</div>
+				<div class="content" >{$com.content}</div>
+				<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
+			</div>
+			<!--未点赞：good,已点赞good_-->
+			{eq name="visit" value="0"}
+			{eq name="com.is_like" value="0"}
+			<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{else/}
+			<div class="fr isgood good_" onclick="isGood(this,0,{$com.id})">{$com.likes}</div>
+			{/eq}
+			{/eq}
+		</div>
+		{/volist}
 	</div>
 	<div class="tip"></div>
 	<div class="loading hidden">
 		<div class="typing_loader"></div>
 	</div>
 </div>
+{eq name="visit" value="0"}
 <div class="bottom clear">
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,'id')">发送</div>
+	<div class="send fl" onclick="send(this,12,{$info.id})">发送</div>
 	<div class="not">
 		<div class="bg"></div>
 		<div class="msg">
@@ -58,29 +65,33 @@
 		</div>
 	</div>
 </div>
+{/eq}
 {/block}
 
 {block name="script"}
 <script>
 $(function(){
-	//上拉加载评论
-	loadScroll();
-	//ios fix兼容
-	tofixed();
+	$(function(){
+		var len = $(".list" ).length;
+		if(len >= 7){
+			$('.tip' ).text('上拉加载更多');
+			//上拉加载评论
+			loadScroll();
+		}
+		//ios fix兼容
+		tofixed();
+	});
 });
 //点赞
-function isGood(e,id,comment_id,userid,cla){
+function isGood(e,type,id){
 	//type：1文章，2评论
-	var type = $(e ).hasClass('fr')?2:1;
+//	var type = $(e ).hasClass('fr')?2:1;
 	$.ajax({
 		type:"post",
 		url:"{:Url('Base/like')}",
 		data:{
 			type:type,
-			id:id,
-			comment_id:comment_id,
-			user_id:userid,
-			class:cla,
+			aid:id,
 		},
 		success:function(data){
 			var n = $(e ).text();
@@ -91,19 +102,20 @@ function isGood(e,id,comment_id,userid,cla){
 	})
 }
 //评论
-function send(e,id){
+function send(e,type,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
 			type:"post",
 			url:"{:Url('Base/comment')}",
 			data:{
-				learn_id:id,
+				type: type,
+				aid:id,
 				content:it.val()
 			},
 			success:function(data){
 				var data = data.data;
-				var userid = "'"+data.create_user+"'";
+				var userid = "'"+data.uid+"'";
 				var html = '';
 				html += '<div class="list clear">'+
 						'<div class="fl">'+
@@ -114,7 +126,7 @@ function send(e,id){
 						'<div class="content" >'+it.val()+'</div>'+
 						'<div class="time">'+data.time+'</div>'+
 						'</div>'+
-						'<div class="fr isgood good" onclick="isGood(this,'+data.learn_id+','+data.id+','+userid+','+3+')">'+data.likes+'</div>'+
+						'<div class="fr isgood good" onclick="isGood(this,0'+data.id+')">'+data.likes+'</div>'+
 						'</div>';
 				$('.lists' ).append(html);
 				it.val('');
@@ -135,22 +147,20 @@ function send(e,id){
 }
 //加载更多
 function loadScroll(){
-	var len = $(".list" ).length;
-	if(len >= 7){
-		$('.tip' ).text('上拉加载更多');
-	}
 	$(window ).off("scroll" ).on("scroll",function(){
 		var dh = $(document).height();
 		var end = $(window).height() + $(window ).scrollTop();
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
+		var id = {$info.id};
 		if(dh == end){
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('Base/morecomment')}",
 				data:{
-					learn_id:id,
+					type: 12,
+					aid: id,
 					length:len
 				},
 				beforeSend: function(XMLHttpRequest){
@@ -193,9 +203,9 @@ function addComment(data){
 				'<div class="time">'+ list.time+'</div>'+
 				'</div>';
 		if(list.is_like == 0){
-			html+='<div class="fr isgood good" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}else{
-			html+='<div class="fr isgood good_" onclick="isGood(this,'+list.news_id+','+list.id+','+userid+','+3+')">'+list.likes+'</div>'
+			html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
 		}
 		html+=
 				'</div>';
