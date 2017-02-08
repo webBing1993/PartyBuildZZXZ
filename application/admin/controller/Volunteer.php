@@ -8,6 +8,7 @@
 
 namespace app\admin\controller;
 use app\admin\model\VolunteerOrder;
+use app\admin\model\VolunteerRecruit;
 use app\admin\model\VolunteerTeam;
 
 /**
@@ -187,6 +188,105 @@ class Volunteer extends Admin {
             'status' => array('eq',1),
         );
         $list = $this->lists('VolunteerOrderReceive',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"待审核",1=>"已领取"),
+        ));
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+
+    /**
+     * 志愿招募
+     */
+    public function recruit() {
+        $map = array(
+            'status' => array('eq',1),
+        );
+        $list = $this->lists('VolunteerRecruit',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"待审核",1=>"已发布",2=>"审核不通过"),
+        ));
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+
+    /**
+     * 招募新增
+     */
+    public function recruitadd() {
+        if(IS_POST) {
+            $data = input('post.');
+            unset($data['id']);
+            $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+            $data['time'] = strtotime($data['time']);
+            $recruitModel = new VolunteerRecruit();
+            $model = $recruitModel->validate('VolunteerRecruit')->save($data);
+            if($model) {
+                return $this->success("新增成功",Url('Volunteer/recruit'));
+            }else{
+                return $this->error($recruitModel->getError());
+            }
+        }else {
+            $this->default_pic();
+            $this->assign('msg',null);
+            return $this->fetch('recruitedit');
+        }
+    }
+
+    /**
+     * 招募修改
+     */
+    public function recruitedit() {
+        if(IS_POST) {
+            $data = input('post.');
+            $data['update_time'] = time();
+            $data['update_user'] = $_SESSION['think']['user_auth']['id'];
+            $data['time'] = strtotime($data['time']);
+            $recruitModel = new VolunteerRecruit();
+            $model = $recruitModel->validate('VolunteerRecruit')->save($data,['id'=>$data['id']]);
+            if($model) {
+                return $this->success("修改成功",Url('Volunteer/recruit'));
+            }else{
+                return $this->error($recruitModel->getError());
+            }
+        }else {
+            $this->default_pic();
+
+            $id = input('id');
+            $msg = VolunteerRecruit::get($id);
+            $this->assign('msg',$msg);
+
+            return $this->fetch();
+        }
+    }
+
+    /**
+     * 招募删除
+     */
+    public function recruitdel() {
+        $id = input('id');
+        $map = array(
+            'status' => -1,
+        );
+        $recruitModel = new VolunteerRecruit();
+        $model = $recruitModel->where('id',$id)->update($map);
+        if($model) {
+            return $this->success("删除成功");
+        }else{
+            return $this->error("删除失败");
+        }
+    }
+
+    /**
+     * 领取列表
+     */
+    public function recruitreceive() {
+        $id = input('id');
+        $map = array(
+            'rid' => $id,
+            'status' => array('eq',1),
+        );
+        $list = $this->lists('VolunteerRecruitReceive',$map);
         int_to_string($list,array(
             'status' => array(0=>"待审核",1=>"已领取"),
         ));
