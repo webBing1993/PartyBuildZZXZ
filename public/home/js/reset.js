@@ -1,7 +1,7 @@
 /**
  * Created by rawraw on 2017/1/22.
  */
-function tabSwitch(a,b,fn){
+function tabSwitch(a,b,fn,url){
 	$(a).off('click').on('click',function(){
 		var this_ = this ;
 		var box = $(b ).parent();
@@ -16,7 +16,7 @@ function tabSwitch(a,b,fn){
 			setCookie( 'tab', index );
 			if(fn){
 				var tab = $('.active' ).index() + 1;
-				fn(tab,'',7,5);
+				fn(tab,url,7,5);
 			}
 		});
 
