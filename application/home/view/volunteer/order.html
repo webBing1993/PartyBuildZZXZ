@@ -10,7 +10,9 @@
 <div class="lists">
 	{volist name="list" id="vo"}
     <a href="{:Url('Volunteer/orderdetail?id='.$vo['id'])}" class="list clear">
+		{eq name="vo.status" value="2"}
 		<div class="tag">已领</div>
+		{/eq}
         <img src="{$vo.list_image|get_cover='path'}" alt="列表图" class="left fl">
         <div class="content fl">
             <div class="title limit">{$vo.title}</div>
