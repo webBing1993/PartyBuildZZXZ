@@ -217,7 +217,7 @@
                 <div class="swipeout-content">
                     <img src="{$vo.image|get_cover='path'}" alt="封面图片">
                     <div class="list">
-                        <span class="title" style="width:100%;overflow:hidden; white-space:nowrap;text-overflow:ellipsis;">{$vo.title}</span>
+                        <span class="title" style="width:95%;overflow:hidden; white-space:nowrap;text-overflow:ellipsis;font-size:14px;display:inline-block;">{$vo.title}</span>
                         <span class="sent_time">
                             <span style="margin-right: 5px;font-weight: bolder;display: block;height:25px;line-height:25px;">{$vo.class_name}</span>
                             <span>审核人：{$vo.username}</span>
@@ -258,5 +258,6 @@
     else{
         $('#wuxiaoxi').show()
     }
+
 </script>
 {/block}
