@@ -33,7 +33,7 @@
     .foot .rank ul li:first-child .ranking{color: #eba52c;}
     .foot .rank ul li:nth-child(2) .ranking{color: #c5c5c5;}
     .foot .rank ul li:nth-child(3) .ranking{color: #dd8723;}
-    .foot .rank ul li .department{font-size: 14px;margin-left: 10px;}
+    .foot .rank ul li .department{display:inline-block;width:60vw;font-size: 14px;margin-left: 10px;}
     .foot .rank ul li .int{font-size: 12px;float: right;margin-right: 20px;}
     #score{position:relative;top: -70%;right: -49%;color:#fff;}
     #score span{position: relative;top: 28px;left:-40px;}
@@ -42,7 +42,6 @@
     #myModalLabel{text-align: center;font-size: 22px;}
     .modal-dialog {margin-top: -2%;position: fixed;}
     #myModal{overflow-x: hidden;position: fixed;}
-
     .overHide{overflow: hidden;height: 100%;}
     .cc{ overflow-y:auto;}
     /*适配pad，iphone*/
@@ -184,10 +183,10 @@
         <div class="rank" age="1">
             <ul>
                 {volist name="week" id="fi" key="k"}
-                <li>
-                    <span class="ranking">{$k}</span>
-                    <span class="department">{$fi.name}</span>
-                    <span class="int">积分{$fi.score}分</span>
+                <li class="clear">
+                    <span class="fl ranking">{$k}</span>
+                    <span class="fl department">{$fi.name}</span>
+                    <span class="fl int">积分{$fi.score}分</span>
                 </li>
                 {/volist}
             </ul>
@@ -195,10 +194,10 @@
         <div class="rank" age="2" style="display: none;">
             <ul>
                 {volist name="month" id="mo" key="k"}
-                <li>
-                    <span class="ranking">{$k}</span>
-                    <span class="department">{$mo.name}</span>
-                    <span class="int">积分{$mo.score}分</span>
+                <li class="clear">
+                    <span class="fl ranking">{$k}</span>
+                    <span class="fl department">{$mo.name}</span>
+                    <span class="fl int">积分{$mo.score}分</span>
                 </li>
                 {/volist}
             </ul>
@@ -206,10 +205,10 @@
         <div class="rank" age="3" style="display: none;">
             <ul>
                 {volist name="all" id="vo" key="k"}
-                <li>
-                    <span class="ranking">{$k}</span>
-                    <span class="department">{$vo.name}</span>
-                    <span class="int">积分{$vo.score}分</span>
+                <li class="clear">
+                    <span class="fl ranking">{$k}</span>
+                    <span class="fl department">{$vo.name}</span>
+                    <span class="fl int">积分{$vo.score}分</span>
                 </li>
                 {/volist}
             </ul>
@@ -232,9 +231,23 @@ $(function(){
                     $(this).show().siblings().hide();
                 }
             });
+            $('.department' ).each(function(){
+                var _this =$(this);
+                var h = _this.height();
+                if(h > 60){
+                    _this.css({'height':'60px','line-height':'30px'});
+                }
+            })
         });
     });
-})
+    $('.department' ).each(function(){
+        var _this =$(this);
+        var h = _this.height();
+        if(h > 60){
+            _this.css({'height':'60px','line-height':'30px'});
+        }
+    })
+});
 //    积分规则
     $(function () {
         $('#score span').click(function () {
