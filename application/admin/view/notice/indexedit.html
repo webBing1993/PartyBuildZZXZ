@@ -41,10 +41,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>{if condition="$msg.type eq 1"}相关通知{elseif condition="$msg.type eq 4"/}活动招募{else/}志愿发布{/if}管理</h2>
+        <h2>{if condition="$msg.type eq 1"}上级政策{elseif condition="$msg.type eq 4"/}活动招募{else/}志愿发布{/if}管理</h2>
         <ol class="breadcrumb">
             <li>
-                {if condition="$msg.type eq 1"}<a href="{:Url('Notice/index')}">相关通知</a>{elseif condition="$msg.type eq 4"/}
+                {if condition="$msg.type eq 1"}<a href="{:Url('Notice/index')}">上级政策</a>{elseif condition="$msg.type eq 4"/}
                 <a href="{:Url('Notice/recruit')}"></a>活动招募{else/}<a href="{:Url('Notice/volunteer')}">志愿发布</a>{/if}
             </li>
             <li class="active">
@@ -78,7 +78,7 @@
                             <div class="col-lg-11">
                                 <select class="form-control" name="type" disabled>
                                     {if condition="$msg.type eq 1"}
-                                    <option value="1">相关通知</option>
+                                    <option value="1">上级政策</option>
                                     {else/}
                                     <option value="4">活动通知</option>
                                     {/if}
