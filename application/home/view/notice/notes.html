@@ -336,7 +336,6 @@ $(function(){
 			title:$("input[name='title']").val(),
 			content:$("textarea[name='content']").val(),
 		};
-		console.log(data);
 		var single = false;
 		for(var key in data){
 			if(data[key]!= ''){
@@ -349,7 +348,6 @@ $(function(){
 		}
 		if(!data.type){
 			alert('请选择发布栏');
-			return ;
 		}
 		if(single){
 			data['status'] = 3;
