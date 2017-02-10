@@ -15,6 +15,7 @@ use app\home\model\VolunteerRecruit;
 use app\home\model\VolunteerRecruitReceive;
 use app\home\model\VolunteerTeam;
 use app\home\model\WechatUser;
+use app\home\model\WechatUserTag;
 
 
 class Volunteer extends Base{
@@ -175,6 +176,7 @@ class Volunteer extends Base{
      * 志愿招募
      */
     public function recruit(){
+        $userId = session('userId');
         $recruitModel = new VolunteerRecruit();
         $map = array(
             'status' => array('eq',1)
@@ -182,6 +184,17 @@ class Volunteer extends Base{
         $list = $recruitModel->where($map)->order('create_time desc')->limit(7)->select();
         $this->assign('list',$list);
 
+        //是否具备我的发布权限,具备为1，无则为0
+        $map = array(
+            'userid' => $userId,
+            'tagid' => 5, //发布权限标签id
+        );
+        $info = WechatUserTag::where($map)->find();
+        if($info) {
+            $this->assign('is',1);
+        }else{
+            $this->assign('is',0);
+        }
         return $this->fetch();
     }
 
@@ -301,6 +314,7 @@ class Volunteer extends Base{
      * 志愿发布页
      */
     public function publish(){
+
         return $this->fetch();
     }
 }
