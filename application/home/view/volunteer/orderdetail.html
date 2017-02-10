@@ -18,7 +18,7 @@
 		</div>
 		<div class="list">
 			<span class="tag">认领人数：</span>
-			<span>{$info.receive_number}/{$info.demand_number}</span>
+			<span><span class="addnum">{$info.receive_number}</span>/{$info.demand_number}</span>
 		</div>
 		<div class="list">
 			<span class="tag">联系人：</span>
@@ -83,6 +83,7 @@ $(function(){
 				id:id
 			},
 			success:function(data){
+				var n = $('.addnum');
 				var m =data.data;
 				var html =
 						'<div class="list">'+
@@ -92,6 +93,7 @@ $(function(){
 						'<span class="time limit">'+m.time+'</span>'+
 						'</div>';
 				$('.enroll .lists' ).append(html);
+				n.text(parseInt(n.text())+1)
 			}
 		})
 	})
