@@ -47,6 +47,7 @@
 
 {block name="script"}
 <script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
+<script src="/home/js/reset.js"></script>
 <script>
 var wAlert = window.alert;
 window.alert = function (message) {
@@ -77,7 +78,6 @@ $(function(){
 			people:$("input[name='people']").val(),
 			tel:$("input[name='tel']").val(),
 			content:$("textarea[name='content']").val(),
-			topic:$("input[name='topic']").val()
 		};
 		var all = true;
 		for(var key in data){
@@ -89,11 +89,11 @@ $(function(){
 		if(all){
 			var img = $('.img img' ).attr('data-tag');
 			if(img){
-				data[image] = img ;
+				data['image'] = img ;
 			}
 			$.ajax({
 				type:"post",
-				url:"",
+				url:"{:Url('Volunteer/publish')}",
 				data:data,
 				beforeSend: function(XMLHttpRequest){
 				},

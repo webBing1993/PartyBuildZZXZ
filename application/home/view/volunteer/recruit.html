@@ -42,7 +42,10 @@ $(function(){
 	$('title' ).text('志愿招募');
 	//上拉加载
 	loadScroll("{:Url('Volunteer/recruitmore')}",7,5);
-	moveanyway($('.publish'));
+	if($('#publish').length){
+		moveanyway($('.publish'));
+	}
+
 });
 /**
  * 上拉加载
