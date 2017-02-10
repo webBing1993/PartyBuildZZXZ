@@ -116,7 +116,7 @@ function send(e,type,id){
 				var data = data.data;
 				var userid = "'"+data.create_user+"'";
 				var html = '';
-				html += '<div class="list clear">'+
+				html +=
 						'<div class="list clear">'+
 						'<div class="fl">'+
 						'<img src="'+data.header+'" alt="用户头像" class="user">'+
@@ -129,7 +129,7 @@ function send(e,type,id){
 						'<div class="fr isgood good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
 						'</div>'+
 						'</div>';
-				$('.tip' ).before(html);
+				$('.lists' ).append(html);
 				it.val('');
 				var sum = $('.sum span' );
 				sum.text(parseInt(sum.text())+1)
@@ -194,7 +194,7 @@ function addComment(data){
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
 		var userid = "'"+list.create_user+"'";
-		html += '<div class="list clear">'+
+		html +=
 				'<div class="list clear">'+
 				'<div class="fl">'+
 				'<img src="'+list.header+'" alt="用户" class="user">'+
@@ -212,7 +212,7 @@ function addComment(data){
 		html+= '</div>';
 		html+= '</div>';
 	}
-	$(".tip" ).before(html);
+	$(".lists" ).append(html);
 }
 //--------------------------------------------------------------------------
 //
