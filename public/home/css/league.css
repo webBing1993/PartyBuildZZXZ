@@ -151,7 +151,7 @@ a {
   background-size: contain;
 }
 .blocks .block {
-  padding-top: 67.6vw;
+  padding-top: 65vw;
 }
 .blocks .block .member {
   padding: 4vw 4vw 0 4vw;
@@ -189,7 +189,7 @@ a {
   top: 0;
   color: #333333;
   font-size: 1.6rem;
-  line-height: 66px;
+  line-height: 17.6vw;
   font-weight: 600;
 }
 .blocks .block.slist .ul .title:before {
@@ -210,7 +210,7 @@ a {
   top: 0;
   color: #666666;
   font-size: 1.4rem;
-  line-height: 40px;
+  line-height: 10vw;
 }
 .blocks .block.slist .ul .li:before {
   position: absolute;
