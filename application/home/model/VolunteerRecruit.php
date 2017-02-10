@@ -16,4 +16,8 @@ class VolunteerRecruit extends Model {
         'create_time' => NOW_TIME,
         'status' => 0,
     ];
+
+    public function user() {
+        return $this->hasOne('WechatUser','userid','userid');
+    }
 }

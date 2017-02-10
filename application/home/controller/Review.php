@@ -13,6 +13,8 @@ use app\admin\model\PushReview;
 use app\home\model\News;
 use app\home\model\Notice;
 use app\home\model\Picture;
+use app\home\model\VolunteerRecruit;
+use app\home\model\VolunteerRecruitReview;
 use app\home\model\WechatUser;
 use app\home\model\Years;
 use com\wechat\TPQYWechat;
@@ -296,5 +298,60 @@ class Review extends Base {
         }
         return $this->fetch();
     }
+    
+    /**
+     * 志愿招募审核列表
+     */
+    public function recruitlist() {
+        $map = array(
+            'status' => 0
+        );
+        $recruitModel = new VolunteerRecruit();
+        $list = $recruitModel->where($map)->order('create_time desc')->select();
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
 
+    /**
+     * 志愿审核
+     */
+    public function recruitreview() {
+        $id = input('id');
+        $map['status'] = input('status');
+        $model = VolunteerRecruit::where('id',$id)->update($map);
+        $msg = VolunteerRecruit::get($id);
+        $userid = $msg['userid'];
+        if($model) {
+            if($map['status'] == 1) {
+                $content = "恭喜您提交的志愿招募【".$msg['title']."】已成功通过审核！";
+            }else{
+                $content = "很抱歉，您提交的志愿招募【".$msg['title']."】未能通过审核！";
+            }
+            $Wechat = new TPQYWechat(Config::get('party'));
+            $message = array(
+                'touser' => $userid,
+                "msgtype" => 'text',
+                "agentid" => 8,  // 个人中心
+                "text" => array(
+                    "content" => $content
+                ),
+                "safe" => "0"
+            );
+
+            $suc = $Wechat->sendMessage($message);  //审核不通过推送
+            if($suc) {
+                $arr = array(
+                    'rid' => $id,
+                    'userid' => session('userId'),
+                );
+                VolunteerRecruitReview::create($arr);
+                return $this->success("审核完成");
+            }else {
+                return $this->error("审核失败");
+            }
+        }else{
+            return $this->error("审核失败");
+        }
+        
+    }
 }
