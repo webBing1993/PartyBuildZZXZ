@@ -12,5 +12,8 @@ namespace app\home\model;
 use think\Model;
 
 class VolunteerRecruit extends Model {
-
+    protected $insert = [
+        'create_time' => NOW_TIME,
+        'status' => 0,
+    ];
 }

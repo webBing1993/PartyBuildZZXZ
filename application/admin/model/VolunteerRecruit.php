@@ -14,4 +14,8 @@ class VolunteerRecruit extends Base {
         'create_time' => NOW_TIME,
         'status' => 1,
     ];
+
+    public function user() {
+        return $this->hasOne('WechatUser','userid','userid');
+    }
 }

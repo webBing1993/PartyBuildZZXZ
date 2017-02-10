@@ -63,7 +63,11 @@
                                 <td>{$vo.address}</td>
                                 <td>{$vo.contacts}</td>
                                 <td>{$vo.telephone}</td>
+                                {eq name="$vo.userid" value=""}
                                 <td>{$vo->cuser->nickname}</td>
+                                {else/}
+                                <td>{$vo->user->name}</td>
+                                {/eq}
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>

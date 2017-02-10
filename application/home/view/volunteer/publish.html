@@ -20,15 +20,15 @@
 	</div>
 	<div class="list">
 		<span class="tag">联 系 人</span>
-		<input type="text" placeholder="请输入联系人姓名" name="people">
+		<input type="text" placeholder="请输入联系人姓名" name="contacts">
 	</div>
 	<div class="list">
 		<span class="tag">联系方式</span>
-		<input type="number" placeholder="请输入联系人电话" name="tel">
+		<input type="number" placeholder="请输入联系人电话" name="telephone">
 	</div>
 	<div class="list">
 		<span class="tag">招募人数</span>
-		<input type="number" placeholder="请输入最多招募人数" name="num">
+		<input type="number" placeholder="请输入最多招募人数" name="demand_number">
 	</div>
 </div>
 <div class="content">
@@ -75,9 +75,10 @@ $(function(){
 			title:$("input[name='title']").val(),
 			time:$("input[name='time']").val(),
 			address:$("input[name='address']").val(),
-			people:$("input[name='people']").val(),
-			tel:$("input[name='tel']").val(),
+			contacts:$("input[name='contacts']").val(),
+			telephone:$("input[name='telephone']").val(),
 			content:$("textarea[name='content']").val(),
+			demand_number:$("input[name='demand_number']").val(),
 		};
 		var all = true;
 		for(var key in data){
@@ -89,7 +90,7 @@ $(function(){
 		if(all){
 			var img = $('.img img' ).attr('data-tag');
 			if(img){
-				data['image'] = img ;
+				data['list_image'] = img ;
 			}
 			$.ajax({
 				type:"post",

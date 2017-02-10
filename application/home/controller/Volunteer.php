@@ -314,7 +314,20 @@ class Volunteer extends Base{
      * 志愿发布页
      */
     public function publish(){
-
-        return $this->fetch();
+        if(IS_POST) {
+            $userId = session('userId');
+            $data = input('post.');
+            $data['userid'] = $userId;
+            $data['time'] = strtotime($data['time']);
+            $recruitModel = new VolunteerRecruit();
+            $model = $recruitModel->create($data);
+            if($model) {
+                return $this->success("添加成功");    
+            }else {
+                return $this->error("添加失败");
+            }
+        }else {
+            return $this->fetch();
+        }
     }
 }
