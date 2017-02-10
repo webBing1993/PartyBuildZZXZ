@@ -47,8 +47,26 @@
 
 {block name="script"}
 <script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
-<script src="/home/js/reset.js"></script>
 <script>
+var wAlert = window.alert;
+window.alert = function (message) {
+	try {
+		var iframe = document.createElement("IFRAME");
+		iframe.style.display = "none";
+		iframe.setAttribute("src", 'data:text/plain,');
+		document.documentElement.appendChild(iframe);
+		var alertFrame = window.frames[0];
+		var iwindow = alertFrame.window;
+		if (iwindow == undefined) {
+			iwindow = alertFrame.contentWindow;
+		}
+		iwindow.alert(message);
+		iframe.parentNode.removeChild(iframe);
+	}
+	catch (exc) {
+		return wAlert(message);
+	}
+};
 $(function(){
 	//提交
 	$('.submit' ).off('click' ).on('click',function(){
@@ -65,12 +83,11 @@ $(function(){
 		for(var key in data){
 			if(data[key]== ''){
 				all = false;
-				alert(key);
 				break;
 			}
 		}
 		if(all){
-			var img = $('.img img' ).attr('src');
+			var img = $('.img img' ).attr('data-tag');
 			if(img){
 				data[image] = img ;
 			}
@@ -85,7 +102,7 @@ $(function(){
 				}
 			});
 		}else{
-			alert('信息输入不完整');
+			wAlert('信息输入不完整');
 		}
 	});
 	//图片上传和修改
@@ -107,22 +124,22 @@ $(function(){
 						var msg = $.parseJSON(data);
 						if(msg.code == 1){
 							if(this_.hasClass('add')){
-								$('.img').removeClass('hide').append('<img src='+msg.data.path+' alt="笔记图片">');
+								$('.img').removeClass('hide').append('<img src='+msg.data.path+' alt="笔记图片" data-tag='+msg.data.id+'>');
 								$('.add' ).hide();
 								imgresize();
 							}else{
 								this_.find('img').remove();
-								$('.img').append('<img src='+msg.data.path+' alt="笔记图片">');
+								$('.img').append('<img src='+msg.data.path+' alt="笔记图片" data-tag='+msg.data.id+'>');
 								imgresize();
 							}
 						} else {
-							alert('上传失败');
+							wAlert('上传失败');
 							return;
 						}
 					}
 				});
 			} else {
-				alert('您选择的图片超过5mb，请重新选择');
+				wAlert('您选择的图片超过5mb，请重新选择');
 				return;
 			}
 		});
@@ -136,6 +153,8 @@ $(function(){
 		todayHighlight: 1,
 		minuteStep: 5
 	});
+
 });
+
 </script>
 {/block}
