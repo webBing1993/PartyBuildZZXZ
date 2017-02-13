@@ -315,4 +315,10 @@ class Constitution extends Base {
         $this->assign('right2',$right2);
         return $this->fetch();
     }
+    /*
+     * 查看错题
+     */
+    public function course(){
+        return $this->fetch();
+    }
 }
