@@ -59,6 +59,7 @@
   position: relative;
   left: 0;
   padding-left: 14px;
+  width: 60%;
 }
 .lists .list .content .note .num:before {
   position: absolute;
@@ -71,7 +72,7 @@
   background-size: contain;
 }
 .lists .list .content .note .time {
-  width: 72%;
+  width: 38%;
   text-align: right;
 }
 .lists .list .content .note .time span {
