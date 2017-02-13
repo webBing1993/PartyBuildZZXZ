@@ -12,21 +12,21 @@
 		{$info.content}
 	</div>
 	<div class="lists">
-		<div class="list">
-			<span class="tag">所属单位：</span>
-			<span>{$info.unit}</span>
+		<div class="list clear">
+			<span class="fl tag">所属单位：</span>
+			<span class="fl">{$info.unit}</span>
 		</div>
-		<div class="list">
-			<span class="tag">认领人数：</span>
-			<span><span class="addnum">{$info.receive_number}</span>/{$info.demand_number}</span>
+		<div class="list clear">
+			<span class="fl tag">认领人数：</span>
+			<span class="fl"><span class="addnum">{$info.receive_number}</span>/{$info.demand_number}</span>
 		</div>
-		<div class="list">
-			<span class="tag">联系人：</span>
-			<span>{$info.contacts}</span>
+		<div class="list clear">
+			<span class="fl tag">联系人：</span>
+			<span class="fl">{$info.contacts}</span>
 		</div>
-		<div class="list">
-			<span class="tag">联系方式：</span>
-			<span><a href="tel:{$info.telephone}">{$info.telephone}</a> </span>
+		<div class="list clear">
+			<span class="fl tag">联系方式：</span>
+			<span class="fl"><a href="tel:{$info.telephone}">{$info.telephone}</a> </span>
 		</div>
 	</div>
 	{eq name="$info.status" value="2"}
@@ -96,6 +96,14 @@ $(function(){
 				n.text(parseInt(n.text())+1)
 			}
 		})
+	});
+	//样式
+	$('.content .list' ).each(function(){
+		var this_ = $(this);
+		var h = this_.find('span' ).eq(1 ).height();
+		if(h>40){
+			this_.find('span' ).eq(1 ).css({'line-height':24+'px','margin-top': 10 + 'px'});
+		}
 	})
 });
 </script>
