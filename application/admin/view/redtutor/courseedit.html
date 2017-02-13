@@ -92,6 +92,31 @@
                             </div>
                             {/eq}
                         </div>
+                        <div class="one">
+                            <div class="form-group">
+                                <div class="col-lg-1 text-right control-label">
+                                    <label>视频音频:</label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <select name="videoway" id="videoway"  class="form-control" disabled>
+                                        <option value="1"> —— 输入视频链接地址 —— </option>
+                                    </select>
+                                </div>
+                                <div class="videogroup">
+                                    <div class="col-lg-7 videoaddr">
+                                        <div class="col-lg-3">
+                                            <input type="text" id="videoaddr" placeholder="是否添加视频（非必填）" name="net_path" class="form-control netpath" value="{$msg.net_path||default=''}">
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <button class="btn btn-primary submit-btn" type="button" value="" id="preview">预览</button>
+                                            <button class="btn btn-default submit-btn" type="button" value="" id="clear">清空</button>
+                                            (例：优酷、土豆、腾讯视频选择分享——>选择通用代码中的src地址.)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>标题:</label>
@@ -201,6 +226,25 @@
             }
         });
 
+        //预览视频
+        $("#preview" ).on("click",function(){
+            var addr = $("#videoaddr" );
+            var video = $("#videoway");
+            var clear = $("#clear");
+            var path = addr.val();
+            //显示视频
+            video.parent().find("iframe").remove();
+            video.after("<iframe allowfullscreen ></iframe>");
+            video.next().attr({src:path,height:225,frameborder:0}).css({"margin-top":5});
+        });
+        //清空
+        $("#clear").on("click",function(){
+            var video = $("#videoway");
+            $("#videoaddr" ).val("");
+            video.parent().find("iframe").remove();
+            video.removeAttr('disabled');
+        });
+
         var ue = UE.getEditor('container',{
             initialFrameHeight:400
         });
@@ -211,6 +255,7 @@
             var data = {
                 id:$("input[name='id']").val(),
                 list_image:$("input[name='list_image']").val(),
+                net_path:$("input[name='net_path']").val(),
                 tid:$("select[name='tid']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
