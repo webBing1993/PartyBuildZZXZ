@@ -8,7 +8,9 @@
 
 namespace app\admin\controller;
 use app\admin\model\VolunteerOrder;
+use app\admin\model\VolunteerOrderReceive;
 use app\admin\model\VolunteerRecruit;
+use app\admin\model\VolunteerRecruitReceive;
 use app\admin\model\VolunteerTeam;
 
 /**
@@ -109,6 +111,18 @@ class Volunteer extends Admin {
         int_to_string($list,array(
             'status' => array(0=>"待审核",1=>"进行中",2=>"已领取"),
         ));
+        foreach ($list as $key => $value) {
+            $msg = array(
+                'oid' => $value['id'],
+                'status' => 1,
+            );
+            $info = VolunteerOrderReceive::where($msg)->select();
+            if($info) {
+                $value['is_enroll'] = 1;
+            }else{
+                $value['is_enroll'] = 0;
+            }
+        }
         $this->assign('list',$list);
         return $this->fetch();
     }
@@ -206,6 +220,18 @@ class Volunteer extends Admin {
         int_to_string($list,array(
             'status' => array(0=>"待审核",1=>"已发布",2=>"审核不通过"),
         ));
+        foreach ($list as $key => $value) {
+            $msg = array(
+                'rid' => $value['id'],
+                'status' => 1,
+            );
+            $info = VolunteerRecruitReceive::where($msg)->select();
+            if($info) {
+                $value['is_enroll'] = 1;
+            }else{
+                $value['is_enroll'] = 0;
+            }
+        }
         $this->assign('list',$list);
         return $this->fetch();
     }

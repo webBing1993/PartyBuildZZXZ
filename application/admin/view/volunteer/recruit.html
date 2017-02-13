@@ -72,7 +72,9 @@
                                 <td>{$vo.status_text}</td>
                                 <td>
                                     <a href="{:Url('Volunteer/recruitreceive?id='.$vo['id'])}">查看领取名单</a>
+                                    {eq name="$vo.is_enroll" value="0"}
                                     <a href="{:Url('Volunteer/recruitedit?id='.$vo['id'])}">修改</a>
+                                    {/eq}
                                     <a href="{:Url('Volunteer/recruitdel?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
