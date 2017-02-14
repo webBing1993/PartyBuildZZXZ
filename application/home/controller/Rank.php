@@ -108,7 +108,7 @@ class Rank extends Base {
         }
         $new2 = array();
         foreach ($list2 as $u => $val){
-            $count = count($list2[$u])*3;
+            $count = count($list2[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new2[] = $cen;
@@ -122,7 +122,7 @@ class Rank extends Base {
         }
         $new3 = array();
         foreach ($list3 as $u => $val){
-            $count = count($list3[$u])*2;
+            $count = count($list3[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new3[] = $cen;
@@ -218,7 +218,7 @@ class Rank extends Base {
         }
         $new2_m = array();
         foreach ($list2_m as $u => $val){
-            $count = count($list2_m[$u])*3;
+            $count = count($list2_m[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new2_m[] = $cen;
@@ -233,7 +233,7 @@ class Rank extends Base {
         }
         $new3_m = array();
         foreach ($list3_m as $u => $val){
-            $count = count($list3_m[$u])*2;
+            $count = count($list3_m[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new3_m[] = $cen;
@@ -425,7 +425,7 @@ class Rank extends Base {
         }
         $new2 = array();
         foreach ($list2 as $u => $val){
-            $count = count($list2[$u])*3;
+            $count = count($list2[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new2[] = $cen;
@@ -439,7 +439,7 @@ class Rank extends Base {
         }
         $new3 = array();
         foreach ($list3 as $u => $val){
-            $count = count($list3[$u])*2;
+            $count = count($list3[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new3[] = $cen;
@@ -551,7 +551,7 @@ class Rank extends Base {
         }
         $new2_m = array();
         foreach ($list2_m as $u => $val){
-            $count = count($list2_m[$u])*3;
+            $count = count($list2_m[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new2_m[] = $cen;
@@ -566,7 +566,7 @@ class Rank extends Base {
         }
         $new3_m = array();
         foreach ($list3_m as $u => $val){
-            $count = count($list3_m[$u])*2;
+            $count = count($list3_m[$u])*1;
             $cen['userid'] = $u;
             $cen['score'] = $count;
             $new3_m[] = $cen;
