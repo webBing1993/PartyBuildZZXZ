@@ -7,9 +7,9 @@
 {block name="body"}
 <div class="article">
 	<div class="title limit_">{$video.title}</div>
-	<div class="note">
-		<span>{$video.create_time|time_format='Y-m-d'}</span>
-		<span>{$video.publisher}</span>
+	<div class="note clear">
+		<span class="fl">{$video.publisher}</span>
+		<span class="fr">{$video.create_time|time_format='Y-m-d'}</span>
 	</div>
 	<div class="content">
 		<div class="video">

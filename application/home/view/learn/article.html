@@ -7,9 +7,9 @@
 {block name="body"}
 <div class="article">
 	<div class="title limit_">{$article.title}</div>
-	<div class="note">
-		<span>{$article.create_time|time_format="Y-m-d"}</span>
-		<span>{$article.publisher}</span>
+	<div class="note clear">
+		<span class="fl">{$article.publisher}</span>
+		<span class="fr">{$article.create_time|time_format="Y-m-d"}</span>
 	</div>
 	<div class="content">
 		<div class="uecontent">
