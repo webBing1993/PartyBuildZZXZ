@@ -263,7 +263,17 @@ class Redforum extends Admin {
      * 详情删除
      */
     public function detaildel() {
-
+        $id = input('id');
+        $map = array(
+            'status' => -1,
+        );
+        $noticeModel = new RedforumDetail();
+        $model = $noticeModel->where('id',$id)->update($map);
+        if($model) {
+            return $this->success("删除成功");
+        }else{
+            return $this->error("删除失败");
+        }
     }
 
 }
