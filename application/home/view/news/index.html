@@ -6,10 +6,6 @@
 {/block}
 
 {block name="body"}
-<!--<div class="default">-->
-<!--<img src="/home/images/notice/nomessage.png" alt="暂无消息">-->
-<!--</div>-->
-<!--banner-->
 <div class="banners">
 	<div class="swiper-container">
 		<div class="imgs swiper-wrapper">
@@ -56,7 +52,9 @@ $(function(){
 	//reset
 	var txt;
 	var len = $(".list" ).length;
-	if(len >= 7){
+	if(len == 0){
+		$('body' ).html('<div class="default"><img src="/home/images/notice/nomessage.png" alt="暂无消息"> </div>');
+	}else if(len >= 9){
 		$('.tip' ).text('上拉加载更多');
 	}
 	//上拉加载
