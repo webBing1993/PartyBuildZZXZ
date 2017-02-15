@@ -61,7 +61,7 @@
         color:#df4934;
     }
      .content-block ul{
-        margin:0 12px;border-radius: 3px;height:215px;background:#fff;box-shadow: 0px 0px 6px 1px rgba(196,196,196, .3);
+        margin:0 12px;border-radius: 3px;height:215px;background:#fff;box-shadow: 0px 0px 6px 1px rgba(196,196,196, .3);position:relative;
     }
     #tab2 .content-block ul,#tab2 .content-block ul li{
         height:200px;
@@ -92,7 +92,7 @@
         position:relative;margin-bottom:20px;
     }
     #tab1 .bottom>img{
-        width:100%;position:absolute;bottom:-4px;
+        width:100%;position:absolute;bottom:-4px;height:35px;
     }
     #tab1 .swiper-slide{
         width:100%;
@@ -213,7 +213,7 @@
                             <ul  style="box-shadow: 0px 0px 6px 0px rgba(223,73,52, .5);">
                                 <li>
                                     <div class="swiper-container swiper-container1" >
-                                        <div class="swiper-wrapper">
+                                        <div class="swiper-wrapper" >
                                             {volist name="tutor1" id="tu1"}
                                             <a href="{:Url('College/tutor?id='.$tu1['id'])}" class="swiper-slide">
                                                 <img src="{$tu1.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
@@ -229,14 +229,17 @@
                                         {volist name="course1" id="cou1"}
                                         <a href="{:Url('College/tutordetail?id='.$cou1['id'])}" class='limit_ fl'>
                                             {$cou1.title}
-                                            <img src="/home/images/tutor/3-1.png" alt="" style="">
+                                            <img src="/home/images/tutor/3-1.png" alt="" >
                                         </a>
                                         {/volist}
+                                    </div>
+                                    <div class='fake' style="background:#DF4A35;position:absolute;bottom:-4px;left:0;height:25px;line-height:25px;width:100%;text-align:center;color:#fff;z-index:10000;font-size:16px;">
+                                        党建理论
                                     </div>
                                 </li>
                             </ul>
                             <div class="bottom">
-                                <img src="/home/images/tutor/3.png" alt="" >
+                                <img src="/home/images/tutor/3.3.png" alt="" style="height:35px;">
                             </div>
                             <ul style="box-shadow: 0px 0px 6px 0px rgba(255,113,68, .5);">
                                 <li>
@@ -260,6 +263,9 @@
                                             <img src="/home/images/tutor/4-1.png" alt="" style="">
                                         </a>
                                         {/volist}
+                                    </div>
+                                    <div class='fake' style="background:#FF7144;position:absolute;bottom:-4px;left:0;height:25px;line-height:25px;width:100%;text-align:center;color:#fff;z-index:10000;font-size:16px;">
+                                        专业技术
                                     </div>
                                 </li>
                             </ul>
@@ -290,6 +296,9 @@
                                         </a>
                                         {/volist}
                                     </div>
+                                    <div class='fake' style="background:#FFA828;position:absolute;bottom:-4px;left:0;height:25px;line-height:25px;width:100%;text-align:center;color:#fff;z-index:10000;font-size:16px;">
+                                        政策法规
+                                    </div>
                                 </li>
                             </ul>
                             <div class="bottom">
@@ -317,6 +326,9 @@
                                             <img src="/home/images/tutor/6-1.png" alt="" style="">
                                         </a>
                                         {/volist}
+                                    </div>
+                                    <div class='fake' style="background:#9DCC66;position:absolute;bottom:-4px;left:0;height:25px;line-height:25px;width:100%;text-align:center;color:#fff;z-index:10000;font-size:16px;">
+                                        道德模范
                                     </div>
                                 </li>
                             </ul>
