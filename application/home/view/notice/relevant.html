@@ -62,6 +62,7 @@
 {/block}
 
 {block name="script"}
+<script src="/home/js/reset.js"></script>
 <script>
 $(function(){
 	//模块标题
@@ -78,11 +79,7 @@ $(function(){
 	//ue限定
 	ueLimit();
 });
-/**
- * 点赞
- * @param e
- */
-var isGood = function(e,type,id){
+function isGood(e,type,id){
 	//样式变化，移到suc
 	var n = $(e ).text();
 	$(e).toggleClass('good' ).toggleClass('good_');
@@ -101,12 +98,8 @@ var isGood = function(e,type,id){
 
 		}
 	})
-};
-/**
- * 发送评论
- * @param e
- */
-var send = function(e,type,id){
+}
+function send(e,type,id){
 	var it = $(e ).prev().find('input');
 	if(it.val() != ''){
 		$.ajax({
@@ -141,7 +134,8 @@ var send = function(e,type,id){
 	}else{
 		wAlert('您的评论不能为空');
 	}
-};
+}
+
 var wAlert = window.alert;
 window.alert = function (message) {
 	try {
