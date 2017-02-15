@@ -20,9 +20,15 @@
 	top: 17px;
 	left: 46vw;
 }
+/*.default img{*/
+	/*width: 20vw;*/
+	/*height: 36vw;*/
+	/*margin-top: 30vh;*/
+	/*margin-left: 40vw;*/
+/*}*/
 .default img{
-	width: 20vw;
-	height: 36vw;
-	margin-top: 30vh;
-	margin-left: 40vw;
+	width: 58vw;
+	height: 45vw;
+	margin-top: 26vh;
+	margin-left: 21vw;
 }

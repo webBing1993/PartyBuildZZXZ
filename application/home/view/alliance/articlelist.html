@@ -5,9 +5,6 @@
 {/block}
 
 {block name="body"}
-<!--<div class="default">-->
-<!--<img src="/home/images/notice/nomessage.png" alt="暂无消息">-->
-<!--</div>-->
 <div class="lists_">
 	{volist name="list" id="vo"}
 	<a href="{:Url('Alliance/articledetail?id='.$vo['id'])}" class="list">
@@ -30,7 +27,11 @@
 $('title' ).text('地信红盟');
 $(function(){
 	var len = $(".list" ).length;
-	if(len >= 9){$('.tip' ).text('上拉加载更多');}
+	if(len == 0){
+		$('body' ).html('<div class="default"><img src="/home/images/notice/nomessage.png" alt="暂无消息"> </div>');
+	}else if(len >= 9){
+		$('.tip' ).text('上拉加载更多');
+	}
 	//上拉加载评论
 	loadScroll();
 });
@@ -57,7 +58,6 @@ function loadScroll(){
 				success:function(data){
 					loading.toggleClass('hidden');
 					tip.show();
-					console.log(data)
 					if(data.code == 1){
 						addList(data);
 						var dataLen =data.data.length;
@@ -80,7 +80,7 @@ function addList(data){
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
 		html +=
-				'<a href="" class="list">'+
+				'<a href="/home/alliance/articledetail/id/'+ list.id+'.html" class="list">'+
 				'<div class="title limit">'+list.title+'</div>'+
 				'<div class="content limit_">'+list.content+'</div>'+
 				'<div class="note">'+
