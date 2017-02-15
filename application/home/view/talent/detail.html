@@ -42,9 +42,10 @@
                     <div class="list-block" style="padding:0 12px;">
                         <div style="border-bottom:1px solid #f1f1f1;">
                             <div class="limit" >{$talent.title}</div>
-                            <div style="color:#999;margin-bottom:8px;">
-                                <span>{$talent.create_time|time_format='Y-m-d'}</span>
-                                <span>{$talent.publisher}</span>
+                            <div style="color:#999;margin-bottom:8px;height:15px;">
+
+                                <span style="float:left;">{$talent.publisher}</span>
+                                <span style="float:right;">{$talent.create_time|time_format='Y-m-d'}</span>
                             </div>
                         </div>
                         <div class="content">
