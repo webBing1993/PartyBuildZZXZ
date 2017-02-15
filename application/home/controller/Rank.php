@@ -10,6 +10,7 @@ namespace app\home\controller;
 use app\home\model\Browse;
 use app\home\model\Comment;
 use app\home\model\Like;
+use app\home\model\Answers;
 use app\home\model\WechatUser;
 use think\Controller;
 use think\Db;
@@ -127,7 +128,23 @@ class Rank extends Base {
             $cen['score'] = $count;
             $new3[] = $cen;
         }
-
+        // 本周答题
+        $answer = Answers::where($map)->select();
+        $list4 = array();
+        foreach($answer as $value){
+            $k = $value['userid'];
+            $list4[$k][] = $value;
+        }
+        $news4 = array();
+        foreach($list4 as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news4[] = $cen;
+        }
         //先第一组、第二组比较，相同累加，不同删除，合并到过渡数组center中
         $center = array();
         foreach ($new1 as $k1 => $v1){
@@ -159,24 +176,38 @@ class Rank extends Base {
             }
         }
         $final2 = array_merge($final2,$new3,$center);
+        // final2 与第四组比较同理,结果存入 final3
+        $final3 = array();
+        foreach($final2 as $y => $l){
+            foreach($news4 as $k4 => $v4){
+                if($l['userid'] == $v4['userid']){
+                    $cen['userid'] = $v4['userid'];
+                    $cen['score'] = $l['score'] + $v4['score'];
+                    $final3[] = $cen;
+                    unset($news4[$k4]);
+                    unset($final2[$y]);
+                }
+            }
+        }
+        $final3 = array_merge($final3,$news4,$final2);
         //倒序，字段score排序
         $sort = array(
             'direction' => 'SORT_DESC',
             'field' => 'score',
         );
         $arrSort = array();
-        foreach ($final2 as $k => $v){
+        foreach ($final3 as $k => $v){
             foreach ($v as $key => $value){
                 $arrSort[$key][$k] = $value;
             }
         }
         if($sort['direction'] && $arrSort){
-            array_multisort($arrSort[$sort['field']],constant($sort['direction']),$final2);
+            array_multisort($arrSort[$sort['field']],constant($sort['direction']),$final3);
         }
 
         //最终重组，限制输出20名，获取用户个人信息
         $final = array();
-        foreach ($final2 as $key => $value){
+        foreach ($final3 as $key => $value){
             if($key<20){
                 $user = WechatUser::where('userid',$value['userid'])->find();
                 $value['name'] = $user['name'];
@@ -238,6 +269,23 @@ class Rank extends Base {
             $cen['score'] = $count;
             $new3_m[] = $cen;
         }
+        // 本月答题
+        $answer_m = Answers::where($map)->select();
+        $list4_m = array();
+        foreach($answer_m as $value){
+            $k = $value['userid'];
+            $list4_m[$k][] = $value;
+        }
+        $news4_m = array();
+        foreach($list4_m as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news4_m[] = $cen;
+        }
 
         $center_m = array();
         foreach ($new1_m as $k1 => $v1){
@@ -270,23 +318,37 @@ class Rank extends Base {
         }
         $final2_m = array_merge($final2_m,$new3_m,$center_m);
 
+        // final2 与第四组比较同理,结果存入 final3
+        $final3_m = array();
+        foreach($final2_m as $y => $l){
+            foreach($news4_m as $k4 => $v4){
+                if($l['userid'] == $v4['userid']){
+                    $cen['userid'] = $v4['userid'];
+                    $cen['score'] = $l['score'] + $v4['score'];
+                    $final3_m[] = $cen;
+                    unset($news4_m[$k4]);
+                    unset($final2_m[$y]);
+                }
+            }
+        }
+        $final3_m = array_merge($final3_m,$news4_m,$final2_m);
         //倒序，字段score排序
         $sort_m = array(
             'direction' => 'SORT_DESC',
             'field' => 'score',
         );
         $arrSort_m = array();
-        foreach ($final2_m as $k => $v){
+        foreach ($final3_m as $k => $v){
             foreach ($v as $key => $value){
                 $arrSort_m[$key][$k] = $value;
             }
         }
         if($sort_m['direction'] && $arrSort_m){
-            array_multisort($arrSort_m[$sort_m['field']],constant($sort_m['direction']),$final2_m);
+            array_multisort($arrSort_m[$sort_m['field']],constant($sort_m['direction']),$final3_m);
         }
         //最终重组，限制输出20名，获取用户个人信息
         $final_m = array();
-        foreach ($final2_m as $key => $value){
+        foreach ($final3_m as $key => $value){
             if($key<20){
                 $user = WechatUser::where('userid',$value['userid'])->find();
                 $value['name'] = $user['name'];

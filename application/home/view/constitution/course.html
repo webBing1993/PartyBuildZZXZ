@@ -10,30 +10,15 @@
 	<span class="tag">每日一课</span>
 </div>
 <div class="lists">
-	<div class="list" data-tab="题号">
-		<div class="title">禁止党员领导干部脱离实际，弄虚作假，损害群众利益和党群关系，不准（ ）。</div>
-		<label class="checked">A.搞形象工程</label>
-		<label>B.虚报工作业绩</label>
-		<label>C.大办婚丧喜庆事宜</label>
-		<div class="note">
-			<span class="true">正确答案：<i>C</i></span>
-			<span class="number">1/3</span>
-		</div>
+	{volist name="question" id="vo" key="n"}
+	<div class="list" data-tab="{$vo.id}">
+		<div class="title">{$vo.title}</div>
+		{volist name="vo->Option" id="value" key="k"}
+		<label>{if condition="($k eq 1) AND ($value neq ' ')"}A{elseif condition="($k eq 2) AND ($value neq ' ')"}B{elseif condition="($k eq 3 )AND ($value neq ' ')"}C{elseif condition="($k eq 4 )AND ($value neq ' ')"/}D{/if}.{$value|substr=###,'2'}</label>
+		{/volist}
+		<div class="number">{$n} / 3</div>
 	</div>
-	<div class="list" data-tab="题号">
-		<div class="title">禁止党员领导干部脱离实际，弄虚作假，损害群众利益和党群关系，不准（ ）。</div>
-		<label>A.搞形象工程</label>
-		<label>B.虚报工作业绩</label>
-		<label>C.大办婚丧喜庆事宜</label>
-		<div class="number">2/3</div>
-	</div>
-	<div class="list" data-tab="题号">
-		<div class="title">禁止党员领导干部脱离实际，弄虚作假，损害群众利益和党群关系，不准（ ）。</div>
-		<label>A.搞形象工程</label>
-		<label>B.虚报工作业绩</label>
-		<label>C.大办婚丧喜庆事宜</label>
-		<div class="number">3/3</div>
-	</div>
+	{/volist}
 </div>
 <div class="submit" data-toggle="modal" data-target="#modal">确认提交</div>
 <!--模态框-->
@@ -41,12 +26,11 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-body">
-				<div>正确答案</div>
-				<div class="text-center">1.A 2.B 3.C</div>
-				<div class="text-center">本次得分：<span class="score">2</span> 分</div>
+				<div>正确答案 : <span id="true1"></span></div>
+				<div class="text-center">本次得分：<span class="score"></span> 分</div>
 			</div>
 			<div class="modal-footer">
-				<a href="">查看详情</a>
+				<a href="" id="link">查看详情</a>
 			</div>
 		</div>
 	</div>
@@ -64,14 +48,17 @@ $(function(){
 			var answer = $(this ).find('.checked' ).index();
 			data.push([id,answer]);
 			});
-		console.log(data);
+//		console.log(data);
 //		$('#modal').modal('show');
 		$.ajax({
 			type:"post",
-			url:"",
-			data:data,
-			success:function(e){
-
+			url:"{:Url('Constitution/commit')}",
+			data:{'data':data},
+			success:function(data){
+				$('.score').html(data.url.score);
+				$('#true1').html('<br>1.'+data.url.right[1]+'，2.'+data.url.right[2]+'，3.'+data.url.right[3]);
+				var link='scan';
+				$('#link').attr('href',link+'/id/'+data.url.id);
 			}
 		});
 	});
