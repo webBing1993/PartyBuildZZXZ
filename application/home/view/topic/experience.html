@@ -14,8 +14,6 @@
     <img src="/home/images/banner/7.jpg" alt="支部活动banner" class="banner-img">
 </div>
 <div class="lists">
-    <!--无消息时显示-->
-    <!--<img src="/home/images/nomessage.png" alt="暂无消息" class="nomessage">-->
     {volist name="list" id="vo"}
     <a href="{:Url('Topic/detail?id='.$vo.id)}" class="list clear">
         <!--<img src="{$vo.front_cover|get_cover='path'}" alt="小图">-->
@@ -40,7 +38,11 @@
     $('title' ).text('党性体检');
     $(function(){
         var len = $(".list" ).length;
-        if(len >= 7){$('.tip' ).text('上拉加载更多');}
+        if(len == 0){
+            $('.lists' ).html('<img src="/home/images/nomessage.png" alt="暂无消息" class="nomessage">');
+        }else if(len >= 7){
+            $('.tip' ).text('上拉加载更多');
+        }
         //上拉加载评论
         loadScroll();
     });

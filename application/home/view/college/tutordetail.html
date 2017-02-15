@@ -10,11 +10,9 @@
 	<iframe class="banner-img" frameborder="0" src='{$info.net_path}' allowfullscreen></iframe>
 </div>
 {/neq}
-<div class="title limit_" style="margin:10px auto 5px;width:90%;text-align: center;min-height:30px;line-height: 25px;">
+<div class="title limit_" style="margin:10px auto;width:90%;text-align: center;min-height:30px;line-height: 25px;">
 	<span style="color:#333;font-size:16px;">{$info.title}</span>
-
 </div>
-<div style="font-size:14px;color:#999;float:right;margin-right:13px;margin-bottom:5px;">{$info.create_time|time_format='Y-m-d'}</div>
 <div class="article">
 	<div class="content">
 		{$info.content}
@@ -63,23 +61,17 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,7,{$info.id})">发送</div>
-	<div class="not">
-		<div class="bg"></div>
-		<div class="msg">
-			您的评论不能为空
-			<div class="confirm">确定</div>
-		</div>
-	</div>
+	<div class="send fr" onclick="send(this,7,{$info.id})">发送</div>
 </div>
 {/eq}
 {/block}
 
 {block name="script"}
+<script src="/home/js/reset.js"></script>
 <script>
 
 $(function(){
-
+	$('title' ).text('红领导师');
 	var len = $(".list" ).length;
 	if(len >= 7){
 		$('.tip' ).text('上拉加载更多');
@@ -142,13 +134,7 @@ function send(e,type,id){
 			}
 		});
 	}else{
-		var not = $('.not');
-		not.fadeIn();
-		document.body.style.overflow='hidden';
-		$('.confirm,.not .bg' ).on('click',function(){
-			not.fadeOut();
-			document.body.style.overflow='scroll';
-		})
+		wAlert('您的评论不能为空');
 	}
 
 }
@@ -224,8 +210,25 @@ function addComment(data){
 //  Class style
 //
 //--------------------------------------------------------------------------
-//模块标题
-$('title' ).text('地信红盟');
+var wAlert = window.alert;
+window.alert = function (message) {
+	try {
+		var iframe = document.createElement("IFRAME");
+		iframe.style.display = "none";
+		iframe.setAttribute("src", 'data:text/plain,');
+		document.documentElement.appendChild(iframe);
+		var alertFrame = window.frames[0];
+		var iwindow = alertFrame.window;
+		if (iwindow == undefined) {
+			iwindow = alertFrame.contentWindow;
+		}
+		iwindow.alert(message);
+		iframe.parentNode.removeChild(iframe);
+	}
+	catch (exc) {
+		return wAlert(message);
+	}
+};
 function tofixed(){
 	var u = navigator.userAgent;
 	var word = $('.myword input');

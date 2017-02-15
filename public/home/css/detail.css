@@ -226,9 +226,7 @@
   border-radius: 6px;
 }
 .bottom .send {
-  width: 19vw;
-  padding-left: 15px;
-  padding-right: 15px;
+  width: 20.5vw;
   line-height: 45px;
   text-align: center;
 }
@@ -237,9 +235,13 @@
 }
 @media (max-width: 320px) {
   .myword input {
-    width: 200px;
+    /*width: 76vw;*/
   }
 }
+.not{
+  /*opacity: 0;*/
+}
+
 /*加载动画*/
 .loading {
   width: 100%;

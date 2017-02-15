@@ -60,14 +60,7 @@
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
-	<div class="send fl" onclick="send(this,2,{$regular['id']})">发送</div>
-	<div class="not">
-		<div class="bg"></div>
-		<div class="msg">
-			您的评论不能为空
-			<div class="confirm">确定</div>
-		</div>
-	</div>
+	<div class="send fr" onclick="send(this,2,{$regular['id']})">发送</div>
 </div>
 {/eq}
 {/block}
@@ -161,13 +154,26 @@
 				}
 			});
 		}else{
-			var not = $('.not');
-			not.fadeIn();
-			document.body.style.overflow='hidden';
-			$('.confirm,.not .bg' ).on('click',function(){
-				not.fadeOut();
-				document.body.style.overflow='scroll';
-			})
+			wAlert('您的评论不能为空');
+		}
+	};
+	var wAlert = window.alert;
+	window.alert = function (message) {
+		try {
+			var iframe = document.createElement("IFRAME");
+			iframe.style.display = "none";
+			iframe.setAttribute("src", 'data:text/plain,');
+			document.documentElement.appendChild(iframe);
+			var alertFrame = window.frames[0];
+			var iwindow = alertFrame.window;
+			if (iwindow == undefined) {
+				iwindow = alertFrame.contentWindow;
+			}
+			iwindow.alert(message);
+			iframe.parentNode.removeChild(iframe);
+		}
+		catch (exc) {
+			return wAlert(message);
 		}
 	};
 	var tofixed = function(){
