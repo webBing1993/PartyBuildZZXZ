@@ -325,10 +325,10 @@ class Constitution extends Base {
         $dif = time()-10*60*60;
         $map = array(
             'userid' => $userid,
-            'create_time' => array('exp',"< $dif") // 大于10小时
+            'create_time' => array('exp',"> $dif") // 小于10小时
         );
         $Answers1 = Answers::where($map)->order('id desc')->find();
-        if($Answers1){
+        if(empty($Answers1)){   // 10小时内没有数据
             if($hour >= 8 && $hour <= 18){
                 //取单选
                 $arr=Question::all(['type'=>0]);
@@ -354,57 +354,57 @@ class Constitution extends Base {
                 $this->assign('question',$question);
                 return $this->fetch();
             }else{
-                $Qid = json_decode($Answers1->question_id);
-                $rights=json_decode($Answers1->value);
-                $re = array();
-                foreach($Qid as $key => $value){
-                    $re[$key] = Question::get($value);
-                    $re[$key]['right'] = $rights[$key];
-                }
-                $this->assign('question',$re);
-                return $this->fetch('scan');
-            }
-        }else{
-            $maps = array(
-                'userid' => $userid,
-                'create_time' => array('exp',"> $dif")  // 小于10小时
-            );
-            $Answers = Answers::where($maps)->order('id desc')->find();
-            if(empty($Answers)){
-                //取单选
-                $arr=Question::all(['type'=>0]);
-                foreach($arr as $value){
-                    $ids[]=$value->id;
-                }
-                //随机获取单选的题目
-                $num=3;//题目数目
-                $data=array();
-                while(true){
-                    if(count($data) == $num){
-                        break;
+                $maps = array(
+                    'userid' => $userid,
+                    'create_time' => array('exp',"< $dif")  // 大于 10小时
+                );
+                $Answers = Answers::where($maps)->order('id desc')->find();
+                if($Answers){
+                    $Qid = json_decode($Answers->question_id);
+                    $rights=json_decode($Answers->value);
+                    $re = array();
+                    foreach($Qid as $key => $value){
+                        $re[$key] = Question::get($value);
+                        $re[$key]['right'] = $rights[$key];
                     }
-                    $index=mt_rand(0,count($ids)-1);
-                    $res=$ids[$index];
-                    if(!in_array($res,$data)){
-                        $data[]=$res;
+                    $this->assign('question',$re);
+                    return $this->fetch('scan');
+                }else{
+                    //取单选
+                    $arr=Question::all(['type'=>0]);
+                    foreach($arr as $value){
+                        $ids[]=$value->id;
                     }
+                    //随机获取单选的题目
+                    $num=3;//题目数目
+                    $data=array();
+                    while(true){
+                        if(count($data) == $num){
+                            break;
+                        }
+                        $index=mt_rand(0,count($ids)-1);
+                        $res=$ids[$index];
+                        if(!in_array($res,$data)){
+                            $data[]=$res;
+                        }
+                    }
+                    foreach($data as $value){
+                        $question[]=Question::get($value);
+                    }
+                    $this->assign('question',$question);
+                    return $this->fetch();
                 }
-                foreach($data as $value){
-                    $question[]=Question::get($value);
-                }
-                $this->assign('question',$question);
-                return $this->fetch();
-            }else{
-                $Qid = json_decode($Answers->question_id);
-                $rights=json_decode($Answers->value);
-                $re = array();
-                foreach($Qid as $key => $value){
-                    $re[$key] = Question::get($value);
-                    $re[$key]['right'] = $rights[$key];
-                }
-                $this->assign('question',$re);
-                return $this->fetch('scan');
             }
+        }else{  //  10 小时内 有数据
+            $Qid = json_decode($Answers1->question_id);
+            $rights=json_decode($Answers1->value);
+            $re = array();
+            foreach($Qid as $key => $value){
+                $re[$key] = Question::get($value);
+                $re[$key]['right'] = $rights[$key];
+            }
+            $this->assign('question',$re);
+            return $this->fetch('scan');
         }
 
     }
