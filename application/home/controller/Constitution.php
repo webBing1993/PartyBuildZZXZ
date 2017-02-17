@@ -322,14 +322,15 @@ class Constitution extends Base {
     public function course(){
         $userid = session('userId');
         $hour = date("G",time());  //获取当前小时
-        $dif = time()-10*60*60;
+        $dif = time()-12*60*60;
         $map = array(
             'userid' => $userid,
-            'create_time' => array('exp',"> $dif") // 小于10小时
+            'create_time' => array('exp',"> $dif") // 小于12小时
         );
         $Answers1 = Answers::where($map)->order('id desc')->find();
         if(empty($Answers1)){   // 10小时内没有数据
             if($hour >= 8 && $hour <= 18){
+                dump(111);
                 //取单选
                 $arr=Question::all(['type'=>0]);
                 foreach($arr as $value){
@@ -356,7 +357,7 @@ class Constitution extends Base {
             }else{
                 $maps = array(
                     'userid' => $userid,
-                    'create_time' => array('exp',"< $dif")  // 大于 10小时
+                    'create_time' => array('exp',"< $dif")  // 大于 12小时
                 );
                 $Answers = Answers::where($maps)->order('id desc')->find();
                 if($Answers){
@@ -395,7 +396,7 @@ class Constitution extends Base {
                     return $this->fetch();
                 }
             }
-        }else{  //  10 小时内 有数据
+        }else{  //  12 小时内 有数据
             $Qid = json_decode($Answers1->question_id);
             $rights=json_decode($Answers1->value);
             $re = array();
