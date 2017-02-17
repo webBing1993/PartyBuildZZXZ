@@ -340,7 +340,7 @@
                     <!-- Tab 2 -->
                     <div id="tab2" class="tab" >
                         <div class="content-block">
-                            <div class="list-block" id="num2">
+                            <div class="list-block">
                                 <div class="banner" style="margin-bottom:20px;">
                                     <img src="/home/images/banner/2.jpg" alt="">
                                 </div>
@@ -415,7 +415,7 @@
 
                     <!-- Tab 3 -->
                     <div id="tab3" class="tab" >
-                        <div class="list-block" id="num3">
+                        <div class="list-block" >
                             <div class="banner" style="margin-bottom:15px;">
                                 <img src="/home/images/banner/2.jpg" alt="">
                             </div>
@@ -516,13 +516,13 @@
     });
 
     $('#tab1 ul,.swiper-container').click(function(){
-        $('.buttons-row a').removeClass('active');
-        $('.tabs div').removeClass('active');
+       // $('.buttons-row a').removeClass('active');
+        //$('.tabs div').removeClass('active');
         sessionStorage.abc=1;
     });
     $('#tab2').click(function(){
-        $('.buttons-row a').removeClass('active');
-        $('.tabs div').removeClass('active');
+        //$('.buttons-row a').removeClass('active');
+        //$('.tabs div').removeClass('active');
         sessionStorage.abc=2;
     });
     $('#tab3').click(function(){
@@ -582,9 +582,7 @@
         })
     })
     //
-    window.onload=function(){
 
-    }
 
 </script>
 {/block}
