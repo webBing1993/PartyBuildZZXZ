@@ -192,7 +192,7 @@
                     <!-- Link to 2nd tab -->
                     <a href="#tab2" class="tab-link button">红领带动</a>
                     <!-- Link to 3rd tab -->
-                    <a href="#tab3" class="tab-link button">红色论坛</a>
+                    <a href="#tab3" class="tab-link button">红领论坛</a>
                 </div>
             </div>
         </div>
@@ -340,7 +340,7 @@
                     <!-- Tab 2 -->
                     <div id="tab2" class="tab" >
                         <div class="content-block">
-                            <div class="list-block" id="num2">
+                            <div class="list-block">
                                 <div class="banner" style="margin-bottom:20px;">
                                     <img src="/home/images/banner/2.jpg" alt="">
                                 </div>
@@ -415,7 +415,7 @@
 
                     <!-- Tab 3 -->
                     <div id="tab3" class="tab" >
-                        <div class="list-block" id="num3">
+                        <div class="list-block" >
                             <div class="banner" style="margin-bottom:15px;">
                                 <img src="/home/images/banner/2.jpg" alt="">
                             </div>
@@ -423,8 +423,8 @@
                                 <div class="btn1 tab_active" >通知发布</div>
                                 <div class="btn1 " >论坛开展</div>
                             </div>
-
                             <ul id="tab_main1">
+
                                 <li>
                                     {volist name="fnotice" id="fno"}
                                     <a href="{:Url('College/forumnotice?id='.$fno['id'])}" style="width: 100%;border-bottom: 1px solid #f1f1f1">
@@ -434,8 +434,13 @@
                                     </a>
                                     {/volist}
                                 </li>
+                                <li style="margin-top:75px;margin-left:calc(50% - 60px)" id="wuxiaoxi1">
+                                    <img src="/home/images/nomessage.png" alt="" style="width:120px;">
+                                </li>
                             </ul>
+
                             <ul id="tab_main2" class="none">
+
                                 <li>
                                     {volist name="forum" id="fo"}
                                     <a href="{:Url('College/forum?id='.$fo['id'])}" style="width: 100%;border-bottom: 1px solid #f1f1f1">
@@ -445,7 +450,11 @@
                                     </a>
                                     {/volist}
                                 </li>
+                                <li style="margin-top:75px;margin-left:calc(50% - 60px)" id="wuxiaoxi2">
+                                    <img src="/home/images/nomessage.png" alt="" style="width:120px;">
+                                </li>
                             </ul>
+
                         </div>
                     </div>
                 </div>
@@ -490,16 +499,30 @@
             $('.buttons-row a:nth-child(3)').addClass('active');
             $('.tabs div:nth-child(3)').addClass('active');
         }
+        console.log($("#tab_main1").find("li").length)
+        if($("#tab_main1").find("a").length > 0){
+            $('#wuxiaoxi1').hide()
+        }
+        else{
+            $('#wuxiaoxi1').show()
+        }
+        if($("#tab_main2").find("a").length > 0){
+            $('#wuxiaoxi2').hide()
+        }
+        else{
+            $('#wuxiaoxi2').show()
+        }
+        //if($("#tab_main2").find("a").length > 0||$("#tab_main1").find("a").length > 0)
     });
 
     $('#tab1 ul,.swiper-container').click(function(){
-        $('.buttons-row a').removeClass('active');
-        $('.tabs div').removeClass('active');
+       // $('.buttons-row a').removeClass('active');
+        //$('.tabs div').removeClass('active');
         sessionStorage.abc=1;
     });
     $('#tab2').click(function(){
-        $('.buttons-row a').removeClass('active');
-        $('.tabs div').removeClass('active');
+        //$('.buttons-row a').removeClass('active');
+        //$('.tabs div').removeClass('active');
         sessionStorage.abc=2;
     });
     $('#tab3').click(function(){
@@ -558,5 +581,8 @@
             window.location.href  =$(this ).attr('href');
         })
     })
+    //
+
+
 </script>
 {/block}
