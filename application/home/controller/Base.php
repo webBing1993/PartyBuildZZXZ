@@ -8,6 +8,7 @@
 
 namespace app\home\controller;
 
+use app\home\model\Years;
 use app\user\controller\Index;
 use app\home\model\Comment;
 use app\home\model\Like;
@@ -20,7 +21,7 @@ use think\Input;
 
 class Base extends Controller {
     public function _initialize(){
-//        session('userId','15067197970');
+        session('userId','15036667391');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -373,6 +374,64 @@ class Base extends Controller {
             return $this->success("加载成功","",$comment);
         }else{
             return $this->error("没有更多");
+        }
+
+    }
+    /*
+     * 每天定时发送  答题提醒
+     */
+    public function push_remind(){
+        $hour = date("G",time());  //获取当前小时
+        $Years = new Years();
+        $dif = time()-7200;
+        $map = array(
+            'type' => 2,
+            'create_time' => array('exp',"> $dif")
+        );
+        $Obj = $Years->where($map)->find();  //获取已经推送的数据
+        $flag = 0;
+        if(empty($Obj)){
+            $flag = 1;
+        }
+        if(($hour >= 9 && $hour <= 11) && ($flag == 1) || ($hour >= 16 && $hour <= 18) && ($flag == 1)){
+            //推送消息的详情
+            $Wechat = new TPQYWechat(Config::get('party'));
+            $title = '"每日一课"君已经等候您多时了...';
+            $content = "休息一下,去答个题吧";
+            $path = "http://dqpb.0571ztnet.com/home/images/user/relax.jpg";//图片链接
+            $url = "http://dqpb.0571ztnet.com/home/constitution/course";  //答题页面链接
+            $send = array(
+                "articles" => array(
+                    array(
+                        "title" => $title,
+                        "description" => $content,
+                        "url" => $url,
+                        "picurl" => $path,
+                    )
+                )
+            );
+            //发送
+            $message = array(
+//                'touser' => '15036667391',
+               'touser' =>"@all",
+                "msgtype" => 'news',
+                "agentid" => 6,
+                "news" => $send,
+                "safe" => "0"
+            );
+            $res = $Wechat->sendMessage($message);
+            if($res){
+                $Years = new Years();
+                $big = time()-12*60*60;
+                $con = array(
+                    'type' =>2,
+                    'create_time' => array('exp',"< $big")
+                );
+                $Years->where($con)->delete();  // 删除已经过期的数据
+                //存储到数据库
+                $Years->type = 2;
+                $Years->save();
+            }
         }
     }
 }
