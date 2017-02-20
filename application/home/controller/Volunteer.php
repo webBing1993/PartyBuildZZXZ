@@ -137,6 +137,8 @@ class Volunteer extends Base{
      * 服务订单详情页
      */
     public function orderdetail(){
+        $this->anonymous(); //判断是否是游客
+
         $userId = session('userId');
         $id = input('id');
         $orderModel = new VolunteerOrder();
@@ -224,6 +226,8 @@ class Volunteer extends Base{
      * 志愿招募详情页
      */
     public function recruitdetail(){
+        $this->anonymous(); //判断是否是游客
+
         $userId = session('userId');
         $id = input('id');
         $orderModel = new VolunteerRecruit();
@@ -266,47 +270,54 @@ class Volunteer extends Base{
         $userId = session('userId');
         $type = input('type');
         $id = input('id');
-        if($type == 1) {
-            $model1 = new VolunteerOrder();
-            $model2 = new VolunteerOrderReceive();
-            $map = array(
-                'oid' => $id,
-                'userid' => $userId,
-            );
-        }else {
-            $model1 = new VolunteerRecruit();
-            $model2 = new VolunteerRecruitReceive();
-            $map = array(
-                'rid' => $id,
-                'userid' => $userId,
-            );
-        }
-        $father = $model1->get($id);
-        //如何人数满则不能报名，改变状态为2
-        if($father['status'] == 2) {
-            return $this->error("人数已满");
-        }else {
-            $son = $model2->where($map)->find();
-            if($son) {
-                return $this->error("已领取过该订单");
+        $user = WechatUser::where('userid',$userId)->find();
+        if($userId == 'visitor') {
+            return $this->error("游客无法参与报名！");
+        }elseif($user) {
+            if($type == 1) {
+                $model1 = new VolunteerOrder();
+                $model2 = new VolunteerOrderReceive();
+                $map = array(
+                    'oid' => $id,
+                    'userid' => $userId,
+                );
             }else {
-                $info = $model2->create($map);
-                if($info) { //报名成功，领取人数+1；
-                    $model1->where('id',$id)->setInc("receive_number");
-                    $father = $model1->get($id);
-                    if($father['receive_number'] == $father['demand_number']) {  //如果人数已满  改变状态为2
-                        $msg['status'] = 2;
-                        $model1->where('id',$id)->update($msg);
-                    }
-                    //返回用户信息
-                    $rec = $model2->where($map)->find();
-                    $data = WechatUser::where('userid',$rec['userid'])->field('avatar,name,unit')->find();
-                    $data['time'] = date("Y-m-d",$rec['create_time']);
-                    return $this->success("领取成功","",$data);
+                $model1 = new VolunteerRecruit();
+                $model2 = new VolunteerRecruitReceive();
+                $map = array(
+                    'rid' => $id,
+                    'userid' => $userId,
+                );
+            }
+            $father = $model1->get($id);
+            //如何人数满则不能报名，改变状态为2
+            if($father['status'] == 2) {
+                return $this->error("人数已满");
+            }else {
+                $son = $model2->where($map)->find();
+                if($son) {
+                    return $this->error("已领取过该订单");
                 }else {
-                    return $this->error("领取失败");
+                    $info = $model2->create($map);
+                    if($info) { //报名成功，领取人数+1；
+                        $model1->where('id',$id)->setInc("receive_number");
+                        $father = $model1->get($id);
+                        if($father['receive_number'] == $father['demand_number']) {  //如果人数已满  改变状态为2
+                            $msg['status'] = 2;
+                            $model1->where('id',$id)->update($msg);
+                        }
+                        //返回用户信息
+                        $rec = $model2->where($map)->find();
+                        $data = WechatUser::where('userid',$rec['userid'])->field('avatar,name,unit')->find();
+                        $data['time'] = date("Y-m-d",$rec['create_time']);
+                        return $this->success("领取成功","",$data);
+                    }else {
+                        return $this->error("领取失败");
+                    }
                 }
             }
+        }else{
+            return $this->error("用户不存在通讯录，无法报名！");
         }
     }
 

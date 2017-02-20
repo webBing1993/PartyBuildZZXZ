@@ -29,25 +29,27 @@
 			<span class="fl"><a href="tel:{$info.telephone}">{$info.telephone}</a> </span>
 		</div>
 	</div>
-	{eq name="$info.status" value="2"}
-	<!--不可报名状态：名满-->
-	{eq name="$info.be" value="1"}
-	<div class="get no">已领取</div>
-	{else/}
-	<div class="get no">我要报名</div>
-	<div class="gettext">（当前招募人数已满，下次早点来哦）</div>
-	{/eq}
-	<!--/不可报名状态-->
-	{else/}
-	<!--可报名状态-->
-	{eq name="$info.be" value="0"}
-	<div class="get yes">我要报名</div>
-	<!--/可报名状态-->
-	{else/}
-	<!--不可报名状态：已领-->
-	<div class="get no">已领取</div>
-	<!--/不可报名状态-->
-	{/eq}
+	{eq name="visit" value="0"}
+		{eq name="$info.status" value="2"}
+			<!--不可报名状态：名满-->
+			{eq name="$info.be" value="1"}
+			<div class="get no">已领取</div>
+			{else/}
+			<div class="get no">我要报名</div>
+			<div class="gettext">（当前招募人数已满，下次早点来哦）</div>
+			{/eq}
+			<!--/不可报名状态-->
+		{else/}
+			<!--可报名状态-->
+			{eq name="$info.be" value="0"}
+			<div class="get yes">我要报名</div>
+			<!--/可报名状态-->
+			{else/}
+			<!--不可报名状态：已领-->
+			<div class="get no">已领取</div>
+			<!--/不可报名状态-->
+			{/eq}
+		{/eq}
 	{/eq}
 </div>
 <div class="enroll">
