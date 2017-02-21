@@ -25,7 +25,7 @@ class Notice extends Validate {
         'start_time' => 'require',
         'end_time' => 'require',
         'address' => 'require',
-        'publisher' => 'require|max:15',
+        'publisher' => 'require',
     ];
 
     protected $message = [
@@ -44,7 +44,6 @@ class Notice extends Validate {
         'telephone.require' => '联系电话不能为空',
         'address.require' => '地址不能为空',
         'publisher.require' => '发布人不能为空',
-        'publisher.max' => '发布人长度不能超过5个字',
     ];
 
     protected $scene = [

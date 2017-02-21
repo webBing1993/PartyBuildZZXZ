@@ -19,7 +19,7 @@ class Alliance extends Validate {
         'time' => 'require',
         'address' => 'require',
         'content' => 'require',
-        'publisher' => 'require|max:30',
+        'publisher' => 'require',
 
     ];
 
@@ -30,7 +30,7 @@ class Alliance extends Validate {
         'time' => '时间不能为空',
         'address' => '地址不能为空',
         'content'  =>  '内容不能为空',
-        'publisher' => '发布者不能为空且长度小于10字符',
+        'publisher' => '发布者不能为空',
     ];
 
     protected $scene = [

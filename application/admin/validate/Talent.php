@@ -16,7 +16,7 @@ class Talent extends Validate {
         'type' => 'require',
         'title' => 'require',
         'content' => 'require',
-        'publisher' => 'require|max:30',
+        'publisher' => 'require',
 
     ];
 
@@ -24,6 +24,6 @@ class Talent extends Validate {
         'type' => '类型不能为空',
         'title' =>  '标题不能为空',
         'content'  =>  '内容不能为空',
-        'publisher' => '发布者不能为空且长度小于10字符',
+        'publisher' => '发布者不能为空',
     ];
 }
