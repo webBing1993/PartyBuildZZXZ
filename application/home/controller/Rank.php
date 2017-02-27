@@ -356,7 +356,6 @@ class Rank extends Base {
             }
         }
         $this->assign('month',$final_m);
-
         return $this->fetch();
     }
 
@@ -430,7 +429,9 @@ class Rank extends Base {
                 $personal['rank'] = $k+1;
             }
             if($k < 20){ //取小于20名排行
-                $last[$k] = $v;
+                if ($v['id'] != 2){
+                    $last[$k] = $v;
+                }
             }
         }
         $this->assign('all',$last);
@@ -603,12 +604,13 @@ class Rank extends Base {
         if($sort['direction'] && $arrSort){
             array_multisort($arrSort[$sort['field']],constant($sort['direction']),$item);
         }
-
         //限制20条
         $dpfinals = array();
         foreach ($item as $key =>$value){
             if($key < 20){
-                $dpfinals[] = $value;
+                if ($value['id'] != 2){
+                    $dpfinals[] = $value;
+                }
             }
         }
         $this->assign('week',$dpfinals);
@@ -764,7 +766,9 @@ class Rank extends Base {
         $dpfinals_m = array();
         foreach ($item_m as $key =>$value){
             if($key < 20){
-                $dpfinals_m[] = $value;
+                if ($value['id'] != 2){
+                    $dpfinals_m[] = $value;
+                }
             }
         }
         $this->assign('month',$dpfinals_m);
