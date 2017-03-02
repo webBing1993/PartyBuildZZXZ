@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>积分商城</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei';
+            -webkit-tap-highlight-color:rgba(0,0,0,0);
+        }
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, p, table, th, td, select, option {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .clearfix:before{
+            display:table;
+            content:'';
+        }
+        .clearfix:after{
+            display:table;
+            content:'';
+            clear:both;
+        }
+        .top{
+            position: relative;
+        }
+        .top>img{
+            width:100%;
+            float: left;
+        }
+        .top>span{
+            position:absolute;
+            left:12px;
+            top:10px;
+            background:url("/exchange/2.png") no-repeat left center;
+            background-size:17px 17px;
+            padding-left: 27px;
+            height: 17px;
+            font-size: 17px;
+            line-height: 17px;
+            color:#fff;
+        }
+        .top>a{
+            position:absolute;
+            right:12px;
+            top:10px;
+            width:60px;
+            height:20px;
+            font-size:12px;
+            background-color:rgba(255,255,255,.8);
+            color:#333;
+            text-align: center;
+            border-radius: 3px;
+            line-height: 20px;
+            text-decoration: none;
+        }
+        .list{
+            /*margin-right:12px;*/
+        }
+        .list>li{
+            margin-top:11px;
+            float:left;
+            margin-left:11px;
+            border:1px solid #e5e5e5;
+            border-radius: 5px;
+            position:relative;
+        }
+        .list>li>div{
+            width:90px;
+            height:90px;
+            display:block;
+            margin:0 auto;
+            border-radius: 5px;
+            background:url("/exchange/3.png") no-repeat center center;
+            background-size:cover;
+        }
+        .list>li>span{
+            position:absolute;
+            left:10px;
+            bottom:15px;
+            color:#333;
+            font-size: 15px;
+        }
+        .list>li>a{
+            position:absolute;
+            right:10px;
+            bottom:15px;
+            background:url("/exchange/4.png") no-repeat left center;
+            background-size:14px 14px;
+            padding-left: 19px;
+            height: 14px;
+            font-size: 14px;
+            line-height: 14px;
+            color:#fc4f41;
+        }
+        .list>li.hot{
+            background:url("/exchange/7.png") no-repeat left top;
+            background-size:25% 25%;
+        }
+        .list>li.close{
+            background:url("/exchange/8.png") no-repeat left top;
+            background-size:25% 25%;
+        }
+        .list>li.close>a{
+            background-image:url("/exchange/9.png");
+            color:#ccc;
+        }
+        .list>li.close>span{
+            color:#ccc;
+        }
+        .list>li.close>div{
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
+        }
+        .nomessage{
+            text-align: center;
+            position:fixed;
+            top:50%;
+            left:50%;
+            -webkit-transform: translateY(-50%) translateX(-50%);
+        }
+        .nomessage>img{
+            width:56%;
+            margin-bottom:15px;
+        }
+        .nomessage>span{
+            font-size: 17px;
+            color:#ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="top clearfix">
+        <span>{$now}&nbsp;/&nbsp;{$score}</span>
+        <a href="record">兑换记录</a>
+        <img src="/exchange/1.png" alt="">
+    </div>
+    {eq name="is" value="0"}
+    <div class="nomessage">
+        <img src="/exchange/5.png" alt="" ><br>
+        <span>抱歉，暂无商品</span>
+    </div>
+    {else/}
+    <ul class="list clearfix">
+        {volist name='product' id="po" key="k"}
+        <li {eq name="$k" value="1"} class="hot" {/eq} onclick=window.location.href="{:Url('Exchange/commodity?id='.$po['id'])}" {eq name="$po.left" value="0"} class="close" {/eq} >
+            <div style="background-image:url({$po.front_cover|get_cover='path'})"></div>
+            <span>{$po.title}</span>
+            <a>{$po.price}</a>
+        </li>
+        {/volist}
+    </ul>
+    {/eq}
+    <script src="/work/js/jquery-1.12.1.min.js"></script>
+    <script>
+        $(function(){
+            $('.list>li').width(($(window).width()-11)*0.5-11-2);
+            $('.list>li').height(($(window).width()-11)*0.5-11-2);
+            $('.list>li>div').css({'margin-top':$(window).width()*0.06});
+            $('.list>li>div').css({'width':$(window).width()*0.24});
+            $('.list>li>div').css({'height':$(window).width()*0.24});
+        });
+    </script>
+</body>
+</html>
