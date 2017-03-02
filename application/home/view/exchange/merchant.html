@@ -256,6 +256,25 @@
             font-size: 17px;
             color:#ccc;
         }
+        .shopcar{
+            width:60px;
+            height:60px;
+            background:url("/exchange/21.png") no-repeat center center;
+            background-size:cover;
+            position:fixed;
+            right:5%;
+            bottom:10%;
+        }
+        .shopcar>a{
+            float:right;
+            border: 1px solid #fff;
+            color:#fff;
+            background-color:#fc4f41;
+            font-size: 13px;
+            border-radius: 5px;
+            padding-left:3px;
+            padding-right:3px;
+        }
     </style>
 </head>
 <body>
@@ -299,6 +318,9 @@
     <span>抱歉，暂无商品</span>
 </div>
 {/eq}
+<div class="shopcar">
+    <a>1</a>
+</div>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
     $(function(){
