@@ -121,6 +121,7 @@ class Exchange extends Base{
                 array_push($Product,$temp);
             }
         }
+        $this->assign('shop',$Shop);
         $this->assign('product',$Product);
         return $this->fetch();
     }
