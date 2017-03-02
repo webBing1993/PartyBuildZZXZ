@@ -107,7 +107,8 @@
         .shopIntroduce>div{
             width:100px;
             height:100px;
-            background:#000;
+            background:url("") no-repeat center center;
+            background-size:cover;
             float:left;
             margin-top:15px;
             margin-left:10px;
@@ -245,19 +246,19 @@
 <body>
 <img src="/exchange/20.png"  class="top" alt="">
 <div class="shopIntroduce clearfix">
-    <div></div>
+    <div style="background-image:url({$shop.front_cover|get_cover='path'})"></div>
     <ul>
         <li>
-            阿迪达斯余杭未来科技
+            {$shop.title}
         </li>
         <li>
-            15700004138
+            {$shop.tel}
         </li>
         <li>
-            浙江省杭州市余杭未来科技城店
+            {$shop.address}
         </li>
         <li>
-            日常生活用品
+            {$shop.content}
         </li>
     </ul>
 </div>
@@ -267,12 +268,14 @@
     <span></span>
 </div>
 <ul class="list clearfix">
-    <li>
-        <div style="background-image:url()"></div>
-        <span>打发的说法是对方的发生的方式</span>
-        <a></a>
-        <b>剩余10</b>
+    {volist name="product" id="po"}
+    <li {eq name="$po.left" value="0"} class="close" {/eq} onclick=window.location.href="{:Url('Exchange/commodity?id='.$po['id'])}">
+        <div style="background-image:url({$po.front_cover|get_cover='path'})"></div>
+        <span>{$po.title}</span>
+        <a>{$po.price}</a>
+        <b>剩余 {$po.left}</b>
     </li>
+    {/volist}
 </ul>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>

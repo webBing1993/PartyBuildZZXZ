@@ -28,7 +28,8 @@ class Exchange extends Base{
         }
         $now = $Wechat->score - $score;  // 剩余积分
         $Product = Product::where(['status' =>0])->order('id desc')->select();
-        if($Product){
+        $Shop = Shop::where(['status' => 0 ,'recommend' => 1])->limit(3)->select();
+        if($Shop){
             $this->assign('is',1);
         }else{
             $this->assign('is',0);
@@ -44,6 +45,7 @@ class Exchange extends Base{
         $this->assign('now',$now);  // 剩余积分
         $this->assign('score',$Wechat->score);  // 总积分
         $this->assign('product',$Product);
+        $this->assign('shop',$Shop);
         return $this->fetch();
     }
     /**
@@ -82,8 +84,21 @@ class Exchange extends Base{
      */
     public function commodity(){
         $id = input('id');
-        $product = Product::where('id',$id)->find();
-        $this->assign('product',$product);
+        $product = Product::where('id',$id)->find();  // 获取该商品详情
+        $shop = Shop::where('id',$product['shop_id'])->find();  // 获取店铺详情
+        $other = Product::where(['shop_id' => $shop['id'],'status' => 0,'id' => array('<>',$id)])->order('id desc')->select();
+        // 重新排序 将兑光的排在最后
+        foreach($other as $key => $value){
+            if ($value->left == 0){
+                $temp = $value;
+                unset($other[$key]);
+                array_push($other,$temp);
+            }
+        }
+        $this->assign('shop',$shop);  //  店铺详情
+        $this->assign('product',$product);  // 商品详情
+        $this->assign('other',$other);
+        $this->assign('link',$_SERVER['HTTP_HOST']);
         return $this->fetch();
     }
     /**
@@ -254,6 +269,19 @@ class Exchange extends Base{
     }
     //买家版的卖家店铺详情
     public function shopmain(){
+        $id = input('id');
+        $Shop = Shop::where('id',$id)->find();
+        $Product = Product::where(['shop_id'=>$id,'status'=>0])->order('id desc')->select();
+        // 重新排序 将兑光的排在最后
+        foreach($Product as $key => $value){
+            if ($value->left == 0){
+                $temp = $value;
+                unset($Product[$key]);
+                array_push($Product,$temp);
+            }
+        }
+        $this->assign('product',$Product);
+        $this->assign('shop',$Shop);
         return $this->fetch();
     }
 }

@@ -228,18 +228,12 @@
     <a  class="blue">精品店铺</a>
 </div>
 <ul class="shop">
-    <li>
-        <a style="background-image:url(/exchange/14.png)"></a>
-        <p>阿里达斯</p>
+    {volist name="shop" id="so"}
+    <li onclick=window.location.href="{:Url('Exchange/shopmain?id='.$so['id'])}">
+        <a style="background-image:url({$so.front_cover|get_cover='path'})"></a>
+        <p>{$so.title}</p>
     </li>
-    <li>
-        <a></a>
-        <p>阿里达斯</p>
-    </li>
-    <li>
-        <a></a>
-        <p>阿里达斯</p>
-    </li>
+    {/volist}
 </ul>
 <div class="titleBar clearfix">
     <a  class="red">新品上市</a>
@@ -248,9 +242,9 @@
     {volist name='product' id="po" key="k"}
     <li {eq name="$k" value="1"} class="hot" {/eq} onclick=window.location.href="{:Url('Exchange/commodity?id='.$po['id'])}" {eq name="$po.left" value="0"} class="close" {/eq} >
     <div style="background-image:url({$po.front_cover|get_cover='path'})"></div>
-    <span>打发的说法是对方的发生的方式</span>
+    <span>{$po.title}</span>
     <a>{$po.price}</a>
-    <b>3人已经兑换</b>
+    <b>剩余 {$po.left}</b>
     </li>
     {/volist}
 </ul>
