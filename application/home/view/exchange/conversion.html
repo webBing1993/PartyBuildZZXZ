@@ -16,6 +16,9 @@
             margin: 0;
             list-style: none;
         }
+        body{
+
+        }
         .clearfix:before{
             display:table;
             content:'';
@@ -115,7 +118,7 @@
             background-color:rgba(0,0,0,.3);
         }
         .bk>div{
-            width:242px;
+            width:262px;
             /*height:200px;*/
             background-color:#fff;
             top: 50%;
@@ -215,16 +218,20 @@
             line-height: 35px;
             font-size: 15px;
         }
-        .btn{
-            height:35px;
+        .btn,.fav{
+            height:45px;
             background-color:#fc4f41;
             /*margin-top:10px;*/
-            line-height: 35px;
+            line-height: 45px;
             text-align: center;
             color:#fff;
             font-size: 16px;
+            float:left;
+            width:50%;
         }
-
+        .fav{
+            border-left:1px solid #fff;
+        }
 
         .bk1{
             background-color:rgba(0,0,0,.5);
@@ -291,12 +298,12 @@
             font-size: 16px;
         }
         /*.btn1>a:first-child:before {*/
-            /*content: '';*/
-            /*width: 1px;*/
-            /*height: 20px!important;*/
-            /*background-color: #aaa;*/
-            /*float: right;*/
-            /*margin-top: 17.5px;*/
+        /*content: '';*/
+        /*width: 1px;*/
+        /*height: 20px!important;*/
+        /*background-color: #aaa;*/
+        /*float: right;*/
+        /*margin-top: 17.5px;*/
         /*}*/
         .nomessage{
             text-align: center;
@@ -325,11 +332,11 @@
 <ul class="list clearfix">
     {volist name="product" id="po"}
     <li data-price="{$po.price}" data-id="{$po.id}" {eq name="$po.left" value="0"} class="close" {/eq} >
-        <b></b>
-        <div style="background-image:url({$po.front_cover|get_cover='path'})" ></div>
-        <p>兑换</p>
-        <span>{$po.title}</span>
-        <a>剩余 {$po.left}</a>
+    <b></b>
+    <div style="background-image:url({$po.front_cover|get_cover='path'})" ></div>
+    <p>兑换</p>
+    <span>{$po.title}</span>
+    <a>剩余 {$po.left}</a>
     </li>
     {/volist}
 </ul>
@@ -354,6 +361,9 @@
         </div>
         <div class="btn">
             开始兑换
+        </div>
+        <div class="fav">
+            加入购物车
         </div>
     </div>
 </div>

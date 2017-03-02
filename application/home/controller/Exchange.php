@@ -252,4 +252,8 @@ class Exchange extends Base{
         $this->assign('record',$record);
         return $this->fetch();
     }
+    //买家版的卖家店铺详情
+    public function shopmain(){
+        return $this->fetch();
+    }
 }
