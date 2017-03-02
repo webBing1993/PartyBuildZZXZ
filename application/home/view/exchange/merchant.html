@@ -304,7 +304,7 @@
 {eq name="is" value="1"}
 <ul class="list clearfix">
     {volist name="product" id="po"}
-    <li {eq name="$po.left" value="0"} class="close" {/eq} onclick=window.location.href="{:Url('Exchange/commodity?id='.$po['id'])}">
+    <li {eq name="$po.left" value="0"} class="close" {/eq} onclick=window.location.href="{:Url('Exchange/merchantmain?id='.$po['id'])}">
     <div style="background-image:url({$po.front_cover|get_cover='path'})"></div>
     <span>{$po.title}</span>
     <a>{$po.price}</a>
