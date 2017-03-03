@@ -129,6 +129,7 @@ class Exchange extends Base{
      * 商家商品列表详情
      */
     public function merchantmain(){
+        $this->jssdk();
         $id = input('id');
         $product = Product::where('id',$id)->find();
         if ($product['left'] == 0){
@@ -140,36 +141,18 @@ class Exchange extends Base{
         return $this->fetch();
     }
     /*
+     * 购物车 页面
+     */
+    public function shopcar(){
+        return $this->fetch();
+    }
+    /*
      * 地图 首页
      */
     public function map(){
         $id = input('id');
         $shop = Shop::where('id',$id)->find();
         $this->assign('shop',$shop);
-        return $this->fetch();
-    }
-    /**
-     * 商家商品兑换列表详情
-     */
-    public function conversion(){
-        $this->jssdk();
-        $userId = session('userId');
-        $Shop = Shop::where('userid',$userId)->find(); // 获取相应店铺的数据
-        $Product = Product::where(['shop_id'=>$Shop['id'],'status' =>0])->order('id desc')->select();
-        if($Product){
-            $this->assign('is',1);
-        }else{
-            $this->assign('is',0);
-        }
-        // 重新排序 将兑光的排在最后
-        foreach($Product as $key => $value){
-            if ($value->left == 0){
-                $temp = $value;
-                unset($Product[$key]);
-                array_push($Product,$temp);
-            }
-        }
-        $this->assign('product',$Product);
         return $this->fetch();
     }
     /*
@@ -235,7 +218,7 @@ class Exchange extends Base{
                             $info = $MsgModel->create($arr);
                             if($info) {
                                 $Wechats = WechatUser::where(['userid'=>$userid])->find();
-                                return array('status'=>2,'header'=>$Wechats['avatar'],'name'=>$Wechats['name']) ; // 记录成功
+                                return array('status'=>2,'header'=>$Wechats['avatar'],'name'=>$Wechats['name'],'remain' => $temp) ; // 记录成功
                             }
                         }
                     }
