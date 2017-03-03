@@ -131,7 +131,21 @@ class Exchange extends Base{
     public function merchantmain(){
         $id = input('id');
         $product = Product::where('id',$id)->find();
+        if ($product['left'] == 0){
+            $this->assign('is',0);
+        }else{
+            $this->assign('is',1);
+        }
         $this->assign('product',$product);
+        return $this->fetch();
+    }
+    /*
+     * 地图 首页
+     */
+    public function map(){
+        $id = input('id');
+        $shop = Shop::where('id',$id)->find();
+        $this->assign('shop',$shop);
         return $this->fetch();
     }
     /**
@@ -236,16 +250,16 @@ class Exchange extends Base{
      */
     public function merchantrecord(){
         $userId = session('userId');
-        $Shop = Shop::where(['userid' => $userId,'status' =>0])->find();
-        $list = Record::where(['shop_id'=>$Shop['id'],'status' => 0])->order('id desc')->select();
+        $Shop = Shop::where(['userid' => $userId,'status' =>0])->find();  // 获取商家信息
+        $list = Record::where(['shop_id'=>$Shop['id'],'status' => 0])->order('id desc')->select();  // 获取商家的交易记录
         $sum = 0;
         foreach($list as $value){
-            $sum += $value->content;
+            $sum += $value->content;  // 获取商家的交易积分
         }
         if ($list){
             $this->assign('is',1);
         }else{
-            $this->assign('is',0);
+            $this->assign('is',0); // 记录是否存在
         }
         $this->assign('list',$list);
         $this->assign('sum',$sum);
@@ -256,7 +270,7 @@ class Exchange extends Base{
      */
     public function merchantrecordmain(){
         $id = input('param.id');
-        $record = Record::where('id',$id)->find();
+        $record = Record::where('id',$id)->find();  // 获取记录详情
         if($record['type'] == 0){
             $record['type'] = "扫码支付";
         }elseif ($record['type'] == 1){
@@ -283,6 +297,10 @@ class Exchange extends Base{
         }
         $this->assign('product',$Product);
         $this->assign('shop',$Shop);
+        return $this->fetch();
+    }
+    //  客服页面 
+    public function service(){
         return $this->fetch();
     }
 }

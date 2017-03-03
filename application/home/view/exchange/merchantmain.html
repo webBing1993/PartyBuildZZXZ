@@ -213,6 +213,7 @@
 <div class="main">
     {$product.content}
 </div>
+{eq name="is" value="1"}
 <div class="num">
     <span>数量</span>
     <a id="count">
@@ -227,8 +228,9 @@
 </div>
 <div class="sum">
     <span>总计</span>
-    <b>10</b>
+    <b>{$product.price}</b>
 </div>
+{/eq}
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
     $(function(){
@@ -240,6 +242,28 @@
         $('.list>li>div').width(($(window).width()-11)*0.5-11-2);
         $('.list>li>div').height(($(window).width()-11)*0.5-11-2);
     });
+
+    var sum={$product.left};
+    var price={$product.price};
+    function count(a){
+        //应该还有一个剩余数量来做判断
+        var b=$('#count>div').html();
+        if(a==2){
+            if($('#count>div').html()<sum){
+                console.log($('#count>div').html());
+                $('#count>div').html(++b);
+            }
+        }else{
+            if(b!=1){
+                $('#count>div').html(--b);
+            }else{
+                return ;
+            }
+        }
+        $('.sum>b').html(price*b);
+    }
+
+
 </script>
 </body>
 </html>

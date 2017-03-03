@@ -103,13 +103,29 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>店铺位置X坐标:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入店铺位置X坐标..." class="form-control form_title" name="position_x" value="{$msg.position_x || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>店铺位置Y坐标:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入店铺位置Y坐标..." class="form-control form_title" name="position_y" value="{$msg.position_y || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-lg-1 control-label">
                                 <label>主营内容:</label>
                             </div>
                             <div class="col-lg-11">
                                 <div class=" float-e-margins">
                                     <div class="ibox-content no-padding borders">
-                                        <script id="container" name="content" type="text/plain">{$msg.content || default=''}</script>
+                                        <textarea  class="text form-control form_title" style="height: 150px" name="content">{$msg.content || default=''}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -170,17 +186,12 @@
 {block name="script"}
 <script src="/static/uploadify/jquery.uploadify.min.js"></script>
 <script src="/static/iCheck/icheck.min.js"></script>
-<script src="/static/ueditor/ueditor.config.js"></script>
-<script src="/static/ueditor/ueditor.all.min.js"></script>
 <script src="/admin/js/chosen.jquery.js"></script>
 <!--时间日历-->
 <script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
 <script>
     $(function(){
         highlight_subnav("{:Url('Shop/index')}");
-        var ue = UE.getEditor('container',{
-            initialFrameHeight:400
-        });
         //    单选按钮
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -239,7 +250,9 @@
                 title:$("input[name='title']").val(),
                 tel:$("input[name='tel']").val(),
                 front_cover:$("input[name='front_cover']").val(),
-                content:ue.getContent(),
+                position_x:$("input[name='position_x']").val(),
+                position_y:$("input[name='position_y']").val(),
+                content:$("textarea[name='content']").val(),
                 address:$("input[name='address']").val(),
                 recommend:$("input[name='recommend']:checked").val(),
                 status:0,

@@ -23,7 +23,8 @@ class Shop extends Admin{
         );
         $list = $this->lists('Shop',$map);
         int_to_string($list,array(
-            'status' => array(0=>"已发布"),
+            'status' => array(0 => "已发布"),
+            'recommend' =>array(0 => "否",1 => "是")
         ));
         $this->assign('list',$list);
         return $this->fetch();
@@ -67,7 +68,7 @@ class Shop extends Admin{
                 $shopModel = new ShopModel();
                 $data['update_user'] = $_SESSION['think']['user_auth']['id'];
                 $data['update_time'] = time();
-                $model = $shopModel->validate('Shop.atc')->where(['id' => $data['id']])->update($data);
+                $model = $shopModel->validate('Shop.act')->save($data,['id' => $data['id']]);
                 if($model){
                     return $this->success('修改成功',Url("Shop/index"));
                 }else{
@@ -121,7 +122,7 @@ class Shop extends Admin{
                 $data['update_user'] = $_SESSION['think']['user_auth']['id'];
                 $data['left'] = $data['num'];
                 $data['update_time'] = time();
-                $model = $Product->validate('Product.atc')->where(['id' => $data['id']])->update($data);
+                $model = $Product->validate('Product.atc')->save($data,['id' => $data['id']]);
                 if($model){
                     return $this->success('修改成功',Url("Shop/product"));
                 }else{

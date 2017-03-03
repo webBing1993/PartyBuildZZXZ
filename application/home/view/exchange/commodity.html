@@ -137,15 +137,15 @@
     <a  class="red">店铺详情</a>
 </div>
 <div class="shopIntroduce clearfix">
-    <div style="background-image:url({$shop.front_cover|get_cover='path'})"></div>
+    <div style="background-image:url({$shop.front_cover|get_cover='path'})" onclick=window.location.href="{:Url('Exchange/shopmain?id='.$shop['id'])}"></div>
     <ul>
-        <li>
+        <li >
             {$shop.title}
         </li>
-        <li>
+        <li onclick="window.location.href='tel:{$shop.tel}'">
             {$shop.tel}
         </li>
-        <li>
+        <li onclick=window.location.href="{:Url('Exchange/map?id='.$shop['id'])}">
             {$shop.address}
         </li>
         <li>
