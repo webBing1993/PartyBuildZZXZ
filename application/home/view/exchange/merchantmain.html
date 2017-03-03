@@ -224,7 +224,7 @@
 </div>
 <div class="bot">
     <a>加入购物车</a>
-    <a>立即兑换</a>
+    <a id="now">立即兑换</a>
 </div>
 <div class="sum">
     <span>总计</span>
@@ -262,8 +262,103 @@
         }
         $('.sum>b').html(price*b);
     }
+</script>
+<script>
+    var appId='{$jsSign.appid}';
+    var timestamp='{$jsSign.timestamp}';
+    var nonceStr='{$jsSign.noncestr}';
+    var signature='{$jsSign.signature}';
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: appId, // 必填，公众号的唯一标识
+        timestamp: timestamp, // 必填，生成签名的时间戳
+        nonceStr: nonceStr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名，见附录1
+        jsApiList: ['scanQRCode','getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function(){
+        $('#now').click(function(){
+            wx.scanQRCode({
+                desc: 'scanQRCode desc',
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    var data = {
+                        id:product_id,
+                        num:$('#count>div').html(),
+                        price:price,
+                        user_id:result
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: "{:Url('Exchange/scan')}" ,
+                        data: data ,
+                        success:function(data){
+                            if(data.status==0){
+                                alert('请扫描正确党员二维码')
+                            }else if(data.status==2){
+//                                var a=getNum(me.find('a').html());
+//                                if((a-$('#count>div').html())==0){
+//                                    me.addClass('close');
+//                                }
+//                                me.find('a').html('剩余 '+(getNum(me.find('a').html())-$('#count>div').html()));
+//                                $('#user_img').attr('src',data.header);
+//                                $('#user_name').html(data.name);
+//                                $('.bk1').show();
+                            }else{
+                                alert('该用户积分不足');
+                            }
 
+                        }
+                    });
+                },
+                error:function(){
 
+                }
+            });
+        });
+
+    });
+    //alert 去掉连接头部
+    var wAlert = window.alert;
+    window.alert = function (message) {
+        try {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var iwindow = alertFrame.window;
+            if (iwindow == undefined) {
+                iwindow = alertFrame.contentWindow;
+            }
+            iwindow.alert(message);
+            iframe.parentNode.removeChild(iframe);
+        }
+        catch (exc) {
+            return wAlert(message);
+        }
+    }
+    var wConfirm = window.confirm;
+    window.confirm = function (message) {
+        try {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var iwindow = alertFrame.window;
+            if (iwindow == undefined) {
+                iwindow = alertFrame.contentWindow;
+            }
+            iwindow.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+        }
+        catch (exc) {
+            return wConfirm(message);
+        }
+    }
 </script>
 </body>
 </html>
