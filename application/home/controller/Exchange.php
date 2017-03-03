@@ -12,6 +12,7 @@ use app\admin\model\WechatUser;
 use app\home\model\Record;
 use com\wechat\TPQYWechat;
 use think\Config;
+use app\home\model\Car;
 use app\home\model\Years;
 
 class Exchange extends Base{
@@ -108,6 +109,7 @@ class Exchange extends Base{
         $userId = session('userId');
         $Shop = Shop::where('userid',$userId)->find(); // 获取相应店铺的数据
         $Product = Product::where(['shop_id'=>$Shop['id'],'status' =>0])->order('id desc')->select();
+        $Car = Car::where('userid',$userId)->count();
         if($Product){
             $this->assign('is',1);
         }else{
@@ -121,6 +123,7 @@ class Exchange extends Base{
                 array_push($Product,$temp);
             }
         }
+        $this->assign('car',$Car);
         $this->assign('shop',$Shop);
         $this->assign('product',$Product);
         return $this->fetch();
@@ -144,6 +147,9 @@ class Exchange extends Base{
      * 购物车 页面
      */
     public function shopcar(){
+        $userId = session('userId');
+        $Car = Car::where('userid',$userId)->find();
+        $this->assign('car',$Car);
         return $this->fetch();
     }
     /*

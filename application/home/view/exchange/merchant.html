@@ -196,8 +196,10 @@
     <span>抱歉，暂无商品</span>
 </div>
 {/eq}
-<div class="shopcar" onclick="window.location.href=''">
-    <a>1</a>
+<div class="shopcar" onclick=window.location.href="{:Url('Exchange/shopcar')}">
+    {neq name="car" value="0"}
+    <a>{$car}</a>
+    {/neq}
 </div>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
