@@ -100,129 +100,6 @@
             background-image:url(/exchange/15.png);
         }
 
-        /*店铺详情*/
-        .shopIntroduce{
-            border-bottom: 1px solid #f5f5f5;
-        }
-        .shopIntroduce>div{
-            width:100px;
-            height:100px;
-            background:url("") no-repeat center center;
-            background-size:cover;
-            float:left;
-            margin-top:15px;
-            margin-left:10px;
-            margin-bottom:15px;
-            border-radius: 5px;
-        }
-        .shopIntroduce>ul{
-            float:left;
-            margin-left:15px;
-            margin-top:15px;
-        }
-        .shopIntroduce>ul>li{
-            font-size: 15px;
-            color:#333;
-            margin-bottom: 7px;
-            padding-right:10px;
-        }
-        .shopIntroduce>ul>li:not(:first-child){
-            padding-left:20px;
-            font-size: 14px;
-            background:url("") no-repeat left center;
-            background-size: 15px 15px;
-        }
-        .shopIntroduce>ul>li:nth-child(2){
-            background-image:url("/exchange/16.png");
-        }
-        .shopIntroduce>ul>li:nth-child(3){
-            background-image:url("/exchange/17.png");
-        }
-        .shopIntroduce>ul>li:nth-child(4){
-            background-image:url("/exchange/18.png");
-        }
-
-        .list{
-            /*margin-right:12px;*/
-        }
-        .list>li{
-            margin-top:11px;
-            float:left;
-            margin-left:11px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-            border-radius: 5px;
-            position:relative;
-        }
-        .list>li>div{
-            width:90px;
-            height:90px;
-            display:block;
-            margin:0 auto;
-            border-radius: 5px;
-            background:url("/exchange/3.png") no-repeat center center;
-            background-size:cover;
-        }
-        .list>li>span{
-            position:absolute;
-            left:0px;
-            bottom:33px;
-            color:#333;
-            font-size: 14px;
-            padding-left:10px;
-            padding-right:5px;
-            overflow : hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        .list>li>b{
-            position:absolute;
-            left:10px;
-            bottom:10px;
-            color:#999;
-            font-size: 13px;
-            font-weight: normal;
-        }
-        .list>li>a{
-            position:absolute;
-            right:10px;
-            bottom:10px;
-            background:url("/exchange/4.png") no-repeat left center;
-            background-size:14px 14px;
-            padding-left: 19px;
-            height: 14px;
-            font-size: 14px;
-            line-height: 14px;
-            color:#fc4f41;
-        }
-        /*.list>li.hot{*/
-        /*background:url("/exchange/7.png") no-repeat left top;*/
-        /*background-size:25% 25%;*/
-        /*}*/
-        /*.list>li.close{*/
-        /*background:url("/exchange/8.png") no-repeat left top;*/
-        /*background-size:25% 25%;*/
-        /*}*/
-        .list>li.close>a{
-            background-image:url("/exchange/9.png");
-            color:#ccc;
-        }
-        .list>li.close>span{
-            color:#ccc;
-        }
-        .list>li.close>b{
-            color:#ccc;
-        }
-        .list>li.close>div{
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -ms-filter: grayscale(100%);
-            -o-filter: grayscale(100%);
-            filter: grayscale(100%);
-            filter: gray;
-        }
-
         .other{
             height:34px;
             margin:0 auto;
@@ -242,6 +119,8 @@
             margin-right:10px;
         }
     </style>
+    <link rel="stylesheet" href="/exchange/shop.css">
+    <link rel="stylesheet" href="/exchange/shoplist.css">
 </head>
 <body>
 <img src="/exchange/20.png"  class="top" alt="">
@@ -251,7 +130,7 @@
         <li>
             {$shop.title}
         </li>
-        <li>
+        <li onclick="window.location.href='tel:{$shop.tel}'">
             {$shop.tel}
         </li>
         <li>
