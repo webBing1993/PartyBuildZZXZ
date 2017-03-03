@@ -213,5 +213,53 @@
         $('.list>li>div').height(($(window).width()-11)*0.5-11-2);
     });
 </script>
+<script>
+    var block=$('.shopcar')[0];
+    // 绑定touchstart事件
+    block.addEventListener("touchstart", function(e) {
+        //console.log(e);
+        var touches = e.touches[0];
+        oW = touches.clientX - block.offsetLeft;
+        oH = touches.clientY - block.offsetTop;
+        //阻止页面的滑动默认事件
+        document.addEventListener("touchmove",defaultEvent,false);
+    },false);
+    block.addEventListener("touchmove", function(e) {
+        var touches = e.touches[0];
+        var oLeft = touches.clientX - oW;
+        var oTop = touches.clientY - oH;
+        if(oLeft < 0) {
+            oLeft = 0;
+        }else if(oLeft > document.documentElement.clientWidth - block.offsetWidth) {
+            oLeft = (document.documentElement.clientWidth - block.offsetWidth);
+        }
+        if(oTop < 0) {
+            oTop = 0;
+        }else if(oTop > document.documentElement.clientHeight - block.offsetHeight) {
+            oTop = (document.documentElement.clientHeight - block.offsetHeight);
+        }
+        block.style.left = oLeft+ "px";
+        block.style.top = oTop + "px";
+        e.preventDefault();
+        //console.log(block.offsetLeft);
+    },false);
+    block.addEventListener("touchend",function() {
+        document.removeEventListener("touchmove",defaultEvent,false);
+        if(block.offsetLeft>=(document.documentElement.clientWidth - block.offsetWidth)/2) {
+            $('#div2').animate({
+                left:document.documentElement.clientWidth - block.offsetWidth+'px'
+            },300);
+            //block.style.left=document.documentElement.clientWidth - block.offsetWidth+'px'
+        }
+        if(block.offsetLeft<(document.documentElement.clientWidth - block.offsetWidth)/2) {
+            $('#div2').animate({
+                left:'0'
+            },300)
+        }
+    },false);
+    function defaultEvent(e) {
+        e.preventDefault();
+    }
+</script>
 </body>
 </html>
