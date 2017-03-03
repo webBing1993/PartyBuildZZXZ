@@ -200,6 +200,72 @@
             background: url(/exchange/4.png) no-repeat left center;
             background-size: 14px 14px;
         }
+
+
+        .bk1{
+            background-color:rgba(0,0,0,.5);
+            width:100%;
+            position:fixed;
+            top:0;
+            left:0;
+            z-index: 100;
+            display:none;
+            bottom:0;
+        }
+        .bk1>.content{
+            width:70%;
+            position:absolute;
+            top: 50%;
+            left:50%;
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            background-color:#fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .bk_title{
+            margin-top:10px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 18px;
+            margin-bottom: 40px;
+            color:#0Baa0C;
+            font-weight: bold;
+        }
+        .bk_title>span{
+            display:inline-block;
+            width:15px;
+            height:15px;
+            background:url("/work/img/sure.png") no-repeat center center;
+            background-size:cover;
+            margin-right:5px;
+        }
+        #user_img{
+            width: 85px;
+            height:85px;
+            display:block;
+            margin:0 auto;
+            border-radius: 50%;
+            margin-top:45px;
+            margin-bottom:10px;
+        }
+        #user_name{
+            font-size:15px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .btn1{
+            height:55px;
+            line-height: 55px;
+            background-color:#eee;
+        }
+        .btn1>a{
+            float: left;
+            text-align: center;
+            height:55px;
+            line-height: 55px;
+            width:100%;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -223,7 +289,7 @@
     </a>
 </div>
 <div class="bot">
-    <a>加入购物车</a>
+    <a id="add">加入购物车</a>
     <a id="now">立即兑换</a>
 </div>
 <div class="sum">
@@ -231,6 +297,21 @@
     <b>{$product.price}</b>
 </div>
 {/eq}
+
+
+<!--//扫描后结果-->
+<div class="bk1">
+    <div class="content">
+        <img src="" alt="" id="user_img">
+        <p id="user_name"></p>
+        <div class="bk_title">
+            兑 换 成 功
+        </div>
+        <div class="btn1">
+            <a onclick="$('.bk1').hide()">完成</a>
+        </div>
+    </div>
+</div>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
@@ -306,9 +387,19 @@
 //                                    me.addClass('close');
 //                                }
 //                                me.find('a').html('剩余 '+(getNum(me.find('a').html())-$('#count>div').html()));
-//                                $('#user_img').attr('src',data.header);
-//                                $('#user_name').html(data.name);
-//                                $('.bk1').show();
+                                $('#user_img').attr('src',data.header);
+                                $('#user_name').html(data.name);
+                                $('.bk1').show();
+                                if(data.remain){
+                                    $('#count>div').html('1');
+                                    sum=data.remain;
+                                    $('.top1>span').html('剩余 '+data.remain);
+                                }else{
+                                    $('.top1>span').html('剩余 '+data.remain);
+                                    $('.bot').hide();
+                                    $('.num').hide();
+                                    $('.sum').hide();
+                                }
                             }else{
                                 alert('该用户积分不足');
                             }
@@ -362,6 +453,29 @@
             return wConfirm(message);
         }
     }
+</script>
+<script>
+    $('#add').click(function(){
+        var id = {$product.id};
+        $.ajax({
+            type: 'POST',
+            url: " " ,
+            data: {
+                id:id,
+                num:$('#count>div').html()
+            } ,
+            success:function(data){
+                if(data.status==0){
+
+                }else if(data.status==2){
+
+                }else{
+
+                }
+
+            }
+        });
+    })
 </script>
 </body>
 </html>
