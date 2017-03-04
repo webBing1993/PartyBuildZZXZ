@@ -141,6 +141,7 @@ class Exchange extends Base{
             $this->assign('is',1);
         }
         $this->assign('product',$product);
+        $this->assign('link',$_SERVER['HTTP_HOST']);
         return $this->fetch();
     }
     /*
