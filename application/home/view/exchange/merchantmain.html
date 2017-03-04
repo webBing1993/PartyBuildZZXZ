@@ -462,6 +462,7 @@
 <script>
     $('#add').click(function(){
         var id = {$product.id};
+        var price={$product.price};
         $.ajax({
             type: 'POST',
             url: "{:Url('Exchange/addcar')}" ,
@@ -472,10 +473,18 @@
             success:function(data){
                 if(data.status==0){
                     alert('购物车已经存在该商品,最多还可添加'+data.num+'个');
-                    $('#count>div').html(data.num);
+                    if(data.num==0){
+                        $('#count>div').html(1);
+                        $('.sum>b').html(price);
+                    }else{
+                        $('#count>div').html(data.num);
+                        $('.sum>b').html(data.num*price);
+                    }
                 }else if(data.status==1){
                     toastr.success("购物车添加成功!");
-                    window.location.replace('http://'+"{$link}"+'/home/exchange/merchant');
+                    setTimeout(function(){
+                        window.location.replace('http://'+"{$link}"+'/home/exchange/merchant');
+                    },1000);
                 }else{
                     alert('加入购物车失败');
                 }
@@ -489,8 +498,8 @@
         "positionClass": "toast-top-full-width",
         "onclick": null,
         "showDuration": "500",
-        "hideDuration": "300",
-        "timeOut": "800",
+        "hideDuration": "500",
+        "timeOut": "1000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
