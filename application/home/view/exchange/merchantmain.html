@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="/admin/css/plugins/toastr/toastr.min.css">
     <title>商品详情</title>
     <style>
         * {
@@ -266,6 +267,9 @@
             width:100%;
             font-size: 16px;
         }
+        .toast-top-full-width {
+            top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -313,6 +317,7 @@
     </div>
 </div>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
+<script src="/admin/js/plugins/toastr/toastr.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
     $(function(){
@@ -466,13 +471,33 @@
             } ,
             success:function(data){
                 if(data.status==0){
-
+                    alert('购物车已经存在该商品,最多还可添加'+data.num+'个');
+                    $('#count>div').html(data.num);
+                }else if(data.status==1){
+                    toastr.success("购物车添加成功!");
+                    window.location.replace('http://'+{$link}+'/home/exchange/merchant');
                 }else{
-
+                    alert('加入购物车失败');
                 }
             }
         });
     })
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-full-width",
+        "onclick": null,
+        "showDuration": "500",
+        "hideDuration": "300",
+        "timeOut": "800",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "progressBar":true
+    }
 </script>
 </body>
 </html>
