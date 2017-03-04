@@ -459,7 +459,7 @@
         var id = {$product.id};
         $.ajax({
             type: 'POST',
-            url: " " ,
+            url: "{:Url('Exchange/addcar')}" ,
             data: {
                 id:id,
                 num:$('#count>div').html()
@@ -467,12 +467,9 @@
             success:function(data){
                 if(data.status==0){
 
-                }else if(data.status==2){
-
                 }else{
 
                 }
-
             }
         });
     })

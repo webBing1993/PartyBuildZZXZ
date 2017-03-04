@@ -157,11 +157,12 @@
         <div class="pages">
             <div class="page" data-page="home">
                 <div class="page-content">
-
-                    <!--<div class="nomessage">-->
-                        <!--<img src="/exchange/5.png" alt="" ><br>-->
-                        <!--<span>抱歉，您还没有添加商品</span>-->
-                    <!--</div>-->
+                    {empty name="car"}
+                    <div class="nomessage">
+                        <img src="/exchange/5.png" alt="" ><br>
+                        <span>抱歉，您还没有添加商品</span>
+                    </div>
+                    {else/}
                     <div class="countSum">
                         <span>
                             合计：
@@ -172,15 +173,15 @@
                     </div>
                     <div class="list-block">
                         <ul>
-
+                            {volist name="car" id="co"}
                             <li class="swipeout" data-id="1">
                                 <div class="swipeout-content ">
-                                    <img src="" alt="">
-                                    <p>士大夫士大夫打发打发阿斯蒂芬第三方</p>
-                                    <a>299</a>
+                                    <img src="{$co->get_p->front_cover|get_cover='path'}" alt="">
+                                    <p>{$co->get_p->title}</p>
+                                    <a>{$co->get_p->price}</a>
                                     <div class="count">
                                         <b onclick="count(1)"></b>
-                                        <div>1</div>
+                                        <div>{$co.num}</div>
                                         <b onclick="count(2)"></b>
                                     </div>
                                 </div>
@@ -188,8 +189,10 @@
                                     <a href="#" class="swipeout-overswipe red">删除</a>
                                 </div>
                             </li>
+                            {/volist}
                         </ul>
                     </div>
+                    {/empty}
                 </div>
             </div>
         </div>

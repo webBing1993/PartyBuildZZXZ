@@ -148,9 +148,91 @@ class Exchange extends Base{
      */
     public function shopcar(){
         $userId = session('userId');
-        $Car = Car::where('userid',$userId)->find();
+        $Car = Car::where('userid',$userId)->select();  // 获取购物车的数据
+        foreach($Car as $key=>$value){
+            $Product = Product::where(['id' => $value['product_id'] , 'status' =>0])->find();
+            $num = $Product['left'];  // 该商品库存
+            if ($num == 0){
+                unset($Car[$key]);  // 如果库存为0  就从购物车删除该商品
+                Car::where('id',$value['id'])->delete();
+            }else{
+                if ($num < $value['num']){
+                    $value['num'] = $num;  // 如果库存少于  就留最大库存
+                    Car::where('id',$value['id'])->update(array('num'=>$num));
+                }
+            }
+        }
+        if($Car){
+            $this->assign('is',1);
+        }else{
+            $this->assign('is',0);
+        }
         $this->assign('car',$Car);
         return $this->fetch();
+    }
+    /*
+     * 加入购物车
+     */
+    public function addcar(){
+        $id = input('id');
+        $num = input('num');
+        $userId = session('userId');
+        $num1 = Car::where(['userid' => $userId,'product_id'=>$id])->count();  // 购物车的数量
+        $Product= Product::where(['id' => $id,'status' => 0])->find();
+        $num2 = $Product->left;  // 库存剩余
+        $num3 = $num2 - $num1;
+        if ($num3 > $num){
+            // 最后剩余  足够
+            $data['userid'] = $userId;
+            $data['product_id'] = $id;
+            $data['num'] = $num;
+            $res = Car::where(['userid' => $userId,'product_id'=>$id])->find();
+            $Car = new Car();
+            if ($res){
+                $result = $Car->where(['id' => $res['id']])->setInc('num',$num);
+            }else{
+                $result = $Car->save($data);
+            }
+            if ($result){
+                return array('status' => 1);
+            }else{
+                return array('status' => 2);
+            }
+        }else{
+            //  添加的商品超出最后剩余
+            return array('status' => 0 ,'num' => $num3);
+        }
+    }
+    /*
+     * 清空 购物车
+     */
+    public function clearcar(){
+        $userId = session('userId');
+        $res = Car::where('userid',$userId)->delete();
+        if ($res){
+            return 1 ; // 清空成功
+        }else{
+            return 0 ;  // 清空失败
+        }
+    }
+    /*
+     * 删除 购物车商品
+     */
+    public function delcar(){
+        $id = input('id');
+        $userId = session('userId');
+    }
+    /*
+     * 购物车 加商品
+     */
+    public function pluscar(){
+        $id = input('id'); // 产品id
+    }
+    /*
+     * 购物车 减商品
+     */
+    public function cutcar(){
+        $id = input('id'); // 产品id
     }
     /*
      * 地图 首页
