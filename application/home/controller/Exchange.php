@@ -162,6 +162,7 @@ class Exchange extends Base{
                     Car::where('id',$value['id'])->update(array('num'=>$num));
                 }
             }
+            $value['left'] = $num;
         }
         if($Car){
             $this->assign('is',1);

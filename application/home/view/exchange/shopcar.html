@@ -174,7 +174,7 @@
                     <div class="list-block">
                         <ul>
                             {volist name="car" id="co"}
-                            <li class="swipeout" data-id="" data-num="">
+                            <li class="swipeout" data-id="{$co.id}" data-num="{$co.left}">
                                 <div class="swipeout-content ">
                                     <img src="{$co->get_p->front_cover|get_cover='path'}" alt="">
                                     <p>{$co->get_p->title}</p>

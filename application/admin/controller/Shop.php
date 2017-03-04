@@ -10,6 +10,7 @@ use app\admin\model\Shop as ShopModel;
 use app\admin\model\Product;
 use com\wechat\QYWechat;
 use think\Config;
+use app\home\model\Car;
 /*
   * 积分商城
   */
@@ -89,7 +90,10 @@ class Shop extends Admin{
         $map['status'] = "-1";
         $info = Product::where('id',$id)->update($map);
         if($info) {
-            return $this->success("删除成功");
+            $res = Car::where('product_id',$id)->delete();
+            if ($res){
+                return $this->success("删除成功");
+            }
         }else{
             return $this->error("删除失败");
         }
