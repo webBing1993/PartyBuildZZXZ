@@ -210,6 +210,40 @@
     $(function(){
        $('.swipeout-content>p').width($(window).width()-116);
     })
+    //计算函数
+    function count(a){
+        var me=$(this).parent().parent();
+        var sum=me.attr('data-num');
+        var a1=me.attr('data-id');
+        //应该还有一个剩余数量来做判断
+        var b=$('#count>div').html();
+        if(a==2){
+            if($('#count>div').html()<sum){
+                console.log($('#count>div').html());
+                $('#count>div').html(++b);
+                countAjax(a1,b);
+            }
+        }else{
+            if(b!=1){
+                $('#count>div').html(--b);
+                countAjax(a1,b);
+            }else{
+                return ;
+            }
+        }
+        $('.sum>b').html(price*b);
+    }
+    //修改数量的ajax
+    function countAjax(a,b){
+        $.ajax({
+            type: 'POST',
+            url: "{:Url('Exchange/pluscar')}" ,
+            data: {id:a,num:b} ,
+            success:function(data){
+
+            }
+        });
+    }
 </script>
 </body>
 </html>
