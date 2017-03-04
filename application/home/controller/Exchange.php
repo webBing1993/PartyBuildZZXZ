@@ -178,11 +178,12 @@ class Exchange extends Base{
         $id = input('id');
         $num = input('num');
         $userId = session('userId');
-        $num1 = Car::where(['userid' => $userId,'product_id'=>$id])->count();  // 购物车的数量
+        $Car = Car::where(['userid' => $userId,'product_id'=>$id])->find();  // 购物车中该商品的数量
+        $num1 = $Car['num'];
         $Product= Product::where(['id' => $id,'status' => 0])->find();
         $num2 = $Product->left;  // 库存剩余
         $num3 = $num2 - $num1;
-        if ($num3 > $num){
+        if ($num3 >= $num){
             // 最后剩余  足够
             $data['userid'] = $userId;
             $data['product_id'] = $id;
