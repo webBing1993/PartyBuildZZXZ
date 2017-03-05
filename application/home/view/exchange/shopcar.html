@@ -289,13 +289,15 @@
     //清空购物车
     $('#clear').click(function(){
         var r=confirm("确认清空购物车吗?");
-        if (r==true) {
+        console.log(r);
+        if (r) {
+            console.log('ok');
             $.ajax({
                 type: 'POST',
                 url: "{:Url('Exchange/clearcar')}" ,
                 data: {} ,
                 success:function(data){
-                    window.location.replace('http://'+location.href);
+                    window.location.replace(location.href);
                 }
             });
         }else{
@@ -306,7 +308,7 @@
     $('.swipeout-overswipe').click(function(){
         var a=$(this).parent().parent();
         var r=confirm("确认删除该商品吗?");
-        if (r==true) {
+        if (r) {
             $.ajax({
                 type: 'POST',
                 url: "{:Url('Exchange/delcar')}" ,
@@ -474,6 +476,7 @@
             }
             iwindow.confirm(message);
             iframe.parentNode.removeChild(iframe);
+            return 'ok';
         }
         catch (exc) {
             return wConfirm(message);
