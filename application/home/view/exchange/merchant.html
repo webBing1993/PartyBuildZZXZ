@@ -202,6 +202,7 @@
     {/neq}
 </div>
 <script src="/work/js/jquery-1.12.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
     $(function(){
         $('.list>li>p').width($(window).width()-92);
@@ -258,6 +259,75 @@
     },false);
     function defaultEvent(e) {
         e.preventDefault();
+    }
+</script>
+<script>
+    var appId='{$jsSign.appid}';
+    var timestamp='{$jsSign.timestamp}';
+    var nonceStr='{$jsSign.noncestr}';
+    var signature='{$jsSign.signature}';
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: appId, // 必填，公众号的唯一标识
+        timestamp: timestamp, // 必填，生成签名的时间戳
+        nonceStr: nonceStr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名，见附录1
+        jsApiList: ['scanQRCode','getLocation','closeWindow'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function(){
+        $(function(){
+            pushHistory();
+            window.addEventListener("popstate", function(e) {
+                wx.closeWindow();
+            }, false);
+            function pushHistory() {
+                var state = {
+                    title: "title"
+                };
+                if(window.history.state===null){
+                    window.history.pushState(state, "title");
+                }
+            }
+        });
+    });
+    //alert 去掉连接头部
+    var wAlert = window.alert;
+    window.alert = function (message) {
+        try {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var iwindow = alertFrame.window;
+            if (iwindow == undefined) {
+                iwindow = alertFrame.contentWindow;
+            }
+            iwindow.alert(message);
+            iframe.parentNode.removeChild(iframe);
+        }
+        catch (exc) {
+            return wAlert(message);
+        }
+    }
+    var wConfirm = window.confirm;
+    window.confirm = function (message) {
+        try {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var iwindow = alertFrame.window;
+            if (iwindow == undefined) {
+                iwindow = alertFrame.contentWindow;
+            }
+            iwindow.confirm(message);
+            iframe.parentNode.removeChild(iframe);
+        }
+        catch (exc) {
+            return wConfirm(message);
+        }
     }
 </script>
 </body>

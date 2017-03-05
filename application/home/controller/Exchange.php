@@ -106,6 +106,7 @@ class Exchange extends Base{
      * 商家商品列表
      */
     public function merchant(){
+        $this->jssdk();
         $userId = session('userId');
         $Shop = Shop::where('userid',$userId)->find(); // 获取相应店铺的数据
         $Product = Product::where(['shop_id'=>$Shop['id'],'status' =>0])->order('id desc')->select();
@@ -148,6 +149,7 @@ class Exchange extends Base{
      * 购物车 页面
      */
     public function shopcar(){
+        $this->jssdk();
         $userId = session('userId');
         $Car = Car::where('userid',$userId)->select();  // 获取购物车的数据
         foreach($Car as $key=>$value){
@@ -170,6 +172,7 @@ class Exchange extends Base{
             $this->assign('is',0);
         }
         $this->assign('car',$Car);
+        $this->assign('link',$_SERVER['HTTP_HOST']);
         return $this->fetch();
     }
     /*
@@ -223,19 +226,20 @@ class Exchange extends Base{
      */
     public function delcar(){
         $id = input('id');
-        $userId = session('userId');
+        $res = Car::where('id',$id)->delete();
+        if ($res){
+            return 1;
+        }else{
+            return 0;
+        }
     }
     /*
      * 购物车 加商品
      */
     public function pluscar(){
-        $id = input('id'); // 产品id
-    }
-    /*
-     * 购物车 减商品
-     */
-    public function cutcar(){
-        $id = input('id'); // 产品id
+        $id = input('id'); // 购物车中产品id
+        $num = input('num');  // 购物车中更新数量
+        Car::where('id',$id)->update(array('num'=>$num));
     }
     /*
      * 地图 首页
@@ -247,7 +251,7 @@ class Exchange extends Base{
         return $this->fetch();
     }
     /*
-     * 商家扫码
+     * 商家扫码  立即兑换
      */
     public function scan(){
         $id = input('id');  //产品id
@@ -310,6 +314,94 @@ class Exchange extends Base{
                             if($info) {
                                 $Wechats = WechatUser::where(['userid'=>$userid])->find();
                                 return array('status'=>2,'header'=>$Wechats['avatar'],'name'=>$Wechats['name'],'remain' => $temp) ; // 记录成功
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            return  array('status'=>0);  // 该用户不存在
+        }
+    }
+    /*
+     * 商家扫码  购物车兑换
+     */
+    public function scans(){
+        $data = json_decode(input('post.data'));
+        $userid = $data->userid;  // 买家用户id
+        $arr = $data->data;
+        $sum = $data->sum;  // 总价
+        $Wechat = new WechatUser();
+        $user = $Wechat->where('userid',$userid)->find();
+        if ($user){
+            $Record = Record::where('userid',$userid)->select();
+            $score = 0;
+            foreach($Record as $value){
+                $score += $value->content;
+            }
+            $now = $user['score'] - $score; // 剩余积分
+            if ($now < $sum){
+                return array('status'=>1) ; //  积分不足
+            }else{
+                $flags = false;
+                $messages = array();
+                // 更新产品表
+                foreach($arr as $value){
+                    $Objs = Car::where('id',$value->id)->find();
+                    $Obj= Product::where('id',$Objs['product_id'])->find();
+                    $temp = $Obj->left - $value->num;
+                    $result = Product::where(['id' => $Objs['product_id']])->update(['left' => $temp]);
+                    if ($result){
+                        // 产品表更新成功 存储兑换记录表
+                        $info['userid'] = $userid;
+                        $info['shop_id'] = $Obj['shop_id'];
+                        $info['product_id'] = $Objs['product_id'];
+                        $info['content'] = $value->money;
+                        $info['num'] = $value->num;
+                        $info['type'] = 0;  // 扫码支付
+                        $Record = new Record();
+                        $flag = $Record->save($info);
+                        if ($flag){
+                            $flags = true;
+                            $message = $Obj->title.$value->num."件";
+                        }
+                    }
+                    array_push($messages,$message);
+                }
+                //  更新产品表后  清空 购物车
+                if ($flags){
+                    $userId = session('userId');  // 商家id
+                    $res = Car::where('userid',$userId)->delete();
+                    if ($res){
+                        // 清空购物车后 推送消息到个人中心
+                        $Shops = Shop::where('userid',$userId)->find();
+                        // 存储成功推送消息
+                        $content = "尊敬的德清地信小镇党建用户，恭喜您已成功在".$Shops->title."购买".implode(',',$messages)."。本次消费共计".$sum."积分，期待您的再次惠顾！";
+                        $Wechat = new TPQYWechat(Config::get('party'));
+                        $message = array(
+                            'touser' => $userid,
+                            "msgtype" => 'text',
+                            "agentid" => 8,
+                            "text" => array(
+                                "content" => $content
+                            ),
+                            "safe" => "0"
+                        );
+                        $suc = $Wechat->sendMessage($message);
+                        //推送成功后数据显示在个人中心我的消息列表中
+                        if($suc) {
+                            $MsgModel = new Years();
+                            $name = WechatUser::where('userid',$userid)->find();
+                            $arr = array(
+                                'userid' => $userid,
+                                'name' => $name['name'],
+                                'type' => 1,
+                                'years' => $content,
+                            );
+                            $info = $MsgModel->create($arr);
+                            if($info) {
+                                $Wechats = WechatUser::where(['userid'=>$userid])->find();
+                                return array('status'=>2,'header'=>$Wechats['avatar'],'name'=>$Wechats['name']) ; // 记录成功
                             }
                         }
                     }

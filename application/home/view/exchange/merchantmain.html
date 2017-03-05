@@ -27,6 +27,7 @@
         }
         body{
             padding-bottom: 55px;
+            background: #efeff4;
         }
         .top{
             width:100%;
@@ -79,8 +80,8 @@
             font-size: 14px;
             padding-left:12px;
             padding-right:12px;
-            margin-top:10px;
-            margin-bottom:15px;
+            padding-top:10px;
+            padding-bottom:15px;
         }
         .titleBar{
             height:40px;
@@ -270,21 +271,24 @@
         .toast-top-full-width {
             top: 10px;
         }
+        .wh{
+            background-color:#fff;
+        }
     </style>
 </head>
 <body>
 <img src="{$product.front_cover|get_cover='path'}"  class="top" alt="">
-<div class="top1 clearfix">
+<div class="top1 clearfix wh">
     <p>{$product.title}</p>
     <span>剩余 {$product.left}</span>
     <a>{$product.price}</a>
 </div>
-<div class="title1">产品参数</div>
-<div class="main">
+<div class="title1 wh">产品参数</div>
+<div class="main wh">
     {$product.content}
 </div>
 {eq name="is" value="1"}
-<div class="num">
+<div class="num wh">
     <span>数量</span>
     <a id="count">
         <b onclick="count(1)"></b>
@@ -296,7 +300,7 @@
     <a id="add">加入购物车</a>
     <a id="now">立即兑换</a>
 </div>
-<div class="sum">
+<div class="sum wh">
     <span>总计</span>
     <b>{$product.price}</b>
 </div>
