@@ -26,7 +26,7 @@
             clear:both;
         }
         body{
-            padding-bottom: 55px;
+            padding-bottom: 80px;
             background: #efeff4;
         }
         .top{
@@ -278,10 +278,6 @@
     <span>剩余 {$product.left}</span>
     <a>{$product.price}</a>
 </div>
-<div class="title1 wh">产品参数</div>
-<div class="main wh">
-    {$product.content}
-</div>
 {eq name="is" value="1"}
 <div class="num wh">
     <span>数量</span>
@@ -300,6 +296,11 @@
     <b>{$product.price}</b>
 </div>
 {/eq}
+<div class="title1 wh">产品参数</div>
+<div class="main wh">
+    {$product.content}
+</div>
+
 
 
 <!--//扫描后结果-->
