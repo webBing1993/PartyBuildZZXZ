@@ -432,16 +432,14 @@
                             data: {data:JSON.stringify(data1)} ,
                             success:function(data){
                                 if(data.status==0){
-                                    if(data.status==0){
-                                        alert('请扫描正确党员二维码')
-                                    }else if(data.status==2){
-                                        $('#user_img').attr('src',data.header);
-                                        $('#user_name').html(data.name);
-                                        $('.page-content').hide();
-                                        $('.bk1').show();
-                                    }else{
-                                        alert('该用户积分不足');
-                                    }
+                                    alert('请扫描正确党员二维码')
+                                }else if(data.status==2){
+                                    $('#user_img').attr('src',data.header);
+                                    $('#user_name').html(data.name);
+                                    $('.page-content').hide();
+                                    $('.bk1').show();
+                                }else{
+                                    alert('该用户积分不足');
                                 }
                             }
                         });

@@ -90,12 +90,19 @@ class Shop extends Admin{
         $map['status'] = "-1";
         $info = Product::where('id',$id)->update($map);
         if($info) {
-            $res = Car::where('product_id',$id)->delete();
-            if ($res){
+            $Car = Car::where('product_id',$id)->find();
+            if (empty($Car)){
                 return $this->success("删除成功");
+            }else{
+                $res = Car::where('product_id',$id)->delete();
+                if ($res){
+                    return $this->success("删除成功");
+                }else{
+                    return $this->error("删除失败");
+                }
             }
         }else{
-            return $this->error("删除失败");
+
         }
     }
     /*
