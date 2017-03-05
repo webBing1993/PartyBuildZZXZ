@@ -31,7 +31,7 @@
         .swipeout-content{
             height:100%;
         }
-        .swipeout-content>img{
+        .swipeout-content>.img{
             width:80px;
             height:80px;
             float:left;
@@ -42,6 +42,7 @@
             border-radius: 5px;
             background: url("") no-repeat center center;
             background-size:cover;
+            overflow: hidden;
         }
         .swipeout-content>p{
             position:absolute;
@@ -259,7 +260,7 @@
                             {volist name="car" id="co"}
                             <li class="swipeout" data-id="{$co.id}" data-num="{$co.left}" data-price="{$co->get_p->price}">
                                 <div class="swipeout-content ">
-                                    <img src="" alt="" style="background-image: url({$co->get_p->front_cover|get_cover='path'})">
+                                    <b class="img" style="background-image: url({$co->get_p->front_cover|get_cover='path'})"></b>
                                     <p>{$co->get_p->title}</p>
                                     <a class="sum">{$co->get_p->price * $co.num}</a>
                                     <div class="count">

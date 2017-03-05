@@ -288,12 +288,12 @@ class Exchange extends Base{
                     if ($flag){
                         $Shops = Shop::where('id',$Obj->shop_id)->find();
                         // 存储成功推送消息
-                        $content = "尊敬的莫干红云党员用户，恭喜您已成功在".$Shops->title."购买".$Obj->title."，产品总数".$num."件。本次消费共计".$sum."积分，期待您的再次惠顾！";
+                        $content = "尊敬的德清地信小镇党建用户，恭喜您已成功在".$Shops->title."购买".$Obj->title."，产品总数".$num."件。本次消费共计".$sum."积分，期待您的再次惠顾！";
                         $Wechat = new TPQYWechat(Config::get('party'));
                         $message = array(
                             'touser' => $userid,
                             "msgtype" => 'text',
-                            "agentid" => 9,
+                            "agentid" => 8,
                             "text" => array(
                                 "content" => $content
                             ),
