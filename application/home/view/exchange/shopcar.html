@@ -253,7 +253,7 @@
                             合计：<a></a>
                         </span>
                         <a id="now">结算</a>
-                        <a id="clear">清空</a>
+                        <a id="clear1">清空</a>
                     </div>
                     <div class="list-block">
                         <ul>
@@ -290,11 +290,13 @@
     var myApp = new Framework7();
 
     //清空购物车
-    $('#clear').click(function(){
+    $('#clear1').one('click',function(){
+        clearBoth( );
+    });
+
+    function clearBoth( ){
         var r=confirm("确认清空购物车吗?");
-        console.log(r);
         if (r) {
-            console.log('ok');
             $.ajax({
                 type: 'POST',
                 url: "{:Url('Exchange/clearcar')}" ,
@@ -303,10 +305,14 @@
                     window.location.replace(location.href);
                 }
             });
-        }else{
-
+        }else if(r==false){
+            setTimeout(function(){
+                $('#clear1').one('click',function(){
+                    clearBoth( );
+                });
+            },500)
         }
-    });
+    }
     //删除单挑购物车
     $('.del').click(function(){
         if(myApp.swipeoutOpenedEl ) {
