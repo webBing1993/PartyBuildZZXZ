@@ -32,9 +32,11 @@
 }
 .shopIntroduce>ul>li:nth-child(2){
     background-image:url("/exchange/16.png");
+    color:#337ab7;
 }
 .shopIntroduce>ul>li:nth-child(3){
     background-image:url("/exchange/17.png");
+    color:#62b900;
 }
 .shopIntroduce>ul>li:nth-child(4){
     background-image:url("/exchange/18.png");
