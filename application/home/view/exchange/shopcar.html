@@ -288,14 +288,14 @@
 
     //清空购物车
     $('#clear').click(function(){
-        var r=confirm("确认删除该商品吗?");
+        var r=confirm("确认清空购物车吗?");
         if (r==true) {
             $.ajax({
                 type: 'POST',
                 url: "{:Url('Exchange/clearcar')}" ,
                 data: {} ,
                 success:function(data){
-                    location.replace(location.href);
+                    window.location.replace('http://'+location.href);
                 }
             });
         }else{
