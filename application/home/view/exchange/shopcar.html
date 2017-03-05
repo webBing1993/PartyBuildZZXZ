@@ -40,6 +40,8 @@
             margin-top:10px;
             border:1px solid #f1f1f1;
             border-radius: 5px;
+            background: url("") no-repeat center center;
+            background-size:cover;
         }
         .swipeout-content>p{
             position:absolute;
@@ -257,7 +259,7 @@
                             {volist name="car" id="co"}
                             <li class="swipeout" data-id="{$co.id}" data-num="{$co.left}" data-price="{$co->get_p->price}">
                                 <div class="swipeout-content ">
-                                    <img src="{$co->get_p->front_cover|get_cover='path'}" alt="">
+                                    <img src="" alt="" style="background-image: url({$co->get_p->front_cover|get_cover='path'})">
                                     <p>{$co->get_p->title}</p>
                                     <a class="sum">{$co->get_p->price * $co.num}</a>
                                     <div class="count">
@@ -267,7 +269,7 @@
                                     </div>
                                 </div>
                                 <div class="swipeout-actions-right">
-                                    <a href="#" class="swipeout-overswipe red">删除</a>
+                                    <a href="#" class="del red">删除</a>
                                 </div>
                             </li>
                             {/volist}
@@ -305,7 +307,7 @@
         }
     });
     //删除单挑购物车
-    $('.swipeout-overswipe').click(function(){
+    $('.del').click(function(){
         var a=$(this).parent().parent();
         var r=confirm("确认删除该商品吗?");
         if (r) {
