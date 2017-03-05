@@ -309,27 +309,29 @@
     });
     //删除单挑购物车
     $('.del').click(function(){
-        var a=$(this).parent().parent();
-        var r=confirm("确认删除该商品吗?");
-        if (r) {
-            $.ajax({
-                type: 'POST',
-                url: "{:Url('Exchange/delcar')}" ,
-                data: {id:a.attr('data-id')} ,
-                success:function(data){
-                    a.fadeOut(500);
-                    setTimeout(function(){
-                        a.remove();
-                        if($('.swipeout').length==0){
-                            location.replace(location.href);
-                        }
-                        sumPrice();
-                    },500)
+        if(myApp.swipeoutOpenedEl ) {
+            var a = $(this).parent().parent();
+            var r = confirm("确认删除该商品吗?");
+            if (r) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{:Url('Exchange/delcar')}",
+                    data: {id: a.attr('data-id')},
+                    success: function (data) {
+                        a.fadeOut(500);
+                        setTimeout(function () {
+                            a.remove();
+                            if ($('.swipeout').length == 0) {
+                                location.replace(location.href);
+                            }
+                            sumPrice();
+                        }, 500)
 
-                }
-            });
-        }else{
-            myApp.swipeoutClose(a);
+                    }
+                });
+            } else {
+                myApp.swipeoutClose(a);
+            }
         }
     });
 
