@@ -474,9 +474,9 @@
             if (iwindow == undefined) {
                 iwindow = alertFrame.contentWindow;
             }
-            iwindow.confirm(message);
+            var a=iwindow.confirm(message);
             iframe.parentNode.removeChild(iframe);
-            return 'ok';
+            return a;
         }
         catch (exc) {
             return wConfirm(message);
