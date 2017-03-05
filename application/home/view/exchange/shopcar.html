@@ -319,6 +319,7 @@
             var a = $(this).parent().parent();
             var r = confirm("确认删除该商品吗?");
             if (r) {
+                myApp.swipeoutClose(a);
                 $.ajax({
                     type: 'POST',
                     url: "{:Url('Exchange/delcar')}",
@@ -332,7 +333,6 @@
                             }
                             sumPrice();
                         }, 500)
-
                     }
                 });
             } else {
