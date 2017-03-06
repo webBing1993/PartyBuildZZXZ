@@ -469,4 +469,14 @@ class Exchange extends Base{
     public function service(){
         return $this->fetch();
     }
+    /*
+     * 二维码 
+     */
+    public function erweima(){
+        $userid = session('userId');
+        $Header = WechatUser::where(['userid' => $userid])->find();
+        $this->assign('header',$Header['avatar']);
+        $this->assign('id',$userid);
+        return $this->fetch();
+    }
 }
