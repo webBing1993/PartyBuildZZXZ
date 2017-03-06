@@ -118,6 +118,22 @@
             margin-left:10px;
             margin-right:10px;
         }
+        .nomessage{
+            text-align: center;
+            position:fixed;
+            top:70%;
+            left:50%;
+            width:100%;
+            -webkit-transform: translateY(-50%) translateX(-50%);
+        }
+        .nomessage>img{
+            width:36%;
+            margin-bottom:15px;
+        }
+        .nomessage>span{
+            font-size: 17px;
+            color:#ccc;
+        }
     </style>
     <link rel="stylesheet" href="/exchange/shop.css">
     <link rel="stylesheet" href="/exchange/shoplist.css">
@@ -145,6 +161,11 @@
     <span></span>
     <p>店铺宝贝</p>
     <span></span>
+</div>
+
+<div class="nomessage">
+    <img src="/exchange/27.png" alt="" ><br>
+    <span>宝贝正在更新中...</span>
 </div>
 <ul class="list clearfix">
     {volist name="product" id="po"}
