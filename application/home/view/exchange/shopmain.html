@@ -163,11 +163,12 @@
     <p>店铺宝贝</p>
     <span></span>
 </div>
-
+{empty name="product"}
 <div class="nomessage">
     <img src="/exchange/27.png" alt="" ><br>
     <span>宝贝正在更新中...</span>
 </div>
+{else/}
 <ul class="list clearfix">
     {volist name="product" id="po"}
     <li {eq name="$po.left" value="0"} class="close" {/eq} onclick=window.location.href="{:Url('Exchange/commodity?id='.$po['id'])}">
@@ -178,6 +179,7 @@
     </li>
     {/volist}
 </ul>
+{/empty}
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
     $(function(){
