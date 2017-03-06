@@ -108,7 +108,7 @@ class Exchange extends Base{
     public function merchant(){
         $this->jssdk();
         $userId = session('userId');
-        $Shop = Shop::where('userid',$userId)->find(); // 获取相应店铺的数据
+        $Shop = Shop::where(['userid' => $userId,'status' =>0])->find(); // 获取相应店铺的数据
         $Product = Product::where(['shop_id'=>$Shop['id'],'status' =>0])->order('id desc')->select();
         $Car = Car::where('userid',$userId)->count();
         if($Product){

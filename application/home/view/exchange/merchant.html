@@ -158,6 +158,12 @@
 </head>
 <body>
 <img src="/exchange/20.png"  class="top" alt="">
+{empty name="shop"}
+<div class="nomessage">
+    <img src="/exchange/25.png" alt="" ><br>
+    <span>抱歉，暂无商品</span>
+</div>
+{else/}
 <div class="shopIntroduce clearfix">
     <div style="background-image:url({$shop.front_cover|get_cover='path'})"></div>
     <ul>
@@ -202,6 +208,7 @@
     <a>{$car}</a>
     {/neq}
 </div>
+{/empty}
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>

@@ -117,6 +117,22 @@
             margin-left:10px;
             margin-right:10px;
         }
+        .nomessage{
+            text-align: center;
+            position:fixed;
+            top:70%;
+            left:50%;
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            width:100%;
+        }
+        .nomessage>img{
+            width:36%;
+            margin-bottom:15px;
+        }
+        .nomessage>span{
+            font-size: 17px;
+            color:#ccc;
+        }
     </style>
     <link rel="stylesheet" href="/exchange/shop.css">
     <link rel="stylesheet" href="/exchange/shoplist.css">
@@ -157,6 +173,12 @@
     <p>其他宝贝</p>
     <span></span>
 </div>
+{empty name="other"}
+<div class="nomessage">
+    <img src="/exchange/25.png" alt="" ><br>
+    <span>抱歉，暂无商品</span>
+</div>
+{else/}
 <ul class="list clearfix">
     {volist name="other" id="oo"}
     <li {eq name="$oo.left" value="0"} class="close" {/eq}  data-id="{$link}{:Url('Exchange/commodity?id='.$oo['id'])}">
@@ -167,6 +189,7 @@
     </li>
     {/volist}
 </ul>
+{/empty}
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
     $(function(){
