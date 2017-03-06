@@ -113,7 +113,7 @@
                                 <select class="form-control" name="shop_id">
                                     {neq name="msg" value=""}
                                         {volist name="shop" id="so"}
-                                        <option value="{$so.id}" {if condition="$so.id eq $msg.id"} selected {/if}>{$so.title}</option>
+                                        <option value="{$so.id}" {if condition="$so.id eq $msg.shop_id"} selected {/if}>{$so.title}</option>
                                         {/volist}
                                     {else/}
                                         {volist name="shop" id="so"}
