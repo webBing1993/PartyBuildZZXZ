@@ -119,11 +119,12 @@
         }
         .nomessage{
             text-align: center;
-            position:fixed;
-            top:70%;
-            left:50%;
-            -webkit-transform: translateY(-50%) translateX(-50%);
+            /*position:fixed;*/
+            /*top:70%;*/
+            /*left:50%;*/
+            /*-webkit-transform: translateY(-50%) translateX(-50%);*/
             width:100%;
+            margin-top:20px;
         }
         .nomessage>img{
             width:36%;
@@ -200,7 +201,7 @@
 {else/}
 <div class="nomessage">
     <img src="/exchange/25.png" alt="" ><br>
-    <span>抱歉，暂无商品</span>
+    <span>您的宝贝仍未上架</span>
 </div>
 {/eq}
 <div class="shopcar" onclick=window.location.href="{:Url('Exchange/shopcar')}">
