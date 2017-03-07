@@ -121,7 +121,7 @@
             display: -webkit-box;
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
-            height:14px;
+            height:13px;
         }
         .shop>li>a{
             display:block;
@@ -155,7 +155,7 @@
     {volist name="shop" id="so"}
     <li onclick=window.location.href="{:Url('Exchange/shopmain?id='.$so['id'])}">
         <a style="background-image:url({$so.front_cover|get_cover='path'})"></a>
-        <p>{$so.title}</p>
+        <p>的发技术的疯狂的疯狂大煞风景</p>
     </li>
     {/volist}
 </ul>
