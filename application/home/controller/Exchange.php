@@ -27,7 +27,7 @@ class Exchange extends Base{
         foreach($Record as $value){
             $score += $value['content'];
         }
-        $now = $Wechat->score - $score;  // 剩余积分
+        $now = $Wechat->score - $score + 10;  // 剩余积分
         $Product = Product::where(['status' =>0])->order('id desc')->select();
         $Shop = Shop::where(['status' => 0 ,'recommend' => 1])->limit(3)->select();
         if($Shop){
@@ -44,7 +44,7 @@ class Exchange extends Base{
             }
         }
         $this->assign('now',$now);  // 剩余积分
-        $this->assign('score',$Wechat->score);  // 总积分
+        $this->assign('score',$Wechat->score + 10);  // 总积分
         $this->assign('product',$Product);
         $this->assign('shop',$Shop);
         return $this->fetch();
@@ -267,7 +267,7 @@ class Exchange extends Base{
             foreach($Record as $value){
                 $score += $value->content;
             }
-            $now = $user['score'] - $score; // 剩余积分
+            $now = $user['score'] - $score + 10; // 剩余积分
             if ($now < $sum){
                 return array('status'=>1) ; //  积分不足
             }else{
@@ -339,7 +339,7 @@ class Exchange extends Base{
             foreach($Record as $value){
                 $score += $value->content;
             }
-            $now = $user['score'] - $score; // 剩余积分
+            $now = $user['score'] - $score + 10; // 剩余积分
             if ($now < $sum){
                 return array('status'=>1) ; //  积分不足
             }else{

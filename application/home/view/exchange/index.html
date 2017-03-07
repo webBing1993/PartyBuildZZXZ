@@ -155,7 +155,7 @@
     {volist name="shop" id="so"}
     <li onclick=window.location.href="{:Url('Exchange/shopmain?id='.$so['id'])}">
         <a style="background-image:url({$so.front_cover|get_cover='path'})"></a>
-        <p>的发技术的疯狂的疯狂大煞风景</p>
+        <p>{$so.title}</p>
     </li>
     {/volist}
 </ul>

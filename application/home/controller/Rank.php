@@ -35,22 +35,15 @@ class Rank extends Base {
             ->join('pb_wechat_department b','a.departmentid = b.id','LEFT')
             ->where('a.userid',$userId)
             ->find();
-
-        // 是否关注企业号  关注后积分变化
-        $temp = $wechatModel::where('status',1)->select();
-        foreach($temp as $value){
-            if($value['score'] < 10){
-                $info['score'] = array('exp','`score`+10');
-                $wechatModel::where('userid',$value['userid'])->update($info);
-            }
-        }
         //个人信息
         $personal = $wechatModel::where('userid',$userId)->find();
+        $personal['score'] = $personal['score'] + 10;  // 关注企业号  基础分10
         $personal['dpname'] = $dp['name'];
         //总榜
         $con['score'] = array('neq',0);
         $all  = $wechatModel->where($con)->order('score desc')->limit(60)->select();
         foreach ($all as $k => $value){
+            $value['score'] += 10;  // 关注企业号  基础分10
             if($value['userid'] == $userId){
                 $personal['rank'] = $k+1;
             }
@@ -390,6 +383,9 @@ class Rank extends Base {
         //合并相同数组的数据并值累加
         $item = array();
         foreach($dpall as $k=>$v){
+            if ($v['score'] != 0){
+                $v['score'] += 10;
+            }
             if(!isset($item[$v['id']])){
                 $item[$v['id']]=$v;
             }else{
