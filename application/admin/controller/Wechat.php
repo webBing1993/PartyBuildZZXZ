@@ -86,13 +86,12 @@ class Wechat extends Admin
         if($Wechat->errCode != 40001) {
             return $this->error("同步出错");
         }
-
         /* 同步部门 */
         $list = $Wechat->getDepartment();
-
 //        /* 同步最顶级部门下面的用户 */
         foreach ($list['department'] as $key=>$value) {
             $users = $Wechat->getUserListInfo($list['department'][$key]['id']);
+//            $user =  $users['userlist'][0];
             foreach ($users['userlist'] as $user) {
                 $user['department'] = json_encode($user['department']);
                 if(isset($user['extattr'])){
@@ -131,17 +130,17 @@ class Wechat extends Admin
                     $user['extattr'] = json_encode($user['extattr']);
                 }
                 if(WechatUser::get(['userid'=>$user['userid']])) {
+//                    unset($user['extattr']);
                     WechatUser::where(['userid'=>$user['userid']])->update($user);
                 } else {
                     WechatUser::create($user);
                 }
             }
+
         }
         $data = "用户数:".count($users['userlist'])."!";
-
         return $this->success("同步成功", '', $data);
     }
-
     /**
      * 同步部门
      */
