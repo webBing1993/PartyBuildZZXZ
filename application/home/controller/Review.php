@@ -30,7 +30,7 @@ class Review extends Base {
      */
     public function reviewlist() {
         $map = array(
-            'type' => 1, // 企业号
+            'class' => 1, 
             'status' => array('eq',0),
         );
         $list = Push::where($map)->order('create_time desc')->select();

@@ -106,47 +106,25 @@ class News extends Admin {
      */
     public function pushlist(){
         if(IS_POST){
-            $news_id=input('news_id');//主图文id
+            $id = input('id');//主图文id
             //副图文本周内的新闻消息
-            date_default_timezone_set('PRC');     //初始化时区
-            $y = date("Y");     //获取当天的年份
-            $m = date("m");     //获取当天的月份
-            $d = date("d");     //获取当天的日期
-            $todayTime=mktime(0,0,0,$m,$d,$y);  //将今天开始的年月日时分秒转换成unix时间戳
-            $time=date("N",$todayTime);     //获取星期数进行判断，当前时间做对比取本周一和上周一时间
-            //$t为本周周一,$t为上周周一
-            switch($time){
-                case 1 : $t = $todayTime;
-                    break;
-                case 2 : $t = $todayTime - 86400*1;
-                    break;
-                case 3 : $t = $todayTime - 86400*2;
-                    break;
-                case 4 : $t = $todayTime - 86400*3;
-                    break;
-                case 5 : $t = $todayTime - 86400*4;
-                    break;
-                case 6 : $t = $todayTime - 86400*5;
-                    break;
-                case 7 : $t = $todayTime - 86400*6;
-                    break;
-                default :
-            }
+            $t = $this->week_time();
             $info = array(
-                'id' => array('neq',$news_id),
+                'id' => array('neq',$id),
                 'create_time' => array('egt',$t),
                 'status' => 0
             );
-            $infoes=NewsModel::where($info)->select();
+            $infoes = NewsModel::where($info)->select();
             return $this->success($infoes);
         }else{
             //新闻消息列表
             $map = array(
+                'class' => 1,
                 'status' => array('egt',-1)
             );
             $list=$this->lists('Push',$map);
             int_to_string($list,array(
-                'type' => array(1=>'企业号推送',2=>'订阅号推送'),
+//                'type' => array(1=>'企业号推送',2=>'订阅号推送'),
                 'status' => array(-1=>'<span style=\'color: red\'>不通过</span>',0=>"<span style='color:#dd0'>待审核</span>",1=>"<span style='color: green'>已发布</span>")
             ));
             //数据重组
@@ -160,35 +138,12 @@ class News extends Admin {
             }
             $this->assign('list',$list);
             //主图文本周内的新闻消息
-            date_default_timezone_set("PRC");        //初始化时区
-            $y = date("Y");        //获取当天的年份
-            $m = date("m");        //获取当天的月份
-            $d = date("d");        //获取当天的号数
-            $todayTime= mktime(0,0,0,$m,$d,$y);        //将今天开始的年月日时分秒，转换成unix时间戳
-            $time = date("N",$todayTime);        //获取星期数进行判断，当前时间做对比取本周一和上周一时间。
-            //$t为本周周一，$s为上周周一
-            switch($time){
-                case 1: $t = $todayTime;
-                    break;
-                case 2: $t = $todayTime - 86400*1;
-                    break;
-                case 3: $t = $todayTime - 86400*2;
-                    break;
-                case 4: $t = $todayTime - 86400*3;
-                    break;
-                case 5: $t = $todayTime - 86400*4;
-                    break;
-                case 6: $t = $todayTime - 86400*5;
-                    break;
-                case 7: $t = $todayTime - 86400*6;
-                    break;
-                default:
-            }
+            $t = $this->week_time();
             $info = array(
                 'create_time' => array('egt',$t),
-                'status'      => 0
+                'status' => 0
             );
-            $infoes=NewsModel::where($info)->select();
+            $infoes = NewsModel::where($info)->select();
             $this->assign('info',$infoes);
             return $this->fetch();
         }
@@ -257,26 +212,26 @@ class News extends Admin {
             $key = "articles";
             $send[$key] = $value;
         }
-        if($data['type'] == 1){
-            //发送给企业号
-            $Wechat = new TPQYWechat(Config::get('party'));
-            $message = array(
-                "totag" => "4",  // 审核组
-                "msgtype" => 'news',
-                "agentid" => 11,  // 消息审核
-                "news" => $send,
-                "safe" => "0"
-            );
-            $msg = $Wechat->sendMessage($message);  // 推送至审核
-        }else{
-            //发送到订阅号
-        }
+
+        //发送给企业号
+        $Wechat = new TPQYWechat(Config::get('party'));
+        $message = array(
+//            "touser" => "18768112486",
+            "totag" => "4",  // 审核组
+            "msgtype" => 'news',
+            "agentid" => 11,  // 消息审核
+            "news" => $send,
+            "safe" => "0"
+        );
+        $msg = $Wechat->sendMessage($message);  // 推送至审核
+
         if($msg['errcode'] == 0){
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
+            $data['class'] = 1;
             $data['status'] = 0;
             //保存到推送列表
-            $result=Push::create($data);
+            $result = Push::create($data);
             if($result){
                 return $this->success('发送成功');
             }else{
