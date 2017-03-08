@@ -479,4 +479,10 @@ class Exchange extends Base{
         $this->assign('id',$userid);
         return $this->fetch();
     }
+    /*
+     * 视频 演示
+     */
+    public function video(){
+        return $this->fetch();
+    }
 }
