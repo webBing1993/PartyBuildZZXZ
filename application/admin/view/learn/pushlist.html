@@ -16,10 +16,10 @@
         <h2>推送管理</h2>
         <ol class="breadcrumb">
             <li class="active">
-                支部活动
+                两学一做
             </li>
             <li>
-                <strong><a href="{:Url('Notice/pushlist')}">推送列表</a></strong>
+                <strong><a href="{:Url('Learn/pushlist')}">推送列表</a></strong>
             </li>
         </ol>
     </div>
@@ -42,7 +42,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <form class="form-horizontal" id="form" method="post" action="{:Url('Notice/push')}">
+                                        <form class="form-horizontal" id="form" method="post" action="{:Url('Learn/push')}">
                                             <p class="tt">消息推送(只可推送本周的信息)</p>
                                             <div class="form-group">
                                                 <div class="row">
@@ -126,7 +126,7 @@
 <script src="/admin/js/chosen.jquery.js"></script>
 <script>
     $(function(){
-        highlight_subnav("{:Url('Notice/pushlist')}");
+        highlight_subnav("{:Url('Learn/pushlist')}");
 
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -146,7 +146,7 @@
         }
         $.ajax({
             type:"post",
-            url:"{:Url('Notice/pushlist')}",
+            url:"{:Url('Learn/pushlist')}",
             data:{id:id},
             success:function(data){
                 var html = "";
