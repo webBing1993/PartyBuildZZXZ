@@ -127,6 +127,13 @@ function send(e,type,id){
 				aid:id,
 				content:it.val()
 			},
+			beforeSend:function(){
+				swal({
+					title: ' ',
+					text: '评论提交中...',
+					showConfirmButton:false
+				});
+			},
 			success:function(data){
 				var data = data.data;
 				var userid = "'"+data.create_user+"'";
@@ -145,7 +152,14 @@ function send(e,type,id){
 				$('.lists' ).append(html);
 				it.val('');
 				var sum = $('.sum span' );
-				sum.text(parseInt(sum.text())+1)
+				sum.text(parseInt(sum.text())+1);
+				swal({
+					title: ' ',
+					text: '评论成功',
+					type: 'success',
+					confirmButtonText:'确定',
+					timer:3000
+				});
 			}
 		});
 	}else{
