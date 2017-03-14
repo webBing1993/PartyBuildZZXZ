@@ -238,7 +238,7 @@ class Alliance extends Admin {
             $content1 = str_replace("&nbsp;","",$des1);  //空格符替换成空
             $url1 = "http://dqpb.0571ztnet.com/home/alliance/informdetail/id/".$focus1['id'].".html";
             $pre1 = "【活动安排】";
-            $path1 = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+            $path1 = "http://dqpb.0571ztnet.com/home/images/arrange.png";
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -259,7 +259,7 @@ class Alliance extends Admin {
                 $content = str_replace("&nbsp;","",$des);  //空格符替换成空
                 $url = "http://dqpb.0571ztnet.com/home/alliance/articledetail/id/".$focus['id'].".html";
                 $pre = "【活动安排】";
-                $path = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+                $path = "http://dqpb.0571ztnet.com/home/images/arrange.jpg";
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,
@@ -398,7 +398,7 @@ class Alliance extends Admin {
                 default:
                     break;
             }
-            $path1 = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+            $path1 = "http://dqpb.0571ztnet.com/home/images/show.jpg";
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -434,7 +434,7 @@ class Alliance extends Admin {
                     default:
                         break;
                 }
-                $path = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+                $path = "http://dqpb.0571ztnet.com/home/images/show.png";
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,

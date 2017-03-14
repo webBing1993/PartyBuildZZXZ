@@ -179,7 +179,7 @@ class Talent extends Admin {
                 default:
                     break;
             }
-            $path1 = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+            $path1 = "http://dqpb.0571ztnet.com/home/images/talent.png";
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -212,7 +212,7 @@ class Talent extends Admin {
                     default:
                         break;
                 }
-                $path = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+                $path = "http://dqpb.0571ztnet.com/home/images/talent.png";
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,

@@ -348,7 +348,7 @@ class Redforum extends Admin {
             $content1 = str_replace("&nbsp;","",$des1);  //空格符替换成空
             $url1 = "http://dqpb.0571ztnet.com/home/college/forumnotice/id/".$focus1['id'].".html";
             $pre1 = "【论坛通知】";
-            $path1 = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+            $path1 = "http://dqpb.0571ztnet.com/home/images/redforum.png";
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -369,7 +369,7 @@ class Redforum extends Admin {
                 $content = str_replace("&nbsp;","",$des);  //空格符替换成空
                 $url = "http://dqpb.0571ztnet.com/home/college/forumnotice/id/".$focus['id'].".html";
                 $pre = "【论坛通知】";
-                $path = "http://dqpb.0571ztnet.com/home/images/meetnote.jpg";
+                $path = "http://dqpb.0571ztnet.com/home/images/redforum.png";
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,
