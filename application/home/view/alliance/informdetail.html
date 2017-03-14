@@ -21,7 +21,6 @@
 		<div><span class="limit">{$info.address}</span></div>
 	</div>
 	<div class="article">{$info.content}</div>
-	{eq name="visit" value="0"}
 	<div class="comment">
 		<div class="sum">共<span>{$info.comments}</span>条评论</div>
 		<div class="lists">
@@ -35,7 +34,7 @@
 					<div class="content">{$com['content']}</div>
 					<div class="time">{$com['create_time']|time_format='Y-m-d'}</div>
 				</div>
-				{eq name="visit" value="1"}
+				{eq name="visit" value="0"}
 				{eq name="$com.is_like" value="0"}
 				<div class="fr isgood good" onclick="isGood(this,0,{$com.id})">{$com['likes']}</div>
 				{else/}
@@ -50,7 +49,6 @@
 			<div class="typing_loader"></div>
 		</div>
 	</div>
-	{/eq}
 </div>
 {eq name="visit" value="0"}
 <div class="bottom clear">

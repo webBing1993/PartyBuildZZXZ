@@ -20,10 +20,12 @@
 		<div class="note">
 			<span class="read">{$info.views}</span>
 			<!--未点赞：good,已点赞good_-->
+			{eq name="visit" value="0"}
 			{eq name="$info.is_like" value="0"}
 			<span class="isgood good" onclick="isGood(this,7,{$info.id})">{$info.likes}</span>
 			{else/}
 			<span class="isgood good_" onclick="isGood(this,7,{$info.id})">{$info.likes}</span>
+			{/eq}
 			{/eq}
 		</div>
 	</div>
