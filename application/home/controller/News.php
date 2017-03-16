@@ -32,7 +32,7 @@ class News extends Base {
     public function index(){
         //首页轮播推荐
         $map1 = array(
-            'status' => array('eq',2), // 审核通过
+            'status' => array('egt',0),
             'recommend' => 1
         );
         $recom = NewsModel::where($map1)->order('id desc')->limit(3)->select();
@@ -40,7 +40,7 @@ class News extends Base {
 
         //列表
         $map2 = array(
-            'status' => array('eq',2),
+            'status' => array('egt',0),
         );
         $list = NewsModel::where($map2)->order('id desc')->limit(5)->select();
         $this->assign('list',$list);
