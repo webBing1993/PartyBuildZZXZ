@@ -69,9 +69,9 @@ class Talent extends Base{
         $talentModel::where('id',$id)->setInc('views');     //浏览加一
         $talent = $talentModel->get($id);
         //分享图片及链接及描述
-        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/talent.png";
-        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
-        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
+        $talent['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/talent.png";
+        $talent['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $talent['desc'] = str_replace('&nbsp;','',strip_tags($talent['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(5,$id,$uid);
