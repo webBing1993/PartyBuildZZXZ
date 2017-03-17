@@ -135,7 +135,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$list['front_cover'])->find();
         $list['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $list['link'] = $_SERVER['REDIRECT_URL'];
+        $list['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
         $this->assign('list',$list);
@@ -236,7 +236,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$meet['front_cover'])->find();
         $meet['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $meet['link'] = $_SERVER['REDIRECT_URL'];
+        $meet['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $meet['desc'] = str_replace('&nbsp;','',strip_tags($meet['content']));
 
         //获取 文章点赞
@@ -332,7 +332,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$party['front_cover'])->find();
         $party['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $party['link'] = $_SERVER['REDIRECT_URL'];
+        $party['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $party['desc'] = str_replace('&nbsp;','',strip_tags($party['content']));
 
         //获取 文章点赞
@@ -428,7 +428,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$list['front_cover'])->find();
         $list['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $list['link'] = $_SERVER['REDIRECT_URL'];
+        $list['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
         $this->assign('list',$list);
@@ -528,7 +528,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$activity['front_cover'])->find();
         $activity['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $activity['link'] = $_SERVER['REDIRECT_URL'];
+        $activity['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $activity['desc'] = str_replace('&nbsp;','',strip_tags($activity['content']));
 
         //获取 文章点赞
@@ -626,7 +626,7 @@ class Notice extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$list['front_cover'])->find();
         $list['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $list['link'] = $_SERVER['REDIRECT_URL'];
+        $list['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $list['desc'] = str_replace('&nbsp;','',strip_tags($list['content']));
 
         //获取 文章点赞

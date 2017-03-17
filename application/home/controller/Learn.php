@@ -97,7 +97,7 @@ class Learn extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$video['front_cover'])->find();
         $video['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $video['link'] = $_SERVER['REDIRECT_URL'];
+        $video['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $video['desc'] = str_replace('&nbsp;','',strip_tags($video['content']));
 
         //获取 文章点赞
@@ -145,7 +145,7 @@ class Learn extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$article['front_cover'])->find();
         $article['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $article['link'] = $_SERVER['REDIRECT_URL'];
+        $article['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL']; 
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
 
         //获取 文章点赞

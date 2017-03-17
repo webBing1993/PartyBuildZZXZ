@@ -79,7 +79,7 @@ class News extends Base {
         //分享图片及链接及描述
         $image = Picture::where('id',$info['front_cover'])->find();
         $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
-        $info['link'] = $_SERVER['REDIRECT_URL'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
 
         //获取 文章点赞
