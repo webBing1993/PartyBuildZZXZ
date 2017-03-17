@@ -29,7 +29,7 @@ class News extends Admin {
         );
         $list = $this->lists('News',$map);
         int_to_string($list,array(
-            'status' => array(0=>"待推送",1=>"<span style='color:#dd0'>待审核</span>",2=>"<span style='color: green'>已发布</span>",3=>"<span style='color: red'>不通过</span>"),
+            'status' => array(1 =>"已发布",2=>"已发布"),
             'recommend' => array( 1=>"推荐" , 0=>"不推荐")
         ));
 
@@ -112,7 +112,7 @@ class News extends Admin {
             $info = array(
                 'id' => array('neq',$id),
                 'create_time' => array('egt',$t),
-                'status' => 0
+                'status' => 1
             );
             $infoes = NewsModel::where($info)->select();
             return $this->success($infoes);
@@ -125,7 +125,7 @@ class News extends Admin {
             $list=$this->lists('Push',$map);
             int_to_string($list,array(
 //                'type' => array(1=>'企业号推送',2=>'订阅号推送'),
-                'status' => array(-1=>'<span style=\'color: red\'>不通过</span>',0=>"<span style='color:#dd0'>待审核</span>",1=>"<span style='color: green'>已发布</span>")
+                'status' => array(-1=>'<span style=\'color: red\'>不通过</span>',0=>"<span style='color:#dd0'>待审核</span>",1=>"<span style='color: green'>通过</span>")
             ));
             //数据重组
             foreach($list as $value){
@@ -141,7 +141,7 @@ class News extends Admin {
             $t = $this->week_time();
             $info = array(
                 'create_time' => array('egt',$t),
-                'status' => 0
+                'status' => 1
             );
             $infoes = NewsModel::where($info)->select();
             $this->assign('info',$infoes);
@@ -161,7 +161,7 @@ class News extends Admin {
             //主图文信息
             $info1 = NewsModel::where('id',$arr1)->find();
         }
-        $update['status'] = '1';
+        $update['status'] = '2';
         $title1 = $info1['title'];
         NewsModel::where(['id'=>$arr1])->update($update); // 更新推送后的状态
         $str1 = strip_tags($info1['content']);
@@ -216,7 +216,7 @@ class News extends Admin {
         //发送给企业号
         $Wechat = new TPQYWechat(Config::get('party'));
         $message = array(
-//            "touser" => "18768112486",
+//            "touser" => "15036667391",
             "totag" => "4",  // 审核组
             "msgtype" => 'news',
             "agentid" => 11,  // 消息审核

@@ -52,7 +52,6 @@ class Review extends Base {
         $id = input('param.id');
         $map = array(
             'id'  => $id,
-            'status' => 1   // 待审核
         );
         $list = News::where($map)->find();
         $this->assign('list',$list);
@@ -80,7 +79,6 @@ class Review extends Base {
             if($new){
                 // 发送消息
                 $arr1 = $push['focus_main'];    //主图文id
-                News::where(array('id'=>$arr1))->update(array('status'=>2));  // 改变状态
                 !empty($push['focus_vice']) ? $arr2 = json_decode($push['focus_vice']) : $arr2 = "";    //副图文id
                 //主图文信息
                 $focus1 = News::where('id', $arr1)->find();
@@ -104,7 +102,6 @@ class Review extends Base {
                     $information2 = array();
                     foreach ($arr2 as $key => $value) {
                         $focus = News::where('id', $value)->find();
-                        News::where(array('id'=>$value))->update(array('status'=>2));  // 改变状态
                         $pre = "【第一聚焦】";
                         $title = $focus['title'];
                         $str = strip_tags($focus['content']);
@@ -140,7 +137,8 @@ class Review extends Base {
                 $Wechat = new TPQYWechat(Config::get('party'));
                 $message = array(
 //                   'totag' => "4", //审核标签用户
-                   "touser" => "@all",   //发送给全体，@all
+                'touser' =>'15036667391',
+//                   "touser" => "@all",   //发送给全体，@all
                     "msgtype" => 'news',
                     "agentid" =>15,  // 小镇动态
                     "news" => $send,
@@ -175,7 +173,6 @@ class Review extends Base {
         );
         $list = Push::where($map)->order('create_time desc')->select();
         foreach ($list as $value) {
-            $value['type'] == 1 ? $value['type_name'] = "企业号推送" : $value['type_name'] = "订阅号推送";
                 //新闻推送
                 $focus = News::where('id',$value['focus_main'])->find();  //图文信息
                 $value['title'] = $focus['title'];
