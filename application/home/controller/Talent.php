@@ -62,12 +62,16 @@ class Talent extends Base{
      */
     public function detail(){
         $this->anonymous(); //判断是否是游客
-
+        $this->jssdk();
         $uid = session('userId');
         $id = input('id');
         $talentModel = new TalentModel();
         $talentModel::where('id',$id)->setInc('views');     //浏览加一
         $talent = $talentModel->get($id);
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/talent.png";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(5,$id,$uid);

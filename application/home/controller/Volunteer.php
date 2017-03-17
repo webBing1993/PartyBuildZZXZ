@@ -76,6 +76,7 @@ class Volunteer extends Base{
      */
     public function teamdetail(){
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -83,6 +84,11 @@ class Volunteer extends Base{
         $teamModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $teamModel->get($id);
+        //分享图片及链接及描述
+        $image = Picture::where('id',$info['list_image'])->find();
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(12,$id,$uid);
@@ -138,11 +144,17 @@ class Volunteer extends Base{
      */
     public function orderdetail(){
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $userId = session('userId');
         $id = input('id');
         $orderModel = new VolunteerOrder();
         $info = $orderModel->get($id);
+        //分享图片及链接及描述
+        $image = Picture::where('id',$info['list_image'])->find();
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //获取用户是否报名
         $map = array(
             'oid' => $id,
@@ -227,11 +239,17 @@ class Volunteer extends Base{
      */
     public function recruitdetail(){
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $userId = session('userId');
         $id = input('id');
         $orderModel = new VolunteerRecruit();
         $info = $orderModel->get($id);
+        //分享图片及链接及描述
+        $image = Picture::where('id',$info['list_image'])->find();
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //获取用户是否报名
         $map = array(
             'rid' => $id,

@@ -10,6 +10,7 @@ use app\home\model\AllianceArrange;
 use app\home\model\AllianceShow;
 use app\home\model\Comment;
 use app\home\model\Like;
+use app\home\model\Picture;
 use think\Log;
 
 class Alliance extends Base{
@@ -101,6 +102,7 @@ class Alliance extends Base{
      */
     public function informdetail(){
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -109,6 +111,10 @@ class Alliance extends Base{
         $arrangeModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $arrangeModel->get($id);     //获取基本数据
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/arrange.png";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
 
         //点赞
         $likeModel = new Like();
@@ -129,6 +135,7 @@ class Alliance extends Base{
      */
     public function articledetail(){
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -136,6 +143,10 @@ class Alliance extends Base{
         $showModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $showModel->get($id);
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/show.png";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(4,$id,$uid);

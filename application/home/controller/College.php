@@ -212,6 +212,7 @@ class College extends Base{
      */
     public function tutordetail() {
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -219,6 +220,11 @@ class College extends Base{
         $courseModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $courseModel->get($id);
+        //分享图片及链接及描述
+        $image = Picture::where('id',$info['list_image'])->find();
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(7,$id,$uid);
@@ -238,6 +244,7 @@ class College extends Base{
      */
     public function tutornotice() {
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -245,6 +252,10 @@ class College extends Base{
         $noticeModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $noticeModel->get($id);
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/meetnote.jpg";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(8,$id,$uid);
@@ -296,6 +307,7 @@ class College extends Base{
      */
     public function leaddetail() {
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -303,6 +315,11 @@ class College extends Base{
         $leadModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $leadModel->get($id);
+        //分享图片及链接及描述
+        $image = Picture::where('id',$info['list_image'])->find();
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(9,$id,$uid);
@@ -359,6 +376,7 @@ class College extends Base{
      */
     public function forumnotice() {
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -366,6 +384,10 @@ class College extends Base{
         $noticeModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $noticeModel->get($id);
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/redforum.png";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(11,$id,$uid);
@@ -405,6 +427,7 @@ class College extends Base{
      */
     public function forumdetail() {
         $this->anonymous(); //判断是否是游客
+        $this->jssdk();
 
         $uid = session('userId');
         $id = input('id');
@@ -412,6 +435,10 @@ class College extends Base{
         $detailModel::where('id',$id)->setInc('views');     //浏览加一
 
         $info = $detailModel->get($id);
+        //分享图片及链接及描述
+        $info['share_image'] = "http://".$_SERVER['SERVER_NAME']."/home/images/redforum.png";
+        $info['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $info['desc'] = str_replace('&nbsp;','',strip_tags($info['content']));
         //点赞
         $likeModel = new Like();
         $like = $likeModel->getLike(10,$id,$uid);
