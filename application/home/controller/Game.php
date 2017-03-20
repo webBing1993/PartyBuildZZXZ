@@ -32,7 +32,7 @@ class Game extends Base{
         $timestamp24=strtotime($dateStr)+ 86400;
         $game = model('Game');
         if(!$_POST){
-            $today = Db::query("select t2.name,t1.score,t2.avatar from `pb_game` as t1 LEFT JOIN `pb_wechat_user` as t2 ON t1.id=t2.userid WHERE timestamp>$timestamp0 and timestamp<$timestamp24 ORDER BY t1.score DESC,t1.timestamp limit 0,15");
+            $today = Db::query("select t2.name,t1.score,t2.avatar from `pb_game` as t1 LEFT JOIN `pb_wechat_user` as t2 ON t1.id=t2.userid WHERE timestamp>? and timestamp<? ORDER BY t1.score DESC,t1.timestamp limit 0,?",[$timestamp0,$timestamp24,15]);
             if(empty($today)){
                 $this ->assign('info',0);
             }else{
@@ -49,9 +49,9 @@ class Game extends Base{
             $info = $game -> find($userId);
             if($info){
                 //如果存在今天的数据,判断修改数据
-                $data = $game -> where("timestamp>$timestamp0 and timestamp<$timestamp24 and id='$userId'") ->find();
+                $data = $game -> where("timestamp",'>',$timestamp0) -> where("timestamp",'<',$timestamp24)-> where("id","$userId")->find();
                 if($data){
-                    $data1=$game -> where("score<$score and id='$userId'") ->find();
+                    $data1=$game -> where('score','<',$score)-> where('id',"$userId") ->find();
                     if($data1){
                         $game->save([
                             'timestamp' => $time,
