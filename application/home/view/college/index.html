@@ -467,6 +467,8 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
+    //模块标题
+    $('title').text('红领学院');
     var c =  parseInt(window.location.href.split("index/c/")[1]);
     $(document).ready(function(){
         if(c ==1){
