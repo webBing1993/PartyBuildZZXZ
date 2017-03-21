@@ -65,11 +65,14 @@ $(function(){
 	var up = $('.up' );
 	var path = up.attr('data-tab');
 	var image = new Image();
+	var ww = up.width();
 	image.src = path ;
 	up.css({"background-image":'url('+path+')'});
 	image.onload = function(){
 		if(image.width > image.height){
-			up.css({"background-size":'auto 70px'});
+			up.css({"background-size":'auto '+ww +'px'});
+		}else{
+			up.css({"background-size":ww +'px'+' auto '});
 		}
 	};
 	//触发上传按钮
@@ -98,9 +101,9 @@ $(function(){
 						up.css({"background-image":'url('+msg.data.path+')'});
 						image.onload = function(){
 							if(image.width > image.height){
-								up.css({"background-size":'auto 70px'});
+								up.css({"background-size":'auto '+ww +'px'});
 							}else{
-								up.css({"background-size":'70px auto'});
+								up.css({"background-size":ww +'px'+' auto '});
 							}
 						};
 						$.ajax({
