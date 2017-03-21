@@ -21,32 +21,35 @@ class Exchange extends Base{
      */
     public function index(){
         $userId = session('userId');
-        $Wechat = WechatUser::where('userid',$userId)->find();  //  获取总积分
-        $Record = Record::where('userid',$userId)->select();  // 获取兑换过得积分
-        $score = 0;
-        foreach($Record as $value){
-            $score += $value['content'];
-        }
-        $now = $Wechat->score - $score + 10;  // 剩余积分
-        $Product = Product::where(['status' =>0])->order('id desc')->select();
-        $Shop = Shop::where(['status' => 0 ,'recommend' => 1])->limit(3)->select();
-        if($Shop){
-            $this->assign('is',1);
-        }else{
-            $this->assign('is',0);
-        }
-        // 重新排序 将兑光的排在最后
-        foreach($Product as $key => $value){
-            if ($value->left == 0){
-                $temp = $value;
-                unset($Product[$key]);
-                array_push($Product,$temp);
+        $this->anonymous();
+        if ($userId != 'visitor'){
+            $Wechat = WechatUser::where('userid',$userId)->find();  //  获取总积分
+            $Record = Record::where('userid',$userId)->select();  // 获取兑换过得积分
+            $score = 0;
+            foreach($Record as $value){
+                $score += $value['content'];
             }
+            $now = $Wechat->score - $score + 10;  // 剩余积分
+            $Product = Product::where(['status' =>0])->order('id desc')->select();
+            $Shop = Shop::where(['status' => 0 ,'recommend' => 1])->limit(3)->select();
+            if($Shop){
+                $this->assign('is',1);
+            }else{
+                $this->assign('is',0);
+            }
+            // 重新排序 将兑光的排在最后
+            foreach($Product as $key => $value){
+                if ($value->left == 0){
+                    $temp = $value;
+                    unset($Product[$key]);
+                    array_push($Product,$temp);
+                }
+            }
+            $this->assign('now',$now);  // 剩余积分
+            $this->assign('score',$Wechat->score + 10);  // 总积分
+            $this->assign('product',$Product);
+            $this->assign('shop',$Shop);
         }
-        $this->assign('now',$now);  // 剩余积分
-        $this->assign('score',$Wechat->score + 10);  // 总积分
-        $this->assign('product',$Product);
-        $this->assign('shop',$Shop);
         return $this->fetch();
     }
     /**

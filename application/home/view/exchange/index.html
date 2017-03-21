@@ -137,6 +137,7 @@
     <link rel="stylesheet" href="/exchange/shoplist.css">
 </head>
 <body>
+{eq name="visit" value="0"}
 <div class="top clearfix">
     <span>{$now}&nbsp;/&nbsp;{$score}</span>
     <a href="record">兑换记录</a>
@@ -179,6 +180,17 @@
     {/volist}
 </ul>
 {/empty}
+{/eq}
+{else/}
+<div class="top clearfix">
+    <span>0&nbsp;/&nbsp;0</span>
+    <a>兑换记录</a>
+    <img src="/exchange/1.png" alt="">
+</div>
+<div class="nomessage">
+    <img src="/exchange/27.png" alt="" ><br>
+    <span>抱歉，游客暂无权限</span>
+</div>
 {/eq}
 <script src="/work/js/jquery-1.12.1.min.js"></script>
 <script>
