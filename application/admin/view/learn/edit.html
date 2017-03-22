@@ -137,8 +137,8 @@
                                     <label>视频音频:</label>
                                 </div>
                                 <div class="col-lg-3">
-                                    <select name="videoway" id="videoway"  class="form-control" disabled>
-                                        <!--<option value="0"> — 上传视频本地文件（小于20M，MP4格式）— </option>-->
+                                    <select name="videoway" id="videoway"  class="form-control" >
+                                        <option value="0"> — 上传视频本地文件（小于20M，MP4格式）— </option>
                                         <option value="1"> —— 输入视频链接地址 —— </option>
                                         <!--<option value="2"> —— 上传音频本地文件（.mp3格式） —— </option>-->
                                     </select>
@@ -176,7 +176,7 @@
                                 <label>标题:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title||default=''}">
+                                <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value='{$msg.title || default=""}'>
                             </div>
                         </div>
                         <div class="form-group">
@@ -372,7 +372,7 @@
         //上传本地视频
         $("#video").on("change",function(){
             var size = ($(this)[0].files[0].size / 1024).toFixed(2);
-            if(size <= 20480){
+            if(size <= 204800){
                 var movie = $(this)[0].files[0];
                 var formData = new FormData();
                 formData.append("download",movie);
