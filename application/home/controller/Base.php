@@ -17,10 +17,13 @@ use think\Controller;
 use com\wechat\TPQYWechat;
 use think\Db;
 use think\Input;
+use app\home\model\Browse;
+use app\home\model\Answers;
 
 class Base extends Controller {
     public function _initialize(){
-//        session('userId','18768112486');
+//        session('userId','visitor');
+        session('userId','15726817550');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -209,7 +212,9 @@ class Base extends Controller {
             $res = $likeModel->create($data);
             if($res) {
                 //点赞成功积分+1
-                WechatUser::where('userid',$uid)->setInc('score',1);
+                if ($this->score_up()){
+                    WechatUser::where('userid',$uid)->setInc('score',1);
+                }
                 
                 //更新数据
                 Db::name($table)->where('id',$aid)->setInc('likes');
@@ -222,8 +227,9 @@ class Base extends Controller {
             $result = $likeModel::where($data)->delete();
             if($result) {
                 //取消成功积分-1
-                WechatUser::where('userid',$uid)->setDec('score',1);
-
+                if ($this->score_up()){
+                    WechatUser::where('userid',$uid)->setDec('score',1);
+                }
                 Db::name($table)->where('id',$aid)->setDec('likes');
 
                 return $this->success("取消成功");
@@ -307,8 +313,9 @@ class Base extends Controller {
             $res = $commentModel->create($data);
             if($res) {  //返回comment数组
                 //评论成功增加1分
-                WechatUser::where('userid',$uid)->setInc('score',1);
-
+                if ($this->score_up()){
+                    WechatUser::where('userid',$uid)->setInc('score',1);
+                }
                 //更新主表数据
                 $map['id'] = $res['aid'];   //文章id
                 $model = Db::name($table)->where($map)->setInc('comments');
@@ -376,5 +383,34 @@ class Base extends Controller {
         }
 
     }
-   
+   /*
+    * 判断当天积分是否达到上限
+    */
+    public function score_up(){
+        $con = strtotime(date("Y-m-d",time()));  //  获取当天年月日时间戳
+        $userid = session('userId');
+        $map = array(
+            'create_time' => ['egt',$con],
+            'user_id' => $userid
+        );
+        $map1 = array(
+            'create_time' => ['egt',$con],
+            'uid' => $userid
+        );
+        $map2 = array(
+            'create_time' => ['egt',$con],
+            'userid' => $userid
+        );
+        $browse = Browse::where($map)->count(); //  浏览得分
+        $like = Like::where($map1)->count();  // 点赞得分
+        $comment = Comment::where($map1)->count();  // 评论得分
+        $Answer = Answers::where($map2)->find();
+        $answer = $Answer['score'];  // 答题得分
+        $num = $browse + $like + $comment + $answer;
+        if ($num <= 15){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

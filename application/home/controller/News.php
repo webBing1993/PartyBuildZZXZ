@@ -71,7 +71,9 @@ class News extends Base {
             if(!$history && $id != 0){
                 Browse::create($con);
                 $s['score'] = array('exp','`score`+1');
-                WechatUser::where('userid',$userId)->update($s);
+                if ($this->score_up()){
+                    WechatUser::where('userid',$userId)->update($s);
+                }
             }
         }
         //详细信息
