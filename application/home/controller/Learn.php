@@ -87,9 +87,19 @@ class Learn extends Base {
             );
             $history = Browse::get($con);
             if(!$history && $id != 0){
-                Browse::create($con);
                 $s['score'] = array('exp','`score`+1');
-                WechatUser::where('userid',$userId)->update($s);
+                if ($this->score_up()){
+                    // 未满 15分
+                    Browse::create($con);
+                    WechatUser::where('userid',$userId)->update($s);
+                }else{
+                    $con1 = array(
+                        'user_id' => $userId,
+                        'learn_id' => $id,
+                        'score' => 0
+                    );
+                    Browse::create($con1);
+                }
             }
         }
         $video = $learnModel::get($id);
@@ -134,12 +144,22 @@ class Learn extends Base {
             );
             $history = Browse::get($con);
             if(!$history && $id != 0){
-                Browse::create($con);
                 $s['score'] = array('exp','`score`+1');
-                WechatUser::where('userid',$userId)->update($s);
+                if ($this->score_up()){
+                    // 未满 15 分
+                    Browse::create($con);
+                    WechatUser::where('userid',$userId)->update($s);
+                }else{
+                    // 已满 15分
+                    $con1 = array(
+                        'user_id' => $userId,
+                        'learn_id' => $id,
+                        'score' => 0
+                    );
+                    Browse::create($con1);
+                }
             }
         }
-
         $article = $learnModel::get($id);
         $article['user'] = session('userId');
         //分享图片及链接及描述
