@@ -31,11 +31,11 @@
     .foot{width: 100vw;}
     .foot .rank{width: 100vw;}
     .foot .rank ul li{width:100vw;line-height: 16vw;border-bottom: 1px solid #ecebeb;color: #231815;font-weight: 500;}
-    .foot .rank ul li .ranking{display:inline-block;width:6.7vw;font-size: 12px;margin-left: 4.3vw;}
-    .foot .rank ul li img{width:9.6vw;height: 9.6vw;border-radius: 4.8vw;margin-left: 6vw;margin-top: 3.7vw}
+    .foot .rank ul li .ranking{display:inline-block;width:6.7vw;font-size: 12px;margin-left: 4vw;}
+    .foot .rank ul li img{width:9.6vw;height: 9.6vw;border-radius: 4.8vw;margin-left: 1vw;margin-top: 3.2vw}
     .foot .rank ul li:nth-child(1) .ranking{color: #eba52c;}
-    .foot .rank ul li:nth-child(3) .ranking{color: #c5c5c5;}
-    .foot .rank ul li:nth-child(4) .ranking{color: #dd8723;}
+    .foot .rank ul li:nth-child(2) .ranking{color: #c5c5c5;}
+    .foot .rank ul li:nth-child(3) .ranking{color: #dd8723;}
     .foot .rank ul li .department{font-size: 14px;margin-left: 2.7vw;}
     .foot .rank ul li .int{font-size: 12px;float: right;margin-right: 5.3vw;}
     #score{position:relative;top: -70%;right: -49%;color:#fff;}
@@ -57,9 +57,12 @@
     }
     @media screen and (min-width: 1000px){
         #score span{
-            right: 5vw;
+            right: 6vw;
         }
         h5{line-height: 40px;margin: 0}
+        .foot .rank ul li img{
+            margin-top: 5vw
+        }
     }
 </style>
 {/block}
@@ -156,7 +159,7 @@
         <div class="rank" age="1">
             <ul>
                 {volist name="week" id="fi" key="k"}
-                <li>
+                <li class="clear">
                     <span class="ranking">{$k}</span>
                     <img src="{$fi.userid|get_header}">
                     <span class="department">{$fi.name}</span>
@@ -168,8 +171,8 @@
         <div class="rank" age="2" style="display: none;">
             <ul>
                 {volist name="month" id="mo" key="k"}
-                <li>
-                    <span class="ranking fl">{$k}</span>
+                <li class="clear">
+                    <span class="ranking">{$k}</span>
                     <img src="{$mo.userid|get_header}">
                     <span class="department">{$mo.name}</span>
                     <span class="int">积分{$mo.score}分</span>
@@ -180,7 +183,7 @@
         <div class="rank" age="3" style="display: none;">
             <ul>
                 {volist name="all" id="vo" key="k"}
-                <li>
+                <li class="clear">
                     <span class="ranking">{$k}</span>
                     <img src="{$vo.userid|get_header}">
                     <span class="department">{$vo.name}</span>

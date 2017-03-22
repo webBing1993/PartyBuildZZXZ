@@ -114,7 +114,7 @@
 }
 @media screen and (min-width: 1000px) {
   .tabs .tab {
-    width: 31.2vw;
+    float: left;
   }
 }
 /*列表*/
