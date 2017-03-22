@@ -69,10 +69,18 @@ class News extends Base {
             );
             $history = Browse::get($con);
             if(!$history && $id != 0){
-                Browse::create($con);
                 $s['score'] = array('exp','`score`+1');
                 if ($this->score_up()){
+                    // 未超过 15分
                     WechatUser::where('userid',$userId)->update($s);
+                    Browse::create($con);
+                }else{
+                    $con1 = array(
+                        'user_id' => $userId,
+                        'news_id' => $id,
+                        'score' => 0
+                    );
+                    Browse::create($con1);
                 }
             }
         }
