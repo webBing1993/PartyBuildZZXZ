@@ -154,12 +154,6 @@ class Review extends Base {
             $new = PushReview::create($data1);   //记录
             if ($new) {
                 Push::where('id',$msg['id'])->update($this_info);
-                News::where(array('id'=>$push['focus_main']))->update(array('status'=>3));  // 改变状态
-                if($push['focus_vice']){
-                    foreach(json_decode($push['focus_vice']) as $value){
-                        News::where(array('id'=>$value))->update(array('status'=>3));  // 改变状态
-                    }
-                }
                 return $this->error("审核不通过");
             }
         }
