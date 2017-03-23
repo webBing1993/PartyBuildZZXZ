@@ -268,13 +268,18 @@ class Base extends Controller {
                         'score' => 0
                     );
                     $results = $likeModel::where($data)->delete();
-                    if ($results){
+                    if ($results){   // 补位 分数
                         $Res = Like::where($dataas)->find();
-                        if ($Res){
+                        if ($Res){  //点赞有溢出  补位 点赞
                             Like::where('id',$Res['id'])->update(['score' => 1]);
                         }else{
-                            //取消成功积分-1
-                            WechatUser::where('userid',$uid)->setDec('score',1);
+                            // 点赞无溢出  找评论溢出
+                            $Com = Comment::where(['uid' => $uid , 'score' => 0 ,'status' => 0])->find();
+                            if ($Com){
+                                Comment::where('id',$Com['id'])->update(['score' => 1]);
+                            }else{ // 评论无溢出   则减去 总积分
+                                WechatUser::where('userid',$uid)->setDec('score',1);
+                            }
                         }
                         Db::name($table)->where('id',$aid)->setDec('likes');
                     }else{
