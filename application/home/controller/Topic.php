@@ -103,14 +103,6 @@ class Topic extends Base{
                     // 未满 15 分
                     Browse::create($con);
                     WechatUser::where('userid',$userId)->update($s);
-                }else{
-                    // 已满 15分
-                    $con1 = array(
-                        'user_id' => $userId,
-                        'learn_id' => $id,
-                        'score' => 0
-                    );
-                    Browse::create($con1);
                 }
             }
         }

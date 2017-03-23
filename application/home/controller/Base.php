@@ -23,7 +23,7 @@ use app\home\model\Answers;
 class Base extends Controller {
     public function _initialize(){
 //        session('userId','visitor');
-        session('userId','15700004138');
+        session('userId','13567952378');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -272,8 +272,11 @@ class Base extends Controller {
                     $results = $likeModel::where($data)->delete();
                     if ($results){
                         $Res = Like::where($dataas)->order('id desc')->find();
-                        if (!empty($Res)){
+                        if ($Res){
                             Like::where('id',$Res['id'])->update(['score' => 1]);
+                        }else{
+                            //取消成功积分-1
+                            WechatUser::where('userid',$uid)->setDec('score',1);
                         }
                         Db::name($table)->where('id',$aid)->setDec('likes');
                     }else{
@@ -476,7 +479,7 @@ class Base extends Controller {
         $userid = session('userId');
         $map = array(
             'create_time' => ['egt',$con],
-            'user_id' => $userid
+            'user_id' => $userid,
         );
         $map1 = array(
             'create_time' => ['egt',$con],
