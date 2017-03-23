@@ -23,7 +23,7 @@ use app\home\model\Answers;
 class Base extends Controller {
     public function _initialize(){
 //        session('userId','visitor');
-        session('userId','13567952378');
+        session('userId','15757117952');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -264,14 +264,12 @@ class Base extends Controller {
                 }else{
                     // 取消的点赞不是溢出的
                     $dataas = array(
-                        'type' => $type,
-                        'table' => $table,
                         'uid' => $uid,
                         'score' => 0
                     );
                     $results = $likeModel::where($data)->delete();
                     if ($results){
-                        $Res = Like::where($dataas)->order('id desc')->find();
+                        $Res = Like::where($dataas)->find();
                         if ($Res){
                             Like::where('id',$Res['id'])->update(['score' => 1]);
                         }else{
@@ -484,6 +482,7 @@ class Base extends Controller {
         $map1 = array(
             'create_time' => ['egt',$con],
             'uid' => $userid,
+            'score' => 1
         );
         $map2 = array(
             'create_time' => ['egt',$con],
