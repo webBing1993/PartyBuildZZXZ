@@ -239,18 +239,34 @@ class Base extends Controller {
                 }
             }
         }else { //取消
-            $result = $likeModel::where($data)->delete();
-            if($result) {
-                //取消成功积分-1
-                if ($this->score_up()){
+            if ($this->score_up()){
+                //  未满 15分
+                $result = $likeModel::where($data)->delete();
+                if($result) {
+                    //取消成功积分-1
                     WechatUser::where('userid',$uid)->setDec('score',1);
+                    Db::name($table)->where('id',$aid)->setDec('likes');
+                    return $this->success("取消成功");
+                }else {
+                    return $this->error("取消失败");
                 }
-                Db::name($table)->where('id',$aid)->setDec('likes');
-
-                return $this->success("取消成功");
-            }else {
-                return $this->error("取消失败");
+            }else{
+                // 已满 15 分
+                $dataa = array(
+                    'type' => $type,
+                    'table' => $table,
+                    'aid' => $aid,
+                    'uid' => $uid,
+                    'score' => 0
+                );
+                $results = $likeModel::where($dataa)->delete();
+                if ($results){
+                    Db::name($table)->where('id',$aid)->setDec('likes');
+                }else{
+                    return $this->error("取消失败");
+                }
             }
+            
         }
 
     }
