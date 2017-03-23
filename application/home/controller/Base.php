@@ -23,7 +23,7 @@ use app\home\model\Answers;
 class Base extends Controller {
     public function _initialize(){
 //        session('userId','visitor');
-        session('userId','15757116500');
+        session('userId','15700004138');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -252,19 +252,34 @@ class Base extends Controller {
                 }
             }else{
                 // 已满 15 分
-                $dataa = array(
-                    'type' => $type,
-                    'table' => $table,
-                    'aid' => $aid,
-                    'uid' => $uid,
-                    'score' => 0
-                );
-                $results = $likeModel::where($dataa)->delete();
-                if ($results){
-                    Db::name($table)->where('id',$aid)->setDec('likes');
+                $Tem = Like::where($data)->find();
+                if ($Tem['score'] == 0){
+                   // 取消的点赞是溢出的
+                    $results = $likeModel::where($data)->delete();
+                    if ($results){
+                        Db::name($table)->where('id',$aid)->setDec('likes');
+                    }else{
+                        return $this->error("取消失败");
+                    }
                 }else{
-                    return $this->error("取消失败");
-                }
+                    // 取消的点赞不是溢出的
+                    $dataas = array(
+                        'type' => $type,
+                        'table' => $table,
+                        'uid' => $uid,
+                        'score' => 0
+                    );
+                    $results = $likeModel::where($data)->delete();
+                    if ($results){
+                        $Res = Like::where($dataas)->order('id desc')->find();
+                        if (!empty($Res)){
+                            Like::where('id',$Res['id'])->update(['score' => 1]);
+                        }
+                        Db::name($table)->where('id',$aid)->setDec('likes');
+                    }else{
+                        return $this->error("取消失败");
+                    }
+                 }
             }
             
         }
@@ -465,7 +480,7 @@ class Base extends Controller {
         );
         $map1 = array(
             'create_time' => ['egt',$con],
-            'uid' => $userid
+            'uid' => $userid,
         );
         $map2 = array(
             'create_time' => ['egt',$con],
