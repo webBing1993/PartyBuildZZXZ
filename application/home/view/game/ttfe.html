@@ -217,6 +217,9 @@
     $(document).ready(function () {
         prepareForMobile();
         newgame();
+        $('body').touchmove(function(e){
+            e.preventDefault()
+        })
     });
     function prepareForMobile(){
         if(documentWidth>500){
