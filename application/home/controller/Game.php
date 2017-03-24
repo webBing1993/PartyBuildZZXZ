@@ -49,9 +49,10 @@ class Game extends Base{
             $info = $game -> find($userId);
             if($info){
                 //如果存在今天的数据,判断修改数据
-                $data = $game -> where("timestamp",'>',$timestamp0) -> where("id","$userId")->find();
+                $condition = array('id'=>"$userId");
+                $data = $game ->where("timestamp > $timestamp0 and timestamp < $timestamp24") -> where($condition)->find();
                 if(!empty($data)){
-                    $data1=$game -> where('score','<',$score)-> where('id',"$userId") ->find();
+                    $data1=$game -> where(array('score' =>['<',$score],'id' => "$userId")) ->find();
                     if($data1){
                         $game->save([
                             'timestamp' => $time,
