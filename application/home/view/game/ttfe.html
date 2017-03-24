@@ -427,7 +427,7 @@
 
     //游戏结束
     function gameover(){
-        nowObj=alert("游戏结束!");
+        nowObj = false;
         $.ajax({
             type:"post",
             url:"{:Url('Game/ttfe_rank')}",
@@ -435,6 +435,7 @@
                 'score':$('#score').html()
             },
             success:function(data){
+                nowObj=alert("游戏结束!");
                 console.log(data);
             }
         });
