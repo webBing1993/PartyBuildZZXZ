@@ -374,5 +374,11 @@ class User extends Base {
     public function score() {
         return $this->fetch();
     }
+    /**
+     * 意见反馈
+     */
+    public function feedback() {
+        return $this->fetch();
+    }
 
 }
