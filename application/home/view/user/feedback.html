@@ -65,7 +65,7 @@ $(function(){
 							};
 							$.ajax({
 								type:"post",
-								url:"",
+								url:"{:Url('User/feedbackup')}",
 								data:data,
 								beforeSend: function(XMLHttpRequest){
 								},
@@ -73,7 +73,6 @@ $(function(){
 									setTimeout(function(){
 										window.location.href = "{:Url('User/index')}";
 									},2000)
-
 								}
 							});
 						}else{

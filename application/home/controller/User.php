@@ -13,6 +13,7 @@ use app\home\model\Years;
 use app\home\model\Notice;
 use app\home\model\Picture;
 use app\home\model\Browse;
+use app\home\model\Feedback;
 use app\home\model\WechatUser;
 use app\home\model\WechatUserTag;
 use think\Controller;
@@ -380,5 +381,18 @@ class User extends Base {
     public function feedback() {
         return $this->fetch();
     }
-
+    /*
+     * 意见反馈  提交
+     */
+    public function feedbackup(){
+        $data['content'] = input('post.content');
+        $data['userid'] = session('userId');
+        $Feedback = new Feedback();
+        $res = $Feedback->save($data);
+        if ($res){
+            return $this->success('提交成功');
+        }else{
+            return $this->error('提交失败');
+        }
+    }
 }
