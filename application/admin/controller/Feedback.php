@@ -40,9 +40,13 @@ class Feedback extends Admin{
         $Data = FeedbackModel::where('id',$id)->find();
         $userid = $Data['userid'];
         $content = input('post.content');
+        $title = $Data['content'];
+        $contents = "您的反馈问题： ".$title."。
+        
+对您回复： ".$content."。";
         //重组成article数据
         $send = array(
-            "content" => $content
+            "content" => $contents
         );
         //发送给企业号
         $Wechat = new TPQYWechat(Config::get('party'));
