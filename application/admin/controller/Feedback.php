@@ -41,7 +41,8 @@ class Feedback extends Admin{
         $userid = $Data['userid'];
         $content = input('post.content');
         $title = $Data['content'];
-        $contents = "您的反馈问题： ".$title."。
+        $time = date('Y-m-d',$Data['create_time']);
+        $contents = "您于".$time."提交反馈： ".$title."。
         
 对您回复： ".$content."。";
         //重组成article数据
