@@ -474,7 +474,7 @@ class Volunteer extends Admin {
             "touser" => "18768112486",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
-            "agentid" => 9,
+            "agentid" => 25,  // 志愿服务
             "news" => $send,
             "safe" => "0"
         );
