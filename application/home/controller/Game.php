@@ -11,6 +11,12 @@ use think\Db;
 
 class Game extends Base{
     /**
+     * 游戏首页
+     */
+    public function index(){
+        return $this ->fetch();
+    }
+    /**
      * 2048游戏
      */
     public function ttfe(){
