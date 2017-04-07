@@ -844,14 +844,16 @@
                 var r = confirm("游戏还在继续,离开将不会记录分数");
                 if (r) {
                     //离开
-                    wx.closeWindow();
+//                    wx.closeWindow();
+                    history.go(-1);
                 } else{
                     pushHistory();
                     return '';
                 }
             }else{
                 //直接离开
-                wx.closeWindow();
+                history.go(-1);
+//                wx.closeWindow();
             }
         }, false);
     });

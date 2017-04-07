@@ -2,9 +2,6 @@
 {block name="style"}
 <title>休闲游戏</title>
 <style>
-    .box{
-
-    }
     img{
         width:92%;
         margin-left:4%;
@@ -15,22 +12,29 @@
 </style>
 {/block}
 {block name="body"}
-    <!--2048-->
-    <img src="/home/game/images/22.png" alt="" data-id="http://dqpb.0571ztnet.com/home/game/ttfe">
-    <!--智慧拼图-->
-    <img src="/home/game/images/23.png" alt="" data-id="http://dqpb.0571ztnet.com/home/game/jigsaw">
-    <!--智慧魔方-->
-    <img src="/home/game/images/24.png" alt="" data-id="http://mgspb.0574ztnet.com/home/game/threedbox">
+    <div class="box clearfix">
+        <!--2048-->
+        <img src="/home/game/images/22.png" alt="" data-id="http://dqpb.0571ztnet.com/home/game/ttfe">
+        <!--智慧拼图-->
+        <img src="/home/game/images/23.png" alt="" data-id="http://dqpb.0571ztnet.com/home/game/jigsaw">
+        <!--智慧魔方-->
+        <img src="/home/game/images/24.png" alt="" data-id="http://mgspb.0574ztnet.com/home/game/threedbox">
+    </div>
 {/block}
 {block name="script"}
 <script>
-    var WH = $(window).height();
-    var imgH = $('img:first').height();
-    if (WH - imgH*3 >= 30){
-        $('img').css({'margin-top':(WH - imgH*3)/4});
-    }
-    $('img').click(function(){
-        window.location.href=$(this).attr('data-id');
+    $(function(){
+        var WH = $(window).height();
+        $('img').load(function(){
+            var imgH = $('img:first').height();
+            if ((WH - imgH*3) >= 30){
+                $('img').css({'margin-top':(WH - imgH*3)/4});
+            }
+        });
+
+        $('img').click(function(){
+            window.location.href=$(this).attr('data-id');
+        });
     });
 </script>
 {/block}
