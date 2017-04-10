@@ -861,7 +861,9 @@
         var state = {
             title: "title1"
         };
-        window.history.pushState(state, "title");
+        if(!window.history.state){
+            window.history.pushState(state, "title");
+        }
     }
 </script>
 {/block}
