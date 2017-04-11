@@ -5,9 +5,9 @@
     img{
         width:92%;
         margin-left:4%;
-        margin-right:4%;
+        margin-right: 4%;
         display:block;
-        margin-top:10px;
+        margin-top:4%;
     }
 </style>
 {/block}
@@ -25,12 +25,12 @@
 <script>
     $(function(){
         var WH = $(window).height();
-        $('img').load(function(){
-            var imgH = $('img:first').height();
-            if ((WH - imgH*3) >= 30){
-                $('img').css({'margin-top':(WH - imgH*3)/4});
-            }
-        });
+//        $('img').load(function(){
+//            var imgH = $('img:first').height();
+//            if ((WH - imgH*3) >= 30){
+//                $('img').css({'margin-top':(WH - imgH*3)/4});
+//            }
+//        });
 
         $('img').click(function(){
             window.location.href=$(this).attr('data-id');
