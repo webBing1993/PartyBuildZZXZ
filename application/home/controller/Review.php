@@ -140,7 +140,7 @@ class Review extends Base {
                 'touser' =>'15036667391',
 //                   "touser" => "@all",   //发送给全体，@all
                     "msgtype" => 'news',
-                    "agentid" =>15,  // 小镇动态
+                    "agentid" =>26,  // 小镇动态
                     "news" => $send,
                     "safe" => "0"
                 );
