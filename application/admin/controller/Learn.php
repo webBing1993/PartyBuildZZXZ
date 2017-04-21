@@ -265,7 +265,7 @@ class Learn extends Admin {
             $info = array(
                 'id' => array('neq',$id),
                 'create_time' => array('egt',$t),
-                'type' => array('in',[4,5]),
+                'type' => array('in',[1,2,3,4,5]),
                 'status' => 0,
             );
             $infoes = LearnModel::where($info)->select();
@@ -293,7 +293,7 @@ class Learn extends Admin {
             $t = $this->week_time();    //获取本周一时间
             $info = array(
                 'create_time' => array('egt',$t),
-                'type' => array('in',[4,5]),
+                'type' => array('in',[1,2,3,4,5]),
                 'status' => 0,
             );
             $infoes = LearnModel::where($info)->select();
@@ -323,6 +323,10 @@ class Learn extends Admin {
             $content1 = str_replace("&nbsp;","",$des1);  //空格符替换成空
             $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
             switch ($focus1['type']) {
+                case 1:
+                case 2:
+                    $pre1 = "【两学一做】";
+                    break;
                 case 4:
                     $pre1 = "【专题讨论】";
                     break;
@@ -354,6 +358,10 @@ class Learn extends Admin {
                 $content = str_replace("&nbsp;","",$des);  //空格符替换成空
                 $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
                 switch ($focus['type']) {
+                    case 1:
+                    case 2:
+                        $pre = "【两学一做】";
+                        break;
                     case 4:
                         $pre = "【专题讨论】";
                         break;
