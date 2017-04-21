@@ -321,17 +321,22 @@ class Learn extends Admin {
             $str1 = strip_tags($focus1['content']);
             $des1 = mb_substr($str1,0,100);
             $content1 = str_replace("&nbsp;","",$des1);  //空格符替换成空
-            $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
             switch ($focus1['type']) {
-                case 1:
-                case 2:
+                case 1:  // 视频 
                     $pre1 = "【两学一做】";
+                    $url1 = "http://dqpb.0571ztnet.com/home/learn/video/id/".$focus1['id'].".html";
                     break;
-                case 4:
+                case 2:  // 图文 
+                    $pre1 = "【两学一做】";
+                    $url1 = "http://dqpb.0571ztnet.com/home/learn/article/id/".$focus1['id'].".html";
+                    break;
+                case 4:  // 专题讨论
                     $pre1 = "【专题讨论】";
+                    $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
                     break;
-                case 5:
+                case 5:  // 党性体验
                     $pre1 = "【党性体验】";
+                    $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
                     break;
                 default:
                     break;
@@ -356,17 +361,22 @@ class Learn extends Admin {
                 $str = strip_tags($focus['content']);
                 $des = mb_substr($str,0,100);
                 $content = str_replace("&nbsp;","",$des);  //空格符替换成空
-                $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
                 switch ($focus['type']) {
                     case 1:
+                        $pre = "【两学一做】";
+                        $url = "http://dqpb.0571ztnet.com/home/learn/video/id/".$focus['id'].".html";
+                        break;
                     case 2:
                         $pre = "【两学一做】";
+                        $url = "http://dqpb.0571ztnet.com/home/learn/article/id/".$focus['id'].".html";
                         break;
                     case 4:
                         $pre = "【专题讨论】";
+                        $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
                         break;
                     case 5:
                         $pre = "【党性体验】";
+                        $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
                         break;
                     default:
                         break;
@@ -403,10 +413,10 @@ class Learn extends Admin {
         $Wechat = new TPQYWechat(Config::get('party'));
         $message = array(
 //            'totag' => "18", //审核标签用户
-            "touser" => "18768112486",
+            "touser" => "15036667391",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
-            "agentid" => 6,
+            "agentid" => 27,
             "news" => $send,
             "safe" => "0"
         );
