@@ -291,7 +291,7 @@
     var myApp = new Framework7();
 
     //清空购物车
-    $('#clear1').one('click',function(){
+    $('#clear1').click(function(){
         clearBoth( );
     });
 
@@ -306,12 +306,8 @@
                     window.location.replace(location.href);
                 }
             });
-        }else if(r==false){
-            setTimeout(function(){
-                $('#clear1').one('click',function(){
-                    clearBoth( );
-                });
-            },500)
+        }else{
+            return '';
         }
     }
     //删除单挑购物车
@@ -338,12 +334,13 @@
                 });
             } else {
                 myApp.swipeoutClose(a);
+                return '';
             }
         }
     });
 
     $(function(){
-       $('.swipeout-content>p').width($(window).width()-116);
+        $('.swipeout-content>p').width($(window).width()-116);
     })
     //计算函数
     function count(a,b){
@@ -419,31 +416,31 @@
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
-                        var data1={};
-                        data1.data=[];
-                        $('.swipeout').each(function(){
-                            var a=$(this);
-                            data1.data.push({id:a.attr('data-id'),num:a.find('.count>div').html(),money:a.find('.sum').html()});
-                        })
-                        data1.userid=res.resultStr;
-                        data1.sum =$('.countSum>span>a').html();
-                        $.ajax({
-                            type: 'POST',
-                            url: "{:Url('Exchange/scans')}" ,
-                            data: {data:JSON.stringify(data1)} ,
-                            success:function(data){
-                                if(data.status==0){
-                                    alert('请扫描正确党员二维码')
-                                }else if(data.status==2){
-                                    $('#user_img').attr('src',data.header);
-                                    $('#user_name').html(data.name);
-                                    $('.page-content').hide();
-                                    $('.bk1').show();
-                                }else{
-                                    alert('该用户积分不足');
-                                }
+                    var data1={};
+                    data1.data=[];
+                    $('.swipeout').each(function(){
+                        var a=$(this);
+                        data1.data.push({id:a.attr('data-id'),num:a.find('.count>div').html(),money:a.find('.sum').html()});
+                    })
+                    data1.userid=res.resultStr;
+                    data1.sum =$('.countSum>span>a').html();
+                    $.ajax({
+                        type: 'POST',
+                        url: "{:Url('Exchange/scans')}" ,
+                        data: {data:JSON.stringify(data1)} ,
+                        success:function(data){
+                            if(data.status==0){
+                                alert('请扫描正确党员二维码')
+                            }else if(data.status==2){
+                                $('#user_img').attr('src',data.header);
+                                $('#user_name').html(data.name);
+                                $('.page-content').hide();
+                                $('.bk1').show();
+                            }else{
+                                alert('该用户积分不足');
                             }
-                        });
+                        }
+                    });
                 },
                 error:function(){
 
@@ -492,6 +489,20 @@
             return wConfirm(message);
         }
     }
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.replace('http://'+"{$link}"+'/home/exchange/merchant');
+        }, false);
+        function pushHistory() {
+            var state = {
+                title: "title"
+            };
+            if(window.history.state===null){
+                window.history.pushState(state, "title");
+            }
+        }
+    });
 </script>
 </body>
 </html>
