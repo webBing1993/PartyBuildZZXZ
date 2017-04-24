@@ -126,7 +126,7 @@ var isGood = function(e,type,id){
  */
 var send = function(e,type,id){
 	var it = $(e ).prev().find('input');
-	if(it.val() != ''){
+	if(it.val() != ''&& it.val().length > 4){
 		$.ajax({
 			type:"post",
 			url:"{:Url('Base/comment')}",
@@ -171,7 +171,7 @@ var send = function(e,type,id){
 			}
 		});
 	}else{
-		wAlert('您的评论不能为空');
+		wAlert('您的评论少于5个字');
 	}
 };
 var wAlert = window.alert;
