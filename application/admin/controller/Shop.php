@@ -134,7 +134,6 @@ class Shop extends Admin{
                 $data = input('post.');
                 $Product = new Product();
                 $data['update_user'] = $_SESSION['think']['user_auth']['id'];
-                $data['left'] = $data['num'];
                 $data['update_time'] = time();
                 $model = $Product->validate('Product.atc')->save($data,['id' => $data['id']]);
                 if($model){
