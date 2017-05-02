@@ -21,7 +21,7 @@ class Cronjob extends Controller {
     public function automatic_push(){
         //推送消息的详情
         $Wechat = new TPQYWechat(Config::get('party'));
-        $title = '"每日一课"君已经等候您多时了...';
+        $title = '"每日一课"已经等候您多时了...';
         $content = "休息一下,去答个题吧";
         $path = "http://dqpb.0571ztnet.com/home/images/user/relax.jpg";//图片链接
         $url = "http://dqpb.0571ztnet.com/home/constitution/course";  //答题页面链接
@@ -40,7 +40,7 @@ class Cronjob extends Controller {
 //                'touser' => '18768112486',
            'touser' =>"@all",
             "msgtype" => 'news',
-            "agentid" => 6,
+            "agentid" => 27,  // 两学一做
             "news" => $send,
             "safe" => "0"
         );
