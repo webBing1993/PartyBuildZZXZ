@@ -6,4 +6,3 @@ data/
 vendor/
 composer.lock
 public/ueditor/
-public/uploads/
