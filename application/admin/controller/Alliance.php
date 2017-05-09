@@ -10,6 +10,7 @@ namespace app\admin\controller;
 use app\admin\model\AllianceArrange;
 use app\admin\model\AllianceShow;
 use app\admin\model\Push;
+use app\admin\model\Picture;
 use com\wechat\TPQYWechat;
 use think\Config;
 
@@ -289,7 +290,6 @@ class Alliance extends Admin {
         //发送给服务号
         $Wechat = new TPQYWechat(Config::get('party'));
         $message = array(
-//            'totag' => "18", //审核标签用户
             "touser" => "18768112486",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
@@ -398,7 +398,8 @@ class Alliance extends Admin {
                 default:
                     break;
             }
-            $path1 = "http://dqpb.0571ztnet.com/home/images/show.jpg";
+            $img = Picture::get($focus1['front_cover']);
+            $path1 = "http://dqpb.0571ztnet.com".$img['path'];
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -434,7 +435,8 @@ class Alliance extends Admin {
                     default:
                         break;
                 }
-                $path = "http://dqpb.0571ztnet.com/home/images/show.png";
+                $img = Picture::get($focus['front_cover']);
+                $path = "http://dqpb.0571ztnet.com".$img['path'];
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,
@@ -464,7 +466,6 @@ class Alliance extends Admin {
         //发送给服务号
         $Wechat = new TPQYWechat(Config::get('party'));
         $message = array(
-//            'totag' => "18", //审核标签用户
             "touser" => "18768112486",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',

@@ -15,6 +15,7 @@ class Alliance extends Validate {
     protected $rule = [
         'title' => 'require',
         'type' => 'require',
+        'front_cover' => 'require',
         'theme' => 'require',
         'time' => 'require',
         'address' => 'require',
@@ -31,10 +32,11 @@ class Alliance extends Validate {
         'address' => '地址不能为空',
         'content'  =>  '内容不能为空',
         'publisher' => '发布者不能为空',
+        'front_cover' => '推送封面图不能为空'
     ];
 
     protected $scene = [
         'arrange'  =>  ['title','theme','time','address','content'],
-        'show' => ['title','type','content','publisher'],
+        'show' => ['title','type','content','publisher','front_cover'],
     ];
 }
