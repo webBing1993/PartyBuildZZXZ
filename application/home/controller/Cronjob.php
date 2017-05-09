@@ -46,4 +46,58 @@ class Cronjob extends Controller {
         );
         $Wechat->sendMessage($message);
     }
+    /*
+     * 每天定时 发送 天气预报
+     */
+    public function weather(){
+        $url ='http://api.map.baidu.com/telematics/v3/weather?location=德清&output=json&ak=bKkCa6mmMCFdzXD4p5bjyiNX' ;
+        $info = $this ->http_get($url);
+        $data = json_decode($info);
+        $str = "【".$data ->results[0] ->currentCity."天气预报】$data->date"."\n\n"
+            .'明天'.$data ->results[0] ->weather_data[1] ->weather.'，'.$data ->results[0] ->weather_data[1] ->temperature.'，'.$data ->results[0] ->weather_data[1] ->wind."。\n\n"
+            .'穿衣指数：'.$data ->results[0] ->index[0] ->des."\n\n"
+            .'洗车指数：'.$data ->results[0] ->index[1] ->des."\n\n"
+            .'感冒指数：'.$data ->results[0] ->index[2] ->des."\n\n"
+            .'运动指数：'.$data ->results[0] ->index[3] ->des."\n\n"
+            .'紫外线指数：'.$data ->results[0] ->index[4] ->des.""
+        ;
+        $text = array(
+           "touser" => "@all",
+//            'touser' => '15036667391',
+            "msgtype" =>"text",
+            "agentid" => 8,
+            "text" =>[
+                "content" => $str
+            ]
+        );
+        $Wechat = new TPQYWechat(Config::get('party'));
+        $result = $Wechat ->sendMessage($text);
+        //errcode 成功为0 其他失败
+        if($result['errcode'] === 0){
+            return '推送成功';
+        }else{
+            return '推送失败';
+        }
+    }
+    /**
+     * http_get请求
+     */
+    public function http_get($url){
+        $oCurl = curl_init();
+        if(stripos($url,"https://")!==FALSE){
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, FALSE);
+            curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+        }
+        curl_setopt($oCurl, CURLOPT_URL, $url);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1 );
+        $sContent = curl_exec($oCurl);
+        $aStatus = curl_getinfo($oCurl);
+        curl_close($oCurl);
+        if(intval($aStatus["http_code"])==200){
+            return $sContent;
+        }else{
+            return false;
+        }
+    }
 }
