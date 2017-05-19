@@ -8,6 +8,7 @@
 namespace app\home\controller;
 use think\Controller;
 use think\Db;
+use app\home\model\Game as GameModel;
 
 class Game extends Base{
     /**
@@ -36,9 +37,9 @@ class Game extends Base{
         $timestamp0=strtotime($dateStr);
         //获取当天24点的时间戳
         $timestamp24=strtotime($dateStr)+ 86400;
-        $game = model('Game');
+        $game = new GameModel();
         if(!$_POST){
-            $today = Db::query("select t2.name,t1.score,t2.avatar from `pb_game` as t1 LEFT JOIN `pb_wechat_user` as t2 ON t1.id=t2.userid WHERE timestamp>? and timestamp<? ORDER BY t1.score DESC,t1.timestamp limit 0,?",[$timestamp0,$timestamp24,15]);
+            $today = $game ->where(['timestamp' => ['EGT',$timestamp0],'type' =>'1']) ->order('score desc') ->limit('10') ->select();
             if(empty($today)){
                 $this ->assign('info',0);
             }else{
@@ -52,18 +53,15 @@ class Game extends Base{
             if ($userId=='visitor'){return $this->error('游客不做任何操作');}
             //查找用户数据
             $score = $_POST['score'];
-            $info = $game -> find($userId);
+            $info = $game ->where(array('userid' =>$userId,'type' => 1)) ->find();
             if($info){
                 //如果存在今天的数据,判断修改数据
-                $condition = array('id'=>"$userId");
-                $data = $game ->where("timestamp > $timestamp0 and timestamp < $timestamp24") -> where($condition)->find();
-                if(!empty($data)){
-                    $data1=$game -> where(array('score' =>['<',$score],'id' => "$userId")) ->find();
-                    if($data1){
-                        $game->save([
+                if($info['timestamp'] >= $timestamp0){
+                    if($info['score'] < $score){
+                        $game ->save([
                             'timestamp' => $time,
                             'score' => $score
-                        ], ['id' => $userId]);
+                        ], ['userid' => $userId ,'type' => 1]);
                         return $this->success('修改数据成功');
                     }else{
                         return $this->success('今日最高分已经存在');
@@ -71,16 +69,18 @@ class Game extends Base{
                 }else{
                     $game->save([
                         'timestamp' => $time,
-                        'score' => $score
-                    ], ['id' => $userId]);
+                        'score' => $score,
+                        'type' => 1
+                    ], ['userid' => $userId ,'type' => 1]);
                     return $this->success('修改数据成功');
                 }
             }else{
                 //如果不存在,创建数据
                 $game -> data([
-                    'id' => $userId,
+                    'userid' => $userId,
                     'score' => $score,
                     'timestamp' =>$time,
+                    'type' => 1
                 ])->save();
                 return $this->success('添加数据成功');
             }
@@ -98,61 +98,60 @@ class Game extends Base{
     /**
      * 读取跟记录拼图用户分数
      */
-    public function jigsaw_rank(){
+    public function jigsaw_rank()
+    {
         $userId = session('userId');
         //当前时间戳
         $time = time();
         //取出今日排行榜
-        $dateStr = date('Y-m-d',$time);
+        $dateStr = date('Y-m-d', $time);
         //获取当天0点的时间戳
-        $timestamp0=strtotime($dateStr);
-        //获取当天24点的时间戳
-        $timestamp24=strtotime($dateStr)+ 86400;
-        $game = model('GameJigsaw');
-        if(!$_POST){
-            $today = Db::query("select t2.name,t1.score,t2.avatar from `pb_game_jigsaw` as t1 LEFT JOIN `pb_wechat_user` as t2 ON t1.id=t2.userid WHERE timestamp>? and timestamp<? ORDER BY t1.score ,t1.timestamp limit 0,?",[$timestamp0,$timestamp24,15]);
-            if(empty($today)){
-                $this ->assign('info',0);
-            }else{
-                $this ->assign('info',1);
+        $timestamp0 = strtotime($dateStr);
+        $game = new GameModel();
+        if (!$_POST) {
+            $today = $game->where(['timestamp' => ['EGT', $timestamp0],'type' =>'2']) ->order('score') ->limit('10') ->select();
+            if (empty($today)) {
+                $this->assign('info', 0);
+            } else {
+                $this->assign('info', 1);
             }
-            $this -> assign('today',$today);
-            return $this -> fetch();
-        }
-        else if(!empty($_POST)){
+            $this->assign('today', $today);
+            return $this->fetch();
+        } else if (!empty($_POST)) {
             //如果是游客就不做任何操作
-            if ($userId=='visitor'){return $this->error('游客不做任何操作');}
+            if ($userId == 'visitor') {
+                return $this->error('游客不做任何操作');
+            }
             //查找用户数据
             $score = $_POST['score'];
-            $info = $game -> find($userId);
-            if($info){
+            $info = $game->where(array('userid' => $userId, 'type' => 2))->find();
+            if ($info) {
                 //如果存在今天的数据,判断修改数据
-                $condition = array('id'=>"$userId");
-                $data = $game ->where("timestamp > $timestamp0 and timestamp < $timestamp24") -> where($condition)->find();
-                if(!empty($data)){
-                    $data1=$game -> where(array('score' =>['>',$score],'id' => "$userId")) ->find();
-                    if($data1){
+                if ($info['timestamp'] >= $timestamp0) {
+                    if ($info['score'] > $score) {
                         $game->save([
                             'timestamp' => $time,
                             'score' => $score
-                        ], ['id' => $userId]);
+                        ], ['userid' => $userId,'type' => 2]);
                         return $this->success('修改数据成功');
-                    }else{
+                    } else {
                         return $this->success('今日最高分已经存在');
                     }
-                }else{
+                } else {
                     $game->save([
                         'timestamp' => $time,
-                        'score' => $score
-                    ], ['id' => $userId]);
+                        'score' => $score,
+                        'type' => 2
+                    ], ['userid' => $userId,'type' => 2]);
                     return $this->success('修改数据成功');
                 }
-            }else{
+            } else {
                 //如果不存在,创建数据
-                $game -> data([
-                    'id' => $userId,
+                $game->data([
+                    'userid' => $userId,
                     'score' => $score,
-                    'timestamp' =>$time,
+                    'timestamp' => $time,
+                    'type' => 2
                 ])->save();
                 return $this->success('添加数据成功');
             }

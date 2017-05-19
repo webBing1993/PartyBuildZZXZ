@@ -126,17 +126,17 @@
     <!--//今日排行-->
     <div class="weeklist" data-id="1">
         <ul>
-            {volist name="today" id="fi" key="k"}
+            {volist name="today" id="vo" key="k"}
             <li>
                 <!--前三名头像-->
                 <div class="king"></div>
                 <!--排名-->
                 <span>{$k}</span>
                 <!--用户头像-->
-                <img src={$fi.avatar} alt="用户头像" class="userImg">
-                <p>{$fi.name}</p>
+                <img src={$vo.userid|get_header} alt="用户头像" class="userImg">
+                <p>{$vo.userid|get_name}</p>
                 <!--积分-->
-                <b>{$fi.score}</b>
+                <b>{$vo.score}</b>
             </li>
             {/volist}
         </ul>
