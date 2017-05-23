@@ -735,12 +735,12 @@
         if(nowObj) {
             var r = confirm("游戏还在继续,离开将不会记录分数");
             if (r) {
-                window.location.href="{:Url('Game/ttfe_rank')}";
+                location.replace("{:Url('Game/ttfe_rank')}");
             } else{
                 return '';
             }
         }else{
-            window.location.href="{:Url('Game/ttfe_rank')}";
+            location.replace("{:Url('Game/ttfe_rank')}");
         }
     });
     //游戏规则窗口关闭
