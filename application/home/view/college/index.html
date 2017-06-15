@@ -574,9 +574,10 @@
     });
     //#tab3
     $('.btn1').click(function(){
+        if(!$(this).hasClass('tab_active')){
         $(this).toggleClass('tab_active');
         $(this).siblings().toggleClass('tab_active');
-        $(this).parent().parent().find('ul').toggleClass('none')
+        $(this).parent().parent().find('ul').toggleClass('none')}
     });
     $(function(){
         $('a').off('click' ).on('click',function(){
