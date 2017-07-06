@@ -487,11 +487,11 @@ class Notice extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('notice'));
         $message = array(
 //            'totag' => "18", //审核标签用户
-//            "touser" => "18768112486",
-            "touser" => "@all",   //发送给全体，@all
+            "touser" => "15036667391",
+//            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
             "agentid" => 28,
             "news" => $send,
@@ -512,7 +512,7 @@ class Notice extends Admin {
                 return $this->error("发送失败");
             }
         }else{
-            return $this->error("发送失败");
+            return $this->error($Wechat->errMsg."发送失败");
         }
     }
 }
