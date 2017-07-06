@@ -20,7 +20,7 @@ class Cronjob extends Controller {
      */
     public function automatic_push(){
         //推送消息的详情
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('learn'));
         $title = '"每日一课"已经等候您多时了...';
         $content = "休息一下,去答个题吧";
         $path = "http://dqpb.0571ztnet.com/home/images/user/relax.jpg";//图片链接
@@ -37,8 +37,8 @@ class Cronjob extends Controller {
         );
         //发送
         $message = array(
-//                'touser' => '18768112486',
-           'touser' =>"@all",
+                'touser' => '15036667391',
+//           'touser' =>"@all",
             "msgtype" => 'news',
             "agentid" => 27,  // 两学一做
             "news" => $send,
@@ -62,15 +62,15 @@ class Cronjob extends Controller {
             .'紫外线指数：'.$data ->results[0] ->index[4] ->des.""
         ;
         $text = array(
-           "touser" => "@all",
-//            'touser' => '15036667391',
+//           "touser" => "@all",
+            'touser' => '15036667391',
             "msgtype" =>"text",
-            "agentid" => 8,
+            "agentid" => 8,  // 个人中心
             "text" =>[
                 "content" => $str
             ]
         );
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('user'));
         $result = $Wechat ->sendMessage($text);
         //errcode 成功为0 其他失败
         if($result['errcode'] === 0){
