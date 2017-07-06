@@ -36,6 +36,19 @@ class Talent extends Admin {
         return $this->fetch();
     }
 
+    public function xxlist() {
+        $map = array(
+            'status' => 1,
+        );
+        $list = $this->lists('Talent',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"待审核",1=>"已发布",2=>"不通过"),
+            'type' => array(1=>"政策解读",2=>"申请流程",3=>"创业支持"),
+        ));
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+
     /**
      * 新增
      */
@@ -240,13 +253,13 @@ class Talent extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('talent'));
         $message = array(
 //            'totag' => "18", //审核标签用户
-            "touser" => "18768112486",
+            "touser" => "15036667391",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
-            "agentid" => 5,
+            "agentid" => 5,  // 人才服务
             "news" => $send,
             "safe" => "0"
         );
