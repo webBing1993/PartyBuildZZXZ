@@ -134,7 +134,7 @@ class Review extends Base {
                     $send[$key] = $value;
                 }
                 //发送给服务号
-                $Wechat = new TPQYWechat(Config::get('party'));
+                $Wechat = new TPQYWechat(Config::get('news'));
                 $message = array(
 //                   'totag' => "4", //审核标签用户
                 'touser' =>'15036667391',
@@ -191,7 +191,7 @@ class Review extends Base {
         if($model) {
             if($map['status'] == 1) {
                 $content = "恭喜您提交的文章【".$msg['title']."】已成功通过审核！";
-                $Wechat = new TPQYWechat(Config::get('party'));
+                $Wechat = new TPQYWechat(Config::get('user'));
                 $message = array(
                     'touser' => $userid,
                     "msgtype" => 'text',
@@ -216,7 +216,7 @@ class Review extends Base {
                 }
             }else{
                 $content = "很抱歉，您提交的文章【".$msg['title']."】未能通过审核！";
-                $Wechat = new TPQYWechat(Config::get('party'));
+                $Wechat = new TPQYWechat(Config::get('user'));
                 $message = array(
                     'touser' => $userid,
                     "msgtype" => 'text',
@@ -318,7 +318,7 @@ class Review extends Base {
             }else{
                 $content = "很抱歉，您提交的志愿招募【".$msg['title']."】未能通过审核！";
             }
-            $Wechat = new TPQYWechat(Config::get('party'));
+            $Wechat = new TPQYWechat(Config::get('user'));
             $message = array(
                 'touser' => $userid,
                 "msgtype" => 'text',
