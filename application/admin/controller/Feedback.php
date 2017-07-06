@@ -50,7 +50,7 @@ class Feedback extends Admin{
             "content" => $contents
         );
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('user'));
         $message = array(
             "touser" => $userid,
             "msgtype" => 'text',

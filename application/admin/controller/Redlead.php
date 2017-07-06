@@ -250,7 +250,7 @@ class Redlead extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('redcollege'));
         $message = array(
 //            'totag' => "18", //审核标签用户
             "touser" => "18768112486",
