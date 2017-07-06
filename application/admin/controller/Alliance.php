@@ -288,9 +288,9 @@ class Alliance extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('alliance'));
         $message = array(
-            "touser" => "18768112486",
+            "touser" => "15036667391",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
             "agentid" => 2,
@@ -464,9 +464,9 @@ class Alliance extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('party'));
+        $Wechat = new TPQYWechat(Config::get('alliance'));
         $message = array(
-            "touser" => "18768112486",
+            "touser" => "15036667391",
 //            "touser" => "@all",   //发送给全体，@all
             "msgtype" => 'news',
             "agentid" => 2,
