@@ -12,6 +12,7 @@ use app\home\model\Picture;
 use app\home\model\Like;
 use app\home\model\Comment;
 use app\home\model\WechatUser;
+use app\home\model\Collect;
 
 class Topic extends Base{
     /*
@@ -115,6 +116,11 @@ class Topic extends Base{
         $article['link'] = $_SERVER['REDIRECT_URL'];
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
 
+        //收藏是否存在
+        $collectModel = new Collect();
+        $collect = $collectModel->getCollect(1,$id,$userId);
+        $article['is_collect'] = $collect;
+
         //获取 文章点赞
         $likeModel = new Like;
         $like = $likeModel->getLike(1,$id,$userId);
@@ -130,6 +136,9 @@ class Topic extends Base{
         $commentModel = new Comment();
         $comment = $commentModel->getComment(1,$id,$userId);
         $this->assign('comment',$comment);
+
+
+
 
         return $this->fetch();
     }

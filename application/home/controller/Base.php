@@ -16,9 +16,9 @@ use think\Config;
 use think\Controller;
 use com\wechat\TPQYWechat;
 use think\Db;
-use think\Input;
 use app\home\model\Browse;
 use app\home\model\Answers;
+use app\home\model\Collect;
 
 class Base extends Controller {
     public function _initialize(){
@@ -245,6 +245,56 @@ class Base extends Controller {
                  }
             }
             
+        }
+
+    }
+
+
+    /**
+     * 收藏，$type,$aid
+     * type值：
+     * 1 learn
+     */
+    public function collect(){
+        $uid = session('userId'); //收藏人
+        $type = input('type'); //获取收藏类型
+        $aid = input('aid');
+        switch ($type) {    //根据类别获取表明
+            case 1:
+                $table = "learn";
+                break;
+            default:
+                return $this->error("无该数据表");
+                break;
+        }
+        $data = array(
+            'type' => $type,
+            'table' => $table,
+            'aid' => $aid,
+            'uid' => $uid,
+        );
+        $collectModel = new Collect();
+        $like = $collectModel->where($data)->find();
+        if(empty($like)) {  //点赞
+
+            $res = $collectModel->create($data);
+            if($res) {
+
+                return $this->success("收藏成功");
+            }else {
+                return $this->error("收藏失败");
+            }
+
+        } else { //取消
+
+            $result = $collectModel::where($data)->delete();
+            if($result) {
+
+                return $this->success("取消成功");
+            }else {
+                return $this->error("取消失败");
+            }
+
         }
 
     }

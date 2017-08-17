@@ -58,6 +58,11 @@
 </div>
 {eq name="visit" value="0"}
 <div class="bottom clear">
+	{eq name="article.is_collect" value="1"}
+	<div class="collect fl star_" onclick="isCollect(this,{$article.id},1)"></div>
+	{else/}
+	<div class="collect fl star" onclick="isCollect(this,{$article.id},1)"></div>
+	{/eq}
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
@@ -105,6 +110,26 @@ var isGood = function(e,type,id){
 		}
 	})
 };
+
+/**
+ * 收藏
+ */
+function isCollect(e,id,type){
+	//样式变化，移到suc
+	$(e).toggleClass('star' ).toggleClass('star_');
+	$.ajax({
+		type:"post",
+		url:"{:Url('Base/collect')}",
+		data:{
+			aid:id,
+			type:type
+		},
+		success:function(data){
+
+		}
+	})
+}
+
 /**
  * 发送评论
  * @param e

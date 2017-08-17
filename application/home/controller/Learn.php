@@ -12,7 +12,7 @@ use app\home\model\Browse;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\WechatUser;
-use think\Controller;
+use app\home\model\Collect;
 
 use app\home\model\Learn as LearnModel;
 /**
@@ -103,6 +103,11 @@ class Learn extends Base {
         $video['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $video['desc'] = str_replace('&nbsp;','',strip_tags($video['content']));
 
+        //获取用户收藏
+        $collectModel = new Collect();
+        $collect = $collectModel->getCollect(1,$id,$userId);
+        $video['is_collect'] = $collect;
+
         //获取 文章点赞
         $likeModel = new Like;
         $like = $likeModel->getLike(1,$id,$userId);
@@ -152,6 +157,11 @@ class Learn extends Base {
         $article['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
         $article['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL']; 
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
+
+        //获取用户收藏
+        $collectModel = new Collect();
+        $collect = $collectModel->getCollect(1,$id,$userId);
+        $article['is_collect'] = $collect;
 
         //获取 文章点赞
         $likeModel = new Like;
