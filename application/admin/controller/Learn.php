@@ -69,7 +69,7 @@ class Learn extends Admin {
                 return $this->error($learnModel->getError());
             }
         }else{
-            $this->default_pic();
+
             $this->assign('msg','');
 
             return $this->fetch('edit');
@@ -158,7 +158,7 @@ class Learn extends Admin {
                 $data = input('post.');
                $learnModel = new LearnModel();
                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-               $model = $learnModel->validate('Learn')->where(['id' => $id])->update($data);
+               $model = $learnModel->validate('Learn.topic')->where(['id' => $id])->update($data);
                if($model){
                    return $this->success('修改成功',Url("Learn/workshop"));
                }else{
@@ -178,7 +178,7 @@ class Learn extends Admin {
                 }
                 $learnModel = new LearnModel();
                 $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-                $model = $learnModel->validate('Learn')->save($data);
+                $model = $learnModel->validate('Learn.topic')->save($data);
                 if($model){
                     return $this->success('新增成功!',Url("Learn/workshop"));
                 }else{
@@ -192,67 +192,6 @@ class Learn extends Admin {
         }
 
     }
-    /*
-     * 党性体验
-     */
-    public function experience(){
-        $map = array(
-            'status' => 0,
-            'type' => 5
-        );
-        $list = $this->lists('Learn',$map);
-        int_to_string($list,array(
-            'status' => array(0=>"已发布"),
-            'recommend' => array(0=>"否",1=>"是"),
-            'type' => array(5=>"党性体验")
-        ));
-        $this->assign('list',$list);
-        return $this->fetch();
-    }
-    /*
-     * 党性体验  添加  修改
-     */
-    public function experienceadd(){
-        $id = input('id');
-        if($id){
-           // 修改
-            if(IS_POST){
-                $data = input('post.');
-                $learnModel = new LearnModel();
-                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-                $model = $learnModel->validate('Learn')->where(['id' => $id])->update($data);
-                if($model){
-                    return $this->success('修改成功',Url("Learn/experience"));
-                }else{
-                    return $this->error($learnModel->getError());
-                }
-            }else{
-                $msg = LearnModel::where(['id' => $id,'status' => 0])->find();
-                $this->assign('msg',$msg);
-                return $this->fetch();
-            }
-        }else{
-            // 添加
-            if(IS_POST){
-                $data = input('post.');
-                if(empty($data['id'])) {
-                    unset($data['id']);
-                }
-                $learnModel = new LearnModel();
-                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-                $model = $learnModel->validate('Learn')->save($data);
-                if($model){
-                    return $this->success('新增成功!',Url("Learn/experience"));
-                }else{
-                    return $this->error($learnModel->getError());
-                }
-            }else{
-                $this->default_pic();
-                $this->assign('msg','');
-                return $this->fetch();
-            }
-        }
-    }
 
     /**
      * 推送列表
@@ -261,10 +200,10 @@ class Learn extends Admin {
         if(IS_POST){
             $id = input('id');
             //副图文本周内的新闻消息
-            $t = $this->week_time();
+//            $t = $this->week_time();
             $info = array(
                 'id' => array('neq',$id),
-                'create_time' => array('egt',$t),
+//                'create_time' => array('egt',$t),
                 'type' => array('in',[1,2,3,4,5]),
                 'status' => 0,
             );
@@ -290,9 +229,9 @@ class Learn extends Admin {
             }
             $this->assign('list',$list);
             //主图文本周内的新闻消息
-            $t = $this->week_time();    //获取本周一时间
+//            $t = $this->week_time();    //获取本周一时间
             $info = array(
-                'create_time' => array('egt',$t),
+//                'create_time' => array('egt',$t),
                 'type' => array('in',[1,2,3,4,5]),
                 'status' => 0,
             );
@@ -310,6 +249,7 @@ class Learn extends Admin {
      */
     public function push(){
         $data = input('post.');
+        $httpUrl = config('http_url');
         $arr1 = $data['focus_main'];    //主图文id
         isset($data['focus_vice']) ? $arr2 = $data['focus_vice'] : $arr2 = "";    //副图文id
         if($arr1 == -1){
@@ -324,25 +264,25 @@ class Learn extends Admin {
             switch ($focus1['type']) {
                 case 1:  // 视频 
                     $pre1 = "【两学一做】";
-                    $url1 = "http://dqpb.0571ztnet.com/home/learn/video/id/".$focus1['id'].".html";
+                    $url1 = $httpUrl."/home/learn/video/id/".$focus1['id'].".html";
                     break;
                 case 2:  // 图文 
                     $pre1 = "【两学一做】";
-                    $url1 = "http://dqpb.0571ztnet.com/home/learn/article/id/".$focus1['id'].".html";
+                    $url1 = $httpUrl."/home/learn/article/id/".$focus1['id'].".html";
                     break;
                 case 4:  // 专题讨论
                     $pre1 = "【专题讨论】";
-                    $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
+                    $url1 = $httpUrl."/home/topic/detail/id/".$focus1['id'].".html";
                     break;
                 case 5:  // 党性体验
                     $pre1 = "【党性体验】";
-                    $url1 = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus1['id'].".html";
+                    $url1 = $httpUrl."/home/topic/detail/id/".$focus1['id'].".html";
                     break;
                 default:
                     break;
             }
             $img1 = Picture::get($focus1['front_cover']);
-            $path1 = "http://dqpb.0571ztnet.com".$img1['path'];
+            $path1 = $httpUrl.$img1['path'];
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -364,25 +304,25 @@ class Learn extends Admin {
                 switch ($focus['type']) {
                     case 1:
                         $pre = "【两学一做】";
-                        $url = "http://dqpb.0571ztnet.com/home/learn/video/id/".$focus['id'].".html";
+                        $url = $httpUrl."/home/learn/video/id/".$focus['id'].".html";
                         break;
                     case 2:
                         $pre = "【两学一做】";
-                        $url = "http://dqpb.0571ztnet.com/home/learn/article/id/".$focus['id'].".html";
+                        $url = $httpUrl."/home/learn/article/id/".$focus['id'].".html";
                         break;
                     case 4:
                         $pre = "【专题讨论】";
-                        $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
+                        $url = $httpUrl."/home/topic/detail/id/".$focus['id'].".html";
                         break;
                     case 5:
                         $pre = "【党性体验】";
-                        $url = "http://dqpb.0571ztnet.com/home/topic/detail/id/".$focus['id'].".html";
+                        $url = $httpUrl."/home/topic/detail/id/".$focus['id'].".html";
                         break;
                     default:
                         break;
                 }
                 $img = Picture::get($focus['front_cover']);
-                $path = "http://dqpb.0571ztnet.com".$img['path'];
+                $path = $httpUrl.$img['path'];
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,
@@ -409,12 +349,11 @@ class Learn extends Admin {
             $send[$key] = $value;
         }
 
-        //发送给服务号
+        //发送给企业号
         $Wechat = new TPQYWechat(Config::get('learn'));
+        $touser = config('touser');
         $message = array(
-//            'totag' => "18", //审核标签用户
-            "touser" => "15036667391",
-//            "touser" => "@all",   //发送给全体，@all
+            "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
             "agentid" => 27,
             "news" => $send,

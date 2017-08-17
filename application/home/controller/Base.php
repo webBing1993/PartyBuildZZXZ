@@ -23,7 +23,8 @@ use app\home\model\Answers;
 class Base extends Controller {
     public function _initialize(){
 //        session('userId','visitor');
-        session('userId','15757117952');
+        session('userId','15700004138');
+//        session('userId','15824167420');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -139,17 +140,6 @@ class Base extends Controller {
      * type值：
      * 0 评论点赞
      * 1 learn
-     * 2 notice
-     * 3 AllianceArrange
-     * 4 AllianceShow
-     * 5 Talent
-     * 6 News
-     * 7 RedtutorCourse
-     * 8 RedtutorNotice
-     * 9 Redlead
-     * 10 RedforumDetail
-     * 11 RedforumNotice
-     * 12 VolunteerTeam
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -161,39 +151,6 @@ class Base extends Controller {
                 break;
             case 1:
                 $table = "learn";
-                break;
-            case 2:
-                $table = "notice";
-                break;
-            case 3:
-                $table = "alliance_arrange";
-                break;
-            case 4:
-                $table = "alliance_show";
-                break;
-            case 5:
-                $table = "talent";
-                break;
-            case 6:
-                $table = "news";
-                break;
-            case 7:
-                $table = "redtutor_course";
-                break;
-            case 8:
-                $table = "redtutor_notice";
-                break;
-            case 9:
-                $table = "redlead";
-                break;
-            case 10:
-                $table = "redforum_detail";
-                break;
-            case 11:
-                $table = "redforum_notice";
-                break;
-            case 12:
-                $table = "volunteer_team";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -296,17 +253,6 @@ class Base extends Controller {
      * 评论，$type,$aid,$content
      * type值：
      * 1 learn
-     * 2 notice
-     * 3 AllianceArrange
-     * 4 AllianceShow
-     * 5 Talent
-     * 6 News
-     * 7 RedtutorCourse
-     * 8 RedtutorNotice
-     * 9 Redlead
-     * 10 RedforumDetail
-     * 11 RedforumNotice
-     * 12 VolunteerTeam
      */
     public function comment(){
         if(IS_POST){
@@ -316,39 +262,6 @@ class Base extends Controller {
             switch ($type) {    //根据类别获取表明
                 case 1:
                     $table = "learn";
-                    break;
-                case 2:
-                    $table = "notice";
-                    break;
-                case 3:
-                    $table = "alliance_arrange";
-                    break;
-                case 4:
-                    $table = "alliance_show";
-                    break;
-                case 5:
-                    $table = "talent";
-                    break;
-                case 6:
-                    $table = "news";
-                    break;
-                case 7:
-                    $table = "redtutor_course";
-                    break;
-                case 8:
-                    $table = "redtutor_notice";
-                    break;
-                case 9:
-                    $table = "redlead";
-                    break;
-                case 10:
-                    $table = "redforum_detail";
-                    break;
-                case 11:
-                    $table = "redforum_notice";
-                    break;
-                case 12:
-                    $table = "volunteer_team";
                     break;
                 default:
                     return $this->error("无该数据表");
