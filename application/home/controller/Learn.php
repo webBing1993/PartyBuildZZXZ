@@ -79,22 +79,8 @@ class Learn extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $learnModel::where('id',$id)->update($info);
-        if($userId != "visitor"){
-            //浏览不存在则存入pb_browse表
-            $con = array(
-                'user_id' => $userId,
-                'learn_id' => $id,
-            );
-            $history = Browse::get($con);
-            if(!$history && $id != 0){
-                $s['score'] = array('exp','`score`+1');
-                if ($this->score_up()){
-                    // 未满 15分
-                    Browse::create($con);
-                    WechatUser::where('userid',$userId)->update($s);
-                }
-            }
-        }
+
+
         $video = $learnModel::get($id);
         $video['user'] = session('userId');
         //分享图片及链接及描述
@@ -103,10 +89,6 @@ class Learn extends Base {
         $video['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
         $video['desc'] = str_replace('&nbsp;','',strip_tags($video['content']));
 
-        //获取用户收藏
-        $collectModel = new Collect();
-        $collect = $collectModel->getCollect(1,$id,$userId);
-        $video['is_collect'] = $collect;
 
         //获取 文章点赞
         $likeModel = new Like;
@@ -134,22 +116,8 @@ class Learn extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $learnModel::where('id',$id)->update($info);
-        if($userId != "visitor"){
-            //浏览不存在则存入pb_browse表
-            $con = array(
-                'user_id' => $userId,
-                'learn_id' => $id,
-            );
-            $history = Browse::get($con);
-            if(!$history && $id != 0){
-                $s['score'] = array('exp','`score`+1');
-                if ($this->score_up()){
-                    // 未满 15 分
-                    Browse::create($con);
-                    WechatUser::where('userid',$userId)->update($s);
-                }
-            }
-        }
+
+
         $article = $learnModel::get($id);
         $article['user'] = session('userId');
         //分享图片及链接及描述
@@ -158,10 +126,7 @@ class Learn extends Base {
         $article['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL']; 
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
 
-        //获取用户收藏
-        $collectModel = new Collect();
-        $collect = $collectModel->getCollect(1,$id,$userId);
-        $article['is_collect'] = $collect;
+
 
         //获取 文章点赞
         $likeModel = new Like;

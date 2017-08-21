@@ -198,24 +198,24 @@ class Learn extends Admin {
      */
     public function pushlist() {
         if(IS_POST){
+            //副图文获取
             $id = input('id');
-            //副图文本周内的新闻消息
-//            $t = $this->week_time();
             $info = array(
                 'id' => array('neq',$id),
-//                'create_time' => array('egt',$t),
-                'type' => array('in',[1,2,3,4,5]),
+                'type' => 4,
                 'status' => 0,
+                'user_type' => 0,
             );
             $infoes = LearnModel::where($info)->select();
             int_to_string($infoes,array(
-                'type' => array(1=>"视频课程",2=>"文章课程",3=>"音乐课程",4=>"专题讨论",5=>"党性体验"),
+                'type' => array(4=>"体悟反思"),
             ));
             return $this->success($infoes);
-        }else{
+        } else {
+
             //消息列表
             $map = array(
-                'class' => 3,
+                'class' => 1,
                 'status' => array('egt',-1),
             );
             $list = $this->lists('Push',$map);
@@ -228,16 +228,16 @@ class Learn extends Admin {
                 $value['title'] = $msg['title'];
             }
             $this->assign('list',$list);
-            //主图文本周内的新闻消息
-//            $t = $this->week_time();    //获取本周一时间
+
+            //主图文本获取
             $info = array(
-//                'create_time' => array('egt',$t),
-                'type' => array('in',[1,2,3,4,5]),
+                'type' => 4,
                 'status' => 0,
+                'user_type' => 0,
             );
             $infoes = LearnModel::where($info)->select();
             int_to_string($infoes,array(
-                'type' => array(1=>"视频课程",2=>"文章课程",3=>"音乐课程",4=>"专题讨论",5=>"党性体验"),
+                'type' => array(1=>"视频课程",2=>"文章课程",3=>"音乐课程",4=>"体悟反思",5=>"党性体验"),
             ));
             $this->assign('info',$infoes);
             return $this->fetch();
@@ -271,7 +271,7 @@ class Learn extends Admin {
                     $url1 = $httpUrl."/home/learn/article/id/".$focus1['id'].".html";
                     break;
                 case 4:  // 专题讨论
-                    $pre1 = "【专题讨论】";
+                    $pre1 = "【体悟反思】";
                     $url1 = $httpUrl."/home/topic/detail/id/".$focus1['id'].".html";
                     break;
                 case 5:  // 党性体验
@@ -311,7 +311,7 @@ class Learn extends Admin {
                         $url = $httpUrl."/home/learn/article/id/".$focus['id'].".html";
                         break;
                     case 4:
-                        $pre = "【专题讨论】";
+                        $pre = "【体悟反思】";
                         $url = $httpUrl."/home/topic/detail/id/".$focus['id'].".html";
                         break;
                     case 5:
@@ -365,7 +365,7 @@ class Learn extends Admin {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
             $data['status'] = 1;
-            $data['class'] = 3;
+            $data['class'] = 1;
             //保存到推送列表
             $s = Push::create($data);
             if ($s){

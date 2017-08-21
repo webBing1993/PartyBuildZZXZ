@@ -192,7 +192,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 45px;
+  height: 12vw;
   /*padding-left: 3.4vw;*/
   border-top: 1px solid #f1f1f1;
   background: #ffffff;
@@ -216,13 +216,14 @@
 .bottom .myword input {
   vertical-align: middle;
   height: 8vw;
-  width: 63vw;
+  width: 77vw;
   margin: 2vw 0;
   padding-left: 10px;
   background: #fafafa;
   border: 1px solid #d8d8d8;
   -webkit-border-radius: 6px;
   border-radius: 6px;
+  margin-left: 2.5vw;
 }
 .bottom .send {
   width: 20.5vw;

@@ -1,8 +1,20 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>专题讨论</title>
+<title>体悟反思</title>
 <link rel="stylesheet" href="/home/css/list.css">
+<style>
+	/*发布悬浮框*/
+	#publish {
+		position: fixed;
+		right: 20px;
+		bottom: 40px;
+		width: 60px;
+		height: 60px;
+		background: url(/home/images/feedback/note.png) no-repeat;
+		background-size: 100% 100%;
+	}
+</style>
 {/block}
 
 {block name="body"}
@@ -29,6 +41,12 @@
 <div class="loading hidden">
 	<div class="typing_loader"></div>
 </div>
+
+<!--线上发布-->
+{eq name="visit" value="0"}
+<a id="publish" href="/home/topic/publish.html"></a>
+{/eq}
+
 {/block}
 
 {block name="script"}
@@ -45,6 +63,12 @@ $(function(){
 
 	//上拉加载评论
 	loadScroll();
+
+	//悬浮框移动
+	{eq name="visit" value="0"}
+	moveanyway();
+	{/eq}
+
 });
 function loadScroll(){
 	$(window ).off("scroll" ).on("scroll",function(){
@@ -104,5 +128,54 @@ function addList(data){
 	}
 	$(".lists" ).append(html);
 }
+
+//悬浮框移动
+function moveanyway(){
+	var oW,oH,touch_start,touch_end;
+	var block = document.getElementById("publish");
+	block.addEventListener("touchstart", function(e) {
+		var touches = e.touches[0];
+		touch_start = touches.clientX;
+		oW = touches.clientX - block.offsetLeft;
+		oH = touches.clientY - block.offsetTop;
+		//阻止页面的滑动默认事件
+		document.addEventListener("touchmove",defaultEvent,false);
+	},false);
+	block.addEventListener("touchmove", function(e) {
+		var touches = e.touches[0];
+		var oLeft = touches.clientX - oW;
+		var oTop = touches.clientY - oH;
+		touch_end = touches.clientX;
+		if(oLeft < 0) {
+			oLeft = 0;
+		}else if(oLeft > document.documentElement.clientWidth - block.offsetWidth) {
+			oLeft = (document.documentElement.clientWidth - block.offsetWidth);
+		}
+		if(oTop < 0) {
+			oTop = 0;
+		}else if(oTop > document.documentElement.clientHeight - block.offsetHeight) {
+			oTop = (document.documentElement.clientHeight - block.offsetHeight);
+		}
+		block.style.left = oLeft+ "px";
+		block.style.top = oTop + "px";
+		e.preventDefault();
+	},false);
+	block.addEventListener("touchend",function() {
+		document.removeEventListener("touchmove",defaultEvent,false);
+		if(touch_start != touch_end && touch_end){
+			var d = document.documentElement.clientWidth - block.offsetWidth;
+			if(block.offsetLeft<(document.documentElement.clientWidth - block.offsetWidth)/2) {
+				d = 0 ;
+			}
+			$(block).animate({
+				left:d+'px'
+			},300)
+		}
+	},false);
+	function defaultEvent(e) {
+		e.preventDefault();
+	}
+}
+
 </script>
 {/block}

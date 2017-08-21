@@ -11,6 +11,14 @@ namespace app\home\model;
 
 use think\Model;
 
-class Learn extends Model {
+class Learn extends Model
+{
+    protected $insert = [
+        'views' => 0,
+        'collect' => 0,
+        'comments' => 0,
+        'create_time' => NOW_TIME,
+        'user_type' =>1,
+    ];
 
 }

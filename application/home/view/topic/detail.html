@@ -1,15 +1,16 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>专题讨论</title>
+<title>体悟反思</title>
 <link rel="stylesheet" href="/home/css/detail.css">
 {/block}
 
 {block name="body"}
 <div class="article">
 	<div class="title limit_">{$detail.title}</div>
-	<div class="note">
-		<span>{$detail.create_time|date="Y-m-d",###}</span>
+	<div class="note clear">
+		<span class="fl">{$detail.publisher}</span>
+		<span class="fr">{$detail.create_time|date="Y-m-d",###}</span>
 	</div>
 	<div class="content">
 		<div class="uecontent">
@@ -56,11 +57,6 @@
 	</div>
 </div>
 <div class="bottom clear">
-	{eq name="detail.is_collect" value="1"}
-	<div class="collect fl star_" onclick="isCollect(this,{$detail.id},1)"></div>
-	{else/}
-	<div class="collect fl star" onclick="isCollect(this,{$detail.id},1)"></div>
-	{/eq}
 	<div class="myword fl">
 		<input type="text" placeholder="说说你的感想！">
 	</div>
@@ -101,29 +97,12 @@ function isGood(e,type,id){
 	})
 }
 
-/**
- * 收藏
- */
-function isCollect(e,id,type){
-	//样式变化，移到suc
-	$(e).toggleClass('star' ).toggleClass('star_');
-	$.ajax({
-		type:"post",
-		url:"{:Url('Base/collect')}",
-		data:{
-			aid:id,
-			type:type
-		},
-		success:function(data){
 
-		}
-	})
-}
 
 //评论
 function send(e,type,id){
 	var it = $(e ).prev().find('input');
-	if(it.val() != ''){
+	if(it.val() != '' && it.val().length > 14){
 		$.ajax({
 			type:"post",
 			url:"{:Url('Base/comment')}",
@@ -170,7 +149,7 @@ function send(e,type,id){
 			}
 		});
 	}else{
-		wAlert('您的评论不能为空');
+		wAlert('您的评论少于15个字');
 	}
 
 }

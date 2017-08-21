@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>个人中心</title>
 <link rel="stylesheet" href="/home/css/user.css">
 {/block}
 
@@ -26,36 +27,18 @@
 		<span>党员ID</span>
 		<i class="fa fa-angle-right fr"></i>
 	</a>
-	<!--<a href="{:Url('User/history')}" class="list clear">-->
-		<!--<span>我的消息</span>-->
-		<!--<i class="fa fa-angle-right fr"></i>-->
-	<!--</a>-->
-	<a href="{:Url('Rank/personal')}" class="list clear">
+	<a href="{:Url('Rank/integral')}" class="list clear">
 		<span>个人排行榜</span>
 		<i class="fa fa-angle-right fr"></i>
 	</a>
-	<a href="{:Url('Rank/department')}" class="list clear">
-		<span>支部排行榜</span>
+	<a href="{:Url('User/qcode')}" class="list clear">
+		<span>党员签到</span>
 		<i class="fa fa-angle-right fr"></i>
 	</a>
-	<a href="{:Url('Exchange/index')}" class="list clear">
-		<span>积分商城</span>
+	<a href="{:Url('User/mycollect')}" class="list clear">
+		<span>我的发布</span>
 		<i class="fa fa-angle-right fr"></i>
 	</a>
-	<a href="{:Url('User/feedback')}" class="list clear">
-		<span>意见反馈</span>
-		<i class="fa fa-angle-right fr"></i>
-	</a>
-	{eq name="is" value="1"}
-	<a href="{:Url('User/mynotes')}" class="list clear">
-		<span>情况发布</span>
-		<i class="fa fa-angle-right fr"></i>
-	</a>
-	<a href="{:Url('User/mypublish')}" class="list clear">
-		<span>通知发布</span>
-		<i class="fa fa-angle-right fr"></i>
-	</a>
-	{/eq}
 </div>
 {/eq}
 {/block}
@@ -63,8 +46,6 @@
 {block name="script"}
 <script>
 $(function(){
-	//模块标题
-	$('title' ).text('个人中心');
 	//头像大小
 	var up = $('.up' );
 	var path = up.attr('data-tab');

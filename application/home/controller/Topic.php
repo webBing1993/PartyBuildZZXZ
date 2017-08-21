@@ -19,6 +19,7 @@ class Topic extends Base{
      * 专题讨论主页
      */
     public function index(){
+        $this->anonymous();        //判断是否是游客
         $map1 = array(
             'type' => 4,
             'status' => 0
@@ -48,37 +49,7 @@ class Topic extends Base{
             return $this->error("加载失败");
         }
     }
-    /*
-     * 党性体检 主页
-     */
-    public function experience(){
-        $map2 = array(
-            'type' => 5,
-            'status' => 0
-        );
-        $learn = Learn::where($map2)->order('id desc')->limit(7)->select();
-        $this->assign('list',$learn);
-        return $this->fetch();
-    }
-    /*
-     * 党性体检  加载更多
-     */
-    public function experiencemore(){
-        $len = input('length');
-        $map = array(
-            'type' => 5,
-            'status' => array('eq',0),
-        );
-        $list = Learn::where($map)->order('id desc')->limit($len,5)->select();
-        foreach($list as $value){
-            $value['time'] = date("Y-m-d",$value['create_time']);
-        }
-        if($list){
-            return $this->success("加载成功",'',$list);
-        }else{
-            return $this->error("加载失败");
-        }
-    }
+
     /*
      * 详情页
      */
@@ -91,22 +62,6 @@ class Topic extends Base{
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $learnModel::where('id',$id)->update($info);
-        if($userId != "visitor"){
-            //浏览不存在则存入pb_browse表
-            $con = array(
-                'user_id' => $userId,
-                'learn_id' => $id,
-            );
-            $history = Browse::get($con);
-            if(!$history && $id != 0){
-                $s['score'] = array('exp','`score`+1');
-                if ($this->score_up()){
-                    // 未满 15 分
-                    Browse::create($con);
-                    WechatUser::where('userid',$userId)->update($s);
-                }
-            }
-        }
 
         $article = $learnModel::get($id);
         $article['user'] = session('userId');
@@ -116,10 +71,7 @@ class Topic extends Base{
         $article['link'] = $_SERVER['REDIRECT_URL'];
         $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
 
-        //收藏是否存在
-        $collectModel = new Collect();
-        $collect = $collectModel->getCollect(1,$id,$userId);
-        $article['is_collect'] = $collect;
+
 
         //获取 文章点赞
         $likeModel = new Like;
@@ -137,9 +89,35 @@ class Topic extends Base{
         $comment = $commentModel->getComment(1,$id,$userId);
         $this->assign('comment',$comment);
 
-
-
-
         return $this->fetch();
     }
+
+    /**
+     * 线上发布
+     */
+    public function publish()
+    {
+        if (IS_POST) {
+
+            $uid = session('userId');
+            $data = input('post.');
+            $learnModel = new Learn();
+            $data['publisher'] = get_name($uid);
+            $data['create_user'] = $uid;
+            $model = $learnModel->data($data)->save();
+            if($model){
+
+                return $this->success('新增成功!');
+            }else{
+
+                return $this->error($learnModel->getError());
+            }
+
+        } else {
+
+            return $this->fetch();
+        }
+
+    }
+
 }
