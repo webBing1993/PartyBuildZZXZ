@@ -25,7 +25,11 @@
 	{volist name="list" id="vo"}
 	<a href="{:Url('Topic/detail?id='.$vo.id)}" class="list clear">
 		<div class="fl">
+			{neq name="vo.front_cover" value=""}
 			<img src="{$vo.front_cover|get_cover='path'}" alt="小图">
+			{else/}
+			<img src="{:get_defalut_cover(1)}" alt="小图">
+			{/neq}
 		</div>
 		<div class="fr right">
 			<div class="title limit_">{$vo.title}</div>

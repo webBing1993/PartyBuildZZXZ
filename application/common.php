@@ -174,3 +174,18 @@ function getDay($time){
         return substr($time,$num1+1);
     }
 }
+
+/**
+ * 获取默认图
+ * type 1 Learn
+ */
+function get_defalut_cover($type)
+{
+    switch ($type) {
+        case 1:
+            return "/uploads/download/2017-08-17/5995023de786c.jpg";
+            break;
+        default:
+            return "";
+    }
+}

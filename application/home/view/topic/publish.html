@@ -46,33 +46,22 @@
         var n = content.length;
         var t = title.length;
         var img = $('.img img' );
-        var images = [];
-        var imglen = img.length;
-        var data ={
+        var images = '';
+        images = img.eq(0).attr('data-tab');
+        data ={
+            type: 4, //体悟反思
             title: title,
-            content:content,
-            images:''
+            content: content,
+            front_cover: images
         };
-        if(imglen > 0){
-            for(var i =0 ;i< imglen ;i++){
-                images = img.eq(i ).attr('data-tab');
-            }
-            data ={
-                type: 4, //体悟反思
-                title: title,
-                content: content,
-                front_cover: images
-            };
-        }
-        if (n == 0 || t == 0 || images.length == 0) {
+
+        if (n == 0 || t == 0) {
 
             var text;
             if (!t){
                 text = '标题不能为空';
             } else if (!n) {
                 text = '内容不能为空';
-            } else {
-                text = '封面图片不能为空';
             }
 
             swal({

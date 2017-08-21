@@ -40,6 +40,9 @@ class Topic extends Base{
         $list = Learn::where($map)->order('id desc')->limit($len,5)->select();
         foreach($list as $value){
             $img = Picture::get($value['front_cover']);
+            if (empty($img)) {
+                $img['path'] = get_defalut_cover(1); //1 Learn
+            }
             $value['path'] = $img['path'];
             $value['time'] = date("Y-m-d",$value['create_time']);
         }
@@ -106,6 +109,8 @@ class Topic extends Base{
             $data['create_user'] = $uid;
             $model = $learnModel->data($data)->save();
             if($model){
+                // 积分规则 体悟反思发布文章积分+10分
+                WechatUser::where('userid',$uid)->setInc('score',10);
 
                 return $this->success('新增成功!');
             }else{
