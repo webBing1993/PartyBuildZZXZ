@@ -31,14 +31,35 @@ return [
     /* 企业配置   新手指南*/
     'party' => array(
         'login' => 'http://dqpb.0571ztnet.com/home/index/login',
-        'token' => 'N3mIjNX',
-        'encodingaeskey' => 'RxanruTaFxW7X5r5Cx2xRrI91dhRgNUx77KM3paUfS',
-        'appid' => 'wx8caedf8a60d0795',
-        'appsecret' => 'hQ9p_yPJRLWMPVTWNo6PeugiB6gzgSZ_Q2SKhAScyQ',
+        'token' => 'N3mIjN',
+        'encodingaeskey' => 'RxanruTaFxW7X5r5Cx2xRrI91dhRgNUx77KM3paUS',
+        'appid' => 'wx8caedf8a60d075',
+        'appsecret' => 'hQ9p_yPJRLWMPVTWNo6PeugiB6gzgSZ_Q2SKhAScy',
         'agentid' => 0
     ),
 
-    //  网站域名
+    /*两学一做 */
+    'learn' => array(
+        'appid' => 'wx8caedf8a60d0795',
+        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
+        'agentid' => 2
+    ),
+
+    /*党建动态 */
+    'news' => array(
+        'appid' => 'wx8caedf8a60d0795',
+        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
+        'agentid' => 2
+    ),
+
+    /*品牌同创 */
+    'brand' => array(
+        'appid' => 'wx8caedf8a60d0795',
+        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
+        'agentid' => 2
+    ),
+
+    //  推送网站域名
     'http_url' => "http://dqpb.0571ztnet.com",
     // 推送对象 发送给全体 @all  个人测试15700004138
     'touser' => '15700004138',

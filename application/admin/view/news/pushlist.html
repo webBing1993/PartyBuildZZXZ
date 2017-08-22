@@ -13,13 +13,16 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>新闻推送</h2>
+        <h2>推送管理</h2>
         <ol class="breadcrumb">
             <li class="active">
-                <a href="{:Url('News/index')}">新闻列表</a>
+                {switch name="class" }
+                {case value="2" }党建动态{/case}
+                {default /}
+                {/switch}
             </li>
             <li>
-                <strong><a href="{:Url('News/pushlist')}">推送列表</a></strong>
+                <strong><a href=" ">推送列表</a></strong>
             </li>
         </ol>
     </div>
@@ -37,27 +40,14 @@
                 <div class="ibox-title">
                     <h5>推送列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-primary" href="#modal-form">新闻推送</a>
+                        <a data-toggle="modal" class="btn btn-primary btn-sm" href="#modal-form">添加推送</a>
                         <div id="modal-form" class="modal fade" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <form class="form-horizontal" id="form" method="post" action="push.html">
-                                            <p class="tt">新闻推送(只可推送本周的信息)</p>
+                                        <form class="form-horizontal" id="form" method="post" action="{:Url('Learn/push')}">
+                                            <p class="tt">消息推送</p>
                                             <div class="form-group">
-                                                <!--<div class="row">-->
-                                                    <!--<div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">-->
-                                                        <!--<label>类型:</label>-->
-                                                    <!--</div>-->
-                                                    <!--<div class="col-lg-10 col-sm-10" style="padding-right:35px;">-->
-                                                        <!--<label class="i-checks">-->
-                                                            <!--<input type="radio"  value="1" checked="" name="type">企业号(每天30次)-->
-                                                        <!--</label>-->
-                                                        <!--<label class="i-checks">-->
-                                                            <!--<input type="radio" value="2"  name="type">订阅号(每天1次)-->
-                                                        <!--</label>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
                                                 <div class="row">
                                                     <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;margin-bottom: 10px">
                                                         <label>主图文:</label>
@@ -66,7 +56,7 @@
                                                         <select class="form-control chosen-select" name="focus_main" id="main">
                                                             <option value="-1" >--请选择--</option>
                                                             {volist name="info" id="vo"}
-                                                            <option value="{$vo.id}" >{$vo.title}</option>
+                                                            <option value="{$vo.id}" >【{$vo.type_text}】{$vo.title}</option>
                                                             {/volist}
                                                         </select>
                                                     </div>
@@ -82,8 +72,7 @@
                                             <div class="form-group">
                                                 <div class="col-lg-offset-2 col-lg-10">
                                                     <button class="btn btn-primary post-put" type="button" target-form="form-horizontal">发送</button>
-                                                    <!--<span class="note">（* 发送成功后请在手机端"消息审核"频道进行预览和审核）</span>-->
-                                                    <span class="note">（* 发送成功后请在手机端进行预览）</span>
+                                                    <span class="note">（* 点击直接发送至频道）</span>
                                                 </div>
                                             </div>
                                             <input type="hidden" name="id" value="">
@@ -104,8 +93,6 @@
                                 <th>主图文信息</th>
                                 <th>创建人</th>
                                 <th>创建时间</th>
-                                <th>审核人</th>
-                                <th>审核时间</th>
                                 <th>状态</th>
                             </tr>
                             </thead>
@@ -115,17 +102,9 @@
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.id}</td>
                                 <td>{$vo.title}</td>
-                                {neq name="vo.create_user" value=""}<td>{$vo.create_user}</td>{else/}<td>无</td>{/neq}
+                                <td>{$vo.create_user}</td>
                                 <td>{$vo.create_time|time_format}</td>
-                                {neq name="vo.review_name" value=""}<td>{$vo.review_name}</td>{else/}<td>无</td>{/neq}
-                                {neq name="vo.review_time" value=""}<td>{$vo.review_time|time_format}</td>{else/}<td>无</td>{/neq}
-                                {if condition="$vo.status eq -1"}
-                                <td style="color:#ff0000;">{$vo.status_text}</td>
-                                {elseif condition="$vo.status eq 0"/}
                                 <td>{$vo.status_text}</td>
-                                {else/}
-                                <td style="color: #00a600;">{$vo.status_text}</td>
-                                {/if}
                             </tr>
                             {/volist}
                             </tbody>
@@ -150,7 +129,6 @@
 <script src="/admin/js/chosen.jquery.js"></script>
 <script>
     $(function(){
-        highlight_subnav("{:Url('News/pushlist')}");
 
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -171,7 +149,10 @@
         $.ajax({
             type:"post",
             url:"{:Url('News/pushlist')}",
-            data:{id:id},
+            data:{
+                id: id,
+                class: '{$class}'
+            },
             success:function(data){
                 var html = "";
                 var titles = data.msg;
@@ -180,7 +161,7 @@
                 html += '<select class="chosen-select form-control" data-placeholder="--请选择--" name="focus_vice" multiple>';
                 for(var i = 0; i < len; i++ ){
                     var t = titles[i];
-                    html += '<option value="'+ t.id +'">'+ t.title +'</option>';
+                    html += '<option value="'+ t.id +'">'+'【'+ t.type_text +'】'+ t.title +'</option>';
                 }
                 html += '</select>';
                 $('.vice' ).append(html);
@@ -232,9 +213,10 @@
     $(".post-put").off('click').on("click",function(){
         var it=$(this);
         var data = {
-            type: $("input[name='type']:checked" ).val(),
+//            type: $("input[name='type']:checked" ).val(),
             focus_main: $("select[name='focus_main']").val(),
             focus_vice: $("select[name='focus_vice']").val(),
+            class: '{$class}'
         };
         $.ajax({
             type:"post",
