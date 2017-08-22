@@ -34,7 +34,12 @@ class News extends Admin
                 2 => "各地动态",
                 3 => "主题党日活动",
                 4 => "双报到",
-                5 => "党员先锋活动"
+                5 => "党员先锋活动",
+                6 => "竞赛辅导",
+                7 => "心理辅导",
+                8 => "家校联系",
+                9 => "好人好事",
+                10 => "支部风采"
             ]
         ));
         $this->assign('list',$list);
@@ -111,16 +116,21 @@ class News extends Admin
                 'table_type' => $class -1,
                 'status' => 0,
                 'user_type' => 0,
-                'type' => ['not in','4,5'] // 双报到 党员先锋活动
+                'type' => ['not in','4,5,6,7,8,10'] // 双报到 党员先锋活动 竞赛辅导 心理辅导 家校联系 支部风采
             ];
             $infoes = NewsModel::where($info)->select();
             int_to_string($infoes,array(
                 'type' => [
-                    1 => '新闻聚焦',
-                    2 => '各地动态',
-                    3 => '主题党日活动',
-                    4 => '双报到',
-                    5 => '党员先锋活动'
+                    1 => "新闻聚焦",
+                    2 => "各地动态",
+                    3 => "主题党日活动",
+                    4 => "双报到",
+                    5 => "党员先锋活动",
+                    6 => "竞赛辅导",
+                    7 => "心理辅导",
+                    8 => "家校联系",
+                    9 => "好人好事",
+                    10 => "支部风采"
                 ],
             ));
             return $this->success($infoes);
@@ -149,16 +159,21 @@ class News extends Admin
                 'table_type' => $class -1,
                 'status' => 0,
                 'user_type' => 0,
-                'type' => ['not in','4,5'] // 双报到 党员先锋活动
+                'type' => ['not in','4,5,6,7,8,10'] // 双报到 党员先锋活动 竞赛辅导 心理辅导 家校联系 支部风采
             );
             $infoes = NewsModel::where($info)->select();
             int_to_string($infoes,array(
                 'type' => [
-                    1 => '新闻聚焦',
-                    2 => '各地动态',
-                    3 => '主题党日活动',
-                    4 => '双报到',
-                    5 => '党员先锋活动'
+                    1 => "新闻聚焦",
+                    2 => "各地动态",
+                    3 => "主题党日活动",
+                    4 => "双报到",
+                    5 => "党员先锋活动",
+                    6 => "竞赛辅导",
+                    7 => "心理辅导",
+                    8 => "家校联系",
+                    9 => "好人好事",
+                    10 => "支部风采"
                 ],
             ));
             $this->assign('info',$infoes);
@@ -197,6 +212,9 @@ class News extends Admin
                 case 3:
                     $pre1 = "【主题党日活动】";
                     break;
+                case 4:
+                    $pre1 = "【好人好事】";
+                    break;
                 default:
                     break;
             }
@@ -233,6 +251,9 @@ class News extends Admin
                         break;
                     case 3:
                         $pre = "【主题党日活动】";
+                        break;
+                    case 4:
+                        $pre = "【好人好事】";
                         break;
                     default:
                         break;
@@ -271,11 +292,12 @@ class News extends Admin
 
         //发送给企业号
         if ($data['class'] == 2) {
+
             // 党建动态
             $newsConf = config('news');
-
         } else if ($data['class'] == 3) {
 
+            // 品牌同创
             $newsConf = config('brand');
         }
 
