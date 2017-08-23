@@ -38,13 +38,13 @@ class Topic extends Base{
             'status' => array('eq',0),
         );
         $list = Learn::where($map)->order('id desc')->limit($len,5)->select();
-        foreach($list as $value){
-            $img = Picture::get($value['front_cover']);
+        foreach($list as $k=>$v){
+            $img = Picture::get($v['front_cover']);
             if (empty($img)) {
                 $img['path'] = get_defalut_cover(1); //1 Learn
             }
-            $value['path'] = $img['path'];
-            $value['time'] = date("Y-m-d",$value['create_time']);
+            $list[$k]['src'] = $img['path'];
+            $list[$k]['time'] = date("Y-m-d",$v['create_time']);
         }
         if($list){
             return $this->success("加载成功",'',$list);

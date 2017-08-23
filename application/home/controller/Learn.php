@@ -8,13 +8,10 @@
 
 namespace app\home\controller;
 use app\admin\model\Picture;
-use app\home\model\Browse;
 use app\home\model\Comment;
 use app\home\model\Like;
-use app\home\model\WechatUser;
-use app\home\model\Collect;
-
 use app\home\model\Learn as LearnModel;
+
 /**
  *
  * @package 两学一做

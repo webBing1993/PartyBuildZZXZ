@@ -82,7 +82,7 @@ class Admin extends Controller {
         if ($this->controllerName == 'news' && $this->actionName == 'index') {
 
             $data = $request->only(['type']);
-            $type = "?type=".$data['type'];
+            $type = "?type=".$data['type']."&";
         } else if ($this->controllerName == 'news' && $this->actionName == 'pushlist') {
 
             $data = $request->only(['class']);

@@ -7,11 +7,13 @@
  */
 
 namespace app\home\controller;
-use app\home\model\Learn;
+use app\home\model\Learn as LearnModel;
+use app\home\model\News as NewsModel;
 use app\home\model\Picture;
 use app\home\model\WechatUser;
 use app\home\model\WechatUserTag;
 use app\home\model\Collect;
+use think\Db;
 /**
  * Class User
  * 用户个人中心
@@ -105,86 +107,50 @@ class User extends Base {
 
 
     /**
-     * 我收藏的
-     * type:1 第一聚焦,2 支部活动,3 两学一做
+     * 我的发布
      */
-    public function mycollect(){
+    public function mypublish()
+    {
+        $uid = session('userId');
+        $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+            ->table('pb_learn')
+            ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit 8")
+            ->where('create_user',$uid)
+            ->select();
 
+        $this->assign('list',$res);
 
-        $userId = session('userId');
-        $map = array(
-            'uid' => $userId,
-            'status' => array('egt',0)
-        );
-        $list = Collect::where($map)->order('id desc')->limit(7)->select();
-
-        foreach ($list as $key => $value) {
-            if ($value['type'] == 1) {
-                $msg = Learn::where('id',$value['aid'])->find();
-                $value['front_cover'] = $msg['front_cover'];
-                $value['title'] = $msg['title'];
-                $value['content'] = $msg['content'];
-                $value['time'] = $msg['create_time'];
-                $value['class'] = $msg['type'];
-                $value['learn_id'] = $msg['id'];
-            }
-        }
-
-        $this->assign('list',$list);
-
-        if(empty($list)){
-            $this->assign('is_empty',1);    //为空
-        }else{
-            $this->assign('is_empty',0);
-        }
         return $this->fetch();
-
     }
 
     /**
-     * 收藏删除
+     * 我的发布加载更多
      */
-    public function collectdel(){
-        $id = input('id');
-        $map['status'] = "-1";
-        $info = Collect::where('id',$id)->update($map);
-        if($info) {
-
-            return $this->success("删除成功","",1);
-        }else{
-
-            return $this->error("删除失败","",0);
-        }
-    }
-
-    /**
-     * 加载更多收藏
-     */
-    public function morecollect(){
-        $userId = session('userId');
+    public function moreMypublish()
+    {
         $len = input('length');
-        $map = array(
-            'create_user' => $userId,
-            'status' => array('egt',0),
-        );
-        $list = Collect::where($map)->order('id desc')->limit($len,5)->select();
+        $uid = session('userId');
+        $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+        ->table('pb_learn')
+            ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit $len,7")
+            ->where('create_user',$uid)
+            ->select();
 
-        foreach ($list as $key => $value) {
-            if ($value['type'] == 1) {
-                $msg = Learn::where('id',$value['aid'])->find();
-                $value['front_cover'] = $msg['front_cover'];
-                $value['title'] = $msg['title'];
-                $value['content'] = $msg['content'];
-                $value['time'] = $msg['create_time'];
-                $value['class'] = $msg['type'];
-                $value['learn_id'] = $msg['id'];
+        if (!empty($res)) {
+
+            foreach ($res as $k=>$v) {
+                $img = Picture::get($v['front_cover']);
+                if (empty($img)) {
+                    $img['path'] = get_defalut_cover(1); //1 Learn
+                }
+                $res[$k]['path'] = $img['path'];
+                $res[$k]['time'] = date("Y-m-d",$v['create_time']);
             }
-        }
 
-        if($list){
-            return $this->success("加载成功",'',$list);
-        }else{
-            return $this->error("加载失败");
+            return $this->success('获取成功!',null,$res);
+        } else {
+
+            return $this->error('加载失败!');
         }
 
     }

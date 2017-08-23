@@ -16,9 +16,6 @@ use think\Config;
 use think\Controller;
 use com\wechat\TPQYWechat;
 use think\Db;
-use app\home\model\Browse;
-use app\home\model\Answers;
-use app\home\model\Collect;
 
 class Base extends Controller {
     public function _initialize(){
@@ -152,7 +149,7 @@ class Base extends Controller {
      * 点赞，$type,$aid
      * type值：
      * 0 评论点赞
-     * 1 learn
+     * 1learn 2news
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -164,6 +161,9 @@ class Base extends Controller {
                 break;
             case 1:
                 $table = "learn";
+                break;
+            case 2:
+                $table = "news";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -214,7 +214,7 @@ class Base extends Controller {
     /**
      * 评论，$type,$aid,$content
      * type值：
-     * 1 learn
+     * 1learn 2news
      */
     public function comment(){
         if(IS_POST){
@@ -224,6 +224,9 @@ class Base extends Controller {
             switch ($type) {    //根据类别获取表明
                 case 1:
                     $table = "learn";
+                    break;
+                case 2:
+                    $table = "news";
                     break;
                 default:
                     return $this->error("无该数据表");

@@ -5,7 +5,21 @@
     <link rel="stylesheet" href="/static/sweetalert/sweetalert2.min.css">
     <link rel="stylesheet" href="/home/css/college/notes.css">
     <link rel="stylesheet" href="/home/css/common/rem.css">
-    <title>体悟反思</title>
+    <title>
+        {switch name="type" }
+        {case value="1" }新闻聚焦{/case}
+        {case value="2" }各地动态{/case}
+        {case value="3" }主题党日活动{/case}
+        {case value="4" }双报到{/case}
+        {case value="5" }党员先锋活动{/case}
+        {case value="6" }竞赛辅导{/case}
+        {case value="7" }心理辅导{/case}
+        {case value="8" }家校联系{/case}
+        {case value="9" }好人好事{/case}
+        {case value="10" }支部风采{/case}
+        {default /}
+        {/switch}
+    </title>
 {/block}
 
 {block name="body"}
@@ -18,7 +32,7 @@
     </div>
 </div>
 <div class="block">
-    <textarea name="content" id="text" placeholder="这一刻的想说的话（封面图为选填，字数最多200）" maxlength="200"></textarea>
+    <textarea name="content" id="text" placeholder="这一刻的想说的话（封面图为必选，字数最多200）" maxlength="200"></textarea>
     <div class="imgs clear">
         <div class="img fl hide"></div>
         <div class="img fl hide"></div>
@@ -49,19 +63,20 @@
         var images = '';
         images = img.eq(0).attr('data-tab');
         data ={
-            type: 4, //体悟反思
+            type: '{$type}',
             title: title,
             content: content,
             front_cover: images
         };
-
-        if (n == 0 || t == 0) {
+        if (n == 0 || t == 0 || !images) {
 
             var text;
             if (!t){
                 text = '标题不能为空';
             } else if (!n) {
                 text = '内容不能为空';
+            } else if (!images) {
+                text = '封面图片不能为空';
             }
 
             swal({
@@ -97,7 +112,7 @@
                         success:function(e){
                             if(e.code == 1){
                                 setTimeout(function(){
-                                    window.location.href = "{:Url('index')}";
+                                    window.history.back();
                                 },1000)
                             }else{
                                 swal({

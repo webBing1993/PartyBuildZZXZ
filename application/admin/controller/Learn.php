@@ -12,7 +12,6 @@ use app\admin\model\Picture;
 use app\admin\model\Push;
 use com\wechat\TPQYWechat;
 use think\Config;
-use think\Url;
 
 /**
  * Class Learn
