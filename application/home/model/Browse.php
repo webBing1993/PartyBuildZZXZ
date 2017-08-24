@@ -15,6 +15,6 @@ class Browse extends Model {
     protected $insert = [
         'status' => 0,
         'create_time' => NOW_TIME,
-        'score' => 1,
+        'score' => 0,
     ];
 }

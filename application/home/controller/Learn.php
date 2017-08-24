@@ -10,7 +10,9 @@ namespace app\home\controller;
 use app\admin\model\Picture;
 use app\home\model\Comment;
 use app\home\model\Like;
+use app\home\model\Browse;
 use app\home\model\Learn as LearnModel;
+
 
 /**
  *
@@ -80,6 +82,27 @@ class Learn extends Base {
 
         $video = $learnModel::get($id);
         $video['user'] = session('userId');
+
+        if($userId != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+
+                Browse::create($con);
+            }
+        } else {
+
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            Browse::create($con);
+        }
+
         //分享图片及链接及描述
         $image = Picture::where('id',$video['front_cover'])->find();
         $video['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
@@ -113,6 +136,27 @@ class Learn extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $learnModel::where('id',$id)->update($info);
+
+        if($userId != "visitor"){
+
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+
+                Browse::create($con);
+            }
+        } else {
+
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            Browse::create($con);
+        }
 
 
         $article = $learnModel::get($id);

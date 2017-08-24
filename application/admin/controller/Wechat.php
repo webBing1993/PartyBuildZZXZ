@@ -96,32 +96,23 @@ class Wechat extends Admin
                 $user['department'] = json_encode($user['department']);
                 if(isset($user['extattr'])){
                     foreach ($user['extattr']['attrs'] as $value) {
-                        switch ($value['name']) {
+                        switch ($value['name']){
+                            case "出生日期":
+                                $user['birthday'] = $value['value'];
+                                if(!empty($value['value'])) {
+                                    $user['age'] = date("Y",time()) - substr($value['value'],0,4);
+                                }else{
+                                    $user['age'] = null;
+                                }
+                                break;
+                            case "所属支部":
+                                $user['branch'] = $value['value'];
+                                break;
                             case "学历":
                                 $user['education'] = $value['value'];
                                 break;
-                            case "所属单位":
-                                $user['unit'] = $value['value'];
-                                break;
-                            case "出生年月":
-                                $user['birthday'] = $value['value'];
-//                                if (!empty($value['value'])) {
-//                                    $user['age'] = date("Y", time()) - substr($value['value'], 0, 4);
-//                                } else {
-//                                    $user['age'] = null;
-//                                }
-                                break;
-                            case "民族":
-                                $user['nation'] = $value['value'];
-                                break;
                             case "入党时间":
                                 $user['partytime'] = $value['value'];
-                                break;
-                            case "组织关系":
-                                $user['relation'] = $value['value'];
-                                break;
-                            case "参加工作时间":
-                                $user['worktime'] = $value['value'];
                                 break;
                             default:
                                 break;

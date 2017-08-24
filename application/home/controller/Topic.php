@@ -68,6 +68,28 @@ class Topic extends Base{
 
         $article = $learnModel::get($id);
         $article['user'] = session('userId');
+
+        if($userId != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+
+                Browse::create($con);
+            }
+        } else {
+
+            $con = array(
+                'user_id' => $userId,
+                'learn_id' => $id,
+            );
+            Browse::create($con);
+        }
+
+
         //分享图片及链接及描述
         $image = Picture::where('id',$article['front_cover'])->find();
         $article['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
