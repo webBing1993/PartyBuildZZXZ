@@ -46,7 +46,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <form class="form-horizontal" id="form" method="post" action="{:Url('Learn/push')}">
+                                        <form class="form-horizontal" id="form" method="post" action="{:Url('News/push')}">
                                             <p class="tt">消息推送</p>
                                             <div class="form-group">
                                                 <div class="row">
@@ -217,7 +217,8 @@
 //            type: $("input[name='type']:checked" ).val(),
             focus_main: $("select[name='focus_main']").val(),
             focus_vice: $("select[name='focus_vice']").val(),
-            class: '{$class}'
+            class: '{$class}',
+            table_type: '{$type}'
         };
         $.ajax({
             type:"post",

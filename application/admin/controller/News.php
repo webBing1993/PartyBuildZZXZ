@@ -137,6 +137,8 @@ class News extends Admin
 
         } else {
 
+            $type = input('type');
+
             //已推送消息列表
             $map = array(
                 'class' => $class,
@@ -144,7 +146,7 @@ class News extends Admin
             );
             $list = $this->lists('Push',$map);
             int_to_string($list,array(
-                'status' => array(-1 => '不通过', 0 => '未审核', 1=> '已发送'),
+                'status' => array(-1 => '不通过', 0 => '未审核', 1=> '已推送'),
             ));
 
             //数据重组
@@ -178,6 +180,7 @@ class News extends Admin
             ));
             $this->assign('info',$infoes);
             $this->assign('class',$class);
+            $this->assign('type',$type);
             return $this->fetch();
         }
 
@@ -212,7 +215,7 @@ class News extends Admin
                 case 3:
                     $pre1 = "【主题党日活动】";
                     break;
-                case 4:
+                case 9:
                     $pre1 = "【好人好事】";
                     break;
                 default:
@@ -252,7 +255,7 @@ class News extends Admin
                     case 3:
                         $pre = "【主题党日活动】";
                         break;
-                    case 4:
+                    case 9:
                         $pre = "【好人好事】";
                         break;
                     default:
@@ -317,7 +320,9 @@ class News extends Admin
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
             $data['status'] = 1;
-            $data['class'] = 1;
+            $data['class'] = $data['table_type'];
+
+            unset($data['table_type']);
             //保存到推送列表
             $s = Push::create($data);
             if ($s){

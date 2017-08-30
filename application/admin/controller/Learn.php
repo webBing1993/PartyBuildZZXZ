@@ -351,10 +351,11 @@ class Learn extends Admin {
         //发送给企业号
         $Wechat = new TPQYWechat(Config::get('learn'));
         $touser = config('touser');
+        $newsConf = config('learn');
         $message = array(
             "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
-            "agentid" => 27,
+            "agentid" => $newsConf['agentid'],
             "news" => $send,
             "safe" => "0"
         );

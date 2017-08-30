@@ -40,27 +40,27 @@ return [
 
     /*两学一做 */
     'learn' => array(
-        'appid' => 'wx8caedf8a60d0795',
-        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
-        'agentid' => 2
+        'appid' => 'ww58b28476c9e654f1',
+        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsDbu0',
+        'agentid' => 1000003
     ),
 
     /*党建动态 */
     'news' => array(
-        'appid' => 'wx8caedf8a60d0795',
-        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
-        'agentid' => 2
+        'appid' => 'ww58b28476c9e654f1',
+        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgKak',
+        'agentid' => 1000002
     ),
 
     /*品牌同创 */
     'brand' => array(
-        'appid' => 'wx8caedf8a60d0795',
-        'appsecret' => 'xqOnHZ6LZ6xZWSocFGXKuAeyVmOJxZu3dpW0dgG0IQ',
-        'agentid' => 2
+        'appid' => 'ww58b28476c9e654f1',
+        'appsecret' => 'ctEK00JzhFrO-yCJrvkzS_dXutUuNUQl8xtVxirZbGI',
+        'agentid' => 1000004
     ),
 
     //  推送网站域名
-    'http_url' => "http://dqpb.0571ztnet.com",
+    'http_url' => "http://ymz.pb.cn",
     // 推送对象 发送给全体 @all  个人测试15700004138
     'touser' => '15700004138',
     /* UC用户中心配置 */
@@ -69,4 +69,12 @@ return [
     'app_debug' => true,
     // 显示错误信息
     'show_error_msg'        =>  true,
+
+    'log' => [
+        'type'                  =>  'socket',
+        'host'                  =>  'localhost',
+        'show_included_files'   =>  true,
+        'force_client_ids'      =>  ['ymz_1259'],
+        'allow_client_ids'      =>  ['ymz_1259'],
+    ],
 ];
