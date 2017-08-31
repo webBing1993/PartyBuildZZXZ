@@ -492,6 +492,9 @@ class Constitution extends Base {
         $status = json_encode($status);
         $users = session('userId');
         //将分数添加至用户积分排名
+        if ($score != 3) {
+            $score = 0;
+        }
         $wechatModel = new WechatUser();
         $wechatModel->where('userid',$users)->setInc('score',$score);
         //  存储 表
