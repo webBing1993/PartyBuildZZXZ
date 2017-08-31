@@ -21,34 +21,21 @@
 		<div class="box_ or">
 			<div class="lists">
 				<!--第一层-->
+				{volist name="deparment" id="vo"}
 				<div class="list clear">
 					<div class="party1">
-						<a href="{:Url('Structure/detail')}">
+						<a href="{:Url('Structure/detail?party='.$vo.id)}">
 							<div class="tri-left structure1"></div>
 							<!--<div class="tri down"></div>-->
 							<div class="name1">
 								<div class="icon fa fa-star"></div>
-								<p>第一党支部</p>
+								<p>{$vo.name}</p>
 							</div>
 						</a>
 					</div>
 				</div>
-				<!--/第一层-->
+				{/volist}
 
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<a href="{:Url('Structure/detail')}">
-							<div class="tri-left structure2"></div>
-							<!--<div class="tri down"></div>-->
-							<div class="name1">
-								<div class="icon fa fa-star"></div>
-								<p>第二党支部</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!--/第一层-->
 			</div>
 		</div>
 
@@ -73,7 +60,7 @@ $(function(){
 	$('.list' ).each(function(){
 		var t = $(this ).children('.party1').children('a').children(".name1").children("p").html();
 		var href = '/home/structure/detail?party='+t+'';
-		$(this ).children('.party1').children('a').attr('href', href);
+//		$(this ).children('.party1').children('a').attr('href', href);
 	});
 
 	$(function(){

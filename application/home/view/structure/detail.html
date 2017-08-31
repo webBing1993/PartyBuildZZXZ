@@ -10,7 +10,7 @@
 
 <ul class="d_lists">
 	{volist name="users" id="vo"}
-	<li class="d_list">
+	<li class="d_list" onclick="overview('{$vo->user->userid}')">
 		<div class="d_img_box">
 			<div class="d_img" style="background-color: {:get_rand_color()}">
 				{:substr($vo->user->name,0,3)}
@@ -32,6 +32,11 @@ $('title' ).text('组织架构');
 
 var bg_color=["#b1e3fc", "#aeefef", "#ffa351", "#9393f5", "#cf88f7", "#65abfa", "#ebcffb", "#76f4f0", "#ffcf6e", "#ff8ff4"];
 
+
+function overview(userid){
+
+	window.location.href="/home/structure/overview/id/"+userid;
+}
 
 </script>
 {/block}
