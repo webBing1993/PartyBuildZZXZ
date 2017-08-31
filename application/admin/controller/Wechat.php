@@ -114,12 +114,21 @@ class Wechat extends Admin
                             case "入党时间":
                                 $user['partytime'] = $value['value'];
                                 break;
+                            case "党员承诺":
+                                $user['promise'] = $value['value'];
+                                break;
+                            case "党员荣誉":
+                                $user['honor'] = $value['value'];
+                                break;
                             default:
                                 break;
                         }
                     }
                     $user['extattr'] = json_encode($user['extattr']);
                 }
+
+                unset($user['order']);
+
                 if(WechatUser::get(['userid'=>$user['userid']])) {
 //                    unset($user['extattr']);
                     WechatUser::where(['userid'=>$user['userid']])->update($user);

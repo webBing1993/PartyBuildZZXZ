@@ -31,11 +31,11 @@ return [
     /* 企业配置   新手指南*/
     'party' => array(
         'login' => 'http://dqpb.0571ztnet.com/home/index/login',
-        'token' => 'N3mIjN',
-        'encodingaeskey' => 'RxanruTaFxW7X5r5Cx2xRrI91dhRgNUx77KM3paUS',
-        'appid' => 'wx8caedf8a60d075',
-        'appsecret' => 'hQ9p_yPJRLWMPVTWNo6PeugiB6gzgSZ_Q2SKhAScy',
-        'agentid' => 0
+        'token' => '',
+        'encodingaeskey' => '',
+        'appid' => 'ww58b28476c9e654f1',
+        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgKak',
+        'agentid' => 1000002,
     ),
 
     /*两学一做 */
