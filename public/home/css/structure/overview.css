@@ -1,0 +1,181 @@
+@keyframes todown {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(15deg);
+    }
+    30% {
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+    70% {
+        transform: rotate(60deg);
+    }
+    90% {
+        transform: rotate(75deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+@-webkit-keyframes todown {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(15deg);
+    }
+    30% {
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+    70% {
+        transform: rotate(60deg);
+    }
+    90% {
+        transform: rotate(75deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+@keyframes toup {
+    0% {
+        transform: rotate(90deg);
+    }
+    10% {
+        transform: rotate(75deg);
+    }
+    30% {
+        transform: rotate(60deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+    70% {
+        transform: rotate(30deg);
+    }
+    90% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes toup {
+    0% {
+        transform: rotate(90deg);
+    }
+    10% {
+        transform: rotate(75deg);
+    }
+    30% {
+        transform: rotate(60deg);
+    }
+    50% {
+        transform: rotate(45deg);
+    }
+    70% {
+        transform: rotate(30deg);
+    }
+    90% {
+        transform: rotate(15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+a:active {
+    background-color: #f7f7f7;
+}
+body {
+    overflow-x: hidden;
+}
+.banner {
+    width: 100vw;
+    height: 50vw;
+    position: relative;
+}
+.banner .banner-img {
+    width: 100%;
+    height: 100%;
+}
+.personal_img {
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    /*background-color: #d7d7d7;*/
+    left: 50%;
+    top: 50%;
+    margin-left: -15vw;
+    margin-top: -15vw;
+    text-align: center;
+    line-height: 30vw;
+    color: #666;
+    font-size: 15vw;
+}
+.personal_lists {
+    width: 94%;
+    margin: 0 auto;
+}
+.personal_lists>div {
+    border-bottom: 1px solid #eeeeee;
+}
+.personal_lists>div:last-of-type {
+    border-bottom-width: 0;
+}
+.personal_lists>div span {
+    display: inline-block;
+    padding: 4vw 3vw 3vw;
+    font-size: 1.7rem;
+    color: #666;
+}
+.h10 {
+    width: 100vw;
+    height: 3vw;
+    background-color: #eee;
+}
+.personal_title {
+    padding: 3vw    ;
+}
+.personal_title>div {
+    width: 60vw;
+    margin: 0 auto;
+    text-align: center;
+}
+.personal_title p {
+    font-size: 1.7rem;
+    color: #666;
+    padding: 1vw;
+}
+.personal_title p:first-of-type {
+    border-bottom: 1px solid #eeeeee;
+}
+.honor_title {
+    width: 60vw;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid #eeeeee;
+    font-size: 1.7rem;
+    color: #666;
+    padding: 3vw 1vw 1vw;
+}
+.honor_content {
+    width: 94%;
+    margin: 0 auto;
+}
+.honor_content .honor_tap {
+    border-bottom: 1px solid #eeeeee;
+}
+.honor_content .honor_tap span {
+    display: inline-block;
+    padding: 4vw 3vw 3vw;
+    font-size: 1.7rem;
+    color: #666;
+}

@@ -125,11 +125,19 @@ body {
 .tabs .tab:nth-child(2) {
   /*border-right: 1px solid #e5e5e5;*/
 }
-.icon{
+.icon {
   display: inline-block;
-  font-size: 24px;
+  width: 6vw;
+  height: 6vw;
 }
-
+.icon:nth-of-type(2n+1){
+  background: url("/home/images/structure/jg.png") no-repeat;
+  background-size: 6vw 6vw;
+}
+.icon:nth-of-type(2n) {
+  background: url("/home/images/structure/jg_1.png") no-repeat;
+  background-size: 6vw 6vw;
+}
 .tabs .active {
   color: #fd6743;
 }
@@ -149,19 +157,90 @@ body {
   position: relative;
   top: 0;
   left: 0;
-  width: 90vw;
-  margin: 4vw 5vw 0 5vw;
-  padding-top: 6vw;
-  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  width: 94vw;
+  margin: 0 auto;
+  /*margin: 4vw 5vw 0 5vw;*/
+  padding-top: 3vw;
+  /*box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);*/
+  /*-webkit-border-radius: 8px;*/
+  /*border-radius: 8px;*/
 }
+.branch_history {
+  width: 100%;
+}
+.branch_history .branch_history_s {
+  width: 100%;
+  border-bottom: 1px dotted #bbb;
+}
+.branch_history .branch_history_s>div {
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+  color: #ff5722;
+  font-size: 1.7rem;
+  margin: 2vw 0;
+}
+.branch_history .branch_history_s>div:first-of-type {
+  border-right: 1px solid #eee;
+}
+/*.branch_history_x .devol_time {
+  width: 44%;
+  text-align: center;
+  padding-top: 2vw;
+  position: relative;
+  font-size: 1.7rem;
+}
+.branch_history_x .devol_lists {
+  width: 10%;
+  text-align: center;
+  padding-top: 8vw;
+}
+.devol_lists>span {
+  display: inline-block;
+  margin-top: -2vw;
+}
+.devol_lists .devol_clicle {
+  display: inline-block;
+  width: 6vw;
+  height: 6vw;
+  background-color: #EEEEEE;
+  border-radius: 50%;
+  z-index: 7;
+  opacity: 1;
+  pointer-events: auto;
+}
+.devol_lists>span:first-of-type .devol_clicle,
+.devol_lists>span:nth-of-type(2) .devol_clicle {
+  background-color: #f00521;
+}
+.devol_lists .devol_rectangle {
+  margin-top: -2vw;
+  display: inline-block;
+  width: 3vw;
+  height: 22vw;
+  background-color: #eeeeee;
+  text-align: center;
+  z-index: 7;
+  opacity: 1;
+  pointer-events: auto;
+}
+.devol_lists>span:first-of-type .devol_rectangle {
+  background-color: #f00521;
+}
+.branch_history_x .devol_experience {
+  width: 45%;
+  text-align: center;
+  padding-top: 33vw;
+  font-size: 1.7rem;
+}*/
+
 .listbox .box .box_:last-child {
   margin-bottom: 5vw;
 }
 .listbox .box .box_:before {
-  content: '中心概况';
-  position: absolute;
+  /*content: '中心概况';*/
+  content: "";
+  /*position: absolute;
   top: 3vw;
   left: -7px;
   width: 76px;
@@ -171,7 +250,7 @@ body {
   color: #ffffff;
   text-align: center;
   font-size: 1.2rem;
-  line-height: 22px;
+  line-height: 22px;*/
 }
 .listbox .box .box_.or:before {
   content: '组织架构';
@@ -193,14 +272,15 @@ body {
 .listbox .box .box_ .lists .name1 {
   display: inline-block;
   width: 100%;
-  height: 45px;
-  font-size: 14px;
-  line-height: 45px;
+  height: 12vw;
+  font-size: 1.64rem;
+  line-height: 12vw;
   border-bottom: 1px solid #f1f1f1;
 }
 .name1 p{
   display: inline-block;
   margin-left: 2vw;
+  margin-top: -2vw;
 }
 .listbox .box .box_ .lists .party1 {
   position: relative;
@@ -354,7 +434,7 @@ body {
 }
 .d_tel {
   line-height: 12vw;
-
+  color: #5d9fab;
 }
 .d_tel_icon {
   margin-right: 2vw;

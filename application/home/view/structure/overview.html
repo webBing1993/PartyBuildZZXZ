@@ -1,0 +1,61 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>党员信息</title>
+<link rel="stylesheet" href="/home/css/structure/overview.css">
+<link rel="stylesheet" href="/home/css/common/rem.css">
+
+{/block}
+
+{block name="body"}
+<div class="banner">
+    <img src="/home/images/banner/9.jpg" alt="党员信息banner" class="banner-img">
+    <div class="personal_img" style="background-color: {:get_rand_color()}"><span>张</span></div>
+</div>
+<div class="personal_container">
+    <div class="personal_lists">
+        <div class="personal_name clearfix">
+            <span class="fl">姓名</span>
+            <span class="fr">张三</span>
+        </div>
+        <div class="personal_party clearfix">
+            <span class="fl">党龄</span>
+            <span class="fr">6年</span>
+        </div>
+        <div class="personal_edu clearfix">
+            <span class="fl">学历</span>
+            <span class="fr">硕士</span>
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="personal_title">
+        <div>
+            <p>一句话承诺</p>
+            <p>敬岗爱业，热情服务</p>
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="personal_honor">
+        <div class="honor_title">党员荣誉</div>
+        <div class="honor_content">
+            <div class="honor_tap clearfix">
+                <span class="fl">优秀共产党员</span>
+                <span class="fr">2017年</span>
+            </div>
+            <div class="honor_tap clearfix">
+                <span class="fl">优秀党务工作者</span>
+                <span class="fr">2017年</span>
+            </div>
+            <div class="honor_tap clearfix">
+                <span class="fl">优秀共产党员</span>
+                <span class="fr">2017年</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+
+{/block}
