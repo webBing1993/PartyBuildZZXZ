@@ -119,7 +119,7 @@
 		</div>
 		{else/}
 		{volist name="now" id="vo"}
-		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}&c=1'">
+		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'">
 			<b style=' background-image:url({$vo.front_cover|get_cover="path"})'></b>
 			<p>{$vo.title}</p>
 			<span>{$vo.meet_time|date="Y-m-d H:i",###}</span>
@@ -138,7 +138,7 @@
 		</div>
 		{else/}
 		{volist name="go" id="vo"}
-		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}&c=0'" >
+		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'" >
 			<b style=' background-image:url({$vo.front_cover|get_cover="path"})'></b>
 			<p>{$vo.title}</p>
 			<span>{$vo.meet|date="Y-m-d H:i",###}</span>
@@ -172,5 +172,11 @@
 		}
 
 	})
+
+
+
+
+
+
 </script>
 {/block}
