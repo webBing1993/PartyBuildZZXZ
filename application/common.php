@@ -189,3 +189,13 @@ function get_defalut_cover($type)
             return "";
     }
 }
+
+/**
+ * 随机获取头像背景颜色
+ */
+function get_rand_color()
+{
+    $bgColor=["#b1e3fc", "#aeefef", "#ffa351", "#9393f5", "#cf88f7", "#65abfa", "#ebcffb", "#76f4f0", "#ffcf6e", "#ff8ff4"];
+
+    return $bgColor[rand(0,9)];
+}
