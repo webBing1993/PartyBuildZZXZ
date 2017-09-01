@@ -130,7 +130,7 @@ var isGood = function(e,type,id){
 var send = function(e,type,id){
 	swal({
 		title: '',
-		text: '请输入您的感想！',
+		text: '请输入您的评论！',
 		type: 'input',
 		showCancelButton: true,
 		closeOnConfirm: false,
@@ -141,12 +141,12 @@ var send = function(e,type,id){
 	}, function(inputValue) {
 		if (inputValue === false) return false;
 
-		if (inputValue === "") {
-			swal.showInputError("您还没有写感想！");
+		if (inputValue.length < 15) {
+			swal.showInputError("评论字数不能少于15个字！");
 			return false
 		}
 
-		if (inputValue > 300) {
+		if (inputValue.length > 300) {
 			swal.showInputError("您输入的字超过了300！");
 			return false
 		}
@@ -161,7 +161,7 @@ var send = function(e,type,id){
 			beforeSend: function () {
 				swal({
 					title: ' ',
-					text: '感想提交中...',
+					text: '评论提交中...',
 					showConfirmButton: false
 				});
 			},
@@ -186,7 +186,7 @@ var send = function(e,type,id){
 				sum.text(parseInt(sum.text()) + 1);
 				swal({
 					title: ' ',
-					text: '感想成功',
+					text: '评论成功',
 					type: 'success',
 					confirmButtonText: '确定',
 					timer: 3000
