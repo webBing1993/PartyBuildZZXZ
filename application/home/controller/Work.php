@@ -66,7 +66,7 @@ class Work extends Base{
         if ($type == 1) {
             $list = Notice::where($map1)->order($order)->limit($len,5)->select();
         } else {
-            $list = Notice::where($map1)->order($order)->limit($len,5)->select();
+            $list = Notice::where($map2)->order($order)->limit($len,5)->select();
         }
 
         if (!empty($list)) {
