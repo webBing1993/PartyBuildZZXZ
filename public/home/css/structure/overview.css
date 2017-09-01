@@ -95,6 +95,7 @@ a:active {
 }
 body {
     overflow-x: hidden;
+    background-color: #f4f4f4;
 }
 .banner {
     width: 100vw;
@@ -119,63 +120,75 @@ body {
     line-height: 30vw;
     color: #666;
     font-size: 15vw;
+    z-index: 10;
 }
-.personal_lists {
-    width: 94%;
-    margin: 0 auto;
+.personal_container {
+    position: absolute;
+    top: 25vw;
+    left: 50vw;
+    margin-left: -43vw;
 }
-.personal_lists>div {
-    border-bottom: 1px solid #eeeeee;
+.personal_container>div {
+    border: .5px solid #e8e8e8;
+    border-radius: 2vw;
+    background-color: #ffffff;
+    width: 86vw;
+    margin-bottom: 6vw;
 }
-.personal_lists>div:last-of-type {
-    border-bottom-width: 0;
-}
-.personal_lists>div span {
-    display: inline-block;
-    padding: 4vw 3vw 3vw;
-    font-size: 1.7rem;
-    color: #666;
-}
-.h10 {
-    width: 100vw;
-    height: 3vw;
-    background-color: #eee;
-}
-.personal_title {
-    padding: 3vw    ;
-}
-.personal_title>div {
-    width: 60vw;
-    margin: 0 auto;
+.personal_info .info_name {
+    padding: 18vw 0 6vw 0;
     text-align: center;
-}
-.personal_title p {
     font-size: 1.7rem;
-    color: #666;
-    padding: 1vw;
+    color: #333;
 }
-.personal_title p:first-of-type {
-    border-bottom: 1px solid #eeeeee;
-}
-.honor_title {
-    width: 60vw;
-    margin: 0 auto;
+.personal_info .info_content>div.fl {
+    width: 50%;
     text-align: center;
-    border-bottom: 1px solid #eeeeee;
-    font-size: 1.7rem;
-    color: #666;
-    padding: 3vw 1vw 1vw;
+    padding-bottom: 6vw;
 }
-.honor_content {
-    width: 94%;
-    margin: 0 auto;
-}
-.honor_content .honor_tap {
-    border-bottom: 1px solid #eeeeee;
-}
-.honor_content .honor_tap span {
+.personal_info .info_content>div.fl>div {
     display: inline-block;
-    padding: 4vw 3vw 3vw;
-    font-size: 1.7rem;
+    font-size: 1.64rem;
     color: #666;
+    line-height: 6vw;
+}
+.personal_info .info_content>div.fl .info_img {
+    width: 5.5vw;
+    height: 6vw;
+    margin-right: 3vw;
+}
+.personal_info .info_content>div.fl .info_img img{
+    width: 100%;
+    height: 100%;
+}
+.personal_title .title_title,
+.personal_honer .honer_title {
+    padding: 6vw 0;
+    color: #333333;
+    font-size: 1.64rem;
+    text-align: center;
+    line-height: 5vw;
+}
+.personal_title .title_title>div.title_img,
+.personal_honer .honer_title .honer_img {
+    display: inline-block;
+    width: 4vw;
+    height: 5vw;
+    margin-right: 3vw;
+}
+.personal_title .title_title .title_img img,
+.personal_honer .honer_title .honer_img img {
+    width: 100%;
+    height: 100%;
+}
+.personal_title .title_content,
+.personal_honer .honer_content {
+    margin: 0 auto;
+    width: 90%;
+    font-size: 1.46rem;
+    color: #999999;
+    margin-bottom: 8vw;
+    text-align: justify;
+    letter-spacing: .1vw;
+    line-height: 1.5;
 }

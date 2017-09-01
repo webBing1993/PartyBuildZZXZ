@@ -7,13 +7,13 @@ a:active {
   background: #eeeeee!important;
 }
 body {
-  background: #eeeeee;
+  background: #ffffff;
 }
 /*头部*/
 .banner {
   width: 100%;
   height: 50vw;
-  background: url("/home/images/test/bg.png");
+  background: url("/home/images/banner/12.png");
   background-size: 100% 100%;
   text-align: center;
 }
@@ -28,7 +28,7 @@ body {
   border-radius: 50%;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.31);
   background: url("/home/images/test/1.jpg") center no-repeat;
-  background-size:70px auto;
+  background-size:100%;
 }
 .banner .name {
   width: 60%;
@@ -41,18 +41,59 @@ body {
     line-height: 40px;
   }
 }
+/*积分和排行*/
+.content_nav {
+  position: relative;
+}
+.content_nav>div {
+  position: absolute;
+  top:-8vw;
+  left: 50vw;
+  width: 86vw;
+  margin-left: -43vw;
+  background-color: #ffffff;
+  border-radius: 2vw;
+  box-shadow: 0 .1vw .1vw #faa124;
+}
+.content_nav>div>div.fl {
+  width: 50%;
+  text-align: center;
+  color: #faa124;
+  padding: 3vw 0;
+}
+.content_nav>div>div.fl:first-of-type {
+  position: relative;
+}
+.content_nav>div>div.fl p:first-of-type {
+  font-size: 1.46rem;
+  font-weight: 800;
+}
+.content_nav>div>div.fl p:last-of-type {
+  font-size: 1.64rem;
+  font-weight: 600;
+}
+.content_nav .line {
+  width: .5vw;
+  height: 6.5vw;
+  background-color: #faa124;
+  opacity: .4;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -3.25vw;
+}
 /*列表*/
 .lists {
-  margin-top: 2.7vw;
+  margin-top: 10vw;
 }
 .lists .list {
   display: block;
   width: 100%;
   padding-left: 4vw;
   padding-right: 4vw;
-  height: 13.3vw;
+  height: 13.335vw;
   background: #ffffff;
-  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f7f7f7;
   font-size: 15px;
 }
 .lists .list span {
@@ -62,36 +103,20 @@ body {
   color: #333333;
   line-height: 13.3vw;
 }
-.lists .list i {
-  color: #999999;
-  font-size: 20px;
-  line-height: 13.3vw;
-}
 .lists .list:nth-child(1) span {
-  background: url("/home/images/user/message.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
+  background: url("/home/images/user/icon_1.png") 0 3vw no-repeat;
+  background-size: 6.5vw 6.5vw;
 }
 .lists .list:nth-child(2) span {
-  background: url("/home/images/user/collect.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
+  background: url("/home/images/user/icon_2.png") 0 3vw no-repeat;
+  background-size: 6.5vw 5.5vw;
 }
 .lists .list:nth-child(3) span {
-  background: url("/home/images/user/join.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
+  background: url("/home/images/user/icon_3.png") 0 3vw no-repeat;
+  background-size: 6vw 6.2vw;
 }
 .lists .list:nth-child(4) span {
-  background: url("/home/images/user/score.jpg") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
+  background: url("/home/images/user/icon_4.png") 0 3vw no-repeat;
+  background-size: 6.2vw 6.2vw;
 }
-.lists .list:nth-child(5) span {
-  background: url("/home/images/user/feedback.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
-}
-.lists .list:nth-child(6) span {
-  background: url("/home/images/user/notes.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
-}
-.lists .list:nth-child(7) span {
-  background: url("/home/images/user/publish.png") 0 3vw no-repeat;
-  background-size: 7.5vw 7.5vw;
-}
+
