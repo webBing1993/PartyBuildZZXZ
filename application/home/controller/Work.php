@@ -81,57 +81,68 @@ class Work extends Base{
     /**
      * 党员签到详情
      */
-    public function main(){
+    public function main()
+    {
         $this->jssdk();
         $id = input('id');
         $uid = session('userId');
         $data = Notice::where(['id' => $id])->find();
-        //获取签到报名用户信息
+        // 获取签到报名用户信息
         $Apply = Apply::where(['notice_id'=>$id])->order('id desc')->select();
         $arr = array();
-        if(empty($Apply)){
+        if (empty($Apply)) {
+
             $arr[]= "<span style='color: #aaa' id='noneMan'>无人签到</span>";
-        }else{
-            foreach($Apply as $value){
+        } else {
+
+            foreach ($Apply as $value) {
                 $Wechat = WechatUser::where(['userid'=>$value['userid']])->order('id desc')->find();
                 $arr[] = "<img src='".$Wechat['avatar']."'/><span>".$Wechat['name']."</span>";
             }
         }
+        $data['infoes'] = $arr;
+
+        //查看权限
         $c = WechatUserTag::where(['userid' => $uid,'tagid' => 1])->find();
+
+        // 判断活动是否过期
         if ($data['meet_time'] > time()) {
             $now = 1;
         } else {
             $now = 0;
         }
 
-        $data['infoes'] = $arr;
         $this->assign('data',$data);
         $this->assign('c',$c);
         $this->assign('now',$now);
+
         return $this->fetch();
     }
 
     /**
      * 扫一扫签到
      */
-    public function scan(){
+    public function scan()
+    {
         $id = input('id');
         $userid = input('user_id');
         $result = Apply::where(array('notice_id'=>$id,'userid'=>$userid))->find();
+        $Wechat = WechatUser::where(['userid'=>$userid])->find();
+
         if($result){
-            $Wechat = WechatUser::where(['userid'=>$userid])->find();
+
             return array('status'=>0,'header'=>$Wechat['avatar'],'name'=>$Wechat['name']);
         }else{
-            $Wechat = WechatUser::where(['userid'=>$userid])->find();
+
             if($Wechat){
 
-                //会议过期
+                // 会议过期
                 $data = Notice::where(['id' => $id])->find();
                 if ($data['meet_time'] <= time()) {
                     return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'很抱歉，您已过了签到时间，下次请准时来哦!');
                 }
 
-
+                // 新增签到记录
                 $data = array(
                     'notice_id' => $id,
                     'userid' =>$userid,
@@ -139,13 +150,17 @@ class Work extends Base{
                 );
                 $Apply = new Apply();
                 $res = $Apply->save($data);
-                if($res){
-                    $Wechat = WechatUser::where(['userid'=>$userid])->find();
+
+                if ($res) {
+                    WechatUser::where(['userid'=>$userid])->setInc('score', 10);;
+
                     return array('status'=>1,'header'=>$Wechat['avatar'],'name'=>$Wechat['name']);
-                }else{
+                } else {
+
                     return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'签到失败');
                 }
-            }else{
+            } else {
+
                 return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'请扫描正确党员二维码');
             }
 
