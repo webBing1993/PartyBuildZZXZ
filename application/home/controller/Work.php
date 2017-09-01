@@ -7,9 +7,10 @@
  */
 namespace app\home\controller;
 use app\home\model\Notice;
-/*
- * 两学一做  党史 通讯录
- */
+use app\home\model\Apply;
+use app\home\model\WechatUserTag;
+use app\home\model\WechatUser;
+
 
 class Work extends Base{
     /*
@@ -83,7 +84,7 @@ class Work extends Base{
     public function main(){
         $this->jssdk();
         $id = input('id');
-        $c = input('c');
+        $uid = session('userId');
         $data = Notice::where(['id' => $id])->find();
         //获取签到报名用户信息
         $Apply = Apply::where(['notice_id'=>$id])->order('id desc')->select();
@@ -96,9 +97,17 @@ class Work extends Base{
                 $arr[] = "<img src='".$Wechat['avatar']."'/><span>".$Wechat['name']."</span>";
             }
         }
+        $c = WechatUserTag::where(['userid' => $uid,'tagid' => 1])->find();
+        if ($data['meet_time'] > time()) {
+            $now = 1;
+        } else {
+            $now = 0;
+        }
+
         $data['infoes'] = $arr;
         $this->assign('data',$data);
         $this->assign('c',$c);
+        $this->assign('now',$now);
         return $this->fetch();
     }
 
@@ -115,6 +124,14 @@ class Work extends Base{
         }else{
             $Wechat = WechatUser::where(['userid'=>$userid])->find();
             if($Wechat){
+
+                //会议过期
+                $data = Notice::where(['id' => $id])->find();
+                if ($data['meet_time'] <= time()) {
+                    return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'很抱歉，您已过了签到时间，下次请准时来哦!');
+                }
+
+
                 $data = array(
                     'notice_id' => $id,
                     'userid' =>$userid,
@@ -126,10 +143,10 @@ class Work extends Base{
                     $Wechat = WechatUser::where(['userid'=>$userid])->find();
                     return array('status'=>1,'header'=>$Wechat['avatar'],'name'=>$Wechat['name']);
                 }else{
-                    return array('status'=>2,'header'=>null,'name'=>null);
+                    return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'签到失败');
                 }
             }else{
-                return array('status'=>2,'header'=>null,'name'=>null);
+                return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'请扫描正确党员二维码');
             }
 
         }

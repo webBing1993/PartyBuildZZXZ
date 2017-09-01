@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>最新活动</title>
+    <script src="/static/sweetalert/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/static/sweetalert/sweetalert.css">
+    <title>
+        {eq name="now" value="1"}
+        最新会议
+        {else/}
+        历史会议
+        {/eq}
+    </title>
     <style>
         * {
             box-sizing: border-box;
@@ -164,27 +172,21 @@
 <img src="{$data.front_cover|get_cover='path'}" alt="" class="title1">
 <ul id="list">
     <li>
-        名称
+        会议主题
         <span>
             {$data.title}
         </span>
     </li>
     <li>
-        主办方
-        <span>
-            {$data.publisher}
-        </span>
-    </li>
-    <li>
         时间
         <span>
-            {$data.start_time|date="Y-m-d H:i",###}&nbsp;至&nbsp;{$data.end_time|date="Y-m-d H:i",###}
+            {$data.meet_time|date="Y-m-d H:i",###}&nbsp
         </span>
     </li>
     <li>
-        地点
+        内容
         <span>
-            {$data.address}
+        {$data.content}
         </span>
     </li>
 </ul>
@@ -198,10 +200,10 @@
         {/volist}
     </ul>
 </div>
-{eq name="c" value="1"}
-<a class="sao">扫一扫</a>
-{else/}
+{eq name="c" value=""}
 <a class="sao" style="display:none;">扫一扫</a>
+{else/}
+<a class="sao">扫一扫</a>
 {/eq}
 <div class="bk1">
     <div class="content">
@@ -220,19 +222,58 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=WS7BZ-ZBERG-5T5Q3-IBRHI-FVXU3-45FR5&libraries=drawing,geometry,autocomplete,convertor"></script>
 <script>
+
+    //测试扫描
+    $('.sao').click(function(){
+        $('.sao').hide();
+        var result = '15700004138'; // 当needResult 为 1 时，扫码返回的结果
+        var id = {$data.id};
+        $.ajax({
+            type: 'POST',
+            url: "{:Url('Work/scan')}" ,
+            data: {id:id,user_id:result} ,
+            success:function(data){
+                if (data.status==2) {
+                    $('.sao').show();
+                    swal({
+                        title: '',
+                        text: data.err_msg,
+                        type: 'error',
+                        confirmButtonText: '确定',
+                        timer: 3000
+                    });
+                } else if (data.status==1){
+                    if($('#noneMan')){
+                        $('#noneMan').remove();
+                    }
+                    $('#user_img').attr('src',data.header);
+                    $('#user_name').html(data.name);
+                    $('.bk_title').html('签 到 成 功');
+                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
+                    $('.main1>ul').prepend(html);
+                    $('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
+                    $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
+                    $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');
+                    $('.bk1').show();
+                }else{
+                    $('#user_img').attr('src',data.header);
+                    $('#user_name').html(data.name);
+                    $('.bk_title').html('已 签 到');
+                    $('.bk1').show();
+                }
+
+            }
+        });
+    });
+</script>
+
+<script>
     $(function(){
         $('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
         $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
         $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');
         $('.bk1').height(window.screen.availHeight);
     });
-
-
-    if({$c}==1){
-        sessionStorage.change=1;
-    }else{
-        sessionStorage.change=2;
-    }
 
 
     var appId='{$jsSign.appid}';
@@ -274,7 +315,7 @@
                         success:function(data){
                             if(data.status==2){
                                 $('.sao').show();
-                                alert('请扫描正确党员二维码')
+                                alert(data.err_msg);
                             }else if(data.status==1){
                                 if($('#noneMan')){
                                     $('#noneMan').remove();
@@ -303,7 +344,6 @@
                 }
             });
         });
-
         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 
 //        wx.getLocation({
@@ -316,44 +356,6 @@
 //            }
 //        });
     });
-    var wAlert = window.alert;
-    window.alert = function (message) {
-        try {
-            var iframe = document.createElement("IFRAME");
-            iframe.style.display = "none";
-            iframe.setAttribute("src", 'data:text/plain,');
-            document.documentElement.appendChild(iframe);
-            var alertFrame = window.frames[0];
-            var iwindow = alertFrame.window;
-            if (iwindow == undefined) {
-                iwindow = alertFrame.contentWindow;
-            }
-            iwindow.alert(message);
-            iframe.parentNode.removeChild(iframe);
-        }
-        catch (exc) {
-            return wAlert(message);
-        }
-    }
-    var wConfirm = window.confirm;
-    window.confirm = function (message) {
-        try {
-            var iframe = document.createElement("IFRAME");
-            iframe.style.display = "none";
-            iframe.setAttribute("src", 'data:text/plain,');
-            document.documentElement.appendChild(iframe);
-            var alertFrame = window.frames[0];
-            var iwindow = alertFrame.window;
-            if (iwindow == undefined) {
-                iwindow = alertFrame.contentWindow;
-            }
-            iwindow.confirm(message);
-            iframe.parentNode.removeChild(iframe);
-        }
-        catch (exc) {
-            return wConfirm(message);
-        }
-    }
 </script>
 </body>
 </html>
