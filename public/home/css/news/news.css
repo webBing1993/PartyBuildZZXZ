@@ -55,6 +55,9 @@
 	border-bottom: 1px solid #dddddd;
 	position: relative;
 }
+.list>.fl {
+	width: 24vw;
+}
 .list img{
 	width: 24vw;
 	height: 16vw;
