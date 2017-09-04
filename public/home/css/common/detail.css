@@ -93,10 +93,13 @@
   color: #333333;
   font-size: 1.8rem;
   font-weight: 600;
+  display: inline-block;
+  width: 100%;
 }
-.article .title p{
+.article .title p {
   display: inline-block;
   text-align: left;
+  width: auto;
 }
 .article .note {
   color: #999999;
