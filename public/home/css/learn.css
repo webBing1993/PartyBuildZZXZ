@@ -32,10 +32,9 @@
   }
 }
 .tag {
-  height: 30px;
   color: #666666;
   text-align: center;
-  line-height: 30px;
+  line-height: 6.8vw;
   font-size: 1.2rem;
 }
 body {
@@ -60,39 +59,40 @@ body {
   width: 70vw;
   height: 64vw;
   margin: 0 auto;
-  padding: 10px 10px 0 10px;
+  padding: 2.25vw 2.25vw 0 2.25vw;
   background: #ffffff;
-  -webkit-border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
-  border-top-left-radius: 8px ;
-  border-top-right-radius: 8px ;
+  -webkit-border-top-left-radius: 2vw;
+  -webkit-border-top-right-radius: 2vw;
+  border-top-left-radius: 2vw ;
+  border-top-right-radius: 2vw ;
 }
 .banner .box .box_up img {
   width: 100%;
   height: 45vw;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  -webkit-border-radius: 2vw;
+  border-radius: 2vw;
   overflow: hidden;
 }
 .banner .box .box_up .title {
   color: #333333;
-  line-height: 30px;
+  /*line-height: 30px;*/
+  padding: 1.13vw 0;
 }
 .banner .box .box_up .note {
   color: #999999;
   font-size: 1.2rem;
-  line-height: 26px;
+  line-height: 6vw;
 }
 .banner .box .box_down {
   width: 70vw;
-  height: 40px;
+  height: 10.67vw;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 2.67vw;
   background: #ffffff;
-  -webkit-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px ;
-  border-bottom-right-radius: 8px ;
+  -webkit-border-bottom-left-radius: 2vw;
+  -webkit-border-bottom-right-radius: 2vw;
+  border-bottom-left-radius: 2vw ;
+  border-bottom-right-radius: 2vw ;
 }
 .banner .box .box_down .clear {
   width: 100%;
@@ -101,25 +101,25 @@ body {
 .banner .box .box_down .clear .scan {
   display: inline-block;
   height: 100%;
-  background: url("/home/images/learn/scan.png") 2px 13px no-repeat;
-  background-size: 15px 15px;
-  padding-left: 20px;
+  background: url("/home/images/learn/scan.png") .5vw 3.6vw no-repeat;
+  background-size: 3.3vw;
+  padding-left: 5.4vw;
   color: #4fc464;
-  line-height: 40px;
+  line-height: 10.8vw;
   font-size: 1.2rem;
 }
 .banner .box .box_down .clear .fr {
-  height: 24px;
-  width: 50px;
-  margin: 8px auto;
+  height: 6.5vw;
+  width: 14.35vw;
+  margin: 2.15vw auto;
   background: #f5f5f5;
-  border: 1px solid #f1f1f1;
+  border: .5vw solid #f1f1f1;
   color: #4fc464;
   text-align: center;
-  line-height: 24px;
+  line-height: 6.5vw;
   font-size: 1.2rem;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  -webkit-border-radius: 2vw;
+  border-radius: 2vw;
 }
 .banner .box .bg {
   z-index: -1;
@@ -152,40 +152,40 @@ body {
   position: relative;
   display: block;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 2.67vw;
+  margin-bottom: 2.67vw;
   background: #ffffff;
   text-align: center;
   overflow: hidden;
 }
 .lists .list .tab {
   position: absolute;
-  top: 20px;
-  left: 5px;
-  width: 45px;
-  height: 30px;
+  top: 5.34vw;
+  left: 1.2vw;
+  width: 12vw;
+  height: 8vw;
   background: url("/home/images/learn/bg_blue.png") no-repeat;
-  background-size: 45px 30px;
+  background-size: 12vw 8vw;
   color: #ffffff;
   font-size: 1.2rem;
   text-align: center;
-  line-height: 20px;
+  line-height: 5.34vw;
 }
 .lists .list .img {
   width: 100%;
-  height: 180px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  height: 48vw;
+  -webkit-border-radius: 2vw;
+  border-radius: 2vw;
 }
 .lists .list .title {
   color: #333333;
   font-size: 1.4rem;
-  line-height: 36px;
+  line-height: 9.8vw;
 }
 .lists .list .study {
   display: inline-block;
   background: url("/home/images/learn/people.png") 0 0 no-repeat;
-  background-size: 15px 15px;
+  background-size: 4vw;
   padding-left: 18px;
   color: #999999;
   font-size: 1.2rem;
