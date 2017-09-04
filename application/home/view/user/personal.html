@@ -51,7 +51,24 @@
 		<span class="fr">{$user.partytime|get_partyAge}</span>
 	</div>
 </div>
-
+<div class="personal_title">
+	<div class="title_title">
+		<div class="title_img"><img src="/home/images/structure/icon_5.png" alt=""></div>
+		一句话承诺
+	</div>
+	<div class="title_content">
+		<p>{$user.promise==''?'暂无':$user.education}</p>
+	</div>
+</div>
+<div class="personal_honer">
+	<div class="honer_title">
+		<div class="honer_img"><img src="/home/images/structure/icon_6.png" alt=""></div>
+		党员荣誉
+	</div>
+	<div class="honer_content">
+		<p>{$user.honor==''?'暂无':$user.education}</p>
+	</div>
+</div>
 <!-- 二维码 -->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
