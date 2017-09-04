@@ -119,11 +119,17 @@ $(function(){
 //		$(this ).children('.party1').children('a').attr('href', href);
 	});
 
-	$(function(){
+	$(function(e){
 		//tab值记录
 		tabRecord('.tab' ,'.box');
 		//tab切换
 		tabSwitch('.tab' ,'.box');
+		$(window).on("resize",function(e){
+			e.preventDefault();
+			var bodyLeft = $('body').width();
+			$('.listbox').css('left',-bodyLeft);
+			$('.listbox .shouldKnow').css('left',bodyLeft);
+		});
 		var bodyLeft = $('body').width();
 		$('.listbox .shouldKnow').css('left',bodyLeft);
 		//上拉加载
