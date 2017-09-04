@@ -8,7 +8,7 @@
 {block name="body"}
 {eq name="visit" value="1"}
 <div class="banner">
-	<img src="/home/images/user/vistor.jpg" alt="个人头像" class="up">
+	<img src="/home/images/user/vistor.jpg" data-tab="/home/images/user/vistor.jpg" alt="个人头像" class="up">
 	<div class="name">游客</div>
 </div>
 {else/}
@@ -26,12 +26,12 @@
 	<div>
 		<div class="fl">
 			<p>我的积分</p>
-			<p><span>999</span>+</p>
+			<p><span>{$personal.score}</span></p>
 			<span class="line"></span>
 		</div>
 		<div class="fl">
 			<p>我的排行</p>
-			<p>27</p>
+			<p>{$personal.rank}</p>
 		</div>
 	</div>
 </div>

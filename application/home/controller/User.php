@@ -14,6 +14,8 @@ use app\home\model\WechatUser;
 use app\home\model\WechatUserTag;
 use app\home\model\Collect;
 use think\Db;
+use think\Request;
+
 /**
  * Class User
  * 用户个人中心
@@ -40,14 +42,45 @@ class User extends Base {
         }else{
             $this->assign('is',0);
         }
+
+        if ($userId !== 'visitor') {
+
+            $dp = Db::table('pb_wechat_department_user')
+                ->alias('a')
+                ->join('pb_wechat_department b','a.departmentid = b.id','LEFT')
+                ->where('a.userid',$userId)
+                ->find();
+            //个人信息
+            $personal = WechatUser::where('userid',$userId)->find();
+            $personal['dpname'] = $dp['name'];
+            //总榜
+            $con['score'] = array('neq',0);
+            $all  = WechatUser::where($con)->order('score desc')->select();
+            foreach ($all as $k => $value){
+                if($value['userid'] == $userId){
+                    $personal['rank'] = $k+1;
+                }
+            }
+            $this->assign('personal',$personal);
+        }
+
         return $this->fetch();
     }
 
     /**
      * 个人信息页
      */
-    public function personal(){
-        $userId = session('userId');
+    public function personal()
+    {
+        $request = Request::instance();
+        $id = input('id');
+        if (empty($id)) {
+
+            $userId = session('userId');
+        } else {
+
+            $userId = $id;
+        }
         $user = WechatUser::where('userid',$userId)->find();
         switch ($user['gender']) {
             case 0:
@@ -63,18 +96,9 @@ class User extends Base {
                 break;
         }
 
-        // 党龄周年计算
-        if (!empty($user['partytime'])) {
-
-            $year = substr($user['partytime'],0,4);
-            $thisYear = date('Y',time());
-            $user['partyStand'] = $thisYear - $year .'年';
-        } else {
-
-            $user['partyStand'] = '';
-        }
 
         $this->assign('user',$user);
+        $this->assign('link',$request->domain());
 
         return $this->fetch();
     }

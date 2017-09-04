@@ -36,19 +36,19 @@
 	</div>
 	<div class="list clear">
 		<span class="fl">出生日期</span>
-		<span class="fr">{$user.birthday}</span>
+		<span class="fr">{$user.birthday==''?'暂无':$user.birthday}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">学历</span>
-		<span class="fr">{$user.education}</span>
+		<span class="fr">{$user.education==''?'暂无':$user.education}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">入党时间</span>
-		<span class="fr">{$user.partytime}</span>
+		<span class="fr">{$user.partytime==''?'暂无':$user.partytime}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">党龄</span>
-		<span class="fr">{$user.partyStand}</span>
+		<span class="fr">{$user.partytime|get_partyAge}</span>
 	</div>
 </div>
 
@@ -80,7 +80,7 @@ $(function(){
 	var code = $('.code' );
 	var ww = code.width();
 	var hh = code.height();
-	var id = '{$user.userid}';
+	var id = '{$link}'+'/home/user/personal/id/'+'{$user.userid}';
 	jQuery('#qrcode').qrcode({
 		width: ww,
 		height:hh,
