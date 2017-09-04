@@ -10,19 +10,19 @@
 {block name="body"}
 <div class="banner">
     <img src="/home/images/banner/11.jpg" alt="党员信息banner" class="banner-img">
-    <div class="personal_img" style="background-color: {:get_rand_color()}"><span>张</span></div>
+    <div class="personal_img" style="background-color: {:get_rand_color()}"><span>{:substr($user.name,0,3)}</span></div>
 </div>
 <div class="personal_container">
     <div class="personal_info clearfix">
-        <div class="info_name">张三</div>
+        <div class="info_name">{$user.name}</div>
         <div class="info_content">
             <div class="fl">
                 <div class="info_img"><img src="/home/images/structure/icon_3.png" alt=""></div>
-                <div class="info_rank">6年</div>
+                <div class="info_rank">{$user.partytime|get_partyAge}</div>
             </div>
             <div class="fl">
                 <div class="info_img"><img src="/home/images/structure/icon_4.png" alt=""></div>
-                <div class="info_rank">硕士</div>
+                <div class="info_rank">{$user.education==''?'暂无':$user.education}</div>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             一句话承诺
         </div>
         <div class="title_content">
-            敬岗爱业，热情服务，敬岗爱业，热情服务
+            {$user.promise==''?'暂无':$user.education}
         </div>
     </div>
     <div class="personal_honer">
@@ -41,7 +41,7 @@
             党员荣誉
         </div>
         <div class="honer_content">
-            是非成败转头空,青山依旧在,惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。几度夕阳红。白发渔樵江渚上，都付笑谈中。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。几度夕阳红。白发渔樵江渚上，都付笑谈中。
+            {$user.honor==''?'暂无':$user.education}
         </div>
     </div>
 </div>

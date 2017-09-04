@@ -8,6 +8,7 @@
 namespace app\home\controller;
 use app\home\model\WechatDepartment;
 use app\home\model\WechatDepartmentUser;
+use app\home\model\WechatUser;
 
 class Structure extends Base{
     /*
@@ -38,7 +39,9 @@ class Structure extends Base{
      */
     public function overview()
     {
-
+        $uid = input('id');
+        $user = WechatUser::where('userid',$uid)->find();
+        $this->assign('user',$user);
 
         return $this->fetch();
     }

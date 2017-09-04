@@ -199,3 +199,15 @@ function get_rand_color()
 
     return $bgColor[rand(0,9)];
 }
+
+/**
+ * 获取党龄
+ */
+function get_partyAge($time)
+{
+    if (empty($time)) {
+        return '0年';
+    } else {
+        return date('Y',time()) - substr($time,0,4) .'年';
+    }
+}
