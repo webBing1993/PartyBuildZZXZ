@@ -184,11 +184,19 @@ body {
 .personal_title .title_content,
 .personal_honer .honer_content {
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
+    padding: 0 4%;
     font-size: 1.46rem;
     color: #999999;
     margin-bottom: 8vw;
-    text-align: justify;
+    text-align: center;
     letter-spacing: .1vw;
     line-height: 1.5;
+    display: inline-block;
+}
+.personal_title .title_content p,
+.personal_honer .honer_content p {
+    text-align: left;
+    width: auto;
+    display: inline-block;
 }
