@@ -208,8 +208,8 @@
 {block name="body"}
 <div class="views">
     <div class="list-block" id="list-block-company">
-        <div style="margin-top:100px;margin-left:calc(50% - 83px)" id="wuxiaoxi">
-            <img src="/home/images/review/wuxiaoxi.png" alt="" style="width:166px;">
+        <div style="margin-top:26.67vw;margin-left:calc(50% - 22.2vw)" id="wuxiaoxi">
+            <img src="/home/images/review/wuxiaoxi.png" alt="" style="width:44.27vw;">
         </div>
         <ul>
             {volist name="list" id="vo"}
@@ -217,21 +217,21 @@
                 <div class="swipeout-content">
                     <img src="{$vo.image|get_cover='path'}" alt="封面图片">
                     <div class="list">
-                        <span class="title" style="width:95%;overflow:hidden; white-space:nowrap;text-overflow:ellipsis;font-size:14px;display:inline-block;">{$vo.title}</span>
+                        <span class="title" style="width:95%;overflow:hidden; white-space:nowrap;text-overflow:ellipsis;font-size:1.34rem;display:inline-block;">{$vo.title}</span>
                         <span class="sent_time">
-                            <span style="margin-right: 5px;font-weight: bolder;display: block;height:25px;line-height:25px;">{$vo.class_name}</span>
+                            <span style="margin-right: 1.34vw;font-weight: bolder;display: block;height:6.67vw;line-height:6.67vw;">{$vo.class_name}</span>
                             <span>审核人：{$vo.username}</span>
                             <span>{$vo.review_time|date="Y-m-d",###}</span>
                         </span>
                     </div>
                     {eq name="vo.status" value="1"}
                     <div class="arrow green">
-                        <img src="/home/images/review/yes.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">
+                        <img src="/home/images/review/yes.png" alt="" style="width:4.8vw;height:4.8vw;margin-top:9.6vw;margin-left:1.07vw;">
                     </div>
                     {/eq}
                     {eq name="vo.status" value="-1"}
                     <div class="arrow red">
-                        <img src="/home/images/review/tanhao.png" alt="" style="width:18px;height:18px;margin-top:36px;margin-left:4px;">
+                        <img src="/home/images/review/tanhao.png" alt="" style="width:4.8vw;height:4.8vw;margin-top:9.6vw;margin-left:1.07vw;">
                     </div>
                     {/eq}
                 </div>

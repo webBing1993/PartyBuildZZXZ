@@ -100,22 +100,20 @@ body {
 }
 .message .title {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  height: 30px;
+  padding-left: 3.47vw;
+  padding-right: 3.47vw;
   background: #e82a2a;
   color: #ffffff;
   font-size: 1.3rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .message .list {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  height: 50px;
+  padding-left: 3.47vw;
+  padding-right: 3.47vw;
   background: #ffffff;
-  border-bottom: 1px solid #f1f1f1;
-  line-height: 50px;
+  border-bottom: 0.2vw solid #f1f1f1;
+  line-height: 13.34vw;
 }
 .message .list .fl {
   color: #333333;
@@ -127,17 +125,17 @@ body {
 }
 .message .box .list {
   position: relative;
-  padding-left: 30px;
+  padding-left: 8vw;
 }
 .message .box .list .tri {
   position: absolute;
-  top: 20px;
-  left: 13px;
+  top: 5.34vw;
+  left: 3.47vw;
   content: '';
-  height: 10px;
-  width: 10px;
+  height: 2.67vw;
+  width: 2.67vw;
   background: url('/home/images/statistics/tri.png') 0 0 no-repeat;
-  background-size: 10px 10px;
+  background-size: 2.67vw 2.67vw;
   transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
 }
@@ -158,11 +156,9 @@ body {
 }
 .message .box li {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-left: 43px;
-  height: 40px;
-  border-bottom: 1px solid #f1f1f1;
+  padding-right: 3.47vw;
+  padding-left: 11.47vw;
+  border-bottom: 0.2vw solid #f1f1f1;
   background: #efefef;
-  line-height: 40px;
+  line-height: 10.67vw;
 }

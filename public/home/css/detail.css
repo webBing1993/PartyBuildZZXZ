@@ -17,12 +17,12 @@
 }
 .title{
   text-align: center;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 .note{
   color: #999999;
-  font-size: 12px;
+  font-size: 1.2rem;
   padding: 0 4vw;
   text-align: right;
 }
@@ -32,9 +32,9 @@
 /*文章*/
 .article {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-top: 13px;
+  padding-left: 3.4666vw;
+  padding-right: 3.1666vw;
+  padding-top: 3.4666vw;
 }
 .article .title {
   color: #333333;
@@ -51,7 +51,7 @@
 .article .note {
   color: #999999;
   font-size: 1.2rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .article .note span {
   /*margin-right: 10px;*/
@@ -69,25 +69,25 @@
 .article .content img {
   display: block;
   max-width: 100%!important;
-  margin-bottom: 13px;
+  margin-bottom: 3.4666vw;
 }
 .article .content .video {
   position: relative;
   width: 100%;
-  height: 200px;
-  margin-bottom: 10px;
+  height: 53.34vw;
+  margin-bottom: 2.67vw;
   background: rgba(208, 208, 208, 0.5);
 }
 .article .content .video video {
   width: 100%;
-  height: 200px;
+  height: 14.2vw;
 }
 .article .content .video .play {
   position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 50px;
+  top: calc(50% - 6.6666vw);
+  left: calc(50% - 6.6666vw);
+  width: 13.3333vw;
+  height: 13.3333vw;
   opacity: 0.5;
   display: none;
 }
@@ -97,59 +97,57 @@
 }
 .article .content .note {
   color: #999999;
-  font-size: 14px;
+  font-size: 1.46rem;
 }
 .article .content .note span {
-  height: 40px;
   display: inline-block;
-  margin-right: 10px;
-  line-height: 40px;
+  margin-right: 2.68vw;
+  line-height: 10.68vw;
 }
 .article .content .note_ span{
   margin-right: 0;
 }
 .article .content .note .read {
-  background: url('/home/images/detail/scan_.png') 0 12px no-repeat;
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background: url('/home/images/detail/scan_.png') 0 3.2vw no-repeat;
+  background-size: 4vw 4vw;
+  padding-left: 4.8vw;
 }
 .article .content .note .good {
-  background: url('/home/images/detail/good.png') 0 12px no-repeat;
+  background: url('/home/images/detail/good.png') 0 3.2vw no-repeat;
 }
 .article .content .note .good_ {
   animation: shake 300ms ease;
   -webkit-animation: shake 300ms ease;
-  background: url('/home/images/detail/good_.png') 0 12px no-repeat;
+  background: url('/home/images/detail/good_.png') 0 3.2vw no-repeat;
 }
 .article .content .note .isgood {
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background-size: 4vw 4vw;
+  padding-left: 4.8vw;
 }
 /*评论*/
 .comment {
-  padding-bottom: 50px;
+  padding-bottom: 13.3333vw;
 }
 .comment .sum {
-  height: 30px;
-  padding-left: 10px;
+  padding-left: 2.68vw;
   background: #fcfcfc;
-  border-top: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+  border-top: 0.2vw solid #f1f1f1;
+  border-bottom: 0.2vw solid #f1f1f1;
   font-size: 1.2rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .comment .lists .list {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  min-height: 100px;
-  border-bottom: 1px solid #f1f1f1;
+  padding-left: 3.47vw;
+  padding-right: 3.47vw;
+  min-height: 26.6666vw;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .comment .lists .list .fl img {
-  width: 30px;
-  height: 30px;
-  margin-top: 13px;
-  margin-right: 10px;
+  width: 8vw;
+  height: 8vw;
+  margin-top: 3.47vw;
+  margin-right: 2.68vw;
   overflow: hidden;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -159,8 +157,7 @@
 }
 .comment .lists .list .mid .name {
   width: 100%;
-  height: 56px;
-  line-height: 56px;
+  line-height: 14.935vw;
   color: #999999;
 }
 .comment .lists .list .mid .content {
@@ -169,29 +166,28 @@
 }
 .comment .lists .list .mid .time {
   font-size: 1.2rem;
-  line-height: 20px;
+  line-height: 5.34vw;
   color: #999999;
 }
 .comment .lists .list .fr {
-  margin-top: 15px;
+  margin-top: 4vw;
   color: #999999;
 }
 .comment .lists .list .good {
-  background: url('/home/images/detail/good.png') 0 2px no-repeat;
+  background: url('/home/images/detail/good.png') 0 0.5333vw no-repeat;
 }
 .comment .lists .list .good_ {
   animation: shake 300ms ease;
   -webkit-animation: shake 300ms ease;
-  background: url('/home/images/detail/good_.png') 0 2px no-repeat;
+  background: url('/home/images/detail/good_.png') 0 0.5333vw no-repeat;
 }
 .comment .lists .list .isgood {
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background-size: 4vw 4vw;
+  padding-left: 4.7999vw;
 }
 .comment .tip {
-  height: 40px;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.6666vw;
   color: #c1c1c1;
 }
 /*底部*/
@@ -201,17 +197,17 @@
   width: 100%;
   height: 12vw;
   /*padding-left: 3.4vw;*/
-  border-top: 1px solid #f1f1f1;
+  border-top: 0.2vw solid #f1f1f1;
   background: #ffffff;
   font-family: "Microsoft YaHei", sans-serif;
 }
 .bottom .star {
-  background: url('/home/images/detail/star-border.png') 20px 12px no-repeat;
+  background: url('/home/images/detail/star-border.png') 5.3333vw 3.1999vw no-repeat;
 }
 .bottom .star_ {
   animation: shake 300ms ease;
   -webkit-animation: shake 300ms ease;
-  background: url('/home/images/detail/star-yellow.png') 20px 12px no-repeat;
+  background: url('/home/images/detail/star-yellow.png') 5.3333vw 3.1999vw no-repeat;
 }
 .bottom .collect {
   width: 16vw;
@@ -225,11 +221,11 @@
   height: 8vw;
   width: 94vw;
   margin: 2vw 0;
-  padding-left: 10px;
+  padding-left: 2.68vw;
   background: #fafafa;
-  border: 1px solid #d8d8d8;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  border: 0.27vw solid #d8d8d8;
+  -webkit-border-radius: 2vw;
+  border-radius: 2vw;
   margin-left: 2.5vw;
 }
 .bottom .myword input::-webkit-input-placeholder {
@@ -248,18 +244,18 @@
   margin-top: 5vw;
 }
 .sweet-alert.show-input textarea{
-  border: 1px solid #d8d8d8 !important;
-  border-radius: 6px;
+  border: 0.27vw solid #d8d8d8 !important;
+  border-radius: 1.6vw;
   width: 100%;
   height: 20vw;
   /*text-indent: 5vw;*/
   padding: 3vw;
 }
 .sweet-alert p{
-  font-size: 18px !important;
+  font-size: 1.7rem !important;
 }
 .sweet-alert .sa-error-container p{
-  font-size: 16px !important;
+  font-size: 1.5rem !important;
 }
 .sweet-alert .sa-input-error.show{
   opacity: 0 !important;
@@ -290,16 +286,16 @@
 /*加载动画*/
 .loading {
   width: 100%;
-  height: 40px;
+  height: 10.6666vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
-  top: 17px;
-  left: calc( 50vw - 20px );
+  top: 3.5333vw;
+  left: calc( 50vw - 5.3333vw );
 }

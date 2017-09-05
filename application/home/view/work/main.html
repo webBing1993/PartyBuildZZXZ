@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+{extend name="public/common"}
+
+{block name="style"}
     <script src="/static/sweetalert/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/static/sweetalert/sweetalert.css">
     <title>
@@ -37,34 +35,32 @@
         }
         #list>li{
             width:100%;
-            height:45px;
-            line-height: 45px;
+            line-height: 12vw;
             color:#333;
-            border-bottom: 1px solid #eee;
-            padding-left:12px;
-            font-size:15px;
+            border-bottom: 0.27vw solid #eee;
+            padding-left:3.2vw;
+            font-size:1.34rem;
         }
         #list>li>span{
             float:right;
             color:#999;
-            margin-right:12px;
-            font-size:14px;
+            margin-right:3.2vw;
+            font-size:1.34rem;
         }
         .title{
-            height:45px;
+            height:12vw;
             color:#333;
-            padding-left:12px;
-            line-height: 45px;
+            padding-left:3.2vw;
+            line-height: 12vw;
             font-weight: normal;
-            font-size: 15px;
+            font-size: 1.34rem;
         }
         .sao{
             position:fixed;
-            height:55px;
             color:#fff;
             background-color:#ee3333;
-            font-size: 17px;
-            line-height: 55px;
+            font-size: 1.7rem;
+            line-height: 12vw;
             bottom:0;
             left:0;
             width:100%;
@@ -73,8 +69,8 @@
         .main1>ul>li{
             width:25%;
             float:left;
-            padding-left: 15px;
-            padding-right:15px;
+            padding-left: 4vw;
+            padding-right:4vw;
             overflow: hidden;
         }
         .main1>ul>li>img{
@@ -84,11 +80,11 @@
         }
         .main1>ul>li>span{
             display:block;
-            line-height: 13px;
-            font-size: 13px;
+            line-height: 3.4666vw;
+            font-size: 3.4666vw;
             text-align: center;
-            height:13px;
-            margin-top:7px;
+            height:3.4666vw;
+            margin-top:1.8666vw;
         }
         .title1{
             display:block;
@@ -111,67 +107,67 @@
             left:50%;
             -webkit-transform: translateY(-50%) translateX(-50%);
             background-color:#fff;
-            border-radius: 8px;
+            border-radius: 2.1333vw;
             overflow: hidden;
         }
         .bk_title{
-            margin-top:10px;
+            margin-top:2.6666vw;
             text-align: center;
-            font-size: 18px;
-            line-height: 18px;
-            margin-bottom: 40px;
+            font-size: 1.7rem;
+            line-height: 4.8vw;
+            margin-bottom: 10.6666vw;
             color:#0Baa0C;
             font-weight: bold;
         }
         .bk_title>span{
             display:inline-block;
-            width:15px;
-            height:15px;
+            width:4vw;
+            height:4vw;
             background:url("/work/img/sure.png") no-repeat center center;
             background-size:cover;
-            margin-right:5px;
+            margin-right:1.3333vw;
         }
         #user_img{
-            width: 85px;
-            height:85px;
+            width: 22.6666vw;
+            height:22.6666vw;
             display:block;
             margin:0 auto;
             border-radius: 50%;
-            margin-top:45px;
-            margin-bottom:10px;
+            margin-top:12vw;
+            margin-bottom:2.68vw;
         }
         #user_name{
-            font-size:15px;
+            font-size:1.5rem;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 2.68vw;
         }
         .btn1{
-            height:55px;
-            line-height: 55px;
+            height:14.6666vw;
+            line-height: 14.6666vw;
             background-color:#eee;
         }
         .btn1>a{
             float: left;
             text-align: center;
-            height:55px;
-            line-height: 55px;
+            height:14.6666vw;
+            line-height: 14.6666vw;
             width:50%;
-            font-size: 16px;
+            font-size: 1.46rem;
         }
         .btn1>a:first-child:before {
             content: '';
-            width: 1px;
+            width: 0.27vw;
             height: 20px!important;
             background-color: #aaa;
             float: right;
-            margin-top: 17.5px;
+            margin-top: 4.6666vw;
         }
         .sweet-alert textarea {
             display: none;
         }
     </style>
-</head>
-<body>
+{/block}
+{block name="body"}
 <img src="{$data.front_cover|get_cover='path'}" alt="" class="title1">
 <ul id="list">
     <li>
@@ -221,7 +217,8 @@
         </div>
     </div>
 </div>
-<script src="/work/js/jquery-1.12.1.min.js"></script>
+{/block}
+{block name="script"}
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=WS7BZ-ZBERG-5T5Q3-IBRHI-FVXU3-45FR5&libraries=drawing,geometry,autocomplete,convertor"></script>
 <script>
@@ -360,5 +357,4 @@
 //        });
     });
 </script>
-</body>
-</html>
+{/block}

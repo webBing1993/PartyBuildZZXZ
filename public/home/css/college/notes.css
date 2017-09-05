@@ -95,10 +95,10 @@ textarea::-webkit-input-placeholder {
 .foot .save {
   width: 60vw;
   height: 10.6vw;
-  margin: 10px auto;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid #ff7d6c;
+  margin: 2.6666vw auto;
+  -webkit-border-radius: 1.6vw;
+  border-radius: 1.6vw;
+  border: 0.27vw solid #ff7d6c;
   font-size: 1.6rem;
   text-align: center;
   line-height: 10.6vw;

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>积分排行</title>
-    <style>
+{extend name="public/common"}
+
+{block name="style"}
+<title>红色课堂</title>
+<link rel="stylesheet" href="/home/css/learn.css">
+<style>
         * {
             box-sizing: border-box;
             font-family: 'Microsoft YaHei';
@@ -19,39 +18,37 @@
 
         }
         .top{
-            height:150px;
+            height:40vw;
             background:url("/home/images/rank/1.png") no-repeat center center;
             background-size:cover;
             position:relative;
         }
         .top>.userImg{
-            width:60px;
-            height:60px;
+            width: 16vw;;
+            height: 16vw;;
             left:50%;
-            top:20px;
-            border:1px solid #fff;
+            top:5.34vw;
+            border:0.2vw solid #fff;
             border-radius: 50%;
             position:absolute;
             overflow: hidden;
             -webkit-transform: translateX(-50%);
-            padding-left:2px;
-            padding-top:2px;
+            padding-left: 0.54vw;
+            padding-top:0.54vw;
         }
         .top>.userImg>img{
-            width:54px;
-            height:54px;
+            width: 14.4vw;;
+            height: 14.4vw;;
             border-radius: 50%;
             display:block;
             float:left;
         }
         .top>.now{
-            font-size: 15px;
+            font-size: 1.34rem;
             color: #fff;
-            line-height: 15px;
             width:100%;
-            height:15px;
             position:absolute;
-            bottom:15px;
+            bottom:4vw;
         }
         .top>.now>li{
             width:50%;
@@ -83,61 +80,61 @@
             color:#fff;
         }
         .name{
-            padding-left: 12px;
-            padding-right: 12px;
-            font-size: 14px;
+            padding-left: 3.2vw;
+            padding-right: 3.2vw;
+            font-size: 1.34rem;
             color:#999;
-            line-height: 34px;
+            line-height: 9.2vw;
             border-bottom: 1px solid #e5e5e5;
         }
         .name>span:last-child{
             float:right;
         }
         .ranging>div>ul>li{
-            height:51px;
+            height:13.87vw;
             border-bottom: 1px solid #e5e5e5;
             padding-left:12px;
         }
         .ranging>div>ul>li>.king{
-            width: 31px;
-            height:24px;
+            width: 8.27vw;
+            height:6.4vw;
             float:left;
-            margin-top:13px;
+            margin-top:3.48vw;
         }
         .ranging>div>ul>li>span{
-            width: 31px;
-            height:24px;
+            width: 8.27vw;
+            height:6.4vw;
             float:left;
-            margin-top:13px;
-            line-height: 24px;
-            font-size: 20px;
+            margin-top:3.48vw;
+            /*line-height: 24px;*/
+            /*font-size: 20px;*/
             color:#333;
             text-align: center;
             display:none;
         }
         .ranging>div>ul>li>.userImg{
-            width: 30px;
-            height:30px;
+            width: 8vw;
+            height:8vw;
             float:left;
-            margin-top:10px;
-            margin-left:10px;
+            margin-top:2.68vw;
+            margin-left:2.68vw;
             border-radius: 50%;
         }
         .ranging>div>ul>li>b{
             float:right;
             font-weight: normal;
             color:#333;
-            font-size: 15px;
-            line-height: 50px;
-            margin-right:12px;
+            font-size: 1.34rem;
+            line-height: 13.5vw;
+            margin-right:3.2vw;
         }
         .ranging>div>ul>li>p{
             float:left;
-            line-height: 50px;
-            font-size: 14px;
+            line-height: 13.6vw;
+            font-size: 1.34rem;
             color:#666;
             text-align: center;
-            margin-left:10px;
+            margin-left:2.68vw;
         }
         .ranging>div>ul>li:nth-child(-n+3)>b{
             color:#fc4f41;
@@ -162,13 +159,13 @@
         }
         .topName{
             position:absolute;
-            top:80px;
+            top:21.34vw;
             text-align: center;
             width:100%;
-            font-size: 16px;
+            font-size: 1.46rem;
             color:#fff;
-            line-height: 15px;
-            margin-top:10px;
+            line-height: 4vw;
+            margin-top:2.68vw;
         }
 
 
@@ -186,7 +183,7 @@
             margin: 0 auto;
         }
         .rule>span{
-            font-size: .86rem;
+            font-size: 1.2rem;
             /*line-height: 14px;*/
             color:#fff;
         }
@@ -227,15 +224,16 @@
         }
         #bk>div>p{
             margin-top:4vw;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color:#333;
             padding-left:4vw;
             padding-right:4vw;
             padding-bottom:4vw;
         }
-    </style>
-</head>
-<body >
+</style>
+{/block}
+
+{block name="body"}
     {eq name="visit" value="1"}
     <div class="top">
         <div class="userImg">
@@ -359,8 +357,8 @@
             </p>
         </div>
     </div>
-
-<script src="/static/js/jquery-2.2.1.min.js"></script>
+{/block}
+{block name="script"}
 <script>
     $('.classify>li').click(function(){
         if(!$(this).hasClass('active')){
@@ -387,5 +385,4 @@
     })
 
 </script>
-</body>
-</html>
+{/block}

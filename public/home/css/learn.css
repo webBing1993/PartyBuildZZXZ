@@ -186,31 +186,31 @@ body {
   display: inline-block;
   background: url("/home/images/learn/people.png") 0 0 no-repeat;
   background-size: 4vw;
-  padding-left: 18px;
+  padding-left: 4.8vw;
   color: #999999;
   font-size: 1.2rem;
   text-align: center;
 }
 /*提示*/
 .tip {
-  height: 40px;
+  height: 10.8vw;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.8vw;
   color: #c1c1c1;
   background: #ffffff;
 }
 .loading {
   width: 100%;
-  height: 40px;
+  height: 10.8vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
-  top: 17px;
-  left: calc( 50vw - 20px );
+  top: 4.54vw;
+  left: calc( 50vw - 5.35vw );
 }

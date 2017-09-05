@@ -5,97 +5,101 @@
 }
 body {
   background: #efefef;
-  padding: 13px;
+  padding: 3.47vw;
 }
 .list {
   background: #ffffff;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 13px;
+  -webkit-border-radius: 1.336vw;
+  border-radius: 1.336vw;
+  padding: 4vw;
+  margin-bottom: 3.47vw;
 }
 .list:nth-child(6) {
-  padding-bottom: 50px;
+  padding-bottom: 13.336vw;
 }
 .list .title {
   font-size: 1.5rem;
-  line-height: 40px;
-  padding-left: 13px;
+  line-height: 10.67vw;
+  padding-left: 3.47vw;
   font-weight: 600;
 }
 .list .pie {
   width: 40vw;
   height: 40vw;
-  margin-top: 15px;
+  margin-top: 4vw;
+}
+.list .pie canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 .list .bar {
   width: 100%;
   /*height: 70vw;*/
 }
 .list #pie1 .legend div {
-  top: 40px!important;
-  left: calc(100% + 25px);
+  top: 10.67vw!important;
+  left: calc(100% + 6.6666vw);
 }
 .list #pie1 .legend table {
-  top: 40px!important;
-  left: calc(100% + 25px);
+  top: 10.67vw!important;
+  left: calc(100% + 6.6666vw);
 }
 .list #pie2 .legend div {
-  top: 40px!important;
-  left: -120px;
+  top: 10.67vw!important;
+  left: -31.9999vw;
 }
 .list #pie2 .legend table {
-  top: 40px!important;
-  left: -120px;
+  top: 10.67vw!important;
+  left: -31.9999vw;
 }
 .list #pie3 .legend div {
-  top: 60px!important;
-  left: calc(100% + 20px);
+  top: 15.9999vw !important;
+  left: calc(100% + 5.3333vw);
 }
 .list #pie3 .legend table {
-  top: 60px!important;
-  left: calc(100% + 20px);
+  top: 15.9999vw !important;
+  left: calc(100% + 5.3333vw);
 }
 #flotTip {
-  min-width: 100px;
-  min-height: 30px;
-  padding: 5px;
+  min-width: 26.667vw;
+  min-height: 8vw;
+  padding: 1.336vw;
   background: rgba(0, 0, 0, 0.8);
   color: #ffffff;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 1.6vw;
+  border-radius: 1.6vw;
 }
 .cir {
   position: relative;
   width: 100%;
-  height: 120px;
-  margin: 20px auto;
+  height: 31.9999vw;
+  margin: 5.3333vw auto;
 }
 .cir span {
   position: absolute;
-  top: 80px;
+  top: 21.3333vw;
   color: #b2b2b2;
 }
 .cir .m {
-  left: 80px;
+  left: 21.3333vw;
 }
 .cir .f {
-  left: calc(60% + 45px);
+  left: calc(60% + 11.9999vw);
 }
 .cir #cir1 {
   position: absolute;
   top: 0;
-  left: 30px;
+  left: 8vw;
   width: 50%;
 }
 .cir #cir2 {
   position: absolute;
   top: 0;
-  left: calc(60% - 10px);
+  left: calc(60% - 2.6666vw);
   width: 50%;
 }
 .rad-prg {
-  margin: 20px 0;
+  margin: 5.33333vw 0;
 }
 /** logo inside example **/
 #indicatorContainerWrap5,
@@ -104,10 +108,10 @@ body {
   position: relative;
 }
 #prgLogo {
-  height: 60px;
+  height: 16vw;
   left: 50%;
-  margin-left: -30px;
-  margin-top: -30px;
+  margin-left: -8vw;
+  margin-top: -8vw;
   position: absolute;
   top: 50%;
 }

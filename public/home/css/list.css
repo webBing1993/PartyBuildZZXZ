@@ -15,11 +15,11 @@
 }
 .lists .list {
   display: inline-block;
-  height: 80px;
+  height: 21.6vw;
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  border-bottom: 1px solid #f1f1f1;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  border-bottom: 0.27vw solid #f1f1f1;
   color: #666666;
 }
 .lists .list .title {
@@ -28,25 +28,25 @@
 }
 .lists .list .content {
   font-size: 1.3rem;
-  height: 34px;
+  height: 9.334vw;
 }
 .lists .list .time {
-  margin-top: 5px;
+  margin-top: 1.6vw;
   font-size: 1.2rem;
 }
 .lists .list .fl img {
-  width: 80px;
-  height: 60px;
-  margin-top: 10px;
+  width: 21.6vw;
+  height: 16.2667vw;
+  margin-top: 2.934vw;
 }
 .lists .list .right {
-  width: calc(100% - 90px);
-  height: 60px;
-  margin-top: 10px;
-  margin-left: 10px;
+  width: calc(100% - 24.267vw);
+  height: 16.267vw;
+  margin-top: 2.934vw;
+  margin-left: 2.934vw;
   color: #999999;
 }
 .lists .list .right .title {
-  margin-bottom: 5px;
-  height: 38px;
+  margin-bottom: 1.6vw;
+  height: 10.4vw;
 }

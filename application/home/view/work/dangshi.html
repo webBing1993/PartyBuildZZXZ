@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta content="telephone=no" name="format-detection">
+{extend name="public/common"}
+
+{block name="style"}
     <link rel="stylesheet" href="/static/framework7/framework7.ios.min.css">
     <link rel="stylesheet" href="/static/framework7/framework7.ios.colors.min.css">
     <title>党史</title>
@@ -30,7 +24,7 @@
         }
         /*基础样式*/
         .view>.navbar{
-            height:50px;
+            height:13.3333vw;
         }
         .page-content{
             padding-top:30%;
@@ -41,7 +35,7 @@
             /*.swiper*/
         .swiper-container{
             background:#fff;
-            height:180px;
+            height:47.9999vw;
         }
         .swiper-slide>div{
             position:absolute;
@@ -61,18 +55,18 @@
             padding-left:3%;display:none;position:absolute;top:0;left:0;
         }
         .list-block .item-title{
-            white-space:normal;text-indent:2em;color:#666;font-size:14px;line-height:25px;
+            white-space:normal;text-indent:2em;color:#666;font-size:1.34rem;line-height:6.6666vw;
         }
         .item-title>span:nth-child(1){
-            color:#D10E15;font-size:16px;
+            color:#D10E15;font-size:1.46rem;
         }
         .item-title>span:nth-child(2){
             color:#D10E15;
         }
         #btn1{
-            position:absolute;bottom:30px;right:20px;width:50px;height:50px;
+            position:absolute;bottom:8vw;right:5.3333vw;width:13.3333vw;height:13.3333vw;
             display: block;
-            -webkit-transform-origin: 25px 25px;z-index:1000000;
+            -webkit-transform-origin: 6.6666vw 6.6666vw;z-index:1000000;
         }
         /**/
         .swiper-slide>div{
@@ -86,21 +80,21 @@
         }
         .swiper-slide>div>span{
             color:#fff;
-            height:20px;
-            line-height: 20px;
+            height:5.3333vw;
+            line-height: 5.3333vw;
             width:95%;
             display: block;
             float:left;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            padding-left:15px;
+            padding-left:4vw;
             z-index:100;
-            font-size:14px;
+            font-size:1.34rem;
         }
     </style>
-</head>
-<body>
+{/block}
+{block name="body"}
 <div class="views">
     <div class="view view-main">
         <div class="page">
@@ -334,8 +328,8 @@
 
     </div>
 </div>
-
-<script src="/home/js/jquery-1.12.1.min.js"></script>
+{/block}
+{block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
     $(function(){
@@ -415,5 +409,4 @@
 
 
 </script>
-</body>
-</html>
+{/block}

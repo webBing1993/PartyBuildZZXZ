@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+{extend name="public/common"}
+
+{block name="style"}
     <title>二维码</title>
     <style>
         * {
@@ -30,17 +28,18 @@
             left:50%;
             -webkit-transform: translateY(-50%) translateX(-50%);
             display:block;
-            border:4px solid #fff;
-            border-radius: 5px;
+            border:1.07vw solid #fff;
+            border-radius: 1.333vw;
             display:block;
             display:none;
         }
     </style>
-</head>
-<body>
+{/block}
+{block name="body"}
 <div id="qrcode"></div>
 <img src="/home/images/tourist/logo.jpg" alt="">
-<script src="/work/js/jquery-1.12.1.min.js"></script>
+{/block}
+{block name="script"}
 <script src="/work/js/jquery.qrcode.min.js"></script>
 <script>
     jQuery('#qrcode').qrcode({width: document.body.clientWidth-20,height: document.body.clientWidth-20,text: "{$link}"+"/home/work/touristmain2"});
@@ -50,5 +49,4 @@
     $('img').height(document.body.clientWidth*0.2);
     $('img').show();
 </script>
-</body>
-</html>
+{/block}

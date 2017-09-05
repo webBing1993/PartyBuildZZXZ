@@ -11,8 +11,8 @@
 <div class="views">
 	<div class="list-block" id="list-block-company">
 		{eq name="list" value=""}
-		<div style="margin-top:100px;margin-left:calc(50% - 83px)" id="wuxiaoxi">
-			<img src="/home/images/nomessage.png" alt="" style="width:166px;">
+		<div style="margin-top:26.67vw;margin-left:calc(50% - 22.2vw)" id="wuxiaoxi">
+			<img src="/home/images/nomessage.png" alt="" style="width:44.27vw;">
 		</div>
 		{else/}
 		<ul>
@@ -25,9 +25,9 @@
 				{/in}
 				<img src="{$vo.front_cover|get_cover='path'}" alt="封面图片">
 				<div class="list">
-					<span class="title" style="font-size:14px;width:90%;">{$vo.title}</span>
+					<span class="title" style="width:90%;">{$vo.title}</span>
 					<span class="sent_time">
-						<span style="margin-right: 5px;font-weight: bolder;">{$vo.type_name}</span>
+						<span style="margin-right: 1.34vw;font-weight: bolder;">{$vo.type_name}</span>
 						<span>创建人：{$vo.username}</span>
 						<span>{$vo.create_time|time_format='Y-m-d'}</span>
 					</span>
@@ -118,7 +118,7 @@ $('title' ).text('文章审核');
 	});
 	//
 	if($("ul").find("li").length > 0){
-		$('#wuxiaoxi').hide()
+//		$('#wuxiaoxi').hide()
 	}
 	else{
 		$('#wuxiaoxi').show()

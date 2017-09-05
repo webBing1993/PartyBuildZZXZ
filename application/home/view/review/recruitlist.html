@@ -10,8 +10,8 @@
 {block name="body"}
 <div class="views">
     <div class="list-block" id="list-block-company">
-        <div style="margin-top:100px;margin-left:calc(50% - 83px)" id="wuxiaoxi">
-            <img src="/home/images/nomessage.png" alt="" style="width:166px;">
+        <div style="margin-top:26.67vw;margin-left:calc(50% - 22.2vw)" id="wuxiaoxi">
+            <img src="/home/images/nomessage.png" alt="" style="width:44.27vw;">
         </div>
         <ul>
             {volist name="list" id="vo"}
@@ -19,9 +19,9 @@
                 <div class="swipeout-content" onclick="jump({$vo.focus_main})">
                     <img src="{$vo.list_image|get_cover='path'}" alt="封面图片">
                     <div class="list">
-                        <span class="title" style="font-size:14px;width:90%;">{$vo.title}</span>
+                        <span class="title" style="font-size:1.34rem;width:90%;">{$vo.title}</span>
 						<span class="sent_time">
-							<span style="margin-right: 5px;font-weight: bolder;">[志愿招募]</span>
+							<span style="margin-right: 1.34vw;font-weight: bolder;">[志愿招募]</span>
 							<span>发布人：{$vo->user->name}</span>
 							<span>{$vo.create_time|time_format='Y-m-d'}</span>
 						</span>

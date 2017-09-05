@@ -120,7 +120,7 @@ body {
   text-align: center;
 }
 .tabs .tab:first-child {
-  border-right: 1px solid #e5e5e5;
+  border-right: 0.27vw solid #e5e5e5;
 }
 .tabs .tab:nth-child(2) {
   /*border-right: 1px solid #e5e5e5;*/
@@ -170,7 +170,7 @@ body {
 }
 .branch_history .branch_history_s {
   width: 100%;
-  border-bottom: 1px dotted #bbb;
+  border-bottom: 0.27vw dotted #bbb;
 }
 .branch_history .branch_history_s>div {
   display: inline-block;
@@ -181,7 +181,7 @@ body {
   margin: 2vw 0;
 }
 .branch_history .branch_history_s>div:first-of-type {
-  border-right: 1px solid #eee;
+  border-right: 0.27vw solid #eee;
 }
 /*.branch_history_x .devol_time {
   width: 44%;
@@ -262,13 +262,13 @@ body {
 .listbox .box .box_.summary p {
   margin-top: 2vw;
   text-indent: 2em;
-  font-size: 13px;
-  line-height: 20px;
+  font-size: 1.34rem;
+  line-height: 5.3333vw;
 }
 .listbox .box .box_ .lists {
-  padding: 13px;
+  padding: 3.734vw;
   color: #333333;
-  font-size: 14px;
+  font-size: 1.34rem;
 }
 .listbox .box .box_ .lists .name1 {
   display: inline-block;
@@ -290,8 +290,8 @@ body {
   position: relative;
   top: 0;
   font-size: 1.6rem;
-  padding-left: 15px;
-  line-height: 30px;
+  padding-left: 4.2667vw;
+  line-height: 8vw;
 }
 .listbox .box .box_ .lists .party1 a{
   color: #333;
@@ -301,13 +301,13 @@ body {
 }
 .listbox .box .box_ .lists .party1 .tri {
   position: absolute;
-  top: 15px;
+  top: 4.2667vw;
   left: 0;
   content: '';
-  height: 10px;
-  width: 10px;
+  height: 2.6666vw;
+  width: 2.6666vw;
   background: url('/home/images/structure/tri.png') 0 0 no-repeat;
-  background-size: 10px 10px;
+  background-size: 2.6666vw 2.6666vw;
 }
 .listbox .box .box_ .lists .detail1 {
   display: none;
@@ -316,16 +316,16 @@ body {
 .listbox .box .box_ .lists .detail1 .name2 {
   display: inline-block;
   width: 90%;
-  height: 45px;
-  margin-left: 30px;
+  height: 12.2667vw;
+  margin-left: 8vw;
   font-size: 14px;
   color: #333333;
-  line-height: 45px;
-  border-bottom: 1px solid #f1f1f1;
+  line-height: 12.2667vw;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 @media screen and (max-width: 320px) {
   .listbox .box .box_ .lists .detail1 .name2 {
-    font-size: 12px;
+    font-size: 1.2rem;
   }
 }
 .listbox .box .box_ .lists .todown {
@@ -375,29 +375,29 @@ body {
 }
 .table .thead .th {
   display: inline-block;
-  height: 46px;
+  height: 12.2667vw;
   font-size: 1.8rem;
   font-weight: 600;
   font-family: "Microsoft YaHei", sans-serif;
-  line-height: 46px;
+  line-height: 12.2667vw;
   text-align: center;
-  border-right: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+  border-right: 0.27vw solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .table .tbody {
   height: 100%;
 }
 .table .tbody .tb {
-  padding: 50px 10px;
+  padding: 13.6vw 2.6666vw;
   font-size: 1.3rem;
-  border-right: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+  border-right: 0.27vw solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .table .tbody .tb span {
   display: inline-block;
   width: 100%;
-  height: 30px;
-  line-height: 30px;
+  height: 8vw;
+  line-height: 8vw;
   text-align: center;
 }
 .table .tbody .party {
@@ -411,10 +411,10 @@ body {
   display: inline-block;
   height: auto;
   vertical-align: middle;
-  line-height: 20px;
+  line-height: 5.333vw;
 }
 .d_list {
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 0.27vw solid #f5f5f5;
   padding: 4vw;
 }
 .d_list>div {
@@ -430,7 +430,7 @@ body {
   text-align: center;
   color: #fff;
   font-size: 6vw;
-  border-radius: 5px;
+  border-radius: 1.6vw;
 }
 .d_name {
   font-size: 1.64rem;

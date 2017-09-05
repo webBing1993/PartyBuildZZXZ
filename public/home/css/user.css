@@ -23,10 +23,10 @@ body {
   height: 18.7vw;
   overflow: hidden;
   margin-top: 12vw;
-  border: 2px solid #ffffff;
+  border: 0.5333vw solid #ffffff;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.31);
+  box-shadow: 0.5333vw 0.5333vw 0.5333vw rgba(0, 0, 0, 0.31);
   background: url("/home/images/test/1.jpg") center no-repeat;
   background-size:100%;
 }
@@ -94,7 +94,7 @@ body {
   height: 13.335vw;
   background: #ffffff;
   border-bottom: 1px solid #f7f7f7;
-  font-size: 15px;
+  font-size: 1.46rem;
 }
 .lists .list span {
   display: inline-block;
@@ -103,19 +103,19 @@ body {
   color: #333333;
   line-height: 13.3vw;
 }
-.lists .list:nth-child(1) span {
+.lists .list.list1 span {
   background: url("/home/images/user/icon_1.png") 0 3vw no-repeat;
   background-size: 6.5vw 6.5vw;
 }
-.lists .list:nth-child(2) span {
+.lists .list.list2 span {
   background: url("/home/images/user/icon_2.png") 0 3vw no-repeat;
   background-size: 6.5vw 5.5vw;
 }
-.lists .list:nth-child(3) span {
+.lists .list.list3 span {
   background: url("/home/images/user/icon_3.png") 0 3vw no-repeat;
   background-size: 6vw 6.2vw;
 }
-.lists .list:nth-child(4) span {
+.lists .list.list4 span {
   background: url("/home/images/user/icon_4.png") 0 3vw no-repeat;
   background-size: 6.2vw 6.2vw;
 }
@@ -153,7 +153,7 @@ body {
   top: 25%;
   left:50%;
   -webkit-transform: translateY(-50%) translateX(-50%);
-  border-radius: 20px 0 20px 0;
+  border-radius: 5.3333vw 0;
   overflow: hidden;
   background-color:#fff;
   border: none;

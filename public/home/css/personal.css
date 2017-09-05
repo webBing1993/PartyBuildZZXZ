@@ -36,13 +36,13 @@ body {
   font-size: 1.46rem;
 }
 .lists .list:last-child {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .er{
-  width: 20px;
-  height: 20px;
-  margin-top: 15px;
-  margin-right: 8px;
+  width: 5.34vw;
+  height: 5.34vw;
+  margin-top: 4vw;
+  margin-right: 2.1333vw;
 }
 .modal-content{
   position: relative;
@@ -59,10 +59,10 @@ body {
   position: absolute;
   top:36%;
   left:36%;
-  width: 80px;
-  height: 80px;
-  margin-top: 4px;
-  border: 8px solid #ffffff;
+  width: 21.3333vw;
+  height: 21.3333vw;
+  margin-top: 1.0666vw;
+  border: 2.1333vw solid #ffffff;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   overflow: hidden;
@@ -76,7 +76,7 @@ body {
 }
 .personal_title,
 .personal_honer {
-  border-bottom: .5px solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
   background-color: #ffffff;
   width: 100vw;
 }

@@ -5,58 +5,62 @@ body {
 }
 .list {
   position: relative;
-  min-height: 250px;
+  min-height: 77.34vw;
   background: #ffffff;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 26px;
+  -webkit-border-radius: 2.14vw;
+  border-radius: 2.14vw;
+  padding: 4vw;
+  margin-bottom: 6.94vw;
 }
 .list:nth-child(3){
   min-height: 300px;
 }
 .list .title{
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 10px;
+  font-size: 1.46rem;
+  line-height: 5.36vw;
+  margin-bottom: 2.68vw;
 }
 #indicatorContainer{
   position: absolute;
   left: 0;
 }
+#indicatorContainer canvas {
+  width: 53.34vw;
+  height: 53.34vw;
+}
 .sum{
   position: absolute;
-  left: 60px;
-  top:105px;
-  width: 78px;
-  height: 78px;
+  left: 16vw;
+  top:28vw;
+  width: 20.8vw;
+  height: 20.8vw;
   background: #ffffff;
   color:#999999;
-  font-size: 16px;
+  font-size: 1.46rem;
   text-align: center;
   vertical-align: middle;
-  line-height: 22px;
+  line-height: 6vw;
   -webkit-border-radius:50%;
   border-radius:50%;
 }
 .detail{
   position: absolute;
-  left: 220px;
-  top:110px;
+  left: 58.6667vw;
+  top:29.34vw;
 }
 .in,.out{
   position: relative;
-  height: 30px;
-  line-height: 30px;
+  height: 8vw;
+  line-height: 8vw;
 }
 .in:before,.out:before{
   content:'';
   position: absolute;
-  top:10px;
-  left:-15px;
-  width: 10px;
-  height: 10px;
+  top:2.67vw;
+  left:-4vw;
+  width: 2.67vw;
+  height: 2.67vw;
 }
 .in:before{
   background: #92c3d5;
@@ -66,9 +70,9 @@ body {
 }
 #line{
   position: absolute;
-  top:20px;
-  width: calc(100vw - 50px);
-  height: 300px;
+  top:5.34vw;
+  width: calc(100vw - 13.33vw);
+  height: 80vw;
 }
 .people,.hour{
   font-size: 12px;
