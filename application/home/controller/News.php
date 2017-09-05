@@ -22,7 +22,6 @@ class News extends Base
      */
     public function index($type)
     {
-
         $list1 = '';
         $list2 = '';
         $list3 = '';

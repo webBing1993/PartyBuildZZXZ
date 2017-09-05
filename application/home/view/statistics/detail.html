@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<link rel="stylesheet" href="/home/css/chart.css">
+<link rel="stylesheet" href="/home/css/chart1.css">
 {/block}
 
 {block name="body"}
@@ -37,7 +37,6 @@
 <script>
 $(function(){
 	//模块标题
-	$('title').text('二十四小时浏览统计报表');
 	//data1 内外部浏览量 = [内部人数，外部人数]
 	var data1 = {$data.user};
 	//data2 各时段浏览量

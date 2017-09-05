@@ -186,7 +186,9 @@ $(function(){
 
 	//悬浮框移动
 	{eq name="visit" value="0"}
-	moveanyway();
+		{neq name='type' value='1'}
+		moveanyway();
+		{/neq}
 	{/eq}
 
 

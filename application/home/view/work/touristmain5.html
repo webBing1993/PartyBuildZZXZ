@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<title>地信红盟</title>
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: 'Microsoft YaHei';
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, p, table, th, td, select, option {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    body{
+        background-color:#EBEBEB;
+    }
+    .clearfix:before{
+        display:table;
+        content:'';
+    }
+    .clearfix:after{
+        display:table;
+        content:'';
+        clear:both;
+    }
+    .bottom{
+        height:50px;
+        border-top:1px solid #f9f9f9;
+        width:100%;
+        position:fixed;
+        bottom:0;
+        background-color:#FAFAFA;
+    }
+    .bottom>div{
+        font-size: 15px;
+        line-height: 49px;
+        text-align: center;
+        height:49px;
+        float:left;
+        width:50%;
+        color:#333;
+    }
+    .bottom>div:not(:last-child):before {
+        content: '';
+        width: 1px;
+        height: 49px!important;
+        background-color: #e5e5e5;
+        float: right;
+    }
+    .top>span{
+        display:block;
+        width:42px;
+        background-color:#cecece;
+        color:#fff;
+        margin:0 auto;
+        margin-top:10px;
+        margin-bottom:10px;
+        text-align: center;
+        font-size: 11px;
+        border-radius: 5px;
+        line-height: 20px;
+    }
+    .top>img{
+        width: 40px;
+        height:40px;
+        float:left;
+        margin-left:10px;
+    }
+    .top>p{
+        font-size: 15px;
+        color:#333;
+        background-color:#fff;
+        float: left;
+        margin-left:10px;
+        border: 1px solid #e5e5e5;
+        padding-left:10px;
+        padding-right:5px;
+        border-radius: 5px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        width:65%;
+    }
+    .top>b{
+        width:10px;
+        height:18px;
+        background:url("/work/tourist/21.png") no-repeat center center;
+        background-size:cover;
+        position:absolute;
+        top:52px;
+        left:52px;
+    }
+</style>
+<body>
+<div class="top">
+    <span></span>
+    <img src="/work/tourist/14.png" alt="">
+    <p>您好！欢迎关注余杭信达教育党建！</p>
+    <b></b>
+</div>
+<div class="bottom">
+    <div data-id="{$link}/home/news/index/type/3">先锋服务</div>
+    <div data-id="{$link}/home/news/index/type/4">先锋榜样</div>
+</div>
+<script src="/work/js/jquery-1.12.1.min.js"></script>
+<script>
+    $('.bottom>div').click(function(){
+        window.location.href=$(this).attr('data-id');
+    })
+    //取时间
+    function CurentTime()
+    {
+        var now = new Date();
+        var year = '';       //年
+        var month = '';     //月
+        var day = '';            //日
+        var hh = now.getHours();            //时
+        var mm = now.getMinutes();          //分
+        var clock = '';
+        if(month < 10)
+            if(day < 10)
+                if(hh < 10)
+                    clock += "0";
+        clock += hh + ":";
+        if (mm < 10) clock += '0';
+        clock += mm;
+        return(clock);
+    }
+    $('.top>span').html(CurentTime());
+</script>
+</body>
+</html>

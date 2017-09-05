@@ -22,7 +22,7 @@
             </div>
             <div class="fl">
                 <div class="info_img"><img src="/home/images/structure/icon_4.png" alt=""></div>
-                <div class="info_rank">{$user.education==''?'暂无':$user.education}</div>
+                <div class="info_rank">{$user.education?$user.education:'暂无'}</div>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             一句话承诺
         </div>
         <div class="title_content">
-            <p>{$user.promise==''?'暂无':$user.education}</p>
+            <p>{$user.promise?$user.promise:'暂无'}</p>
         </div>
     </div>
     <div class="personal_honer">
@@ -41,7 +41,7 @@
             党员荣誉
         </div>
         <div class="honer_content">
-            <p>{$user.honor==''?'暂无':$user.education}</p>
+            <p>{$user.honor?$user.honor:'暂无'}</p>
         </div>
     </div>
 </div>

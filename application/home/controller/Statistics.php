@@ -115,7 +115,7 @@ class Statistics extends Base {
         $data['user'] = json_encode([$inuser,$outuser]);
         $this->assign('data',$data);
 
-
+//        dump($data);
         return $this->fetch();
     }
 

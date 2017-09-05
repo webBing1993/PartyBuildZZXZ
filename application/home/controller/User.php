@@ -136,11 +136,25 @@ class User extends Base {
     public function mypublish()
     {
         $uid = session('userId');
-        $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+        // union第二张表没有该用户数据就会报错
+        $info = NewsModel::where('create_user',$uid)->find();
+
+        if ($info) {
+
+            $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
             ->table('pb_learn')
-            ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit 8")
-            ->where('create_user',$uid)
-            ->select();
+                ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit 8")
+                ->where('create_user',$uid)
+                ->select();
+        } else {
+
+            $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+            ->table('pb_learn')
+                ->where('create_user',$uid)
+                ->order('create_time desc')
+                ->limit(8)
+                ->select();
+        }
 
         $this->assign('list',$res);
 
@@ -154,11 +168,29 @@ class User extends Base {
     {
         $len = input('length');
         $uid = session('userId');
-        $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
-        ->table('pb_learn')
-            ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit $len,7")
-            ->where('create_user',$uid)
-            ->select();
+
+        // union第二张表没有该用户数据就会报错
+        $info = NewsModel::where('create_user',$uid)->find();
+
+        if ($info) {
+
+            $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+            ->table('pb_learn')
+                ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit $len,7")
+                ->where('create_user',$uid)
+                ->select();
+        } else {
+
+            $res = Db::field('title,create_time,music_path as table_type,user_type,id,front_cover') // 利用不存在值,判断两张表
+            ->table('pb_learn')
+                ->union("SELECT title,create_time,table_type,user_type,id,front_cover FROM pb_news where create_user=$uid order by create_time desc limit $len,7")
+                ->where('create_user',$uid)
+                ->order('create_time desc')
+                ->limit("$len,7")
+                ->select();
+        }
+
+
 
         if (!empty($res)) {
 

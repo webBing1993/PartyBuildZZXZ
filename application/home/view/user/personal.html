@@ -36,15 +36,15 @@
 	</div>
 	<div class="list clear">
 		<span class="fl">出生日期</span>
-		<span class="fr">{$user.birthday==''?'暂无':$user.birthday}</span>
+		<span class="fr">{$user.birthday?$user.birthday:'暂无'}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">学历</span>
-		<span class="fr">{$user.education==''?'暂无':$user.education}</span>
+		<span class="fr">{$user.education?$user.education:'暂无'}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">入党时间</span>
-		<span class="fr">{$user.partytime==''?'暂无':$user.partytime}</span>
+		<span class="fr">{$user.partytime?$user.partytime:'暂无'}</span>
 	</div>
 	<div class="list clear">
 		<span class="fl">党龄</span>
