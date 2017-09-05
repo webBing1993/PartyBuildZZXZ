@@ -44,9 +44,11 @@
 	<a href="{:Url('User/personal')}" class="list clear">
 		<span>党员ID</span>
 	</a>
+	{eq name="is" value="1"}
 	<a href="{:Url('Rank/integral')}" class="list clear">
 		<span>个人排行榜</span>
 	</a>
+	{/eq}
 	<a href="{:Url('User/qcode')}" class="list clear">
 		<span>党员签到</span>
 	</a>
