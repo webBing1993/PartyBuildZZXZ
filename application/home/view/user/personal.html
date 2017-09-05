@@ -57,7 +57,7 @@
 		一句话承诺
 	</div>
 	<div class="title_content">
-		<p>{$user.promise==''?'暂无':$user.education}</p>
+		<p>{$user.promise?$user.promise:'暂无'}</p>
 	</div>
 </div>
 <div class="personal_honer">
@@ -66,7 +66,7 @@
 		党员荣誉
 	</div>
 	<div class="honer_content">
-		<p>{$user.honor==''?'暂无':$user.education}</p>
+		<p>{$user.honor?$user.honor:'暂无'}</p>
 	</div>
 </div>
 <!-- 二维码 -->
