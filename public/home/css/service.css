@@ -7,13 +7,13 @@
 }
 .banner{
 	width: 100%;
-	height: 180px;
-	margin-bottom: 90px;
+	height: 48vw;
+	margin-bottom: 24vw;
 }
 @media screen and (max-height: 568px) {
 	.banner {
-		height: 160px;
-		margin-bottom: 50px;
+		height: 42.6666vw;
+		margin-bottom: 13.3333vw;
 	}
 }
 .banner img{
@@ -23,8 +23,8 @@
 span{
 	width: 100%;
 	display: inline-block;
-	font-size: 16px;
-	line-height: 32px;
+	font-size: 1.5rem;
+	line-height: 8.5333vw;
 	font-weight: 500;
 }
 .grey{
@@ -42,11 +42,11 @@ span{
 }
 @media screen and (max-height: 480px) {
 	.banner {
-		height: 160px;
-		margin-bottom: 36px;
+		height: 42.6666vw;
+		margin-bottom: 13.3333vw;
 	}
 	span{
-		font-size: 14px;
-		line-height: 26px;
+		font-size: 1.34rem;
+		line-height: 6.9333vw;
 	}
 }

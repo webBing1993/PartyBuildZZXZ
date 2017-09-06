@@ -23,7 +23,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 10px;
+  height: 2.6666vw;
   z-index: 2;
 }
 .content {
@@ -32,47 +32,47 @@
 }
 .content .top {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
 }
 .content .top .title {
   font-weight: 600;
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 4vw;
+  margin-bottom: 2.6666vw;
 }
 .content .top .note span {
-  height: 40px;
+  height: 10.6666vw;
   display: inline-block;
-  margin-right: 10px;
-  line-height: 40px;
+  margin-right: 2.6666vw;
+  line-height: 10.6666vw;
 }
 .content .top .read {
-  background: url('/home/images/detail/scan_.png') 0 12px no-repeat;
-  background-size: 15px 15px;
+  background: url('/home/images/detail/scan_.png') 0 3.2vw no-repeat;
+  background-size: 4vw 4vw;
   padding-left: 18px;
 }
 .content .top .col {
-  background: url('/home/images/detail/star-border.png') 0 12px no-repeat;
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background: url('/home/images/detail/star-border.png') 0 3.2vw no-repeat;
+  background-size: 4vw 4vw;
+  padding-left: 4.8vw;
 }
 .content .message {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #eeeeee;
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+  border-top: 0.2666vw solid #eeeeee;
+  border-bottom: 0.2666vw solid #eeeeee;
 }
 .content .message div {
   width: 100%;
-  height: 40px;
-  padding-left: 50px;
-  line-height: 40px;
+  height: 10.6666vw;
+  padding-left: 13.3333vw;
+  line-height: 10.6666vw;
 }
 .content .message div span {
   display: inline-block;
   width: 100%;
-  padding-right: 15px;
-  border-bottom: 1px dashed #eeeeee;
+  padding-right: 4vw;
+  border-bottom: 0.2666vw dashed #eeeeee;
 }
 .content .message div span:nth-child(5) {
   border-bottom: none;
@@ -81,51 +81,51 @@
   padding-right: 0!important;
 }
 .content .message div:nth-child(1) {
-  background: url("/home/images/detail/people.png") 15px 10px no-repeat;
-  background-size: 20px 20px ;
+  background: url("/home/images/detail/people.png") 4vw 2.6666vw no-repeat;
+  background-size: 5.3333vw 5.3333vw;
 }
 .content .message div:nth-child(2) {
-  background: url("/home/images/detail/time.png") 15px 10px no-repeat;
-  background-size: 20px 20px ;
+  background: url("/home/images/detail/time.png") 4vw 2.6666vw no-repeat;
+  background-size: 5.3333vw 5.3333vw ;
 }
 .content .message div:nth-child(3) {
-  background: url("/home/images/detail/address.png") 15px 10px no-repeat;
-  background-size: 20px 20px ;
+  background: url("/home/images/detail/address.png") 4vw 2.6666vw no-repeat;
+  background-size: 5.3333vw 5.3333vw ;
 }
 .content .article {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  margin-bottom: 15px;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  margin-bottom: 4vw;
 }
 .content .article * {
   max-width: 100%!important;
 }
 /*评论*/
 .comment {
-  padding-bottom: 50px;
+  padding-bottom: 13.3333vw;
 }
 .comment .sum {
-  height: 30px;
-  padding-left: 10px;
+  height: 8vw;
+  padding-left: 2.6666vw;
   background: #fbfbfb;
-  border-top: 1px solid #dadada;
-  border-bottom: 1px solid #dadada;
+  border-top: 0.2666vw solid #dadada;
+  border-bottom: 0.2666vw solid #dadada;
   font-size: 1.2rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .comment .lists .list {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  min-height: 100px;
-  border-bottom: 1px solid #dadada;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  min-height: 26.6666vw;
+  border-bottom: 0.2666vw solid #dadada;
 }
 .comment .lists .list .fl img {
-  width: 30px;
-  height: 30px;
-  margin-top: 13px;
-  margin-right: 10px;
+  width: 8vw;
+  height: 8vw;
+  margin-top: 3.4666vw;
+  margin-right: 2.6666vw;
   overflow: hidden;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -135,8 +135,8 @@
 }
 .comment .lists .list .mid .name {
   width: 100%;
-  height: 56px;
-  line-height: 56px;
+  height: 14.9333vw;
+  line-height: 14.9333vw;
   color: #666666;
 }
 .comment .lists .list .mid .content {
@@ -145,29 +145,29 @@
 }
 .comment .lists .list .mid .time {
   font-size: 1.2rem;
-  line-height: 20px;
+  line-height: 5.3333vw;
   color: #666666;
 }
 .comment .lists .list .fr {
-  margin-top: 15px;
+  margin-top: 4vw;
   color: #666666;
 }
 .comment .lists .list .good {
-  background: url('/home/images/detail/good.png') 0 2px no-repeat;
+  background: url('/home/images/detail/good.png') 0 0.5333vw no-repeat;
 }
 .comment .lists .list .good_ {
   animation: shake 300ms ease;
   -webkit-animation: shake 300ms ease;
-  background: url('/home/images/detail/good_.png') 0 2px no-repeat;
+  background: url('/home/images/detail/good_.png') 0 0.5333vw no-repeat;
 }
 .comment .lists .list .isgood {
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background-size: 4vw 4vw;
+  padding-left: 4.8vw;
 }
 .comment .tip {
-  height: 40px;
+  height: 10.6666vw;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.6666vw;
   color: #c1c1c1;
 }
 /*底部*/
@@ -175,44 +175,44 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 45px;
-  border-top: 1px solid #dadada;
-  padding-left: 10px;
+  height: 11.9999vw;
+  border-top: 0.2666vw solid #dadada;
+  padding-left: 2.6666vw;
   background: #ffffff;
   font-family: "Microsoft YaHei", sans-serif;
 }
 .bottom .star {
-  background: url('/home/images/detail/star-border.png') 20px 12px no-repeat;
+  background: url('/home/images/detail/star-border.png') 5.3333vw 3.2vw no-repeat;
 }
 .bottom .star_ {
   animation: shake 300ms ease;
   -webkit-animation: shake 300ms ease;
-  background: url('/home/images/detail/star-yellow.png') 20px 12px no-repeat;
+  background: url('/home/images/detail/star-yellow.png') 5.3333vw 3.2vw no-repeat;
 }
 .bottom .collect {
-  width: 60px;
+  width: 16vw;
   height: 100%;
   font-size: 1.2rem;
   text-align: center;
-  background-size: 20px 20px;
-  padding-top: 24px;
+  background-size: 5.3333vw;
+  padding-top: 6.4vw;
 }
 .bottom .myword input {
   vertical-align: middle;
-  height: 30px;
+  height: 8vw;
   width: 76vw;
-  margin: 7px 0;
-  padding-left: 10px;
+  margin: 1.8666vw 0;
+  padding-left: 2.6666vw;
   background: #fafafa;
-  border: 1px solid #d8d8d8;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  border: 0.2666vw solid #d8d8d8;
+  -webkit-border-radius: 1.6vw;
+  border-radius: 1.6vw;
 }
 .bottom .send {
   width: 19vw;
-  padding-left: 15px;
-  padding-right: 15px;
-  line-height: 45px;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  line-height: 12vw;
   text-align: center;
 }
 .bottom .send:active {
@@ -220,22 +220,22 @@
 }
 @media (max-width: 320px) {
   .myword input {
-    width: 200px;
+    width: 85.3333vw;
   }
 }
 /*加载动画*/
 .loading {
   width: 100%;
-  height: 40px;
+  height: 10.6666vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
-  top: 17px;
-  left: calc( 50vw - 20px );
+  top: 4.5333vw;
+  left: 44.6666vw;
 }

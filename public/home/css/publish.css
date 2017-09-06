@@ -12,16 +12,16 @@
   display: none;
 }
 .form {
-  margin-top: 10px;
+  margin-top: 2.6666vw;
 }
 .form .list {
-  height: 46px;
+  height: 12.2666vw;
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  border-bottom: 1px solid #f1f1f1;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  border-bottom: 0.27vw solid #f1f1f1;
   background: #ffffff;
-  line-height: 45px;
+  line-height: 12vw;
   zoom: 1;
 }
 .form .list：after {
@@ -41,24 +41,24 @@
 .form .list .select,
 .form .list .time {
   float: right;
-  width: calc( 100% - 70px );
+  width: 81.3333vw;
   color: #999999;
   text-align: right;
   font-size: 1.3rem;
 }
 .form .list input {
-  height: 20px;
-  margin-top: 13px;
-  line-height: 20px;
+  height: 5.3333vw;
+  margin-top: 3.4666vw;
+  line-height: 5.3333vw;
 }
 .form .list .time .date {
   display: inline-block;
-  width: 207px;
+  width: 55.1999vw;
 }
 .form .list .time input[name='start_time'],
 .form .list .time input[name='end_time'] {
   float: none;
-  width: 207px;
+  width: 55.1999vw;
   text-align: right;
   padding-right: 0;
 }
@@ -67,12 +67,12 @@
 }
 #text {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  min-height: 300px;
-  margin-top: 10px;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  padding-top: 2.6666vw;
+  padding-bottom: 2.6666vw;
+  min-height: 80vw;
+  margin-top: 2.6666vw;
   color: #999999;
   font-size: 1.3rem;
 }
@@ -80,14 +80,14 @@
 .foot .save,
 .foot .next {
   width: 60%;
-  height: 40px;
-  margin: 10px auto;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid #73bdff;
+  height: 10.6666vw;
+  margin: 2.6666vw auto;
+  -webkit-border-radius: 1.0666vw;
+  border-radius: 1.0666vw;
+  border: 0.27vw solid #73bdff;
   font-size: 1.6rem;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.6666vw;
 }
 .foot .next,
 .foot .save {
@@ -108,11 +108,11 @@
 }
 .foot .atn {
   width: 80%;
-  height: 40px;
-  margin: 10px 10%;
+  height: 10.6666vw;
+  margin: 2.6666vw 10%;
   color: #d9d9d9;
   font-size: 1.2rem;
-  margin-bottom: 40px;
+  margin-bottom: 10.6666vw;
 }
 .typebg {
   display: none;
@@ -128,29 +128,29 @@
   display: none;
   z-index: 3;
   position: absolute;
-  right: 13px;
-  top: 40px;
+  right: 3.4666vw;
+  top: 10.6666vw;
 }
 .type li {
-  width: 100px;
-  height: 40px;
+  width: 26.6666vw;
+  height: 10.6666vw;
   background: #ffffff;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
   color: #666666;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.6666vw;
 }
 .type li:first-child {
-  -webkit-border-top-left-radius: 8px;
-  border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
-  border-top-right-radius: 8px;
+  -webkit-border-top-left-radius: 2.1333vw;
+  border-top-left-radius: 2.1333vw;
+  -webkit-border-top-right-radius: 2.1333vw;
+  border-top-right-radius: 2.1333vw;
 }
 .type li:last-child {
-  -webkit-border-bottom-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 2.1333vw;
+  border-bottom-left-radius: 2.1333vw;
+  -webkit-border-bottom-right-radius: 2.1333vw;
+  border-bottom-right-radius: 2.1333vw;
 }
 .tips {
   display: none;
@@ -162,9 +162,9 @@
   background: #ffffff;
   font-size: 1.5rem;
   text-align: center;
-  line-height: 60px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  line-height: 16vw;
+  -webkit-border-radius: 2.1333vw;
+  border-radius: 2.1333vw;
   overflow: hidden;
 }
 .tocheck {
@@ -177,27 +177,27 @@
   background: #ffffff;
   font-size: 1.5rem;
   text-align: center;
-  line-height: 30px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  line-height: 8vw;
+  -webkit-border-radius: 2.1333vw;
+  border-radius: 2.1333vw;
   overflow: hidden;
 }
 .tocheck .text {
-  padding: 13px;
+  padding: 2.1333vw;
 }
 .tocheck .confirm {
-  width: calc( 100% );
+  width: 100vw;
   border-top: 2px solid #f1f1f1;
 }
 .tocheck .confirm span {
   display: inline-block;
-  width: calc( 50% - 4px);
-  height: 36px;
-  line-height: 36px;
+  width: 48.933vw;
+  height: 9.6vw;
+  line-height: 9.6vw;
   text-align: center;
 }
 .tocheck .confirm span:nth-child(1) {
-  border-right: 2px solid #f1f1f1;
+  border-right: 0.5333vw solid #f1f1f1;
 }
 .dropdown-menu {
   border: none;

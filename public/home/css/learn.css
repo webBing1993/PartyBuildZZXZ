@@ -6,29 +6,29 @@
 @-webkit-keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 .tag {
@@ -47,11 +47,11 @@ body {
 .banner .box {
   position: relative;
   width: 70%;
-  height: calc(64vw + 40px);
+  height: 74.6666vw;
   margin: 0 auto;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  box-shadow: 0 0 36px #5d5d5d;
+  -webkit-border-radius: 2.1333vw;
+  border-radius: 2.1333vw;
+  box-shadow: 0 0 9.6vw #5d5d5d;
   display: none;
 }
 .banner .box .box_up {
@@ -128,20 +128,20 @@ body {
   left: -15vw;
   width: 100vw;
   height: 100vw;
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
+  -webkit-filter: blur(2.1333vw);
+  filter: blur(2.1333vw);
   overflow: hidden;
 }
 @media (max-width: 320px) {
   .banner .box {
-    height: calc(68vw + 40px);
+    height: 78.6666vw;
   }
   .banner .box .box_up {
     height: 68vw;
   }
   .banner .box .box_up .title {
     color: #333333;
-    line-height: 36px;
+    line-height: 9.6vw;
   }
 }
 /*课程列表*/
@@ -190,18 +190,19 @@ body {
   color: #999999;
   font-size: 1.2rem;
   text-align: center;
+  line-height: 4vw;
 }
 /*提示*/
 .tip {
-  height: 10.8vw;
+  height: 10.6666vw;
   text-align: center;
-  line-height: 10.8vw;
+  line-height: 10.6666vw;
   color: #c1c1c1;
   background: #ffffff;
 }
 .loading {
   width: 100%;
-  height: 10.8vw;
+  height: 10.6666vw;
 }
 .typing_loader {
   width: 1.6vw;
@@ -211,6 +212,6 @@ body {
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
-  top: 4.54vw;
-  left: calc( 50vw - 5.35vw );
+  top: 4.5333vw;
+  left: 44.6667vw;
 }

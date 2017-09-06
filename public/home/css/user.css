@@ -32,13 +32,13 @@ body {
 }
 .banner .name {
   width: 60%;
-  margin: 6px auto;
+  margin: 1.6vw auto;
   color: #ffffff;
   font-size: 1.7rem;
 }
 @media screen and (min-width: 1000px){
   .banner .name{
-    line-height: 40px;
+    line-height: 10.6666vw;
   }
 }
 /*积分和排行*/
@@ -93,7 +93,7 @@ body {
   padding-right: 4vw;
   height: 13.335vw;
   background: #ffffff;
-  border-bottom: 1px solid #f7f7f7;
+  border-bottom: 0.2666vw solid #f7f7f7;
   font-size: 1.46rem;
 }
 .lists .list span {

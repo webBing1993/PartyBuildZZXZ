@@ -52,21 +52,21 @@
   width: 100%;
   color: #999999;
   font-size: 1.2rem;
-  line-height: 12px;
+  line-height: 3.2vw;
   margin-top: 6vw;
 }
 .lists .list .content .note .num {
   position: relative;
   left: 0;
-  padding-left: 14px;
+  padding-left: 3.7333vw;
   width: 60%;
 }
 .lists .list .content .note .num:before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 10px;
-  height: 12px;
+  width: 2.6666vw;
+  height: 3.2vw;
   content: '';
   background: url('/home/images/detail/man.jpg') 0 0 no-repeat;
   background-size: contain;
@@ -78,7 +78,7 @@
 .lists .list .content .note .time span {
   display: inline-block;
   width: 50%;
-  padding-right: 5px;
+  padding-right: 1.3333vw;
 }
 .lists .list .content .note > div {
   display: inline-block;
@@ -93,10 +93,10 @@
 /*悬浮按钮*/
 .publish {
   position: fixed;
-  right: 20px;
-  bottom: 40px;
-  width: 60px;
-  height: 60px;
+  right: 5.3333vw;
+  bottom: 10.6666vw;
+  width: 16vw;
+  height: 16vw;
   background: url("/home/images/notice/note.png") no-repeat;
   background-size: 100% 100%;
 }

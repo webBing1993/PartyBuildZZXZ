@@ -1,76 +1,76 @@
 @-webkit-keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.1999vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @-webkit-keyframes cir {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.6666vw;
+    left: 2.6666vw;
     opacity: 0;
   }
   100% {
-    top: 5px;
-    left: -50px;
+    top: 1.3333vw;
+    left: -13.3333vw;
     opacity: 1;
   }
 }
 @keyframes cir {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.6666vw;
+    left: 2.6666vw;
     opacity: 0;
   }
   100% {
-    top: 5px;
-    left: -50px;
+    top: 1.3333vw;
+    left: -13.3333vw;
     opacity: 1;
   }
 }
 @-webkit-keyframes cir2 {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.6666vw;
+    left: 2.6666vw;
     opacity: 0;
   }
   100% {
-    top: -49px;
-    left: -6px;
+    top: -13.0666vw;
+    left: -1.6vw;
     opacity: 1;
   }
 }
 @keyframes cir2 {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.6666vw;
+    left: 2.6666vw;
     opacity: 0;
   }
   100% {
-    top: -49px;
-    left: -6px;
+    top: -13.0666vw;
+    left: -1.6vw;
     opacity: 1;
   }
 }
@@ -78,8 +78,8 @@
 /*banner*/
 .banner {
   position: relative;
-  width: 100vw;
-  height: 50vw;
+  width: 26.6666vw;
+  height: 13.3333vw;
 }
 .banner img {
   width: 100%;
@@ -91,8 +91,8 @@
   margin-top: 2.7vw;
   margin-bottom: 2.7vw;
   background: #fbfbfb;
-  border-top: 1px solid #f1f1f1;
-  border-bottom: 1px solid #f1f1f1;
+  border-top: 0.27vw solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .tabs .tab {
   display: inline-block;
@@ -105,7 +105,7 @@
   line-height: 7.5vw;
 }
 .tabs .tab .active {
-  border-bottom: 2px solid indianred;
+  border-bottom: 0.5333vw solid indianred;
 }
 @media screen and (max-width: 318px) {
   .tabs .tab {
@@ -121,18 +121,18 @@
 .content .notices .notice .tab {
   display: block;
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  height: 32px;
-  line-height: 32px;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  height: 8.5333vw;
+  line-height: 8.5333vw;
   font-size: 1.2rem;
 }
 .content .notices .notice .list {
   display: block;
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  border-bottom: 1px solid #f1f1f1;
+  padding-left: 3.4666vw;
+  padding-right: 3.4666vw;
+  border-bottom: 0.27vw solid #f1f1f1;
   color: #666666;
 }
 .content .notices .notice .list .title {
@@ -141,20 +141,20 @@
 }
 .content .notices .notice .list .content {
   font-size: 1.3rem;
-  height: 34px;
+  height: 9.0666vw;
 }
 .content .notices .notice .list .time {
-  margin-top: 5px;
+  margin-top: 1.3333vw;
   font-size: 1.2rem;
 }
 .content .notices .notice:nth-child(1) .tab {
   color: #e82a2a;
 }
 .content .notices .notice:nth-child(1) .list {
-  height: 90px;
+  height: 24vw;
 }
 .content .notices .notice:nth-child(1) .list .title {
-  line-height: 30px;
+  line-height: 8vw;
 }
 .content .notices .notice:nth-child(2) .tab {
   color: #259b24;
@@ -168,51 +168,51 @@
 }
 .content .notices .notice:nth-child(2) .list .fl img,
 .content .notices .notice:nth-child(3) .list .fl img {
-  width: 80px;
-  height: 60px;
-  margin-top: 10px;
+  width: 31.3333vw;
+  height: 16vw;
+  margin-top: 2.6666vw;
 }
 .content .notices .notice:nth-child(2) .list .right,
 .content .notices .notice:nth-child(3) .list .right {
-  width: calc(100% - 90px);
-  height: 60px;
-  margin-top: 10px;
-  margin-left: 10px;
+  width: 76vw;
+  height: 16vw;
+  margin-top: 2.6666vw;
+  margin-left: 2.6666vw;
 }
 .content .notices .notice:nth-child(2) .list .right .title,
 .content .notices .notice:nth-child(3) .list .right .title {
-  margin-bottom: 5px;
-  height: 38px;
+  margin-bottom: 1.3333vw;
+  height: 10.1333vw;
 }
 /*加载动画*/
 .tip {
-  height: 40px;
+  height: 10.6666vw;
   text-align: center;
-  line-height: 40px;
+  line-height: 10.6666vw;
   color: #c1c1c1;
 }
 .loading {
   width: 100%;
-  height: 40px;
+  height: 10.6666vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
-  top: 17px;
-  left: calc( 50vw - 20px );
+  top: 4.5333vw;
+  left: 44.6666vw;
 }
 /*悬浮按钮*/
 .new {
   position: fixed;
-  right: 20px;
-  bottom: 40px;
-  width: 60px;
-  height: 60px;
+  right: 5.3333vw;
+  bottom: 10.3333vw;
+  width: 16vw;
+  height: 16vw;
 }
 .general {
   background: url("/home/images/notice/note.png") no-repeat;
@@ -224,19 +224,19 @@
 }
 .manager_ {
   right: 25px;
-  bottom: 45px;
-  width: 50px;
-  height: 50px;
+  bottom: 6.6666vw;
+  width: 13.3333vw;
+  height: 13.3333vw;
   background: url("/home/images/notice/index_.png") no-repeat;
   background-size: 100% 100%;
 }
 .manager_ .before {
   position: absolute;
-  top: 5px;
-  left: -50px;
+  top: 1.3333vw;
+  left: -13.3333vw;
   content: '';
-  width: 40px;
-  height: 40px;
+  width: 10.6666vw;
+  height: 10.6666vw;
   background: url("/home/images/notice/up_.png") no-repeat;
   background-size: 100% 100%;
   opacity: 1;
@@ -245,11 +245,11 @@
 }
 .manager_ .after {
   position: absolute;
-  top: -49px;
-  left: -6px;
+  top: -13.0666vw;
+  left: -1.6vw;
   content: '';
-  width: 40px;
-  height: 40px;
+  width: 10.6666vw;
+  height: 10.6666vw;
   background: url("/home/images/notice/note_.png") no-repeat;
   background-size: 100% 100%;
   opacity: 1;

@@ -70,11 +70,11 @@ return [
     // 显示错误信息
     'show_error_msg'        =>  true,
 
-    'log' => [
+    /*'log' => [
         'type'                  =>  'socket',
         'host'                  =>  'localhost',
         'show_included_files'   =>  true,
         'force_client_ids'      =>  ['ymz_1259'],
         'allow_client_ids'      =>  ['ymz_1259'],
-    ],
+    ],*/
 ];

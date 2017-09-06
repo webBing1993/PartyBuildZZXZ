@@ -47,8 +47,8 @@ body{
 
 .top .tab{
 	width: 50%;
-	height: 45px;
-	line-height: 45px;
+	height: 12vw;
+	line-height: 12vw;
 	color:#ffffff;
 	font-size: 1.5rem;
 	text-align: center;
@@ -61,20 +61,20 @@ body{
 .tip{
 	width: 100%;
 	text-align: center;
-	line-height: 500px;
+	line-height: 133.3333;vw
 	font-size: 2.0rem;
 }
 .text{
-	width: 222px;
-	height: 80px;
+	width: 58.6666vw;
+	height: 21.3333vw;
 	position: fixed;
 	z-index: -1;
-	top:calc(50% - 95px);
-	left:calc(50% - 111px);
+	top:24.6667vw;
+	left:20.6667vw;
 }
 .foot{
 	width: 100%;
-	height: 103px;
+	height: 24.4666vw;
 	position: fixed;
 	z-index: -1;
 	bottom: 0;
@@ -85,24 +85,24 @@ body{
 .content{
 	position: relative;
 	margin-top:35vh;
-	margin-left: calc(50% - 75px);
+	margin-left: 30.0001vw;
 }
 .start:visited,.continue:visited{
 	color:#ffffff;
 }
 .start,.continue{
 	display: block;
-	width: 150px;
-	height:45px;
+	width: 39.9999vw;
+	height:11.9999vw;
 	background: #d61920;
-	line-height: 45px;
+	line-height: 11.9999vw;
 	font-size: 2.0rem;
 	text-align: center;
 	color:#ffffff;
 	text-decoration: none;
-	-webkit-border-radius:7px;
-	border-radius:7px;
-	box-shadow:5px 5px 0 #a11108 ;
+	-webkit-border-radius:1.8666vw;
+	border-radius:1.8666vw;
+	box-shadow:1.3333vw 1.3333vw 0 #a11108 ;
 }
 .start{
 	position: absolute;
@@ -111,7 +111,7 @@ body{
 }
 .continue{
 	position: absolute;
-	top:90px;
+	top:24vw;
 
 }
 .start:active,.continue:active{
@@ -119,41 +119,43 @@ body{
 	box-shadow: none ;
 }
 .start:active{
-	top:5px;
-	left:5px;
+	top:1.3333vw;
+	left:1.3333vw;
 }
 .continue:active{
-	top:95px;
-	left:5px;
+	top:25.3333vw;
+	left:1.3333vw;
 }
 
 /*分数页面*/
 .score{
-	width: 325px;
-	height: 250px;
+	width: 86.6666vw;
+	height: 66.6666vw;
 	background: url("/home/images/sco1.png");
 	background-size: 100% 100%;
 	position: fixed;
-	top:calc((100% - 300px)/2);;
-	left:calc((100% - 325px)/2);
+	top:50%;;
+	left:50%;
+	margin-top: -43.3333vw;
+	margin-left: -33.3333vw;
 }
 .score span{
 	position: absolute;
-	top:83px;
-	left:210px ;
+	top:22.1333vw;
+	left:55.9999vw ;
 	color:#d10000;
-	font-size: 30px;
+	font-size: 2.8rem;
 	font-weight: 600;
 }
 .score span:nth-child(2){
-	top:126px;
+	top:33.6vw;
 }
 .score a{
 	position: absolute;
-	bottom:20px;
-	left:90px ;
-	width: 148px;
-	height: 52px;
+	bottom:5.3333vw;
+	left:23.9999vw ;
+	width: 39.4666vw;
+	height: 13.8666vw;
 	background: url("/home/images/sco2.png");
 	background-size: 100% 100%;
 }

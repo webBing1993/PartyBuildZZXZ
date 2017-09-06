@@ -2,21 +2,21 @@ body {
   background: #f1f1f1;
 }
 .lists {
-  margin-bottom: 15px;
+  margin-bottom: 4vw;
 }
 .lists .list {
   padding: 0 4vw;
   width: 100vw;
-  height: 40px;
+  height: 10.6666vw;
   background: #ffffff;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.2666vw solid #f1f1f1;
 }
 .lists .list .tag {
   display: inline-block;
   width: 20vw;
   color: #333333;
   font-size: 1.4rem;
-  line-height: 40px;
+  line-height: 10.6666vw;
 }
 .lists .list input {
   display: inline-block;
@@ -27,7 +27,7 @@ body {
   width: 100vw;
   padding: 2vw 0;
   background: #ffffff;
-  margin-bottom: 40px;
+  margin-bottom: 10.6666vw;
 }
 .content textarea {
   width: 100%;
@@ -36,9 +36,9 @@ body {
 }
 .content .img {
   position: relative;
-  width: 78px;
-  height: 78px;
-  margin-left: 10px;
+  width: 20.8vw;
+  height: 20.8vw;
+  margin-left: 2.6666vw;
   overflow: hidden;
   background: #d9d9d9;
 }
@@ -48,13 +48,13 @@ body {
   left: 0;
 }
 .content .add {
-  width: 78px;
-  height: 78px;
-  margin-left: 10px;
-  border: 2px solid #d9d9d9;
+  width: 20.8vw;
+  height: 20.8vw;
+  margin-left: 2.6666vw;
+  border: 0.5333vw solid #d9d9d9;
   text-align: center;
-  line-height: 78px;
-  font-size: 60px;
+  line-height: 20.8vw;
+  font-size: 5.8rem;
   color: #d9d9d9;
 }
 .content .tipimg {
@@ -62,17 +62,17 @@ body {
   text-align: right;
   color: #999999;
   font-size: 1.2rem;
-  line-height: 16px;
+  line-height: 4.2666vw;
 }
 .submit {
   width: 50vw;
-  height: 32px;
+  height: 8.5333vw;
   margin: 0 auto;
   color: #ffffff;
   font-size: 1.4rem;
-  line-height: 32px;
+  line-height: 8.5333vw;
   text-align: center;
   background: #f0786d;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 1.0666vw;
+  border-radius: 1.0666vw;
 }

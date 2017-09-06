@@ -8,10 +8,10 @@ body{
 .top {
 	width: 100%;
 	background: #fff;
-	height: 44px;
+	height: 11.7333vw;
 	color: #666;
 	font-size:1.46rem;
-	line-height: 44px;
+	line-height: 11.7333vw;
 	text-align: center;
 }
 .list-block {
@@ -88,24 +88,24 @@ li {
 	background-color:#f61530!important;
 }
 .navTop{
-	height:44px;
+	height:11.7333vw;
 	background-color:#fff;
 }
 .navTop>a{
 	color: #666;
-	font-size: 16px;
-	line-height: 44px;
+	font-size: 1.5rem;
+	line-height: 11.7333vw;
 	display:block;
 	float:left;
 	width:50vw;
 	text-align: center;
 }
 .navTop>img{
-	width:20px;
-	height:20px;
+	width:5.3333vw;
+	height:5.3333vw;
 	position:absolute;
-	right: 10px;
-	top:12px;
+	right: 2.6666vw;
+	top:3.2vw;
 	z-index:100;
 }
 .navTop>a.active{
@@ -115,10 +115,10 @@ li {
 	content:'';
 	display:block;
 	margin:0 auto;
-	height:1px;
+	height:0.2666vw;
 	width:21.3vw;
-	border-bottom: 2px solid #ff7043;
-	margin-top:-2px;
+	border-bottom: 0.5333vw solid #ff7043;
+	margin-top:-0.5333vw;
 }
 .weui_mask {
 	position: fixed;
@@ -138,32 +138,32 @@ li {
 }
 .weui_dialog{
 	width:70.6vw;
-	border-radius: 6px;
+	border-radius: 1.6vw;
 	z-index:10001;
 }
 .weui_dialog>.head{
 	text-align: center;
 	color:#333;
-	font-size:14px;
+	font-size:1.34rem;
 }
 .weui_dialog>.head>p{
-	height:60px;
-	line-height: 60px;
-	font-size: 14px;
+	height:16vw;
+	line-height: 16vw;
+	font-size: 1.34rem;
 	color:#333;
 	margin:0;
 }
 .weui_dialog>.head>div{
-	height:45px;
+	height:12vw;
 	color:#999;
 }
 .weui_dialog_ft {
 	margin: 0;
 }
 .weui_dialog_ft>a {
-	height: 50px;
-	line-height: 50px;
-	font-size: 14px;
+	height: 13.3333vw;
+	line-height: 13.3333vw;
+	font-size: 1.34rem;
 	color:#333;
 }
 .red1{
@@ -183,27 +183,27 @@ li {
 	height:auto;
 }
 .modal1>.close1{
-	width:30px;
-	height:30px;
+	width:8vw;
+	height:8vw;
 	position:fixed;
-	top:10px;
-	right:10px;
+	top:2.6666vw;
+	right:2.6666vw;
 }
 .modal1>p{
-	font-size: 14px;
+	font-size: 1.34rem;
 }
 a:hover{
 	text-decoration: none;
 }
 .page-content {
 	background-color: rgba(0,0,0,.3);
-	top:-45px;
+	top:-12vw;
 	z-index: 200;
 	visibility: hidden;
 	height:0;
 }
 .swiper-slide>span{
-	font-size: 14px;
+	font-size: 1.34rem;
 }
 .swiper-container {
 
@@ -220,8 +220,8 @@ a:hover{
 	margin-top:3vh;
 }
 .page-content>img{
-	width:30px;
-	height:30px;
+	width:8vw;
+	height:8vw;
 	position:fixed;
 	right:0;
 	top:0;
@@ -233,19 +233,19 @@ a:hover{
 	position:relative;
 }
 .list_ .title{
-	font-size: 16px;
+	font-size: 1.5rem;
 	color: #111;
-	margin: 5px 10px 0 10px;
+	margin: 1.3333vw 2.6666vw 0 2.6666vw;
 }
 .content{
-	min-height: 40px;
+	min-height: 10.6666vw;
 	width:72vw;
-	margin: 0 10px;
-	font-size: 13px;
+	margin: 0 5.3333vw;
+	font-size: 1.2rem;
 }
 .list_ .open{
-	height: 20px;
-	line-height: 20px;
+	height: 5.3333vw;
+	line-height: 5.3333vw;
 	text-align: center;
 	color:#999999;
 }

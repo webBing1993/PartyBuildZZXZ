@@ -8,9 +8,9 @@
 }
 .tabs {
   width: 100vw;
-  height: 30px;
+  height: 8vw;
   background: #f1f1f1;
-  margin-top: 10px;
+  margin-top: 2.6666vw;
 }
 .tabs .tab {
   display: inline-block;
@@ -18,13 +18,13 @@
   height: 100%;
   color: #333333;
   font-size: 1.4rem;
-  line-height: 30px;
+  line-height: 8vw;
   text-align: center;
 }
 .tabs .active span {
   height: 100%;
   display: inline-block;
-  border-bottom: 2px solid #f03b41;
+  border-bottom: 0.5333vw solid #f03b41;
 }
 .boxs {
   position: relative;
@@ -52,7 +52,7 @@
   width: 100vw;
   height: 24vw;
   padding: 0 4vw;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.2666vw solid #f1f1f1;
 }
 .boxs .box .lists .list > div {
   display: inline-block;
@@ -62,8 +62,8 @@
   height: 16vw;
   margin: 4vw 0;
   overflow: hidden;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 1.6vw;
+  border-radius: 1.6vw;
 }
 .boxs .box .lists .list .content {
   width: 63vw;
@@ -88,5 +88,5 @@
 }
 .boxs .box .lists .list .content .note .angle {
   text-align: right;
-  font-size: 16px;
+  font-size: 1.5rem;
 }

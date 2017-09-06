@@ -138,11 +138,13 @@
 }
 .article .content .video .play {
   position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 50px;
+  top: 50%;
+  left: 50%;
+  width: 13.3333vw;
+  height: 13.3333vw;
   opacity: 0.5;
+  margin-top: -6.6666vw;
+  margin-left: -6.6666vw;
   display: none;
 }
 .article .content .video iframe {

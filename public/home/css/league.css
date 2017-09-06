@@ -28,24 +28,24 @@ a {
 .tabs .tab {
   display: inline-block;
   width: 30vw;
-  height: 35px;
+  height: 9.3333vw;
   text-align: center;
   color: #666666;
   font-size: 1.5rem;
-  line-height: 35px;
+  line-height: 9.3333vw;
 }
 .tabs .tab.active {
   background: #fd4f43;
   color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 1px 2px 6px rgba(253, 79, 67, 0.78);
+  border-radius: 1.0666vw;
+  box-shadow: 0.27vw 0.5333vw 1.6vw rgba(253, 79, 67, 0.78);
 }
 .tabs .line {
   position: absolute;
-  top: 8px;
+  top: 2.1333vw;
   right: 0;
-  width: 1px;
-  height: 19px;
+  width: 0.27vw;
+  height: 5.0666vw;
   background: #f1f1f1;
 }
 .banner {
@@ -61,11 +61,11 @@ a {
 .plan {
   width: 100vw;
   background: #ffffff;
-  margin-top: 12px;
+  margin-top: 3.1999vw;
 }
 .plan > .title {
   width: 100%;
-  height: 35px;
+  height: 9.3333vw;
   padding: 0 4vw;
 }
 .plan > .title span,
@@ -73,7 +73,7 @@ a {
   display: inline-block;
   width: 49%;
   font-size: 1.3rem;
-  line-height: 35px;
+  line-height: 9.3333vw;
 }
 .plan > .title span {
   color: #f5874e;
@@ -89,23 +89,23 @@ a {
 .plan .list {
   width: 100%;
   padding: 0 4vw;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .plan .list .title {
   color: #333333;
   font-size: 1.5rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .plan .list .content {
-  height: 36px;
+  height: 9.6vw;
   color: #999999;
   font-size: 1.3rem;
-  line-height: 18px;
+  line-height: 4.8vw;
 }
 .plan .list .note {
   color: #999999;
   font-size: 1.2rem;
-  line-height: 26px;
+  line-height: 6.9333vw;
 }
 .plan .list .note span {
   display: inline-block;
@@ -121,11 +121,11 @@ a {
 }
 .display .title {
   width: 100%;
-  height: 35px;
+  height: 9.3333vw;
   padding: 0 4vw;
   color: #f5af46;
   font-size: 1.3rem;
-  line-height: 35px;
+  line-height: 9.3333vw;
   font-weight: 600;
 }
 .display .tags {
@@ -178,7 +178,7 @@ a {
 .blocks .block.slist .line {
   position: absolute;
   left: 20vw;
-  width: 2px;
+  width: 0.5333vw;
   height: 100%;
   background: #fcc011;
 }
@@ -203,8 +203,8 @@ a {
   width: 10vw;
   height: 10vw;
   background: #ffffff;
-  border: 4px solid #f1f1f1;
-  box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.3);
+  border: 1.0666vw solid #f1f1f1;
+  box-shadow: 0.27vw 0.8vw 0.5333vw rgba(153, 153, 153, 0.3);
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
@@ -225,38 +225,38 @@ a {
   background: #ffffff;
   -webkit-border-radius: 50%;
   border-radius: 50%;
-  box-shadow: 1px 3px 2px rgba(153, 153, 153, 0.3);
+  box-shadow: 0.27vw 0.8vw 0.5333vw rgba(153, 153, 153, 0.3);
 }
 .yearbox .year {
   width: 100%;
-  height: 30px;
+  height: 8vw;
   padding: 0 4vw;
   text-align: center;
   color: #df4934;
   font-size: 1.6rem;
-  line-height: 30px;
-  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+  line-height: 8vw;
+  box-shadow: 0.27vw 0.8vw 2.4vw rgba(102, 102, 102, 0.2);
 }
 .yearbox .year span {
   position: relative;
 }
 .yearbox .year span:before {
   position: absolute;
-  top: 3px;
-  left: -20px;
+  top: 0.8vw;
+  left: -5.3333vw;
   content: '';
-  width: 10px ;
-  height: 10px;
+  width: 2.6666vw ;
+  height: 2.6666vw;
   background: url('/home/images/league/cir.png') 0 0 no-repeat;
   background-size: contain;
 }
 .yearbox .year span:after {
   position: absolute;
-  top: 3px;
-  right: -20px;
+  top: 0.8vw;
+  right: -5.3333vw;
   content: '';
-  width: 10px ;
-  height: 10px;
+  width: 2.6666vw ;
+  height: 2.6666vw;
   background: url('/home/images/league/cir.png') 0 0 no-repeat;
   background-size: contain;
 }
@@ -264,31 +264,31 @@ a {
   position: relative;
   top: 0;
   left: 0;
-  width: 90vw;
-  margin: 0 auto 10px auto;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  box-shadow: 1px 3px 8px rgba(102, 102, 102, 0.2);
+  width: 24vw;
+  margin: 0 auto 2.6666vw auto;
+  -webkit-border-radius: 2.1333vw;
+  border-radius: 2.1333vw;
+  box-shadow: 0.27vw 0.8vw 2.1333vw rgba(102, 102, 102, 0.2);
 }
 .yearbox .quarter .box .tag {
   position: relative;
   top: 3vw;
-  left: -7px;
-  width: 83px;
-  height: 30px;
-  padding-left: 2px;
+  left: -1.8666vw;
+  width: 22.1333vw;
+  height: 8vw;
+  padding-left: 0.5333vw;
   margin-bottom: 1vw;
   color: #ffffff;
   font-size: 1.2rem;
-  line-height: 20px;
+  line-height: 5.333vw;
   text-align: center;
 }
 .yearbox .quarter .box .list {
   position: relative;
   width: 100%;
-  height: 70px;
-  padding: 11px 4vw;
-  border-bottom: 1px solid #f1f1f1;
+  height: 18.6666vw;
+  padding: 2.9333vw 4vw;
+  border-bottom: 0.27vw solid #f1f1f1;
 }
 .yearbox .quarter .box .list:last-child {
   border: none;
@@ -296,27 +296,27 @@ a {
 .yearbox .quarter .box .list.tag-mon:after {
   content: '';
   position: absolute;
-  top: -1px;
+  top: -0.27vw;
   right: 4vw;
-  width: 20px;
-  height: 20px;
+  width: 5.3333vw;
+  height: 5.3333vw;
 }
 .yearbox .quarter .box .list .title {
   color: #333333;
   font-size: 1.5rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .yearbox .quarter .box .list .note {
   color: #999999;
   font-size: 1.2rem;
-  line-height: 18px;
+  line-height: 4.8vw;
 }
 .yearbox .quarter .box .list .note span {
   display: inline-block;
   width: 49%;
 }
 .yearbox .quarter .box .list .note span:nth-child(2) {
-  font-size: 14px;
+  font-size: 1.34rem;
   text-align: right;
 }
 .yearbox .quarter .box:nth-child(1) .tag {

@@ -76,11 +76,13 @@
 }
 .article .content .video .play {
   position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 50px;
+  top: 50%;
+  left: 50%;
+  width: 13.3333vw;
+  height: 13.3333vw;
   opacity: 0.5;
+  margin-top: -6.6666vw;
+  margin-left: -6.6666vw;
   display: none;
 }
 .article .content .video iframe {
@@ -244,16 +246,16 @@
 /*加载动画*/
 .loading {
   width: 100%;
-  height: 40px;
+  height: 10.6666vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
   top: 17px;
-  left: calc( 50vw - 20px );
+  left: 44.6666vw;
 }

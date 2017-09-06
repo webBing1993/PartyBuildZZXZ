@@ -35,7 +35,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 .gra{
 	position: relative;
 	width: 100%;
-	height: 180px;
+	height: 48vw;
 	/*background:-webkit-gradient(linear, left bottom, right top, from(#e4672d), to(#e9ad2c));*/
 	background: url("/home/images/bg_rank.jpg") no-repeat;
 	background-size: 100% 100%;
@@ -43,66 +43,66 @@ table { border-collapse: collapse; background-color: #ffffff; }
 }
 .gra .avatarbox{
 	position: absolute;
-	top:20px;
-	left: calc((100% - 72px)/2 )
+	top:5.3333vw;
+	left: 90.4vw
 }
 .gra .avatarbox .avatar{
-	width: 70px;
-	height: 70px;
+	width: 18.6666vw;
+	height: 18.6666vw;
 	-webkit-border-radius:50%;
 	border-radius:50%;
-	border:1px solid #ffffff;
+	border:0.27vw solid #ffffff;
 	display: block;
 	overflow: hidden;
 }
 .gra .avatarbox .name{
-	width: 70px;
+	width: 18.6666vw;
 	text-align: center;
 	font-size: 1.4rem;
-	margin-top: 6px;
+	margin-top: 1.6vw;
 	display: inline-block;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
 .gra .que{
-	width: 20px;
-	height: 20px;
+	width: 5.3333vw;
+	height: 5.3333vw;
 	position: absolute;
-	top:15px;
-	right: 15px;
+	top:4vw;
+	right: 4vw;
 }
 .ranking{
 	width: 100%;
 	position: absolute;
-	top:130px;
+	top:34.6666vw;
 }
 .ranking .tradtion,.ranking .game{
-	width: calc(50% - 1px );
+	width: 49.7333vw;
 	text-align: center;
 	font-size: 1.3rem;
 }
 .ranking .line{
-	width: 2px;
-	height: 40px;
-	-webkit-border-radius:1px;
-	border-radius:1px;
+	width: 0.5333vw;
+	height: 10.666vw;
+	-webkit-border-radius:0.2666vw;
+	border-radius:0.2666vw;
 	background-color: #ffffff;
 }
 /*个人信息2*/
 .my{
 	position: relative;
 	width: 100%;
-	height: 60px;
-	line-height: 60px;
-	border-bottom: 4px solid #efeff4;
+	height: 16vw;
+	line-height: 16vw;
+	border-bottom: 1.0666vw solid #efeff4;
 }
 .my img{
-	width: 40px;
-	height: 40px;
+	width: 10.6666vw;
+	height: 10.6666vw;
 	-webkit-border-radius:50%;
 	border-radius:50%;
-	margin: 10px 15px auto 56px;
+	margin: 2.6666vw 4vw auto 14.9333vw;
 	overflow: hidden;
 }
 .my .name_,.my .scores{
@@ -111,23 +111,23 @@ table { border-collapse: collapse; background-color: #ffffff; }
 }
 .name_ span{
 	display: block;
-	height: 36px;
-	width: 32vw;
+	height: 9.6vw;
+	width: 8.5333vw;
 	margin-right:5vw;
-	line-height: 36px;
+	line-height: 9.6vw;
 }
 .my .name_ .n{
-	height: 12px;
-	line-height: 12px;
+	height: 3.2vw;
+	line-height: 3.2vw;
 	color:#999999;
 }
 .my .scores{
 	position: absolute;
-	top:20px;
+	top:5.3333vw;
 	right: 6vw;
 	width: 25vw;
-	height: 20px;
-	line-height: 20px;
+	height: 5.3333vw;
+	line-height: 5.3333vw;
 	text-align: right;
  }
 /*排名列表*/
@@ -143,7 +143,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 }
 .listbox{
 	width: 100%;
-	min-height: calc(100vh - 180px);
+	min-height: 52vw;
 	background: #ffffff;
 	/*padding-top: 10px;*/
 	/*padding-bottom: 20px;*/
@@ -153,18 +153,18 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	background: #ffffff;
 }
 .tabs .tab{
-	width: calc(50% - 40px);
-	height: 50px;
-	line-height: 50px;
+	width: 30.3333vw;
+	height: 13.3333vw;
+	line-height: 13.3333vw;
 	font-size: 1.5rem;
 	text-align: center;
 	color: rgba(193, 193, 193, 0.51);
-	margin: auto 20px;
-	border-bottom: 2px solid rgba(237, 121, 25, 0.05);
+	margin: auto 5.3333vw;
+	border-bottom: 0.5333vw solid rgba(237, 121, 25, 0.05);
 }
 .tabs .active {
 	color:#333333;
-	border-bottom: 2px solid #ed7919;
+	border-bottom: 0.5333vw solid #ed7919;
 }
 
 .ranklist{
@@ -172,25 +172,25 @@ table { border-collapse: collapse; background-color: #ffffff; }
 }
 .list{
 	position: relative;
-	height: 60px;
-	line-height: 60px;
+	height: 16vw;
+	line-height: 16vw;
 	color:#333333;
-	border-bottom: 1px solid #efeff4;
+	border-bottom: 0.2666vw solid #efeff4;
 }
 .list:last-child{
 	border-bottom: none;
 }
 .list .num_ {
-	width: 30px;
+	width: 8vw;
 	font-size: 1.4rem;
-	margin-left: 25px;
+	margin-left: 6.6666vw;
 }
 .list .avatar_{
-	width: 40px;
-	height: 40px;
+	width: 10.6666vw;
+	height: 10.6666vw;
 	-webkit-border-radius:50%;
 	border-radius:50%;
-	margin: 10px 15px auto 0;
+	margin: 2.6666vw 4vw auto 0;
 	overflow: hidden;
 }
 .list .name_,.list .scores{
@@ -229,20 +229,20 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	font-weight: bold;
 }
 .list:nth-child(1) .avatar_{
-	border:1px solid #e6d841;
+	border:0.2666vw solid #e6d841;
 }
 .list:nth-child(2) .avatar_{
-	border:1px solid #c4c4c4;
+	border:0.2666vw solid #c4c4c4;
 }
 .list:nth-child(3) .avatar_{
-	border:1px solid #a67e3e;
+	border:0.2666vw solid #a67e3e;
 }
 .modal-body h5{
-	line-height: 26px;
+	line-height: 6.9333vw;
 }
 .foot{
 	width: 100%;
-	height: 55px;
+	height: 14.6666vw;
 	position: fixed;
 	z-index: 5;
 	bottom: 0;
