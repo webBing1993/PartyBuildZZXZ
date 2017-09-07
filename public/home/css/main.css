@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     font-family: 'Microsoft YaHei';
@@ -261,9 +262,10 @@ body{
     margin-left: -45vw;
     z-index: 10;
     background-color: #fff;
-    border: 0.2666vw solid #d7d7d7;
-    border-radius: 1.0666vw;
+    /*border: 0.2666vw solid #d7d7d7;*/
+    border-radius: 5vw;
     height: 120vw;
+    overflow: hidden;
 }
 .shadow {
     position: fixed;
@@ -284,17 +286,18 @@ body{
 }
 .list li {
     text-align: center;
-    border-bottom: 0.2666vw solid #d7d7d7;
-    width: 33%;
+    /*border-bottom: 0.2666vw solid #d7d7d7;*/
+    width: 29.5vw;
     float: left;
+    margin-bottom: 5vw;
 }
 .list img {
-    width: 21.3333vw;
-    height: 21.3333vw;
+    width: 20vw;
+    height: 20vw;
     display: block;
     border-radius: 50%;
     margin: 2.6666vw auto;
-    border: 0.2666vw solid #d7d7d7;
+    border: 1px solid #d7d7d7;
     border-radius: 50%;
 }
 .list li span {
@@ -303,9 +306,11 @@ body{
     margin-bottom: 2.6666vw;
 }
 .list p {
-    margin-bottom: 2.6666vw;
-    color: #666666;
+    /*margin-bottom: 2.6666vw;*/
     font-size: 1.6rem;
-    line-height: 5.3333vw;
+    line-height: 10vw;
     padding-left: 1.3333vw;
+    text-align: center;
+    background-color: #29aef1;
+    color: #fff;
 }
