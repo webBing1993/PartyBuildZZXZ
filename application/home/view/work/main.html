@@ -33,7 +33,7 @@
             <div class="person_list fr">
                 <i class="fa fa-angle-right fr"></i>
                 {empty name='$data.infoes'}
-                <span >无人签到</span>
+                <span class="noNum">无人签到</span>
                 {/empty}
                 <ul class="personImg_list fr">
                     {volist name="$data.infoes" id="lo" key='k' offset="0" length='3'}
@@ -89,7 +89,7 @@
 <script>
     $(function() {
         if($('.personImg_list li').length >= 4) {
-            $('.personImg_list li:first-of-type').remove();
+            $('.personImg_list li:last-of-type').remove();
         }
     });
 //    测试扫描
@@ -112,6 +112,8 @@
                         timer: 3000
                     });
                 } else if (data.status==1){
+                    /*隐藏无人签到*/
+                    $(".noNum").hide();
                     $('#user_img').attr('src',data.header);
                     $('#user_name').html(data.name);
                     $('.bk_title').html('签 到 成 功');
@@ -126,15 +128,18 @@
                     $('#user_img').attr('src',data.header);
                     $('#user_name').html(data.name);
                     $('.bk_title').html('已 签 到');
+                    /*隐藏无人签到*/
+                    $(".noNum").hide();
                     var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
                     $('.personImg_list').append(html);
                     $(".list ul").prepend(html);
                     // 增加签到人数
                     var num = $('#signNum').html();
-                    $('#signNum').html(num++);
+                    ++num;
+                    $('#signNum').html(num);
                     if($('.personImg_list li').length > 3) {
                        //清除最后一个
-
+                        $('.personImg_list li:last-of-type').remove();
                     }
                     $('.bk1').show();
                 }

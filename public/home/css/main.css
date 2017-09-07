@@ -9,7 +9,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, p, table
     list-style: none;
 }
 body{
-    padding-bottom:55px;
+    padding-bottom:8vw;
 }
 .clearfix:before{
     display:table;
@@ -167,7 +167,7 @@ body{
     font-size: 1.58rem;
 }
 .container>div:nth-of-type(n+2) {
-    border-bottom: 0.2666vw dashed #f7f7f7;
+    border-bottom: 0.2666vw dashed rgba(0,0,0,.1);
 }
 .container>div:last-of-type {
     border-bottom-width: 0;
@@ -214,7 +214,7 @@ body{
     float: left;
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    margin-left: -2vw;
+    margin-left: -5.3333vw;
     z-index: 10;
     position:relative;
     height: 13.3334vw;
@@ -231,15 +231,16 @@ body{
     border: 0.2666vw solid #d7d7d7;
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    margin-top: 2.5vw;
+    margin-top: 2.6666vw;
 
 }
 .container .personList .personImg_list li span {
     display: none;
 }
-.container .personList .person_list span#noneMan {
+.container .personList .noNum {
     display: inline-block;
     line-height: 13.3334vw;
+    color: #aaaaaa;
     font-size: 1.2rem;
 }
 .container .content {
