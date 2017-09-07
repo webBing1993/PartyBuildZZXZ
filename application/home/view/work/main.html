@@ -93,60 +93,47 @@
         }
     });
 //    测试扫描
-    $('.sao').click(function(){
-        $('.sao').hide();
-        var result = '15868193036'; // 当needResult 为 1 时，扫码返回的结果
-        var id = {$data.id};
-        $.ajax({
-            type: 'POST',
-            url: "{:Url('Work/scan')}" ,
-            data: {id:id,user_id:result} ,
-            success:function(data){
-                if (data.status==2) {
-                    $('.sao').show();
-                    swal({
-                        title: '',
-                        text: data.err_msg,
-                        type: 'error',
-                        confirmButtonText: '确定',
-                        timer: 3000
-                    });
-                } else if (data.status==1){
-                    /*隐藏无人签到*/
-                    $(".noNum").hide();
-                    $('#user_img').attr('src',data.header);
-                    $('#user_name').html(data.name);
-                    $('.bk_title').html('签 到 成 功');
-                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
-                    $('.personImg_list').prepend(html);
-                    $(".list ul").prepend(html);
-                    if($('.personImg_list li').length > 3) {
-                        $('.personImg_list li:last-of-type').remove();
-                    }
-                    $('.bk1').show();
-                }else{
-                    $('#user_img').attr('src',data.header);
-                    $('#user_name').html(data.name);
-                    $('.bk_title').html('已 签 到');
-                    /*隐藏无人签到*/
-                    $(".noNum").hide();
-                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
-                    $('.personImg_list').append(html);
-                    $(".list ul").prepend(html);
-                    // 增加签到人数
-                    var num = $('#signNum').html();
-                    ++num;
-                    $('#signNum').html(num);
-                    if($('.personImg_list li').length > 3) {
-                       //清除最后一个
-                        $('.personImg_list li:last-of-type').remove();
-                    }
-                    $('.bk1').show();
-                }
-
-            }
-        });
-    });
+//    $('.sao').click(function(){
+//        $('.sao').hide();
+//        var result = '15868193036'; // 当needResult 为 1 时，扫码返回的结果
+//        var id = {$data.id};
+//        $.ajax({
+//            type: 'POST',
+//            url: "{:Url('Work/scan')}" ,
+//            data: {id:id,user_id:result} ,
+//            success:function(data){
+//                if (data.status==2) {
+//                    $('.sao').show();
+//                    swal({
+//                        title: '',
+//                        text: data.err_msg,
+//                        type: 'error',
+//                        confirmButtonText: '确定',
+//                        timer: 3000
+//                    });
+//                } else if (data.status==1){
+//                    /*隐藏无人签到*/
+//                    $(".noNum").hide();
+//                    $('#user_img').attr('src',data.header);
+//                    $('#user_name').html(data.name);
+//                    $('.bk_title').html('签 到 成 功');
+//                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
+//                    $('.personImg_list').prepend(html);
+//                    $(".list ul").prepend(html);
+//                    if($('.personImg_list li').length > 3) {
+//                        $('.personImg_list li:last-of-type').remove();
+//                    }
+//                    $('.bk1').show();
+//                }else{
+//                    $('#user_img').attr('src',data.header);
+//                    $('#user_name').html(data.name);
+//                    $('.bk_title').html('已 签 到');
+//                    $('.bk1').show();
+//                }
+//
+//            }
+//        });
+//    });
 
     /*人员弹出框*/
     $(".personList").on('click',function(){
@@ -204,21 +191,29 @@
                         url: "{:Url('Work/scan')}" ,
                         data: {id:id,user_id:result} ,
                         success:function(data){
-                            if(data.status==2){
+                            if (data.status==2) {
                                 $('.sao').show();
-                                alert(data.err_msg);
-                            }else if(data.status==1){
-                                if($('#noneMan')){
-                                    $('#noneMan').remove();
-                                }
+                                swal({
+                                    title: '',
+                                    text: data.err_msg,
+                                    type: 'error',
+                                    confirmButtonText: '确定',
+                                    timer: 3000
+                                });
+                            } else if (data.status==1){
+                                /*隐藏无人签到*/
+                                $(".noNum").hide();
                                 $('#user_img').attr('src',data.header);
                                 $('#user_name').html(data.name);
                                 $('.bk_title').html('签 到 成 功');
                                 var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
-                                $('.main1>ul').prepend(html);
-                                $('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
-                                $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
-                                $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');
+                                $('.personImg_list').prepend(html);
+                                $(".list ul").prepend(html);
+                                var signNum = $('#signNum').html();
+                                $('#signNum').html(++signNum);
+                                if($('.personImg_list li').length > 3) {
+                                    $('.personImg_list li:last-of-type').remove();
+                                }
                                 $('.bk1').show();
                             }else{
                                 $('#user_img').attr('src',data.header);
