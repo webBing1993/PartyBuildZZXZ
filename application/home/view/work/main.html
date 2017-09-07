@@ -15,13 +15,13 @@
 {/block}
 {block name="body"}
     <div class="banner">
-        <img src="/home/images/banner/13.png" alt="">
+        <img src="{$data.front_cover|get_cover='path'}" alt="">
     </div>
     <div class="container">
         <div class="title">
             <p>{$data.title}</p>
         </div>
-        <div class="person_time"><span>浏览 <span>100</span>次</span></div>
+        <!--<div class="person_time"><span>浏览 <span>100</span>次</span></div>-->
         <div class="time clearfix">
             <img src="/home/images/work/time.png" alt="" class="fl">
             <span class="fl">{$data.meet_time|date="Y-m-d H:i",###}&nbsp</span>
@@ -32,30 +32,15 @@
             </div>
             <div class="person_list fr">
                 <i class="fa fa-angle-right fr"></i>
+                {empty name='$data.infoes'}
+                <span >无人签到</span>
+                {/empty}
                 <ul class="personImg_list fr">
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
+                    {volist name="$data.infoes" id="lo" key='k' offset="0" length='3'}
+                    <li class="clearfix">
                         {$lo}
                     </li>
                     {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-
-
-
                 </ul>
             </div>
         </div>
@@ -67,55 +52,14 @@
     <div class="box">
         <div class="shadow"></div>
         <div class="list">
-            <p>一共有 <span>12</span>人</p>
+            <p>已签到 <span id="signNum">{:count($data.infoes)}</span>人</p>
             <div class="clearfix">
                 <ul>
                     {volist name="$data.infoes" id="lo"}
-                    <li>
+                    <li class="clearfix">
                         {$lo}
                     </li>
                     {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-                    {volist name="$data.infoes" id="lo"}
-                    <li>
-                        {$lo}
-                    </li>
-                    {/volist}
-
                 </ul>
             </div>
         </div>
@@ -151,7 +95,7 @@
 //    测试扫描
     $('.sao').click(function(){
         $('.sao').hide();
-        var result = '15700004138'; // 当needResult 为 1 时，扫码返回的结果
+        var result = '15868193036'; // 当needResult 为 1 时，扫码返回的结果
         var id = {$data.id};
         $.ajax({
             type: 'POST',
@@ -168,18 +112,12 @@
                         timer: 3000
                     });
                 } else if (data.status==1){
-                    /*if($('#noneMan')){
-                        $('#noneMan').remove();
-                    }*/
                     $('#user_img').attr('src',data.header);
                     $('#user_name').html(data.name);
                     $('.bk_title').html('签 到 成 功');
                     var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
                     $('.personImg_list').prepend(html);
                     $(".list ul").prepend(html);
-                    /*$('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
-                    $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
-                    $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');*/
                     if($('.personImg_list li').length > 3) {
                         $('.personImg_list li:last-of-type').remove();
                     }
@@ -189,11 +127,14 @@
                     $('#user_name').html(data.name);
                     $('.bk_title').html('已 签 到');
                     var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
-                    console.log(html);
                     $('.personImg_list').append(html);
                     $(".list ul").prepend(html);
+                    // 增加签到人数
+                    var num = $('#signNum').html();
+                    $('#signNum').html(num++);
                     if($('.personImg_list li').length > 3) {
-                        $('.personImg_list li:first-of-type').remove();
+                       //清除最后一个
+
                     }
                     $('.bk1').show();
                 }

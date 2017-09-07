@@ -210,38 +210,29 @@ body{
     position: relative;
 }
 .container .personList .personImg_list li {
-    /*width: 9.0667vw;*/
-    /*height: 9.0667vw;*/
-    width: 15vw;
+    width: 8vw;
     float: left;
-    /*border: 0.2666vw solid #d7d7d7;*/
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    /*top: 2.1333vw;*/
-    /*margin-top: 2.1333vw;*/
-    /*position: absolute;*/
-    right: 0;
+    margin-left: -2vw;
+    z-index: 10;
+    position:relative;
+    height: 13.3334vw;
 }
-.container .personList .personImg_list li:nth-of-type(2) img {
-    right: 2.6666vw;
+.container .personList .personImg_list li:nth-of-type(2) {
+    z-index: 9;
 }
-.container .personList .personImg_list li:nth-of-type(3) img {
-    right: 5.3333vw;
+.container .personList .personImg_list li:nth-of-type(3) {
+    z-index: 8;
 }
 .container .personList .personImg_list li img {
     width: 8vw;
     height: 8vw;
-    /*width: 9.0667vw;
-    height: 9.0667vw;
-    padding: 0.5333vw;*/
-    top: 2.1333vw;
-    position: absolute;
-    right: 0;
     border: 0.2666vw solid #d7d7d7;
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    /*width: 100%;*/
-    /*height: 100%;*/
+    margin-top: 2.5vw;
+
 }
 .container .personList .personImg_list li span {
     display: none;
