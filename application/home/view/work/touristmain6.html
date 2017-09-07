@@ -42,6 +42,13 @@
         width:50%;
         color:#333;
     }
+    .bottom>div a {
+        color: #333;
+        width: 99%;
+        height: 100%;
+        text-decoration: none;
+        display: inline-block;
+    }
     .bottom>div:not(:last-child):before {
         content: '';
         width: 0.27vw;
@@ -117,6 +124,13 @@
         line-height: 10.667vw;
         border-bottom: 0.27vw solid #e5e5e5;
     }
+    .box>ul>li a {
+        color: #333;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        text-decoration: none;
+    }
     .box>ul>li:last-child{
         border:none;
     }
@@ -130,15 +144,15 @@
     <b></b>
 </div>
 <div class="bottom">
-    <div data-id="">手机党校</div>
-    <div data-id="{$link}/home/topic/index">体悟反思</div>
+    <div data-id=""><a href="javascript:;">手机党校</a></div>
+    <div data-id="{$link}/home/topic/index"><a href="javascript:;">体悟反思</a></div>
 </div>
 <div class="box">
     <ul>
-        <li data-id="{$link}/home/work/dangshi">党史学习</li>
-        <li data-id="{$link}/home/learn/index">红色课堂</li>
-        <li data-id="{$link}/home/constitution/game ">在线答题</li>
-        <li data-id="{$link}/home/constitution/course ">每日一课</li>
+        <li data-id="{$link}/home/work/dangshi"><a href="javascript:;">党史学习</a></li>
+        <li data-id="{$link}/home/learn/index"><a href="javascript:;">红色课堂</a></li>
+        <li data-id="{$link}/home/constitution/game "><a href="javascript:;">在线答题</a></li>
+        <li data-id="{$link}/home/constitution/course "><a href="javascript:;">每日一课</a></li>
     </ul>
 </div>
 {/block}

@@ -10,7 +10,7 @@
 
 <ul class="d_lists">
 	{volist name="users" id="vo"}
-	<li class="d_list clearfix" onclick="overview('{$vo->user->userid}')">
+	<li class="d_list clearfix" onclick="overview('{$vo->user->userid}');$(this).css('backgroundColor','#eee');">
 		<div class="d_img_box fl">
 			<div class="d_img" style="background-color: {:get_rand_color()}">
 				{:substr($vo->user->name,0,3)}

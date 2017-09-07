@@ -456,11 +456,11 @@ body {
 }
 .branch_history_lists .list_box {
   position: absolute;
-  width: 2vw;
+  width: 1.2vw;
   top: 11vw;
   left: 32%;
   bottom: 0;
-  margin-left: -1vw;
+  margin-left: -0.6vw;
   /*height: 32vw;*/
   background: -webkit-linear-gradient(#fff, #e89238,#fff); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(#fff, #e89238,#fff); /* Opera 11.1 - 12.0 */
@@ -500,19 +500,19 @@ body {
   color: #8a8a8a;
 }
 .branch_history_lists .box_cl {
-  width: 7vw;
-  height: 7vw;
+  width: 6.4vw;
+  height: 6.4vw;
   border: 1px solid #fce6d1;
   border-radius: 50%;
-  padding: 1.2vw;
+  padding: 1.0vw;
   position: absolute;
   left: 32%;
   top: 3vw;
-  margin-left: -3.5vw;
+  margin-left: -3.2vw;
   z-index: 10;
 }
 .branch_history_lists .box_cl span {
-  display: inline-block;
+  display: block;
   width: 100%;
   height: 100%;
   background-color: #f7ce0d;
@@ -554,7 +554,7 @@ body {
 }
 .branch_history_lists .lists_r .content {
   display: -webkit-box;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   text-align: left;
 }
 .branch_history_lists .lists_r .list_btn a {

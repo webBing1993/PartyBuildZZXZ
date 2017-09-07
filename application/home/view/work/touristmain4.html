@@ -42,6 +42,13 @@
         width:50%;
         color:#333;
     }
+    .bottom>div a {
+        color: #333;
+        width: 99%;
+        height: 100%;
+        text-decoration: none;
+        display: inline-block;
+    }
     .bottom>div:not(:last-child):before {
         content: '';
         width: 0.27vw;
@@ -101,8 +108,8 @@
     <b></b>
 </div>
 <div class="bottom">
-    <div data-id="{$link}/home/news/index/type/1">党建时讯</div>
-    <div data-id="{$link}/home/news/index/type/2">校园动态</div>
+    <div data-id="{$link}/home/news/index/type/1"><a href="javascript:;">党建时讯</a></div>
+    <div data-id="{$link}/home/news/index/type/2"><a href="javascript:;">校园动态</a></div>
 </div>
 {/block}
 {block name="script"}

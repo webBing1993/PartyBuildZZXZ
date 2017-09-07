@@ -42,6 +42,13 @@
         width:50%;
         color:#333;
     }
+    .bottom>div a {
+        color: #333;
+        width: 99%;
+        height: 100%;
+        text-decoration: none;
+        display: inline-block;
+    }
     .bottom>div:not(:last-child):before {
         content: '';
         width: 0.27vw;
@@ -101,8 +108,8 @@
     <b></b>
 </div>
 <div class="bottom">
-    <div data-id="{$link}/home/Statistics/party">党员信息统计</div>
-    <div data-id="{$link}/home/Statistics/index">文章阅读统计</div>
+    <div data-id="{$link}/home/Statistics/party"><a href="javascript:;">党员信息统计</a></div>
+    <div data-id="{$link}/home/Statistics/index"><a href="javascript:;">文章阅读统计</a></div>
 </div>
 {/block}
 {block name="script"}

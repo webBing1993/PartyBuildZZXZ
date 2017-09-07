@@ -51,30 +51,31 @@
 		background-size:7.5vw 7.5vw;
 		border-bottom:0.27vw solid #eee;
 	}
-	.main>ul>li>b{
+	.main>ul>li b{
 		height:11.24vw;
-		width: 11.24vw;
+		width: 15.24vw;
 		background:url("") no-repeat center center;
 		background-size:cover;
 		float:left;
 		margin-left:2.25vw;
 	}
-	.main>ul>li>p{
-		width: 78vw;
+	.main>ul>li p{
+		width: 72vw;
 		position:absolute;
-		left: 15vw;
+		left: 20vw;
 		overflow : hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
 		font-size: 1.46rem;
+		color: #333333;
 	}
-	.main>ul>li>span{
+	.main>ul>li span{
 		color:#666;
 		position:absolute;
 		bottom: 2.67vw;;
-		left:15vw;
+		left:20vw;
 		font-size:1rem;
 	}
 
@@ -107,7 +108,7 @@
 		<span></span>
 	</li>
 </ul>
-<div class="main" id="1" style="display:none;">
+<div class="main" id="1" >
 	<ul>
 		{empty name="now"}
 		<div class="nomessage">
@@ -116,7 +117,7 @@
 		</div>
 		{else/}
 		{volist name="now" id="vo"}
-		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'" class="clearfix">
+		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'; $(this).css('backgroundColor','#eee');" class="clearfix">
 			<b style=' background-image:url({$vo.front_cover|get_cover="path"})'></b>
 			<p>{$vo.title}</p>
 			<span>{$vo.meet_time|date="Y-m-d H:i",###}</span>
@@ -125,7 +126,7 @@
 		{/empty}
 	</ul>
 </div>
-<div class="main" id="2" style="display:none;">
+<div class="main hidden" id="2" >
 	<ul>
 
 		{empty name="go" }
@@ -135,7 +136,7 @@
 		</div>
 		{else/}
 		{volist name="go" id="vo"}
-		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'" class="clearfix" >
+		<li data-num="{$vo.id}" onclick="window.location.href='main?id={$vo.id}'; $(this).css('backgroundColor','#eee');" class="clearfix" >
 			<b style=' background-image:url({$vo.front_cover|get_cover="path"})'></b>
 			<p>{$vo.title}</p>
 			<span>{$vo.meet|date="Y-m-d H:i",###}</span>
@@ -144,35 +145,105 @@
 		{/empty}
 	</ul>
 </div>
-
+<div class="tip"></div>
+<div class="loading hidden">
+	<div class="typing_loader"></div>
+</div>
 {/block}
 
 {block name="script"}
 <script>
-	$(function(){
-//		$('.main>ul>li>p').width(document.body.clientWidth-100);
-	});
 	$('li[data-id=1]').addClass('active');
 	$('#1').show();
 
-	$('.header>li').click(function(){
-		if(!$(this).hasClass('active')){
-			if($(this).attr('data-id')==1){
-				$('#2').hide();
-				$('#1').show();
+	var scrollNow = true;//判断下拉请求是否执行中.false为正在请求
+	var tabType = 1; // 记录当前是哪个tab
+	$(function(){
+		//初始化数据
+		var len = $('#'+tabType).find("li").length;
+		if(len >= 7 ){
+			$('.tip').text('上拉加载更多');
+			loadScroll();
+		}
+		//tab切换
+		$(".header").on('click','li',function () {
+			var index = $(this).index();
+			console.log(index);
+			tabType = index + 1;
+			$(this).addClass("active").siblings("li").removeClass("active");
+			$(".main").eq(index).removeClass("hidden").siblings(".main").addClass("hidden");
+			var len = $('#'+tabType).find("li").length;
+			if ( len >= 7 ) {
+				$(".tip").show();
+				$(".tip").text('上拉加载更多');
+				loadScroll();
 			}else{
-				$('#1').hide();
-				$('#2').show();
+				$('.tip').hide();
+				$(window ).off("scroll" );
 			}
-			$('.header').find('.active').removeClass('active');
-			$(this).addClass('active');
+
+		});
+	});
+
+	function loadScroll(){
+
+		$(window ).off("scroll" ).on("scroll",function(){
+			var dh = $(document).height();
+			var end = $(window).height() + $(window ).scrollTop();
+			var len  = $('#'+tabType).find("li").length;
+			var tip = $(".tip");
+			var loading = $('.loading');
+			if(dh == end && scrollNow){
+				scrollNow = false;
+				$.ajax({
+					type:"post",
+					url:"{:Url('Work/getMoreSignList')}",
+					data:{
+						length: len,
+						type: tabType,
+					},
+					beforeSend: function(XMLHttpRequest){
+						tip.hide();
+						loading.toggleClass('hidden');
+					},
+					success:function(data){
+						loading.toggleClass('hidden');
+						tip.show();
+						if(data.code == 1){
+							addNews(data);
+							var dataLen =data.data.length;
+							if(data.data.length == 6){
+								tip.text('上拉加载更多');
+							}
+						}else{
+							tip.text('没有更多了');
+							$(window ).off("scroll");
+						}
+						scrollNow = true;
+					}
+				})
+			}
+		})
+	}
+
+	function addNews(data){
+		var html = '';
+		var lists = data.data;
+		var len = lists.length;
+		var ntc = $('#'+tabType);
+
+		for(var i = 0; i< len;i++){
+			var list = lists[i];
+			html +=
+					'<li onclick="window.location.href='+"'"+'main?id='+list.id +"'; $(this).css('backgroundColor','#eee');"+'"class="clearfix" >'+
+						'<b style="background-image:url(' + list.src + ')" ></b>'+
+						'<p>'+ list.title +'</p>'+
+						'<span>'+list.time +'</span>'+
+					'</li>'
 		}
 
-	})
-
-
-
-
+		ntc.children("ul").append(html);
+	}
 
 
 </script>
