@@ -88,11 +88,10 @@ class Work extends Base{
         $uid = session('userId');
         $data = Notice::where(['id' => $id])->find();
         // 获取签到报名用户信息
-        $Apply = Apply::where(['notice_id'=>$id])->order('id desc')->select();
+        $Apply = Apply::where(['notice_id'=>$id])->order('create_time desc')->select();
         $arr = array();
         if (empty($Apply)) {
 
-            $arr[]= "<span style='color: #aaa' id='noneMan'>无人签到</span>";
         } else {
 
             foreach ($Apply as $value) {
