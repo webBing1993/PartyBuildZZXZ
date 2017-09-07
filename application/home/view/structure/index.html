@@ -44,58 +44,68 @@
 	<div class="box hidden  shouldKnow">
 		<div class="box_">
 			<div class="branch_history">
-				<div class="branch_history_s">
-					<div class="bh_tab">发展时间</div>
-					<div class="bh_tab">历程经历</div>
-				</div>
 				<div class="branch_history_x">
-					<div class="jq22-container">
-						<div class="cntl">
-								<span class="cntl-bar cntl-center">
-									<span class="cntl-bar-fill"></span>
-								</span>
-							<div class="cntl-states">
-								<div class="cntl-state">
-									<div class="cntl-content">
-										<h4>支部成立</h4>
-										<p>2000/01/01</p>
-									</div>
-									<div class="cntl-icon cntl-center"></div>
+					<div class="branch_history_lists">
+						<div class="branch_historyList clearfix">
+							<div class="lists_l fl">
+								<h4>3月5日</h4>
+								<p>2001年</p>
+							</div>
+							<div class="box_cl">
+								<span></span>
+							</div>
+							<div class="list_box"></div>
+							<div class="lists_r fr">
+								<div class="list_img fl">
+									<img src="/home/images/structure/cl.png" alt="">
 								</div>
-								<div class="cntl-state">
-									<div class="cntl-content">
-										<h4>被评为区级优秀党支书</h4>
-										<p>2000/01/01</p>
+								<div class="list_content">
+									<div class="content">
+										信达学校党支部在余杭区成立领导班子全部出席会议
 									</div>
-									<div class="cntl-icon cntl-center"></div>
-								</div>
-
-								<div class="cntl-state">
-									<!--<div class="cntl-content">
-										<h4></h4>
-										<p></p>
-									</div>
-									<div class="cntl-icon cntl-center"></div>-->
-								</div>
-
-								<div class="cntl-state">
-									<!--<div class="cntl-content">
-										<h4></h4>
-										<p></p>
-									</div>
-									<div class="cntl-icon cntl-center"></div>-->
-								</div>
-
-								<div class="cntl-state">
-									<!--<div class="cntl-content">
-										<h4></h4>
-										<p></p>
-									</div>
-									<div class="cntl-icon cntl-center"></div>-->
 								</div>
 							</div>
 						</div>
-
+						<div class="branch_historyList clearfix">
+							<div class="lists_l fl">
+								<h4>7月5日</h4>
+								<p>2008年</p>
+							</div>
+							<div class="box_cl">
+								<span></span>
+							</div>
+							<div class="list_box"></div>
+							<div class="lists_r fr">
+								<div class="list_img fl">
+									<img src="/home/images/structure/hj.png" alt="">
+								</div>
+								<div class="list_content">
+									<div class="content">
+										信达学校党支部在余杭区成立领导班子全部出席会议
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="branch_historyList clearfix">
+							<div class="lists_l fl">
+								<h4>7月8日</h4>
+								<p>2008年</p>
+							</div>
+							<div class="box_cl">
+								<span></span>
+							</div>
+							<div class="list_box"></div>
+							<div class="lists_r fr">
+								<div class="list_img fl">
+									<img src="/home/images/structure/cg.png" alt="">
+								</div>
+								<div class="list_content">
+									<div class="content">
+										信达学校党支部在余杭区成立领导班
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -134,6 +144,17 @@ $(function(){
 		$('.listbox .shouldKnow').css('left',bodyLeft);
 		//上拉加载
 	});
+
+	/*支部历史高度自适应*/
+	setTimeout(function(){
+		$.each($(".branch_historyList"),function(n,value) {
+			var height = $(".lists_r").eq(n).height() + 40;
+			var top = $(".lists_r").eq(n).prev().position().top;
+			$(".lists_r").eq(n).prev().css("height",height);
+			$(".lists_r").eq(n).parents(".branch_historyList").css("height",height+top);
+		})
+	},0);
+
 
 });
 
