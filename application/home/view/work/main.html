@@ -3,6 +3,7 @@
 {block name="style"}
     <script src="/static/sweetalert/sweetalert.min.js"></script>
     <link rel="stylesheet" href="/static/sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="/home/css/main.css">
     <title>
         {eq name="now" value="1"}
         最新会议
@@ -10,195 +11,115 @@
         历史会议
         {/eq}
     </title>
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Microsoft YaHei';
-            -webkit-tap-highlight-color:rgba(0,0,0,0);
-        }
-        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, p, table, th, td, select, option {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-        body{
-            padding-bottom:55px;
-        }
-        .clearfix:before{
-            display:table;
-            content:'';
-        }
-        .clearfix:after{
-            display:table;
-            content:'';
-            clear:both;
-        }
-        #list>li{
-            width:100%;
-            line-height: 12vw;
-            color:#333;
-            border-bottom: 0.27vw solid #eee;
-            padding-left:3.2vw;
-            font-size:1.34rem;
-        }
-        #list>li>span{
-            float:right;
-            color:#999;
-            margin-right:3.2vw;
-            font-size:1.34rem;
-        }
-        .title{
-            height:12vw;
-            color:#333;
-            padding-left:3.2vw;
-            line-height: 12vw;
-            font-weight: normal;
-            font-size: 1.34rem;
-        }
-        .sao{
-            position:fixed;
-            color:#fff;
-            background-color:#ee3333;
-            font-size: 1.7rem;
-            line-height: 12vw;
-            bottom:0;
-            left:0;
-            width:100%;
-            text-align: center;
-        }
-        .main1>ul>li{
-            width:25%;
-            float:left;
-            padding-left: 4vw;
-            padding-right:4vw;
-            overflow: hidden;
-        }
-        .main1>ul>li>img{
-            display:block;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .main1>ul>li>span{
-            display:block;
-            line-height: 3.4666vw;
-            font-size: 3.4666vw;
-            text-align: center;
-            height:3.4666vw;
-            margin-top:1.8666vw;
-        }
-        .title1{
-            display:block;
-            width:100%;
-        }
-        .bk1{
-            background-color:rgba(0,0,0,.5);
-            width:100%;
-            position:fixed;
-            top:0;
-            left:0;
-            z-index: 100;
-            display:none;
-            bottom:0;
-        }
-        .bk1>.content{
-            width:70%;
-            position:absolute;
-            top: 50%;
-            left:50%;
-            -webkit-transform: translateY(-50%) translateX(-50%);
-            background-color:#fff;
-            border-radius: 2.1333vw;
-            overflow: hidden;
-        }
-        .bk_title{
-            margin-top:2.6666vw;
-            text-align: center;
-            font-size: 1.7rem;
-            line-height: 4.8vw;
-            margin-bottom: 10.6666vw;
-            color:#0Baa0C;
-            font-weight: bold;
-        }
-        .bk_title>span{
-            display:inline-block;
-            width:4vw;
-            height:4vw;
-            background:url("/work/img/sure.png") no-repeat center center;
-            background-size:cover;
-            margin-right:1.3333vw;
-        }
-        #user_img{
-            width: 22.6666vw;
-            height:22.6666vw;
-            display:block;
-            margin:0 auto;
-            border-radius: 50%;
-            margin-top:12vw;
-            margin-bottom:2.68vw;
-        }
-        #user_name{
-            font-size:1.5rem;
-            text-align: center;
-            margin-bottom: 2.68vw;
-        }
-        .btn1{
-            height:14.6666vw;
-            line-height: 14.6666vw;
-            background-color:#eee;
-        }
-        .btn1>a{
-            float: left;
-            text-align: center;
-            height:14.6666vw;
-            line-height: 14.6666vw;
-            width:50%;
-            font-size: 1.46rem;
-        }
-        .btn1>a:first-child:before {
-            content: '';
-            width: 0.27vw;
-            height: 20px!important;
-            background-color: #aaa;
-            float: right;
-            margin-top: 4.6666vw;
-        }
-        .sweet-alert textarea {
-            display: none;
-        }
-    </style>
+
 {/block}
 {block name="body"}
-<img src="{$data.front_cover|get_cover='path'}" alt="" class="title1">
-<ul id="list">
-    <li>
-        会议主题
-        <span>
-            {$data.title}
-        </span>
-    </li>
-    <li>
-        时间
-        <span>
-            {$data.meet_time|date="Y-m-d H:i",###}&nbsp
-        </span>
-    </li>
-    <li>
-        内容
-        <span>
-        {$data.content}
-        </span>
-    </li>
-</ul>
-<h5 class="title">参会人员</h5>
-<div class="main1 clearfix">
-    <ul>
-        {volist name="$data.infoes" id="lo"}
-        <li>
-            {$lo}
-        </li>
-        {/volist}
-    </ul>
-</div>
+    <div class="banner">
+        <img src="/home/images/banner/13.png" alt="">
+    </div>
+    <div class="container">
+        <div class="title">
+            <p>{$data.title}</p>
+        </div>
+        <div class="person_time"><span>浏览 <span>100</span>次</span></div>
+        <div class="time clearfix">
+            <img src="/home/images/work/time.png" alt="" class="fl">
+            <span class="fl">{$data.meet_time|date="Y-m-d H:i",###}&nbsp</span>
+        </div>
+        <div class="personList clearfix">
+            <div class="person_img fl">
+                <img src="/home/images/work/person.png" alt="">
+            </div>
+            <div class="person_list fr">
+                <i class="fa fa-angle-right fr"></i>
+                <ul class="personImg_list fr">
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            {$data.content}
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="shadow"></div>
+        <div class="list">
+            <p>一共有 <span>12</span>人</p>
+            <div class="clearfix">
+                <ul>
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+                    {volist name="$data.infoes" id="lo"}
+                    <li>
+                        {$lo}
+                    </li>
+                    {/volist}
+
+                </ul>
+            </div>
+        </div>
+    </div>
 {eq name="c" value=""}
 <a class="sao" style="display:none;">扫一扫</a>
 {else/}
@@ -222,49 +143,73 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=WS7BZ-ZBERG-5T5Q3-IBRHI-FVXU3-45FR5&libraries=drawing,geometry,autocomplete,convertor"></script>
 <script>
+    $(function() {
+        if($('.personImg_list li').length >= 4) {
+            $('.personImg_list li:first-of-type').remove();
+        }
+    });
+//    测试扫描
+    $('.sao').click(function(){
+        $('.sao').hide();
+        var result = '15700004138'; // 当needResult 为 1 时，扫码返回的结果
+        var id = {$data.id};
+        $.ajax({
+            type: 'POST',
+            url: "{:Url('Work/scan')}" ,
+            data: {id:id,user_id:result} ,
+            success:function(data){
+                if (data.status==2) {
+                    $('.sao').show();
+                    swal({
+                        title: '',
+                        text: data.err_msg,
+                        type: 'error',
+                        confirmButtonText: '确定',
+                        timer: 3000
+                    });
+                } else if (data.status==1){
+                    /*if($('#noneMan')){
+                        $('#noneMan').remove();
+                    }*/
+                    $('#user_img').attr('src',data.header);
+                    $('#user_name').html(data.name);
+                    $('.bk_title').html('签 到 成 功');
+                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
+                    $('.personImg_list').prepend(html);
+                    $(".list ul").prepend(html);
+                    /*$('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
+                    $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
+                    $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');*/
+                    if($('.personImg_list li').length > 3) {
+                        $('.personImg_list li:last-of-type').remove();
+                    }
+                    $('.bk1').show();
+                }else{
+                    $('#user_img').attr('src',data.header);
+                    $('#user_name').html(data.name);
+                    $('.bk_title').html('已 签 到');
+                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
+                    console.log(html);
+                    $('.personImg_list').append(html);
+                    $(".list ul").prepend(html);
+                    if($('.personImg_list li').length > 3) {
+                        $('.personImg_list li:first-of-type').remove();
+                    }
+                    $('.bk1').show();
+                }
 
-    //测试扫描
-//    $('.sao').click(function(){
-//        $('.sao').hide();
-//        var result = '15700004138'; // 当needResult 为 1 时，扫码返回的结果
-//        var id = {$data.id};
-//        $.ajax({
-//            type: 'POST',
-//            url: "{:Url('Work/scan')}" ,
-//            data: {id:id,user_id:result} ,
-//            success:function(data){
-//                if (data.status==2) {
-//                    $('.sao').show();
-//                    swal({
-//                        title: '',
-//                        text: data.err_msg,
-//                        type: 'error',
-//                        confirmButtonText: '确定',
-//                        timer: 3000
-//                    });
-//                } else if (data.status==1){
-//                    if($('#noneMan')){
-//                        $('#noneMan').remove();
-//                    }
-//                    $('#user_img').attr('src',data.header);
-//                    $('#user_name').html(data.name);
-//                    $('.bk_title').html('签 到 成 功');
-//                    var html='<li><img src="'+data.header+'"><span>'+data.name+'</span></li>';
-//                    $('.main1>ul').prepend(html);
-//                    $('.main1>ul>li').height(document.body.clientWidth*0.25+'px');
-//                    $('.main1>ul>li>img').width(document.body.clientWidth*0.25-30+'px');
-//                    $('.main1>ul>li>img').height(document.body.clientWidth*0.25-30+'px');
-//                    $('.bk1').show();
-//                }else{
-//                    $('#user_img').attr('src',data.header);
-//                    $('#user_name').html(data.name);
-//                    $('.bk_title').html('已 签 到');
-//                    $('.bk1').show();
-//                }
-//
-//            }
-//        });
-//    });
+            }
+        });
+    });
+
+    /*人员弹出框*/
+    $(".personList").on('click',function(){
+        $(".box").show();
+    });
+    $(".shadow").bind("click",function(e) {
+        $(".box").hide();
+    });
+
 </script>
 
 <script>
