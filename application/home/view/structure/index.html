@@ -132,7 +132,12 @@ $(function(){
 		//tab值记录
 		tabRecord('.tab' ,'.box');
 		//tab切换
-		tabSwitch('.tab' ,'.box');
+		tabSwitch('.tab' ,'.box',function () {
+			if ($(".tab:last-of-type").hasClass('active')) {
+				init();
+			}
+		});
+
 		$(window).on("resize",function(e){
 			e.preventDefault();
 			var bodyLeft = $('body').width();
@@ -143,29 +148,18 @@ $(function(){
 		$('.listbox .shouldKnow').css('left',bodyLeft);
 		//上拉加载
 	});
-
-	/*支部历史高度自适应*/
-	setTimeout(function(){
-		$.each($(".branch_historyList"),function(n,value) {
-			var height = $(".lists_r").eq(n).height() + 40;
-			var top = $(".lists_r").eq(n).prev().position().top;
-			$(".lists_r").eq(n).prev().css("height",height);
-			$(".lists_r").eq(n).parents(".branch_historyList").css("height",height+top);
-		})
-	},0);
-
-
 });
-
-$(document).ready(function(e){
-	$('.cntl').cntl({
-		revealbefore: 300,
-		anim_class: 'cntl-animate',
-		onreveal: function(e){
-			console.log(e);
-		}
-	});
-});
-
+	function init() {
+		/*支部历史高度自适应*/
+		setTimeout(function(){
+			$.each($(".branch_historyList"),function(n,value) {
+				var height = $(".lists_r").eq(n).height() + 40;
+				var top = $(".lists_r").eq(n).prev().position().top;
+				$(".lists_r").eq(n).prev().css("height",height);
+				$(".lists_r").eq(n).parents(".branch_historyList").css("height",height+top);
+			})
+		},0);
+	}
+	init();
 </script>
 {/block}
