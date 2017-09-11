@@ -15,11 +15,16 @@
 <link rel="stylesheet" href="/home/css/news/news.css">
 <link rel="stylesheet" href="/home/css/common/rem.css">
 <style>
-	{empty name="list3"}
-	.tabs .tab {
-		width: 49vw;
-	}
-	{/empty}
+	{if condition="$type == 1"}
+		.tabs .tab {
+			width: 49vw;
+		}
+	{elseif condition="$type == 4"/}
+		.tabs .tab {
+			width: 49vw;
+		}
+	{/if}
+
 	/*发布悬浮框*/
 	#publish {
 		position: fixed;

@@ -72,7 +72,7 @@ class Work extends Base{
         if (!empty($list)) {
             // 数据转化
             foreach ($list as $k=>$v) {
-                $list[$k]['src'] = get_cover($list[$k]['front_cover']);
+                $list[$k]['src'] = get_cover($list[$k]['front_cover'])['path'];
                 $list[$k]['time'] = date('Y-m-d H:i',$list[$k]['meet']);
             }
 
