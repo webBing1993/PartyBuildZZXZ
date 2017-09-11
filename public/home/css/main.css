@@ -281,6 +281,7 @@ body{
     width: 100%;
     height: 111.6666vw;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .list>div::-webkit-scrollbar {
     display: none;
