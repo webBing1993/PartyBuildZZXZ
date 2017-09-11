@@ -37,6 +37,11 @@ function overview(userid){
 
 	window.location.href="/home/structure/overview/id/"+userid;
 }
+	$(function () {
+		$(".d_list a").on("click",function(e) {
+			e.stopPropagation();
+		})
+	})
 
 </script>
 {/block}

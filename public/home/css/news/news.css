@@ -59,6 +59,7 @@
 	width: 24vw;
 }
 .list img{
+	display: inline-block;
 	width: 24vw;
 	height: 16vw;
 	margin-top: 4vw;

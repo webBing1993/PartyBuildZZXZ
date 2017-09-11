@@ -67,6 +67,7 @@
             $(this ).find('span' ).addClass('active');
             //先全部隐藏
             $('iframe').css('display','none');
+            $('iframe').attr("src","");
             $('iframe').height(0);
             if(eq == 0){
                 $('#tab'+eq)[0].src='/home/statistics/form.html';

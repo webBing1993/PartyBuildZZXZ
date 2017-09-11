@@ -112,7 +112,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 .name_ span{
 	display: block;
 	height: 9.6vw;
-	width: 8.5333vw;
+	/*width: 8.5333vw;*/
 	margin-right:5vw;
 	line-height: 9.6vw;
 }
