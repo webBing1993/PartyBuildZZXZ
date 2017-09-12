@@ -87,12 +87,13 @@
 			}else if(isiOS && it.attr('type')== 'checkbox'){
 				//ios多选二次触发
 				if(it.prop('checked')){
-					it.removeAttr('checked')
+					it.removeAttr('checked');
+					it.next('.option' ).toggleClass('active');
 				}else{
 					it.prop('checked','true')
 				}
 				if(!it.prop('checked')){
-					it.next('.option_' ).toggleClass('active');
+					it.next('.option' ).toggleClass('active');
 				}
 			}
 		});
