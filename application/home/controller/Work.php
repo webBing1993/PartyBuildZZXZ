@@ -13,26 +13,6 @@ use app\home\model\WechatUser;
 use think\Request;
 
 class Work extends Base{
-    /*
-     * 党史
-     */
-    public function dangshi(){
-        return  $this->fetch();
-    }
-    /*
-     * 通讯录
-     */
-    public function structurelist(){
-        return $this->fetch();
-    }
-    /*
-     * 通讯录详情
-     */
-    public function structuredetail(){
-        $party = input('party');
-        $this->assign('party',$party);
-        return $this->fetch();
-    }
 
     /*
      * 党员签到
@@ -156,7 +136,7 @@ class Work extends Base{
                 $res = $Apply->save($data);
 
                 if ($res) {
-                    WechatUser::where(['userid'=>$userid])->setInc('score', 10);;
+                    WechatUser::where(['userid'=>$userid])->setInc('score', 10);
 
                     return array('status'=>1,'header'=>$Wechat['avatar'],'name'=>$Wechat['name']);
                 } else {
@@ -169,83 +149,6 @@ class Work extends Base{
             }
 
         }
-    }
-
-    /**
-     * 游客登录首页
-     * @return mixed
-     */
-    public function touristmain2(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 党建之家
-     * @return mixed
-     */
-    public function touristmain3(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 党建动态
-     * @return mixed
-     */
-    public function touristmain4(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 品牌同创
-     * @return mixed
-     */
-    public function touristmain5(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 两学一做
-     * @return mixed
-     */
-    public function touristmain6(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 数据统计
-     * @return mixed
-     */
-    public function touristmain7(){
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
-    }
-
-    /**
-     * 游客二维码
-     */
-    public function qrcode()
-    {
-        $request = Request::instance();
-        $this->assign('link',$request->domain());
-
-        return $this->fetch();
     }
 
 }

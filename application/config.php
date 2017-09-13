@@ -33,30 +33,16 @@ return [
         'login' => 'http://dqpb.0571ztnet.com/home/index/login',
         'token' => '',
         'encodingaeskey' => '',
-        'appid' => 'ww58b28476c9e654f1',
-        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgKak',
+        'appid' => 'ww58b28476c9e654',
+        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgK',
         'agentid' => 1000002,
     ),
 
     /*两学一做 */
     'learn' => array(
-        'appid' => 'ww58b28476c9e654f1',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsDbu0',
+        'appid' => 'ww58b28476c9e6',
+        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
         'agentid' => 1000003
-    ),
-
-    /*党建动态 */
-    'news' => array(
-        'appid' => 'ww58b28476c9e654f1',
-        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgKak',
-        'agentid' => 1000002
-    ),
-
-    /*品牌同创 */
-    'brand' => array(
-        'appid' => 'ww58b28476c9e654f1',
-        'appsecret' => 'ctEK00JzhFrO-yCJrvkzS_dXutUuNUQl8xtVxirZbGI',
-        'agentid' => 1000004
     ),
 
     //  推送网站域名

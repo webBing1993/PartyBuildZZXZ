@@ -6,44 +6,23 @@
  * Time: 13:21
  */
 namespace app\home\controller;
-use app\home\model\WechatDepartment;
-use app\home\model\WechatDepartmentUser;
+use app\home\model\WechatTest;
 use app\home\model\WechatUser;
 
 class Structure extends Base{
     /*
      * 组织架构主页
      */
-    public function index()
-    {
-        $department = WechatDepartment::where('parentid',1)->select();
-        $this->assign('deparment',$department);
-
+    public function index(){
         return $this->fetch();
     }
     /*
      * 组织架构详情页
      */
-    public function detail()
-    {
+    public function detail(){
         $this ->checkAnonymous();
         $party = input('party');
-        $users = WechatDepartmentUser::where('departmentid',$party)->select();
-        $this->assign('users',$users);
-
+        $this->assign('party',$party);
         return $this->fetch();
     }
-
-    /**
-     * 个人信息详情
-     */
-    public function overview()
-    {
-        $uid = input('id');
-        $user = WechatUser::where('userid',$uid)->find();
-        $this->assign('user',$user);
-
-        return $this->fetch();
-    }
-
 }

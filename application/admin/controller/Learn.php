@@ -128,69 +128,7 @@ class Learn extends Admin {
             return $this->error("删除失败");
         }
     }
-    /*
-     * 专题讨论
-     */
-    public function workshop(){
-        $map = array(
-            'status' => 0,
-            'type' => 4
-        );
-        $list = $this->lists('Learn',$map);
-        int_to_string($list,array(
-            'status' => array(0=>"已发布"),
-            'recommend' => array(0=>"否",1=>"是"),
-            'type' => array(4=>"专题讨论")
-        ));
-        $this->assign('list',$list);
 
-        return $this->fetch();
-    }
-    /*
-     * 专题 添加 修改
-     */
-    public function workshopadd(){
-        $id = input('id');
-        if($id){
-            // 修改
-           if(IS_POST){
-                $data = input('post.');
-               $learnModel = new LearnModel();
-               $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-               $model = $learnModel->validate('Learn.topic')->where(['id' => $id])->update($data);
-               if($model){
-                   return $this->success('修改成功',Url("Learn/workshop"));
-               }else{
-                   return $this->error($learnModel->getError());
-               }
-           }else{
-               $msg = LearnModel::where(['id' => $id,'status' => 0])->find();
-               $this->assign('msg',$msg);
-               return $this->fetch();
-           }
-        }else{
-            // 添加
-            if(IS_POST){
-                $data = input('post.');
-                if(empty($data['id'])) {
-                    unset($data['id']);
-                }
-                $learnModel = new LearnModel();
-                $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-                $model = $learnModel->validate('Learn.topic')->save($data);
-                if($model){
-                    return $this->success('新增成功!',Url("Learn/workshop"));
-                }else{
-                    return $this->error($learnModel->getError());
-                }
-            }else{
-                $this->default_pic();
-                $this->assign('msg','');
-                return $this->fetch();
-            }
-        }
-
-    }
 
     /**
      * 推送列表
@@ -201,13 +139,12 @@ class Learn extends Admin {
             $id = input('id');
             $info = array(
                 'id' => array('neq',$id),
-                'type' => 4,
                 'status' => 0,
                 'user_type' => 0,
             );
             $infoes = LearnModel::where($info)->select();
             int_to_string($infoes,array(
-                'type' => array(4=>"体悟反思"),
+                'type' => array(1=>"视频课程",2=>"文章课程",3=>"音乐课程",4=>"体悟反思",5=>"党性体验"),
             ));
             return $this->success($infoes);
         } else {
@@ -230,7 +167,6 @@ class Learn extends Admin {
 
             //主图文本获取
             $info = array(
-                'type' => 4,
                 'status' => 0,
                 'user_type' => 0,
             );

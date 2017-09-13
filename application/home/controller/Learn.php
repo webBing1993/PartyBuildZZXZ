@@ -94,13 +94,6 @@ class Learn extends Base {
 
                 Browse::create($con);
             }
-        } else {
-
-            $con = array(
-                'user_id' => $userId,
-                'learn_id' => $id,
-            );
-            Browse::create($con);
         }
 
         //分享图片及链接及描述
@@ -149,13 +142,6 @@ class Learn extends Base {
 
                 Browse::create($con);
             }
-        } else {
-
-            $con = array(
-                'user_id' => $userId,
-                'learn_id' => $id,
-            );
-            Browse::create($con);
         }
 
 
