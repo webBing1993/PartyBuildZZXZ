@@ -1,0 +1,37 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/forum.css">
+{/block}
+
+{block name="body"}
+<div class="banner">
+	<img src="/home/images/test/1.jpg" class="banner-img" alt="banner">
+</div>
+<div class="title">{$forum.title}</div>
+<div class="block review">
+	<span class="tag">论坛回顾</span>
+	<div class="list_">论坛主题：{$forum.notice.theme}</div>
+	<div class="list_">举办时间：{$forum.notice.time|time_format='Y-m-d'}</div>
+	<div class="list_">举办地点：{$forum.notice.address}</div>
+</div>
+<div class="block">
+	<span class="tag">论坛展示</span>
+	{volist name="$forum.detail" id="detail"}
+	<a class="list" href="{:Url('College/forumdetail?id='.$detail['id'])}">
+		<div class="title limit">{$detail.publisher}：{$detail.title}</div>
+		<div class="note">
+			<span class="time">{$detail.create_time|time_format='Y-m-d'}</span>
+			<span class="comment"><i>{$detail.comments}</i></span>
+		</div>
+	</a>
+	{/volist}
+</div>
+{/block}
+
+{block name="script"}
+<script>
+//模块标题
+$('title').text('红领学院');
+</script>
+{/block}

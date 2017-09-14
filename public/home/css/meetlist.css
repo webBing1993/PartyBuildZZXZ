@@ -35,8 +35,8 @@ a:active {
 .lists .list {
   display: block;
   width: 100%;
-  padding-left: 3.4666vw;
-  padding-right: 3.4666vw;
+  padding-left: 3.4vw;
+  padding-right: 3.4vw;
   height: 24vw;
   border-bottom: 0.27vw solid #f1f1f1;
   color: #666666;
@@ -56,15 +56,15 @@ a:active {
   font-size: 1.2rem;
 }
 .lists .list .fl img {
-  width: 21.3333vw;
+  width: 21vw;
   height: 16vw;
   margin-top: 4vw;
 }
 .lists .list .right {
-  width: 76.0001vw;
+  width: 69vw;
   height: 16vw;
-  margin-top: 2.5333vw;
-  margin-left: 2.5333vw;
+  margin-top: 2.5vw;
+  margin-left: 2.5vw;
 }
 /*加载动画*/
 .tip {

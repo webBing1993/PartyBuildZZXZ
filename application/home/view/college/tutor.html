@@ -1,0 +1,158 @@
+
+{extend name="public/common"}
+
+{block name="style"}
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    /*tab3*/
+    #tab3 ul{
+        margin-bottom:20px;
+    }
+    #tab3 ul li>a{
+        height:86px;width:100%;display: block;position:relative;
+    }
+    #tab3 ul li>a>img.fl{
+        width:92px;height:68px;border-radius: 3px;margin-left:12px;margin-top:9px;
+    }
+    #tab3 ul li>a>span.limit_{
+        width:60%;font-size:14px;height:58px;margin-left:11px;line-height:22px;padding-top:10px;
+    }
+    .tab_main{
+        height:30px;line-height:30px;width:100%;margin:0 auto;text-align: center;background:#fff;margin-bottom:3px;
+    }
+    .btn11,.btn22{
+        width:49%;text-align: center;display: inline-block;color:#999;font-size:15px;border-bottom:1px solid #f1f1f1;
+    }
+    .tab_active{
+        border-bottom:1px solid #DF4934;color:#DF4934;
+    }
+    .none{
+        display: none;
+    }
+    #tab3 #tab_main1>li>a>span:nth-child(3),#tab3 #tab_main2>li>a>span:nth-child(3){
+        margin-left:12px;font-size:12px;color:#999;
+    }
+    #tab3 #tab_main1>li>a>img:nth-child(4),#tab3 #tab_main2>li>a>img:nth-child(4){
+        width:10px;height:10px;margin-top:2px;margin-right:10px;
+    }
+    #tab_main1>li>a{
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .can_look{
+        display: block;
+    }
+    .banner{
+        width: 100vw;
+        height: 50vw;
+        position: relative;
+        top:0;
+    }
+    .bg{
+        position: absolute;
+        top:0;
+        width: 100%;
+        height: 100%;
+    }
+    .header{
+        position: absolute;
+        top:9vw;
+        left:10vw;
+        width: 32vw;
+        height: 32vw;
+        background: linear-gradient(#f27a55, #fee393);
+        -webkit-border-radius:50%;
+        border-radius:50%;
+        box-shadow: 0 0 2px rgba(242, 122, 85, 0.56);
+    }
+    .header_{
+        width: 29vw;
+        height: 29vw;
+        margin-top:1.7vw;
+        margin-left: 1.7vw;
+        -webkit-border-radius:50%;
+        border-radius:50%;
+        box-shadow: 0 0 2px rgba(198, 97, 70, 0.78);
+    }
+    .content{
+        position: absolute;
+        top:8vw;
+        left:48vw;
+        width: 46vw;
+    }
+    .content .name{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        line-height: 40px;
+    }
+    .content .name{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-weight: 700;
+        line-height: 40px;
+    }
+</style>
+{/block}
+
+{block name="body"}
+<div id="tab3" class="tab" >
+    <div class="list-block">
+        <div class="banner">
+            <img src="/home/images/tutor/bg.png" alt="背景" class="bg">
+            <div class="header">
+                <img src="{$tutor.header|get_cover='path'}" alt="头像" class="header_">
+            </div>
+            <div class="content">
+                <span class="name">{$tutor.name}</span>
+                <span class="detail">{$tutor.title}</span>
+            </div>
+        </div>
+        <div class="tab_main">
+            <div class="btn11 tab_active" >课程列表（{$tutor.number}）</div>
+            <div class="btn11 " >专家简介</div>
+        </div>
+
+        <ul id="tab_main1" class="">
+            <li>
+                {volist name="tutor.course" id="course"}
+                <a href="{:Url('College/tutordetail?id='.$course['id'])}">
+                    <img src="{$course.list_image|get_cover='path'}" alt="" class="fl ">
+                    <span class="limit_ fl" style="color:#333333">{$course.title}</span>
+                    <span class="fl">{$course.create_time|time_format='Y-m-d'}</span>
+                    <img src="/home/images/right.png" alt="" class="fr">
+                </a>
+                {/volist}
+            </li>
+        </ul>
+        <ul id="tab_main2" class=" none">
+            <li>
+                <div style="text-indent:2em;padding:20px 12px;">
+                    {$tutor.content}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    //模块标题
+    $('title').text('红领学院');
+    //#tab3
+    $('.btn11').click(function(){
+        $(this).toggleClass('tab_active');
+        $(this).siblings().toggleClass('tab_active');
+        $(this).parent().parent().find('ul').toggleClass('none')
+    });
+    $(function(){
+        $('a').off('click' ).on('click',function(){
+            window.location.href  =$(this ).attr('href');
+        })
+    })
+</script>
+{/block}

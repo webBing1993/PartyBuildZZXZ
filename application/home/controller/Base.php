@@ -153,6 +153,11 @@ class Base extends Controller {
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
+     * 7 RedtutorCourse
+     * 8 RedtutorNotice
+     * 9 Redlead
+     * 10 RedforumDetail
+     * 11 RedforumNotice
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -173,6 +178,21 @@ class Base extends Controller {
                 break;
             case 4:
                 $table = "redbook";
+                break;
+            case 7:
+                $table = "RedtutorCourse";
+                break;
+            case 8:
+                $table = "RedtutorNotice";
+                break;
+            case 9:
+                $table = "Redlead";
+                break;
+            case 10:
+                $table = "RedforumDetail";
+                break;
+            case 11:
+                $table = "RedforumNotice";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -227,6 +247,11 @@ class Base extends Controller {
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
+     * 7 RedtutorCourse
+     * 8 RedtutorNotice
+     * 9 Redlead
+     * 10 RedforumDetail
+     * 11 RedforumNotice
      */
     public function comment(){
         if(IS_POST){
@@ -245,6 +270,21 @@ class Base extends Controller {
                     break;
                 case 4:
                     $table = "redbook";
+                    break;
+                case 7:
+                    $table = "RedtutorCourse";
+                    break;
+                case 8:
+                    $table = "RedtutorNotice";
+                    break;
+                case 9:
+                    $table = "Redlead";
+                    break;
+                case 10:
+                    $table = "RedforumDetail";
+                    break;
+                case 11:
+                    $table = "RedforumNotice";
                     break;
                 default:
                     return $this->error("无该数据表");
