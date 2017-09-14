@@ -11,6 +11,6 @@ namespace app\home\model;
 
 use think\Model;
 
-class Notice extends Model {
+class Meet extends Model {
 
 }

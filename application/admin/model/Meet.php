@@ -11,7 +11,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Notice extends Model {
+class Meet extends Model {
     protected $insert = [
         'create_time' => NOW_TIME,
     ];

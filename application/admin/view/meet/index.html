@@ -34,7 +34,7 @@
                 <div class="ibox-title">
                     <h5>列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('notice/add')}">添加</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('meet/add')}">添加</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -59,8 +59,8 @@
                                 <td>{$vo.publisher}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
                                 <td>
-                                    <a href="{:Url('Notice/add?id='.$vo.id)}">修改</a>
-                                    <a href="{:Url('Notice/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('Meet/add?id='.$vo.id)}">修改</a>
+                                    <a href="{:Url('Meet/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}

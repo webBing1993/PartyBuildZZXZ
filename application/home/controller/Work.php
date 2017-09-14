@@ -6,7 +6,7 @@
  * Time: 14:49
  */
 namespace app\home\controller;
-use app\home\model\Notice;
+use app\home\model\Meet;
 use app\home\model\Apply;
 use app\home\model\WechatUserTag;
 use app\home\model\WechatUser;
@@ -22,8 +22,8 @@ class Work extends Base{
         $map1 = ['meet_time' => ['gt',time()]];
         $map2 = ['meet_time' => ['elt',time()]];
         $order = 'meet_time desc';
-        $go = Notice::where($map2)->order($order)->limit(10)->select();
-        $now = Notice::where($map1)->order($order)->limit(10)->select();
+        $go = Meet::where($map2)->order($order)->limit(10)->select();
+        $now = Meet::where($map1)->order($order)->limit(10)->select();
 
         $this->assign('go',$go);  // 已经结束
         $this->assign('now',$now);  // 进行中
@@ -44,9 +44,9 @@ class Work extends Base{
         $order = 'meet_time desc';
 
         if ($type == 1) {
-            $list = Notice::where($map1)->order($order)->limit($len,5)->select();
+            $list = Meet::where($map1)->order($order)->limit($len,5)->select();
         } else {
-            $list = Notice::where($map2)->order($order)->limit($len,5)->select();
+            $list = Meet::where($map2)->order($order)->limit($len,5)->select();
         }
 
         if (!empty($list)) {
@@ -71,9 +71,9 @@ class Work extends Base{
         $this->jssdk();
         $id = input('id');
         $uid = session('userId');
-        $data = Notice::where(['id' => $id])->find();
+        $data = Meet::where(['id' => $id])->find();
         // 获取签到报名用户信息
-        $Apply = Apply::where(['notice_id'=>$id])->order('create_time desc')->select();
+        $Apply = Apply::where(['meet_id'=>$id])->order('create_time desc')->select();
         $arr = array();
         if (empty($Apply)) {
 
@@ -110,7 +110,7 @@ class Work extends Base{
     {
         $id = input('id');
         $userid = input('user_id');
-        $result = Apply::where(array('notice_id'=>$id,'userid'=>$userid))->find();
+        $result = Apply::where(array('meet_id'=>$id,'userid'=>$userid))->find();
         $Wechat = WechatUser::where(['userid'=>$userid])->find();
 
         if($result){
@@ -121,14 +121,14 @@ class Work extends Base{
             if($Wechat){
 
                 // 会议过期
-                $data = Notice::where(['id' => $id])->find();
+                $data = Meet::where(['id' => $id])->find();
                 if ($data['meet_time'] <= time()) {
                     return array('status'=>2,'header'=>null,'name'=>null,'err_msg'=>'很抱歉，您已过了签到时间，下次请准时来哦!');
                 }
 
                 // 新增签到记录
                 $data = array(
-                    'notice_id' => $id,
+                    'meet_id' => $id,
                     'userid' =>$userid,
                     'status' =>0
                 );
