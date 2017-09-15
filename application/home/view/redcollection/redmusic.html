@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title></title>
 <link rel="stylesheet" href="/home/css/redcollection/music.css">
 {/block}
 
@@ -27,6 +28,7 @@
 
 {block name="script"}
 <script>
+	var scrollNow = true;
 $('title' ).text('歌曲推荐');
 $(function(){
 	var len = $(".list" ).length;
@@ -44,7 +46,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 //		var id ='musicid';
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Redcollection/moremusic')}",
@@ -62,6 +65,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

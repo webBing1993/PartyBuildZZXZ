@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<!--ceshi    ceshi  测试      -->
+<title></title>
 <link rel="stylesheet" href="/home/css/redcollection/bookdetail.css">
 <link rel="stylesheet" href="/static/sweetalert/sweetalert1.css">
 <script src="/static/sweetalert/sweetalert1.min.js"></script>
@@ -238,7 +238,6 @@ function loadScroll(){
 				},
 				success:function(data){
 					loading.toggleClass('hidden');
-					now1 = false;//请求结束,恢复状态
 					tip.show();
 					if(data.code == 1){
 						addComment(data);
@@ -250,6 +249,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					now1 = false;//请求结束,恢复状态
 				}
 			})
 		}
