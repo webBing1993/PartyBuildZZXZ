@@ -1,0 +1,254 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>建言献策</title>
+<link rel="stylesheet" href="/home/css/advice.css">
+{/block}
+
+{block name="body"}
+<div class="content">
+	<textarea name="content" id="content" placeholder="这一刻的新闻（图片选填，提供问题截图，最多四张，字数最多400）"></textarea>
+	<div class="contentnum">
+		<span>0</span>/400
+	</div>
+	<div class="imgs clear">
+		<div class="img fl hide"></div>
+		<div class="img fl hide"></div>
+		<div class="img fl hide"></div>
+		<div class="img fl hide"></div>
+		<div class="add fl">
+			+
+		</div>
+		<input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">
+	</div>
+</div>
+<div class="bottom">
+	<div class="ths">
+		<!--您的意见发送成功后，将进入后台审核，审核通过后在建言献策频道中查看。希望各位多为党建工作提出宝贵意见，谢谢！-->
+	</div>
+	<div class="sure">
+		确认上传
+	</div>
+</div>
+<div class="typebg"></div>
+<div class="tips">
+</div>
+<div class="success"></div>
+<div class="tocheck">
+	<div class="text">
+		我已完成编辑，马上发送
+	</div>
+	<div class="confirm">
+		<span class="yes">确定</span>
+		<span class="no">取消</span>
+	</div>
+</div>
+<div class="todel">
+	<div class="text">
+		您是否确定删除这张图片
+	</div>
+	<div class="del_confirm">
+		<span class="del_yes">确定</span>
+		<span class="del_no">取消</span>
+	</div>
+</div>
+<div class="loading hidden">
+	<div class="typing_loader"></div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+$(function(){
+	//上传
+	$('.sure' ).on('click',function(){
+		var content = $("textarea[name='content']").val();
+		var img = $('.img img' );
+		var data;
+		var images = [];
+		var imglen = img.length;
+		if(imglen > 0){
+			for(var i =0 ;i< imglen ;i++){
+				images.push(img.eq(i ).attr('data-tab'));
+			}
+			data ={
+				content:content,
+				images:images
+			};
+		}else{
+			data ={
+				content:content,
+				images:''
+			};
+		}
+
+		if(content != ''){
+			var tnum =  $('textarea').val().length;
+			if(tnum <= 400){
+				$('.typebg,.tocheck' ).fadeIn();
+				$('.yes,.no').off('click');
+				$('.yes' ).on('click',function(){
+					$.ajax({
+						type:"post",
+						url: "{:Url('Feedback/publish')}",
+						data:data,
+						success:function(data){
+							$('.tocheck' ).remove();
+							$('.typebg' ).fadeIn();
+							$('.success' ).fadeIn();
+							setTimeout(function(){
+								window.location.href = "{:Url('Feedback/index')}";
+							},500);
+						}
+					});
+				});
+				$('.no' ).on('click',function(){
+					$('.typebg,.tocheck' ).fadeOut();
+				});
+			}else{
+				$('.typebg' ).fadeIn();
+				$('.tips' ).html('<div class="text">请输入少于400字的意见 </div>' ).fadeIn();
+				setTimeout(function(){
+					modalclear();
+					$('.tips' ).text('');
+				},2500)
+			}
+		}else{
+			$('.typebg' ).fadeIn();
+			$('.tips' ).html('<div class="text">请输入您的意见后上传 </div>' ).fadeIn();
+			setTimeout(function(){
+				modalclear();
+				$('.tips' ).text('');
+			},2500)
+		}
+	});
+	//--------------------------------------------------------------------------
+	//
+	//
+	//--------------------------------------------------------------------------
+	//摸态框退出
+	$('.typebg,.tips' ).on('click',modalclear);
+	//图片预览
+	$('.add' ).on('click',function(){
+		var imglen = $('.img img' ).length;
+		var this_ = $(this );
+		var loading = $('.loading');
+		$('#upimg').click().off("change").on('change',function(){
+				var size = ($(this)[0].files[0].size / 1024).toFixed(2);
+				if(size <= 2048){
+					var img = $(this)[0].files[0];
+					var formData = new FormData();
+					formData.append("picture",img);
+					$.ajax({
+						type:"post",
+						url:"{:Url('File/uploadPicture')}",
+						data:formData,
+						processData : false,
+						contentType : false,
+						beforeSend: function(XMLHttpRequest){
+							$('.typebg' ).fadeIn();
+							loading.toggleClass('hidden');
+						},
+						success:function(data){
+							var msg = $.parseJSON(data);
+							$('.typebg' ).hide();
+							loading.toggleClass('hidden');
+//							console.log(msg.data.id)
+							if(msg.code == 1){
+								if(this_.hasClass('add')){
+									//图片添加
+									if(imglen == 3){
+										$('.add' ).fadeOut();
+									}
+									$('.img').eq(imglen).removeClass('hide' )
+											.append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
+								}else{
+									//图片修改
+									this_.find('img').remove();
+									this_.append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
+								}
+								imgresize();
+
+							} else {
+//								warning({msg:'上传失败'});
+								return;
+							}
+						}
+					});
+				} else {
+					$('.typebg' ).fadeIn();
+					$('.tips' ).html('<div class="text">您选择的图片超过2mb </div>' ).fadeIn();
+					setTimeout(function(){
+						modalclear();
+						$('.tips' ).text('');
+					},2500)
+				}
+			});
+
+	});
+	//图片删除
+	$('.img').off('click').on('click',function(){
+		var this_ = $(this);
+		$('.typebg,.todel' ).fadeIn();
+		$('.del_no' ).off('click').on('click',function(){
+			$('.typebg,.todel' ).fadeOut();
+		});
+		$('.del_yes' ).off('click').on('click',function(){
+			$('.typebg,.todel' ).fadeOut();
+			this_.addClass('hide');
+			this_.find('img').remove();
+			$('.add' ).before(this_).fadeIn();
+		});
+	});
+	//字数限定
+	numlimit(400)
+});
+function modalclear(){
+	$('.typebg,.type,.tips,.tocheck,.todel,.success' ).fadeOut();
+}
+function imgresize(){
+	setTimeout(function(){
+		var img = $('.img img' );
+		img.each(function(){
+			if($(this).width() == $(this).height()){
+				$(this).height('78px');
+				$(this).width('78px');
+			}else if($(this).width() > $(this).height()){
+				$(this).height('78px' ).css({'left':-$(this).width()/2+78/2});
+			}else{
+				$(this).width('78px').css({'top':-$(this).height()/2+78/2});
+			}
+		});
+	},100);
+}
+function numlimit(n){
+	var textarea = $('textarea');
+	var lock = false;
+	textarea.on('compositionstart',function(){
+		lock = true;
+	});
+	textarea.on('compositionend',function(){
+		lock = false;
+	});
+	textarea.on('input',function(){
+		if(!lock){
+			//键盘输入
+			var text = $(this).val();
+			text = text.substring(0,n);
+			var num = text.length;
+			$(this).val(text);
+			$('.contentnum span').text(num);
+		}
+	});
+	textarea.bind("paste",function(){
+		//黏贴输入
+		var text = $(this).val();
+		text = text.substring(0,n);
+		var num = text.length;
+		$(this).val(text);
+		$('.contentnum span').text(num);
+	}).css("ime-mode", "disabled"); //CSS设置输入法不可用
+}
+
+</script>
+{/block}
