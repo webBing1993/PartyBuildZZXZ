@@ -158,6 +158,7 @@ class Base extends Controller {
      * 9 Redlead
      * 10 RedforumDetail
      * 11 RedforumNotice
+     * 12 Notice
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -193,6 +194,9 @@ class Base extends Controller {
                 break;
             case 11:
                 $table = "RedforumNotice";
+                break;
+            case 12:
+                $table = "Notice";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -252,6 +256,7 @@ class Base extends Controller {
      * 9 Redlead
      * 10 RedforumDetail
      * 11 RedforumNotice
+     * 12 Notice
      */
     public function comment(){
         if(IS_POST){
@@ -285,6 +290,9 @@ class Base extends Controller {
                     break;
                 case 11:
                     $table = "RedforumNotice";
+                    break;
+                case 12:
+                    $table = "Notice";
                     break;
                 default:
                     return $this->error("无该数据表");
@@ -354,7 +362,7 @@ class Base extends Controller {
             foreach ($comment as $value) {
                 $user = WechatUser::where('userid',$value['uid'])->find();
                 $value['nickname'] = $user['name'];
-                $value['header'] = $user['avatar'];
+                $value['header'] = ($user['header']) ? $user['header'] : $user['avatar'];
                 $value['time'] = date('Y-m-d',$value['create_time']);
                 $value['content'] = strtr($value['content'], $badword1);
                 $map1 = array(
