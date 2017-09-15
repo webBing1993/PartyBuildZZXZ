@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="/home/css/reset.css">
+    <title>二维码</title>
+    <style>
+        #qrcode{
+            position:absolute;
+            left: 6.6666vw;
+            top:50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -ms-transform:translateY(-50%);
+            -moz-transform:translateY(-50%);
+            -o-transform:translateY(-50%);
+        }
+        body{
+            width:100%;
+            background-color:#1b1a20;
+        }
+        img.logo{
+            position:absolute;
+            top: 50%;
+            left:50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            -ms-transform:translateY(-50%) translateX(-50%);
+            -moz-transform:translateY(-50%) translateX(-50%);
+            -o-transform:translateY(-50%) translateX(-50%);
+            display:block;
+            border:4px solid #fff;
+            border-radius: 5px;
+            background:#fff;
+        }
+        span{
+            width:100%;
+            text-align: center;
+            display:block;
+            font-size: 16px;
+        }
+        .main{
+            position: relative;
+            width:90%;
+            top:50%;
+            left:50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            -ms-transform:translateY(-50%) translateX(-50%);
+            -moz-transform:translateY(-50%) translateX(-50%);
+            -o-transform:translateY(-50%) translateX(-50%);
+            background-color:#fff;
+            border-radius: 4vw;
+        }
+        .main>span{
+            position: absolute;
+            bottom:4.8vw;
+            font-size: 1.34rem;
+            color:#333;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div id="qrcode"></div>
+    <span>签到时,出示二维码给管理人员进行扫描</span>
+</div>
+<script src="/work/js/jquery-1.12.1.min.js"></script>
+<script src="/work/js/jquery.qrcode1.min.js"></script>
+<script>
+    var WW = $(window).width();
+    var WH = $(window).height();
+    $('.logo').width((WW * 0.9 - 50)*0.25);
+    $('.logo').height((WW * 0.9 - 50)*0.25);
+    $('.main').height(WW * 0.9 - 50 + 110);
+    jQuery('#qrcode').qrcode({
+        width:WW * 0.9 - 50,
+        height: WW * 0.9 -50 ,
+        text:"{$userId}",
+        imgWidth : (WW * 0.9 -50) * 0.25 ,            //图片宽
+        imgHeight :(WW * 0.9 -50) * 0.25 ,
+        src: '{$userId|get_header}'
+    });
+    $('body').height(WH);
+</script>
+</body>
+</html>

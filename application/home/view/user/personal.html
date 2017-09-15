@@ -1,0 +1,101 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>党员信息</title>
+<link rel="stylesheet" href="/home/css/personal.css">
+{/block}
+
+{block name="body"}
+<div class="lists">
+	<div class="list clear tag">
+		<span class="fl">党员信息</span>
+	</div>
+	<!--<div class="list clear">-->
+		<!--<span class="fl">头像</span>-->
+		<!--{eq name="user.header" value=""}-->
+		<!--<img src="{$user.avatar}" alt="个人头像" class="fr">-->
+		<!--{else/}-->
+		<!--<img src="{$user.header}" alt="个人头像" class="fr">-->
+		<!--{/eq}-->
+	<!--</div>-->
+	<div class="list clear">
+		<span class="fl">姓名</span>
+		<span class="fr">{$user.name}</span>
+	</div>
+	<div class="list clear toshow"  data-toggle="modal" data-target="#modal">
+		<span class="fl">二维码</span>
+		<span class="fr"><img src="/home/images/user/er.png" alt="" class="er"><i class="fa fa-angle-right"></i></span>
+	</div>
+	<div class="list clear">
+		<span class="fl">性别</span>
+		<span class="fr">{$user.sex}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">手机号</span>
+		<span class="fr">{$user.mobile}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">出生日期</span>
+		<span class="fr">{$user.birthday?$user.birthday:'暂无'}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">学历</span>
+		<span class="fr">{$user.education?$user.education:'暂无'}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">入党时间</span>
+		<span class="fr">{$user.partytime?$user.partytime:'暂无'}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">党龄</span>
+		<span class="fr">{$user.partytime|get_partyAge}</span>
+	</div>
+	<div class="list clear">
+		<span class="fl">一句话承诺</span>
+		<span class="fr personal_say"><span>{$user.promise?$user.promise:'暂无'}</span></span>
+	</div>
+</div>
+<!-- 二维码 -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="code">
+				<div id="qrcode"></div>
+			</div>
+			{eq name="user.header" value=""}
+			<img src="{$user.avatar}" alt="个人头像" class="header">
+			{else/}
+			<img src="{$user.header}" alt="个人头像" class="header">
+			{/eq}
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/code/jquery.qrcode.min.js"></script>
+<script>
+$(function(){
+	$(".lists .list .personal_say").prev("span.fl").css("lineHeight",$(".lists .list .personal_say").height() + "px");
+	//模块标题
+	$('.toshow' ).on('click',function(){
+		$('#model').modal('show');
+	});
+	var code = $('.code' );
+	var ww = code.width();
+	var hh = code.height();
+	var id = '{$link}'+'/home/user/personal/id/'+'{$user.userid}';
+	jQuery('#qrcode').qrcode({
+		width: ww,
+		height:hh,
+		text: id
+	});
+	//隐藏手机号中间四位
+//	var tel = $('.list').eq(4 ).find('.fr');
+//	var t = tel.text().split('');
+//	t.splice(3,4,'****' );
+//	t=t.join("");
+//	tel.text(t);
+})
+</script>
+{/block}

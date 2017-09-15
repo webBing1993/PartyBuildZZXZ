@@ -141,7 +141,7 @@ function get_header($userid){
     );
     $user = \app\home\model\WechatUser::where($map)->find();
     if(empty($user['header']) && empty($user['avatar'])){
-        $header = "/home/images/default_avatar.png";
+        $header = "/home/images/vistor.jpg";
     }elseif(empty($user['header']) && $user['avatar']){
         $header = $user['avatar'];
     }elseif($user['header'] && empty($user['avatar'])){
