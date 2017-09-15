@@ -10,8 +10,8 @@
 
 {block name="body"}
 <!--新增-->
-<div class="title" style="margin:10px auto;width:90%;text-align: center">
-	<span style="color:#333;font-size:16px;">{$activity['title']}</span>
+<div class="title" style="margin:2.7vw auto;width:90%;text-align: center">
+	<span style="color:#333;font-size:1.6rem;">{$activity['title']}</span>
 </div>
 <div class="note">{$activity.create_time|time_format="Y-m-d"}</div>
 <!--新增-->
@@ -74,6 +74,7 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
+	var scrollNow = true;
 $(function(){
 	//reset
 	var len = $(".list" ).length;
@@ -202,7 +203,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var id = {$activity['id']};
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
@@ -228,6 +230,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

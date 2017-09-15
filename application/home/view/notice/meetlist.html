@@ -36,6 +36,7 @@
 
 {block name="script"}
 <script>
+	var scrollNow = true;
 $(function(){
 	//reset
 	var txt;
@@ -53,7 +54,8 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Notice/meetmore')}",
@@ -77,6 +79,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

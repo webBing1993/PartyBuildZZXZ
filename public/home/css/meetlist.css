@@ -47,6 +47,7 @@ a:active {
   line-height: 10.3333vw;
   height: 10.1333vw;
   margin-top: 1.3333vw;
+  -webkit-line-clamp: 1;
 }
 .lists .list .content {
   font-size: 1.3rem;

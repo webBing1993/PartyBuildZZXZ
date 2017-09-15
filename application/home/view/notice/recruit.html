@@ -67,6 +67,7 @@
 <script src="/home/js/reset.js"></script>
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
+	var scrollNow = true;
 	$(function(){
 		//reset
 		var len = $(".list" ).length;
@@ -183,7 +184,8 @@
 			var tip = $(".tip");
 			var loading = $('.loading');
 			var id = {$list['id']};
-			if(dh == end){
+			if(dh == end && scrollNow){
+				scrollNow = false;
 				$.ajax({
 					type:"post",
 					url:"{:Url('Base/morecomment')}",
@@ -209,6 +211,7 @@
 							tip.text('没有更多了');
 							$(window ).off("scroll");
 						}
+						scrollNow = true;
 					}
 				})
 			}

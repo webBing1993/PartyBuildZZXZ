@@ -20,6 +20,10 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+.title span {
+  width: 100%;
+  text-align: left;
+}
 .note{
   color: #999999;
   font-size: 1.2rem;
