@@ -50,7 +50,7 @@ a {
 .lists_ .list .title {
   color: #333333;
   font-size: 1.5rem;
-  line-height: 30px;
+  line-height: 8vw;
 }
 .lists_ .list .content {
   height: 9.6vw;
@@ -61,7 +61,7 @@ a {
 .lists_ .list .note {
   color: #999999;
   font-size: 1.2rem;
-  line-height: 26px;
+  line-height: 7vw;
 }
 .lists_ .list .note span {
   display: inline-block;

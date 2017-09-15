@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>红领学院</title>
 <link rel="stylesheet" href="/home/css/meetlist.css">
 {/block}
 
@@ -33,6 +34,7 @@
 
 {block name="script"}
 <script>
+	var scrollNow = true;
 $(function(){
 	//模块标题
 	$('title').text('红领学院');
@@ -57,7 +59,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var type =  parseInt(window.location.href.split("type/")[1]);
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('College/leadlistmore')}",
@@ -82,6 +85,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

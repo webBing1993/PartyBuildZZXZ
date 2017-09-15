@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>红领学院</title>
 <link rel="stylesheet" href="/home/css/relevant.css">
 <link rel="stylesheet" href="/static/sweetalert/sweetalert1.css">
 <link rel="stylesheet" href="/home/css/common/comment.css">
@@ -13,7 +14,7 @@
 </div>
 <div class="content">
 	<div class="top">
-		<div class="title limit_" style="text-align: center;font-size:16px;">{$info.title}</div>
+		<div class="title limit_" style="text-align: center;font-size:1.6rem;">{$info.title}</div>
 		<div class="note">
 			<span class="read">{$info.views}</span>
 		</div>
@@ -67,6 +68,7 @@
 <script src="/home/js/reset.js"></script>
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
+	var scrollNow = true;
 $(function(){
 	//模块标题
 	$('title').text('红领学院');
@@ -177,7 +179,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var id = {$info.id};
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
@@ -203,6 +206,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

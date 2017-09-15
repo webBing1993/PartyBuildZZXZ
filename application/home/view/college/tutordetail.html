@@ -14,10 +14,10 @@
 	<iframe class="banner-img" frameborder="0" src='{$info.net_path}' allowfullscreen></iframe>
 </div>
 {/neq}
-<div class="title limit_" style="margin:10px auto 0px;width:90%;text-align: center;min-height:30px;line-height: 25px;">
-	<span style="color:#333;font-size:16px;">{$info.title}</span>
+<div class="title limit_" style="margin:2.7vw auto 0px;width:90%;text-align: center;min-height:8vw;line-height: 6.8vw;">
+	<span style="color:#333;font-size:1.6rem;">{$info.title}</span>
 </div>
-<div style="float:right;margin-right:13px;color:#999;margin-bottom:5px;">{$info.create_time|time_format='Y-m-d'}</div>
+<div style="float:right;margin-right:3.5vw;color:#999;margin-bottom:1.4vw;">{$info.create_time|time_format='Y-m-d'}</div>
 <div class="article">
 	<div class="content">
 		{$info.content}
@@ -75,7 +75,7 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
-
+var scrollNow = true;
 $(function(){
 	var len = $(".list" ).length;
 	if(len >= 7){
@@ -181,7 +181,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var id = {$info.id};
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
@@ -207,6 +208,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

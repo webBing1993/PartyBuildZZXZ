@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>红领学院</title>
 <link rel="stylesheet" href="/home/css/lists.css">
 {/block}
 
@@ -24,6 +25,7 @@
 
 {block name="script"}
 <script>
+	var scrollNow = true;
 $(function(){
 	//模块标题
 	$('title').text('红领学院');
@@ -42,7 +44,8 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('College/listmore')}",
@@ -66,6 +69,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

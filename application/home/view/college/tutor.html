@@ -2,28 +2,29 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>红领学院</title>
 <style>
     *{
         box-sizing: border-box;
     }
     /*tab3*/
     #tab3 ul{
-        margin-bottom:20px;
+        margin-bottom:5.4vw;
     }
     #tab3 ul li>a{
-        height:86px;width:100%;display: block;position:relative;
+        height:23vw;width:100%;display: block;position:relative;
     }
     #tab3 ul li>a>img.fl{
-        width:92px;height:68px;border-radius: 3px;margin-left:12px;margin-top:9px;
+        width:24.8vw;height:18.4vw;border-radius: 0.8vw;margin-left:3.2vw;margin-top:2.4vw;
     }
     #tab3 ul li>a>span.limit_{
-        width:60%;font-size:14px;height:58px;margin-left:11px;line-height:22px;padding-top:10px;
+        width:60%;font-size:1.4rem;height:15.8vw;margin-left:3vw;line-height:6vw;padding-top:2.7vw;
     }
     .tab_main{
-        height:30px;line-height:30px;width:100%;margin:0 auto;text-align: center;background:#fff;margin-bottom:3px;
+        height:8vw;line-height:8vw;width:100%;margin:0 auto;text-align: center;background:#fff;margin-bottom:0.8vw;
     }
     .btn11,.btn22{
-        width:49%;text-align: center;display: inline-block;color:#999;font-size:15px;border-bottom:1px solid #f1f1f1;
+        width:49%;text-align: center;display: inline-block;color:#999;font-size:1.5rem;border-bottom:1px solid #f1f1f1;
     }
     .tab_active{
         border-bottom:1px solid #DF4934;color:#DF4934;
@@ -32,10 +33,10 @@
         display: none;
     }
     #tab3 #tab_main1>li>a>span:nth-child(3),#tab3 #tab_main2>li>a>span:nth-child(3){
-        margin-left:12px;font-size:12px;color:#999;
+        margin-left:3.2vw;font-size:1.2rem;color:#999;
     }
     #tab3 #tab_main1>li>a>img:nth-child(4),#tab3 #tab_main2>li>a>img:nth-child(4){
-        width:10px;height:10px;margin-top:2px;margin-right:10px;
+        width:2.7vw;height:2.7vw;margin-top:2px;margin-right:2.7vw;
     }
     #tab_main1>li>a{
         border-bottom: 1px solid #f1f1f1;
@@ -84,16 +85,15 @@
     .content .name{
         display: inline-block;
         width: 100%;
-        text-align: center;
+        text-align: left;
         font-weight: 700;
-        line-height: 40px;
+        line-height: 10.8vw;
     }
-    .content .name{
+    .content .detail {
         display: inline-block;
         width: 100%;
-        text-align: center;
-        font-weight: 700;
-        line-height: 40px;
+        text-align: left;
+        line-height: 10.8vw;
     }
 </style>
 {/block}
@@ -130,7 +130,7 @@
         </ul>
         <ul id="tab_main2" class=" none">
             <li>
-                <div style="text-indent:2em;padding:20px 12px;">
+                <div style="text-indent:2em;padding:5.4vw 3.2vw;">
                     {$tutor.content}
                 </div>
             </li>
