@@ -239,3 +239,7 @@
   top: 4.5333vw;
   left: 44.6666vw;
 }
+.sweet-alert.show-input textarea {
+  padding: 2vw;
+  font-size: 1.4rem;
+}

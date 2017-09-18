@@ -19,7 +19,7 @@
 <!--切换列表-->
 <div class="content">
 	<!--三会一课：三个模块（相关通知、会议情况、党课情况）-->
-	<div class="notices active">
+	<div class="notices">
 		<!--相关通知-->
 		<div class="notice">
 			<a href="{:Url('Notice/relevantlist')}" class="tab clear">
@@ -158,7 +158,6 @@
 {block name="script"}
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
-	$('.tabs>.tab').eq(0).find('span').addClass('active');
 	var scrollNow = true;
 $(function(){
 	//tab初始化和数据存储
@@ -178,11 +177,11 @@ $(function(){
 	loadScroll(c);
 	//tab切换
 	$('.tabs>.tab ').on('click',function(){
-		var ntc = $('.notices' );
-		var eq = $(this ).index();
+		var ntc = $('.notices');
+		var eq = $(this).index();
 		$(this ).siblings('.tab' ).find('span' ).removeClass('active');
-		$(this ).find('span' ).addClass('active');
-		ntc.eq(eq ).siblings('.notices' ).addClass('hidden');
+		$(this ).find('span').addClass('active');
+		$('.notices').addClass('hidden');
 		ntc.eq(eq).removeClass('hidden');
 		var len = ntc.eq(eq ).find('.notice:last .list').length;
 		if(len >= 5){

@@ -77,7 +77,7 @@ $(function(){
 	//上拉加载评论
 	loadScroll();
 	//ios fix兼容
-	tofixed();
+//	tofixed();
 	//ue限定
 	ueLimit();
 });
@@ -185,7 +185,7 @@ function loadScroll(){
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
 				data:{
-					type:2,
+					type:12,
 					aid:id,
 					length:len
 				},
