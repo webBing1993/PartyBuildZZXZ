@@ -477,30 +477,18 @@
     var c =  parseInt(window.location.href.split("index/c/")[1]);
     $(document).ready(function(){
         if(c ==1){
+            $('.buttons-row a').removeClass('active');
+            $('.tabs div').removeClass('active');
             $('.buttons-row a:nth-child(1)').addClass('active');
             $('.tabs div:nth-child(1)').addClass('active');
         }
         if(c ==2){
+            $('.buttons-row a').removeClass('active');
+            $('.tabs div').removeClass('active');
             $('.buttons-row a:nth-child(2)').addClass('active');
             $('.tabs div:nth-child(2)').addClass('active');
         }
         if(c ==3){
-            $('.buttons-row a:nth-child(3)').addClass('active');
-            $('.tabs div:nth-child(3)').addClass('active');
-        }
-        if(sessionStorage.abc==1){
-            $('.buttons-row a').removeClass('active');
-            $('.tabs div').removeClass('active');
-            $('.buttons-row a:nth-child(1)').addClass('active');
-            $('.tabs div:nth-child(1)').addClass('active');
-        }
-        if(sessionStorage.abc==2){
-            $('.buttons-row a').removeClass('active');
-            $('.tabs div').removeClass('active');
-            $('.buttons-row a:nth-child(2)').addClass('active');
-            $('.tabs div:nth-child(2)').addClass('active');
-        }
-        if(sessionStorage.abc==3){
             $('.buttons-row a').removeClass('active');
             $('.tabs div').removeClass('active');
             $('.buttons-row a:nth-child(3)').addClass('active');

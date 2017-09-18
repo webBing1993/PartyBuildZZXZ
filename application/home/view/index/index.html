@@ -67,7 +67,8 @@
         flex-wrap: wrap;
     }
     .my-list{
-        width:86px;
+        /*width:86px;*/
+        width: 25%;
         text-align: center;
         padding-top:3rem;
     }
@@ -89,35 +90,73 @@
 {block name="body"}
 <div class="my-items">
     <div class="my-item">
+        <div class="my-item-title color4">
+            小镇地图
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/structure/index.html">
+                <img src="/home/images/home/p13.png" alt="">
+                <span>云上组织</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p14.png" alt="">
+                <span>最新动态</span>
+            </li>
+            <li class="my-list" data-url="/home/college/index/c/3">
+                <img src="/home/images/home/p15.png" alt="">
+                <span>两学一做</span>
+            </li>
+        </ul>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/notice/index/c/1">
+                <img src="/home/images/home/p13.png" alt="">
+                <span>三会一课</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p14.png" alt="">
+                <span>美丽乡村</span>
+            </li>
+            <li class="my-list" data-url="/home/user/index">
+                <img src="/home/images/home/p15.png" alt="">
+                <span>个人中心</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color1">
+            云上组织
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/structure/index/c/1">
+                <img src="/home/images/home/p1.png" alt="">
+                <span>组织介绍</span>
+            </li>
+            <li class="my-list" data-url="/home/structure/index/c/2">
+                <img src="/home/images/home/p2.png" alt="">
+                <span>组织架构</span>
+            </li>
+            <li class="my-list" data-url="/home/structure/index/c/3">
+                <img src="/home/images/home/p3.png" alt="">
+                <span>全景展示</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
         <div class="my-item-title color1">
             党员之家
         </div>
         <ul class="my-lists">
-            <li class="my-list" data-url="/home/work/structurelist">
-                <img src="/home/images/home/p1.png" alt="">
-                <span>组织架构</span>
-            </li>
-            <li class="my-list" data-url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd58fa5cc1385a45c&redirect_uri=https%3A%2F%2Fwork.weixin.qq.com%2Fwework_admin%2Fh5_contacts%3Ftype%3Dcontacts&response_type=code&scope=snsapi_base&state=sys_contact#wechat_redirect" id="team">
-                <img src="/home/images/home/p2.png" alt="">
-                <span>队伍管理</span>
-            </li>
             <li class="my-list" data-url="/home/notice/index/c/1">
-                <img src="/home/images/home/p3.png" alt="">
-                <span>支部活动</span>
-            </li>
-        </ul>
-        <ul class="my-lists">
-            <li class="my-list" data-url="/home/college/index/c/1">
                 <img src="/home/images/home/p4.png" alt="">
-                <span>红领学院</span>
+                <span>三会一课</span>
             </li>
-            <li class="my-list" data-url="/home/work/index">
+            <li class="my-list" data-url="/home/notice/index/c/2">
                 <img src="/home/images/home/p5.png" alt="">
-                <span>小镇地图</span>
+                <span>组织生活</span>
             </li>
-            <li class="my-list" data-url="/home/work/sign">
+            <li class="my-list" data-url="/home/notice/index/c/3">
                 <img src="/home/images/home/p6.png" alt="">
-                <span>党员签到</span>
+                <span>党性体验</span>
             </li>
         </ul>
     </div>
@@ -128,53 +167,34 @@
         <ul class="my-lists">
             <li class="my-list" data-url="/home/learn/index">
                 <img src="/home/images/home/p7.png" alt="">
-                <span>手机党校</span>
+                <span>云上党校</span>
             </li>
-            <li class="my-list" data-url="/home/constitution/game">
+            <li class="my-list" data-url="/home/constitution/game.html">
                 <img src="/home/images/home/p8.png" alt="">
                 <span>在线答题</span>
             </li>
-            <li class="my-list" data-url="/home/work/dangshi">
+            <li class="my-list" data-url="/home/constitution/rank">
                 <img src="/home/images/home/p9.png" alt="">
-                <span>党史学习</span>
-            </li>
-        </ul>
-    </div>
-    <div class="my-item">
-        <div class="my-item-title color3">
-            志愿服务
-        </div>
-        <ul class="my-lists">
-            <li class="my-list" data-url="/home/volunteer/team">
-                <img src="/home/images/home/p10.png" alt="">
-                <span>服务团队</span>
-            </li>
-            <li class="my-list" data-url="/home/volunteer/order">
-                <img src="/home/images/home/p11.png" alt="">
-                <span>服务订单</span>
-            </li>
-            <li class="my-list" data-url="/home/volunteer/recruit">
-                <img src="/home/images/home/p12.png" alt="">
-                <span>志愿招募</span>
+                <span>考核亮牌</span>
             </li>
         </ul>
     </div>
     <div class="my-item">
         <div class="my-item-title color4">
-            民情气象站
+            红领学院
         </div>
         <ul class="my-lists">
-            <li class="my-list" data-url="/home/station/adjust">
+            <li class="my-list" data-url="/home/college/index/c/1">
                 <img src="/home/images/home/p13.png" alt="">
-                <span>调解纠纷</span>
+                <span>红领导师</span>
             </li>
-            <li class="my-list" data-url="/home/station/business">
+            <li class="my-list" data-url="/home/college/index/c/2">
                 <img src="/home/images/home/p14.png" alt="">
-                <span>业务办理</span>
+                <span>红领带动</span>
             </li>
-            <li class="my-list" data-url="/home/station/survey">
+            <li class="my-list" data-url="/home/college/index/c/3">
                 <img src="/home/images/home/p15.png" alt="">
-                <span>问卷调查</span>
+                <span>红领论坛</span>
             </li>
         </ul>
     </div>
@@ -198,19 +218,97 @@
         </ul>
     </div>
     <div class="my-item">
-        <div class="my-item-title color4">
-            其它
+        <div class="my-item-title color3">
+            个人中心
         </div>
         <ul class="my-lists">
-            <li class="my-list" data-url="/home/qrcode/index">
-                <img src="/home/images/home/p22.png" alt="">
-                <span>二维事件簿</span>
+            <li class="my-list" data-url="/home/user/personal.html">
+                <img src="/home/images/home/p10.png" alt="">
+                <span>个人信息</span>
             </li>
-            <li class="my-list" data-url="/home/work/erweima">
-                <img src="/home/images/home/p23.png" alt="">
-                <span>支付二维码</span>
+            <li class="my-list" data-url="/home/feedback/index.html">
+                <img src="/home/images/home/p12.png" alt="">
+                <span>建言献策</span>
+            </li>
+            <li class="my-list" data-url="/home/rank/integral.html">
+                <img src="/home/images/home/p11.png" alt="">
+                <span>积分排行</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color3">
+            志愿服务
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="">
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p12.png" alt="">
+                <span>志愿招募</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p11.png" alt="">
+                <span>志愿展示</span>
             </li>
             <li class="my-list" data-url="">
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            先锋社区
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="">
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p13.png" alt="">
+                <span>先锋课堂</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p14.png" alt="">
+                <span>社区展示</span>
+            </li>
+            <li class="my-list" data-url="">
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            党员签到
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="">
+            </li>
+            <li class="my-list" data-url="/home/work/sign">
+                <img src="/home/images/home/p22.png" alt="">
+                <span>会议签到</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p23.png" alt="">
+                <span>活动签到</span>
+            </li>
+            <li class="my-list" data-url="">
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            其他
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/book/index">
+                <img src="/home/images/home/p13.png" alt="">
+                <span>通讯名录</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p14.png" alt="">
+                <span>消息审核</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+                <img src="/home/images/home/p15.png" alt="">
+                <span>视频会议</span>
             </li>
         </ul>
     </div>
