@@ -79,6 +79,7 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
+	var scrollNow = true;
 $(function(){
 	//模块标题
 	$('title' ).text('两学一做');
@@ -251,7 +252,8 @@ function loadScroll(){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var id = {$video['id']};
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Base/morecomment')}",
@@ -277,6 +279,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

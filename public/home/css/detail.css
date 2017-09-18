@@ -57,8 +57,13 @@
   font-size: 1.2rem;
   line-height: 8vw;
 }
-.article .note span {
-  /*margin-right: 10px;*/
+.article .note span.fl {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 60vw;
+  text-align: left;
 }
 .article .note_ span {
   margin-right: 0;

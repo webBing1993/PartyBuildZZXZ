@@ -221,7 +221,7 @@
                                         <div class="swiper-wrapper" >
                                             {volist name="tutor1" id="tu1"}
                                             <a href="{:Url('College/tutor?id='.$tu1['id'])}" class="swiper-slide">
-                                                <img src="{$tu1.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <img src="{$tu1.header|get_cover='path'}" alt="" style="width:11.8vw;height:11.8vw;border-radius:50%;margin-left:39.9vw;margin-top:1.4vw;display: inline-block">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;" class="limit">{$tu1.name}——{$tu1.title}</div>
@@ -252,7 +252,7 @@
                                         <div class="swiper-wrapper">
                                             {volist name="tutor2" id="tu2"}
                                             <a href="{:Url('College/tutor?id='.$tu2['id'])}" class="swiper-slide">
-                                                <img src="{$tu2.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <img src="{$tu2.header|get_cover='path'}" alt="" style="width:11.8vw;height:11.8vw;border-radius:50%;margin-left:39.9vw;margin-top:1.4vw;display: inline-block">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;" class="limit">{$tu2.name}——{$tu2.title}</div>
@@ -283,7 +283,7 @@
                                         <div class="swiper-wrapper">
                                             {volist name="tutor3" id="tu3"}
                                             <a href="{:Url('College/tutor?id='.$tu3['id'])}" class="swiper-slide">
-                                                <img src="{$tu3.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <img src="{$tu3.header|get_cover='path'}" alt="" style="width:11.8vw;height:11.8vw;border-radius:50%;margin-left:39.9vw;margin-top:1.4vw;display: inline-block">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;" class="limit">{$tu3.name}——{$tu3.title}</div>
@@ -315,7 +315,7 @@
                                         <div class="swiper-wrapper">
                                             {volist name="tutor4" id="tu4"}
                                             <a href="{:Url('College/tutor?id='.$tu4['id'])}" class="swiper-slide">
-                                                <img src="{$tu4.header|get_cover='path'}" alt="" style="width:44px;height:44px;border-radius:50%;margin-left:calc(50% - 22px);margin-top:5px;">
+                                                <img src="{$tu4.header|get_cover='path'}" alt="" style="width:11.8vw;height:11.8vw;border-radius:50%;margin-left:39.9vw;margin-top:1.4vw;display: inline-block">
                                                 <div style="width:100%">
                                                     <div style="width:100%;text-align: center;font-weight: bold;color:#333;">特约导师</div>
                                                     <div style="width:100%;text-align: center;" class="limit">{$tu4.name}——{$tu4.title}</div>
@@ -472,6 +472,8 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
+    $('.buttons-row a:nth-child(1)').addClass('active');
+    $('.tabs div:nth-child(1)').addClass('active');
     var c =  parseInt(window.location.href.split("index/c/")[1]);
     $(document).ready(function(){
         if(c ==1){

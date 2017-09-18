@@ -54,46 +54,46 @@ body{
 	width: 100%;
 	border-bottom: 1px solid #d10000;
 	font-size: 1.4rem;
-	padding-top: 20px;
+	padding-top: 5.4vw;
 }
 .list:last-child{
-	margin-bottom: 80px;
+	margin-bottom: 21.4vw;
 	border-bottom: none;
 }
 .list .question{
-	width: calc(100% - 26px);
-	padding-bottom: 20px;
+	width: 93vw;
+	padding-bottom: 5.4vw;
 	margin: 0 auto;
 }
 .list .type{
-	width: 40px;
-	height: 18px;
+	width: 10.7vw;
+	height: 4.8vw;
 	background:#d10000 ;
 	display: inline-block;
 	color:#ffffff;
-	line-height: 18px;
+	line-height: 4.8vw;
 	text-align: center;
 	font-size: 1.2rem;
 }
 .list .option_{
 	display: block;
 	position: relative;
-	width: calc(100% - 30px);
-	margin: 0 auto 0 15px;
-	padding-bottom: 10px;
+	width: 92vw;
+	margin: 0 auto 0 4vw;
+	padding-bottom: 2.7vw;
 }
 .list input{
 	opacity: 0;
 }
 .list .option{
-	width: 20px;
-	height: 20px;
+	width: 5.4vw;
+	height: 5.4vw;
 	background:#ffffff ;
 	border:1px solid #d10000;
 	-webkit-border-radius:50%;
 	border-radius:50%;
 	color:#d10000;
-	line-height: 20px;
+	line-height: 5.4vw;
 	text-align: center;
 	font-weight: 400;
 	position: absolute;
@@ -102,11 +102,11 @@ body{
 	/*opacity: 0;*/
 }
 .list .opt{
-	width: calc(100% - 70px);
-	margin-left: 20px;
-	font-size: 14px;
+	width: 80.3vw;
+	margin-left: 5.4vw;
+	font-size: 1.4rem;
 	font-weight: 400;
-	line-height: 20px;
+	line-height: 5.4vw;
 }
 .list .active{
 	background:#d10000 ;
@@ -115,7 +115,7 @@ body{
 .list .sum{
 	width: 100%;
 	text-align: right;
-	padding-right: 10px;
+	padding-right: 2.7vw;
 	color:#999999;
 }
 .sum .num{
@@ -129,8 +129,8 @@ body{
 }
 .foot .save,.submit{
 	width: 50%;
-	height: 45px;
-	line-height: 45px;
+	height: 12vw;
+	line-height: 12vw;
 	text-align: center;
 	font-size: 1.8rem;
 	border: none;
@@ -154,8 +154,8 @@ body{
 	display: none;
 }
 .timer{
-	width: 30px;
-	height: 30px;
+	width: 8vw;
+	height: 8vw;
 	background-color: transparent;
 	box-shadow: inset 0 0 0 2px #fff;
 	border-radius: 50%;
@@ -168,10 +168,10 @@ body{
 	background-color: #fff;
 }
 .timer:after{
-	width: 12px;
+	width: 3.2vw;
 	height: 2px;
-	top: 14px;
-	left: 14px;
+	top: 3.8vw;
+	left: 3.8vw;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
@@ -181,10 +181,10 @@ body{
 }
 
 .timer:before{
-	width: 10px;
+	width: 2.7vw;
 	height: 2px;
-	top: 14px;
-	left: 14px;
+	top: 3.8vw;
+	left: 3.8vw;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
@@ -217,12 +217,12 @@ body{
 	color:#ffffff;
 	font-size: 2.0rem;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 5.4vw;
 }
 
 .answer{
-	padding-left: 25px;
-	font-size: 16px;
+	padding-left: 6.7vw;
+	font-size: 1.6rem;
 }
 .answer span{
 	color:#d10000;

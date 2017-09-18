@@ -61,9 +61,7 @@
 
 {block name="script"}
 <script>
-/**
- * Created by rawraw on 2016/9/22.
- */
+var scrollNow = true;
 $(function(){
 	//模块标题
 	$('title' ).text('两学一做');
@@ -97,7 +95,8 @@ function loadScroll(){
 		var len = $(".list" ).length;
 		var tip = $(".tip");
 		var loading = $('.loading');
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url:"{:Url('Learn/indexmore')}",
@@ -121,6 +120,7 @@ function loadScroll(){
 						tip.text('没有更多了');
 						$(window ).off("scroll");
 					}
+					scrollNow = true;
 				}
 			})
 		}

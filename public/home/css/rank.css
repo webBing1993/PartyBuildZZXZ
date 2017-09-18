@@ -112,9 +112,12 @@ table { border-collapse: collapse; background-color: #ffffff; }
 .name_ span{
 	display: block;
 	height: 9.6vw;
-	/*width: 8.5333vw;*/
-	margin-right:5vw;
+	width: 50vw;
+	/*margin-right:5vw;*/
 	line-height: 9.6vw;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .my .name_ .n{
 	height: 3.2vw;
@@ -125,7 +128,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	position: absolute;
 	top:5.3333vw;
 	right: 6vw;
-	width: 25vw;
+	/*width: 25vw;*/
 	height: 5.3333vw;
 	line-height: 5.3333vw;
 	text-align: right;
@@ -146,7 +149,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	min-height: 52vw;
 	background: #ffffff;
 	/*padding-top: 10px;*/
-	/*padding-bottom: 20px;*/
+	padding-bottom: 5.4vw;
 }
 .tabs{
 	width: 100%;
@@ -197,13 +200,16 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	font-size: 1.3rem;
 }
 .list .name_{
-	width: 32vw;
-	margin-right:5vw;
+	width: 50vw;
+	/*margin-right:5vw;*/
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .list .scores{
 	position: absolute;
 	right: 6vw;
-	width: 25vw;
+	/*width: 25vw;*/
 	text-align: right;
 }
 .list .num_,.list .name_,.list .scores{
