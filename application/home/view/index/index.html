@@ -1,41 +1,231 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title>莫干红云</title>
 <style>
-	a{
-		display: block;
-		height: 40px;
-		color: #666666;
-		line-height: 40px;
-		text-align: center;
-	}
+    body{
+        background: #f0edf1;
+    }
+    .my-items{
+        padding:0 1.2rem 2rem 1.2rem;
+    }
+    .my-item{
+        position: relative;
+        margin-top: 3rem;
+        background: #ffffff;
+        border:1px solid #e2e2e2;
+        border-radius: .5rem;
+        /*padding:15px 10px 0 10px;*/
+        padding-top: 1.5rem;
+        padding-bottom: 2.8rem;
+    }
+    .my-item-title{
+        width:10rem;
+        height:2.7rem;
+        color: #ffffff;
+        font-size: 1.6rem;
+        text-align: center;
+        line-height: 2.7rem;
+        border-radius: 10rem;
+        position: absolute;
+        top:-1.35rem;
+        left:50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    .my-item-title.color1{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,114,118,0.5);
+        background: #ff7276;
+    }
+    .my-item-title.color2{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,171,81,0.5);
+        background: #ffab51;
+    }
+    .my-item-title.color3{
+        box-shadow: 0 .2rem .2rem 0 rgba(122,189,58,0.5);
+        background: #7abd3a;
+    }
+    .my-item-title.color4{
+        box-shadow: 0 .2rem .2rem 0 rgba(89,183,244,0.5);
+        background: #59b7f4;
+    }
+    .my-item-title.color5{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,114,118,0.5);
+        background: #ff7276;
+    }
+    .my-item-title.color6{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,171,81,0.5);
+        background: #ffab51;
+    }
+    .my-lists{
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .my-list{
+        width:86px;
+        text-align: center;
+        padding-top:3rem;
+    }
+    .my-list>img{
+        width:3.2rem;
+        height:3.2rem;
+        display: block;
+        margin:0 auto;
+    }
+    .my-list>span{
+        display: block;
+        margin-top: 1.5rem;
+        color:#333;
+        font-size: 1.4rem;
+    }
+
 </style>
 {/block}
-
 {block name="body"}
-<a href="{:Url('News/index?type=4')}">第一聚焦</a>
-<a href="{:Url('Structure/index')}">组织架构</a>
-<a href="{:Url('Learn/index')}">手机党校</a>
-<a href="{:Url('Constitution/game')}">每日一课</a>
-<a href="{:Url('Topic/index')}">专题讨论</a>
-<a href="{:Url('Topic/experience')}">党性体验</a>
-<a href="{:Url('Notice/index')}">支部活动</a>
-<a href="http://byt.dqpb.cn/home/alliance/index/c/1">地信红盟1</a>
-<a href="http://byt.dqpb.cn/home/alliance/index/c/2">地信红盟2</a>
-<a href="http://byt.dqpb.cn/home/alliance/index/c/3">地信红盟3</a>
-<a href="http://byt.dqpb.cn/home/college/index/c/1">红领学院1</a>
-<a href="http://byt.dqpb.cn/home/college/index/c/2">红领学院2</a>
-<a href="http://byt.dqpb.cn/home/college/index/c/3">红领学院3</a>
-<a href="{:Url('Volunteer/team')}">服务团队</a>
-<a href="{:Url('Volunteer/order')}">服务订单</a>
-<a href="{:Url('Volunteer/recruit')}">志愿招募</a>
-<a href="{:Url('User/index')}">个人中心</a>
-<a href="{:Url('Rank/personal')}">个人排行榜</a>
-<a href="{:Url('Rank/department')}">支部排行榜</a>
-<a href="{:Url('College/index')}">红领学院</a>
-
+<div class="my-items">
+    <div class="my-item">
+        <div class="my-item-title color1">
+            党员之家
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/work/structurelist">
+                <img src="/home/images/home/p1.png" alt="">
+                <span>组织架构</span>
+            </li>
+            <li class="my-list" data-url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd58fa5cc1385a45c&redirect_uri=https%3A%2F%2Fwork.weixin.qq.com%2Fwework_admin%2Fh5_contacts%3Ftype%3Dcontacts&response_type=code&scope=snsapi_base&state=sys_contact#wechat_redirect" id="team">
+                <img src="/home/images/home/p2.png" alt="">
+                <span>队伍管理</span>
+            </li>
+            <li class="my-list" data-url="/home/notice/index/c/1">
+                <img src="/home/images/home/p3.png" alt="">
+                <span>支部活动</span>
+            </li>
+        </ul>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/college/index/c/1">
+                <img src="/home/images/home/p4.png" alt="">
+                <span>红领学院</span>
+            </li>
+            <li class="my-list" data-url="/home/work/index">
+                <img src="/home/images/home/p5.png" alt="">
+                <span>小镇地图</span>
+            </li>
+            <li class="my-list" data-url="/home/work/sign">
+                <img src="/home/images/home/p6.png" alt="">
+                <span>党员签到</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color2">
+            两学一做
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/learn/index">
+                <img src="/home/images/home/p7.png" alt="">
+                <span>手机党校</span>
+            </li>
+            <li class="my-list" data-url="/home/constitution/game">
+                <img src="/home/images/home/p8.png" alt="">
+                <span>在线答题</span>
+            </li>
+            <li class="my-list" data-url="/home/work/dangshi">
+                <img src="/home/images/home/p9.png" alt="">
+                <span>党史学习</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color3">
+            志愿服务
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/volunteer/team">
+                <img src="/home/images/home/p10.png" alt="">
+                <span>服务团队</span>
+            </li>
+            <li class="my-list" data-url="/home/volunteer/order">
+                <img src="/home/images/home/p11.png" alt="">
+                <span>服务订单</span>
+            </li>
+            <li class="my-list" data-url="/home/volunteer/recruit">
+                <img src="/home/images/home/p12.png" alt="">
+                <span>志愿招募</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            民情气象站
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/station/adjust">
+                <img src="/home/images/home/p13.png" alt="">
+                <span>调解纠纷</span>
+            </li>
+            <li class="my-list" data-url="/home/station/business">
+                <img src="/home/images/home/p14.png" alt="">
+                <span>业务办理</span>
+            </li>
+            <li class="my-list" data-url="/home/station/survey">
+                <img src="/home/images/home/p15.png" alt="">
+                <span>问卷调查</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color1">
+            红色珍藏
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/redcollection/redfilm">
+                <img src="/home/images/home/p16.png" alt="">
+                <span>红色电影</span>
+            </li>
+            <li class="my-list" data-url="/home/redcollection/redliterature">
+                <img src="/home/images/home/p17.png" alt="">
+                <span>红色文学</span>
+            </li>
+            <li class="my-list" data-url="/home/redcollection/redmusic">
+                <img src="/home/images/home/p18.png" alt="">
+                <span>红色歌曲</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            其它
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/qrcode/index">
+                <img src="/home/images/home/p22.png" alt="">
+                <span>二维事件簿</span>
+            </li>
+            <li class="my-list" data-url="/home/work/erweima">
+                <img src="/home/images/home/p23.png" alt="">
+                <span>支付二维码</span>
+            </li>
+            <li class="my-list" data-url="">
+            </li>
+        </ul>
+    </div>
+</div>
 {/block}
-
 {block name="script"}
-
+<script>
+    $("title").html('莫干红云');
+    (function () {
+        $(".my-list").on("click",function () {
+            var toUrl=$(this).attr('data-url');
+            if(toUrl){
+                window.location.href=toUrl;
+            }
+        })
+    })()
+</script>
 {/block}
