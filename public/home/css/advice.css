@@ -20,27 +20,27 @@ textarea::-webkit-input-placeholder {
 }
 .content #content {
   width: 100%;
-  padding-left: 13px;
-  padding-right: 13px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  min-height: 200px;
-  margin-top: 10px;
+  padding-left: 3.5vw;
+  padding-right: 3.5vw;
+  padding-top: 2.7vw;
+  padding-bottom: 2.7vw;
+  min-height: 53.4vw;
+  margin-top: 2.7vw;
   color: #999999;
   font-size: 1.3rem;
 }
 .content .contentnum {
   width: 100%;
-  padding-right: 15px;
+  padding-right: 4vw;
   color: #d9d9d9;
   text-align: right;
 }
 .content .img {
   position: relative;
-  width: 78px;
-  height: 78px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  width: 21.9vw;
+  height: 21.9vw;
+  margin-left: 2.7vw;
+  margin-bottom: 2.7vw;
   overflow: hidden;
   background: #d9d9d9;
 }
@@ -50,14 +50,14 @@ textarea::-webkit-input-placeholder {
   left: 0;
 }
 .content .add {
-  width: 78px;
-  height: 78px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  width: 21.9vw;
+  height: 21.9vw;
+  margin-left: 2.7vw;
+  margin-bottom: 2.7vw;
   border: 2px solid #d9d9d9;
   text-align: center;
-  line-height: 68px;
-  font-size: 60px;
+  line-height: 21.8vw;
+  font-size: 6rem;
   color: #d9d9d9;
 }
 .bottom {
@@ -68,16 +68,16 @@ textarea::-webkit-input-placeholder {
   text-align: center;
 }
 .bottom .ths {
-  width: calc( 100vw - 40px);
-  margin: 10px auto;
+  width: 89.3vw;
+  margin: 2.7vw auto;
   font-size: 1.2rem;
   color: #b4b4b4;
 }
 .bottom .sure {
-  height: 45px;
+  height: 12vw;
   background: #4dbf50;
   font-size: 1.6rem;
-  line-height: 45px;
+  line-height: 12vw;
   color: #ffffff;
 }
 .tips {
@@ -90,9 +90,9 @@ textarea::-webkit-input-placeholder {
   background: #ffffff;
   font-size: 1.5rem;
   text-align: center;
-  line-height: 60px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  line-height: 16vw;
+  -webkit-border-radius: 3.2vw;
+  border-radius: 3.2vw;
   overflow: hidden;
 }
 .tocheck,
@@ -106,9 +106,9 @@ textarea::-webkit-input-placeholder {
   background: #ffffff;
   font-size: 1.5rem;
   text-align: center;
-  line-height: 30px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  line-height: 8vw;
+  -webkit-border-radius: 3.2vw;
+  border-radius: 3.2vw;
   overflow: hidden;
 }
 .tocheck .text,
@@ -119,7 +119,7 @@ textarea::-webkit-input-placeholder {
 .todel .confirm,
 .tocheck .del_confirm,
 .todel .del_confirm {
-  width: calc( 100% );
+  width: 100%;
   border-top: 2px solid #f1f1f1;
 }
 .tocheck .confirm span,
@@ -127,9 +127,9 @@ textarea::-webkit-input-placeholder {
 .tocheck .del_confirm span,
 .todel .del_confirm span {
   display: inline-block;
-  width: calc( 50% - 4px);
-  height: 45px;
-  line-height: 45px;
+  width: 48.9%;
+  height: 12vw;
+  line-height: 12vw;
   text-align: center;
 }
 .tocheck .confirm span:nth-child(2),
@@ -154,9 +154,9 @@ textarea::-webkit-input-placeholder {
   z-index: 111;
   position: fixed;
   top: 30vh;
-  left: calc( 50% - 75px);
-  width: 150px;
-  height: 150px;
+  left: 30vw;
+  width: 40vw;
+  height: 40vw;
   background: url("/home/images/feedback/success.png") no-repeat;
   background-size: 100% 100%;
 }
@@ -164,42 +164,42 @@ textarea::-webkit-input-placeholder {
 .loading {
   z-index: 102;
   width: 100%;
-  height: 40px;
+  height: 10.7vw;
   position: fixed;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: fixed;
   top: 30vh;
-  left: calc( 50% - 20px);
+  left: 44.6vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
-  margin: 46px auto;
+  margin: 12.1vw auto;
   position: relative;
-  left: -12px;
+  left: -3.2vw;
 }
 @-webkit-keyframes typing {
   0% {
     background-color: #ffffff;
-    box-shadow: 12px 0 0 0 rgba(255, 255, 255, 0.2), 24px 0 0 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(255, 255, 255, 0.2), 6.4vw 0 0 0 rgba(255, 255, 255, 0.2);
   }
   25% {
     background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 12px 0 0 0 #ffffff, 24px 0 0 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 3.2vw 0 0 0 #ffffff, 24px 0 0 0 rgba(255, 255, 255, 0.2);
   }
   75% {
     background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 12px 0 0 0 rgba(255, 255, 255, 0.2), 24px 0 0 0 #ffffff;
+    box-shadow: 3.2vw 0 0 0 rgba(255, 255, 255, 0.2), 6.4vw 0 0 0 #ffffff;
   }
 }
