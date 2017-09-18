@@ -211,3 +211,13 @@ function get_partyAge($time)
         return date('Y',time()) - substr($time,0,4) .'年';
     }
 }
+
+/**
+ * 获取用户部门
+ */
+function get_user_department($uid)
+{
+    $user = \app\home\model\WechatUser::where('userid',$uid)->find();
+    $departmentName = \app\home\model\WechatDepartment::where('id', json_decode($user['department'])[0])->find();
+    return $departmentName['name'];
+}

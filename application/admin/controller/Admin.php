@@ -49,10 +49,6 @@ class Admin extends Controller {
         }
         Config::set($config); //添加配置
 
-        // 配置参数显示
-        $Think['config'] = $config;
-        $this->assign('Think',$Think);
-
         /* 是否是超级管理员 */
         define('IS_ROOT', is_administrator());
         if(!IS_ROOT && Config::get('admin_allow_ip')){
@@ -82,20 +78,8 @@ class Admin extends Controller {
         }
 
         $this->assign('__MENU__', $this->getMenus());
-        // 判断二级菜单位置 News控制器下index方法除外
-        if ($this->controllerName == 'news' && $this->actionName == 'index') {
-
-            $data = $request->only(['type']);
-            $type = "?type=".$data['type']."&";
-        } else if ($this->controllerName == 'news' && $this->actionName == 'pushlist') {
-
-            $data = $request->only(['class']);
-            $type = "?class=".$data['class'];
-        } else {
-
-            $type = '';
-        }
-        $menu = Menu::where('url', 'like', '%'.$this->controllerName.'/'.$this->actionName.$type.'%')->order('id desc')->find();
+        // 判断二级菜单位置
+        $menu = Menu::where('url', 'like', '%'.$this->controllerName.'/'.$this->actionName)->order('id desc')->find();
         $this->assign('subMenu', $menu);
 
         //后台用户名头像用户组显示
