@@ -191,7 +191,51 @@ $(function(){
 	}
 
 
-})
+});
+
+	//评论加载更多
+	function loadScroll(){
+		$(window ).off("scroll" ).on("scroll",function(){
+			var dh = $(document).height();
+			var end = $(window).height() + $(window ).scrollTop();
+			var len = $(".list" ).length;
+			var tip = $(".tip");
+			var loading = $('.loading');
+			var id = {$co.id};
+			if(dh == end && !now1){
+				now1 = true;//请求中
+				$.ajax({
+					type:"post",
+					url:"{:Url('Base/morecomment')}",
+					data:{
+						type:2,
+						aid:id,
+						length:len
+					},
+					beforeSend: function(XMLHttpRequest){
+						tip.hide();
+						loading.toggleClass('hidden');
+					},
+					success:function(data){
+						loading.toggleClass('hidden');
+						tip.show();
+						if(data.code == 1){
+							addComment(data);
+							var dataLen =data.data.length;
+							if(data.data.length == 5){
+								tip.text('上拉加载更多');
+							}
+						}else{
+							tip.text('没有更多了');
+							$(window ).off("scroll");
+						}
+						now1 = false;//请求结束,恢复状态
+					}
+				})
+			}
+		})
+	}
+
 
 </script>
 {/block}
