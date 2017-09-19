@@ -114,9 +114,9 @@ $(function(){
 	up.css({"background-image":'url('+path+')'});
 	image.onload = function(){
 		if(image.width > image.height){
-			up.css({"background-size":'auto '+ww +'px'});
+			up.css({"background-size":'auto' + '100%'});
 		}else{
-			up.css({"background-size":ww +'px'+' auto '});
+			up.css({"background-size": '100%'+' auto '});
 		}
 	};
 	//触发上传按钮
