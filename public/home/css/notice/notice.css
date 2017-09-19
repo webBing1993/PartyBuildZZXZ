@@ -1,76 +1,76 @@
 @-webkit-keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @-webkit-keyframes cir {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.7vw;
+    left: 2.7vw;
     opacity: 0;
   }
   100% {
-    top: 5px;
-    left: -50px;
+    top: 1.4vw;
+    left: -13.4vw;
     opacity: 1;
   }
 }
 @keyframes cir {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.7vw;
+    left: 2.7vw;
     opacity: 0;
   }
   100% {
-    top: 5px;
-    left: -50px;
+    top: 1.4vw;
+    left: -13.4vw;
     opacity: 1;
   }
 }
 @-webkit-keyframes cir2 {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.7vw;
+    left: 2.7vw;
     opacity: 0;
   }
   100% {
-    top: -49px;
-    left: -6px;
+    top: -13.1vw;
+    left: -1.6vw;
     opacity: 1;
   }
 }
 @keyframes cir2 {
   0% {
-    top: 10px;
-    left: 10px;
+    top: 2.7vw;
+    left: 2.7vw;
     opacity: 0;
   }
   100% {
-    top: -49px;
-    left: -6px;
+    top: -13.1vw;
+    left: -1.6vw;
     opacity: 1;
   }
 }
