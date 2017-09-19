@@ -205,6 +205,7 @@ function loadScroll(){
 				success:function(data){
 					loading.toggleClass('hidden');
 					tip.show();
+					console.log(data);
 					if(data.code == 1){
 						addLists(data);
 						var dataLen =data.data.length;

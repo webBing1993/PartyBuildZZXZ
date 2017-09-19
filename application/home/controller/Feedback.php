@@ -108,16 +108,18 @@ class Feedback extends Base {
     public function more(){
         $len = input('length');
         $map = [
-            'status' => array('eq',1)
+            'status' => array('eq',0)
         ];
         $list = Opinion::where($map)->order('id desc')->limit($len,7)->select();
         foreach ($list as $value) {
             //获取用户信息
             $value['images'] = json_decode($value['images']);
             $image =array();
-            foreach ($value['images'] as $k=>$val){
-                $img = Picture::get($val);
-                $image[$k] = $img['path'];
+            if (!empty($value['images'])) {
+                foreach ($value['images'] as $k=>$val){
+                    $img = Picture::get($val);
+                    $image[$k] = $img['path'];
+                }
             }
             $value['images'] = $image;
             $value['username'] = $value->user->name;
