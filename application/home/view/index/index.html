@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>莫干红云</title>
+<title>石淙镇党建</title>
 <style>
     body{
         background: #f0edf1;
@@ -89,39 +89,6 @@
 {/block}
 {block name="body"}
 <div class="my-items">
-    <div class="my-item">
-        <div class="my-item-title color4">
-            小镇地图
-        </div>
-        <ul class="my-lists">
-            <li class="my-list" data-url="/home/structure/index/c/1">
-                <img src="/home/images/home/p13.png" alt="">
-                <span>云上组织</span>
-            </li>
-            <li class="my-list" data-url="javascript:;">
-                <img src="/home/images/home/p14.png" alt="">
-                <span>最新动态</span>
-            </li>
-            <li class="my-list" data-url="/home/learn/index">
-                <img src="/home/images/home/p15.png" alt="">
-                <span>两学一做</span>
-            </li>
-        </ul>
-        <ul class="my-lists">
-            <li class="my-list" data-url="/home/notice/index/c/1">
-                <img src="/home/images/home/p13.png" alt="">
-                <span>三会一课</span>
-            </li>
-            <li class="my-list" data-url="javascript:;">
-                <img src="/home/images/home/p14.png" alt="">
-                <span>美丽乡村</span>
-            </li>
-            <li class="my-list" data-url="/home/user/index">
-                <img src="/home/images/home/p15.png" alt="">
-                <span>个人中心</span>
-            </li>
-        </ul>
-    </div>
     <div class="my-item">
         <div class="my-item-title color1">
             云上组织
@@ -276,25 +243,6 @@
     </div>
     <div class="my-item">
         <div class="my-item-title color4">
-            党员签到
-        </div>
-        <ul class="my-lists">
-            <li class="my-list" data-url="">
-            </li>
-            <li class="my-list" data-url="/home/work/sign">
-                <img src="/home/images/home/p22.png" alt="">
-                <span>会议签到</span>
-            </li>
-            <li class="my-list" data-url="javascript:;">
-                <img src="/home/images/home/p23.png" alt="">
-                <span>活动签到</span>
-            </li>
-            <li class="my-list" data-url="">
-            </li>
-        </ul>
-    </div>
-    <div class="my-item">
-        <div class="my-item-title color4">
             其他
         </div>
         <ul class="my-lists">
@@ -302,9 +250,9 @@
                 <img src="/home/images/home/p13.png" alt="">
                 <span>通讯名录</span>
             </li>
-            <li class="my-list" data-url="javascript:;">
-                <img src="/home/images/home/p14.png" alt="">
-                <span>消息审核</span>
+            <li class="my-list" data-url="/home/work/sign">
+                <img src="/home/images/home/p22.png" alt="">
+                <span>会议签到</span>
             </li>
             <li class="my-list" data-url="javascript:;">
                 <img src="/home/images/home/p15.png" alt="">
@@ -316,7 +264,6 @@
 {/block}
 {block name="script"}
 <script>
-    $("title").html('莫干红云');
     (function () {
         $(".my-list").on("click",function () {
             var toUrl=$(this).attr('data-url');
