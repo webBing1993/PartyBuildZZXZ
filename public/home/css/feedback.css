@@ -292,3 +292,7 @@ body {
   top: 3.5333vw;
   left: 44.6vw;
 }
+.sweet-alert.show-input textarea {
+  padding: 2vw;
+  font-size: 1.4rem;
+}
