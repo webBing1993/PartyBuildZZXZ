@@ -95,7 +95,7 @@ class Live extends Base
             foreach ($comment as $value) {
                 $user = WechatUser::where('userid',$value['uid'])->find();
                 $value['nickname'] = $user['name'];
-                $value['header'] = $user['headimgurl'];
+                $value['header'] = ($user['header']) ? $user['header'] : $user['avatar'];
                 $value['time'] = date('H:i:s',$value['create_time']);
                 $value['content'] = strtr($value['content'], $badword1);
             }
