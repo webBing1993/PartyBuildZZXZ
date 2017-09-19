@@ -12,13 +12,13 @@
         margin-bottom:5.4vw;
     }
     #tab3 ul li>a{
-        height:23vw;width:100%;display: block;position:relative;
+        /*height:23vw;*/width:100%;display: block;position:relative;padding-bottom: 2.4vw;
     }
     #tab3 ul li>a>img.fl{
         width:24.8vw;height:18.4vw;border-radius: 0.8vw;margin-left:3.2vw;margin-top:2.4vw;
     }
     #tab3 ul li>a>span.limit_{
-        width:60%;font-size:1.4rem;height:15.8vw;margin-left:3vw;line-height:6vw;padding-top:2.7vw;
+        width:60%;font-size:1.4rem;/*height:15.8vw;*/margin-left:3vw;line-height:6vw;padding-top:2.7vw;margin-bottom: 2.7vw;
     }
     .tab_main{
         height:8vw;line-height:8vw;width:100%;margin:0 auto;text-align: center;background:#fff;margin-bottom:0.8vw;
@@ -119,7 +119,7 @@
         <ul id="tab_main1" class="">
             <li>
                 {volist name="tutor.course" id="course"}
-                <a href="{:Url('College/tutordetail?id='.$course['id'])}">
+                <a href="{:Url('College/tutordetail?id='.$course['id'])}" class="clearfix">
                     <img src="{$course.list_image|get_cover='path'}" alt="" class="fl ">
                     <span class="limit_ fl" style="color:#333333">{$course.title}</span>
                     <span class="fl">{$course.create_time|time_format='Y-m-d'}</span>
