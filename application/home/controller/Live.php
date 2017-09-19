@@ -36,8 +36,8 @@ class Live extends Base
 //                if ($this->score_up()){
 //                    // 未超过 15分
 //                    WechatUser::where('userid',$userId)->update($s);
-//                    unset($con['create_time']);
-//                    Browse::create($con);
+                    unset($con['create_time']);
+                    Browse::create($con);
 //                }
             }
 
