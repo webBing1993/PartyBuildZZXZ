@@ -83,6 +83,13 @@
   color: #333333;
   font-size: 1.8rem;
   font-weight: 600;
+  width: 100%;
+  text-align: center;
+}
+.film .title p {
+  display: inline-block;
+  width: auto;
+  text-align: left;
 }
 .film .note {
   color: #666666;

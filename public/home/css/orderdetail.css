@@ -10,6 +10,11 @@
   font-size: 1.6rem;
   line-height: 6.9333vw;
 }
+.content .title p {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+}
 .content .time {
   width: 100%;
   text-align: right;

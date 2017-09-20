@@ -165,7 +165,7 @@ body{
     width: auto;
     text-align: left;
     color: #333333;
-    font-size: 1.58rem;
+    font-size: 1.6rem;
 }
 .container>div:nth-of-type(n+2) {
     border-bottom: 0.2666vw dashed rgba(0,0,0,.1);

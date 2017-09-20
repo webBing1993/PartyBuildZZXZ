@@ -83,6 +83,13 @@
   color: #333333;
   font-size: 1.8rem;
   font-weight: 600;
+  width: 100%;
+  text-align: center;
+}
+.music .title p {
+  width: auto;
+  text-align: left;
+  display: inline-block;
 }
 .music .time {
   width: 100%;
