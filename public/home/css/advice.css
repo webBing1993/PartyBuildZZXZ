@@ -37,12 +37,12 @@ textarea::-webkit-input-placeholder {
 }
 .content .img {
   position: relative;
-  width: 21.9vw;
-  height: 21.9vw;
+  width: 20.8vw;
+  height: 20.8vw;
   margin-left: 2.7vw;
   margin-bottom: 2.7vw;
   overflow: hidden;
-  background: #d9d9d9;
+  /*background: #d9d9d9;*/
 }
 .content .img img {
   position: absolute;
@@ -50,13 +50,13 @@ textarea::-webkit-input-placeholder {
   left: 0;
 }
 .content .add {
-  width: 21.9vw;
-  height: 21.9vw;
+  width: 20.8vw;
+  height: 20.8vw;
   margin-left: 2.7vw;
   margin-bottom: 2.7vw;
   border: 2px solid #d9d9d9;
   text-align: center;
-  line-height: 21.8vw;
+  line-height: 20.8vw;
   font-size: 6rem;
   color: #d9d9d9;
 }

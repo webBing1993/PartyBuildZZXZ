@@ -84,7 +84,7 @@ $(function(){
 		if(content != ''){
 			var tnum =  $('textarea').val().length;
 			if(tnum <= 400){
-				/*弹窗 */
+				// 弹窗
 				swal({
 					title: ' ',
 					text: '我已完成编辑，马上发送！',
@@ -131,8 +131,6 @@ $(function(){
 	//
 	//
 	//--------------------------------------------------------------------------
-	//摸态框退出
-//	$('.typebg,.tips' ).on('click',modalclear);
 	//图片预览
 	$('.add' ).on('click',function(){
 		var imglen = $('.img img' ).length;
@@ -145,20 +143,17 @@ $(function(){
 					var formData = new FormData();
 					formData.append("picture",img);
 					$.ajax({
-						type:"post",
-						url:"{:Url('File/uploadPicture')}",
-						data:formData,
+						type: "post",
+						url: "{:Url('File/uploadPicture')}",
+						data: formData,
 						processData : false,
 						contentType : false,
 						beforeSend: function(XMLHttpRequest){
-//							$('.typebg' ).fadeIn();
 							loading.toggleClass('hidden');
 						},
 						success:function(data){
 							var msg = $.parseJSON(data);
-//							$('.typebg' ).hide();
 							loading.toggleClass('hidden');
-//							console.log(msg.data.id)
 							if(msg.code == 1){
 								if(this_.hasClass('add')){
 									//图片添加
@@ -175,18 +170,24 @@ $(function(){
 								imgresize();
 
 							} else {
-//								warning({msg:'上传失败'});
-								return;
+								swal({
+									title: ' ',
+									html: '上传失败',
+									type: 'error',
+									showConfirmButton:false,
+									timer:1500
+								});
 							}
 						}
 					});
 				} else {
-//					$('.typebg' ).fadeIn();
-					$('.tips' ).html('<div class="text">您选择的图片超过2mb </div>' ).fadeIn();
-					setTimeout(function(){
-						modalclear();
-						$('.tips' ).text('');
-					},2500)
+					swal({
+						title: ' ',
+						text: '您的图片超过2M',
+						type: 'warning',
+						showConfirmButton:false,
+						timer:1500
+					});
 				}
 			});
 
@@ -199,29 +200,25 @@ $(function(){
 			$('.typebg,.todel' ).fadeOut();
 		});
 		$('.del_yes' ).off('click').on('click',function(){
-//			$('.typebg,.todel' ).fadeOut();
 			this_.addClass('hide');
 			this_.find('img').remove();
 			$('.add' ).before(this_).fadeIn();
 		});
 	});
-	//字数限定
+	// 字数限定
 	numlimit(400)
 });
-function modalclear(){
-//	$('.typebg,.type,.tips,.tocheck,.todel,.success' ).fadeOut();
-}
 function imgresize(){
 	setTimeout(function(){
 		var img = $('.img img' );
 		img.each(function(){
 			if($(this).width() == $(this).height()){
-				$(this).height('78px');
-				$(this).width('78px');
+				$(this).height('20.8vw');
+				$(this).width('20.8vw');
 			}else if($(this).width() > $(this).height()){
-				$(this).height('78px' ).css({'left':-$(this).width()/2+78/2});
+				$(this).height('20.8vw' ).css({'left':-$(this).width()/2+78/2});
 			}else{
-				$(this).width('78px').css({'top':-$(this).height()/2+78/2});
+				$(this).width('20.8vw').css({'top':-$(this).height()/2+78/2});
 			}
 		});
 	},100);

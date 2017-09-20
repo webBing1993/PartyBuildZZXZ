@@ -169,7 +169,7 @@ var send = function(e,type,id){
 							'</li>';
 
 						$(e).parent().next().append(html);
-
+						$(e).parent().next().removeClass("hide");
 						swal({
 							title: ' ',
 							text: '评论成功',
@@ -279,7 +279,7 @@ var tosend = function(e,id){
 	$('.banner,.lists' ).off('click');
 	$('.bottom' ).animate({'bottom':'0'},500,'swing',function(){
 		$('.banner,.lists' ).off('click').one('click',function(){
-			$('.bottom' ).animate({'bottom':'-45px'},500,'swing');
+			$('.bottom' ).animate({'bottom':'-12vw'},500,'swing');
 			$('.myword input' ).val('');
 		})
 	}).attr('data-tab',index);
@@ -307,12 +307,12 @@ var imgresize = function (){
 	$('.list' ).each(function(){
 		$(this).find('.imgs .img img' ).each(function(){
 			if($(this).width() == $(this).height()){
-				$(this).height('78px');
-				$(this).width('78px');
+				$(this).height('20.8vw');
+				$(this).width('20.8vw');
 			}else if($(this).width() > $(this).height()){
-				$(this).height('78px' ).css({'left':-$(this).width()/2+78/2});
+				$(this).height('20.8vw' ).css({'left':-$(this).width()/2+78/2});
 			}else{
-				$(this).width('78px').css({'top':-$(this).height()/2+78/2});
+				$(this).width('20.8vw').css({'top':-$(this).height()/2+78/2});
 			}
 		});
 	});

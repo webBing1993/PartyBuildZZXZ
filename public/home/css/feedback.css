@@ -126,12 +126,12 @@
 }
 .lists .list > .fr .imgs .img {
   position: relative;
-  width: 21vw;
-  height: 21vw;
+  width: 20.8vw;
+  height: 20.8vw;
   display: inline-block;
   margin: 1.5vw 1.5vw 1.5vw 0;
   overflow: hidden;
-  background: #d9d9d9;
+  /*background: #d9d9d9;*/
 }
 .lists .list > .fr .imgs .img img {
   position: absolute;
