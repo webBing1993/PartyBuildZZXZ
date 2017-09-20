@@ -89,6 +89,8 @@ $(function(){
 				}
 			});
 		}
+	}).on('blur', function () {
+		$(".results").hide();
 	});
 	//切换卡
 	$('.tab' ).off('click').on('click',function(){
