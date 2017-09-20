@@ -42,7 +42,8 @@ textarea::-webkit-input-placeholder {
   margin-left: 2.7vw;
   margin-bottom: 2.7vw;
   overflow: hidden;
-  /*background: #d9d9d9;*/
+  border: 2px solid #d9d9d9;
+  box-sizing: content-box;
 }
 .content .img img {
   position: absolute;
@@ -59,6 +60,7 @@ textarea::-webkit-input-placeholder {
   line-height: 20.8vw;
   font-size: 6rem;
   color: #d9d9d9;
+  box-sizing: content-box;
 }
 .bottom {
   z-index: 0;

@@ -30,27 +30,7 @@
 		确认上传
 	</div>
 </div>
-<!--<div class="typebg"></div>-->
 <div class="tips">
-</div>
-<!--<div class="success"></div>-->
-<!--<div class="tocheck">
-	<div class="text">
-		我已完成编辑，马上发送
-	</div>
-	<div class="confirm">
-		<span class="yes">确定</span>
-		<span class="no">取消</span>
-	</div>
-</div>-->
-<div class="todel">
-	<div class="text">
-		您是否确定删除这张图片
-	</div>
-	<div class="del_confirm">
-		<span class="del_yes">确定</span>
-		<span class="del_no">取消</span>
-	</div>
 </div>
 <div class="loading hidden">
 	<div class="typing_loader"></div>
@@ -129,6 +109,15 @@ $(function(){
 	});
 	//--------------------------------------------------------------------------
 	//
+	// 清除同一张图片再次上传bug
+	function clearImg() {
+		$("input[type = 'file']").remove();
+	}
+
+	function addImg() {
+		var addImg = '<input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">';
+		$(".imgs").append(addImg);
+	}
 	//
 	//--------------------------------------------------------------------------
 	//图片预览
@@ -152,6 +141,7 @@ $(function(){
 							loading.toggleClass('hidden');
 						},
 						success:function(data){
+							clearImg();
 							var msg = $.parseJSON(data);
 							loading.toggleClass('hidden');
 							if(msg.code == 1){
@@ -178,9 +168,11 @@ $(function(){
 									timer:1500
 								});
 							}
+							addImg();
 						}
 					});
 				} else {
+					clearImg();
 					swal({
 						title: ' ',
 						text: '您的图片超过2M',
@@ -188,23 +180,12 @@ $(function(){
 						showConfirmButton:false,
 						timer:1500
 					});
+					addImg();
 				}
 			});
 
 	});
-	//图片删除
-	$('.img').off('click').on('click',function(){
-		var this_ = $(this);
-//		$('.typebg,.todel' ).fadeIn();
-		$('.del_no' ).off('click').on('click',function(){
-			$('.typebg,.todel' ).fadeOut();
-		});
-		$('.del_yes' ).off('click').on('click',function(){
-			this_.addClass('hide');
-			this_.find('img').remove();
-			$('.add' ).before(this_).fadeIn();
-		});
-	});
+
 	// 字数限定
 	numlimit(400)
 });
