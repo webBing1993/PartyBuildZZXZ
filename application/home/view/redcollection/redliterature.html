@@ -62,6 +62,10 @@ $(function(){
 	});
 	search.on('input',function(){
 		var this_ = this;
+		$(".results").show();
+		if (this_.value == "") {
+		    $(".results").hide();
+		}
 		if(!lock){
 			var val = $(this_ ).val();
 			var html = '';
