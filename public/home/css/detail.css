@@ -21,8 +21,9 @@
   font-weight: 600;
 }
 .title span {
-  width: 100%;
+  width: auto;
   text-align: left;
+  display: inline-block;
 }
 .note{
   color: #999999;
