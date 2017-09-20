@@ -64,7 +64,7 @@
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
         if(isiOS){
             //ios下的样式差异
-            $('.option' ).css({'top':'0.8vw','line-height':'4.8vw'});
+            $('.option' ).css({'top':'0.8vw','line-height':'5.4vw'});
             $('.opt').css({'margin-left':'1.6vw'});
         }
         //同级触发input点击的事件
@@ -90,18 +90,18 @@
                 }
             }
         });
-        //选中样式变化
-        $('input[type=radio]' ).on('click',function(e){
-            var it = $(this);
-            if(it.prop('checked')){
-                it.next('.option').addClass('active' );
-                it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
-            }
-        });
-        $('input[type=checkbox]' ).on('click',function(e){
-            var it = $(this);
-            it.next('.option' ).toggleClass('active');
-        });
+//        //选中样式变化
+//        $('input[type=radio]' ).on('click',function(e){
+//            var it = $(this);
+//            if(it.prop('checked')){
+//                it.next('.option').addClass('active' );
+//                it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
+//            }
+//        });
+//        $('input[type=checkbox]' ).on('click',function(e){
+//            var it = $(this);
+//            it.next('.option' ).toggleClass('active');
+//        });
         //退出提示
         isOut();
     });
@@ -231,6 +231,13 @@
         var list = $('.list' );
         var len = list.length;
         for(var i = 0;i < len ;i++){
+            // 单选和多选分别保存
+//            var checked;
+//            if (list.eq(i).find('input').attr('type')== 'radio') {
+//                checked = list.eq(i).find('input:checked');
+//            } else if (list.eq(i).find("input").attr("type") == "checkbox") {
+//                checked = list.eq(i).find("input").attr("type","checkbox");
+//            }
             var checked = list.eq(i).find('input:checked');
             var len_a = checked.length;
             if(len_a === 0){
@@ -246,7 +253,6 @@
                 answer.push(it)
             }
         }
-        console.log(answer);
         return answer;
     }
 </script>
