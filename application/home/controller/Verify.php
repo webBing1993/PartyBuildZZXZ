@@ -13,4 +13,18 @@ class Verify extends Controller{
     public function null(){
         return $this ->fetch();
     }
+
+    /**
+     * 党建产品介绍
+     */
+    public function introduce()
+    {
+
+        return $this->fetch();
+    }
+
+    public function intro (){
+
+        return $this ->fetch();
+    }
 }
