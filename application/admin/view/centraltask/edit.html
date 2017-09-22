@@ -150,40 +150,40 @@
                                     <input type="text" placeholder="请输入简介" class="form-control form_title" name="summary" value="{$msg.summary || default=''}">
                                 </div>
                             </div>
-                            <div class="form-group" id="timeRange">
-                                <div class="col-lg-1 text-right control-label">
-                                    <label>活动时间:</label>
-                                </div>
-                                {eq name="msg" value=""}
-                                <div class="col-lg-11">
-                                    <div class="date">
-                                        <input type="text" class="form-control datetimepicker" name="time"  value=""/>
-                                    </div>
-                                </div>
-                                {else/}
-                                <div class="col-lg-11">
-                                    <div class="date">
-                                        <input type="text" class="form-control datetimepicker" name="time"  value="{$msg.time|time_format='Y-m-d H:i'}"/>
-                                    </div>
-                                </div>
-                                {/eq}
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-1 text-right control-label">
-                                    <label>活动地点:</label>
-                                </div>
-                                <div class="col-lg-11">
-                                    <input type="text" placeholder="请输入活动地点" class="form-control form_title" name="address" value="{$msg.address || default=''}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-1 text-right control-label">
-                                    <label>联系方式:</label>
-                                </div>
-                                <div class="col-lg-11">
-                                    <input type="text" placeholder="请输入联系方式" class="form-control form_title" name="telephone" value="{$msg.telephone || default=''}">
-                                </div>
-                            </div>
+                            <!--<div class="form-group" id="timeRange">-->
+                                <!--<div class="col-lg-1 text-right control-label">-->
+                                    <!--<label>活动时间:</label>-->
+                                <!--</div>-->
+                                <!--{eq name="msg" value=""}-->
+                                <!--<div class="col-lg-11">-->
+                                    <!--<div class="date">-->
+                                        <!--<input type="text" class="form-control datetimepicker" name="time"  value=""/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--{else/}-->
+                                <!--<div class="col-lg-11">-->
+                                    <!--<div class="date">-->
+                                        <!--<input type="text" class="form-control datetimepicker" name="time"  value="{$msg.time|time_format='Y-m-d H:i'}"/>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--{/eq}-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<div class="col-lg-1 text-right control-label">-->
+                                    <!--<label>活动地点:</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-11">-->
+                                    <!--<input type="text" placeholder="请输入活动地点" class="form-control form_title" name="address" value="{$msg.address || default=''}">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<div class="col-lg-1 text-right control-label">-->
+                                    <!--<label>联系方式:</label>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-11">-->
+                                    <!--<input type="text" placeholder="请输入联系方式" class="form-control form_title" name="telephone" value="{$msg.telephone || default=''}">-->
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
@@ -217,6 +217,7 @@
 <script src="/admin/js/chosen.jquery.js"></script>
 <script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
 <script>
+    highlight_subnav("{:Url('Centraltask/index')}");
     $(function(){
         var type =  $("select[name='type']").val();
         if(type == 1) {
@@ -299,9 +300,9 @@
                 summary:$("input[name='summary']").val(),
                 content:ue.getContent(),
                 pid:$("select[name='pid']").val(),
-                time:$("input[name='time']").val(),
-                address:$("input[name='address']").val(),
-                telephone:$("input[name='telephone']").val(),
+                time:'1',
+                address:'1',
+                telephone:'1',
                 publisher:$("input[name='publisher']").val(),
             };
             $.ajax({
