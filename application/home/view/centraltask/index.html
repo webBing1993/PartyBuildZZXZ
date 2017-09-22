@@ -1,6 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
+<title></title>
 <link rel="stylesheet" href="/home/css/notice/notice1.css">
 {/block}
 
@@ -70,7 +71,7 @@
 <script src="/home/js/reset.js"></script>
 <script>
 
-
+	var scrollNow = true;
 	$(function(){
 		//模块标题
 		$('title' ).text('中心工作');
@@ -132,7 +133,8 @@
 			var tip = $(".tip");
 			var loading = $('.loading');
 			var pid = $('.active' ).attr('data-tab');
-			if(dh == end){
+			if(dh == end && scrollNow){
+				scrollNow = false;
 				$.ajax({
 					type:"post",
 					url:"{:Url('Centraltask/index')}",
@@ -156,6 +158,7 @@
 						}else{
 							tip.text('没有更多了');
 						}
+						scrollNow = true;
 					}
 				})
 			}
