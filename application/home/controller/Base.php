@@ -20,8 +20,8 @@ use think\Db;
 class Base extends Controller {
     public function _initialize(){
 //        session('userId','visitor');
-//        session('userId','15700004138'); //管理员权限跟支部数据权限
-        session('userId','15757116500');
+        session('userId','15700004138'); //管理员权限跟支部数据权限
+//        session('userId','15757116500');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         if(!empty($_SERVER['REQUEST_URI'])){
@@ -160,6 +160,7 @@ class Base extends Controller {
      * 11 RedforumNotice
      * 12 Notice
      * 13 Feedback
+     * 14 Centraltask
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -201,6 +202,9 @@ class Base extends Controller {
                 break;
             case 13:
                 $table = "Opinion";
+                break;
+            case 14:
+                $table = "Centraltask";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -262,6 +266,7 @@ class Base extends Controller {
      * 11 RedforumNotice
      * 12 Notice
      * 13 Opinion
+     * 14 Centraltask
      */
     public function comment(){
         if(IS_POST){
@@ -301,6 +306,9 @@ class Base extends Controller {
                     break;
                 case 13:
                     $table = "Opinion";
+                    break;
+                case 14:
+                    $table = "Centraltask";
                     break;
                 default:
                     return $this->error("无该数据表");
