@@ -1,0 +1,137 @@
+.info {
+    border: solid 1px silver;
+    border-radius: 8px;
+}
+div.info-top {
+    position: relative;
+    background: none repeat scroll 0 0 #F9F9F9;
+    /*border-bottom: 1px solid #CCC;*/
+    border-radius: 8px 8px 0 0;
+}
+div.info-top div {
+    display: inline-block;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 31px;
+    padding: 0 10px;
+}
+div.info-top{
+    background-color: #fff !important;
+}
+div.info-top img {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    transition-duration: 0.25s;
+}
+div.info-top>img{
+    opacity: .5;
+}
+div.info-top>div>img:first-of-type{
+    width:80px;
+    height:80px;
+    left: 50%;
+    top: 25px;
+    margin-left: -40px;
+}
+div.info-middle {
+    font-size: 12px;
+    padding: 95px 6px 6px;
+    line-height: 20px;
+    border-radius: 0 0 8px 8px;
+}
+div.info-middle p:first-of-type{
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+}
+div.info-middle p:nth-of-type(2){
+    text-align: justify;
+    margin: 0 20px;
+    padding: 20px 10px 30px;
+    /*height: 170px;*/
+    border-radius: 10px;
+    background-color: #f3f5f7;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.6;
+}
+div.info-bottom {
+    height: 0px;
+    width: 100%;
+    clear: both;
+    text-align: center;
+}
+div.info-bottom img {
+    position: relative;
+    z-index: 104;
+    display: none;
+}
+div.info-middle a{
+    text-decoration: none;
+    display: block;
+    /*width: 100%;*/
+    height: 100%;
+    color: #fff;
+    padding: 6px 0;
+    background-color: orange;
+    text-align: center;
+    border-radius: 10px;
+    margin: 15px 20px 6px;
+}
+span {
+    margin-left: 5px;
+    font-size: 11px;
+}
+.info-middle img {
+    float: left;
+    margin-right: 6px;
+}
+.amap-logo{
+    display: none;
+}
+.amap-copyright{
+    display: none !important;
+}
+.amap-info>div:first-of-type{
+    width: 80%;
+    position: fixed !important;
+    top: 50% !important;
+    bottom: auto !important;
+    left: 50% !important;
+    margin-left: -40%;
+    margin-top: -60%;
+    z-index: 12;
+    border-radius: 8px;
+    box-shadow: 0px 0px 4px orange;
+}
+.amap-marker .amap-icon{
+    width: 30px !important;
+    height: 30px !important;
+}
+.amap-marker .amap-icon img {
+    position: absolute;
+    width: 30px !important;
+    height: 30px !important;
+    color: #e90000;
+    cursor: pointer;
+}
+.amap-simple-marker.my-marker .amap-simple-marker-label {
+    color: #fff;
+    font-size: 16px;
+    font-style: italic;
+    text-decoration: line-through;
+}
+.amap-simple-marker-icon img{
+    width:50px;
+    height:50px;
+    margin-left: -16px;
+    margin-top: -18px;
+}
+.amap-simple-marker-position-point{
+    background-color: blue !important;
+}
+.amap-maptypecontrol, .amap-overviewcontrol, .amap-scalecontrol, .amap-toolbar{
+    z-index: 10;
+}
