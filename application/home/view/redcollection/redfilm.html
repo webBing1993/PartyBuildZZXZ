@@ -65,7 +65,7 @@ $(function(){
 	search.on('compositionend',function(){
 		lock = false;
 	});
-	search.on('input',function(){
+	search.on('keyup',function(){
 		var this_ = this;
 		if(!lock){
 			var val = $(this_ ).val();

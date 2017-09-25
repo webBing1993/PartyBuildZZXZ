@@ -60,7 +60,7 @@ $(function(){
 	search.on('compositionend',function(){
 		lock = false;
 	});
-	search.on('input',function(){
+	search.on('keyup',function(){
 		var this_ = this;
 		$(".results").show();
 		if (this_.value == "") {
