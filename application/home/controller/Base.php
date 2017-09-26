@@ -271,6 +271,7 @@ class Base extends Controller {
      * 12 Notice
      * 13 Opinion
      * 14 Centraltask
+     * 15 Hands
      */
     public function comment(){
         if(IS_POST){
@@ -313,6 +314,9 @@ class Base extends Controller {
                     break;
                 case 14:
                     $table = "Centraltask";
+                    break;
+                case 15:
+                    $table = "Hands";
                     break;
                 default:
                     return $this->error("无该数据表");
