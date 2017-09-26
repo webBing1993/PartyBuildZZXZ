@@ -302,7 +302,7 @@ class Centraltask extends Admin {
         //发送给企业号
         $Wechat = new TPQYWechat(Config::get('Country'));
         $touser = config('touser');
-        $newsConf = config('learn');
+        $newsConf = config('Country');
         $message = array(
             "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',

@@ -38,7 +38,7 @@ return [
         'agentid' => 1000002,
     ),
 
-    /*两学一做 */
+    /*红色石淙 */
     'learn' => array(
         'appid' => 'ww58b28476c9e6',
         'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
@@ -58,6 +58,14 @@ return [
         'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
         'agentid' => 1000003
     ),
+
+    /*掌上石淙 */
+    'Hands' => array(
+        'appid' => 'ww58b28476c9e6',
+        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+        'agentid' => 1000003
+    ),
+
 
     //  推送网站域名
     'http_url' => "http://ymz.pb.cn",

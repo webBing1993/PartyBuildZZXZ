@@ -1,35 +1,35 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: laowang
- * Date: 2017/1/16
- * Time: 15:07
+ * User: Lxx<779219930@qq.com>
+ * Date: 2017/4/24
+ * Time: 15:32
  */
-namespace app\admin\controller;
 
-use app\admin\model\Clean as LearnModel;
+namespace app\admin\controller;
+use app\admin\model\Hands as NewsModel;
 use app\admin\model\Picture;
 use app\admin\model\Push;
 use com\wechat\TPQYWechat;
 use think\Config;
 
 /**
- * Class Learn
- * @package 廉政文化
+ * Class News
+ * @package app\admin\controller
+ * 执行力建设
  */
-class Clean extends Admin {
+class Hands extends Admin {
     /**
-     * 主页
+     * 主页列表
      */
-    public function index(){
+    public function index() {
         $map = array(
             'status' => array('eq',1),  // 推送  未推送
         );
-        $list = $this->lists('Clean',$map);
+        $list = $this->lists('Hands',$map);
         int_to_string($list,array(
-            'status' => array(0=>"待审核",1=>'已发布'),
-            'recommend' => array(0=>"否",1=>"是"),
-            'type' => array(1=>"今日说法",2=>"学思践悟",3=>"法律法规")
+            'status' => array(0=>"未审核",1=>'已发布'),
+            'type' => array(1=>"最多跑一次",2=>"一室四平台")
         ));
         $this->assign('list',$list);
 
@@ -37,34 +37,26 @@ class Clean extends Admin {
     }
 
     /**
-     * 添加
+     * 新增
      */
-    public function add(){
-        if(IS_POST){
+    public function add() {
+        if(IS_POST) {
             $data = input('post.');
+            $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             if(empty($data['id'])) {
                 unset($data['id']);
             }
-            if($data['type'] == 1){
-                if($data['video_path'] == "" && $data['net_path'] == ""){
-                    return $this->error("请上传视频文件或网址，如文件过大，请耐心等待..");
-                }
+            $Model = new NewsModel();
+            $info = $Model->validate('Hands.news')->save($data);
+            if($info) {
+                return $this->success("新增成功",Url('Hands/index'));
             }else{
-                if($data['list_image'] == ""){
-                    return $this->error("请上传文章顶部图片");
-                }
-            }
-            $learnModel = new LearnModel();
-            $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $model = $learnModel->validate('Learn.act')->save($data);
-            if($model){
-                return $this->success('新增成功!',Url("Clean/index"));
-            }else{
-                return $this->error($learnModel->getError());
+                return $this->get_update_error_msg($Model->getError());
             }
         }else{
             $this->default_pic();
             $this->assign('msg','');
+
             return $this->fetch('edit');
         }
     }
@@ -72,35 +64,22 @@ class Clean extends Admin {
     /**
      * 修改
      */
-    public function edit(){
-        if(IS_POST){
+    public function edit() {
+        if(IS_POST) {
             $data = input('post.');
-            if($data['type'] == 1){
-                if($data['video_path'] == "" && $data['net_path'] == ""){
-                    return $this->error("请上传视频文件或网址，如文件过大，请耐心等待..");
-                }
+            $Model = new NewsModel();
+            $info = $Model->validate('Hands.news')->save($data,['id'=>input('id')]);
+            if($info){
+                return $this->success("修改成功",Url("Hands/index"));
             }else{
-                if($data['list_image'] == ""){
-                    return $this->error("请上传文章顶部图片");
-                }
-            }
-            $learnModel = new LearnModel();
-            $model = $learnModel->validate('Learn.act')->save($data,['id'=>input('id')]);
-            if($model){
-                return $this->success('修改成功!',Url("Clean/index"));
-            }else{
-                return $this->get_update_error_msg($learnModel->getError());
+                return $this->get_update_error_msg($Model->getError());
             }
         }else{
             $this->default_pic();
-            //根据id获取课程
             $id = input('id');
-            if(empty($id)){
-                return $this->error("不存在该课程");
-            }else{
-                $msg = LearnModel::get($id);
-                $this->assign('msg',$msg);
-            }
+            $msg = NewsModel::get($id);
+            $this->assign('msg',$msg);
+
             return $this->fetch();
         }
     }
@@ -108,10 +87,10 @@ class Clean extends Admin {
     /**
      * 删除
      */
-    public function del(){
+    public function del() {
         $id = input('id');
         $data['status'] = '-1';
-        $info = LearnModel::where('id',$id)->update($data);
+        $info = NewsModel::where('id',$id)->update($data);
         if($info) {
             return $this->success("删除成功");
         }else{
@@ -155,21 +134,19 @@ class Clean extends Admin {
 //                'create_time' => array('egt',$t),
                 'status' => 1,
             );
-            $infoes = LearnModel::where($info)->select();
+            $infoes = NewsModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【今日说法】";
-                } else if ($value['type'] == 2) {
-                    $value['type_text'] = "【学思践悟】";
-                } else if ($value['type'] == 3) {
-                    $value['type_text'] = "【法律法规】";
+                    $value['type_text'] = "【最多跑一次】";
+                }else {
+                    $value['type_text'] = "【一室四平台】";
                 }
             }
             return $this->success($infoes);
         }else{
             //消息列表
             $map = array(
-                'class' => 7,
+                'class' => 8,
                 'status' => array('egt',-1),
             );
             $list = $this->lists('Push',$map);
@@ -178,7 +155,7 @@ class Clean extends Admin {
             ));
             //数据重组
             foreach ($list as $value) {
-                $msg = LearnModel::where('id',$value['focus_main'])->find();
+                $msg = NewsModel::where('id',$value['focus_main'])->find();
                 $value['title'] = $msg['title'];
             }
             $this->assign('list',$list);
@@ -212,14 +189,12 @@ class Clean extends Admin {
 //                'create_time' => array('egt',$t),
                 'status' => 1,
             );
-            $infoes = LearnModel::where($info)->select();
+            $infoes = NewsModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【今日说法】";
-                } else if ($value['type'] == 2) {
-                    $value['type_text'] = "【学思践悟】";
-                } else if ($value['type'] == 3) {
-                    $value['type_text'] = "【法律法规】";
+                    $value['type_text'] = "【最多跑一次】";
+                }else {
+                    $value['type_text'] = "【一室四平台】";
                 }
             }
             $this->assign('info',$infoes);
@@ -241,24 +216,17 @@ class Clean extends Admin {
             return $this->error("请选择主图文!");
         } else {
             //主图文信息
-            $focus1 = LearnModel::where('id', $arr1)->find();
+            $focus1 = NewsModel::where('id', $arr1)->find();
             $title1 = $focus1['title'];
             if ($focus1['type'] == 1) {
-
-                $type_name1 = "【今日说法】";
-                $url1 = $httpUrl."/home/clean/video/id/" . $focus1['id'] . ".html";
-            } else if ($focus1['type'] == 2) {
-
-                $type_name1 = "【学思践悟】";
-                $url1 = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
-            } else if ($focus1['type'] == 3){
-
-                $type_name1 = "【法律法规】";
-                $url1 = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
+                $type_name1 = "【最多跑一次】";
+            } else {
+                $type_name1 = "【一室四平台】";
             }
             $str1 = strip_tags($focus1['content']);
             $des1 = mb_substr($str1, 0, 100);
             $content1 = str_replace("&nbsp;", "", $des1);  //空格符替换成空
+            $url1 = $httpUrl."/home/hands/detail/id/" . $focus1['id'] . ".html";
             $img1 = Picture::get($focus1['front_cover']);
             $path1 = $httpUrl . $img1['path'];
             $information1 = array(
@@ -274,24 +242,17 @@ class Clean extends Admin {
             //副图文信息
             $information2 = array();
             foreach ($arr2 as $key => $value) {
-                $focus = LearnModel::where('id', $value)->find();
+                $focus = NewsModel::where('id', $value)->find();
                 if ($focus['type'] == 1) {
-
-                    $type_name = "【今日说法】";
-                    $url = $httpUrl."/home/clean/video/id/" . $focus1['id'] . ".html";
-                } else if ($focus['type'] == 2) {
-
-                    $type_name = "【学思践悟】";
-                    $url = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
-                } else if ($focus['type'] == 3) {
-
-                    $type_name = "【法律法规】";
-                    $url = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
+                    $type_name = "【最多跑一次】";
+                } else {
+                    $type_name = "【一室四平台】";
                 }
                 $title = $focus['title'];
                 $str = strip_tags($focus['content']);
                 $des = mb_substr($str, 0, 100);
                 $content = str_replace("&nbsp;", "", $des);  //空格符替换成空
+                $url = $httpUrl."/home/hands/detail/id/" . $focus['id'] . ".html";
                 $img = Picture::get($focus['front_cover']);
                 $path = $httpUrl. $img['path'];
                 $info = array(
@@ -321,9 +282,9 @@ class Clean extends Admin {
         }
 
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('Clean'));
+        $Wechat = new TPQYWechat(Config::get('Learn'));
         $touser = config('touser');
-        $newsConf = config('Clean');
+        $newsConf = config('Hands');
         $message = array(
             "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
@@ -336,7 +297,7 @@ class Clean extends Admin {
         if ($msg['errcode'] == 0) {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
-            $data['class'] = 7;
+            $data['class'] = 5;
             //保存到推送列表
             $s = Push::create($data);
             if ($s) {
@@ -348,5 +309,5 @@ class Clean extends Admin {
             return $this->error("发送失败");
         }
     }
-
+    
 }
