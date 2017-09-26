@@ -136,7 +136,7 @@ class Work extends Base{
                 $res = $Apply->save($data);
 
                 if ($res) {
-                    WechatUser::where(['userid'=>$userid])->setInc('score', 0);
+                    WechatUser::where(['userid'=>$userid])->setInc('score', 1);
 
                     return array('status'=>1,'header'=>$Wechat['avatar'],'name'=>$Wechat['name']);
                 } else {

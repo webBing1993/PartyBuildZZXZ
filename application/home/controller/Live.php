@@ -32,10 +32,10 @@ class Live extends Base
             );
             $history = Browse::get($con);
             if(!$history){
-//                $s['score'] = array('exp','`score`+1');
+                $s['score'] = array('exp','`score`+1');
 //                if ($this->score_up()){
 //                    // 未超过 15分
-//                    WechatUser::where('userid',$userId)->update($s);
+                    WechatUser::where('userid',$userId)->update($s);
                     unset($con['create_time']);
                     Browse::create($con);
 //                }
