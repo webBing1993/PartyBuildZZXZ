@@ -108,6 +108,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -115,14 +116,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         //活动基本信息
@@ -215,6 +213,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -222,14 +221,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         $meet = $noticeModel->get($id);
@@ -314,6 +310,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -321,14 +318,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15 分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         $party = $noticeModel->get($id);
@@ -410,6 +404,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -417,14 +412,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15 分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         //活动基本信息
@@ -515,6 +507,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -522,14 +515,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15 分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         $activity = $noticeModel->get($id);
@@ -615,6 +605,7 @@ class Notice extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $noticeModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -622,14 +613,11 @@ class Notice extends Base {
                 'notice_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
         //活动基本信息
         $list = $noticeModel::get($id);

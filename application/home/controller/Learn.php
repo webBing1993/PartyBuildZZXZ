@@ -12,6 +12,7 @@ use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\Browse;
 use app\home\model\Learn as LearnModel;
+use app\home\model\WechatUser;
 
 
 /**
@@ -91,8 +92,9 @@ class Learn extends Base {
             );
             $history = Browse::get($con);
             if(!$history && $id != 0){
-
                 Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
             }
         }
 
@@ -130,8 +132,8 @@ class Learn extends Base {
         $info['views'] = array('exp','`views`+1');
         $learnModel::where('id',$id)->update($info);
 
-        if($userId != "visitor"){
 
+        if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
                 'user_id' => $userId,
@@ -139,10 +141,12 @@ class Learn extends Base {
             );
             $history = Browse::get($con);
             if(!$history && $id != 0){
-
                 Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
             }
         }
+
 
 
         $article = $learnModel::get($id);

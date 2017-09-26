@@ -71,6 +71,7 @@ class Redcollection extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $filmModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -78,14 +79,11 @@ class Redcollection extends Base {
                 'film_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
         $film = $filmModel->get($id);
 
@@ -149,6 +147,7 @@ class Redcollection extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $musicModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -156,14 +155,11 @@ class Redcollection extends Base {
                 'music_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
 
         $music = $musicModel->get($id);
@@ -232,6 +228,7 @@ class Redcollection extends Base {
         //浏览加一
         $info['views'] = array('exp','`views`+1');
         $bookModel::where('id',$id)->update($info);
+
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
             $con = array(
@@ -239,14 +236,11 @@ class Redcollection extends Base {
                 'book_id' => $id,
             );
             $history = Browse::get($con);
-//            if(!$history && $id != 0){
-//                $s['score'] = array('exp','`score`+1');
-//                if ($this->score_up()){
-//                    // 未满 15分
-//                    Browse::create($con);
-//                    WechatUser::where('userid',$userId)->update($s);
-//                }
-//            }
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
         $book = $bookModel->get($id);   //基础信息
 
