@@ -12,10 +12,12 @@
  * Time: 13:53
  */
 namespace app\home\controller;
+use app\home\model\Browse;
 use app\home\model\Centraltask as CentraltaskModel;
 use app\home\model\Picture;
 use app\home\model\Like;
 use app\home\model\Comment;
+use app\home\model\WechatUser;
 
 /**
  * 中心工作
@@ -75,8 +77,18 @@ class Centraltask extends Base{
 
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
-//            $this->browser(2,$userId,$id);
+            $con = array(
+                'user_id' => $userId,
+                'centraltask_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
+
         //详细信息
         $info = CentraltaskModel::get($id);
         if(!empty($info['images'])) {
@@ -138,7 +150,16 @@ class Centraltask extends Base{
 
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
-//            $this->browser(2,$userId,$id);
+            $con = array(
+                'user_id' => $userId,
+                'centraltask_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$userId)->update($s);
+            }
         }
         //详细信息
         $info = CentraltaskModel::get($id);
