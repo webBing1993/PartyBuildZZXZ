@@ -161,6 +161,7 @@ class Base extends Controller {
      * 12 Notice
      * 13 Feedback
      * 14 Centraltask
+     * 15 Hands
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -205,6 +206,9 @@ class Base extends Controller {
                 break;
             case 14:
                 $table = "Centraltask";
+                break;
+            case 15:
+                $table = "Hands";
                 break;
             default:
                 return $this->error("无该数据表");
