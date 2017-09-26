@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 
+use app\home\model\Browse;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\Picture;
@@ -17,6 +18,7 @@ use app\home\model\Redlead;
 use app\home\model\RedtutorCourse;
 use app\home\model\RedtutorNotice;
 use app\home\model\RedtutorTutor;
+use app\home\model\WechatUser;
 
 /**
  * 红领学院
@@ -217,6 +219,19 @@ class College extends Base{
         $id = input('id');
         $courseModel = new RedtutorCourse();
         $courseModel::where('id',$id)->setInc('views');     //浏览加一
+        if($uid != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $uid,
+                'tutorcourse_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$uid)->update($s);
+            }
+        }
 
         $info = $courseModel->get($id);
 //        //分享图片及链接及描述
@@ -249,6 +264,19 @@ class College extends Base{
         $id = input('id');
         $noticeModel = new RedtutorNotice();
         $noticeModel::where('id',$id)->setInc('views');     //浏览加一
+        if($uid != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $uid,
+                'tutornotice_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$uid)->update($s);
+            }
+        }
 
         $info = $noticeModel->get($id);
 //        //分享图片及链接及描述
@@ -312,6 +340,19 @@ class College extends Base{
         $id = input('id');
         $leadModel = new Redlead();
         $leadModel::where('id',$id)->setInc('views');     //浏览加一
+        if($uid != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $uid,
+                'lead_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$uid)->update($s);
+            }
+        }
 
         $info = $leadModel->get($id);
         //分享图片及链接及描述
@@ -381,6 +422,19 @@ class College extends Base{
         $id = input('id');
         $noticeModel = new RedforumNotice();
         $noticeModel::where('id',$id)->setInc('views');     //浏览加一
+        if($uid != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $uid,
+                'forumnotice_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$uid)->update($s);
+            }
+        }
 
         $info = $noticeModel->get($id);
 //        //分享图片及链接及描述
@@ -432,6 +486,19 @@ class College extends Base{
         $id = input('id');
         $detailModel = new RedforumDetail();
         $detailModel::where('id',$id)->setInc('views');     //浏览加一
+        if($uid != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = array(
+                'user_id' => $uid,
+                'forum_id' => $id,
+            );
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                Browse::create($con);
+                $s['score'] = array('exp','`score`+1');
+                WechatUser::where('userid',$uid)->update($s);
+            }
+        }
 
         $info = $detailModel->get($id);
 //        //分享图片及链接及描述
