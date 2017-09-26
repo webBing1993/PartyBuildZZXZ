@@ -15,7 +15,7 @@ class Like extends Model {
     protected $insert = [
         'create_time' => NOW_TIME,
         'score' => 0,
-        'status' => 0,
+        'status' => 1,
     ];
 
     public function getLike($type,$aid,$uid) {
