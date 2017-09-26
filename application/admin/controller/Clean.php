@@ -1,70 +1,70 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Lxx<779219930@qq.com>
- * Date: 2017/7/6
- * Time: 16:54
+ * User: laowang
+ * Date: 2017/1/16
+ * Time: 15:07
  */
-
 namespace app\admin\controller;
 
-use app\admin\model\Centraltask as CentraltaskModel;
+use app\admin\model\Clean as LearnModel;
 use app\admin\model\Picture;
 use app\admin\model\Push;
 use com\wechat\TPQYWechat;
 use think\Config;
 
 /**
- * Class Centraltask
- * @package app\admin\controller
- * 中心工作
+ * Class Learn
+ * @package 廉政文化
  */
-class Centraltask extends Admin {
+class Clean extends Admin {
     /**
-     * 主页列表
+     * 主页
      */
-    public function index() {
+    public function index(){
         $map = array(
             'status' => array('eq',1),  // 推送  未推送
         );
-        $list = $this->lists('Centraltask',$map);
+        $list = $this->lists('Clean',$map);
         int_to_string($list,array(
-            'status' => array(0=>"未审核",1=>"已发布"),
-            'type' => array(1=>"最新通知",2=>"工作展示"),
-            'pid' => array(1=>"美丽村庄",2=>"美丽城镇",3=>"平安维稳",4=>"五水共治",5=>"三改一拆"),
+            'status' => array(0=>"待审核",1=>'已发布'),
+            'recommend' => array(0=>"否",1=>"是"),
+            'type' => array(1=>"今日说法",2=>"学思践悟",3=>"法律法规")
         ));
         $this->assign('list',$list);
 
         return $this->fetch();
     }
 
-    public function add() {
-        if(IS_POST) {
+    /**
+     * 添加
+     */
+    public function add(){
+        if(IS_POST){
             $data = input('post.');
-            $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             if(empty($data['id'])) {
                 unset($data['id']);
             }
-            if(!empty($data['time'])) {
-                $data['time'] = strtotime($data['time']);
-            }else {
-                $data['time'] = 0;
-            }
-            $Model = new CentraltaskModel();
-            if($data['type'] == 1) {
-                $info = $Model->validate('Centraltask.one')->save($data);
-            }else {
-                $info = $Model->validate('Centraltask.two')->save($data);
-            }
-            if($info) {
-                return $this->success("新增成功",Url('Centraltask/index'));
+            if($data['type'] == 1){
+                if($data['video_path'] == "" && $data['net_path'] == ""){
+                    return $this->error("请上传视频文件或网址，如文件过大，请耐心等待..");
+                }
             }else{
-                return $this->get_update_error_msg($Model->getError());
+                if($data['list_image'] == ""){
+                    return $this->error("请上传文章顶部图片");
+                }
+            }
+            $learnModel = new LearnModel();
+            $data['create_user'] = $_SESSION['think']['user_auth']['id'];
+            $model = $learnModel->validate('Learn.act')->save($data);
+            if($model){
+                return $this->success('新增成功!',Url("Clean/index"));
+            }else{
+                return $this->error($learnModel->getError());
             }
         }else{
             $this->default_pic();
             $this->assign('msg','');
-
             return $this->fetch('edit');
         }
     }
@@ -72,29 +72,35 @@ class Centraltask extends Admin {
     /**
      * 修改
      */
-    public function edit() {
-        if(IS_POST) {
+    public function edit(){
+        if(IS_POST){
             $data = input('post.');
-            $Model = new CentraltaskModel();
-            if(!empty($data['time'])) {
-                $data['time'] = strtotime($data['time']);
-            }
-            if($data['type'] == 1) {
-                $info = $Model->validate('Centraltask.one')->save($data,['id'=>input('id')]);
-            }else {
-                $info = $Model->validate('Centraltask.two')->save($data,['id'=>input('id')]);
-            }
-            if($info){
-                return $this->success("修改成功",Url("Centraltask/index"));
+            if($data['type'] == 1){
+                if($data['video_path'] == "" && $data['net_path'] == ""){
+                    return $this->error("请上传视频文件或网址，如文件过大，请耐心等待..");
+                }
             }else{
-                return $this->get_update_error_msg($Model->getError());
+                if($data['list_image'] == ""){
+                    return $this->error("请上传文章顶部图片");
+                }
+            }
+            $learnModel = new LearnModel();
+            $model = $learnModel->validate('Learn.act')->save($data,['id'=>input('id')]);
+            if($model){
+                return $this->success('修改成功!',Url("Clean/index"));
+            }else{
+                return $this->get_update_error_msg($learnModel->getError());
             }
         }else{
             $this->default_pic();
+            //根据id获取课程
             $id = input('id');
-            $msg = CentraltaskModel::get($id);
-            $this->assign('msg',$msg);
-
+            if(empty($id)){
+                return $this->error("不存在该课程");
+            }else{
+                $msg = LearnModel::get($id);
+                $this->assign('msg',$msg);
+            }
             return $this->fetch();
         }
     }
@@ -102,17 +108,16 @@ class Centraltask extends Admin {
     /**
      * 删除
      */
-    public function del() {
+    public function del(){
         $id = input('id');
         $data['status'] = '-1';
-        $info = CentraltaskModel::where('id',$id)->update($data);
+        $info = LearnModel::where('id',$id)->update($data);
         if($info) {
             return $this->success("删除成功");
         }else{
             return $this->error("删除失败");
         }
     }
-
 
     /**
      * 推送列表
@@ -150,19 +155,21 @@ class Centraltask extends Admin {
 //                'create_time' => array('egt',$t),
                 'status' => 1,
             );
-            $infoes = CentraltaskModel::where($info)->select();
+            $infoes = LearnModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【最新通知】";
-                }else {
-                    $value['type_text'] = "【工作展示】";
+                    $value['type_text'] = "【今日说法】";
+                } else if ($value['type'] == 2) {
+                    $value['type_text'] = "【学思践悟】";
+                } else if ($value['type'] == 3) {
+                    $value['type_text'] = "【法律法规】";
                 }
             }
             return $this->success($infoes);
         }else{
             //消息列表
             $map = array(
-                'class' => 6,
+                'class' => 7,
                 'status' => array('egt',-1),
             );
             $list = $this->lists('Push',$map);
@@ -171,7 +178,7 @@ class Centraltask extends Admin {
             ));
             //数据重组
             foreach ($list as $value) {
-                $msg = CentraltaskModel::where('id',$value['focus_main'])->find();
+                $msg = LearnModel::where('id',$value['focus_main'])->find();
                 $value['title'] = $msg['title'];
             }
             $this->assign('list',$list);
@@ -205,12 +212,14 @@ class Centraltask extends Admin {
 //                'create_time' => array('egt',$t),
                 'status' => 1,
             );
-            $infoes = CentraltaskModel::where($info)->select();
+            $infoes = LearnModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【最新通知】";
-                }else {
-                    $value['type_text'] = "【工作展示】";
+                    $value['type_text'] = "【今日说法】";
+                } else if ($value['type'] == 2) {
+                    $value['type_text'] = "【学思践悟】";
+                } else if ($value['type'] == 3) {
+                    $value['type_text'] = "【法律法规】";
                 }
             }
             $this->assign('info',$infoes);
@@ -232,20 +241,26 @@ class Centraltask extends Admin {
             return $this->error("请选择主图文!");
         } else {
             //主图文信息
-            $focus1 = CentraltaskModel::where('id', $arr1)->find();
+            $focus1 = LearnModel::where('id', $arr1)->find();
             $title1 = $focus1['title'];
             if ($focus1['type'] == 1) {
-                $type_name1 = "【最新通知】";
-                $url1 = $httpUrl."/home/centraltask/note/id/" . $focus1['id'] . ".html";
-            } else {
-                $type_name1 = "【工作展示】";
-                $url1 = $httpUrl."/home/centraltask/work/id/" . $focus1['id'] . ".html";
+
+                $type_name1 = "【今日说法】";
+                $url1 = $httpUrl."/home/clean/video/id/" . $focus1['id'] . ".html";
+            } else if ($focus1['type'] == 2) {
+
+                $type_name1 = "【学思践悟】";
+                $url1 = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
+            } else if ($focus1['type'] == 3){
+
+                $type_name1 = "【法律法规】";
+                $url1 = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
             }
             $str1 = strip_tags($focus1['content']);
             $des1 = mb_substr($str1, 0, 100);
             $content1 = str_replace("&nbsp;", "", $des1);  //空格符替换成空
             $img1 = Picture::get($focus1['front_cover']);
-            $path1 = $httpUrl. $img1['path'];
+            $path1 = $httpUrl . $img1['path'];
             $information1 = array(
                 "title" => $type_name1 . $title1,
                 "description" => $content1,
@@ -259,20 +274,26 @@ class Centraltask extends Admin {
             //副图文信息
             $information2 = array();
             foreach ($arr2 as $key => $value) {
-                $focus = CentraltaskModel::where('id', $value)->find();
+                $focus = LearnModel::where('id', $value)->find();
                 if ($focus['type'] == 1) {
-                    $type_name = "【最新通知】";
-                    $url = $httpUrl."/home/centraltask/note/id/" . $focus['id'] . ".html";
-                } else {
-                    $type_name = "【工作展示】";
-                    $url = $httpUrl."/home/centraltask/work/id/" . $focus['id'] . ".html";
+
+                    $type_name = "【今日说法】";
+                    $url = $httpUrl."/home/clean/video/id/" . $focus1['id'] . ".html";
+                } else if ($focus['type'] == 2) {
+
+                    $type_name = "【学思践悟】";
+                    $url = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
+                } else if ($focus['type'] == 3) {
+
+                    $type_name = "【法律法规】";
+                    $url = $httpUrl."/home/clean/article/id/" . $focus1['id'] . ".html";
                 }
                 $title = $focus['title'];
                 $str = strip_tags($focus['content']);
                 $des = mb_substr($str, 0, 100);
                 $content = str_replace("&nbsp;", "", $des);  //空格符替换成空
                 $img = Picture::get($focus['front_cover']);
-                $path = $httpUrl . $img['path'];
+                $path = $httpUrl. $img['path'];
                 $info = array(
                     "title" => $type_name . $title,
                     "description" => $content,
@@ -300,7 +321,7 @@ class Centraltask extends Admin {
         }
 
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('Country'));
+        $Wechat = new TPQYWechat(Config::get('Clean'));
         $touser = config('touser');
         $newsConf = config('learn');
         $message = array(
@@ -315,7 +336,7 @@ class Centraltask extends Admin {
         if ($msg['errcode'] == 0) {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
-            $data['class'] = 6;
+            $data['class'] = 7;
             //保存到推送列表
             $s = Push::create($data);
             if ($s) {
@@ -327,4 +348,5 @@ class Centraltask extends Admin {
             return $this->error("发送失败");
         }
     }
+
 }

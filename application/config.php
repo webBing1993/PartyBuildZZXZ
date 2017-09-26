@@ -45,6 +45,20 @@ return [
         'agentid' => 1000003
     ),
 
+    /*廉政石淙 */
+    'Clean' => array(
+        'appid' => 'ww58b28476c9e6',
+        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+        'agentid' => 1000003
+    ),
+
+    /*美丽乡村 */
+    'Country' => array(
+        'appid' => 'ww58b28476c9e6',
+        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+        'agentid' => 1000003
+    ),
+
     //  推送网站域名
     'http_url' => "http://ymz.pb.cn",
     // 推送对象 发送给全体 @all  个人测试15700004138
