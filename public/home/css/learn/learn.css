@@ -6,29 +6,29 @@
 @-webkit-keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 @keyframes typing {
   0% {
     background-color: rgba(0, 0, 0, 0.8);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   25% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.8), 24px 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.8), 6.4vw 0 0 0 rgba(0, 0, 0, 0.2);
   }
   75% {
     background-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 12px 0 0 0 rgba(0, 0, 0, 0.2), 24px 0 0 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 3.2vw 0 0 0 rgba(0, 0, 0, 0.2), 6.4vw 0 0 0 rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -63,8 +63,8 @@
 .regularmore .lists .list .img {
   width: 100%;
   height: 48vw;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
+  -webkit-border-radius: 2.2vw;
+  border-radius: 2.2vw;
 }
 .regularmore .lists .list .title {
   color: #333333;
@@ -72,10 +72,12 @@
   line-height: 9.6vw
 }
 .regularmore .lists .list .study {
+  height: 4vw;
+  line-height: 4vw;
   display: inline-block;
   background: url("/home/images/learn/people.png") 0 0 no-repeat;
-  background-size: 15px 15px;
-  padding-left: 18px;
+  background-size: 4vw 4vw;
+  padding-left: 4.8vw;
   color: #999999;
   font-size: 1.2rem;
   text-align: center;
@@ -90,16 +92,16 @@
 }
 .loading {
   width: 100%;
-  height: 10.67px;
+  height: 10.67vw;
 }
 .typing_loader {
-  width: 6px;
-  height: 6px;
+  width: 1.6vw;
+  height: 1.6vw;
   border-radius: 50%;
   -webkit-animation: typing 1s linear infinite alternate;
   -moz-animation: Typing 1s linear infinite alternate;
   animation: typing 1s linear infinite alternate;
   position: relative;
   top: 4.53vw;
-  left: calc( 50vw - 15px );
+  left: 46vw;
 }

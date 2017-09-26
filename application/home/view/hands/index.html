@@ -68,6 +68,7 @@
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script src="/home/js/reset.js"></script>
 <script>
+	var scrollNow = true;
 $(function(){
 	//轮播
 	var mySwiper = new Swiper('.swiper-container', {
@@ -129,7 +130,8 @@ function loadScroll(type){
 		var tip = $(".tip");
 		var loading = $('.loading');
 		var tag = $('.choose' ).attr('data-tag');
-		if(dh == end){
+		if(dh == end && scrollNow){
+			scrollNow = false;
 			$.ajax({
 				type:"post",
 				url: "{:Url('Hands/listMore')}",
@@ -155,6 +157,7 @@ function loadScroll(type){
 							$(window ).off("scroll");
 						}
 					}
+					scrollNow = true;
 				}
 			})
 		}

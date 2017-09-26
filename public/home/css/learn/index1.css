@@ -51,9 +51,10 @@
     font-size: 1.2rem;
 }
 .rule .list .right .title,.law .list .right .title {
-    height: 11vw;
+    /*height: 11vw;*/
 }
 .rule .list .right .time,.law .list .right .time{
     line-height: 4vw;
+    margin-top: 4vw;
 }
 
