@@ -13,7 +13,10 @@
 <div class="title" style="margin:2.7vw auto;width:90%;text-align: center;min-height:8vw;line-height: 6.8vw;">
 	<span style="color:#333;font-size:1.6rem;">{$regular['title']}</span>
 </div>
-<div class="note">{$regular.create_time|time_format="Y-m-d"}</div>
+<div class="note clear">
+	<span class="fl">{$regular.publisher}</span>
+	<span class="fr">{$regular.create_time|time_format="Y-m-d"}</span>
+</div>
 <!--新增-->
 <div class="article">
 	<div class="content">
