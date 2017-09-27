@@ -135,6 +135,13 @@
     });
 
     function loadScroll(type){
+        if (type == 1) {
+            var type1 = 3;
+        } else {
+            var type1 = --type;
+            ++type;
+        }
+        console.log(type);
         $(window ).off("scroll" ).on("scroll",function(){
             var ntc = $('.notices');
             var dh = $(document).height();
@@ -149,7 +156,7 @@
                     url: "{:Url('Clean/index')}",
                     data:{
                         length:len,
-                        type:type
+                        type:type1
                     },
                     beforeSend: function(XMLHttpRequest){
                         tip.hide();
