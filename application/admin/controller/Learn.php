@@ -285,9 +285,9 @@ class Learn extends Admin {
         }
 
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('learn'));
+        $Wechat = new TPQYWechat(Config::get('Learn'));
         $touser = config('touser');
-        $newsConf = config('learn');
+        $newsConf = config('Learn');
         $message = array(
             "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
