@@ -224,6 +224,9 @@ body {
   border-bottom: 1px solid #f1f1f1;
   padding-left: 1rem;
 }
+  .listbox .box .box_ .lists .name1 a {
+    color: #333333;
+  }
 .listbox .box .box_ .lists .party1 {
   position: relative;
   top: 0;
@@ -403,7 +406,19 @@ body {
     font-size: 1.4rem;
     font-weight: bold;
     color: #333;
-    width:53.3vw;
+    width:78vw;
+  }
+  .d_list>.d_name span {
+    display: inline-block;
+    width: 50%;
+  }
+  .d_list>.d_name span:first-of-type {
+    text-align: left;
+    font-size: 1.6rem;
+  }
+  .d_list>.d_name span:last-of-type {
+    color: #666;
+    text-align: right;
   }
   .d_list>.d_tel{
     color: #29adf0;
