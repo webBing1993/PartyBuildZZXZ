@@ -139,10 +139,10 @@ class Volunteer extends Admin {
         if(IS_POST){
             $id = input('id');
             //副图文本周内的新闻消息
-            $t = $this->week_time();
+//            $t = $this->week_time();
             $info = array(
                 'id' => array('neq',$id),
-                'create_time' => array('egt',$t),
+//                'create_time' => array('egt',$t),
                 'status' => 1,
             );
             $infoes = VolunteerRecruit::where($info)->select();
@@ -150,7 +150,7 @@ class Volunteer extends Admin {
         }else{
             //消息列表
             $map = array(
-                'class' => 12,
+                'class' => 10,
                 'status' => array('egt',-1),
             );
             $list = $this->lists('Push',$map);
@@ -165,9 +165,9 @@ class Volunteer extends Admin {
             $this->assign('list',$list);
 
             //主图文本周内的新闻消息
-            $t = $this->week_time();    //获取本周一时间
+//            $t = $this->week_time();    //获取本周一时间
             $info = array(
-                'create_time' => array('egt',$t),
+//                'create_time' => array('egt',$t),
                 'status' => 1,
             );
             $infoes = VolunteerRecruit::where($info)->select();
@@ -182,6 +182,7 @@ class Volunteer extends Admin {
      */
     public function recuitpush(){
         $data = input('post.');
+        $httpUrl = config('http_url');
         $arr1 = $data['focus_main'];    //主图文id
         isset($data['focus_vice']) ? $arr2 = $data['focus_vice'] : $arr2 = "";    //副图文id
         if($arr1 == -1){
@@ -193,10 +194,10 @@ class Volunteer extends Admin {
             $str1 = strip_tags($focus1['content']);
             $des1 = mb_substr($str1,0,100);
             $content1 = str_replace("&nbsp;","",$des1);  //空格符替换成空
-            $url1 = "http://dqpb.0571ztnet.com/home/volunteer/recruitdetail/id/".$focus1['id'].".html";
+            $url1 = "$httpUrl/home/volunteer/recruitdetail/id/".$focus1['id'].".html";
             $pre1 = "【志愿招募】";
             $img1 = Picture::get($focus1['list_image']);
-            $path1 = "http://dqpb.0571ztnet.com".$img1['path'];
+            $path1 = "$httpUrl".$img1['path'];
             $information1 = array(
                 "title" => $pre1.$title1,
                 "description" => $content1,
@@ -215,10 +216,10 @@ class Volunteer extends Admin {
                 $str = strip_tags($focus['content']);
                 $des = mb_substr($str,0,100);
                 $content = str_replace("&nbsp;","",$des);  //空格符替换成空
-                $url = "http://dqpb.0571ztnet.com/home/volunteer/recruitdetail/id/".$focus1['id'].".html";
+                $url = "$httpUrl/home/volunteer/recruitdetail/id/".$focus1['id'].".html";
                 $pre = "【志愿招募】";
                 $img = Picture::get($focus['list_image']);
-                $path = "http://dqpb.0571ztnet.com".$img['path'];
+                $path = "$httpUrl".$img['path'];
                 $info = array(
                     "title" => $pre.$title,
                     "description" => $content,
@@ -245,14 +246,14 @@ class Volunteer extends Admin {
             $send[$key] = $value;
         }
 
-        //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('volunteer'));
+        //发送给企业号
+        $Wechat = new TPQYWechat(Config::get('Learn'));
+        $touser = config('touser');
+        $newsConf = config('Learn');
         $message = array(
-//            'totag' => "18", //审核标签用户
-            "touser" => "18768112486",
-//            "touser" => "@all",   //发送给全体，@all
+            "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
-            "agentid" => 25,
+            "agentid" => $newsConf['agentid'],
             "news" => $send,
             "safe" => "0"
         );
@@ -262,7 +263,7 @@ class Volunteer extends Admin {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
             $data['status'] = 1;
-            $data['class'] = 12;
+            $data['class'] = 10;
             //保存到推送列表
             $s = Push::create($data);
             if ($s){
