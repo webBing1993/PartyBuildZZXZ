@@ -33,38 +33,38 @@ return [
         'login' => 'http://dqpb.0571ztnet.com/home/index/login',
         'token' => '',
         'encodingaeskey' => '',
-        'appid' => 'ww58b28476c9e654',
-        'appsecret' => 'xkJk0zsFa_df97RIDCuKZDcjYZSZWgaVsWhGjeDgK',
+        'appid' => 'wwdc9046238ff986dd',
+        'appsecret' => 'hlwoxVTsz3-uVm2_xaTS_4dk6UvqJ2Gy1Qf8NNXZEvY',
         'agentid' => 1000002,
     ),
 
     /*红色石淙 */
     'learn' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
+        'appid' => 'wwdc9046238ff986dd',
+        'appsecret' => 'hlwoxVTsz3-uVm2_xaTS_4dk6UvqJ2Gy1Qf8NNXZEvY',
+        'agentid' => 1000002
     ),
-
-    /*廉政石淙 */
-    'Clean' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-    ),
-
-    /*美丽乡村 */
-    'Country' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-    ),
+//
+//    /*廉政石淙 */
+//    'Clean' => array(
+//        'appid' => 'ww58b28476c9e6',
+//        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+//        'agentid' => 1000003
+//    ),
+//
+//    /*美丽乡村 */
+//    'Country' => array(
+//        'appid' => 'ww58b28476c9e6',
+//        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+//        'agentid' => 1000003
+//    ),
 
     /*掌上石淙 */
-    'Hands' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-    ),
+//    'Hands' => array(
+//        'appid' => 'ww58b28476c9e6',
+//        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
+//        'agentid' => 1000003
+//    ),
 
 
     //  推送网站域名
