@@ -138,16 +138,19 @@ a {
 .blocks .block .list .note span.time {
   text-align: right;
 }
-.blocks .block.news .fl img {
+.blocks .block .fl img {
   width: 22vw;
   height: 14vw;
-  margin-top: 3.5vw;
   -webkit-border-radius: 1.1vw;
   border-radius: 1.1vw;
+  margin-top: 3.5vw;
 }
-.blocks .block.news .title {
+.blocks .block .fr {
   width: 66vw;
 }
-.blocks .block.news .note {
+.blocks .block .title {
+  width: 66vw;
+}
+.blocks .block .note {
   width: 66vw;
 }

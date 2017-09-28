@@ -46,11 +46,16 @@
 	</div>
 	<div class="block lists">
 		{volist name="files" id="file"}
-		<a href="{:Url('Pioneer/detail?id='.$file['id'])}" class="list">
-			<div class="title limit_">{$file.title}</div>
-			<div class="note clear">
-				<span class="dep fl limit">{$file.publisher}</span>
-				<span class="time fr">{$file.create_time|time_format='Y-m-d'}</span>
+		<a href="{:Url('Pioneer/detail?id='.$file['id'])}" class="list clear">
+			<div class="fl">
+				<img src="{$new.front_cover|get_cover='path'}" alt="社区图片">
+			</div>
+			<div class="fr">
+				<div class="title limit_">{$file.title}</div>
+				<div class="note clear">
+					<span class="dep fl limit">{$file.publisher}</span>
+					<span class="time fr">{$file.create_time|time_format='Y-m-d'}</span>
+				</div>
 			</div>
 		</a>
 		{/volist}
@@ -185,12 +190,27 @@ function addLists(data,type){
 				'</div>'+
 				'</a>'
 		}else{
+			/*<a href="{:Url('Pioneer/detail?id='.$file['id'])}" class="list clear">
+			 <div class="fl">
+			 <img src="{$new.front_cover|get_cover='path'}" alt="社区图片">
+			 </div>
+			 <div class="fr">
+			 <div class="title limit_">{$file.title}</div>
+			 <div class="note clear">
+			 <span class="dep fl limit">{$file.publisher}</span>
+			 <span class="time fr">{$file.create_time|time_format='Y-m-d'}</span>
+			 </div>
+			 </div>
+			 </a>*/
 			html +=
-					'<a href="/home/Pioneer/detail/id/'+ list.id+'.html" class="list">'+
+					'<a href="/home/Pioneer/detail/id/'+ list.id+'.html" class="list clear">'+
+					'<div class="fl"><img src="'+ list.src +'" alt="社区图片"></div>'+
+					'<div class="fr">'+
 					'<div class="title limit_">'+list.title+'</div>'+
 					'<div class="note clear">'+
 					'<span class="dep fl limit">'+list.publisher+'</span>'+
 					'<span class="time fr">'+list.time+'</span>'+
+					'</div>'+
 					'</div>'+
 					'</a>';
 		}
