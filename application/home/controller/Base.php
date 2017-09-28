@@ -163,6 +163,7 @@ class Base extends Controller {
      * 14 Centraltask
      * 15 Hands
      * 16 Clean
+     * 17 Pioneer
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -213,6 +214,9 @@ class Base extends Controller {
                 break;
             case 16;
                 $table = "Clean";
+                break;
+            case 17;
+                $table = "Pioneer";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -277,6 +281,7 @@ class Base extends Controller {
      * 14 Centraltask
      * 15 Hands
      * 16 Clean
+     * 17 Pioneer
      */
     public function comment(){
         if(IS_POST){
@@ -325,6 +330,9 @@ class Base extends Controller {
                     break;
                 case 16:
                     $table = "Clean";
+                    break;
+                case 17;
+                    $table = "Pioneer";
                     break;
                 default:
                     return $this->error("无该数据表");

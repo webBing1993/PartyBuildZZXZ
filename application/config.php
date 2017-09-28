@@ -39,7 +39,7 @@ return [
     ),
 
     /*红色石淙 */
-    'learn' => array(
+    'Learn' => array(
         'appid' => 'ww58b28476c9e6',
         'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
         'agentid' => 1000003

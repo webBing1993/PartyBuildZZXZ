@@ -27,10 +27,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>掌上石淙</h2>
+        <h2>先锋社区</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Hands/index')}">主页</a>
+                <a href="{:Url('index')}">主页</a>
             </li>
             <li class="active">
                 <strong>{$msg['id'] ? "编辑":"新增"}</strong>
@@ -87,11 +87,11 @@
                             <div class="col-lg-11">
                                 <select class="form-control" name="type">
                                     {neq name="msg" value=""}
-                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>最多跑一次</option>
-                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>一室四平台</option>
+                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>先锋课堂</option>
+                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>社区展示</option>
                                     {else/}
-                                    <option value="1" >最多跑一次</option>
-                                    <option value="2" >一室四平台</option>
+                                    <option value="1" >先锋课堂</option>
+                                    <option value="2" >社区展示</option>
                                     {/neq}
                                 </select>
                             </div>
@@ -155,7 +155,7 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Hands/index')}");
+        highlight_subnav("{:Url('Pioneer/index')}");
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;

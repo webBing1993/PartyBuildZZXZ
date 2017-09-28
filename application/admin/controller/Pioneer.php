@@ -7,7 +7,7 @@
  */
 
 namespace app\admin\controller;
-use app\admin\model\Hands as NewsModel;
+use app\admin\model\Pioneer as NewsModel;
 use app\admin\model\Picture;
 use app\admin\model\Push;
 use com\wechat\TPQYWechat;
@@ -18,7 +18,7 @@ use think\Config;
  * @package app\admin\controller
  * 执行力建设
  */
-class Hands extends Admin {
+class Pioneer extends Admin {
     /**
      * 主页列表
      */
@@ -26,10 +26,10 @@ class Hands extends Admin {
         $map = array(
             'status' => array('eq',1),  // 推送  未推送
         );
-        $list = $this->lists('Hands',$map);
+        $list = $this->lists('Pioneer',$map);
         int_to_string($list,array(
             'status' => array(0=>"未审核",1=>'已发布'),
-            'type' => array(1=>"最多跑一次",2=>"一室四平台")
+            'type' => array(1=>"先锋课堂",2=>"社区展示")
         ));
         $this->assign('list',$list);
 
@@ -47,9 +47,9 @@ class Hands extends Admin {
                 unset($data['id']);
             }
             $Model = new NewsModel();
-            $info = $Model->validate('Hands.news')->save($data);
+            $info = $Model->validate('Pioneer.news')->save($data);
             if($info) {
-                return $this->success("新增成功",Url('Hands/index'));
+                return $this->success("新增成功",Url('Pioneer/index'));
             }else{
                 return $this->get_update_error_msg($Model->getError());
             }
@@ -68,9 +68,9 @@ class Hands extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $Model = new NewsModel();
-            $info = $Model->validate('Hands.news')->save($data,['id'=>input('id')]);
+            $info = $Model->validate('Pioneer.news')->save($data,['id'=>input('id')]);
             if($info){
-                return $this->success("修改成功",Url("Hands/index"));
+                return $this->success("修改成功",Url("Pioneer/index"));
             }else{
                 return $this->get_update_error_msg($Model->getError());
             }
@@ -137,16 +137,16 @@ class Hands extends Admin {
             $infoes = NewsModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【最多跑一次】";
+                    $value['type_text'] = "【先锋课堂】";
                 }else {
-                    $value['type_text'] = "【一室四平台】";
+                    $value['type_text'] = "【社区展示】";
                 }
             }
             return $this->success($infoes);
         }else{
             //消息列表
             $map = array(
-                'class' => 8,
+                'class' => 9,
                 'status' => array('egt',-1),
             );
             $list = $this->lists('Push',$map);
@@ -192,9 +192,9 @@ class Hands extends Admin {
             $infoes = NewsModel::where($info)->select();
             foreach ($infoes as $value) {
                 if($value['type'] == 1){
-                    $value['type_text'] = "【最多跑一次】";
+                    $value['type_text'] = "【先锋课堂】";
                 }else {
-                    $value['type_text'] = "【一室四平台】";
+                    $value['type_text'] = "【社区展示】";
                 }
             }
             $this->assign('info',$infoes);
@@ -219,14 +219,14 @@ class Hands extends Admin {
             $focus1 = NewsModel::where('id', $arr1)->find();
             $title1 = $focus1['title'];
             if ($focus1['type'] == 1) {
-                $type_name1 = "【最多跑一次】";
+                $type_name1 = "【先锋课堂】";
             } else {
-                $type_name1 = "【一室四平台】";
+                $type_name1 = "【社区展示】";
             }
             $str1 = strip_tags($focus1['content']);
             $des1 = mb_substr($str1, 0, 100);
             $content1 = str_replace("&nbsp;", "", $des1);  //空格符替换成空
-            $url1 = $httpUrl."/home/hands/detail/id/" . $focus1['id'] . ".html";
+            $url1 = $httpUrl."/home/pioneer/detail/id/" . $focus1['id'] . ".html";
             $img1 = Picture::get($focus1['front_cover']);
             $path1 = $httpUrl . $img1['path'];
             $information1 = array(
@@ -244,15 +244,15 @@ class Hands extends Admin {
             foreach ($arr2 as $key => $value) {
                 $focus = NewsModel::where('id', $value)->find();
                 if ($focus['type'] == 1) {
-                    $type_name = "【最多跑一次】";
+                    $type_name = "【先锋课堂】";
                 } else {
-                    $type_name = "【一室四平台】";
+                    $type_name = "【社区展示】";
                 }
                 $title = $focus['title'];
                 $str = strip_tags($focus['content']);
                 $des = mb_substr($str, 0, 100);
                 $content = str_replace("&nbsp;", "", $des);  //空格符替换成空
-                $url = $httpUrl."/home/hands/detail/id/" . $focus['id'] . ".html";
+                $url = $httpUrl."/home/pioneer/detail/id/" . $focus['id'] . ".html";
                 $img = Picture::get($focus['front_cover']);
                 $path = $httpUrl. $img['path'];
                 $info = array(
@@ -284,7 +284,7 @@ class Hands extends Admin {
         //发送给企业号
         $Wechat = new TPQYWechat(Config::get('Learn'));
         $touser = config('touser');
-        $newsConf = config('Hands');
+        $newsConf = config('Learn');
         $message = array(
             "touser" => $touser, //发送给全体，@all
             "msgtype" => 'news',
@@ -297,7 +297,7 @@ class Hands extends Admin {
         if ($msg['errcode'] == 0) {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
-            $data['class'] = 8;
+            $data['class'] = 9;
             //保存到推送列表
             $s = Push::create($data);
             if ($s) {
