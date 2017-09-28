@@ -251,9 +251,9 @@ class Redlead extends Admin {
         }
 
         //发送给服务号
-        $Wechat = new TPQYWechat(Config::get('learn'));
+        $Wechat = new TPQYWechat(Config::get('Learn'));
         $touser = config('touser');
-        $newsConf = config('learn');
+        $newsConf = config('Learn');
         $message = array(
 //            'totag' => "18", //审核标签用户
             "touser" => "$touser",

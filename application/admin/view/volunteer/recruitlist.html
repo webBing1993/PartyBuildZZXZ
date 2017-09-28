@@ -43,7 +43,7 @@
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         <form class="form-horizontal" id="form" method="post" action="{:Url('Volunteer/recuitpush')}">
-                                            <p class="tt">消息推送(只可推送本周的信息)</p>
+                                            <p class="tt">消息推送</p>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;margin-bottom: 10px">
@@ -53,7 +53,7 @@
                                                         <select class="form-control chosen-select" name="focus_main" id="main">
                                                             <option value="-1" >--请选择--</option>
                                                             {volist name="info" id="vo"}
-                                                            <option value="{$vo.id}" >{$vo.title}</option>
+                                                            <option value="{$vo.id}" >【志愿招募】{$vo.title}</option>
                                                             {/volist}
                                                         </select>
                                                     </div>
