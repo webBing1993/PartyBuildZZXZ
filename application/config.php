@@ -39,31 +39,10 @@ return [
     ),
 
     /*红色石淙 */
-<<<<<<< HEAD
-    'Learn' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-    ),
-
-    /*廉政石淙 */
-    'Clean' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-    ),
-
-    /*美丽乡村 */
-    'Country' => array(
-        'appid' => 'ww58b28476c9e6',
-        'appsecret' => '9vHQ5v2f9fhnKn-O7JF44QY1DnRqK5mNYsHwyRsD',
-        'agentid' => 1000003
-=======
     'learn' => array(
         'appid' => 'wwdc9046238ff986dd',
         'appsecret' => 'hlwoxVTsz3-uVm2_xaTS_4dk6UvqJ2Gy1Qf8NNXZEvY',
         'agentid' => 1000002
->>>>>>> 429514a541161eeade04bca971ed1d19c137a61c
     ),
 //
 //    /*廉政石淙 */
