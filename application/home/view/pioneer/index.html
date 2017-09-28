@@ -93,7 +93,7 @@ $(function(){
 		this_.addClass('active');
 		block.eq(n ).siblings('.block' ).hide();
 		block.eq(n ).fadeIn();
-		setCookie("type",n + 1);
+//		setCookie("type",n + 1);
 		var len =$('.lists').eq(n).find('.list').length;
 		if(len >= 7){
 			$(".tip").text('上拉加载更多');
@@ -120,11 +120,11 @@ function init(){
 	}else{
 		tip.text('没有更多了');
 	}
-	pushHistory();
-	window.addEventListener( "popstate", function( e ){
-		delCookie( 'type' );
-		window.history.go( -1 );
-	}, false );
+//	pushHistory();
+//	window.addEventListener( "popstate", function( e ){
+//		delCookie( 'type' );
+//		window.history.go( -1 );
+//	}, false );
 }
 function loadScroll(type){
 	$(window ).off("scroll" ).on("scroll",function(){
@@ -136,6 +136,7 @@ function loadScroll(type){
 		var loading = $('.loading');
 		var tag = $('.choose' ).attr('data-tag');
 		if(dh == end && scrollNow){
+			console.log(len+'.'+type);
 			scrollNow = false;
 			$.ajax({
 				type:"post",
@@ -155,12 +156,19 @@ function loadScroll(type){
 					if(data.code == 1){
 						addLists(data,type-1);
 						var dataLen =data.data.length;
+
 						if(data.data.length == 5){
 							tip.text('上拉加载更多');
+
 						}else{
+
 							tip.text('没有更多了');
 							$(window ).off("scroll");
 						}
+					} else {
+
+						tip.text('没有更多了');
+						$(window ).off("scroll");
 					}
 					scrollNow = true;
 				}
