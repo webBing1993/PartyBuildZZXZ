@@ -63,7 +63,7 @@ class Clean extends Admin {
                 return $this->error($learnModel->getError());
             }
         }else{
-            $this->default_pic();
+//            $this->default_pic();
             $this->assign('msg','');
             return $this->fetch('edit');
         }
@@ -92,7 +92,7 @@ class Clean extends Admin {
                 return $this->get_update_error_msg($learnModel->getError());
             }
         }else{
-            $this->default_pic();
+//            $this->default_pic();
             //根据id获取课程
             $id = input('id');
             if(empty($id)){
@@ -336,6 +336,7 @@ class Clean extends Admin {
         if ($msg['errcode'] == 0) {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
+            $data['status'] = 1;
             $data['class'] = 7;
             //保存到推送列表
             $s = Push::create($data);

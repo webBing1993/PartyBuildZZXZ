@@ -54,7 +54,7 @@ class Pioneer extends Admin {
                 return $this->get_update_error_msg($Model->getError());
             }
         }else{
-            $this->default_pic();
+            //$this->default_pic();
             $this->assign('msg','');
 
             return $this->fetch('edit');
@@ -75,7 +75,7 @@ class Pioneer extends Admin {
                 return $this->get_update_error_msg($Model->getError());
             }
         }else{
-            $this->default_pic();
+            //$this->default_pic();
             $id = input('id');
             $msg = NewsModel::get($id);
             $this->assign('msg',$msg);
@@ -297,6 +297,7 @@ class Pioneer extends Admin {
         if ($msg['errcode'] == 0) {
             $data['focus_vice'] ? $data['focus_vice'] = json_encode($data['focus_vice']) : $data['focus_vice'] = null;
             $data['create_user'] = session('user_auth.username');
+            $data['status'] = 1;
             $data['class'] = 9;
             //保存到推送列表
             $s = Push::create($data);
