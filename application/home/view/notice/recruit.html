@@ -21,7 +21,9 @@
 	</div>
 	<div class="message">
 		<div class="name limit">{$list.topic}</div>
+		{neq name="$list.start_time" value=""}
 		<div class="content" >{$list.start_time|time_format="Y-m-d"}</div>
+		{/neq}
 		<div class="time">{$list.address}</div>
 	</div>
 	<div class="article">{$list.content}</div>
