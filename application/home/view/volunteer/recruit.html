@@ -75,7 +75,7 @@ function loadScroll(url,a){
 						if(data.code == 1){
 							addLists(data);
 							var dataLen =data.data.length;
-							if(data.data.length == b){
+							if(data.data.length == 5){
 								tip.text('上拉加载更多');
 							}
 						}else{
@@ -83,6 +83,7 @@ function loadScroll(url,a){
 							$(window ).off("scroll");
 						}
 						scrollNow = true;
+						len = $('.list').length;
 					}
 				})
 			}
