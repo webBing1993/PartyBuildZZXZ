@@ -104,19 +104,23 @@ body {
   line-height: 13.3vw;
 }
 .lists .list.list1 span {
-  background: url("/home/images/user/icon_1.png") 0 3vw no-repeat;
+  background: url("/home/images/user/message.png") 0 3vw no-repeat;
   background-size: 6.5vw 6.5vw;
 }
 .lists .list.list2 span {
-  background: url("/home/images/user/icon_2.png") 0 3vw no-repeat;
+  background: url("/home/images/user/collect.png") 0 3vw no-repeat;
   background-size: 6.5vw 5.5vw;
 }
 .lists .list.list3 span {
-  background: url("/home/images/user/icon_3.png") 0 3vw no-repeat;
+  background: url("/home/images/user/join.png") 0 3vw no-repeat;
   background-size: 6vw 6.2vw;
 }
 .lists .list.list4 span {
-  background: url("/home/images/user/icon_4.png") 0 3vw no-repeat;
+  background: url("/home/images/user/notes.png") 0 3vw no-repeat;
+  background-size: 6.2vw 6.2vw;
+}
+.lists .list.list5 span {
+  background: url("/home/images/user/feedback.png") 0 3vw no-repeat;
   background-size: 6.2vw 6.2vw;
 }
 .rule{
