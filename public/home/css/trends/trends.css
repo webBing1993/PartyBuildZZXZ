@@ -124,6 +124,7 @@ a {
   padding-top: 2vw;
   margin-bottom: 2.2vw;
   overflow: hidden;
+  height: 14vw;
 }
 .blocks .block .list .note {
   color: #999999;
