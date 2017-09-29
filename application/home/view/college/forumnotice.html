@@ -36,7 +36,9 @@
 				<div class="fl mid">
 					<div class="name limit">{$com.nickname}</div>
 					<div class="content" >{$com.content}</div>
+					{neq name="$com.create_time" value=""}
 					<div class="time">{$com.create_time|time_format='Y-m-d'}</div>
+					{/neq}
 				</div>
 				<!--未点赞：good,已点赞good_-->
 				{eq name="visit" value="0"}
