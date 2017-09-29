@@ -35,6 +35,7 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
+	var scrollNow = true;
 $(function(){
 	//标题
 	//上拉加载
@@ -56,7 +57,8 @@ function loadScroll(url,a){
 			var dh = $(document).height();
 			var end = $(window).height() + $(window ).scrollTop();
 			var loading = $('.loading');
-			if(dh == end){
+			if(dh == end && scrollNow){
+				scrollNow = false;
 				$.ajax({
 					type:"post",
 					url:url,
@@ -80,6 +82,7 @@ function loadScroll(url,a){
 							tip.text('没有更多了');
 							$(window ).off("scroll");
 						}
+						scrollNow = true;
 					}
 				})
 			}
