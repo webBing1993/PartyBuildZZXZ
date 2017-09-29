@@ -370,7 +370,7 @@ class College extends Base{
         $commentModel = new Comment();
         $comment = $commentModel->getComment(9,$id,$uid);
         $this->assign('comment',$comment);
-        
+
         return $this->fetch();
     }
 
