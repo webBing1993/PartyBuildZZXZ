@@ -448,7 +448,7 @@ class Notice extends Base {
             $this->assign('show',1);
         }
         foreach ($list as $value) {
-            if($value['end_time'] < time()) {
+            if($value['start_time'] < time()) {
                 $value['is'] = 1;
             }else{
                 $value['is'] = 0;
