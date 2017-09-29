@@ -386,7 +386,7 @@ class Rank extends Base {
         $item = array();
         foreach($dpall as $k=>$v){
             if ($v['score'] != 0){
-                $v['score'] += 10;
+//                $v['score'] += 10;
             }
             if(!isset($item[$v['id']])){
                 $item[$v['id']]=$v;
