@@ -95,10 +95,11 @@
   border-bottom: 1px solid #f1f1f1;
 }
 .tabs .tab {
-  display: inline-block;
-  width: 32.4vw;
+  display: block;
+  width: 33vw;
   height: 7.5vw;
   text-align: center;
+  float: left;
 }
 .tabs .tab span {
   display: inline-block;
