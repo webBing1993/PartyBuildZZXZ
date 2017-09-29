@@ -172,7 +172,7 @@ body {
   display: none;
 }
   .listbox .box.summary .box_:before {
-    content: '组织简介';
+    content: '组织介绍';
   }
   .listbox .box.town .box_:before {
     content: '组织架构';

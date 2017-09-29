@@ -114,6 +114,19 @@
 <script src="/home/js/reset.js"></script>
 <script>
 $(function(){
+
+	$(".shouldKnow .box_ img").on("click", function (e) {
+		e.preventDefault();
+		$(this).parent("a").css("outline",0);
+		swal({
+			title: '',
+			text: '很抱歉！暂时无权限！',
+			type: 'error',
+			confirmButtonText: '确定',
+			timer: 3000
+		})
+	});
+
 	//tab初始化和数据存储
 	var c =  parseInt(window.location.href.split("index/c/")[1]);
 	$('.tabs>.tab').removeClass("active");
