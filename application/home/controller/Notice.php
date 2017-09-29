@@ -176,7 +176,7 @@ class Notice extends Base {
         $list = NoticeModel::where($map)->order('id desc')->limit($len,7)->select();
         foreach($list as $value){
             $value['time'] = date("Y-m-d",$value['create_time']);
-            if($value['end_time'] < time()) {
+            if($value['start_time'] < time()) {
                 $value['state'] = 1;
             }else{
                 $value['state'] = 0;
@@ -471,7 +471,7 @@ class Notice extends Base {
         $list = NoticeModel::where($map)->order('id desc')->limit($len,7)->select();
         foreach($list as $value){
             $value['time'] = date("Y-m-d",$value['create_time']);
-            if($value['end_time'] < time()) {
+            if($value['start_time'] < time()) {
                 $value['state'] = 1; //结束
             }else{
                 $value['state'] = 0; //进行
@@ -653,7 +653,7 @@ class Notice extends Base {
             $this->assign('show',1);
         }
         foreach ($list as $value) {
-            if($value['end_time'] < time()) {
+            if($value['start_time'] < time()) {
                 $value['is'] = 1;
             }else{
                 $value['is'] = 0;
