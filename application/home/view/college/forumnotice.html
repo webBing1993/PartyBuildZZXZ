@@ -21,9 +21,7 @@
 	</div>
 	<div class="message">
 		<div class="name limit">{$info.theme}</div>
-		{neq name="$info.time" value=""}
-		<div class="content" >{$info.time|time_format='Y-m-d'}</div>
-		{/neq}
+		<div class="content" {eq name="$info.time" value=""}style="display:none;"{/eq}>{$info.time|time_format='Y-m-d'}</div>
 		<div class="time">{$info.address}</div>
 	</div>
 	<div class="article">{$info.content}</div>
