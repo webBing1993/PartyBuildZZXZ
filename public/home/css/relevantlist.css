@@ -3,7 +3,7 @@
   font-weight: 600;
 }
 .limit_ {
-  max-height: 8.5333vw;
+  /*max-height: 8.5333vw;*/
 }
 .limit_ p {
   width: 100%;
@@ -61,7 +61,6 @@
 .list .content {
   font-size: 1.3rem;
   color: #666666;
-  min-height: 9.3333vw;
 }
 .list .note {
   margin-top: 1.6vw;

@@ -128,17 +128,31 @@ function isGood(e,type,id){
 								content:inputValue
 							},
 							success:function(msg){
-								inputValue="";
-
+								var data = msg.data;
+								var userid = "'" + data.create_user + "'";
+								var html = '';
+								html += '<div class="list clear">' +
+										'<div class="fl">' +
+										'<img src="' + data.header + '" alt="用户头像" class="user">' +
+										'</div>' +
+										'<div class="fl mid">' +
+										'<div class="name limit">' + data.nickname + '</div>' +
+										'<div class="content" >' + inputValue + '</div>' +
+										'<div class="time">' + data.time + '</div>' +
+										'</div>' +
+										'<div class="fr isgood good" onclick="isGood(this,0,' + data.id + ')">' + data.likes + '</div>' +
+										'</div>';
+								$('.lists').prepend(html);
+								inputValue = "";
+								var sum = $('.sum span');
+								sum.text(parseInt(sum.text()) + 1);
 								swal({
 									title: ' ',
 									text: '评论成功',
 									type: 'success',
-									confirmButtonText:'确定',
-									timer:3000
+									confirmButtonText: '确定',
+									timer: 3000
 								});
-								console.log(msg);
-								addComment(msg);
 							}
 						});
 					}
@@ -153,9 +167,12 @@ function addComment(data){
 	//is_like : 1为已点赞 0为未点赞
 	var html = '';
 	var lists = data.data;
+	console.log(lists);
 	var len = lists.length;
+	console.log(len);
 	for(var i = 0; i< len;i++){
 		var list = lists[i];
+		console.log(list);
 		var userid = "'"+list.create_user+"'";
 		html += '<div class="list clear">'+
 				'<div class="fl">'+
@@ -178,6 +195,7 @@ function addComment(data){
 		html+=
 				'</div>';
 	}
+	console.log(html);
 	$(".lists" ).append(html);
 }
 

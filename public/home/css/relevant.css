@@ -74,6 +74,9 @@
   height: 10.6666vw;
   padding-left: 13.3333vw;
   line-height: 10.6666vw;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .content .message div span {
   display: inline-block;
