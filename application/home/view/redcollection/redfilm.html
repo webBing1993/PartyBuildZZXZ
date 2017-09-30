@@ -4,6 +4,12 @@
 <title>红色电影</title>
 <link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
 <link rel="stylesheet" href="/home/css/redcollection/film.css">
+<style>
+	.banner .banner-img {
+		width: 100%;
+		height: auto;
+	}
+</style>
 {/block}
 
 {block name="body"}
@@ -18,7 +24,7 @@
 		{volist name="carousel" id="car"}
 		<div class="swiper-slide">
 			<a href="{:Url('Redcollection/filmdetail?id='.$car['id'])}" class="list">
-				<img src="{$car.front_cover|get_cover='path'}" alt="红色电影推荐" class="banner-img">
+				<img src="{$car.front_cover|get_cover='path'}" alt="红色电影推荐" class="banner-img" >
 				<div class="banner-bg"></div>
 				<div class="banner-info limit">{$car.title}</div>
 			</a>
