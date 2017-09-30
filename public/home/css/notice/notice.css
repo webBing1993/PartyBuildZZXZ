@@ -135,6 +135,7 @@
   padding-right: 3.5vw;
   border-bottom: 1px solid #f1f1f1;
   color: #666666;
+  position: relative;
 }
 .content .notices .notice .list .title {
   color: #333333;
