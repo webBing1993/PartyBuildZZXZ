@@ -151,6 +151,9 @@
   bottom: 2vw;
   width: 93vw;
 }
+.content .notices .notice .list.clear .time {
+  width: 66vw;
+}
 .content .notices .notice:nth-child(1) .tab {
   color: #e82a2a;
 }
