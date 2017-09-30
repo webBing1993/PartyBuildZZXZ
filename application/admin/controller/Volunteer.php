@@ -26,16 +26,16 @@ class Volunteer extends Admin {
      */
     public function recruit() {
         $map = array(
-            'status' => array('eq',1),
+            'status' => array('egt',1),
         );
         $list = $this->lists('VolunteerRecruit',$map);
         int_to_string($list,array(
-            'status' => array(0=>"待审核",1=>"已发布",2=>"审核不通过"),
+            'status' => array(0=>"待审核",1=>"已发布",2=>"已完成"),
         ));
         foreach ($list as $key => $value) {
             $msg = array(
                 'rid' => $value['id'],
-                'status' => 1,
+                'status' => ['egt',1],
             );
             $info = VolunteerRecruitReceive::where($msg)->select();
             if($info) {

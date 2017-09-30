@@ -19,7 +19,7 @@ class Volunteer extends Base{
     public function recruit(){
         $recruitModel = new VolunteerRecruit();
         $map = array(
-            'status' => array('eq',1)
+            'status' => array('egt',1)
         );
         $list = $recruitModel->where($map)->order('create_time desc')->limit(7)->select();
         $this->assign('list',$list);
