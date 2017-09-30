@@ -48,7 +48,7 @@
 		{volist name="files" id="file"}
 		<a href="{:Url('Pioneer/detail?id='.$file['id'])}" class="list clear">
 			<div class="fl">
-				<img src="{$new.front_cover|get_cover='path'}" alt="社区图片">
+				<img src="{$file.front_cover|get_cover='path'}" alt="社区图片">
 			</div>
 			<div class="fr">
 				<div class="title limit_">{$file.title}</div>
