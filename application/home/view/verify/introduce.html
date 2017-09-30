@@ -3,6 +3,7 @@
 <title>小镇地图</title>
 <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
 <link rel="stylesheet" href="/home/css/verify/introduce.css">
+<link rel="stylesheet" href="/home/css/common/rem.css">
 <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
 <style>
     .changemap{
@@ -57,6 +58,9 @@
         AMap.event.addListener(markerSimple1, 'click', function() {
             createShadow();
             infoWindow0.open(map, markerSimple1.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
 
         var markerSimple2 = new SimpleMarker({
@@ -69,6 +73,9 @@
         AMap.event.addListener(markerSimple2, 'click', function() {
             createShadow();
             infoWindow4.open(map, markerSimple2.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
 
         var markerSimple3 = new SimpleMarker({
@@ -82,6 +89,9 @@
         AMap.event.addListener(markerSimple3, 'click', function() {
             createShadow();
             infoWindow1.open(map, markerSimple3.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
 
         var markerSimple4 = new SimpleMarker({
@@ -94,6 +104,9 @@
         AMap.event.addListener(markerSimple4, 'click', function() {
             createShadow();
             infoWindow7.open(map, markerSimple4.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
         var markerSimple5 = new SimpleMarker({
             iconLabel: {},
@@ -105,6 +118,9 @@
         AMap.event.addListener(markerSimple5, 'click', function() {
             createShadow();
             infoWindow2.open(map, markerSimple5.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
         var markerSimple6 = new SimpleMarker({
             iconLabel: {},
@@ -116,6 +132,9 @@
         AMap.event.addListener(markerSimple6, 'click', function() {
             createShadow();
             infoWindow6.open(map, markerSimple6.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
         var markerSimple7 = new SimpleMarker({
             iconLabel: {},
@@ -127,6 +146,9 @@
         AMap.event.addListener(markerSimple7, 'click', function() {
             createShadow();
             infoWindow5.open(map, markerSimple7.getPosition());
+            $('.shadow').on('touchstart',function(){
+                closeInfoWindow();
+            });
         });
     });
 
@@ -175,7 +197,7 @@
             content0 = [];
     content0.push("<p>南坝村</p>");
     content0.push("<p>暂无</p>");
-    content0.push("<a href='javascript:;' style='background-color: #d7d7d7;'>查看产品</a>");
+    content0.push("<a href='javascript:;' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow0 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title0, content0.join("<br/>")),
@@ -185,7 +207,7 @@
             content1 = [];
     content1.push("<p>洋河坝村</p>");
     content1.push("<p>暂无</p>");
-    content1.push("<a href='javascript:;' style='background-color: #d7d7d7;'>查看产品</a>");
+    content1.push("<a href='javascript:;' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow1 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title1, content1.join("<br/>")),
@@ -195,7 +217,7 @@
             content2 = [];
     content2.push("<p>石淙村</p>");
     content2.push("<p>暂无</p>");
-    content2.push("<a href='javascript:;' style='background-color: #d7d7d7;'>查看产品</a>");
+    content2.push("<a href='javascript:;' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow2 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title2, content2.join("<br/>")),
@@ -205,7 +227,7 @@
             content4 = [];
     content4.push("<p>花园湾村</p>");
     content4.push("<p>暂无</p>");
-    content4.push("</br><a href='#'>查看产品</a>");
+    content4.push("</br><a href='#' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow4 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title4, content4.join("<br/>")),
@@ -215,7 +237,7 @@
             content5 = [];
     content5.push("<p>姚家坝村</p>");
     content5.push("<p>暂无</p>");
-    content5.push("</br><a href='#'>查看产品</a>");
+    content5.push("</br><a href='#' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow5 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title5, content5.join("<br/>")),
@@ -225,7 +247,7 @@
             content6 = [];
     content6.push("<p>镇西村</p>");
     content6.push("<p>暂无</p>");
-    content6.push("<a href='#'>查看产品</a>");
+    content6.push("<a href='#' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow6 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title6, content6.join("<br/>")),
@@ -235,7 +257,7 @@
             content7 = [];
     content7.push("<p>银子桥村</p>");
     content7.push("<p>暂无</p>");
-    content7.push("<a href='#'>查看产品</a>");
+    content7.push("<a href='#' style='background-color: #d7d7d7;'>进入党组织</a>");
     var infoWindow7 = new AMap.InfoWindow({
         isCustom: true,  //使用自定义窗体
         content: createInfoWindow(title7, content7.join("<br/>")),
@@ -256,6 +278,7 @@
         shadow.style.zIndex = "14";
         $('.amap-overlays').append(shadow);
     }
+
     //构建自定义信息窗体
     function createInfoWindow(title, content) {
         var info = document.createElement("div");
@@ -304,7 +327,7 @@
 
     $(".changemap").click(function(){
         window.location.href = "/home/verify/intro.html"
-    })
+    });
 
 </script>
 
