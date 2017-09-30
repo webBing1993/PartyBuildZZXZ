@@ -49,8 +49,10 @@
   padding-left: 3.4666vw;
   padding-right: 3.4666vw;
   padding-top: 1.3333vw;
-  height: 26.6666vw;
+  height: 28vw;
   border-bottom: 0.2666vw solid #f1f1f1;
+  position: relative;
+
 }
 .list .title {
   font-size: 1.4rem;
@@ -65,6 +67,9 @@
 .list .note {
   margin-top: 1.6vw;
   font-size: 1.2rem;
+  position: absolute;
+  bottom: 2vw;
+  width: 93vw;
 }
 .list .note .ing {
   color: #259b24;

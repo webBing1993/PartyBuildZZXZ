@@ -147,12 +147,16 @@
 .content .notices .notice .list .time {
   margin-top: 1.4vw;
   font-size: 1.2rem;
+  position: absolute;
+  bottom: 2vw;
+  width: 93vw;
 }
 .content .notices .notice:nth-child(1) .tab {
   color: #e82a2a;
 }
 .content .notices .notice:nth-child(1) .list {
-  height: 24vw;
+    height: 24vw;
+    position: relative;
 }
 .content .notices .notice:nth-child(1) .list .title {
   line-height: 8vw;
