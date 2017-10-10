@@ -44,7 +44,10 @@ class Redforum extends Admin {
             $data = input('post.');
             unset($data['id']);
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['time'] = strtotime($data['time']);
+            if(!empty($data['time'])){
+                $data['time'] = strtotime($data['time']);
+            }
+
             $noticeModel = new RedforumNotice();
             $model = $noticeModel->validate('RedforumNotice')->save($data);
             if($model) {
@@ -66,7 +69,9 @@ class Redforum extends Admin {
             $data = input('post.');
             $data['update_time'] = time();
             $data['update_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['time'] = strtotime($data['time']);
+            if(!empty($data['time'])){
+                $data['time'] = strtotime($data['time']);
+            }
             $noticeModel = new RedforumNotice();
             $model = $noticeModel->validate('RedforumNotice')->save($data,['id'=>$data['id']]);
             if($model) {
