@@ -13,6 +13,7 @@ use think\Validate;
 
 class VolunteerRecruit extends Validate {
     protected $rule = [
+        'list_image' => 'require',
         'title' => 'require',
         'content' => 'require',
         'time' => 'require',
@@ -20,10 +21,10 @@ class VolunteerRecruit extends Validate {
         'contacts' => 'require',
         'telephone' => 'require',
         'demand_number' => 'require|number',
-
     ];
 
     protected $message = [
+        'list_image' => '封面图不能为空',
         'title' =>  '标题不能为空',
         'content'  =>  '内容不能为空',
         'time' => '时间不能为空',
