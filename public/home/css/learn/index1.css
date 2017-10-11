@@ -49,6 +49,7 @@
     height: 15vw;
     margin-left: 4vw;
     font-size: 1.2rem;
+    position: relative;
 }
 .rule .list .right .title,.law .list .right .title {
     /*height: 11vw;*/
@@ -57,4 +58,7 @@
     line-height: 4vw;
     margin-top: 4vw;
 }
-
+.time .publishtime {
+    position: absolute;
+    bottom: 0;
+}
