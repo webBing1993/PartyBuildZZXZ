@@ -30,7 +30,7 @@ return [
     
     /* 企业配置   新手指南*/
     'party' => array(
-        'login' => 'http://dqpb.0571ztnet.com/home/index/login',
+        'login' => 'http://szzpb.0571ztnet.com/home/index/login',
         'token' => '',
         'encodingaeskey' => '',
         'appid' => 'wwdc9046238ff986dd',
@@ -68,7 +68,7 @@ return [
 
 
     //  推送网站域名
-    'http_url' => "http://ymz.pb.cn",
+    'http_url' => "http://szzpb.0571ztnet.com",
     // 推送对象 发送给全体 @all  个人测试15700004138
     'touser' => '15700004138',
     /* UC用户中心配置 */
