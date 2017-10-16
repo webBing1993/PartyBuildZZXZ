@@ -95,6 +95,19 @@
         text-align: left;
         line-height: 10.8vw;
     }
+    #tab3 #tab_main1>li>a>span:nth-child(3).note {
+        position: absolute;
+        bottom: 1.8vw;
+        width: 68%;
+        margin-left: 0;
+        left: 31vw;
+    }
+    .note img {
+        width: 2.7vw;
+        height: 2.7vw;
+        margin-top: 2px;
+        margin-right: 2.7vw;
+    }
 </style>
 {/block}
 
@@ -122,8 +135,10 @@
                 <a href="{:Url('College/tutordetail?id='.$course['id'])}" class="clearfix">
                     <img src="{$course.list_image|get_cover='path'}" alt="" class="fl ">
                     <span class="limit_ fl" style="color:#333333">{$course.title}</span>
-                    <span class="fl">{$course.create_time|time_format='Y-m-d'}</span>
-                    <img src="/home/images/right.png" alt="" class="fr">
+                    <span class="note">
+                        <span class="fl">{$course.create_time|time_format='Y-m-d'}</span>
+                        <img src="/home/images/right.png" alt="" class="fr">
+                    </span>
                 </a>
                 {/volist}
             </li>
