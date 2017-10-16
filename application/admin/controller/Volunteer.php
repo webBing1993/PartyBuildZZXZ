@@ -56,7 +56,12 @@ class Volunteer extends Admin {
             $data = input('post.');
             unset($data['id']);
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['time'] = strtotime($data['time']);
+            if (!empty($data['time'])) {
+                $data['time'] = strtotime($data['time']);
+            }
+            if ($data['demand_number'] == 0) {
+                return $this->error('招募人数不能为空');
+            }
             $recruitModel = new VolunteerRecruit();
             $model = $recruitModel->validate('VolunteerRecruit')->save($data);
             if($model) {

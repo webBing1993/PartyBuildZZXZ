@@ -45,7 +45,9 @@ class Redtutor extends Admin {
             $data = input('post.');
             unset($data['id']);
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['time'] = strtotime($data['time']);
+            if (!empty($data['time'])) {
+                $data['time'] = strtotime($data['time']);
+            }
             $noticeModel = new RedtutorNotice();
             $model = $noticeModel->validate('RedtutorNotice')->save($data);
             if($model) {
@@ -67,7 +69,9 @@ class Redtutor extends Admin {
             $data = input('post.');
             $data['update_time'] = time();
             $data['update_user'] = $_SESSION['think']['user_auth']['id'];
-            $data['time'] = strtotime($data['time']);
+            if (!empty($data['time'])) {
+                $data['time'] = strtotime($data['time']);
+            }
             $noticeModel = new RedtutorNotice();
             $model = $noticeModel->validate('RedtutorNotice')->save($data,['id'=>$data['id']]);
             if($model) {
