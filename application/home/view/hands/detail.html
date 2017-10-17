@@ -10,8 +10,9 @@
 {block name="body"}
 <div class="article">
 	<div class="title limit_"><p>{$detail.title}</p></div>
-	<div class="note">
-		<span>{$detail.create_time|date="Y-m-d",###}</span>
+	<div class="note clear">
+		<span class="fl">{$detail.publisher}</span>
+		<span class="fr">{$detail.create_time|time_format="Y-m-d"}</span>
 	</div>
 	<div class="content">
 		<div class="uecontent">
