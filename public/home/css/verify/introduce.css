@@ -125,10 +125,17 @@ span {
     text-decoration: line-through;
 }
 .amap-simple-marker-icon img{
-    width:50px;
-    height:50px;
-    margin-left: -16px;
-    margin-top: -18px;
+    width:60px;
+    height:60px;
+    margin-left: -21px;
+    margin-top: -26px;
+}
+.amap-simple-marker-label {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: -23px !important;
+    left: -19px!important;
 }
 .amap-simple-marker-position-point{
     background-color: blue !important;
