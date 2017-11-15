@@ -58,11 +58,15 @@ class Wechat extends Admin
         foreach ($list as $key=>$value) {
             $departmentId = json_decode($value['department']);
             if($departmentId){
-                foreach ($departmentId as $k=>$v) {
-                    $name = $department[$v];
-                    if ($k < count($departmentId) - 1 ) {
-                        $name .= ',';
+                if (is_array($departmentId)){
+                    foreach ($departmentId as $k=>$v) {
+                        $name = $department[$v];
+                        if ($k < count($departmentId) - 1 ) {
+                            $name .= ',';
+                        }
                     }
+                }else{
+                    $name = $departmentId;
                 }
                 $list[$key]['department'] = $name;
             }else{
@@ -128,7 +132,9 @@ class Wechat extends Admin
                 }
 
                 unset($user['order']);
-
+                if (isset($user['department_position'])){
+                    $user['department_position'] = json_encode($user['department_position']);
+                }
                 if(WechatUser::get(['userid'=>$user['userid']])) {
 //                    unset($user['extattr']);
                     WechatUser::where(['userid'=>$user['userid']])->update($user);
