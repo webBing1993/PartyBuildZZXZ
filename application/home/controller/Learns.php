@@ -9,7 +9,7 @@
 namespace app\home\controller;
 
 
-class Lxyz extends Base
+class Learns extends Base
 {
     public function index(){
         return $this->fetch();
