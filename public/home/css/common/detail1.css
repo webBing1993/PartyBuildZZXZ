@@ -97,6 +97,7 @@
 .article .title p{
   display: inline-block;
   text-align: left;
+  font-size: .28rem;
 }
 .article .note {
   color: #999999;

@@ -81,7 +81,7 @@
 }
 .film .title {
   color: #333333;
-  font-size: 1.8rem;
+  font-size: .36rem;
   font-weight: 600;
   width: 100%;
   text-align: center;
@@ -93,7 +93,7 @@
 }
 .film .note {
   color: #666666;
-  font-size: 1.2rem;
+  font-size: .24rem;
   line-height: 30px;
 }
 .film .note span {
@@ -176,7 +176,7 @@
   background: #fcfcfc;
   border-top: 1px solid #f1f1f1;
   border-bottom: 1px solid #f1f1f1;
-  font-size: 1.2rem;
+  font-size: .24rem;
   line-height: 30px;
 }
 .comment .lists .list {

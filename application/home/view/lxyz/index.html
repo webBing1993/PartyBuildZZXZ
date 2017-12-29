@@ -1,0 +1,169 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>两学一做教育平台</title>
+<link rel="stylesheet" href="/home/css/lxyz/index.css">
+{/block}
+
+{block name="body"}
+<!--banner-->
+<div class="banner"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+<!--专题列表-->
+<div class="title">
+    <a href="#"><img src="/home/images/lxyz/icon_001.png"><p>基本书目</p></a>
+    <a href="/home/education/index.html"><img src="/home/images/lxyz/icon_002.png"><p>远程教育</p></a>
+    <a href="/home/microtest/index.html"><img src="/home/images/lxyz/icon_003.png"><p>微考学</p></a>
+    <a href="#"><img src="/home/images/lxyz/icon_004.png"><p>十九大专区</p></a>
+</div>
+<!--专题加载更多-->
+<div class="notice">
+    <div class="tag clear">
+        <span class="fl">热门推荐</span>
+    </div>
+    <div class="lists">
+        <a href="#" class="list clear" data-type="new">
+            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
+            <div class="fr">
+                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
+                <div class="note"><span class="user">【十九大专区】</span><span class="time">2012-14-55</span></div>
+            </div>
+        </a>
+        <a href="#" class="list clear" data-type="new">
+            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
+            <div class="fr">
+                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
+                <div class="note">
+                    <span class="user">【十九大专区】</span>
+                    <span class="time">2012-14-55</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list clear" data-type="new">
+            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
+            <div class="fr">
+                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
+                <div class="note">
+                    <span class="user">【十九大专区】</span>
+                    <span class="time">2012-14-55</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list clear" data-type="new">
+            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
+            <div class="fr">
+                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
+                <div class="note">
+                    <span class="user">【十九大专区】</span>
+                    <span class="time">2012-14-55</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    $("img.lazy").lazyload({
+        placeholder: "/home/images/loading.jpg",
+        effect: "fadeIn",
+        threshold: 500
+    });
+    var scrollNow = true;
+    $(function(){
+        //模块标题
+        //reset
+        $('.box').eq(0).show();
+        var len = $(".list" ).length;
+        if(len >= 5){
+            $('.tip' ).text('上拉加载更多');
+        }
+        //上拉加载
+        loadScroll();
+    });
+    /**
+     * 切换精彩专题
+     * @param e
+     */
+    var tonext = function(e){
+        var box =$('.box');
+        var len = box.length;
+        var this_ = $(e ).parents('.box');
+        var index = this_.index();
+        index = index == len ? 0:index;
+        $('.box_up').find('img' ).hide();
+        box.eq(index).show().siblings('.box' ).hide();
+        box.eq(index).find('img' ).fadeIn();
+    };
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $(".list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Learn/indexmore')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addCourse(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                            $("img.lazy").lazyload({
+                                placeholder: "/home/images/loading.jpg",
+                                effect: "fadeIn",
+                                threshold: 1
+                            });
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
+    function addCourse(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var list = lists[i];
+            html += '<a href="#" class="list clear" data-type="new">'
+                    +'<img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">'
+                    +'<div class="fr">'
+                    +'<div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>'
+                    +'<div class="note"><span class="user">【十九大专区】</span><span class="time">2012-14-55</span></div>'
+                    +'</div>'
+                    +'</a>'
+        }
+        $(".lists" ).append(html);
+    }
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+</script>
+{/block}

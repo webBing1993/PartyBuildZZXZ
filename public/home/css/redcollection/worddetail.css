@@ -6,7 +6,7 @@ body {
   height: 13.9vw;
   margin: 0 auto;
   border-bottom: 2px solid #556f7b;
-  font-size: 1.7rem;
+  font-size: .34rem;
   line-height: 13.9vw;
   text-align: center;
 }
@@ -16,7 +16,7 @@ body {
 }
 .list .content {
   text-indent: 2em;
-  font-size: 1.4rem;
+  font-size: .28rem;
   line-height: 6.4vw;
 }
 .list .author {
@@ -24,4 +24,5 @@ body {
   color: #556f7b;
   text-align: right;
   line-height: 10.2vw;
+  font-size: .24rem;
 }

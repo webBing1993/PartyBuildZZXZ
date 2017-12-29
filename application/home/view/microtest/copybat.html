@@ -1,0 +1,448 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>党章学习</title>
+<link rel="stylesheet" href="/home/css/copy.css">
+{/block}
+
+{block name="body"}
+<img src="/home/images/logo_consitution.png" alt="党徽" class="logo">
+<div class="suc">
+    <div class="timer"></div>
+    <div class="up">上传中...</div>
+</div>
+<div class="title">{$msg.title}</div>
+<div class="tem" onpaste="return false"></div>
+<div class="templet">{$msg.content}</div>
+<div class="tip"></div>
+<div class="foots">
+    {neq name="visit" value="visitor"}
+    <div class="foot clear fix">
+        <button class="save fl" onclick="saveCopy()">保存</button>
+        <button class="submit fl" onclick="submitCopy()">提交</button>
+    </div>
+    <div class="foot fix">
+        <div class="sign-box">已完成</div>
+    </div>
+    <div class="foot fix">
+            <div class="sign-box new">该页仅供阅读，请按顺序抄写</div>
+    </div>
+    {/neq}
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    $(function(){
+
+        //	初始显示(党章模板、底部按钮、字数读取)
+        reset();
+        //	禁止复制黏贴
+        noCopy();
+        //输入框监听（换行、聚焦、查错）
+        check();
+        //退出提示
+        isOut();
+    });
+
+    var tip = $('.tip');
+    var box = $('.tem');
+    var tem = $('.templet' );
+    var len_p = tem.find('p').length;
+    var objNow=1;//退出事件
+    var alltrue = true;//全文是否正确
+    var copy_all_last=0;//前一次已写总字数
+    var array_tem = [['',0,0,[]]];//每一段模板[str,num,sum,array_str]
+    window.confirm = function(name){
+        //隐藏提示框的url,返回按钮结果
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        var result = window.frames[0].window.confirm(name);
+        iframe.parentNode.removeChild(iframe);
+        return result;
+    };
+    //--------------------------------------------------------------------------
+    //
+    //  Event
+    //
+    //--------------------------------------------------------------------------
+    function reset(){
+        var foot = $('.foot');
+        var linenum = 0;//行数
+        var len_alltext = 0;//sum
+        var status = {$return }.status;
+        var length = {$return }.length;
+        var n = Math.floor((document.body.clientWidth - 26)/18);
+        //样式覆盖
+        tem.find('p').css({'line-height':'80px','background':'transparent','font-family':'"Microsoft yahei",sans-serif','color':'#333333'});
+        tem.find('p' ).find('span' ).removeAttr('style');
+        //模板数组
+        for(var i = 0 ;i < len_p ;i++){
+            var p = tem.find('p' ).eq(i).text();
+            var line = Math.ceil((p.length+2)/n);
+            var array_p = [[]];
+            for(var j = 0;j< line ;j++){
+                //页面生成
+                var html='';
+                if(j ==0){
+                    linenum ++;
+                    array_p.push([linenum,p.slice(j*n, (j+1)*n - 2)]);
+                    html+='<div class="tem_line" style="text-indent: 36px">'+array_p[j+1][1]+'</div>' +
+                        '<div class="tem_line_" style="text-indent: 36px">'+array_p[j+1][1]+'</div>' +
+                        '<input type="text" class="copy_line"'  +
+                        'onkeyup="return handleDel(this, event)" style="text-indent: 36px">' +
+                        '<hr>';
+                }else{
+                    linenum ++;
+                    array_p.push([linenum,p.slice(j*n-2, (j+1)*n-2)]);
+                    html+='<div class="tem_line">'+array_p[j+1][1]+'</div>' +
+                        '<div class="tem_line_">'+array_p[j+1][1]+'</div>' +
+                        '<input type="text" class="copy_line"' +
+                        'onkeyup="return handleDel(this, event)">' +
+                        '<hr>';
+                }
+                box.append(html);
+                //防止最后一个input
+                if(i== (len_p - 1)&&j==(line-1)){
+                    box.append('<input type="hidden" class="copy_line">');
+                }
+            }
+            len_alltext += p.length;
+            array_tem.push([p, p.length,len_alltext,array_p]);
+        }
+        //输入框位置
+        var len_copy = box.find('.copy_line').length;
+        for(var m = 0;m < len_copy ;m++){
+            $('.copy_line').eq(m).css({'top':89*m+54+50+'px'});
+            $('hr' ).eq(m).css({'top':89*m+77+50+'px'});
+        }
+        //底部按钮显示
+        var copy0 = $('.copy_line').eq(0 );
+        foot.eq(status).show().siblings().hide();
+        if(status == 0 ){
+            //编辑中
+            var content = $('.tem .tem_line').text().substr(0,length);
+            $('.tem .copy_line').eq(0).val(content);
+            //排版
+            relen();
+            //聚焦
+            findLine(length);
+
+            if(copy0.eq(0 ).val()== ''){
+                //空白输入
+                copy0.eq(0).focus();
+                copy0.eq(0 ).attr({'placeholder':'于此处开始输入'})
+            }
+        }else if(status == 1){
+            //已完成
+            $('.tem_line_').css({'color':'#105596'});
+            $('.copy_line').hide();
+        }else{
+            //排队中
+            $('hr,.copy_line,.tem_line_' ).hide();
+        }
+    }
+    function noCopy(){
+        document.onpaste = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var it = event.srcElement;
+                if (!((it.tagName == "INPUT" && it.type.toLowerCase() == "text") || it.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            }catch (e){
+                return false;
+            }
+        }
+    }
+    function check(){
+        var c = $('.copy_line');
+        var lock = false;
+        //safari ,fixed
+        fix(c);
+        //输入框监听（换行、查错）
+
+        c.on('compositionstart',function(){
+            lock = false;
+        });
+        c.on('compositionend',function(){
+            lock = false;
+        });
+        c.on('input',function(){
+            if(!lock){
+                onInput();
+            }
+        });
+    }
+    function isOut(){
+        var status = {$return }.status;
+        if(status != 0){
+            objNow = null;
+        }
+        pushHistory();
+        setTimeout(function(){
+            window.addEventListener("popstate", function(e) {
+                if(objNow){
+                    var r=confirm("您未保存，是否离开当前页面");
+                    if (r==true){
+                        history.back();
+                    }else{
+                        pushHistory();
+                    }
+                }else{
+                    history.back();
+                }
+            }, false);
+        },1000)
+
+    }
+    function relen(){
+        var tem_line = $('.tem .tem_line' );
+        var copy_line = $('.tem .copy_line' );
+        var len_line = tem_line.length;
+        //排版
+        for(var i = 0 ;i < len_line;i++){
+            var aa=tem_line.eq(i ).text().split('');
+            var bb=copy_line.eq(i).val().split('');
+            var len_aa = aa.length;
+            var len_bb = bb.length;
+            var thisline;
+            var nextline;
+            if(len_aa < len_bb){
+                thisline =copy_line.eq(i).val().substring(0,tem_line.eq(i ).text().length);
+                nextline =copy_line.eq(i).val().substring(tem_line.eq(i ).text().length,copy_line.eq(i ).val().length);
+                copy_line.eq(i).val(thisline);
+                copy_line.eq(i+1).val(nextline);
+                len_bb = len_aa;
+            }
+            tem_line.eq(i).html(aa.join(''));
+        }
+    }
+    function onInput(){
+        var it = $(this );
+        var tem_line = $('.tem .tem_line' );
+        var copy_line = $('.tem .copy_line' );
+        var len_line = tem_line.length;
+        var tem_all = tem_line.text().length;
+        var copy_all = 0;
+        var copyetxt_all = '';
+        //重置
+        alltrue = true;
+        //增删换行
+        for(var i = 0 ;i < len_line;i++){
+            var aa=tem_line.eq(i ).text().split('');
+            var bb=copy_line.eq(i).val().split('');
+            var len_aa = aa.length;
+            var len_bb = bb.length;
+            var thisline;
+            var nextline;
+            if(len_aa == len_bb){
+
+            }else if(len_aa < len_bb){
+                thisline =copy_line.eq(i).val().substring(0,tem_line.eq(i ).text().length);
+                nextline =copy_line.eq(i).val().substring(tem_line.eq(i ).text().length,copy_line.eq(i ).val().length)+
+                    copy_line.eq(i+1).val().substring(0,copy_line.eq(i+1).val().length);
+                copy_line.eq(i).val(thisline);
+                copy_line.eq(i+1).val(nextline);
+                len_bb = len_aa;
+            }else if(len_aa > len_bb){
+                if(copy_line.eq(i+1).val().length != 0){
+                    thisline =copy_line.eq(i).val()+
+                        copy_line.eq(i+1).val().substring(0,tem_line.eq(i ).text().length-copy_line.eq(i ).val().length);
+                    nextline =copy_line.eq(i+1).val().substring(tem_line.eq(i ).text().length-copy_line.eq(i ).val().length,copy_line.eq(i+1 ).val().length);
+                    copy_line.eq(i).val(thisline);
+                    copy_line.eq(i+1).val(nextline);
+                    bb=copy_line.eq(i).val().split('');
+                    len_bb = bb.length;
+
+                }
+
+//			 console.log(2)
+            }
+            //查错
+            for(var j= 0;j<len_bb;j++){
+                if(aa[j] != bb[j]){
+                    aa[j]='<span style="color:red;background: transparent">'+aa[j]+'</span>';
+                    alltrue = false;
+                }
+            }
+            tem_line.eq(i).html(aa.join(''));
+            //退出提醒
+        }
+        //全部完成
+        if(tem_all==copy_all && alltrue == true){
+            //已完成
+            tip.text('已完成').fadeIn();
+        }else if(tem_all<copy_all){
+            //截取多余字符
+            var bb_ = copy_line.eq(len_line-1 ).val().substr(0,tem_line.eq(len_line-1 ).text().length);
+            copy_line.eq(len_line-1 ).val(bb_);
+            tip.text('字数已超出').fadeIn();
+            setTimeout(function(){
+                tip.fadeOut();
+            },1000)
+        }
+        //聚焦
+        for(var n =0;n<copy_line.length;n++){
+            copy_all+=copy_line.eq(n ).val().length;
+            copyetxt_all+=copy_line.eq(n ).val();
+        }
+        copy_all_last=copy_all;
+        findLine(copy_all);
+    }
+    function pushHistory(){
+        var sta = {
+            title: "title"
+        };
+        if( window.history.state === null )
+        {
+            window.history.pushState( sta, "title" );
+        }
+    }
+    function fix(c){
+        var foot =$('.foot');
+        c.on('focus', function(){
+            foot.removeClass('fix');
+        });
+        c.on('blur', function(){
+            foot.addClass('fix');
+            //		 $("body").trigger("click");
+        });
+    }
+    function findLine(num){
+        //字数取到行数
+        console.log(num)
+        for(var p = 0;p<array_tem.length-1;p++){
+            if(num<array_tem[p+1][2]&& num>=array_tem[p][2]){
+                var pnum = array_tem[p+1];
+                num -= array_tem[p][2];
+                for(var q= 1;q< array_tem[p+1][3].length;q++){
+                    num -= pnum[3][q][1].split('').length;
+                    if(num<=0){
+                        if( pnum[3][q][0]-1 > 3){
+                            var top = (pnum[3][q][0]-1)*87+30;
+                            $(window).scrollTop(top);
+                        }
+                        $('.copy_line' ).eq(pnum[3][q][0]-1).focus();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Event handlers
+    //
+    //--------------------------------------------------------------------------
+    function handleDel (field, event) {
+        var input = $('.tem' ).find('input');
+        var keyCode = event.keyCode ? event.keyCode : event.which ?
+            event.which : event.charCode;
+        if (keyCode == 8) {
+            for (var i = 0; i < input.length; i++)
+                if (field == input.eq(i)[0] && input.eq(i).val()== ''){
+                    input.eq(i-1).focus();
+                    var bb_ = input.eq(i-1 ).val().substr(0,input.eq(i-1 ).val().length -1);
+                    input.eq(i-1 ).val(bb_);
+                    return false;
+                }
+        }else if(keyCode == 13){
+            for (var j = 0; j < input.length; j++)
+                if (field == input.eq(j)[0])
+                    break;
+            j = (j + 1) % input.length;
+            input.eq(j).focus();
+            return false;
+        }else
+            return true;
+    }
+    function saveCopy(){
+        var len = 0;
+        var c = $('.copy_line' );
+        var suc = $('.suc');
+        var timer = $('.timer');
+        var up = $('.up');
+        var id = parseInt(location.href.split("/id/")[1]);
+        for(var i =0;i<c.length;i++){
+            len+=c.eq(i ).val().length;
+        }
+        if(alltrue){
+            $.ajax({
+                type:"post",
+                url:"{:Url('Constitution/copy')}",
+                data:{	status:0,
+                    length:len,
+                    id : id
+                },
+                success:function(e){
+                    suc.fadeIn();
+                    setTimeout(function(){
+                        timer.fadeOut();
+                        up.text('上传成功');
+                        setTimeout(function(){
+                            objNow=null;
+                            window.history.go(-1);
+                        },1000)
+                    },2000)
+                }
+            });
+        }else{
+            tip.text('抄写有错误，请修改后再保存').fadeIn();
+            setTimeout(function(){
+                tip.fadeOut();
+            },1000)
+        }
+    }
+    function submitCopy(){
+        var len = 0;
+        var up = $('.up');
+        var suc = $('.suc');
+        var timer = $('.timer');
+        var c = $('.copy_line' );
+        var len_t=$('.tem .tem_line' ).text().length;
+        var id = parseInt(location.href.split("/id/")[1]);
+        for(var i =0;i<c.length;i++){
+            len+=c.eq(i ).val().length;
+        }
+        if(alltrue && len_t == len){
+            $.ajax({
+                type:"post",
+                url:"{:Url('Constitution/copy')}",
+                data:{	status:1,
+                    length:len,
+                    id : id
+                },
+                success:function(e){
+                    suc.fadeIn();
+                    setTimeout(function(){
+                        objNow=null;
+                        timer.fadeOut();
+                        up.text('上传成功');
+                        setTimeout(function(){
+                            window.location.href= "{:Url('Constitution/index')}";
+                        },1000)
+                    },2000);
+                }
+            });
+        }else{
+            if(!alltrue){
+                tip.text('抄写有错误，请修改后再提交').fadeIn();
+            }else{
+                tip.text('抄写未完成，请完成后再提交').fadeIn();
+            }
+            setTimeout(function(){
+                tip.fadeOut();
+            },3000)
+        }
+    }
+
+</script>
+
+{/block}

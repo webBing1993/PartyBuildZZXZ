@@ -1,0 +1,352 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>网上党</title>
+<link rel="stylesheet" href="/home/css/constitution/index.css">
+{/block}
+
+{block name="body"}
+    <div class="constitutionTop">
+        <div data-side="1" class="active">每日一课</div>
+        <div data-side="2">在线答题</div>
+        <div data-side="3">党章学习</div>
+    </div>
+
+    <div class="constitutionContent" id="side1"  style="display: block;">
+        <div class="side1Content">
+            <div class="constitutionContentImg"><img src="/home/images/banner/banner.png" alt=""></div>
+            <div class="side1ContentText">
+                <div class="side1ContentTitle">单选题 （共3题）</div>
+            </div>
+            <div class="side1ContentCase">
+                <div class="side1ContentSort">
+                    <span class="side1ContentSortNum">1.</span>
+                    <p class="side1ContentSortTitle">党员大会，大队、中队党支部每季度不少于一次。支部委员会（）</p>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="A" class=""><span>A. 每周一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="B" class=""><span>B. 每周1一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="C" class=""><span>C. 每周2一次</span></label>
+                    <div class="side1ContentDetail">正确答案：<span>C</span></div>
+                </div>
+                <div class="side1ContentSort">
+                    <span class="side1ContentSortNum">2.</span>
+                    <p class="side1ContentSortTitle">党员大会，大队、中队党支部每季度不少于一次。支部委员会（）</p>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="A" class=""><span>A. 每周一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="B" class=""><span>B. 每周1一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="C" class=""><span>C. 每周2一次</span></label>
+                    <div class="side1ContentDetail">正确答案：<span>C</span></div>
+                </div>
+                <div class="side1ContentSort">
+                    <span class="side1ContentSortNum">3.</span>
+                    <p class="side1ContentSortTitle">党员大会，大队、中队党支部每季度不少于一次。支部委员会（）</p>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="A" class=""><span>A. 每周一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="B" class=""><span>B. 每周1一次</span></label>
+                    <label class="side1ContentAnswer"><input type="radio" name="s1" value="C" class=""><span>C. 每周2一次</span></label>
+                    <div class="side1ContentDetail">正确答案：<span>C</span></div>
+                </div>
+                <div id="btn">提交</div>
+            </div>
+        </div>
+    </div>
+    <div class="constitutionContent" id="side2">
+        <div class="lists">
+            <!--单选题-->
+            <div class="single list" data-id="1">
+                <div class="question">
+		            <span class="type">
+			            单选
+                    </span>
+                    下列属于违反经济工作纪律中贪污贿赂行为的有( )。
+                </div>
+                <label class="option_">
+                    <input type="radio" name="s1" value="1">
+                    <label class="option">A</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="radio" name="s1" value="2">
+                    <label class="option">B</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="radio" name="s1" value="3">
+                    <label class="option">C</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为私分国有资产的行为和私分罚没财物的行为私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="radio" name="s1" value="4">
+                    <label class="option">D</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <div class="sum"><span class="num">1</span>/30</div>
+            </div>
+            <!--多选题-->
+            <div class="muti list" data-id="2">
+                <div class="question">
+		<span class="type">
+			多选
+		</span>
+                    下列属于违反经济工作纪律中贪污贿赂行为的有( )。
+                </div>
+                <label class="option_">
+                    <input type="checkbox" name="m1" value="1">
+                    <label class="option">A</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="checkbox" name="m1" value="2">
+                    <label class="option">B</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="checkbox" name="m1" value="3">
+                    <label class="option">C</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <label class="option_">
+                    <input type="checkbox" name="m1" value="4">
+                    <label class="option">D</label>
+                    <label class="opt">私分国有资产的行为和私分罚没财物的行为</label>
+                </label>
+                <div class="sum"><span class="num">2</span>/30</div>
+            </div>
+        </div>
+        <div class="foot clear">
+            <button class="save fl" onclick="saveAnswer()" >保存</button>
+            <button class="submit fl" onclick="submitAnswer()">提交</button>
+        </div>
+        <div class="suc">
+            <div class="timer"></div>
+            <div class="up">上传中...</div>
+        </div>
+    </div>
+    <div class="constitutionContent" id="side3">
+        <div class="bg_t"></div>
+        <div class="bg_b"></div>
+        <div class="content">
+            <ul class="list">
+                <li><a href="#"><span class="num">1</span><span class="title">总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+                <li><a href="#"><span class="num">1</span><span class="title">总纲</span></a></li>
+            </ul>
+        </div>
+    </div>
+{/block}
+
+{block name="script"}
+<script>
+    for(var i=0;i<$('.constitutionTop div').length;i++){
+        $('.constitutionTop div')[i].onclick = function(){
+            $('.constitutionTop div').removeClass('active');
+            $(this).addClass('active');
+            var side =  $(this).data('side');
+            $('.constitutionContent').hide();
+            $('#side'+side).show();
+        }
+    }
+    $('.side1ContentAnswer input').on('click',function(){
+        $('.side1ContentAnswer input').parent().removeClass('active');
+        $(this).parent().addClass('active');
+        console.log($(this).val())
+    })
+    $('#side3 .list').css('height',$(window).height()-$('.constitutionTop').height()-$('.bg_t').height()-$('.bg_b').height())
+</script>
+<script>
+    $(function(){
+//        var u = navigator.userAgent;
+//        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+//        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+//        if(isiOS){
+//            //ios下的样式差异
+//            $('.option' ).css({'top':'5px','line-height':'18px'});
+//            $('.opt').css({'margin-left':'6px'});
+//        }
+        //同级触发input点击的事件
+        $('.option,.opt' ).on('click',function(){
+            var it = $(this).siblings('input');
+//			var it = $(this).parent('.option_');
+            it.click();
+            if(it.attr('type')== 'radio'){
+                //单选需要二次触发
+                if(it.prop('checked')){
+                    it.next('.option').addClass('active' );
+                    it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
+                }
+            }else if(isiOS && it.attr('type')== 'checkbox'){
+                //ios多选二次触发
+                if(it.prop('checked')){
+                    it.removeAttr('checked')
+                }else{
+                    it.prop('checked','true')
+                }
+                if(!it.prop('checked')){
+                    it.next('.option' ).toggleClass('active');
+                }
+            }
+        });
+        //选中样式变化
+        $('input[type=radio]' ).on('click',function(e){
+            var it = $(this);
+            if(it.prop('checked')){
+                it.next('.option').addClass('active' );
+                it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
+            }
+        });
+        $('input[type=checkbox]' ).on('click',function(e){
+            var it = $(this);
+            it.next('.option' ).toggleClass('active');
+        });
+        //退出提示
+//        isOut();
+    });
+    var objNow=1;//退出事件
+    var isAll = true;//是否全部完成
+    window.confirm = function(name){
+        //隐藏提示框的url,返回按钮结果
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display="none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        var result = window.frames[0].window.confirm(name);
+        iframe.parentNode.removeChild(iframe);
+        return result;
+    };
+    //退出提示
+    function isOut(){
+        pushHistory();
+        setTimeout(function(){
+            window.addEventListener("popstate", function(e) {
+                if(objNow){
+                    var r=confirm("您未保存，是否离开当前页面");
+                    if (r==true){
+                        window.history.go(-1);
+                    }else{
+                        pushHistory();
+                    }
+                }else{
+                    window.history.go(-1);
+                }
+            }, false);
+        },200)
+    }
+    //防止恶意刷新
+    function pushHistory(){
+        var sta = {
+            title: "title"
+        };
+        if( window.history.state === null )
+        {
+            window.history.pushState( sta, "title" );
+        }
+    }
+    //保存
+    function saveAnswer(){
+        var up = $('.up');
+        var suc = $('.suc');
+        var timer = $('.timer');
+        var answer =getAnswer();
+        $.ajax({
+            type:"post",
+            url:"{:Url('Constitution/save')}",
+            data:{arr:answer,arrId:getDataID()},
+            success:function(e){
+                suc.fadeIn();
+                setTimeout(function(){
+                    timer.fadeOut();
+                    up.text('保存成功');
+                    setTimeout(function(){
+                        objNow=null;
+                        window.history.go(-1);
+                    },1000)
+                },2000);
+            }
+        });
+    }
+    //提交
+    function submitAnswer(){
+        isAll = true;
+        var up = $('.up');
+        var suc = $('.suc');
+        var timer = $('.timer');
+        var answer = getAnswer();
+        objNow=null;
+        if(isAll){
+            $.ajax({
+                type:"post",
+                url:"{:Url('Constitution/submits')}",
+                data:{arr:answer,arrId:getDataID()},
+                success:function(e){
+                    suc.fadeIn();
+                    setTimeout(function(){
+                        objNow=null;
+                        timer.fadeOut();
+                        up.text('提交成功');
+                        setTimeout(function(){
+                            window.location.href= "{:Url('Constitution/score')}";
+                        },1000)
+                    },2000);
+                }
+            });
+        }else{
+            var msg = confirm('您未全部完成，是否确定提交');
+            if(msg){
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Constitution/submits')}",
+                    data:{arr:answer,arrId:getDataID()},
+                    success:function(e){
+                        suc.fadeIn();
+                        setTimeout(function(){
+                            objNow=null;
+                            timer.fadeOut();
+                            up.text('提交成功');
+                            setTimeout(function(){
+                                window.location.href= "{:Url('Constitution/score')}";
+                            },1000)
+                        },2000);
+                    }
+                });
+            }else{
+                objNow=1;
+            }
+        }
+    }
+    function getDataID(){
+        var list=$('.list');
+        var arr=[];
+        for(var i=0;i<list.length;i++){
+            arr.push(list.eq(i).attr('data-id'));
+        }
+        return arr;
+    }
+    //返回答案的数组
+    function getAnswer(){
+        var answer = [];
+        var list = $('.list' );
+        var len = list.length;
+        for(var i = 0;i < len ;i++){
+            var checked = list.eq(i).find('input:checked');
+            var len_a = checked.length;
+            if(len_a === 0){
+                isAll = false;
+                answer.push(0);
+            }else if(len_a === 1){
+                answer.push(checked.val())
+            }else{
+                var it = [];
+                checked.each(function(){
+                    it.push($(this).val());
+                });
+                answer.push(it)
+            }
+        }
+        return answer;
+    }
+</script>
+
+{/block}

@@ -79,13 +79,6 @@
   padding-right: 4vw;
   padding-top: 3.5vw;
 }
-.book .title {
-  color: #333333;
-  text-align: center;
-  line-height: 10.7vw;
-  font-size: .36rem;
-  font-weight: 600;
-}
 .book .note {
   color: #999999;
   font-size: .24rem;

@@ -1,0 +1,91 @@
+body{background: #eee;position: relative;}
+.banner {width:100vw;height:28.11vh;}
+.banner img {width:100%;height:100%;}
+.title {position: relative;width:100vw;height:14.4vh;background: #fff;}
+.title a {width:25vw;height:100%;text-align: center;display: block;float:left;}
+.title a img {width:9.33vw;margin-top: 3vh;}
+.title a p {color: #333;font-size: .28rem;margin-top: 1vh;}
+.notice {
+    /*margin-top: 4vw;*/
+    background: #ffffff;
+    line-height: 10vw;
+    margin-top: 1.5vh;
+}
+.notice .tag {
+    padding: 0 4vw;
+}
+.notice .tag .fl {
+    color: #333;
+    font-size: .3rem;
+}
+.notice .tag .fl:after {
+    content:'';
+    display: block;
+    width: .8vw;
+    height:2.25vh;
+    background: red;
+    float:left;
+    margin-top: 1.8vh;
+    margin-right: 2vw;
+}
+.notice .tag .fa-bell-o {
+    color: #999999;
+    padding-right: 3vw;
+}
+.notice .tag .fr {
+    color: #999999;
+    font-size: .24rem;
+}
+.notice .lists {
+    width: 100vw;
+}
+.notice .lists .list {
+    display: block;
+    padding: 0 4vw;
+    width: 100vw;
+    height: 26vw;
+    border-bottom: 1px solid #f1f1f1;
+    position: relative;
+}
+.notice .lists .list .fl {
+    display: block;
+    width: 22vw;
+    height: 16vw;
+    margin-top: 5vw;
+}
+.notice .lists .list .fr {
+    width: 66vw;
+    height: 16vw;
+    margin-top: 5vw;
+}
+.notice .lists .list .fr .title {
+    width: 66vw;
+    height: 10vw;
+    color: #333333;
+    font-size: .28rem;
+    line-height: 5vw;
+    background: inherit;
+}
+.notice .lists .list .fr .note {
+    width: 66vw;
+    height: 6vw;
+    color: #999999;
+    font-size: .24rem;
+    line-height: 6vw;
+    position: absolute;
+    bottom: 4vw;
+}
+.notice .lists .list .fr .note span {
+    width: 31.5vw;
+}
+.notice .lists .list .fr .note span:nth-child(1) {float:left;}
+.notice .lists .list .fr .note span:nth-child(2) {float:right;text-align: right;}
+.notice .lists .list .fr .note span.fa {
+    text-align: right;
+    font-size: .32rem;
+}
+.notice .lists .nomessage {
+    width:26.7vw;height:11.24vh;
+    margin: 10vw 35vw;
+    opacity: 0.6;
+}

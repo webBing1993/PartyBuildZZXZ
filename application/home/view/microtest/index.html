@@ -1,0 +1,60 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>微考学</title>
+<link rel="stylesheet" href="/home/css/microtest/index.css">
+<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
+<!--<link rel="stylesheet" href="/home/css/redcollection/film.css">-->
+<!--<link rel="stylesheet" href="/home/css/redcollection/book.css">-->
+<!--<link rel="stylesheet" href="/home/css/redcollection/music.css">-->
+{/block}
+{block name="body"}
+<div class="top">
+    <div data-side="1">每日一课</div>
+    <div data-side="2">在线答题</div>
+    <div data-side="3">考核亮牌</div>
+</div>
+
+<div class="subject" id="side1">
+    1
+</div>
+<div class="subject" id="side2">
+    2
+</div>
+<div class="subject" id="side3">
+    3
+</div>
+
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+
+{/block}
+{block name="script"}
+<script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
+<script>
+    var mir = localStorage.getItem('mirNum')==null?1:localStorage.getItem('mirNum');
+    for(var i=0;i<$('.top>div').length;i++){
+        $('.top>div')[i].onclick = function(){
+            $('.top>div').removeClass('active');
+            $(this).addClass('active');
+            var side = $(this).data('side');
+            $('.subject').hide();
+            $('#side'+side).show();
+            localStorage.setItem('mirNum',side);
+        }
+    }
+    $('.top>div').removeClass('active');
+    $('.top>div').eq(mir-1).addClass('active');
+    $('.subject').hide();
+    $('#side'+mir).show();
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+</script>
+{/block}

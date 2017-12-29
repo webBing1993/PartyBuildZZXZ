@@ -1,0 +1,270 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>远程教育</title>
+<link rel="stylesheet" href="/home/css/education/index.css">
+<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
+<!--<link rel="stylesheet" href="/home/css/redcollection/film.css">-->
+<!--<link rel="stylesheet" href="/home/css/redcollection/book.css">-->
+<!--<link rel="stylesheet" href="/home/css/redcollection/music.css">-->
+{/block}
+{block name="body"}
+<div class="top">
+    <div data-side="1">红色电影</div>
+    <div data-side="2">红色文学</div>
+    <div data-side="3">红色音乐</div>
+</div>
+
+<div class="subject" id="side1">
+    <div class="banner">
+        <img src="/home/images/banner/1.jpg"  class="banner-img lazy">
+        <!--<div class="swiper-wrapper">-->
+            <!--<div class="swiper-slide">-->
+                <!--<a href="#" class="list">-->
+                    <!--<img src="/home/images/banner/1.jpg"  class="banner-img swiper-lazy" >-->
+                    <!--<div class="swiper-lazy-preloader"></div>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="swiper-pagination"></div>-->
+    </div>
+    <div class="lists-title">最新上映</div>
+    <div class="side1_lists">
+        <ul>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试测试测试测试测试测试测试测试测试测试</div><div class="listSummary">2017-12-05</div></a></li>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+            <li><a href="/home/education/movedetail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        </ul>
+
+    </div>
+    <div class="lists-title clear listsline">
+        经典热播
+        <a href="#" class="fr" style="color: #999;">更多>></a>
+    </div>
+    <div class="side1_lists">
+    <ul>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试测试测试测试测试测试测试测试测试测试</div><div class="listSummary">2017-12-05</div></a></li>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+    </ul>
+
+</div>
+</div>
+<div class="subject" id="side2">
+    <div class="banner">
+        <img src="/home/images/banner/1.jpg"  class="banner-img lazy">
+        <div class="search">
+            <span class="fa fa-search"></span>
+            <input type="text" placeholder="搜索书籍名字、作者名字">
+            <div class="results"></div>
+        </div>
+    </div>
+    <div class="tabs">
+        <span class="tab active">经典书籍</span>
+        <span class="tab">经典语录</span>
+    </div>
+    <div class="listbox">
+        <div class="books active">
+            <!--经典书籍列表-->
+            <a href="/home/education/bookdetail.html" class="list">
+                <img src="/home/images/banner/1.jpg" class="lazy">
+                <div class="content">
+                    <span class="title limit">我的爱人</span>
+                    <span class="author limit">作者：测试</span>
+                    <span class="read">读过：12</span>
+                </div>
+                <span class="fa fa-angle-right"></span>
+            </a>
+            <a href="/home/education/bookdetail.html" class="list">
+                <img src="/home/images/banner/1.jpg" class="lazy">
+                <div class="content">
+                    <span class="title limit">我的爱人</span>
+                    <span class="author limit">作者：测试</span>
+                    <span class="read">读过：12</span>
+                </div>
+                <span class="fa fa-angle-right"></span>
+            </a>
+            <a href="/home/education/bookdetail.html" class="list">
+                <img src="/home/images/banner/1.jpg" class="lazy">
+                <div class="content">
+                    <span class="title limit">我的爱人</span>
+                    <span class="author limit">作者：测试</span>
+                    <span class="read">读过：12</span>
+                </div>
+                <span class="fa fa-angle-right"></span>
+            </a>
+            <a href="/home/education/bookdetail.html" class="list">
+                <img src="/home/images/banner/1.jpg" class="lazy">
+                <div class="content">
+                    <span class="title limit">我的爱人</span>
+                    <span class="author limit">作者：测试</span>
+                    <span class="read">读过：12</span>
+                </div>
+                <span class="fa fa-angle-right"></span>
+            </a>
+            <a href="/home/education/bookdetail.html" class="list">
+                <img src="/home/images/banner/1.jpg" class="lazy">
+                <div class="content">
+                    <span class="title limit">我的爱人</span>
+                    <span class="author limit">作者：测试</span>
+                    <span class="read">读过：12</span>
+                </div>
+                <span class="fa fa-angle-right"></span>
+            </a>
+            <!--经典书籍列表-->
+        </div>
+        <div class="words hidden">
+            <!--经典语录列表-->
+            <a href="/home/education/textdetail.html" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            <!--经典语录列表-->
+        </div>
+    </div>
+</div>
+<div class="subject" id="side3">
+    <div class="banner">
+        <img src="/home/images/redcollection/bookbg.jpg"  class="banner-img lazy">
+    </div>
+    <div class="lists">
+        <a href="/home/education/musicdetail.html" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list">
+            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+            <div class="content">
+                <div class="title limit_">测试测试测试</div>
+                <div class="note clear">
+                    <span class="scan fl">1</span>
+                    <span class="fr">2017-12-15</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+
+{/block}
+{block name="script"}
+<script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
+<script>
+    var edu = localStorage.getItem('eduNum')==null?1:localStorage.getItem('eduNum');
+    for(var i=0;i<$('.top>div').length;i++){
+        $('.top>div')[i].onclick = function(){
+            $('.top>div').removeClass('active');
+            $(this).addClass('active');
+            var side = $(this).data('side');
+            $('.subject').hide();
+            $('#side'+side).show();
+            localStorage.setItem('eduNum',side);
+        }
+    }
+    $('.top>div').removeClass('active');
+    $('.top>div').eq(edu-1).addClass('active');
+    $('.subject').hide();
+    $('#side'+edu).show();
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: 3000,
+        loop:true,
+        pagination : '.swiper-pagination',
+        paginationType : 'bullets',
+        autoplayDisableOnInteraction:false,
+        lazyLoading : true,
+        lazyLoadingInPrevNext : true,
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+    $('.tab' ).off('click').on('click',function(){
+        var this_ = this ;
+        var box = $('.listbox');
+        var index = $(this_ ).index();
+        var ww = $('.tabs' ).width();
+        $(this_ ).addClass('active' );
+        $(this_ ).siblings('.tab').removeClass('active');
+        if(index == 1){
+            $('.words' ).removeClass('hidden');
+        }else{
+            $('.books' ).removeClass('hidden');
+        }
+        ww = ww * index;
+        box.animate({left: -ww +'px'},500,function(){
+            if(index == 1){
+                $('.books').addClass('hidden');
+            }else{
+                $('.words').addClass('hidden');
+            }
+        });
+    })
+    //如果是访问经典语录后返回就执行
+    var redliterature = sessionStorage.getItem("redliterature");
+    if(redliterature){
+        $('.tabs>span:last').click();
+        sessionStorage.removeItem("redliterature");
+    }
+</script>
+{/block}

@@ -81,7 +81,7 @@
 }
 .music .title {
   color: #333333;
-  font-size: 1.8rem;
+  font-size: .36rem;
   font-weight: 600;
   width: 100%;
   text-align: center;
@@ -94,7 +94,7 @@
 .music .time {
   width: 100%;
   color: #999999;
-  font-size: 1.2rem;
+  font-size: .24rem;
   line-height: 7vw;
   border-bottom: 1px solid #f1f1f1;
   margin-top: 2.7vw;
@@ -124,7 +124,7 @@
 }
 .music .content .note {
   color: #666666;
-  font-size: 1.4rem;
+  font-size: .28rem;
   float: right;
 }
 .music .content .note span {
