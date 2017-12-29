@@ -14,4 +14,7 @@ class Lxyz extends Base
     public function index(){
         return $this->fetch();
     }
+    public function meeting(){
+        return $this->fetch();
+    }
 }

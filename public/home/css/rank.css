@@ -107,7 +107,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 }
 .my .name_,.my .scores{
 	display: inline-block;
-	font-size: 1.3rem;
+	font-size: .26rem;
 }
 .name_ span{
 	display: block;
@@ -197,7 +197,7 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	overflow: hidden;
 }
 .list .name_,.list .scores{
-	font-size: 1.3rem;
+	font-size: .26rem;
 }
 .list .name_{
 	width: 50vw;
@@ -221,17 +221,17 @@ table { border-collapse: collapse; background-color: #ffffff; }
 	/*排名颜色*/
 .list:nth-child(1) .num_{
 	color: #e6d841;
-	font-size: 2.2rem;
+	font-size: .44rem;
 	font-weight: bold;
 }
 .list:nth-child(2) .num_{
 	color:#c4c4c4;
-	font-size: 2.2rem;
+	font-size: .44rem;
 	font-weight: bold;
 }
 .list:nth-child(3) .num_{
 	color: #a67e3e;
-	font-size: 2.2rem;
+	font-size: .44rem;
 	font-weight: bold;
 }
 .list:nth-child(1) .avatar_{

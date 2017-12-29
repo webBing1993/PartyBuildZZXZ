@@ -1,0 +1,142 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>十九大专区</title>
+<link rel="stylesheet" href="/home/css/lxyz/index.css">
+{/block}
+{block name="body"}
+<div id="meeting" class="all">
+    <ul>
+        <li>
+            <div class="meetingTime"><span>昨天 10:09</span></div>
+            <a href="/home/education/detail.html">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+                <p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>
+                <div class="note" style="width:84vw;margin: auto;"><span class="read">111</span><span class="isgood good">0</span></div>
+            </a>
+        </li>
+        <li>
+            <div class="meetingTime"><span>昨天 10:09</span></div>
+            <a href="/home/education/detail.html">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+                <p>中央关于认真学习宣传贯彻党的十九大精神的决定</p>
+                <div class="note" style="width:84vw;margin: auto;">
+                    <span class="read">111</span>
+                    <span class="isgood good">0</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <div class="meetingTime"><span>昨天 10:09</span></div>
+            <a href="/home/education/detail.html">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+                <p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>
+                <div class="note" style="width:84vw;margin: auto;">
+                    <span class="read">111</span>
+                    <span class="isgood good">0</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <div class="meetingTime"><span>昨天 10:09</span></div>
+            <a href="/home/education/detail.html">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+                <p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>
+                <div class="note" style="width:84vw;margin: auto;">
+                    <span class="read">111</span>
+                    <span class="isgood good">0</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+
+{/block}
+{block name="script"}
+<script>
+    var scrollNow = true;
+    var len = $("#meeting li" ).length;
+    if(len >= 5){
+        $('.tip' ).text('上拉加载更多');
+    }else {
+        $('.tip' ).hide();
+    }
+    //上拉加载
+    loadScroll();
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $(".list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Learn/indexmore')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addCourse(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                            $("img.lazy").lazyload({
+                                placeholder: "/home/images/loading.jpg",
+                                effect: "fadeIn",
+                                threshold: 1
+                            });
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
+    function addCourse(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var list = lists[i];
+            html +='<li>'
+                    +'<div class="meetingTime"><span>昨天 10:09</span></div>'
+                    +'<a href="/home/education/detail.html">'
+                    +'<img data-original="/home/images/banner/1.jpg" class="lazy">'
+                    +'<p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>'
+                    +'<div class="note" style="width:84vw;margin: auto;"><span class="read">111</span><span class="isgood good">0</span></div>'
+                    +'</a>'
+                    +'</li>'
+        }
+        $(".lists" ).append(html);
+    }
+
+
+
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+</script>
+{/block}

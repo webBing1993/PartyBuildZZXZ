@@ -2,41 +2,53 @@
 
 {block name="style"}
 <title>网上党校</title>
-<link rel="stylesheet" href="/home/css/constitution/index.css">
-<link rel="stylesheet" href="/home/css/constitution/game.css">
-<link rel="stylesheet" href="/home/css/constitution/course.css">
+<link rel="stylesheet" href="/home/css/microtest/index.css">
+<link rel="stylesheet" href="/home/css/microtest/game.css">
+<link rel="stylesheet" href="/home/css/microtest/course.css">
 {/block}
 
 {block name="body"}
     <div class="constitutionTop">
-        <div data-side="1" class="active">每日一课</div>
+        <div data-side="1">每日一课</div>
         <div data-side="2">在线答题</div>
-        <div data-side="3">党章学习</div>
+        <div data-side="3">考核亮牌</div>
     </div>
 
-    <div class="constitutionContent" id="side1"  style="display: block;">
+    <div class="constitutionContent" id="side1">
         <div class="side1Content">
-            <div class="constitutionContentImg"><img src="/home/images/banner/banner.png" alt=""></div>
+            <div class="constitutionContentImg"><img src="/home/images/banner/1.jpg" alt=""></div>
             <div class="side1ContentText">
                 <div class="side1ContentTitle">单选题 （共3题）</div>
             </div>
         </div>
-        {eq name = "check" value = "0"}
         <div style="overflow-y: inherit;" class="notice activity">
             <div class="lists">
-                {volist name="question" id="vo" key="n"}
-                <div class="list" data-tab="{$vo.id}">
-                    <div class="title">{$vo.title}</div>
-                    {volist name="vo->Option" id="value" key="k"}
-                    <label>{if condition="($k eq 1) AND ($value neq ' ') AND ($value neq '-')"}A{elseif condition="($k eq 2) AND ($value neq ' ') AND ($value neq '-')"}B{elseif condition="($k eq 3 )AND ($value neq ' ') AND ($value neq '-')"}C{elseif condition="($k eq 4 ) AND ($value neq ' ') AND ($value neq '-')"/}D{/if}.{$value|substr=###,'2'}</label>
-                    {/volist}
-                    <div class="number">{$n} / 3</div>
+                <div class="list" data-tab="1">
+                    <div class="title">经过延安整风运动，中国共产党达到了＿上的高度一致</div>
+                    <label>A. 思想</label>
+                    <label>B. 思想</label>
+                    <label>C. 思想</label>
+                    <label>D. 思想</label>
+                    <div class="number">1 / 3</div>
                 </div>
-                {/volist}
+                <div class="list" data-tab="1">
+                    <div class="title">经过延安整风运动，中国共产党达到了＿上的高度一致</div>
+                    <label>A. 思想</label>
+                    <label>B. 思想</label>
+                    <label>C. 思想</label>
+                    <label>D. 思想</label>
+                    <div class="number">2 / 3</div>
+                </div>
+                <div class="list" data-tab="1">
+                    <div class="title">经过延安整风运动，中国共产党达到了＿上的高度一致</div>
+                    <label>A. 思想</label>
+                    <label>B. 思想</label>
+                    <label>C. 思想</label>
+                    <label>D. 思想</label>
+                    <div class="number">3 / 3</div>
+                </div>
             </div>
-            {eq name='visit' value="0"}
             <div class="submit" data-toggle="modal" data-target="#modal">确认提交</div>
-            {/eq}
             <!--模态框-->
             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -52,87 +64,271 @@
                 </div>
             </div>
         </div>
-        {else/}
-        <div style="overflow-y: inherit;" class="notice activity">
-            <div class="lists">
-                {volist name="question" id="vo" key="n"}
-                <div class="list" data-tab="题号">
-                    <div class="title" >{$vo.title}</div>
-                    {volist name="vo->Option" id="value" key="k"}
-                    <label  {eq name="vo.right" value="$k" }class="checked" {/eq}>{if condition="($k eq 1) AND ($value neq ' ') AND ($value neq '-') "}A{elseif condition="($k eq 2) AND ($value neq ' ') AND ($value neq '-')"}B{elseif condition="($k eq 3 )AND ($value neq ' ') AND ($value neq '-')"}C{elseif condition="($k eq 4 )AND ($value neq ' ') AND ($value neq '-')"/}D{/if}.{$value|substr=###,'2'}</label>
-                    {/volist}
-                    <div class="note">
-                        <span class="true">正确答案：<i>{$vo->Right|implode=###,"&nbsp;&nbsp;&nbsp;"}</i></span>
-                        <span class="number">{$n} / 3</span>
-                    </div>
-                </div>
-                {/volist}
-            </div>
-        </div>
-        {/eq}
         <!--<div id="btn">提交</div>-->
     </div>
     <div class="constitutionContent" id="side2">
         <div class="notice party">
-            {eq name="visit" value="0"}
-            <!--<img src="/home/images/game2.png" alt="" class="text">-->
-            {if condition='$info eq null'}
             <a class="start start1" style="color: #fff;">开始答题</a>
-            {elseif condition='$exist eq 0'/}
-            <a class="start goon" style="color: #fff;">继续答题</a>
-            <a class="continue" style="color: #fff;">重新开始</a>
-            {else/}
-            <a class="start start1" style="color: #fff;">开始答题</a>
-            {/if}
-            {else/}
-            <a class="start" href="">游客暂无权限</a>
-            {/eq}
         </div>
     </div>
     <div class="constitutionContent" id="side3">
-        <div class="bg_t"></div>
-        <div class="bg_b">
-            {eq name="personal.restart" value="1"}
-            <div class="recopy" data-toggle="modal" data-target="#restart">重新抄写</div>
-            {/eq}
-            <div class="times">
-                您已完成<span style="display: initial;float:initial;border: initial;">{$copy.percent}</span>%
+        <div class="top">
+            <div class="userImg">
+                <img src="/home/images/banner/1.jpg" alt="">
+            </div>
+            <div class="topName">戴人杰</div>
+            <ul class="now">
+                <li>当前积分 18</li>
+                <li>当前排名 1</li>
+            </ul>
+            <div class="rule">
+                <img src="/home/images/rank/8.png" alt="">
+                <span>积分规则</span>
             </div>
         </div>
-        <div class="content" style="margin-top: initial;margin-left: initial;">
-            <ul class="list">
-                {volist name="list" id="vo"}
-                {if condition="$vo.id < $personal.chapter"}
-                <li class="over">
-                    {elseif condition="$vo.id > $personal.chapter" /}
-                <li>
-                    {else/}
-                <li class="active">
-                    {/if}
-                    <a href="{:Url('Constitution/copy?id='.$vo['id'])}">
-                        <span class="num">{$vo.id}</span>
-                        <span class="title">{$vo.title}</span>
-                    </a>
-                </li>
-                {/volist}
+        <div class="navbar">
+            <ul class="classify">
+                <li class="active">周榜</li>
+                <li>月榜</li>
+                <li>总榜</li>
             </ul>
-        </div>
-        <!--模态框:重新抄写-->
-        <div class="modal fade" id="restart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">提示：</h4>
-                    </div>
-                    <div class="modal-body" style="font-size: 14px">
-                        您的本次数据将被清空，是否确定重新抄写
-                    </div>
-                    <div class="modal-footer">
-                        <button  class="btn btn-danger" type="button" id="clear">确定</button>
-                        <button class="btn btn-default" data-dismiss="modal" type="button">返回</button>
-                    </div>
+            <div class="name">
+                <span>排名</span>
+                <span>积分</span>
+            </div>
+            <div class="ranging">
+                <!--//周榜-->
+                <div class="weeklist" data-id="1">
+                    <ul>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                    </ul>
                 </div>
+                <div class="monthlist" data-id="2" style="display:none">
+                    <ul>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>210</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sumlist" data-id="3" style="display:none">
+                    <ul>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>310</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                        <li>
+                            <!--前三名头像-->
+                            <div class="king"></div>
+                            <!--排名-->
+                            <span>1</span>
+                            <!--用户头像-->
+                            <img src="/home/images/banner/1.jpg" alt="" class="userImg">
+                            <p>戴人杰</p>
+                            <!--积分-->
+                            <b>10</b>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="bk" style="">
+            <div>
+                <a></a>
+                <img src="/home/images/rank/7.png" alt="">
+                <p>
+                    您可以通过浏览文章、点赞、评论等获取相应积分，具体如下：
+                    <br>
+                    <br>
+                    党建浏览: <b>1</b>分
+                    <br>
+                    党建签到: <b>1</b>分
+                    <br>
+                    党建点赞: <b>1</b>分
+                    <br>
+                    党员评论: <b>1</b>分
+                    <br>
+                    <br>
+                    通过以上互动行为，您可以累积积分，并在积分排行榜中显示个人积分排行状况！加油哦！
+                </p>
             </div>
         </div>
     </div>
@@ -141,7 +337,7 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
-    var GZtype =localStorage.getItem('GZnum')==null?1:localStorage.getItem('GZnum');
+    var GZtype =localStorage.getItem('gamenum')==null?1:localStorage.getItem('gamenum');
     for(var i=0;i<$('.constitutionTop div').length;i++){
         $('.constitutionTop div')[i].onclick = function(){
             $('.constitutionTop div').removeClass('active');
@@ -149,9 +345,15 @@
             var side =  $(this).data('side');
             $('.constitutionContent').hide();
             $('#side'+side).show();
-            localStorage.setItem('GZnum',side)
+            localStorage.setItem('gamenum',side)
         }
     }
+
+    $('.constitutionTop>div').removeClass('active');
+    $('.constitutionTop>div').eq(GZtype-1).addClass('active');
+    $('.constitutionContent').hide();
+    $('#side'+GZtype).show();
+
     $('.side1ContentAnswer input').on('click',function(){
         $('.side1ContentAnswer input').parent().removeClass('active');
         $(this).parent().addClass('active');
@@ -214,7 +416,6 @@
         }
     });
 </script>
-
 <script>
     /**
      * 每日一课
@@ -248,9 +449,15 @@
     })
 </script>
 <!--当日已经答题就不能选中lable-->
-
 <script>
-    if ({$check} == 0){
+    $(function() {
+        $('label').on('click', function (e) {
+            var it = $(this);
+            it.addClass('checked');
+            it.siblings('label').removeClass('checked');
+        });
+    });
+    if (1 == 0){
         //选中样式变化
         $(function() {
             $('label').on('click', function (e) {
@@ -262,18 +469,17 @@
     }
 
     $(".party .start1").click(function(){
-        window.location.href = "{:Url('Constitution/answer')}";
+        window.location.href = "{:Url('microtest/answer')}";
     })
     $(".party .goon").click(function(){
-        window.location.href = "{:Url('Constitution/goon')}";
+        window.location.href = "{:Url('microtest/goon')}";
     })
     $(".party .continue").click(function(){
-        window.location.href = "{:Url('Constitution/answer')}";
+        window.location.href = "{:Url('microtest/answer')}";
     })
 
 
 </script>
-
 <script>
     $(function(){
         $(function () {
@@ -289,5 +495,30 @@
         })
     });
 </script>
+<script>
+    $('.classify>li').click(function(){
+        if(!$(this).hasClass('active')){
+            $(this).parent().find('.active').removeClass('active');
+            $(this).addClass('active');
+            $('.ranging>div').hide();
+            $('[data-id='+($(this).index()+1)+']').show();
+        }
+    });
+    //css适配
+    $(function(){
+        $('#bk').height($(window).height());
+    });
+    //积分规则
+    $('.rule').click(function(){
+        $('#bk').fadeIn(300);
+        $('#bk>div').fadeIn(300).css({'top':'50%'});
+    });
+    //积分窗口关闭
+    $('#bk>div>a').click(function(){
+        $('#bk').fadeOut(300);
+        $('#bk>div').fadeOut(300).css({'top':'0%'});
+//        $('body').css({'overflow-y':'scroll'});
+    })
 
+</script>
 {/block}

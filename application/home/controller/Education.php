@@ -26,4 +26,7 @@ class Education extends Base
     public function musicdetail(){
         return $this->fetch();
     }
+    public function detail(){
+        return $this->fetch();
+    }
 }
