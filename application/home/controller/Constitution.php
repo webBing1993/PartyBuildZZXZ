@@ -12,6 +12,7 @@ use think\Controller;
 use app\admin\model\Question;
 use app\home\model\Answer;
 use app\home\model\Answers;
+use think\Db;
 
 /**
  * class Constitution
@@ -21,46 +22,185 @@ class Constitution extends Base {
     /**
      * 排行榜
      */
-    public function rank(){
+    public function integral(){
         $this->anonymous();
-        $type = input('type');  //获取类型，1为常规模式排行 2为互动模式排行
-
+//        $this->checkAnonymous();
         $wechatModel = new WechatUser();
         $userId = session('userId');
-        $personal = $wechatModel->where('userid',$userId)->find();    //获取个人信息
-
-        //传统模式
-        $map['trad_score'] = array('neq',0);
-        $trad = $wechatModel->where($map)->order('trad_score desc')->limit(50)->select();
-        foreach ($trad as $key => $value) {
-            if($value['userid'] == $userId) {
-                $personal['trad_rank'] = $key+1;     //该用户传统排名
+        //所在部门名称
+        $dp = Db::table('pb_wechat_department_user')
+            ->alias('a')
+            ->join('pb_wechat_department b','a.departmentid = b.id','LEFT')
+            ->where('a.userid',$userId)
+            ->find();
+        //个人信息
+        $personal = $wechatModel::where('userid',$userId)->find();
+//        $personal['score'] = $personal['score'] + 10;  // 关注企业号  基础分10
+        $personal['dpname'] = $dp['name'];
+        //总榜
+        $answer = Answers::where('1=1')->select();
+        $list4 = array();
+        foreach($answer as $value){
+            $k = $value['userid'];
+            $list4[$k][] = $value;
+        }
+        $news_s = array();
+        foreach($list4 as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_s[] = $cen;
+        }
+        //倒序，字段score排序
+        $sort_s = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort_s = array();
+        foreach ($news_s as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort_s[$key][$k] = $value;
             }
         }
-        //游戏模式
-        $map1['game_score'] = array('neq',0);
-        $game = $wechatModel->where($map1)->order('game_score desc')->limit(50)->select();
-        foreach ($game as $key => $value) {
-            if($value['userid'] == $userId) {
-                $personal['game_rank'] = $key+1;     //该用户游戏排名
+        if($sort_s['direction'] && $arrSort_s){
+            array_multisort($arrSort_s[$sort_s['field']],constant($sort_s['direction']),$news_s);
+        }
+        //最终重组，限制输出20名，获取用户个人信息
+        $final_s = array();
+        foreach ($news_s as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final_s[$key] = $value;
+            }
+            if($value['userid'] == $userId){
+                $personal['rank'] = $key+1;
             }
         }
-        if(isset($personal['trad_rank'])) {
-            $personal['trad_rank'] = "第".$personal['trad_rank']."名";
-        }else {
-            $personal['trad_rank'] = "无";
-        }
-        if(isset($personal['game_rank'])) {
-            $personal['game_rank'] = "第".$personal['game_rank']."名";
-        }else {
-            $personal['game_rank'] = "无";
-        }
-        $this->assign('per',$personal);
-        $this->assign('trad',$trad);
-        $this->assign('game',$game);
-        $this->assign('type',$type);
+        $this->assign('all',$final_s);
+        $this->assign('personal',$personal);
 
+        //获取周榜信息
+        date_default_timezone_set("PRC");        //初始化时区
+        $y = date("Y");        //获取当天的年份
+        $m = date("m");        //获取当天的月份
+        $d = date("d");        //获取当天的号数
+        $todayTime= mktime(0,0,0,$m,$d,$y);        //将今天开始的年月日时分秒，转换成unix时间戳
+        $time = date("N",$todayTime);        //获取星期数进行判断，当前时间做对比取本周一和上周一时间。
+        //$t为本周周一，$s为上周周一
+        switch($time){
+            case 1: $t = $todayTime;
+                break;
+            case 2: $t = $todayTime - 86400*1;
+                break;
+            case 3: $t = $todayTime - 86400*2;
+                break;
+            case 4: $t = $todayTime - 86400*3;
+                break;
+            case 5: $t = $todayTime - 86400*4;
+                break;
+            case 6: $t = $todayTime - 86400*5;
+                break;
+            case 7: $t = $todayTime - 86400*6;
+                break;
+            default:
+        }
+        // 本周答题
+        $answer = Answers::where(['create_time' => array('egt',$t)])->select();
+        $list4 = array();
+        foreach($answer as $value){
+            $k = $value['userid'];
+            $list4[$k][] = $value;
+        }
+        $news_w = array();
+        foreach($list4 as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_w[] = $cen;
+        }
+
+        //倒序，字段score排序
+        $sort = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort = array();
+        foreach ($news_w as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort[$key][$k] = $value;
+            }
+        }
+        if($sort['direction'] && $arrSort){
+            array_multisort($arrSort[$sort['field']],constant($sort['direction']),$news_w);
+        }
+
+        //最终重组，限制输出20名，获取用户个人信息
+        $final = array();
+        foreach ($news_w as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final[$key] = $value;
+            }
+        }
+        $this->assign('week',$final);
+
+        //获取月榜信息
+        date_default_timezone_set("PRC");        //初始化时区
+        $start = mktime(0,0,0,date('m'),1,date('Y'));
+        $end = mktime(23,59,59,date('m'),date('t'),date('Y'));
+
+        // 本月答题
+        $answer_m = Answers::where(['create_time' => array('between',[$start,$end])])->select();
+        $list4_m = array();
+        foreach($answer_m as $value){
+            $k = $value['userid'];
+            $list4_m[$k][] = $value;
+        }
+        $news_m = array();
+        foreach($list4_m as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_m[] = $cen;
+        }
+
+        //倒序，字段score排序
+        $sort_m = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort_m = array();
+        foreach ($news_m as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort_m[$key][$k] = $value;
+            }
+        }
+        if($sort_m['direction'] && $arrSort_m){
+            array_multisort($arrSort_m[$sort_m['field']],constant($sort_m['direction']),$news_m);
+        }
+        //最终重组，限制输出20名，获取用户个人信息
+        $final_m = array();
+        foreach ($news_m as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final_m[$key] = $value;
+            }
+        }
+        $this->assign('month',$final_m);
         return $this->fetch();
+
     }
 
     /**

@@ -27,50 +27,35 @@ return [
         '__ADMIN__' => '/admin',
         '__HOME__' => '/home',
     ],
-    
+
     /* 企业配置   新手指南*/
     'party' => array(
-        'login' => 'http://szzpb.0571ztnet.com/home/index/login',
+        'login' => 'http://dzgcpb.0571ztnet.com/home/index/login',
         'token' => '',
         'encodingaeskey' => '',
-        'appid' => 'wwdc9046238ff986dd',
-        'appsecret' => 'hlwoxVTsz3-uVm2_xaTS_4dk6UvqJ2Gy1Qf8NNXZEvY',
-        'agentid' => 1000002,
+        'appid' => 'ww361a838e44ae696f',
+        'appsecret' => '1S1aMeIkq7YeESEjDiP5e5h2YTefvs47b88deKUNdlg',
+        'agentid' => 1000003,
     ),
 
-    /*红色石淙 */
-    'Learn' => array(
-        'appid' => 'wwdc9046238ff986dd',
-        'appsecret' => 'hlwoxVTsz3-uVm2_xaTS_4dk6UvqJ2Gy1Qf8NNXZEvY',
+    //消息通知模块
+    'news' => [
+        'appid' => 'ww361a838e44ae696f',
+        'appsecret' => '05FC2Dycjf421Uhz2_YGb7j_IeArwgCe47u2Ucd1tZE',
+        'agentid' => 1000004
+    ],
+    //消息审核模块
+    'review' => [
+        'appid' => 'ww361a838e44ae696f',
+        'appsecret' => 'lXzi5CRoSBp0MoTw-pQY7LS1EVNDWXQfOO1Lzoi1lx4',
         'agentid' => 1000002
-    ),
-
-    /*廉政石淙 */
-    'Clean' => array(
-        'appid' => 'wwdc9046238ff986dd',
-        'appsecret' => 'Izg3mHtwqxcTbrh7Kb_xVd-9btzCq9mmP7WFsgjCfZk',
-        'agentid' => 1000008
-    ),
-
-    /*美丽乡村 */
-    'Country' => array(
-        'appid' => 'wwdc9046238ff986dd',
-        'appsecret' => 'ksvZ7Afupe_jouG_8onwnt9qzwWGsvtY6JoMDSvSWP4',
-        'agentid' => 1000006
-    ),
-
-    /*掌上石淙 */
-    'Hands' => array(
-        'appid' => 'wwdc9046238ff986dd',
-        'appsecret' => 'XgkQXpjOSR9r8bNwyjvrsQsQwyETZQ6gp_3sJdltnUw',
-        'agentid' => 1000007
-    ),
+    ],
 
 
     //  推送网站域名
-    'http_url' => "http://szzpb.0571ztnet.com",
+    'http_url' => "http://dzgcpb.0571ztnet.com",
     // 推送对象 发送给全体 @all  个人测试15700004138
-    'touser' => '15700004138',
+    'touser' => '18767104335',
     /* UC用户中心配置 */
     'uc_auth_key' => '(.t!)=JTb_OPCkrD:-i"QEz6KLGq5glnf^[{p;je',
     // 关闭调试模式

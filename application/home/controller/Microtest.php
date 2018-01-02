@@ -8,6 +8,11 @@
 
 namespace app\home\controller;
 
+use app\admin\model\Question;
+use app\home\model\Answer;
+use app\home\model\Answers;
+use app\home\model\WechatUser;
+use think\Db;
 
 class Microtest extends Base
 {
@@ -19,207 +24,234 @@ class Microtest extends Base
      * 互动模式主页
      */
     public function game(){
+        $this->anonymous();
+//        $this->checkAnonymous();
+        $wechatModel = new WechatUser();
+        $userId = session('userId');
+        //所在部门名称
+        $dp = Db::table('pb_wechat_department_user')
+            ->alias('a')
+            ->join('pb_wechat_department b','a.departmentid = b.id','LEFT')
+            ->where('a.userid',$userId)
+            ->find();
+        //个人信息
+        $personal = $wechatModel::where('userid',$userId)->find();
+//        $personal['score'] = $personal['score'] + 10;  // 关注企业号  基础分10
+        $personal['dpname'] = $dp['name'];
 
+        //每日一课数据
+        $Answers = Answers::where(['userid' => $userId])->order('id desc')->whereTime('create_time','d')->find();
+        $this->assign('check',0);//1为答过题
+        if(empty($Answers)){   // 没有数据
+            //取单选
+            $arr=Question::all(['type'=>0]);
+            foreach($arr as $value){
+                $ids[]=$value->id;
+            }
+            //随机获取单选的题目
+            $num=3;//题目数目
+            $data=array();
+            while(true){
+                if(count($data) == $num){
+                    break;
+                }
+                $index=mt_rand(0,count($ids)-1);
+                $res=$ids[$index];
+                if(!in_array($res,$data)){
+                    $data[]=$res;
+                }
+            }
+            foreach($data as $value){
+                $question[]=Question::get($value);
+            }
+            $this->assign('question',$question);
+        }else{  //  有数据
+            // 当天已经答过题
+            $Qid = json_decode($Answers->question_id);
+            $rights=json_decode($Answers->value);
+            $re = array();
+            foreach($Qid as $key => $value){
+                $re[$key] = Question::get($value);
+                $re[$key]['right'] = $rights[$key];
+            }
+            $this->assign('question',$re);
+            $this->assign('check',1);//1为答过题
+        }
+        //在线答题
+        $info = Answer::get(['userid'=>$userId]);
+        if($info) {
+            $exist=$info->exist;
+            $this->assign('exist',$exist);
+            $this->assign('info',$info);
+        }else {
+            $this->assign('exist',"");
+            $this->assign('info',"");
+        }
+
+        //总榜
+        $answer = Answers::where('1=1')->select();
+        $list4 = array();
+        foreach($answer as $value){
+            $k = $value['userid'];
+            $list4[$k][] = $value;
+        }
+        $news_s = array();
+        foreach($list4 as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_s[] = $cen;
+        }
+        //倒序，字段score排序
+        $sort_s = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort_s = array();
+        foreach ($news_s as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort_s[$key][$k] = $value;
+            }
+        }
+        if($sort_s['direction'] && $arrSort_s){
+            array_multisort($arrSort_s[$sort_s['field']],constant($sort_s['direction']),$news_s);
+        }
+        //最终重组，限制输出20名，获取用户个人信息
+        $final_s = array();
+        foreach ($news_s as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final_s[$key] = $value;
+            }
+            if($value['userid'] == $userId){
+                $personal['rank'] = $key+1;
+            }
+        }
+        $this->assign('all',$final_s);
+        $this->assign('personal',$personal);
+
+        //获取周榜信息
+        date_default_timezone_set("PRC");        //初始化时区
+        $y = date("Y");        //获取当天的年份
+        $m = date("m");        //获取当天的月份
+        $d = date("d");        //获取当天的号数
+        $todayTime= mktime(0,0,0,$m,$d,$y);        //将今天开始的年月日时分秒，转换成unix时间戳
+        $time = date("N",$todayTime);        //获取星期数进行判断，当前时间做对比取本周一和上周一时间。
+        //$t为本周周一，$s为上周周一
+        switch($time){
+            case 1: $t = $todayTime;
+                break;
+            case 2: $t = $todayTime - 86400*1;
+                break;
+            case 3: $t = $todayTime - 86400*2;
+                break;
+            case 4: $t = $todayTime - 86400*3;
+                break;
+            case 5: $t = $todayTime - 86400*4;
+                break;
+            case 6: $t = $todayTime - 86400*5;
+                break;
+            case 7: $t = $todayTime - 86400*6;
+                break;
+            default:
+        }
+        // 本周答题
+        $answer = Answers::where(['create_time' => array('egt',$t)])->select();
+        $list4 = array();
+        foreach($answer as $value){
+            $k = $value['userid'];
+            $list4[$k][] = $value;
+        }
+        $news_w = array();
+        foreach($list4 as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_w[] = $cen;
+        }
+
+        //倒序，字段score排序
+        $sort = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort = array();
+        foreach ($news_w as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort[$key][$k] = $value;
+            }
+        }
+        if($sort['direction'] && $arrSort){
+            array_multisort($arrSort[$sort['field']],constant($sort['direction']),$news_w);
+        }
+
+        //最终重组，限制输出20名，获取用户个人信息
+        $final = array();
+        foreach ($news_w as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final[$key] = $value;
+            }
+        }
+        $this->assign('week',$final);
+
+        //获取月榜信息
+        date_default_timezone_set("PRC");        //初始化时区
+        $start = mktime(0,0,0,date('m'),1,date('Y'));
+        $end = mktime(23,59,59,date('m'),date('t'),date('Y'));
+
+        // 本月答题
+        $answer_m = Answers::where(['create_time' => array('between',[$start,$end])])->select();
+        $list4_m = array();
+        foreach($answer_m as $value){
+            $k = $value['userid'];
+            $list4_m[$k][] = $value;
+        }
+        $news_m = array();
+        foreach($list4_m as $u => $val){
+            $count = 0;
+            foreach($val as $valu){
+                $count += $valu->score;
+            }
+            $cen['userid'] = $u;
+            $cen['score'] = $count;
+            $news_m[] = $cen;
+        }
+
+        //倒序，字段score排序
+        $sort_m = array(
+            'direction' => 'SORT_DESC',
+            'field' => 'score',
+        );
+        $arrSort_m = array();
+        foreach ($news_m as $k => $v){
+            foreach ($v as $key => $value){
+                $arrSort_m[$key][$k] = $value;
+            }
+        }
+        if($sort_m['direction'] && $arrSort_m){
+            array_multisort($arrSort_m[$sort_m['field']],constant($sort_m['direction']),$news_m);
+        }
+        //最终重组，限制输出20名，获取用户个人信息
+        $final_m = array();
+        foreach ($news_m as $key => $value){
+            if($key<20){
+                $user = WechatUser::where('userid',$value['userid'])->find();
+                $value['name'] = $user['name'];
+                $final_m[$key] = $value;
+            }
+        }
+        $this->assign('month',$final_m);
         return $this->fetch();
-    }
 
-    /**
-     * 抄写页面
-     */
-    public function copy(){
-        $userId = session('userId');
-        $id = input('id');
-        if(IS_POST){
-            //传递数组
-            $data = array(
-                'chapter' => $id,
-                'length' => input('length'),
-                'status' => input('status'),
-                'create_user' => $userId,
-            );
-            $map = array(
-                'chapter' => $id,
-                'create_user' => $userId,
-            );
-
-            $info = ConstitutionCopy::where($map)->find();  //查看是否存在记录，存在则更新，不存在新增
-            if($info) {
-                $mes = ConstitutionCopy::where($map)->update($data);
-                if($mes){
-                    $userId = session('userId');
-                    //总字数
-                    $list = ConstitutionModel::all();
-                    $sum = 0;
-                    foreach ($list as $value) {
-                        $sum += $value['len'];
-                    }
-                    //当前字数
-                    $all = ConstitutionCopy::where('create_user',$userId)->select();
-                    $number = 0;
-                    foreach ($all as $value) {
-                        $number += $value['length'];
-                    }
-                    $score = round(($number/$sum)*100);   //四舍五入百分比
-                    $times = WechatUser::where('userid',$userId)->find();   //抄写次数
-                    //总分，不足百分之一记1分。
-                    if($score < 1) {
-                        $mark = 1 + 100*$times['times'];
-                    }else {
-                        $mark = $score + 100*$times['times'];
-                    }
-                    $code['trad_score'] = $mark;
-                    WechatUser::where('userid',$userId)->update($code);
-
-                    return $this->success("更新成功");
-                }else{
-                    return $this->error("更新失败");
-                }
-            }else {
-                $mes = ConstitutionCopy::create($data);
-                if($mes) {
-                    $userId = session('userId');
-                    //总字数
-                    $list = ConstitutionModel::all();
-                    $sum = 0;
-                    foreach ($list as $value) {
-                        $sum += $value['len'];
-                    }
-                    //当前字数
-                    $all = ConstitutionCopy::where('create_user',$userId)->select();
-                    $number = 0;
-                    foreach ($all as $value) {
-                        $number += $value['length'];
-                    }
-                    $score = round(($number/$sum)*100);   //四舍五入百分比
-                    $times = WechatUser::where('userid',$userId)->find();   //抄写次数
-                    //总分，不足百分之一记1分。
-                    if($score < 1) {
-                        $mark = 1 + 100*$times['times'];
-                    }else {
-                        $mark = $score + 100*$times['times'];
-                    }
-                    $code['trad_score'] = $mark;
-                    WechatUser::where('userid',$userId)->update($code);
-
-                    return $this->success("新增成功");
-                }else{
-                    return $this->error("新增失败");
-                }
-            }
-        }else{
-            //党章内容
-            $msg = ConstitutionModel::get($id);
-            switch ($msg['id']){
-                case 1:
-                    $msg['title'] = "第一章 总 纲";
-                    break;
-                case 2:
-                    $msg['title'] = "第二章 党 员";
-                    break;
-                case 3:
-                    $msg['title'] = "第三章 党的组织制度";
-                    break;
-                case 4:
-                    $msg['title'] = "第四章 党的中央组织";
-                    break;
-                case 5:
-                    $msg['title'] = "第五章 党的地方组织";
-                    break;
-                case 6:
-                    $msg['title'] = "第六章 党的基层组织";
-                    break;
-                case 7:
-                    $msg['title'] = "第七章 党的干部";
-                    break;
-                case 8:
-                    $msg['title'] = "第八章 党的纪律";
-                    break;
-                case 9:
-                    $msg['title'] = "第九章 党的纪律检查机关";
-                    break;
-                case 10:
-                    $msg['title'] = "第十章 党 组";
-                    break;
-                case 11:
-                    $msg['title'] = "第十一章 党和共产主义青年团的关系";
-                    break;
-                case 12:
-                    $msg['title'] = "第十二章 党徽党旗";
-                    break;
-            }
-            $this->assign('msg',$msg);
-
-            //文章必须按照顺序来抄写。
-            $con = array(
-                'chapter' => $id,
-                'create_user' => $userId,
-            );
-            $info = ConstitutionCopy::where($con)->find();
-            /* status : 0 可提交，1已完成 ，2未到顺序
-               length : 完成/未完成返回文章长度，未开始则为空 */
-            $return = array();
-            if($id == 1) {
-                if($info && $info['status'] == 1) {
-                    $return['status'] = 1;    //初始文章存在记录，显示已完成
-                    $return['length'] = $info['length'];
-                }else{
-                    $return['status'] = 0;    //不存在记录或未完成，可提交
-                    ($info['length']) ? $return['length'] = $info['length'] : $return['length'] = "";
-                }
-            }else{
-                if($info) {
-                    if($info['status'] == 1) {
-                        $return['status'] = 1;    //存在且完成
-                    }else{
-                        $return['status'] = 0;    //未完成
-                    }
-                    $return['length'] = $info['length'];
-                }else{
-                    $return['status'] = 2;     //不存在按顺序
-                    $return['length'] = "";
-
-                    //上一篇完成，开启下篇可写
-                    $con2 = array(
-                        'chapter' => $id-1,
-                        'create_user' => $userId,
-                    );
-                    $info2 = ConstitutionCopy::where($con2)->find();
-                    if($info2['status'] == 1){
-                        $return['status'] = 0;
-                        $return['length'] = "";
-                    }else{
-                        $return['status'] = 2;
-                        $return['length'] = "";
-                    }
-
-                }
-            }
-            $this->assign('return',json_encode($return));
-            $this->assign('visit',$userId);
-            return $this->fetch();
-        }
-    }
-
-    /**
-     * 重置文章
-     */
-    public function restart(){
-        $userId = session('userId');
-        $all = ConstitutionCopy::where('create_user',$userId)->delete();
-        if($all) {
-            //wechatuser抄写次数加1
-            $map['times'] = array('exp','`times`+1');
-            $first = WechatUser::where('userid',$userId)->update($map);
-            if($first) {
-                //重置刷新排行榜分数
-                $time = WechatUser::where('userid',$userId)->find();
-                $info['trad_score'] = 100*$time['times'];
-                WechatUser::where('userid',$userId)->update($info);
-                return $this->success("重置成功");
-            }
-        }else{
-            return $this->error("重置失败");
-        }
     }
 
     /**
