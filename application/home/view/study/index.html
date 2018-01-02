@@ -1,0 +1,159 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>基本书目</title>
+<link rel="stylesheet" href="/home/css/study/index.css">
+<style>
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+</style>
+{/block}
+{block name="body"}
+<div class="swiper-container top">
+    <div class="swiper-wrapper" style="left:-40%;">
+        <div class="swiper-slide" data-side="1" data-history="slide1">党的历史</div>
+        <div class="swiper-slide" data-side="2" data-history="slide2">党的理论</div>
+        <div class="swiper-slide" data-side="3" data-history="slide3">党的历史</div>
+        <div class="swiper-slide" data-side="4" data-history="slide4">党的修养</div>
+        <div class="swiper-slide" data-side="5" data-history="slide5">党务知识</div>
+        <div class="swiper-slide" data-side="6" data-history="slide6">党章党规</div>
+    </div>
+</div>
+<!--<div class="top">-->
+    <!--<div data-side="1" class="active">党的历史</div>-->
+    <!--<div data-side="2">党的历史</div>-->
+    <!--<div data-side="3">党的历史</div>-->
+    <!--<div data-side="4">党的历史</div>-->
+    <!--<div data-side="5">党的历史</div>-->
+    <!--<div data-side="6">党的历史</div>-->
+<!--</div>-->
+<div class="subject all" id="side1">
+    <a class="side1Content">
+        <div class="side1Content_Top">中共一大</div>
+        <div class="side1Content_Text">
+            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
+            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+        </div>
+        <div class="note" id="notess" style="width:84vw;margin: auto ;">
+            <span class="read">111</span>
+            <span class="isgood good">0</span>
+        </div>
+    </a>
+    <a class="side1Content">
+        <div class="side1Content_Top">中共一大</div>
+        <div class="side1Content_Text">
+            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
+            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+        </div>
+        <div class="note" id="notess" style="width:84vw;margin: auto ;">
+            <span class="read">111</span>
+            <span class="isgood good">0</span>
+        </div>
+    </a>
+    <a class="side1Content">
+        <div class="side1Content_Top">中共一大</div>
+        <div class="side1Content_Text">
+            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
+            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+        </div>
+        <div class="note" id="notess" style="width:84vw;margin: auto ;">
+            <span class="read">111</span>
+            <span class="isgood good">0</span>
+        </div>
+    </a>
+    <a class="side1Content">
+        <div class="side1Content_Top">中共一大</div>
+        <div class="side1Content_Text">
+            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
+            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+        </div>
+        <div class="note" id="notess" style="width:84vw;margin: auto ;">
+            <span class="read">111</span>
+            <span class="isgood good">0</span>
+        </div>
+    </a>
+    <a class="side1Content">
+        <div class="side1Content_Top">中共一大</div>
+        <div class="side1Content_Text">
+            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
+            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+        </div>
+        <div class="note" id="notess" style="width:84vw;margin: auto ;">
+            <span class="read">111</span>
+            <span class="isgood good">0</span>
+        </div>
+    </a>
+</div>
+<div class="subject" id="side2">2</div>
+<div class="subject" id="side3">3</div>
+<div class="subject" id="side4">4</div>
+<div class="subject" id="side5">5</div>
+<div class="subject" id="side6">6</div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+
+{/block}
+{block name="script"}
+<script>
+    var study = localStorage.getItem('studyNum')==undefined?1:localStorage.getItem('studyNum');
+    for(var i=0;i<$('.swiper-container .swiper-slide').length;i++){
+        $('.swiper-container .swiper-slide')[i].onclick = function(){
+            var side = $(this).data('side');
+            $('.subject').hide();
+            $('#side'+side).show();
+            localStorage.setItem('studyNum',side);
+        }
+    }
+    $('.subject').hide();
+    $('#side'+study).show();
+    var num = parseInt(study);
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+//        slidesPerGroup: 4,
+//        freeMode: true,
+        centeredSlides: true,
+        slideToClickedSlide: true,
+        grabCursor: true,
+        history: 'slides',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    $('.swiper-container .swiper-slide').each(function(){
+        $('.swiper-container .swiper-slide').removeClass('swiper-slide-active');
+        $('.swiper-container .swiper-slide').eq(num-1).addClass('swiper-slide-active');
+        if(num==2){
+            $('.swiper-container .swiper-slide').eq(1).removeClass('swiper-slide-next')
+//            $('.swiper-container .swiper-slide').eq(0).addClass('swiper-slide-prev');
+//            $('.swiper-container .swiper-slide').eq(2).addClass('swiper-slide-next');
+        }else if(num>4){
+            $('.swiper-wrapper').css('transform','translate3d(-253.125px, 0px, 0px)')
+        }
+        $('.swiper-container .swiper-slide').eq(0).on('click',function(){
+            $('.swiper-container .swiper-slide').removeClass('swiper-slide-active');
+            $(this).addClass('swiper-slide-active')
+        })
+    });
+</script>
+{/block}

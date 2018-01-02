@@ -1,0 +1,160 @@
+a {
+    display: inline-block;
+}
+.banner {
+    position: relative;
+    width: 100vw;
+    height: 51vw;
+}
+.banner .banner-img {
+    width: 100vw;
+    height: 51vw;
+}
+.banner .title_ {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 6vh;
+    padding: 0 4vw;
+    line-height: 6vh;
+    font-size: .3rem;
+    color: #ffffff;
+    text-align: center;
+    /*background: -webkit-linear-gradient(rgba(102, 102, 102, 0.3), rgba(51, 51, 51, 0.3));*/
+    /*background: -o-linear-gradient(rgba(102, 102, 102, 0.5), rgba(51, 51, 51, 0.5));*/
+    /*background: -moz-linear-gradient(rgba(102, 102, 102, 0.5), rgba(51, 51, 51, 0.5));*/
+    /*background: linear-gradient(rgba(102, 102, 102, 0.3), rgba(51, 51, 51, 0.3));*/
+    background: rgba(0,0,0,.6);
+}
+.tab_ {
+    position: relative;
+}
+.tab_ .tabs {
+    width: 50vw;
+    height: 10vw;
+    background: #f4f4f4;
+    margin: 5vw auto;
+    border-radius: 1.1vw;
+    overflow: hidden;
+}
+.tab_ .tabs .tab {
+    display: inline-block;
+    width: 25vw;
+    height: 10vw;
+    text-align: center;
+    color: #b5b5b5;
+    font-size: .32rem;
+    line-height: 10vw;
+    background: #f4f4f4;
+}
+.tab_ .tabs .tab.active {
+    color: #ffffff;
+    border-radius: 1.1vw;
+    box-shadow: 0 2px 1.6vw rgba(255, 133, 72, 0.4);
+    background: -webkit-linear-gradient(left, #ff8548, #fd5a0a);
+    background: -o-linear-gradient(left, #ff8548, #fd5a0a);
+    background: -moz-linear-gradient(left, #ff8548, #fd5a0a);
+    background: linear-gradient(left, #ff8548, #fd5a0a);
+}
+.tab_ .choose {
+    position: absolute;
+    right: 4vw;
+    top: 2.5vw;
+    width: 22vw;
+    color: #b5b5b5;
+    font-size: .26rem;
+    text-align: right;
+    padding-right: 4.3vw;
+}
+.tab_ .choose:after {
+    position: absolute;
+    content: '';
+    top: 1.4vw;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 2.2vw solid #b5b5b5;
+    border-right: 1.6vw solid transparent;
+    border-left: 1.6vw solid transparent;
+}
+.tab_ .part {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    top: 10vw;
+    right: 4vw;
+    width: 25vw;
+    height: auto;
+    -webkit-border-radius: 1.1vw;
+    border-radius: 1.1vw;
+    overflow: hidden;
+    background: #ffffff;
+}
+.tab_ .part div {
+    width: 25vw;
+    height: 10vw;
+    color: #b5b5b5;
+    font-size: 15px;
+    line-height: 10vw;
+    border-bottom: 1px solid #f7f7f7;
+    text-align: center;
+}
+.bg {
+    display: none;
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+}
+.blocks .block .list {
+    width: 100vw;
+    /*height: 11.85vh;*/
+    overflow: hidden;
+    padding: 0 4vw;
+    border-bottom: 1px solid #f7f7f7;
+}
+.blocks .block .list .title {
+    width: 100%;
+    color: #333333;
+    font-size: .28rem;
+    line-height: 6vw;
+    font-weight: inherit;
+    padding-top: 2vw;
+    margin-bottom: .2vw;
+    overflow: hidden;
+    height: 14vw;
+}
+.blocks .block .list .note {
+    color: #999999;
+    font-size: .24rem;
+    line-height: 6vw;
+    margin-bottom: 4vw;
+}
+.blocks .block .list .note span {
+    display: inline-block;
+    width: 49%;
+}
+.blocks .block .list .note span.time {
+    text-align: right;
+}
+.blocks .block .fl img {
+    width: 22vw;
+    height:16vw;
+    -webkit-border-radius: 1.1vw;
+    border-radius: 1.1vw;
+    margin-top: 1.5vh;
+    margin-right: 5.33vw;
+}
+.blocks .block .fr {
+    width: 64vw;
+}
+.blocks .block .title {
+    width: 64vw;
+}
+.blocks .block .note {
+    width: 64vw;
+}

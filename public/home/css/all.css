@@ -453,3 +453,5 @@
     margin-left: 2vw;
     margin-right: 0;
 }
+#notess.note .read {padding-right: 5vw;background: url('/home/images/lxyz/icon_005.png') 0 center no-repeat;background-size: .4rem .24rem;padding-left: .5rem;}
+#notess.note .isgood {background: url('/home/images/lxyz/icon_006.png') 0 center no-repeat;background-size: .4rem .3rem;padding-left: .5rem;}
