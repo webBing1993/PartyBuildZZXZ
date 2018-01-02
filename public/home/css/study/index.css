@@ -5,6 +5,11 @@ body{background: #f5f5f5;}
 .subject {display: none;}
 .side1Content {width:92vw;height:21vh;border-radius: .2rem;background: #fff;box-shadow: 0 0 .2rem rgba(0,0,0,.2);display: block;margin: 0 auto 2.25vh;padding-top: 1.5vh;}
 .side1Content_Top {background: url(/home/images/lxyz/icon_007.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
+#side2 .side1Content_Top {background: url(/home/images/lxyz/icon_008.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
+#side3 .side1Content_Top {background: url(/home/images/lxyz/icon_009.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
+#side4 .side1Content_Top {background: url(/home/images/lxyz/icon_010.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
+#side5 .side1Content_Top {background: url(/home/images/lxyz/icon_011.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
+#side6 .side1Content_Top {background: url(/home/images/lxyz/icon_012.png) no-repeat;width:16vw;height:3vh;text-align: center;line-height: 3vh;color: #fff;background-size: 16vw 3vh;font-size: .24rem;}
 .side1Content_Text {padding: 2.25vh 4vw 0 4vw;}
 .side1Content_Text .side1Content_Text_01 {font-size: .3rem;color: #333;white-space:nowrap;
     text-overflow:ellipsis;
