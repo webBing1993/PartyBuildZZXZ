@@ -1,0 +1,185 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>红色石淙</title>
+<style>
+    body{
+        /*background: #f0edf1;*/
+    }
+    .my-items{
+        /*padding:0 1.2rem 2rem 1.2rem;*/
+    }
+    .my-item{
+        position: relative;
+        margin-top: 3rem;
+        /*border:1px solid #e2e2e2;*/
+        border-radius: .5rem;
+        background-color: #f9f9f9;
+        padding:1.5rem 1.2rem 2.8rem 1.2rem;
+    }
+    .my-item-title{
+        width:10rem;
+        height:2.7rem;
+        color: #ffffff;
+        font-size: 1.6rem;
+        text-align: center;
+        line-height: 2.7rem;
+        border-radius: 10rem;
+        position: absolute;
+        top:-1.35rem;
+        left: -4vw;
+    }
+    .my-item-title.color1{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,114,118,0.5);
+        background: #ff7276;
+    }
+    .my-item-title.color2{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,171,81,0.5);
+        background: #ffab51;
+    }
+    .my-item-title.color3{
+        box-shadow: 0 .2rem .2rem 0 rgba(122,189,58,0.5);
+        background: #7abd3a;
+    }
+    .my-item-title.color4{
+        box-shadow: 0 .2rem .2rem 0 rgba(89,183,244,0.5);
+        background: #59b7f4;
+    }
+    .my-item-title.color5{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,114,118,0.5);
+        background: #ff7276;
+    }
+    .my-item-title.color6{
+        box-shadow: 0 .2rem .2rem 0 rgba(255,171,81,0.5);
+        background: #ffab51;
+    }
+    .my-lists{
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .my-list{
+        /*width:86px;*/
+        width: 25%;
+        text-align: center;
+        /*padding-top:3rem;*/
+        margin-top: 3rem;
+    }
+    .my-list>img{
+        width:3.2rem;
+        height:3.2rem;
+        display: block;
+        margin:0 auto;
+    }
+    .my-list>span{
+        display: block;
+        margin-top: 1.5rem;
+        color:#333;
+        font-size: 1.4rem;
+    }
+
+</style>
+{/block}
+{block name="body"}
+<div class="my-items">
+    <div class="my-item">
+        <div class="my-item-title color1">
+            党员之家
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/structure/index/c/1">
+                <img src="/home/images/home/p1.png" alt="">
+                <span>云上组织</span>
+            </li>
+            <li class="my-list" data-url="/home/work/sign">
+                <img src="/home/images/home/p6.png" alt="">
+                <span>党员签到</span>
+            </li>
+            <li class="my-list" data-url="/home/pioneer/index.html">
+                <img src="/home/images/home/p3.png" alt="">
+                <span>先锋社区</span>
+            </li>
+        </ul>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/live/index.html">
+                <img src="/home/images/home/p26.png" alt="">
+                <span>视频会议</span>
+            </li>
+            <li class="my-list" data-url="/home/notice/index/c/1">
+                <img src="/home/images/home/p27.png" alt="">
+                <span>党员之家</span>
+            </li>
+            <li class="my-list" data-url="/home/college/index/c/1">
+                <img src="/home/images/home/p4.png" alt="">
+                <span>红领学院</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color4">
+            两学一做
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/learn/index">
+                <img src="/home/images/home/p28.png" alt="">
+                <span>云上党校</span>
+            </li>
+            <li class="my-list" data-url="/home/constitution/game.html">
+                <img src="/home/images/home/p29.png" alt="">
+                <span>在线答题</span>
+            </li>
+            <li class="my-list" data-url="/home/constitution/rank">
+                <img src="/home/images/home/p30.png" alt="">
+                <span>考核亮牌</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color1">
+            红色珍藏
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/redcollection/redfilm">
+                <img src="/home/images/home/p16.png" alt="">
+                <span>红色电影</span>
+            </li>
+            <li class="my-list" data-url="/home/redcollection/redliterature">
+                <img src="/home/images/home/p17.png" alt="">
+                <span>红色文学</span>
+            </li>
+            <li class="my-list" data-url="/home/redcollection/redmusic">
+                <img src="/home/images/home/p18.png" alt="">
+                <span>红色歌曲</span>
+            </li>
+        </ul>
+    </div>
+    <div class="my-item">
+        <div class="my-item-title color3">
+            志愿服务
+        </div>
+        <ul class="my-lists">
+            <li class="my-list" data-url="/home/volunteer/recruit.html">
+                <img src="/home/images/home/p12.png" alt="">
+                <span>志愿招募</span>
+            </li>
+            <li class="my-list" data-url="javascript:;">
+            </li>
+            <li class="my-list" data-url="javascript:;">
+            </li>
+        </ul>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    (function () {
+        $(".my-list").on("click",function () {
+            var toUrl=$(this).attr('data-url');
+            if(toUrl){
+                window.location.href=toUrl;
+            }
+        })
+    })()
+</script>
+{/block}
