@@ -1,0 +1,67 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/service/organization.css">
+<title>组织概况</title>
+{/block}
+{block name="body"}
+<div class="banner"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+<div class="department">
+    <div class="departmentTop"><span>部门简介</span><img src="/home/images/icon/icon_01.png" alt=""></div>
+    <div class="departmentText">
+        <p>城市和农村按居民居住地区设立的居民委员会或者村民委员会是基层群众性自治组织。居民委员会、村民委员会设人民调解、治安保卫、公共卫生等委员会，办理本居住地区的公共事务和公益事业，调解民间纠纷，协助维护治安，并且向人民政府反映群众的意见、要求和提出建议。</p>
+        <p>人民调解委员会是在基层人民政府和基层人民法院指导下，调解民间纠纷的群众性组织。</p>
+    </div>
+</div>
+<div class="organization">
+    <div class="organizationTop"><img src="/home/images/lxyz/icon_013.png">组织架构</div>
+    <div class="organization_link">
+        <a href="/home/service/ordetail.html">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+        <a href="#">珍珠城居委会党支部</a>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+
+<script>
+    $("img.lazy").lazyload({
+        placeholder: "/home/images/loading.jpg",
+        effect: "fadeIn",
+        threshold : 500
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+
+    for(var j=0;j<$('.organization_link a').length;j++){
+        $('.organization_link a').eq(j).css('border-left','.533vw solid'+getColor())
+    }
+    //定义一个函数，实现随机生成十六进制颜色值
+    function getColor(){
+        //定义字符串变量colorValue存放可以构成十六进制颜色值的值
+        var colorValue="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+        //以","为分隔符，将colorValue字符串分割为字符数组["0","1",...,"f"]
+        var colorArray = colorValue.split(",");
+        var color="#";//定义一个存放十六进制颜色值的字符串变量，先将#存放进去
+        //使用for循环语句生成剩余的六位十六进制值
+        for(var i=0;i<6;i++){
+            //colorArray[Math.floor(Math.random()*16)]随机取出
+            // 由16个元素组成的colorArray的某一个值，然后将其加在color中，
+            //字符串相加后，得出的仍是字符串
+            color+=colorArray[Math.floor(Math.random()*16)];
+        }
+        return color;
+    }
+</script>
+{/block}

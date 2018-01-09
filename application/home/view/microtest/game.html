@@ -30,7 +30,6 @@
                     {volist name="vo->Option" id="value" key="k"}
                     <label>{if condition="($k eq 1) AND ($value neq ' ') AND ($value neq '-')"}A{elseif condition="($k eq 2) AND ($value neq ' ') AND ($value neq '-')"}B{elseif condition="($k eq 3 )AND ($value neq ' ') AND ($value neq '-')"}C{elseif condition="($k eq 4 ) AND ($value neq ' ') AND ($value neq '-')"/}D{/if}.{$value|substr=###,'2'}</label>
                     {/volist}
-                    <div class="number">{$n} / 3</div>
                 </div>
                 {/volist}
             </div>
@@ -63,7 +62,6 @@
                     {/volist}
                     <div class="note">
                         <span class="true">正确答案：<i>{$vo->Right|implode=###,"&nbsp;&nbsp;&nbsp;"}</i></span>
-                        <span class="number">{$n} / 3</span>
                     </div>
                 </div>
                 {/volist}

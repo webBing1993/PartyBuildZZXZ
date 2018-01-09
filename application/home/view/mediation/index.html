@@ -96,6 +96,7 @@
 {block name="script"}
 <script>
 //    alert($(window).width())
+var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
     for(var i=0;i<$('.top>div').length;i++){
         $('.top>div')[i].onclick = function(){
             $('.top>div').removeClass('active');
@@ -103,9 +104,13 @@
             var side = $(this).data('side');
             $('.mediationContenr').hide();
             $('#side'+side).show();
+            localStorage.setItem('medNum',side);
         }
     }
-
+$('.top>div').removeClass('active');
+$('.top>div').eq(med-1).addClass('active');
+$('.subject').hide();
+$('#side'+med).show();
     var scrollNow = true;
 //    loadScroll()
     function loadScroll(){
