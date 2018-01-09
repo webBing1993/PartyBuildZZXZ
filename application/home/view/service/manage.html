@@ -84,13 +84,12 @@
             var index=$(this).index();
             $(this).addClass('active').siblings().removeClass('active');
             $(".box").eq(index).show().siblings().hide();
-            localStorage.setItem('data',index);
+            sessionStorage.setItem('data',index);
         });
-        var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
+        var number = sessionStorage.getItem('data')==null?0:sessionStorage.getItem('data');
         $('.tabs .tab').removeClass('active');
         $('.tabs .tab').eq(number).addClass('active');
         $(".box").eq(number).show().siblings().hide();;
-
 
         $("img.lazy").lazyload({
             placeholder: "/home/images/loading.jpg",
