@@ -1,0 +1,86 @@
+body{
+    background:rgba(245,245,245,1);
+    font-size:0.3rem;
+    font-family:PingFang-SC-Medium;
+    color:rgba(51,51,51,1);
+}
+.tabs {
+    width: 100vw;
+    background:rgba(255,255,255,1);
+    margin-bottom:2.2vh;
+}
+.tabs .tab {
+    display: inline-block;
+    width: 32.7vw;
+    height: 5.6vh;
+    line-height: 5.6vh;
+    text-align: center;
+}
+.tabs .active {
+    color:rgba(221,93,58,1);
+    border-bottom: 0.4vh solid rgba(221,93,58,1);
+}
+.hidden{
+    display:none;
+}
+.boxs {
+    width: 100vw;
+    min-height: 64vw;
+    background:rgba(255,255,255,1);
+}
+.boxs .box {
+    width: 100vw;
+    min-height: 64vw;
+}
+.box .list{
+    color:rgba(51,51,51,1);
+    width:100%;
+    height:14.2vh;
+    display:inline-block;
+    padding:4vw;
+    border-bottom:1px solid rgba(209,209,209,1);
+}
+.list img{
+    display:inline-block;
+    width:22.6vw;
+    height:9.7vh;
+    margin-right:4vw;
+}
+
+/*参会情况模块*/
+.lr{
+    position: relative;
+    float:right;
+    width:64vw;
+    height:9.7vh;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.title{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.lr span{
+    color:rgba(153,153,153,1);
+}
+.time{
+    width:23vw;
+    position: absolute;
+    left:0;
+    bottom:0;
+    line-height:1.8vh;
+}
+.message{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    line-height:1.8vh;
+    padding-left:5.4vw;
+    background: url('/home/images/icon/icon_02.png') no-repeat left top;
+    background-size: 3.5vw 1.8vh;
+}
+/*流程展示模块*/

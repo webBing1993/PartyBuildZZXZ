@@ -17,4 +17,7 @@ class Service extends Base
     public function ordetail(){
         return $this->fetch();
     }
+    public function manage(){
+        return $this->fetch();
+    }
 }

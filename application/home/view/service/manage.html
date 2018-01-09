@@ -1,0 +1,108 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/service/manage.css">
+<title>党员管理</title>
+{/block}
+{block name="body"}
+<!--切换-->
+<div class="tabs">
+    <span class="tab active">党员展示</span>
+    <span class="tab">参会情况</span>
+    <span class="tab">流程展示</span>
+</div>
+<!--三个模块-->
+    <div class="boxs">
+        <!--党员展示模块-->
+        <div class="box ">
+            <!--<div class="lists">-->
+                <!--<a href="#" class="list">-->
+                    <!--<img src="/home/images/banner/1.jpg" alt="图片展示">-->
+                    <!--<div class="lr">-->
+                        <!--<div class="title">111111111111111</div>-->
+                        <!--<span class="time">2018-01-08</span>-->
+                        <!--<span class="message">30</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
+            </div>
+            <div class="tip"></div>
+        </div>
+        <!--参会情况模块-->
+        <div class="box" style="display:none;">
+            <!--列表-->
+            <div class="lists">
+                <a href="#" class="list">
+                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
+                    <div class="lr">
+                        <div class="title">2017年度山下湖镇党支部考核情况</div>
+                        <span class="time">2018-01-08</span>
+                        <span class="message">30</span>
+                    </div>
+                </a>
+                <a href="#" class="list">
+                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
+                    <div class="lr">
+                        <div class="title">2017年度山下湖镇党支部考核情况</div>
+                        <span class="time">2018-01-08</span>
+                        <span class="message">30</span>
+                    </div>
+                </a>
+            </div>
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
+            </div>
+            <div class="tip"></div>
+        </div>
+        <!--流程展示模块-->
+        <div class="box" style="display:none;">
+            <!--列表-->
+            <div class="lists">
+                <a href="#" class="list">
+                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
+                    <div class="lr">党组织关系转接流程</div>
+                </a>
+                <a href="#" class="list">
+                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
+                    <div class="lr">党员发展流动党员管理、党组织基本制度执行流程介绍</div>
+                </a>
+            </div>
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
+            </div>
+            <div class="tip"></div>
+        </div>
+    </div>
+
+{/block}
+
+{block name="script"}
+
+<script>
+    $(function(){
+         $(".tab").on('click',function(){
+             console.log($(this).index())
+             var index=$(this).index();
+             $(this).addClass('active').siblings().removeClass('active');
+             $(".box").eq(index).show().siblings().hide();
+             console.log($(".boxs .box").eq(index).html())
+         });
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold : 500
+        });
+        $(document).scroll(function() {
+            $("img.lazy").lazyload({
+                placeholder: "/home/images/loading.jpg",
+                effect: "fadeIn",
+                threshold: 1
+            });
+        });
+
+    });
+
+</script>
+{/block}
