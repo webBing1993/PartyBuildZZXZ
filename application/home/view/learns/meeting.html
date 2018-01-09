@@ -47,14 +47,14 @@
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $(".list" ).length;
+            var len = $("#meeting li" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url:"{:Url('Learn/indexmore')}",
+                    url:"{:Url('learns/indexmore')}",
                     data:{
                         length:len
                     },
@@ -63,11 +63,11 @@
                         loading.toggleClass('hidden');
                     },
                     success:function(data){
+                        console.log(data)
                         loading.toggleClass('hidden');
                         tip.show();
                         if(data.code == 1){
                             addCourse(data);
-                            var dataLen =data.data.length;
                             if(data.data.length == 5){
                                 tip.text('上拉加载更多');
                             }
@@ -91,17 +91,26 @@
         var lists = data.data;
         var len = lists.length;
         for(var i = 0; i< len;i++){
+            var str = '';
             var list = lists[i];
+            if(list.type == 1){
+                str = '/home/learns/video?id='+list.id;
+            }else {
+                str = '/home/learns/article?id='+list.id
+            }
+            if(list.path ==null || list.path == ''){
+                list.path = '/home/images/talent.png'
+            }
             html +='<li>'
-                    +'<div class="meetingTime"><span>昨天 10:09</span></div>'
-                    +'<a href="/home/education/detail.html">'
-                    +'<img data-original="/home/images/banner/1.jpg" class="lazy">'
-                    +'<p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>'
-                    +'<div class="note" style="width:84vw;margin: auto;"><span class="read">111</span><span class="isgood good">0</span></div>'
+                    +'<div class="meetingTime"><span>'+list.time+'</span></div>'
+                    +'<a href="'+str+'.html">'
+                    +'<img data-original="'+list.path+'" class="lazy">'
+                    +'<p>'+list.title+'</p>'
+                    +'<div class="note notess" style="width:84vw;margin: auto;"><span class="read">'+list.views+'</span><span class="isgood good">'+list.comments+'</span></div>'
                     +'</a>'
                     +'</li>'
         }
-        $(".lists" ).append(html);
+        $("#meeting ul" ).append(html);
     }
 
 
