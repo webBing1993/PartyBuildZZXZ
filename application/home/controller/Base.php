@@ -8,6 +8,7 @@
 
 namespace app\home\controller;
 
+use app\home\model\Collect;
 use app\user\controller\Index;
 use app\home\model\Comment;
 use app\home\model\Like;
@@ -457,6 +458,52 @@ class Base extends Controller {
             return $this->error("没有更多");
         }
 
+    }
+    /**
+     * 收藏
+     */
+    public function collect()
+    {
+        $uid = session('userId'); //点赞人
+        $type = input('type'); //获取点赞类型
+        $aid = input('aid');
+        switch ($type) {    //根据类别获取表明
+            case 1:
+                $table = "learns";
+                break;
+            case 2:
+                $table = "notice";
+                break;
+            default:
+                return $this->error("无该数据表");
+                break;
+        }
+        $data = array(
+            'type' => $type,
+            'uid' => $uid,
+            'aid' => $aid,
+            'table' => $table
+        );
+        $Model = new Collect();
+        $history = $Model->where($data)->find();
+        if (empty($history)) {
+            $res = $Model->create($data);
+            if ($res) {
+                Db::name($table)->where('id', $aid)->setInc('collect');
+                return $this->success("收藏成功");
+            } else {
+                return $this->error("操作失败");
+            }
+        } else {
+            $res = $Model->where($data)->delete();
+            if ($res) {
+                Db::name($table)->where('id', $aid)->setDec('collect');
+                return $this->success("取消收藏成功", Url('user/mycollect'));
+            } else {
+                return $this->error("操作失败");
+            }
+
+        }
     }
 
 

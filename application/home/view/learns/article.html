@@ -95,52 +95,34 @@
     });
 //    收藏
     function isCollect(e,type,id){
-        $(e).toggleClass('star' ).toggleClass('star_');
-        if($(e).hasClass('star')){
-            swal({
-                title: '提示',
-                text: '即将取消收藏',
-                type: 'error',
-                confirmButtonText:'确定',
-                timer:3000
-            });
-        }else{
-            swal({
-                title: ' ',
-                text: '收藏成功',
-                type: 'success',
-                confirmButtonText:'确定',
-                timer:3000
-            });
-        }
-//        $.ajax({
-//            type:"post",
-//            url:"/home/base/collect.html",
-//            data:{
-//                type:type,
-//                aid:id,
-//            },
-//            success:function(data){
-//                $(e).toggleClass('star' ).toggleClass('star_');
-//                if($(e).hasClass('star')){
-//                    swal({
-//                        title: '提示',
-//                        text: '即将取消收藏',
-//                        type: 'error',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }else{
-//                    swal({
-//                        title: ' ',
-//                        text: '收藏成功',
-//                        type: 'success',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }
-//            }
-//        })
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/collect')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+                $(e).toggleClass('star' ).toggleClass('star_');
+                if($(e).hasClass('star')){
+                    swal({
+                        title: '提示',
+                        text: '即将取消收藏',
+                        type: 'error',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }else{
+                    swal({
+                        title: ' ',
+                        text: '收藏成功',
+                        type: 'success',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }
+            }
+        })
     }
     //点赞
     function isGood(e,type,id){
