@@ -7,14 +7,22 @@
 {block name="body"}
 <div id="meeting" class="all">
     <ul>
+        {volist name="list" id="vo"}
         <li>
-            <div class="meetingTime"><span>昨天 10:09</span></div>
-            <a href="/home/education/detail.html">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-                <p>中共中央关于认真学习宣传贯彻党的十九大精神的决定中共中央关于认真学习宣传贯彻党的十九大精神的决定</p>
-                <div class="note notess" style="width:84vw;margin: auto;"><span class="read">111</span><span class="isgood good">0</span></div>
+            <div class="meetingTime"><span>{$vo.time}</span></div>
+            {eq name="$vo.type" value="1"}
+            <a href="{:Url('learns/video?id='.$vo['id'])}">
+            <!--<div class="tab">视频</div>-->
+            {else/}
+            <a href="{:Url('learns/article?id='.$vo['id'])}">
+            <!--<div class="tab">图文</div>-->
+            {/eq}
+                <img data-original="{$vo.front_cover|get_cover='path'}" class="lazy">
+                <p>{$vo.title}</p>
+                <div class="note notess" style="width:84vw;margin: auto;"><span class="read">{$vo.views}</span><span class="isgood good">{$vo.comments}</span></div>
             </a>
         </li>
+        {/volist}
     </ul>
 </div>
 

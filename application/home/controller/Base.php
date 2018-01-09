@@ -12,15 +12,55 @@ use app\user\controller\Index;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\user\model\WechatUser;
+use Hooklife\ThinkphpWechat\TPwechat;
 use think\Config;
 use think\Controller;
+use Hooklife\ThinkphpWechat\Wechat;
+use EasyWeChat\Factory;
 use com\wechat\TPQYWechat;
 use think\Db;
 
 class Base extends Controller {
+
+
+    /*static $app;
+    public function _initialize()
+    {
+        new Wechat(Config::get('party'));
+
+        Wechat::user_tag()->lists();
+        Wechat::card()->lists();
+
+        $app = Factory::work(Config::get('party'));
+        if (empty(session('userId'))){
+            self::$app = TPwechat::return_app();
+            $oauth = self::$app->oauth;
+            session('target_url',$_SERVER['PATH_INFO']);
+            if (empty(session('wechat_user'))){
+                $oauth->redirect()->send();
+            }else{
+                $user = session('wechat_user');
+                $open_id = $user['original']['openid'];
+
+//查询数据库中用户的账号的openid中是否有值，有值说明用户的微信与账号绑定
+                $student_no = self::check_login($open_id);
+                if ($student_no!=0){
+                    session('userId',$student_no);
+                    $this->redirect(session('target_url'));
+                }else{
+                    $this->redirect('index/Index/login');
+                }
+
+            }
+        }
+    }*/
+
+
+
+
     public function _initialize(){
 //        session('userId',null);
-//        session('userId','15700004138'); //管理员权限跟支部数据权限
+        session('userId','15700004138'); //管理员权限跟支部数据权限
 //        session('userId','15757116500');
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
@@ -147,7 +187,7 @@ class Base extends Controller {
      * 点赞，$type,$aid
      * type值：
      * 0 评论点赞
-     * 1 learn
+     * 1 learns
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
@@ -172,7 +212,7 @@ class Base extends Controller {
                 $table = "comment";
                 break;
             case 1:
-                $table = "learn";
+                $table = "learns";
                 break;
             case 2:
                 $table = "redfilm";
@@ -265,7 +305,7 @@ class Base extends Controller {
     /**
      * 评论，$type,$aid,$content
      * type值：
-     * 1 learn
+     * 1 learns
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
@@ -288,7 +328,7 @@ class Base extends Controller {
             $aid = input('aid');
             switch ($type) {    //根据类别获取表明
                 case 1:
-                    $table = "learn";
+                    $table = "learns";
                     break;
                 case 2:
                     $table = "redfilm";
