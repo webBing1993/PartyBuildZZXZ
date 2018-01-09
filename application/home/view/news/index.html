@@ -94,10 +94,17 @@
                 </div>
             </div>
         </a>
-        <div style="text-align: center;">
-            <img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">
-            <p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>
-        </div>
+
+
+        <!--暂无数据打开即可-->
+
+        <!--<div style="text-align: center;">-->
+            <!--<img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">-->
+            <!--<p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>-->
+        <!--</div>-->
+
+
+
     </div>
 </div>
 <div class="bg"></div>
@@ -140,8 +147,8 @@
             block.eq(n ).siblings('.block' ).hide();
             block.eq(n ).fadeIn();
 //		setCookie("type",n + 1);
-            var len =$('.lists').eq(n).find('.list').length;
-            if(len >= 7){
+            var len =$('.block').find('a').length;
+            if(len >= 5){
                 $(".tip").text('上拉加载更多');
                 loadScroll(n+1);
             }else{
@@ -159,8 +166,8 @@
         tab.eq(c - 1 ).siblings('.tab').removeClass('active');
         $('.block').eq(c-1 ).siblings('.block' ).hide();
         var n = c -1 ;
-        var len =$('.lists').eq(n).find('.list').length;
-        if(len >= 7){
+        var len =$('.block').find('a').length;
+        if(len >= 5){
             tip.text('上拉加载更多');
             loadScroll(c);
         }else{
