@@ -36,14 +36,16 @@
 {/block}
 
 {block name="body"}
-<div class="title limit">毛泽东箴言精选</div>
+<div class="title limit">{$remark.title}</div>
 <div class="lists">
+    {volist name="remark.content" id="re"}
     <div class="list">
         <div class="content">
-            <p>没有团体，这种力量是散的、零碎的，人心是各管各的，这叫做心不齐，力不合。有了团体，心就齐了，力量就结合起来了，就能齐心合力干大事。</p>
+            {$re.remark}
         </div>
-        <div class="author">----《毛泽东文集》第2卷第167页</div>
+        <div class="author">----{$re.title}</div>
     </div>
+    {/volist}
 </div>
 {/block}
 

@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title></title>
+<title>红色音乐</title>
 <link rel="stylesheet" href="/home/css/mediation/musicdetail.css">
 <link rel="stylesheet" href="/static/sweetalert/sweetalert1.css">
 <script src="/static/sweetalert/sweetalert1.min.js"></script>
@@ -9,46 +9,66 @@
 
 {block name="body"}
 <div class="music all">
-    <div class="title"><p>三首情深意长的经典红歌，革命实践的真实写照</p></div>
+    <div class="title"><p>{$music.title}</p></div>
     <div class="time">
-        <span>2017-12-12</span>
+        <span class="fl">{$music.create_time|time_format='Y-m-d'}</span>
     </div>
     <div class="content">
         <div id="content">
-            <p><span>今年是新中国成立67周年，经历了无数磨难，付出了无数革命者生命，才有了我们幸福的今天。。红歌是革命实践的真实写照。他能唤起人们的红色记忆。这里为大家精选了十首好听的红歌。</span></p>
+            {$music.content}
         </div>
         <div class="note">
-            <span class="read">111</span>
-            <span class="isgood good" onclick="isGood(this,1,1)" style="line-height: 9vw;">0</span>
+            <span class="read">{$music.views}</span>
+            {eq name="visit" value="0"}
+            {eq name="music.is_like" value="0"}
+            <span class="isgood good" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
+            <!--点过赞good_-->
+            {else/}
+            <span class="isgood good_" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
+            {/eq}
+            {else/}
+            <span class="isgood good">{$music.likes}</span>
+            {/eq}
         </div>
     </div>
 </div>
 <div class="comment">
-    <div class="sum">共<span>100</span>条评论</div>
+    <div class="sum">共<span>{$music.comments}</span>条评论</div>
     <div class="lists">
+        {volist name="comment" id="co"}
         <div class="list clear zbhd">
             <div class="fl">
-                <img src="/home/images/banner/1.jpg" class="user">
+                <img src="{$co.header}" class="user">
             </div>
             <div class="fl mid">
-                <div class="name limit">之图测试</div>
-                <div class="content" >你该去唱歌，不该投身演艺事业你该去唱歌，不该投身演艺事业</div>
-                <div class="time">2017-12-05</div>
+                <div class="name limit">{$co.nickname}</div>
+                <div class="content" >{$co.content}</div>
+                <div class="time">{$co.create_time|time_format="Y-m-d"}</div>
             </div>
-            <div class="fr isgood good" onclick="isGood(this,0,1)">0</div>
-            <!--<div class="fr isgood good" onclick="isGood(this,0,1">1</div>-->
+            {eq name="visit" value="0"}
+            {eq name="co.is_like" value="1"}
+            <div class="fr isgood good_" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
+            {else/}
+            <div class="fr isgood good" onclick="isGood(this,0,{$co.id})">{$co.likes}</div>
+            {/eq}
+            {else/}
+            <div class="fr isgood good" >{$co.likes}</div>
+            {/eq}
         </div>
+        {/volist}
     </div>
     <div class="tip"></div>
     <div class="loading hidden">
         <div class="typing_loader"></div>
     </div>
 </div>
-<div class="bottom clear" onclick="send(this,1,1)">
+{eq name="visit" value="0"}
+<div class="bottom clear" onclick="send(this,3,{$music['id']})">
     <div class="myword fl">
         <input type="text" placeholder="说说你的感想！" disabled>
     </div>
 </div>
+{/eq}
 {/block}
 
 {block name="script"}
@@ -309,7 +329,6 @@
             }
         }
     }
-    $('title').text('红色音乐');
     iframe();
     $(function(){
         //reset
