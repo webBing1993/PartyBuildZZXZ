@@ -67,9 +67,30 @@ class Education extends Base
         $map = array(
             'status' => 1,
         );
-        $list = $filmModel->where($map)->order('views desc,create_time desc')->select();
+        $list = $filmModel->where($map)->order('views desc,create_time desc')->limit(9)->select();
         $this->assign('list',$list);
         return $this->fetch();
+    }
+    /**
+     * 加载更多电影
+     */
+    public function moremove() {
+        $len = input('length');
+        $filmModel = new Redfilm();
+        $map = array(
+            'status' => 1,
+        );
+        $list = $filmModel->where($map)->order('views desc,create_time desc')->limit($len,9)->select();
+        if($list) {
+            foreach ($list as $value) {
+                $img = Picture::get($value['front_cover']);
+                $value['path'] = $img['path'];
+                $value['time'] = date("Y-m-d",$value['create_time']);
+            }
+            return $this->success("加载成功","",$list);
+        }else{
+            return $this->error("加载失败");
+        }
     }
     /**
      * 电影详情
