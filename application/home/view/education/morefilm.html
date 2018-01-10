@@ -2,7 +2,35 @@
 
 {block name="style"}
 <title></title>
-<link rel="stylesheet" href="/home/css/redcollection/film.css">
+<!--<link rel="stylesheet" href="/home/css/redcollection/film.css">-->
+<link rel="stylesheet" href="/home/css/education/index.css">
+<style>
+	.search {
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 44px;
+		background: #f1f1f1;
+	}
+	.search input {
+		position: absolute;
+		top: 1.6vw;
+		left: 3vw;
+		width: 94vw;
+		height: 8.6vw;
+		padding-left: 8vw;
+		-webkit-border-radius: 2.2vw;
+		border-radius: 2.2vw;
+	}
+	.search .fa-search {
+		z-index: 1;
+		position: absolute;
+		top: 4vw;
+		left: 6vw;
+		color: #aeaeae;
+	}
+</style>
 {/block}
 
 {block name="body"}
@@ -14,15 +42,20 @@
 <div class="lists-title clear">
 	经典热播
 </div>
-<div class="lists">
-	{volist name="list" id="vo"}
-	<a href="{:Url('Redcollection/filmdetail?id='.$vo['id'])}" class="list">
-		<img src="{$vo.front_cover|get_cover='path'}" alt="红色电影" class="list-img">
-		<div class="list-title limit">{$vo.title}</div>
-		<div class="list-summary limit">{$vo.introduction}</div>
-	</a>
-	{/volist}
+<div class="side1_lists">
+	<ul>
+		{volist name="list" id="vo"}
+		<li>
+			<a href="{:Url('Redcollection/filmdetail?id='.$vo['id'])}" class="list">
+				<img data-original="{$vo.front_cover|get_cover='path'}" class="list-img lazy">
+				<div class="listTitle">{$vo.title}</div>
+				<div class="listSummary">{$vo.introduction}</div>
+			</a>
+		</li>
+		{/volist}
+	</ul>
 </div>
+
 {/block}
 
 {block name="script"}
@@ -67,5 +100,72 @@ $(function(){
 		}
 	});
 })
+
+var scrollNow = true;
+var len = $(".side1_lists li").length;
+if (len >= 5) {
+    $('.tip').text('上拉加载更多');
+} else {
+    $('.tip').hide()
+}
+loadScroll();
+
+function loadScroll(){
+    $(window ).off("scroll" ).on("scroll",function(){
+        var dh = $(document).height();
+        var end = $(window).height() + $(window ).scrollTop();
+        var len = $("#side3 .list" ).length;
+        var tip = $(".tip");
+        var loading = $('.loading');
+        if(dh == end && scrollNow){
+            scrollNow = false;
+            $.ajax({
+                type:"post",
+                url:"{:Url('education/morefilm')}",
+                data:{
+                    length:len
+                },
+                beforeSend: function(XMLHttpRequest){
+                    tip.hide();
+                    loading.toggleClass('hidden');
+                },
+                success:function(data){
+                    loading.toggleClass('hidden');
+                    tip.show();
+                    if(data.code == 1){
+                        console.log(data)
+                        addCourse(data);
+                        var dataLen =data.data.length;
+                        if(data.data.length == 5){
+                            tip.text('上拉加载更多');
+                        }
+                        $("img.lazy").lazyload({
+                            placeholder: "/home/images/loading.jpg",
+                            effect: "fadeIn",
+                            threshold: 1
+                        });
+                    }else{
+                        tip.text('没有更多了');
+                        $(window ).off("scroll");
+                    }
+                    scrollNow = true;
+                }
+            })
+        }
+    })
+}
+function addCourse(data){
+    var html = '';
+    var lists = data.data;
+    var len = lists.length;
+    for(var i = 0; i< len;i++){
+        var list = lists[i];
+        html +='<a href="/home/education/musicdetail?id='+list.id+'" class="list">'
+            +'<img data-original="'+list.path+'" class="music-img lazy">'
+            +'<div class="content"><div class="title limit_">'+list.title+'</div><div class="note clear"><span class="scan fl">'+list.views+'</span><span class="fr">'+list.time+'</span></div></div>'
+            +'</a>'
+    }
+    $(".lists" ).append(html);
+}
 </script>
 {/block}
