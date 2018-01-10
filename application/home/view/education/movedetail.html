@@ -16,17 +16,15 @@
 {/block}
 {block name="body"}
 <div class="article all">
-    <div class="title limit_"><p>董存瑞</p></div>
+    <div class="title limit_"><p>{$film.title}</p></div>
     <div class="note clear">
-        <span class="fl">杭州之图</span>
-        <span class="fr">2017-17-15</span>
+        <span class="fl">{$film.create_time|time_format='Y-m-d'}</span>
     </div>
     <div class="content">
-        <div class="uecontent">
-            这里放电影
-        </div>
+        <iframe height=250 width=510 src='{$film.net_path}' frameborder=0 allowfullscreen></iframe>
+        {$film.content}
         <div class="note">
-            <span class="read">111</span>
+            <span class="read">{$film.views}</span>
             <span class="isgood good" onclick="isGood(this,1,1)" style="line-height: 9vw;">0</span>
         </div>
     </div>

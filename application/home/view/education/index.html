@@ -17,7 +17,19 @@
 
 <div class="subject" id="side1">
     <div class="banner">
-        <img src="/home/images/banner/1.jpg"  class="banner-img lazy">
+        <!--<img src="/home/images/banner/1.jpg"  class="banner-img lazy">-->
+        <div class="swiper-wrapper">
+            {volist name="carousel" id="car"}
+            <div class="swiper-slide">
+                <a href="{:Url('Education/movedetail?id='.$car['id'])}" class="list">
+                    <img data-original="{$car.front_cover|get_cover='path'}" class="lazy">
+                    <div class="banner-bg"></div>
+                    <div class="banner-info limit">{$car.title}</div>
+                </a>
+            </div>
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
         <!--<div class="swiper-wrapper">-->
             <!--<div class="swiper-slide">-->
                 <!--<a href="#" class="list">-->
@@ -31,27 +43,29 @@
     <div class="lists-title">最新上映</div>
     <div class="side1_lists">
         <ul>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试测试测试测试测试测试测试测试测试测试</div><div class="listSummary">2017-12-05</div></a></li>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-            <li><a href="/home/education/detail.html" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+            {volist name="new" id="ne"}
+            <li><a href="{:Url('Education/movedetail?id='.$ne['id'])}" class="list">
+                <img data-original="{$ne.front_cover|get_cover='path'}" class="lazy">
+                <div class="listTitle">{$ne.title}</div>
+                <div class="listSummary">{$ne.introduction}</div>
+            </a></li>
+            {/volist}
         </ul>
 
     </div>
     <div class="lists-title clear listsline">
         经典热播
-        <a href="#" class="fr" style="color: #999;">更多>></a>
+        <a href="{:Url('Education/morefilm')}" class="fr" style="color: #999;">更多>></a>
     </div>
     <div class="side1_lists">
     <ul>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试测试测试测试测试测试测试测试测试测试</div><div class="listSummary">2017-12-05</div></a></li>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
-        <li><a href="#" class="list"><img data-original="/home/images/banner/1.jpg" class="lazy"><div class="listTitle">测试</div><div class="listSummary">2017-12-05</div></a></li>
+        {volist name="classic" id="cla"}
+        <li><a href="{:Url('Education/movedetail?id='.$cla['id'])}" class="list">
+            <img data-original="{$cla.front_cover|get_cover='path'}" class="lazy">
+            <div class="listTitle">{$cla.title}</div>
+            <div class="listSummary">{$cla.introduction}</div>
+        </a></li>
+        {/volist}
     </ul>
 
 </div>
@@ -72,61 +86,27 @@
     <div class="listbox">
         <div class="books active">
             <!--经典书籍列表-->
-            <a href="/home/education/bookdetail.html" class="list">
-                <img src="/home/images/banner/1.jpg" class="lazy">
+            {volist name="books" id="book"}
+            <a href="{:Url('education/bookdetail?id='.$book['id'])}" class="list">
+                <img src="{$book.front_cover|get_cover='path'}" class="lazy">
                 <div class="content">
-                    <span class="title limit">我的爱人</span>
-                    <span class="author limit">作者：测试</span>
-                    <span class="read">读过：12</span>
+                    <span class="title limit">{$book.title}</span>
+                    <span class="author limit">作者：{$book.name}</span>
+                    <span class="read">读过：{$book.have_read}</span>
                 </div>
                 <span class="fa fa-angle-right"></span>
             </a>
-            <a href="/home/education/bookdetail.html" class="list">
-                <img src="/home/images/banner/1.jpg" class="lazy">
-                <div class="content">
-                    <span class="title limit">我的爱人</span>
-                    <span class="author limit">作者：测试</span>
-                    <span class="read">读过：12</span>
-                </div>
-                <span class="fa fa-angle-right"></span>
-            </a>
-            <a href="/home/education/bookdetail.html" class="list">
-                <img src="/home/images/banner/1.jpg" class="lazy">
-                <div class="content">
-                    <span class="title limit">我的爱人</span>
-                    <span class="author limit">作者：测试</span>
-                    <span class="read">读过：12</span>
-                </div>
-                <span class="fa fa-angle-right"></span>
-            </a>
-            <a href="/home/education/bookdetail.html" class="list">
-                <img src="/home/images/banner/1.jpg" class="lazy">
-                <div class="content">
-                    <span class="title limit">我的爱人</span>
-                    <span class="author limit">作者：测试</span>
-                    <span class="read">读过：12</span>
-                </div>
-                <span class="fa fa-angle-right"></span>
-            </a>
-            <a href="/home/education/bookdetail.html" class="list">
-                <img src="/home/images/banner/1.jpg" class="lazy">
-                <div class="content">
-                    <span class="title limit">我的爱人</span>
-                    <span class="author limit">作者：测试</span>
-                    <span class="read">读过：12</span>
-                </div>
-                <span class="fa fa-angle-right"></span>
-            </a>
+            {/volist}
             <!--经典书籍列表-->
         </div>
         <div class="words hidden">
             <!--经典语录列表-->
-            <a href="/home/education/textdetail.html" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
-            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
-            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
-            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
-            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
-            <a href="#" class="list clear"><span class="title limit">一寸光阴一寸金，寸金难买寸光阴</span><span class="fr fa fa-angle-right"></span></a>
+            {volist name="remark" id="re"}
+            <a href="{:Url('education/textdetail?id='.$re['id'])}" class="list clear">
+                <span class="title limit">{$re.title}</span>
+                <span class="fr fa fa-angle-right"></span>
+            </a>
+            {/volist}
             <!--经典语录列表-->
         </div>
     </div>
@@ -136,66 +116,18 @@
         <img src="/home/images/redcollection/bookbg.jpg"  class="banner-img lazy">
     </div>
     <div class="lists">
-        <a href="/home/education/detail.html" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
+        {volist name="list" id="vo"}
+        <a href="{:Url('education/musicdetail?id='.$vo['id'])}" class="list">
+            <img data-original="{$vo.front_cover|get_cover='path'}" class="music-img lazy">
             <div class="content">
-                <div class="title limit_">测试测试测试</div>
+                <div class="title limit_">{$vo.title}</div>
                 <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
+                    <span class="scan fl">{$vo.views}</span>
+                    <span class="fr">{$vo.create_time|time_format='Y-m-d'}</span>
                 </div>
             </div>
         </a>
-        <a href="#" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="list">
-            <img src="/home/images/redcollection/bookbg.jpg"  class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="scan fl">1</span>
-                    <span class="fr">2017-12-15</span>
-                </div>
-            </div>
-        </a>
+        {/volist}
     </div>
 </div>
 
