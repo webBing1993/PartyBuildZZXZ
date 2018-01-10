@@ -7,6 +7,37 @@
 <!--<link rel="stylesheet" href="/home/css/redcollection/film.css">-->
 <!--<link rel="stylesheet" href="/home/css/redcollection/book.css">-->
 <!--<link rel="stylesheet" href="/home/css/redcollection/music.css">-->
+<style>
+    .swiper-container {
+        position: relative;
+        width: 100vw;
+        height: 22.5vh;
+        margin: auto;
+    }
+    .banner .banner-bg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 10.7vw;
+        background: rgba(51, 51, 51, 0.6)
+    }
+    .banner .banner-info {
+        position: absolute;
+        bottom: 0;
+        left: 4vw;
+        width: 70%;
+        height: 10.7vw;
+        color: #ffffff;
+        font-size: .3rem;
+        line-height: 10.7vw;
+    }
+    .swiper-pagination-bullets {
+        text-align: right;
+        padding: 0 3.5vw;
+    }
+</style>
 {/block}
 {block name="body"}
 <div class="top">
@@ -17,19 +48,21 @@
 
 <div class="subject" id="side1">
     <div class="banner">
-        <!--<img src="/home/images/banner/1.jpg"  class="banner-img lazy">-->
-        <div class="swiper-wrapper">
-            {volist name="carousel" id="car"}
-            <div class="swiper-slide">
-                <a href="{:Url('Education/movedetail?id='.$car['id'])}" class="list">
-                    <img data-original="{$car.front_cover|get_cover='path'}" class="lazy">
-                    <div class="banner-bg"></div>
-                    <div class="banner-info limit">{$car.title}</div>
-                </a>
+        <div class="swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                {volist name="carousel" id="car"}
+                <div class="swiper-slide">
+                    <a href="{:Url('Education/movedetail?id='.$car['id'])}" class="list">
+                        <img data-original="{$car.front_cover|get_cover='path'}" class="lazy">
+                        <div class="banner-bg"></div>
+                        <div class="banner-info limit">{$car.title}</div>
+                    </a>
+                </div>
+                {/volist}
             </div>
-            {/volist}
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
+        <!--<img src="/home/images/banner/1.jpg"  class="banner-img lazy">-->
         <!--<div class="swiper-wrapper">-->
             <!--<div class="swiper-slide">-->
                 <!--<a href="#" class="list">-->
@@ -72,7 +105,7 @@
 </div>
 <div class="subject" id="side2">
     <div class="banner">
-        <img src="/home/images/banner/1.jpg"  class="banner-img lazy">
+        <img data-original="/home/images/banner/1.jpg"  class="banner-img lazy">
         <div class="search">
             <span class="fa fa-search"></span>
             <input type="text" placeholder="搜索书籍名字、作者名字">
@@ -88,7 +121,7 @@
             <!--经典书籍列表-->
             {volist name="books" id="book"}
             <a href="{:Url('education/bookdetail?id='.$book['id'])}" class="list">
-                <img src="{$book.front_cover|get_cover='path'}" class="lazy">
+                <img data-original="{$book.front_cover|get_cover='path'}" class="lazy">
                 <div class="content">
                     <span class="title limit">{$book.title}</span>
                     <span class="author limit">作者：{$book.name}</span>
@@ -119,13 +152,7 @@
         {volist name="list" id="vo"}
         <a href="{:Url('education/musicdetail?id='.$vo['id'])}" class="list">
             <img data-original="{$vo.front_cover|get_cover='path'}" class="music-img lazy">
-            <div class="content">
-                <div class="title limit_">{$vo.title}</div>
-                <div class="note clear">
-                    <span class="scan fl">{$vo.views}</span>
-                    <span class="fr">{$vo.create_time|time_format='Y-m-d'}</span>
-                </div>
-            </div>
+            <div class="content"><div class="title limit_">{$vo.title}</div><div class="note clear"><span class="scan fl">{$vo.views}</span><span class="fr">{$vo.create_time|time_format='Y-m-d'}</span></div></div>
         </a>
         {/volist}
     </div>
@@ -141,6 +168,7 @@
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
     var edu = localStorage.getItem('eduNum')==null?1:localStorage.getItem('eduNum');
+    var num = 0;
     for(var i=0;i<$('.top>div').length;i++){
         $('.top>div')[i].onclick = function(){
             $('.top>div').removeClass('active');
@@ -148,7 +176,19 @@
             var side = $(this).data('side');
             $('.subject').hide();
             $('#side'+side).show();
+            num = side;
             localStorage.setItem('eduNum',side);
+            if(edu==3){
+                var len = $("#side3 .list" ).length;
+                if(len >= 5){
+                    $('.tip' ).text('上拉加载更多');
+                }else {
+                    $('.tip' ).hide()
+                }
+                loadScroll();
+            }else {
+                $('.tip' ).hide()
+            }
         }
     }
     $('.top>div').removeClass('active');
@@ -198,5 +238,81 @@
         $('.tabs>span:last').click();
         sessionStorage.removeItem("redliterature");
     }
+    var scrollNow = true;
+    var url = '';
+    $(function(){
+        if(edu==3){
+            console.log(num)
+            var len = $("#side3 .list" ).length;
+            if(len >= 5){
+                $('.tip' ).text('上拉加载更多');
+            }else {
+                $('.tip' ).hide()
+            }
+            loadScroll();
+        }else {
+            $('.tip' ).hide()
+        }
+
+    });
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $("#side3 .list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('education/moremusic')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            console.log(data)
+                            addCourse(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                            $("img.lazy").lazyload({
+                                placeholder: "/home/images/loading.jpg",
+                                effect: "fadeIn",
+                                threshold: 1
+                            });
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
+    function addCourse(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var list = lists[i];
+            html +='<a href="/home/education/musicdetail?id='+list.id+'" class="list">'
+                    +'<img data-original="'+list.path+'" class="music-img lazy">'
+                    +'<div class="content"><div class="title limit_">'+list.title+'</div><div class="note clear"><span class="scan fl">'+list.views+'</span><span class="fr">'+list.time+'</span></div></div>'
+                    +'</a>'
+        }
+        $(".lists" ).append(html);
+    }
+
+
 </script>
 {/block}
