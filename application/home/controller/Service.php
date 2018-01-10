@@ -20,4 +20,7 @@ class Service extends Base
     public function manage(){
         return $this->fetch();
     }
+    public function appraisal(){
+        return $this->fetch();
+    }
 }

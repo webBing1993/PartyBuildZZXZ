@@ -1,8 +1,5 @@
 body{
     background:rgba(245,245,245,1);
-    font-size:0.3rem;
-    font-family:PingFang-SC-Medium;
-    color:rgba(51,51,51,1);
 }
 .tabs {
     width: 100vw;
@@ -10,6 +7,9 @@ body{
     margin-bottom:2.2vh;
 }
 .tabs .tab {
+    font-family:PingFang-SC-Medium;
+    color:rgba(51,51,51,1);
+    font-size:0.3rem;
     display: inline-block;
     width: 32.7vw;
     height: 5.6vh;
@@ -33,9 +33,6 @@ body{
     min-height: 64vw;
 }
 .box .list{
-    color:rgba(51,51,51,1);
-    width:100%;
-    height:14.2vh;
     display:inline-block;
     padding:4vw;
     border-bottom:1px solid rgba(209,209,209,1);
@@ -53,12 +50,10 @@ body{
     float:right;
     width:64vw;
     height:9.7vh;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
 }
-.title{
+.lr p{
+    font-size:0.3rem;
+    color:rgba(51,51,51,1);
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -66,6 +61,8 @@ body{
 }
 .lr span{
     color:rgba(153,153,153,1);
+    font-size:0.28rem;
+    font-family:PingFang-SC-Medium;
 }
 .time{
     width:23vw;
@@ -80,7 +77,25 @@ body{
     bottom: 0;
     line-height:1.8vh;
     padding-left:5.4vw;
-    background: url('/home/images/icon/icon_02.png') no-repeat left top;
+    background: url('/home/images/service/message.png') no-repeat left top;
     background-size: 3.5vw 1.8vh;
 }
 /*流程展示模块*/
+.flow .list{
+    width:100%;
+}
+.flow img{
+    width:12vw;
+    height:12vw;
+    margin-right:4vw;
+}
+.flow .lr{
+    position: relative;
+    float:right;
+    width:75vw;
+    height:12vw;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
