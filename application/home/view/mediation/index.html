@@ -3,6 +3,11 @@
 {block name="style"}
 <title>部门简介</title>
 <link rel="stylesheet" href="/home/css/mediation/index.css">
+<style>
+    #side3 .apply a:active{
+        background: #fff;
+    }
+</style>
 {/block}
 {block name="body"}
 <!--顶部分类选项-->
@@ -142,7 +147,7 @@
 
     <!--用户网上申请-->
     <div class="apply user">
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -150,7 +155,7 @@
                 <span class="status" style="border: 1px solid #52BDE3;color:#52BDE3;border-radius:.6vw;">待审核</span>
             </div>
         </a>
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -158,7 +163,7 @@
                 <span class="status" style="border: 1px solid #F96D5D;color:#F96D5D;border-radius:.6vw;">审核不通过</span>
             </div>
         </a>
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -166,7 +171,7 @@
                 <span class="status" style="border: 1px solid #FE8B44;color:#FE8B44;border-radius:.6vw;">调解员待确认</span>
             </div>
         </a>
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -174,7 +179,7 @@
                 <span class="status" style="border: 1px solid #FFBD29;color:#FFBD29;border-radius:.6vw;">纠纷待处理</span>
             </div>
         </a>
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt=""/>
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -182,7 +187,7 @@
                 <span class="status" style="border: 1px solid #DD5D3A;color:#DD5D3A;border-radius:.6vw;">待评价</span>
             </div>
         </a>
-        <a href="#" class="list userlist">
+        <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
@@ -301,11 +306,7 @@ $('#side'+med).show();
             $('.notices').eq(t-1).find('.volunteer').append(html);
         }
     }
-    $(".lazy").lazyload({
-        placeholder: "/home/images/loading.jpg",
-        effect: "fadeIn",
-        threshold: 1
-    });
+
     $(document).scroll(function() {
         $("img.lazy").lazyload({
             placeholder: "/home/images/loading.jpg",
