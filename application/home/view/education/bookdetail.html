@@ -281,7 +281,7 @@
             var len = $(".list" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
-            var id = 1;
+            var id = {$book.id};
             if(dh == end && !now1){
                 now1 = true;//请求中
                 $.ajax({
