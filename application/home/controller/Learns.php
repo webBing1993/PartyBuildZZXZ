@@ -7,6 +7,7 @@
  */
 
 namespace app\home\controller;
+use app\home\model\Collect;
 use app\home\model\WechatUser;
 use think\Controller;
 use app\admin\model\Question;
@@ -122,8 +123,11 @@ class Learns extends Base{
         $likeModel = new Like;
         $like = $likeModel->getLike(1,$id,$userId);
         $video['is_like'] = $like;
+        //获取 收藏
+        $collectModel = new Collect();
+        $collect = $collectModel->getCollect(1,$id,$userId);
+        $video['is_collect'] = $collect;
         $this->assign('video',$video);
-
         //获取 评论
         $commentModel = new Comment();
         $comment = $commentModel->getComment(1,$id,$userId);
@@ -174,8 +178,11 @@ class Learns extends Base{
         $likeModel = new Like;
         $like = $likeModel->getLike(1,$id,$userId);
         $article['is_like'] = $like;
+        //获取 收藏
+        $collectModel = new Collect();
+        $collect = $collectModel->getCollect(1,$id,$userId);
+        $article['is_collect'] = $collect;
         $this->assign('article',$article);
-
         //获取 评论
         $commentModel = new Comment();
         $comment = $commentModel->getComment(1,$id,$userId);

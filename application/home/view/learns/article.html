@@ -36,7 +36,12 @@
             {else/}
             <span class="isgood good">{$article.likes}</span>
             {/eq}
-            <span class="collect star" onclick="isCollect(this,1,{$article.id})">&nbsp; </span>
+
+            {eq name="article.is_collect" value="1"}
+            <span class="collect star_ " onclick="isCollect(this,1,{$article.id})">&nbsp;</div>
+            {else/}
+            <span class="collect star " onclick="isCollect(this,1,{$article.id})">&nbsp; </span>
+            {/eq}
         </div>
     </div>
 </div>
