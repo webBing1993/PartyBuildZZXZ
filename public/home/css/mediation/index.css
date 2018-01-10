@@ -80,7 +80,7 @@ body{background: #f5f5f5;}
 .line{
     line-height: 10.2vh;
 }
-.apply .list{
+.list{
     background:#F3F2F7;
     font-size:0.32rem;
     font-family:PingFang-SC-Medium;
@@ -105,16 +105,18 @@ body{background: #f5f5f5;}
     margin-bottom:0;
     background: #FFFFFF;
     width:100vw;
-    height:16.5vh;
+    height:18.7vh;
     padding:4vw 2.2vh;
 }
 .user .list:last-of-type{
     border-bottom:1px solid #D5D5D5;
 }
-.userimg{
+.user .userimg{
+    padding-left:0;
     width:21.3vw;
     height:100%;
     margin-right:4vw;
+    vertical-align: middle;
 }
 .apply .fr1{
     float:right;
@@ -136,18 +138,48 @@ body{background: #f5f5f5;}
     color:#333333;
 }
 .time{
+    position: absolute;
     font-size:.28rem;
     color:#999999;
-    position: absolute;
     left:0;
-    bottom:3.5vh;
+    bottom:3vh;
 }
 .status{
     position: absolute;
     left:0;
-    bottom:0;
+    bottom: 0;
     font-size:.24rem;
     padding:0 .5vw;
+}
+.wait{
+    border: 1px solid #52BDE3;
+    color:#52BDE3;
+    border-radius:.6vw;
+}
+.not{
+    border: 1px solid #F96D5D;
+    color:#F96D5D;
+    border-radius:.6vw;
+}
+.verify{
+    border: 1px solid #FE8B44;
+    color:#FE8B44;
+    border-radius:.6vw;
+}
+.message{
+    border: 1px solid #FFBD29;
+    color:#FFBD29;
+    border-radius:.6vw;
+}
+.appraise{
+    border: 1px solid #DD5D3A;
+    color:#DD5D3A;
+    border-radius:.6vw;
+}
+.complete{
+    border: 1px solid #A6D250;
+    color:#A6D250;
+    border-radius:.6vw;
 }
 .share{
     border-radius: 50%;
