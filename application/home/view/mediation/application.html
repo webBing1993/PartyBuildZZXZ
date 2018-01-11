@@ -1,0 +1,169 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/mediation/application.css">
+<title>事件申请</title>
+{/block}
+{block name="body"}
+<div class="form">
+    <div class="box">
+        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>事件名称 ：</span>
+        <input type="text" placeholder="请输入事件名称"/>
+    </div>
+    <div class="box">
+        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>事件类型 ：</span>
+        <div class="event">
+             <span class="chose">请选择事件类型</span>
+            <ul class="navssss" id="aaa">
+                <li>妇女儿童与残疾人维权</li>
+                <li>劳动就业及社会保障</li>
+                <li>婚姻家庭与遗产纠纷</li>
+                <li>交通事故与医患纠纷</li>
+                <li>债权及损害赔偿</li>
+                <li>网络交易与购物纠纷</li>
+                <li>旅游消费与保险纠纷</li>
+                <li>房地产与物业纠纷</li>
+                <li>债权债务及合同纠纷</li>
+                <li>刑事诉讼其他纠纷</li>
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="box">
+        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>当事人 ：</span>
+        <input type="text" placeholder="请输入当事人名称"/>
+    </div>
+    <div class="box">
+        <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>申请人 ：</span>
+        <input type="text" placeholder="请输入申请人名称"/>
+    </div>
+    <div class="box">
+        <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>联系电话 ：</span>
+        <input onkeyup="value=value.replace(/[^\d]/g,'') " placeholder="请输入联系电话"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+    </div>
+    <div class="describe">
+        <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>
+        <div class="imgs clear">
+            <div class="img fl hide"></div>
+            <div class="img fl hide"></div>
+            <div class="img fl hide"></div>
+            <div class="img fl hide"></div>
+            <div class="add">
+                <div class="new">
+                    <img class="newimg" src="/home/images/lxyz/icon/new.png"  alt=""/>
+                </div>
+            </div>
+            <input type="file" class="hide" id="upimg" accept="image/*">
+        </div>
+        <p>请上传您的证据，（可为空，限4张）</p>
+    </div>
+    <div class="box last">
+        <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
+        <span>选择调解员 :</span>
+        <div class="med">
+            <img class="image" />
+            <span class="name">芊芊</span>
+            <span class="g"> &gt; </span>
+        </div>
+    </div>
+    <div class="present">
+        提交申请
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+
+<script>
+    $('.event').on('click',function(){
+        $('#aaa').css('display','block')
+//        $('#aaa').show();
+    })
+    $('#aaa li').on('click',function(){
+        if($('#aaa').css('display')=='block'){
+            console.log(1)
+            $('#aaa').css('display','none')
+        }
+        console.log()
+
+    })
+//    $('.navssss').on('click',function(){
+//        $('.navssss').hide();
+//        console.log($(this).parent().css('diplay','none'))
+//        $(this).addClass('color').siblings().removeClass('color');
+//        var val=$(this).html();
+//        $('.chose').html(val);
+//        $(this).parent().hide()
+//    })
+    $('.add' ).on('click',function(){
+        var imglen = $('.img img' ).length;
+        var this_ = $(this );
+        $('#upimg').click().off("change").on('change',function(){
+            var img = $(this)[0].files[0];
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(img);
+            oFReader.onloadend = function(oFRevent){
+                var src = oFRevent.target.result;
+                if(this_.hasClass('add')){
+                    //图片添加
+                    if(imglen >= 3){
+                        $('.add' ).fadeOut();
+                        $('.describe p').fadeOut();
+                    }
+                    $('.img').eq(imglen-1).removeClass('hide' )
+                        .append('<img src='+src+' alt="图片" >');
+                }else{
+                    //图片修改
+                    this_.find('img').remove();
+                    this_.append('<img src='+src+' alt="图片">');
+                }
+//                    $('img').attr('src',src);
+//                    $('.img').show();
+            }
+//                console.log(src)
+//            var formData = new FormData();
+//            formData.append("picture",img);
+        });
+
+    });
+
+
+
+//    $('.save' ).on('click',function(){
+//        var title = $("input[name='title']").val();
+//        var content = $("textarea[name='content']").val();
+//        var n = content.length;
+//        var t = title.length;
+//        var img = $('.img img' );
+//        console.log(img.length)
+//        var images =[];
+//        for(var i=0;i<img.length;i++){
+//            images.push(img.eq(i).attr('src'));
+//        }
+//        console.log(images.length)
+//        images = img.eq(0).attr('src');
+//        var pos = images.indexOf("4")+2;
+//        images = images.substring(pos, images.length - pos);//去掉Base64:开头的标识字符
+//
+//        if (n == 0 || t == 0 || !images) {
+//            if (!t){
+//                alert( '标题不能为空');
+//            } else if (!n) {
+//                alert('内容不能为空');
+//            } else if (!images) {
+//                alert('封面图片不能为空');
+//            }
+//        }else{
+//
+//            console.log(title,content,images)
+//        }
+//    });
+
+</script>
+{/block}

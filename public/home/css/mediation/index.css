@@ -123,6 +123,25 @@ body{background: #f5f5f5;}
     width:78.6vw;
     height:100%;
 }
+.newimg{
+    position: fixed;
+    left:41.8vw;
+    bottom:10.2vh;
+    background: #fff;
+    width:16vw;
+    height:16vw;
+    line-height: 16vw;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 0 1.3vw rgba(0,0,0,.3);
+    text-align: center;
+}
+.new{
+    width:5.3vw;
+    height:5.3vw;
+    vertical-align: middle;
+}
 .user .fr1{
     position: relative;
     float:right;
@@ -150,46 +169,45 @@ body{background: #f5f5f5;}
     bottom: 0;
     font-size:.24rem;
     padding:0 .5vw;
+    -webkit-border-radius:.6vw;
+    -moz-border-radius: .6vw;
+    border-radius:.6vw;
 }
 .wait{
     border: 1px solid #52BDE3;
     color:#52BDE3;
-    border-radius:.6vw;
 }
 .not{
     border: 1px solid #F96D5D;
     color:#F96D5D;
-    border-radius:.6vw;
 }
 .verify{
     border: 1px solid #FE8B44;
     color:#FE8B44;
-    border-radius:.6vw;
 }
 .message{
     border: 1px solid #FFBD29;
     color:#FFBD29;
-    border-radius:.6vw;
 }
 .appraise{
     border: 1px solid #DD5D3A;
     color:#DD5D3A;
-    border-radius:.6vw;
 }
 .complete{
     border: 1px solid #A6D250;
     color:#A6D250;
-    border-radius:.6vw;
 }
 .share{
     border-radius: 50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius: 50%;
     background:#FE8B44;
     width:16vw;
     height:16vw;
     position: fixed;
     right:4vw;
     bottom:6vh;
-    box-shadow: 0 0 1.3vw rgba(0,0,0,.7);
+    box-shadow: 0 0 1.3vw rgba(0,0,0,.5);
     text-align: center;
     line-height:15vw;
 }
