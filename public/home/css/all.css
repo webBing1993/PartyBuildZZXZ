@@ -274,7 +274,7 @@
 .all .note_ span{
     margin-right: 0;
 }
-.all .note .good,.article  .note .isgood{
+.all .note .good,.article  .note .isgood ,.all .note .good_{
     margin-right: 0;
 }
 .all .note .read {

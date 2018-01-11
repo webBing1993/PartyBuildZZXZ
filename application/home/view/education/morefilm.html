@@ -32,13 +32,51 @@
 		color: #aeaeae;
 		font-size: .3rem;
 	}
+	.results {
+		position: absolute;
+		left: 0;
+		top: 12vw;
+		z-index: 2;
+		width: 100%;
+		height:100vh;
+		background: #fff;
+		display: none;
+	}
+	.results a:active {background: #999;color: #fff;}
+	.results .result {
+		display: inline-block;
+		width: 100vw;
+		height: 38px;
+		background: rgba(255, 255, 255, 0.8);
+		padding: 0 6vw;
+		line-height: 38px;
+		color: #666666;
+		border-bottom: 1px solid #f1f1f1;
+	}
+	#cancel {
+		width: 13.333vw;
+		height: 7.467vw;
+		border-radius: 5px;
+		border: 1px solid #5d9cec;
+		color: #5d9cec;
+		text-align: center;
+		line-height:  7.467vw;
+		font-size: .28rem;
+		float:right;
+		margin-right: 4vw;
+		position: relative;
+		top:50%;
+		margin-top: -3.7335vw;
+		display: none;
+	}
 </style>
 {/block}
 
 {block name="body"}
 <div class="search">
 	<span class="fa fa-search"></span>
-	<input type="text" placeholder="输入电影名称">
+	<input type="text" placeholder="输入电影名称" id="more">
+	<span id="cancel">取消</span>
 </div>
 <div class="results"></div>
 <div class="lists-title clear">
@@ -64,6 +102,7 @@
 
 {block name="script"}
 <script>
+    $('.search>input').val('')
 $(function(){
 	//搜索
 	var search = $('.search>input');
@@ -76,12 +115,15 @@ $(function(){
 	});
 	search.on('input',function(){
 		var this_ = this;
+        search.css('width','75vw');
+        $('#cancel').show();
+        $('body').css('position','fixed');
 		if(!lock){
 			var val = $(this_ ).val();
 			var html = '';
 			$.ajax({
 				type:"post",
-				url: "{:Url('Redcollection/filmserch')}",
+				url: "{:Url('education/filmsearch')}",
 				data:{
 					val:val
 				},
@@ -90,18 +132,31 @@ $(function(){
 					var result = data.data;
 					var url = '';
 					if(!data.data){
-						html +=
-								'<div class="result limit">无搜索结果</div>'
+						html += '<div class="result limit">无搜索结果</div>'
 					}
 					for(var obj in result){
-						html+= '<a href=\"/home/Redcollection/filmdetail?id='+obj+'\" class="result limit">'+result[obj]+'</a>';
+						html+= '<a href="/home/redcollection/filmdetail?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+//                        html +='<li>'
+//                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
+//                            +'<img data-original="'+list.path+'" class="list-img lazy">'
+//                            +'<div class="listTitle">'+list.title+'</div><div class="listSummary">'+list.introduction+'</div>'
+//                            +'</a>'
+//                            +'</li>'
 					}
+                    $('.results').show();
 					$('.results' ).html(html);
 				}
 
 			});
 		}
 	});
+	$('#cancel').on('click',function(){
+        search.css('width','94vw');
+        search.val('');
+        $('#cancel').hide();
+        $('.results').hide();
+        $('body').css('position','relative');
+	})
 })
 
 var scrollNow = true;
