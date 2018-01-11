@@ -34,7 +34,7 @@ input, select{
     font-family:PingFang-SC-Medium;
     color:#999999;
 }
-.navssss{
+.nav{
     background: #fff;
     width:50.6vw;
     position: absolute;
@@ -44,7 +44,7 @@ input, select{
     border-bottom:none;
     display:none;
 }
-.navssss li{
+.nav li{
     cursor: pointer;
     padding-left:4.5vw;
     line-height:6vh;
@@ -54,7 +54,7 @@ input, select{
     height: 6vh;
 
 }
-.navssss .color{
+.nav .color{
     background: #FE8B44;
     color:#fff;
 }
