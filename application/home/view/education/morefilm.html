@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title></title>
+<title>红色电影</title>
 <!--<link rel="stylesheet" href="/home/css/redcollection/film.css">-->
 <link rel="stylesheet" href="/home/css/education/index.css">
 <style>
@@ -22,6 +22,7 @@
 		padding-left: 8vw;
 		-webkit-border-radius: 2.2vw;
 		border-radius: 2.2vw;
+		font-size: .3rem;
 	}
 	.search .fa-search {
 		z-index: 1;
@@ -29,6 +30,7 @@
 		top: 4vw;
 		left: 6vw;
 		color: #aeaeae;
+		font-size: .3rem;
 	}
 </style>
 {/block}
@@ -62,7 +64,6 @@
 
 {block name="script"}
 <script>
-$('title').text('红色电影');
 $(function(){
 	//搜索
 	var search = $('.search>input');
