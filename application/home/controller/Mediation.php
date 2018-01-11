@@ -17,4 +17,7 @@ class Mediation extends Base
     public function application(){
         return $this->fetch();
     }
+    public function details(){
+        return $this->fetch();
+    }
 }
