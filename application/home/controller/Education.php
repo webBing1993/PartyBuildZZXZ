@@ -134,7 +134,7 @@ class Education extends Base
     /**
      * 电影搜索
      */
-    public function filmserch() {
+    public function filmsearch() {
         $val = input('val');
         if($val) {
             $map = array(
