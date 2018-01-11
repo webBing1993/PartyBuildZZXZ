@@ -1,83 +1,52 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>经典书籍</title>
-<link rel="stylesheet" href="/home/css/mediation/bookdetail.css">
+<link rel="stylesheet" href="/home/css/mediation/movedetail.css">
 <link rel="stylesheet" href="/static/sweetalert/sweetalert1.css">
+<link rel="stylesheet" href="/home/css/common/comment.css">
 <script src="/static/sweetalert/sweetalert1.min.js"></script>
+<title>十九大专区</title>
 <style>
     .sweet-alert.show-input textarea {
         font-size: .28rem;
         padding: 1.6vw;
-    }
-    .comment .lists .list .isgood {
-        line-height: 4vw;
-        background-position: center center;
-        padding-left: 7.6vw;
+        line-height: .36rem;
     }
 </style>
 {/block}
-
 {block name="body"}
-<div class="book all">
-    <div class="title">{$book.title}</div>
-    <div class="note">
-        <span class="fl">{$book.create_time|time_format='Y-m-d'}</span>
+<div class="article all">
+    <div class="title limit_"><p>{$article.title}</p></div>
+    <div class="note clear">
+        <span class="fl">{$article.publisher}</span>
+        <span class="fr">{$article.create_time|time_format="Y-m-d"}</span>
     </div>
     <div class="content">
-        <img src="{$book.front_cover|get_cover='path'}" class="book-img">
-        <div class="detail">
-            <div>{$book.name}&emsp;著</div>
-            <div>{$book.press}</div>
-            <div>{$book.publication_date}出版</div>
+        <div class="uecontent">
+            {$article.content}
         </div>
-        {eq name="visit" value="0"}
-        {eq name="book.is_read" value="0"}
-        <div class="reads" onclick="isread({$book['id']})">读过此书</div>
-        <!--点击后-->
-        {else/}
-        <div class="reads isread">读过此书</div>
-        {/eq}
-        {else/}
-        <div class="reads isread">读过此书</div>
-        {/eq}
-        <div class="brief">【作品简介】</div>
-        <div class="bookdetail">
-            {$book.works_introduction}
-        </div>
-        <div class="brief">【作者简介】</div>
-        <!--作者简介-->
-        <div class="authordetail clear">
-            <div class="msg fl" >
-                <img src="{$book.header|get_cover='path'}" class="authorimg">
-                <div class="name">{$book.name}</div>
-                <div class="time">{$book.birth_and_death}</div>
-            </div>
-            <div class="text fl">
-                {$book.author_introduction}
-            </div>
-        </div>
-        <div class="words">
-            {$book.famous_remark}
-            <div class="author">——— {$book.name}</div>
-        </div>
-        <!--/作者简介-->
         <div class="note">
-            <span class="read">{$book.views}</span>
+            <span class="read">{$article.views}</span>
             {eq name="visit" value="0"}
-            {eq name="book.is_like" value="0"}
-            <span class="isgood good" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
+            {eq name="article.is_like" value="1"}
+            <span class="isgood good_" onclick="isGood(this,5,{$article.id})">{$article.likes}</span>
             {else/}
-            <span class="isgood good_" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
+            <span class="isgood good" onclick="isGood(this,5,{$article.id})">{$article.likes}</span>
             {/eq}
             {else/}
-            <span class="isgood good">{$book.likes}</span>
+            <span class="isgood good">{$article.likes}</span>
+            {/eq}
+
+            {eq name="article.is_collect" value="1"}
+            <span class="collect star_ " onclick="isCollect(this,2,{$article.id})">&nbsp;</span>
+            {else/}
+            <span class="collect star " onclick="isCollect(this,2,{$article.id})">&nbsp; </span>
             {/eq}
         </div>
     </div>
 </div>
 <div class="comment">
-    <div class="sum">共<span>{$book.comments}</span>条评论</div>
+    <div class="sum">共<span>{$article.comments}</span>条评论</div>
     <div class="lists">
         {volist name="comment" id="co"}
         <div class="list clear zbhd">
@@ -107,7 +76,7 @@
     </div>
 </div>
 {eq name="visit" value="0"}
-<div class="bottom clear" onclick="send(this,4,{$book['id']})">
+<div class="bottom clear" onclick="send(this,5,{$article['id']})">
     <div class="myword fl">
         <input type="text" placeholder="说说你的感想！" disabled>
     </div>
@@ -116,78 +85,52 @@
 {/block}
 
 {block name="script"}
+<script src="/home/js/reset.js"></script>
 <script>
-    var now1 = false;//判断请求情况,false为未请求.
-    //读过此书
-    function isread(bookid){
-        var read = $('.reads');
-        if(!read.hasClass('isread')){
-            read.addClass('isread');
-            $.ajax({
-                type:"post",
-                url:"{:Url('Redcollection/is_read')}",
-                data:{
-                    id:bookid,
-                },
-                success:function(data){
-
-                }
-            })
+    var scrollNow = true;
+    $(function(){
+        var len = $(".list" ).length;
+        if(len >= 7){
+            $('.tip' ).text('上拉加载更多');
+            //上拉加载评论
+            loadScroll();
         }
-    }
+        //ios fix兼容
+        tofixed();
+    });
     //    收藏
     function isCollect(e,type,id){
-        $(e).toggleClass('star' ).toggleClass('star_');
-        if($(e).hasClass('star')){
-            swal({
-                title: '提示',
-                text: '即将取消收藏',
-                type: 'error',
-                confirmButtonText:'确定',
-                timer:3000
-            });
-        }else{
-            swal({
-                title: ' ',
-                text: '收藏成功',
-                type: 'success',
-                confirmButtonText:'确定',
-                timer:3000
-            });
-        }
-//        $.ajax({
-//            type:"post",
-//            url:"/home/base/collect.html",
-//            data:{
-//                type:type,
-//                aid:id,
-//            },
-//            success:function(data){
-//                $(e).toggleClass('star' ).toggleClass('star_');
-//                if($(e).hasClass('star')){
-//                    swal({
-//                        title: '提示',
-//                        text: '即将取消收藏',
-//                        type: 'error',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }else{
-//                    swal({
-//                        title: ' ',
-//                        text: '收藏成功',
-//                        type: 'success',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }
-//            }
-//        })
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/collect')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+                $(e).toggleClass('star' ).toggleClass('star_');
+                if($(e).hasClass('star')){
+                    swal({
+                        title: '提示',
+                        text: '即将取消收藏',
+                        type: 'error',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }else{
+                    swal({
+                        title: ' ',
+                        text: '收藏成功',
+                        type: 'success',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }
+            }
+        })
     }
     //点赞
     function isGood(e,type,id){
-        //type：1文章，2评论
-//	var type = $(e).hasClass('fr')?2:1;
         $.ajax({
             type:"post",
             url:"{:Url('Base/like')}",
@@ -198,82 +141,100 @@
             success:function(data){
                 var n = $(e ).text();
                 $(e).toggleClass('good' ).toggleClass('good_');
-                $(e).hasClass('good')?n--:n++;
-                $(e).text(n);
+                $(e ).hasClass('good')?n--:n++;
+                $(e ).text(n);
             }
         })
     }
-    //发送评论
+    //评论
     var send = function(e,type,id){
         swal({
-                title: '',
-                text: '请输入您的评论！',
-                type: 'input',
-                showCancelButton: true,
-                closeOnConfirm: false,
-                cancelButtonText: "取消",
-                confirmButtonText: "确定",
-                animation: "slider-form-top"
+            title: '',
+            text: '请输入您的评论！',
+            type: 'input',
+            showCancelButton: true,
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            confirmButtonText: "确定",
+            animation: "slider-form-top"
 
-            },
-            function(inputValue){
-                if (inputValue === false) return false;
+        }, function(inputValue) {
+            if (inputValue === false) return false;
 
-                if (inputValue.length < 1) {
-                    swal.showInputError("评论字数不能少于1个字！");
-                    return false
+            if (inputValue.length < 1) {
+                swal.showInputError("评论字数不能少于1个字！");
+                return false
+            }
+
+            if (inputValue.length > 300) {
+                swal.showInputError("您输入的字超过了300！");
+                return false
+            }
+            $.ajax({
+                type: "post",
+                url: "{:Url('Base/comment')}",
+                data: {
+                    type: type,
+                    aid: id,
+                    content: inputValue
+                },
+                beforeSend: function () {
+                    swal({
+                        title: ' ',
+                        text: '评论提交中...',
+                        showConfirmButton: false
+                    });
+                },
+                success: function (data) {
+                    var data = data.data;
+                    var userid = "'" + data.create_user + "'";
+                    var html = '';
+                    html += '<div class="list clear">' +
+                        '<div class="fl">' +
+                        '<img src="' + data.header + '" alt="用户头像" class="user">' +
+                        '</div>' +
+                        '<div class="fl mid">' +
+                        '<div class="name limit">' + data.nickname + '</div>' +
+                        '<div class="content" >' + inputValue + '</div>' +
+                        '<div class="time">' + data.time + '</div>' +
+                        '</div>' +
+                        '<div class="fr isgood good" onclick="isGood(this,0,' + data.id + ')">' + data.likes + '</div>' +
+                        '</div>';
+                    $('.lists').prepend(html);
+                    inputValue = "";
+                    var sum = $('.sum span');
+                    sum.text(parseInt(sum.text()) + 1);
+                    swal({
+                        title: ' ',
+                        text: '评论成功',
+                        type: 'success',
+                        confirmButtonText: '确定',
+                        timer: 3000
+                    });
                 }
-
-                if (inputValue.length > 300) {
-                    swal.showInputError("您输入的字超过了300！");
-                    return false
-                }
-                $.ajax({
-                    type:"post",
-                    url:"{:Url('Base/comment')}",
-                    data:{
-                        type:type,
-                        aid:id,
-                        content:inputValue
-                    },
-                    beforeSend:function(){
-                        swal({
-                            title: ' ',
-                            text: '评论提交中...',
-                            showConfirmButton:false
-                        });
-                    },
-                    success:function(data){
-                        var data = data.data;
-                        var userid = "'"+data.create_user+"'";
-                        var html = '';
-                        html += '<div class="list clear">'+
-                            '<div class="fl">'+
-                            '<img src="'+data.header+'" alt="用户头像" class="user">'+
-                            '</div>'+
-                            '<div class="fl mid">'+
-                            '<div class="name limit">'+data.nickname+'</div>'+
-                            '<div class="content" >'+inputValue+'</div>'+
-                            '<div class="time">'+data.time+'</div>'+
-                            '</div>'+
-                            '<div class="fr isgood good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
-                            '</div>';
-                        $('.lists' ).prepend(html);
-                        inputValue="";
-                        var sum = $('.sum span' );
-                        sum.text(parseInt(sum.text())+1);
-                        swal({
-                            title: ' ',
-                            text: '评论成功',
-                            type: 'success',
-                            confirmButtonText:'确定',
-                            timer:3000
-                        });
-                    }
-                });
             });
+        })
     };
-    //评论加载更多
+    var wAlert = window.alert;
+    window.alert = function (message) {
+        try {
+            var iframe = document.createElement("IFRAME");
+            iframe.style.display = "none";
+            iframe.setAttribute("src", 'data:text/plain,');
+            document.documentElement.appendChild(iframe);
+            var alertFrame = window.frames[0];
+            var iwindow = alertFrame.window;
+            if (iwindow == undefined) {
+                iwindow = alertFrame.contentWindow;
+            }
+            iwindow.alert(message);
+            iframe.parentNode.removeChild(iframe);
+        }
+        catch (exc) {
+            return wAlert(message);
+        }
+    };
+    //加载更多
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
@@ -281,14 +242,14 @@
             var len = $(".list" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
-            var id = {$book.id};
-            if(dh == end && !now1){
-                now1 = true;//请求中
+            var id = 1;
+            if(dh == end && scrollNow){
+                scrollNow = false;
                 $.ajax({
                     type:"post",
                     url:"{:Url('Base/morecomment')}",
                     data:{
-                        type:4,
+                        type:5,
                         aid:id,
                         length:len
                     },
@@ -299,6 +260,7 @@
                     success:function(data){
                         loading.toggleClass('hidden');
                         tip.show();
+                        console.log(data)
                         if(data.code == 1){
                             addComment(data);
                             var dataLen =data.data.length;
@@ -309,7 +271,7 @@
                             tip.text('没有更多了');
                             $(window ).off("scroll");
                         }
-                        now1 = false;//请求结束,恢复状态
+                        scrollNow = true;
                     }
                 })
             }
@@ -323,7 +285,8 @@
         for(var i = 0; i< len;i++){
             var list = lists[i];
             var userid = "'"+list.create_user+"'";
-            html += '<div class="list clear">'+
+            html +=
+                '<div class="list clear">'+
                 '<div class="fl">'+
                 '<img src="'+list.header+'" alt="用户" class="user">'+
                 '</div>'+
@@ -332,26 +295,22 @@
                 '<div class="content" >'+ list.content+'</div>'+
                 '<div class="time">'+ list.time+'</div>'+
                 '</div>';
-            if(1 == 0) {
-                if (list.is_like == 0) {
-                    html += '<div class="fr isgood good" onclick="isGood(this,0,' + list.id + ')">' + list.likes + '</div>'
-                } else {
-                    html += '<div class="fr isgood good_" onclick="isGood(this,0,' + list.id + ')">' + list.likes + '</div>'
-                }
-            }else {
-                html += '<div class="fr isgood good">' + list.likes + '</div>'
+            if(list.is_like == 0){
+                html+='<div class="fr isgood good" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
+            }else{
+                html+='<div class="fr isgood good_" onclick="isGood(this,0,'+list.id+')">'+list.likes+'</div>'
             }
-            html+=
-                '</div>';
+            html+= '</div>';
+            html+= '</div>';
         }
         $(".lists" ).append(html);
     }
     //--------------------------------------------------------------------------
     //
-    //	Class style
+    //  Class style
     //
     //--------------------------------------------------------------------------
-    //fix兼容
+
     function tofixed(){
         var u = navigator.userAgent;
         var word = $('.myword input');
@@ -381,16 +340,7 @@
             })
         }
     }
-    $(function(){
-        //reset
-        var len = $(".list" ).length;
-        if(len >= 5){
-            $('.tip' ).text('上拉加载更多');
-            //上拉加载评论
-            loadScroll();
-        }
-        //ios fix兼容
-        tofixed();
-    })
 </script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
 {/block}
