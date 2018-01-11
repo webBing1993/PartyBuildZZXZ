@@ -1,3 +1,92 @@
 body{
     background: #F5F5F5;
 }
+.chart{
+    background: #fff;
+    padding-bottom: 1.5vh;
+    margin-bottom: 1.5vh;
+    padding-left:7.4vw;
+    padding-top:2.2vh;
+}
+.line{
+    width:.8vw;
+    height:2.5vh;
+    background: #DBDBDB;
+}
+.lists{
+    font-family:PingFang-SC-Medium;
+    border-left:.8vw solid #DBDBDB;
+}
+.list{
+    padding-left:6.6vw;
+    width:100%;
+    position: relative;
+    padding-bottom:2.7vh;
+}
+.list p{
+    margin-bottom:1.2vh;
+    font-size: .32rem;
+    color:#333;
+}
+.list span{
+    font-size: .26rem;
+    color:#999;
+}
+.num{
+    text-align: center;
+    line-height: 4.8vw;
+    width:4.8vw;
+    height:4.8vw;
+    background: #52BDE3;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: absolute;
+    left:-3vw;
+}
+.form{
+    border:1px solid #D1D1D1;
+    border-bottom:none;
+    margin-bottom:1.5vh;
+}
+.box{
+    position: relative;
+    padding-left:4vw;
+    width:100%;
+    height:7.5vh;
+    line-height:7.5vh;
+    font-size:.32rem;
+    font-family:PingFang-SC-Medium;
+    border-bottom:1px solid #D1D1D1;
+    background: #fff;
+    color:#999999;
+}
+.describe{
+    line-height: 7.5vh;
+}
+.con{
+    color:#333333;
+}
+.con1{
+   position: absolute;
+}
+.con2{
+    margin-left:13.2vw;
+    width:100%;
+    height:100%;
+    color:#333333;
+}
+.images{
+    vertical-align: middle;
+    width:10vw;
+    height:10vw;
+}
+.remark{
+    width: 100%;
+    height:9vh;
+    line-height:9vh;
+    background: #FE8B44;
+    color:#fff;
+    font-size:.36rem;
+    text-align: center;
+}
