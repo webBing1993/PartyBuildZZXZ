@@ -30,10 +30,10 @@
     <div class="swiper-wrapper" style="left:-40%;">
         <div class="swiper-slide" data-side="1" data-history="slide1">党的历史</div>
         <div class="swiper-slide" data-side="2" data-history="slide2">党的理论</div>
-        <div class="swiper-slide" data-side="3" data-history="slide3">党的历史</div>
-        <div class="swiper-slide" data-side="4" data-history="slide4">党的修养</div>
-        <div class="swiper-slide" data-side="5" data-history="slide5">党务知识</div>
-        <div class="swiper-slide" data-side="6" data-history="slide6">党章党规</div>
+        <div class="swiper-slide" data-side="3" data-history="slide3">党的修养</div>
+        <div class="swiper-slide" data-side="4" data-history="slide4">党务知识</div>
+        <div class="swiper-slide" data-side="5" data-history="slide5">党规党章</div>
+        <div class="swiper-slide" data-side="6" data-history="slide6">系列讲话</div>
     </div>
 </div>
 <!--<div class="top">-->
@@ -45,214 +45,94 @@
     <!--<div data-side="6">党的历史</div>-->
 <!--</div>-->
 <div class="subject all" id="side1">
+    {volist name="list1" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top">中共一大</div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top">中共一大</div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top">中共一大</div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="subject all" id="side2">
+    {volist name="list2" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="subject all" id="side3">
+    {volist name="list3" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="subject all" id="side4">
+    {volist name="list4" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="subject all" id="side5">
+    {volist name="list5" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="subject all" id="side6">
+    {volist name="list6" id="vo"}
     <a class="side1Content">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
+            <p class="side1Content_Text_01">{$vo.title}</p>
+            <p class="side1Content_Text_02">{$vo.desc}</p>
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
+            <span class="read">{$vo.views}</span>
+            <span class="isgood good">{$vo.comments}</span>
         </div>
     </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
-    <a class="side1Content">
-        <div class="side1Content_Top"></div>
-        <div class="side1Content_Text">
-            <p class="side1Content_Text_01">中共第一次全国代表大会（1921.07.23—30）</p>
-            <p class="side1Content_Text_02">俄国十月革命后，马克思主义在中国得到广泛传播。中国的先进分子李大钊、陈独秀、毛泽东…</p>
-        </div>
-        <div class="note notess" style="width:84vw;margin: auto ;">
-            <span class="read">111</span>
-            <span class="isgood good">0</span>
-        </div>
-    </a>
+    {/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
