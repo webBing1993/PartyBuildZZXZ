@@ -26,6 +26,7 @@ input, select{
     margin-right:1.3vw;
 }
 .event{
+    padding-right:4vw;
     position: relative;
     float: right;
     width:70vw;
@@ -34,6 +35,14 @@ input, select{
     font-family:PingFang-SC-Medium;
     color:#999999;
 }
+
+.icon3{
+    float: right;
+   margin-top:3vh;
+    width:4vw;
+    height:1.4vh;
+}
+
 .nav{
     background: #fff;
     width:50.6vw;
@@ -127,10 +136,14 @@ textarea{
     margin-left:4vw;
 }
 .g{
+    line-height: 7vh;
     float: right;
     margin-right:4vw;
-    color:#999999;
-    font-size:.32rem;
+}
+.icon2{
+    vertical-align: middle;
+    width:2.7vw;
+    height:2.6vh;
 }
 .img img{
     margin-right:1.3vw;
