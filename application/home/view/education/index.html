@@ -156,12 +156,13 @@
         </a>
         {/volist}
     </div>
+    <div class="tip"></div>
+    <div class="loading hidden">
+        <div class="typing_loader"></div>
+    </div>
 </div>
 
-<div class="tip"></div>
-<div class="loading hidden">
-    <div class="typing_loader"></div>
-</div>
+
 
 {/block}
 {block name="script"}
@@ -178,6 +179,11 @@
             $('#side'+side).show();
             num = side;
             localStorage.setItem('eduNum',side);
+            if(side==2){
+                $('body').css('background','#fff');
+            }else {
+                $('body').css('background','#f5f5f5')
+            }
             if(side==3){
                 var len = $("#side3 .list" ).length;
                 if(len >= 5){
@@ -276,28 +282,23 @@
                     success:function(data){
                         loading.toggleClass('hidden');
                         tip.show();
-                        if(edu!==3){
-                            $('.tip' ).hide()
-                        }else {
-                            if(data.code == 1){
-                                console.log(data)
-                                addCourse(data);
-                                var dataLen =data.data.length;
-                                if(data.data.length == 5){
-                                    tip.text('上拉加载更多');
-                                }
-                                $("img.lazy").lazyload({
-                                    placeholder: "/home/images/loading.jpg",
-                                    effect: "fadeIn",
-                                    threshold: 1
-                                });
+                        if(data.code == 1){
+                            console.log(data)
+                            addCourse(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
                             }
-                            else{
-                                tip.text('没有更多了');
-                                $(window ).off("scroll");
-                            }
+                            $("img.lazy").lazyload({
+                                placeholder: "/home/images/loading.jpg",
+                                effect: "fadeIn",
+                                threshold: 1
+                            });
                         }
-
+                        else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
                         scrollNow = true;
                     }
                 })
