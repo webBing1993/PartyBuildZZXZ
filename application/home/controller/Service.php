@@ -23,4 +23,7 @@ class Service extends Base
     public function appraisal(){
         return $this->fetch();
     }
+    public function appuser(){
+        return $this->fetch();
+    }
 }

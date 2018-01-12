@@ -21,43 +21,13 @@
         <span class="fl">热门推荐</span>
     </div>
     <div class="lists">
-        <a href="/home/education/detail.html" class="list clear" data-type="new">
-            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
-            <div class="fr">
-                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
-                <div class="note"><span class="user">【十九大专区】</span><span class="time">2012-14-55</span></div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear" data-type="new">
-            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
-            <div class="fr">
-                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
-                <div class="note">
-                    <span class="user">【十九大专区】</span>
-                    <span class="time">2012-14-55</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear" data-type="new">
-            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
-            <div class="fr">
-                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
-                <div class="note">
-                    <span class="user">【十九大专区】</span>
-                    <span class="time">2012-14-55</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear" data-type="new">
-            <img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">
-            <div class="fr">
-                <div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>
-                <div class="note">
-                    <span class="user">【十九大专区】</span>
-                    <span class="time">2012-14-55</span>
-                </div>
-            </div>
-        </a>
+        <!--<a href="/home/education/detail.html" class="list clear" data-type="new">-->
+            <!--<img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">-->
+            <!--<div class="fr">-->
+                <!--<div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>-->
+                <!--<div class="note"><span class="user">【十九大专区】</span><span class="time">2012-14-55</span></div>-->
+            <!--</div>-->
+        <!--</a>-->
     </div>
 </div>
 <div class="tip"></div>
@@ -73,14 +43,48 @@
         effect: "fadeIn",
         threshold: 500
     });
+    var tip = $(".tip");
+    var loading = $('.loading');
+    var len = $(".lists a" ).length;
+    $.ajax({
+        type:"post",
+        url:"{:Url('Learns/moreDataList')}",
+        data:{
+            length:len
+        },
+        beforeSend: function(XMLHttpRequest){
+            tip.hide();
+            loading.toggleClass('hidden');
+        },
+        success:function(data){
+            loading.toggleClass('hidden');
+            tip.show();
+            console.log(data)
+            if(data.code == 1){
+                addCourse(data);
+                var dataLen =data.data.length;
+                if(data.data.length == 5){
+                    tip.text('上拉加载更多');
+                }
+                $("img.lazy").lazyload({
+                    placeholder: "/home/images/loading.jpg",
+                    effect: "fadeIn",
+                    threshold: 1
+                });
+            }else{
+                tip.text('没有更多了');
+                $(window ).off("scroll");
+            }
+            scrollNow = true;
+        }
+    })
     var scrollNow = true;
     $(function(){
-        //模块标题
-        //reset
-        $('.box').eq(0).show();
-        var len = $(".list" ).length;
+        var len = $(".lists a" ).length;
         if(len >= 5){
             $('.tip' ).text('上拉加载更多');
+        }else {
+            $('.tip' ).hide();
         }
         //上拉加载
         loadScroll();
@@ -103,14 +107,14 @@
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $(".list" ).length;
+            var len = $(".lists a" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url:"{:Url('Learn/indexmore')}",
+                    url:"{:Url('Learns/moreDataList')}",
                     data:{
                         length:len
                     },
@@ -121,6 +125,7 @@
                     success:function(data){
                         loading.toggleClass('hidden');
                         tip.show();
+                        console.log(data)
                         if(data.code == 1){
                             addCourse(data);
                             var dataLen =data.data.length;
@@ -148,11 +153,11 @@
         var len = lists.length;
         for(var i = 0; i< len;i++){
             var list = lists[i];
-            html += '<a href="#" class="list clear" data-type="new">'
-                    +'<img data-original="/home/images/banner/1.jpg" alt="" class="fl lazy">'
+            html += '<a href="'+list.url+'" class="list clear" data-type="new">'
+                    +'<img data-original="'+list.path+'" alt="" class="fl lazy">'
                     +'<div class="fr">'
-                    +'<div class="title limit_">团委“不忘初心，牢记使命”主题教育实践活动</div>'
-                    +'<div class="note"><span class="user">【十九大专区】</span><span class="time">2012-14-55</span></div>'
+                    +'<div class="title limit_">'+list.title+'</div>'
+                    +'<div class="note"><span class="user">'+list.pre+'</span><span class="time">'+list.time+'</span></div>'
                     +'</div>'
                     +'</a>'
         }
