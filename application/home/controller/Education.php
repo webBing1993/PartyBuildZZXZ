@@ -26,9 +26,7 @@ class Education extends Base
     public function index(){
         //红色电影
         $filmModel = new Redfilm();
-        $map = array(
-            'status' => 1,
-        );
+        $map = ['status' => 1];
         //最新上映
         $new = $filmModel->where($map)->order('create_time desc')->limit(6)->select();
         $this->assign('new',$new);
@@ -64,9 +62,7 @@ class Education extends Base
      */
     public function morefilm() {
         $filmModel = new Redfilm();
-        $map = array(
-            'status' => 1,
-        );
+        $map = ['status' => 1];
         $list = $filmModel->where($map)->order('views desc,create_time desc')->limit(9)->select();
         $this->assign('list',$list);
         return $this->fetch();
@@ -77,9 +73,7 @@ class Education extends Base
     public function moremove() {
         $len = input('length');
         $filmModel = new Redfilm();
-        $map = array(
-            'status' => 1,
-        );
+        $map = ['status' => 1];
         $list = $filmModel->where($map)->order('views desc,create_time desc')->limit($len,9)->select();
         if($list) {
             foreach ($list as $value) {
@@ -101,19 +95,19 @@ class Education extends Base
         $filmModel = new Redfilm();
         $userId = session('userId');
         //浏览加一
-        $info['views'] = array('exp','`views`+1');
+        $info['views'] = ['exp','`views`+1'];
         $filmModel::where('id',$id)->update($info);
 
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
-            $con = array(
+            $con = [
                 'user_id' => $userId,
                 'film_id' => $id,
-            );
+            ];
             $history = Browse::get($con);
             if(!$history && $id != 0){
                 Browse::create($con);
-                $s['score'] = array('exp','`score`+1');
+                $s['score'] = ['exp','`score`+1'];
                 WechatUser::where('userid',$userId)->update($s);
             }
         }
@@ -137,10 +131,10 @@ class Education extends Base
     public function filmsearch() {
         $val = input('val');
         if($val) {
-            $map = array(
-                'title' => array('like','%'.$val.'%'),
+            $map = [
+                'title' => ['like','%'.$val.'%'],
                 'status' => 1,
-            );
+            ];
             $filmModel = new Redfilm();
             $list = $filmModel->where($map)->order('create_time desc')->column('id,title');
             if($list) {
@@ -161,19 +155,19 @@ class Education extends Base
         $userId = session('userId');
         $musicModel = new Redmusic();
         //浏览加一
-        $info['views'] = array('exp','`views`+1');
+        $info['views'] = ['exp','`views`+1'];
         $musicModel::where('id',$id)->update($info);
 
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
-            $con = array(
+            $con = [
                 'user_id' => $userId,
                 'music_id' => $id,
-            );
+            ];
             $history = Browse::get($con);
             if(!$history && $id != 0){
                 Browse::create($con);
-                $s['score'] = array('exp','`score`+1');
+                $s['score'] = ['exp','`score`+1'];
                 WechatUser::where('userid',$userId)->update($s);
             }
         }
@@ -197,9 +191,7 @@ class Education extends Base
     public function moremusic() {
         $len = input('length');
         $musicModel = new Redmusic();
-        $map = array(
-            'status' => 1,
-        );
+        $map = ['status' => 1];
         $list = $musicModel->where($map)->order('create_time desc')->limit($len,5)->select();
         if($list) {
             foreach ($list as $value) {
@@ -221,19 +213,19 @@ class Education extends Base
         $userId = session('userId');
         $bookModel = new Redbook();
         //浏览加一
-        $info['views'] = array('exp','`views`+1');
+        $info['views'] = ['exp','`views`+1'];
         $bookModel::where('id',$id)->update($info);
 
         if($userId != "visitor"){
             //浏览不存在则存入pb_browse表
-            $con = array(
+            $con = [
                 'user_id' => $userId,
                 'book_id' => $id,
-            );
+            ];
             $history = Browse::get($con);
             if(!$history && $id != 0){
                 Browse::create($con);
-                $s['score'] = array('exp','`score`+1');
+                $s['score'] = ['exp','`score`+1'];
                 WechatUser::where('userid',$userId)->update($s);
             }
         }
@@ -241,10 +233,10 @@ class Education extends Base
 
         //是否读过此书
         $userId = session('userId');
-        $info1 = array(
+        $info1 = [
             'create_user' => $userId,
             'book_id' => $id,
-        );
+        ];
         $isread =  RedbookRead::where($info1)->find();
         if($isread) {
             $book['is_read'] = 1; //已读过
@@ -271,13 +263,13 @@ class Education extends Base
     public function booksearch() {
         $val = input('val');
         if($val) {
-            $map = array(
-                'title' => array('like','%'.$val.'%'),
+            $map = [
+                'title' => ['like','%'.$val.'%'],
                 'status' => 1,
-            );
-            $map2 = array(
-                'name' => array('like','%'.$val.'%'),
-            );
+            ];
+            $map2 = [
+                'name' => ['like','%'.$val.'%'],
+            ];
             $bookModel = new Redbook();
             $list = $bookModel->where($map)->whereOr($map2)->order('create_time desc')->column('id,title');
             if($list) {
@@ -296,15 +288,15 @@ class Education extends Base
         $userId = session('userId');
         $id = input('id');
         $readModel = new RedbookRead();
-        $data = array(
+        $data = [
             'create_user' => $userId,
             'book_id' => $id,
-        );
+        ];
         $info = $readModel->where($data)->find();
         if(empty($info)) {
             $model = $readModel->create($data);
             if($model) {
-                $map['have_read'] = array('exp','`have_read`+1');
+                $map['have_read'] = ['exp','`have_read`+1'];
                 Redbook::where('id',$id)->update($map);
                 return $this->success("成功读过此书");
             }else{

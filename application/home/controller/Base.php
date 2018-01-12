@@ -192,6 +192,7 @@ class Base extends Controller {
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
+     * 5 study
      * 7 RedtutorCourse
      * 8 RedtutorNotice
      * 9 Redlead
@@ -223,6 +224,9 @@ class Base extends Controller {
                 break;
             case 4:
                 $table = "redbook";
+                break;
+            case 5:
+                $table = "study";
                 break;
             case 7:
                 $table = "RedtutorCourse";
@@ -310,6 +314,7 @@ class Base extends Controller {
      * 2 redfilm 红色电影
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
+     * 5 study
      * 7 RedtutorCourse
      * 8 RedtutorNotice
      * 9 Redlead
@@ -339,6 +344,9 @@ class Base extends Controller {
                     break;
                 case 4:
                     $table = "redbook";
+                    break;
+                case 5:
+                    $table = "study";
                     break;
                 case 7:
                     $table = "RedtutorCourse";
@@ -472,7 +480,7 @@ class Base extends Controller {
                 $table = "learns";
                 break;
             case 2:
-                $table = "notice";
+                $table = "study";
                 break;
             default:
                 return $this->error("无该数据表");

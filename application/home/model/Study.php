@@ -33,4 +33,13 @@ class Study extends Model {
             return $list;
         }
     }
+    //首页获取已推送的数据
+    public function get_list($length,$len){
+        $map = array(
+            'status' => ['egt',0],
+            'recommend' => 1
+        );
+        $details = $this ->where($map) ->order('create_time desc') ->limit($length,$len) ->field("'study' as genre, id, title, create_time, front_cover, publisher, status, recommend, views, comments, likes") ->select();
+        return $details;
+    }
 }
