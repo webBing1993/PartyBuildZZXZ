@@ -7,13 +7,17 @@
 {block name="body"}
 <div class="form">
     <div class="box">
-        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
-        <span>事件名称 ：</span>
-        <input type="text" placeholder="&nbsp;请输入事件名称" size="28"/>
+        <div class="ev">
+            <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+            <span>事件名称 ：</span>
+        </div>
+        <input type="text" placeholder="请输入事件名称" size="28"/>
     </div>
     <div class="box events">
-        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
-        <span>事件类型 ：</span>
+        <div class="ev">
+            <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+            <span>事件类型 ：</span>
+        </div>
         <div class="event">
              <span class="chose"> 请选择事件类型</span>
              <img class="icon3" src="/home/images/lxyz/icon/icon3.png"  alt=""/>
@@ -32,19 +36,25 @@
         </div>
     </div>
     <div class="box">
-        <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
-        <span>当事人 ：</span>
-        <input style="text-indent: 4.1vw;" type="text" placeholder="&nbsp;请输入当事人名称" size="28"/>
+        <div class="ev">
+            <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
+            <span>当事人 ：</span>
+        </div>
+        <input  type="text" placeholder="请输入当事人名称" size="28"/>
     </div>
     <div class="box">
-        <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
-        <span>申请人 ：</span>
-        <input type="text" style="text-indent: 4.1vw;" placeholder="&nbsp;请输入申请人名称" size="30"/>
+        <div class="ev">
+            <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
+            <span>申请人 ：</span>
+        </div>
+        <input type="text"  placeholder="请输入申请人名称" size="30"/>
     </div>
     <div class="box">
-        <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
-        <span>联系电话 ：</span>
-        <input onkeyup="value=value.replace(/[^\d]/g,'') " placeholder="&nbsp;请输入联系电话" size="28" style="text-indent: .5vw;"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+        <div class="ev">
+            <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
+            <span>联系电话 ：</span>
+        </div>
+        <input onkeyup="value=value.replace(/[^\d]/g,'') " placeholder="请输入联系电话" size="28" style="text-indent: .5vw;"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
     </div>
     <div class="describe">
         <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>
@@ -85,14 +95,14 @@
 $(function () {
     $('.events').on('click',function(e){
         e.stopPropagation();
+        $('body').css({position:' fixed', width:'100%'})
         if($('.nav').css('display')=='none'){
             $('.icon3').css('transform','rotate(180deg)')
         }else{
             $('.icon3').css('transform','rotate(0)')
+            $('body').css({position:'relative'})
         }
-//        $('.nav').fadeIn();
-        $('.nav').fadeToggle("slow");
-        $('body').css({position:' fixed', width:'100%'})
+        $('.nav').stop().fadeToggle("slow");
     })
     $('.nav li').on('click',function(e){
         e.stopPropagation();
@@ -103,47 +113,50 @@ $(function () {
         }else{
             $('.icon3').css('transform','rotate(0)')
         }
-        $('.nav').fadeToggle("slow");
+        $('.nav').stop().fadeToggle("slow");
         $('body').css({position:'relative'})
         var val=$(this).html();
         $('.chose').html(val);
     })
     $('.form').on('click',function(){
-        $('.nav').fadeOut();
-        console.log($('.nav').css('display'))
+        $('.nav').stop().fadeOut();
+        $('body').css({position:'relative'})
         if($('.nav').css('display')=='block') {
             $('.icon3').css('transform', 'rotate(0)');
         }
     })
 })
-    $('.add' ).on('click',function(){
+    $('.new' ).on('click',function(){
         var imglen = $('.img img' ).length;
         var this_ = $(this );
         $('#upimg').click().off("change").on('change',function(){
             var img = $(this)[0].files[0];
+            console.log(img)
             var oFReader = new FileReader();
             oFReader.readAsDataURL(img);
             oFReader.onloadend = function(oFRevent){
                 var src = oFRevent.target.result;
-                if(this_.hasClass('add')){
                     //图片添加
                     if(imglen >= 3){
-                        $('.add' ).fadeOut();
-                        $('.describe p').fadeOut();
+                        $('.add' ).hide();
+                        $('.describe p').hide();
                     }
                     $('.imgs .img').eq(imglen).removeClass('hide' )
                         .append('<img src='+src+' alt="图片" >');
-                }else{
-                    //图片修改
-                    this_.find('img').remove();
-                    this_.append('<img src='+src+' alt="图片">');
-                }
-//                    $('img').attr('src',src);
-//                    $('.img').show();
+
+                    $('.imgs .img img').on('click',function(){
+                        $(this).parent().addClass('hide')
+                        $(this).remove();
+                        if($('.imgs .img img').length <4){
+                            $('.add' ).show();
+                            $('.describe p').show();
+                        }
+                    })
+
+
             }
-//                console.log(src)
-//            var formData = new FormData();
-//            formData.append("picture",img);
+
+
         });
 
     });
