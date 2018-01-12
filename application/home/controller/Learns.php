@@ -80,7 +80,7 @@ class Learns extends Base
                     break;
                 case 'learns':
                     $res[$k]['pre'] = "【十九大专区】";
-                    $res[$k]['url'] = $v['type']==1 ? "/home/learns/video/id/".$v['id'] : "learns/article/id/".$v['id'];
+                    $res[$k]['url'] = $v['type']==1 ? "/home/learns/video/id/".$v['id'] : "/home/learns/article/id/".$v['id'];
                     break;
                 default:
                     $res[$k]['url'] = "";
