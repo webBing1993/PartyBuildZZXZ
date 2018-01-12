@@ -16,14 +16,9 @@
 <div class="organization">
     <div class="organizationTop"><img src="/home/images/lxyz/icon_013.png">组织架构</div>
     <div class="organization_link">
-        <a href="/home/service/ordetail.html">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
-        <a href="#">珍珠城居委会党支部</a>
+        {volist name="list" id="vo"}
+        <a href="{:Url('ordetail?id='.$vo.id)}">{$vo.name}</a>
+        {/volist}
     </div>
 </div>
 {/block}

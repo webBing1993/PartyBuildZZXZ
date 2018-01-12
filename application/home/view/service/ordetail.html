@@ -18,38 +18,19 @@
 </div>
 <div class="user">
     <div class="userTop">
-        <img src="/home/images/lxyz/icon_017.png">珍珠城居委会党支部委员
+        <img src="/home/images/lxyz/icon_017.png">{$departmentName}
     </div>
     <div class="userSort">
         <ul>
+            {volist name="modelAll" id="vo"}
             <li>
-                <div class="userleft">张</div>
+                <div class="userleft">{$vo.surname}</div>
                 <div class="userright">
-                    <p class="userright_01">张一山</p>
-                    <p class="userright_02">支部书记</p>
+                    <p class="userright_01">{$vo.name}</p>
+                    <p class="userright_02">{$vo.position}</p>
                 </div>
             </li>
-            <li>
-                <div class="userleft">张</div>
-                <div class="userright">
-                    <p class="userright_01">张一山</p>
-                    <p class="userright_02">支部书记</p>
-                </div>
-            </li>
-            <li>
-                <div class="userleft">张</div>
-                <div class="userright">
-                    <p class="userright_01">张一山</p>
-                    <p class="userright_02">支部书记</p>
-                </div>
-            </li>
-            <li>
-                <div class="userleft">张</div>
-                <div class="userright">
-                    <p class="userright_01">张一山</p>
-                    <p class="userright_02">支部书记</p>
-                </div>
-            </li>
+            {/volist}
         </ul>
     </div>
 </div>
