@@ -60,27 +60,27 @@ class Learns extends Base
             {
                 case 'study':
                     $res[$k]['pre'] = "【基本书目】";
-                    $res[$k]['url'] = "study/detail/id/".$v['id'];
+                    $res[$k]['url'] = "/home/study/detail/id/".$v['id'];
                     break;
                 case 'redfilm':
                     $res[$k]['pre'] = "【远程教育】";
-                    $res[$k]['url'] = "education/movedetail/id/".$v['id'];
+                    $res[$k]['url'] = "/home/education/movedetail/id/".$v['id'];
                     break;
                 case 'redbook':
                     $res[$k]['pre'] = "【远程教育】";
-                    $res[$k]['url'] = "education/bookdetail/id/".$v['id'];
+                    $res[$k]['url'] = "/home/education/bookdetail/id/".$v['id'];
                     break;
                 case 'redremark':
                     $res[$k]['pre'] = "【远程教育】";
-                    $res[$k]['url'] = "education/textdetail/id/".$v['id'];
+                    $res[$k]['url'] = "/home/education/textdetail/id/".$v['id'];
                     break;
                 case 'redmusic':
                     $res[$k]['pre'] = "【远程教育】";
-                    $res[$k]['url'] = "education/musicdetail/id/".$v['id'];
+                    $res[$k]['url'] = "/home/education/musicdetail/id/".$v['id'];
                     break;
                 case 'learns':
                     $res[$k]['pre'] = "【十九大专区】";
-                    $res[$k]['url'] = $v['type']==1 ? "learns/video/id/".$v['id'] : "learns/article/id/".$v['id'];
+                    $res[$k]['url'] = $v['type']==1 ? "/home/learns/video/id/".$v['id'] : "learns/article/id/".$v['id'];
                     break;
                 default:
                     $res[$k]['url'] = "";
