@@ -67,14 +67,19 @@ body{
 .con{
     color:#333333;
 }
-.con1{
+.describe-sp{
    position: absolute;
 }
-.con2{
-    margin-left:13.2vw;
+.describe-p{
+    text-indent:10.6vw;
     width:100%;
     height:100%;
     color:#333333;
+    word-break:break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 .images{
     vertical-align: middle;
