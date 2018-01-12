@@ -1,0 +1,63 @@
+.banner {position: relative;margin: auto;width:100vw;height:50vw;}
+.banner img {width:100%;height:100%;}
+.approved {width:100vw;text-align: center;height:6vh;background: #fff;}
+.approved div {width:50%;display: block;float:left;font-size: .3rem;color: #333;height:6vh;line-height: 6vh;}
+.approved .active {color: #216690;border-bottom: .67vw solid #216690;}
+.approvedSort {position: relative;width:100vw;height:100%;margin: auto;}
+.application {position: relative;width:100vw;height:100%;margin: auto;display: none;}
+body{background: #f1f1f1;}
+#side1 ul ,#side2 ul{position: relative;margin-top: 1.2vh;}
+#side1 ul li {background: #fff;height:10.2vh;border-bottom: 1px solid #eee;position: relative;line-height: 10.2vh;}
+#side1 a ,#side2 a {display: block;width:100%;height:100%;}
+#side1 span:first-child {float:left;margin-left: 4vw;}
+#side1 span:nth-child(2){margin-left: 8vw;color: #333;font-size: .3rem;}
+#side1 span:nth-child(3){float:right;margin-right: 5.33vw;}
+#side1 span:first-child img {width:9.33vw;height:5.24vh;vertical-align: middle;}
+#side1 span:last-child img {width:2.14vw;height:2.4vh;vertical-align: middle;}
+
+#side2 ul li {background: #fff;height:11vh;border-bottom: 1px solid #eee;position: relative;}
+#side2 div:first-child {float:left;height:10.1vh;}
+#side2 div:first-child>p:first-child {font-size: .3rem;color: #333;margin-top: .4rem;}
+#side2 div:first-child>p:last-child {font-size: .28rem;color: #999;}
+#side2 div:last-child {font-size: .3rem;float:right;line-height: 11vh;}
+#side2 .red {color: #cf3636;}
+#side2 .green {color: #36cf89;}
+#side2 a{padding: 0 4vw;}
+
+.marginBottom {margin-bottom: 3.75vh;}
+.top {width:100%;height:6vh;line-height: 6vh;padding: 0 4vw;background: #fff;font-size: .3rem;color: #333;font-weight: 900;margin-top: 1.5vh;margin-bottom: 3.75vh;}
+.top>span {float:right;font-weight: 500;color:#cf3636; }
+.top>span.red {color: #cf3636;}
+.top>span.green {color: #36cf89;}
+.content {width:100%;padding: 0 4vw;background: #fff;position: relative;}
+.content .contentDiv {width:100%;border-bottom: 1px solid #eee;height:7vh;line-height: 7vh;font-size: .28rem;color: #333;}
+.content .contentDiv:last-child {border-bottom: transparent;}
+.content .contentDiv div:first-child {float:left;}
+.content .contentDiv div:first-child img {width:2.67vw;height:1.5vh;vertical-align: middle;margin-right: 1vw;}
+.content .rights {float:right;}
+.content .rights img {width:2.14vw;height:2.4vh;vertical-align: middle;line-height: 6vh;}
+.contentText {width:100%;height:45vh;position: relative;background: #fff;padding: 0 8vw;}
+.contentText>p {font-size: .28rem;color: #333;padding: 2.25vh 0;}
+.contentText>p span {font-size: .28rem;color: #999;}
+.contentText textarea {width:100%;height:35vh;font-size: .28rem;color: #333;}
+#btn {width:100%;height:9vh;background: #216690;color: #fff;font-size: .36rem;line-height: 9vh;text-align: center;position: fixed;bottom:0;left:0;}
+#picktime , #picktimes {height:5vh;line-height: 6vh;text-align: right;margin-right: 2vw;}
+
+
+/*报销*/
+.contentDivBX {width:100%;border-bottom: 1px solid #eee;}
+.contentDivBX>p {font-size: .3rem;color: #333;padding: 2.25vh 0;}
+.contentDivBX>p span {font-size: .3rem;color: #999;}
+.contentDivBX input {display: block;outline: none;color: #000;opacity: .8;width:100%;line-height: 6vh;font-size: .28rem}
+.contentDivBX textarea {width:100%;height:18.74vh;outline: none;font-size: .28rem;color: #333;}
+
+
+/*详情页*/
+.contentShow {width:94%;position: relative;margin: auto;}
+.contentShow>div {font-size: .3rem;color: #999;border-bottom: 1px solid #eee;line-height: 6vh;position: relative;min-height: 6.1vh;}
+.contentShow>div span:first-child{font-size: .3rem;color: #999;line-height: 6vh;float:left;}
+.contentShow>div span:last-child {font-size: .28rem;color: #666;float:left;text-align: justify;width:62vw;}
+.contentShow>div:last-child span {display: block;float:left;}
+.contentShow p {width:60vw;background: #fff;color: #666;font-size: .28rem;float:left; text-align: justify; }
+.contentShow>div span {display: block;}
+.contentShow>div {border-bottom: transparent;}

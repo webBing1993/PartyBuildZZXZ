@@ -37,6 +37,19 @@
         text-align: right;
         padding: 0 3.5vw;
     }
+    #side2 .banner .search .results .result {
+        display: inline-block;
+        width: 70vw;
+        /*height: 40px;*/
+        margin: 0 auto;
+        padding-left: 4vw;
+        background: rgba(255, 255, 255, 0.6);
+        border-bottom: 1px solid #eee;
+        color: #666666;
+        line-height: 10.7vw;
+        text-align: left;
+        background: #fff;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -168,6 +181,7 @@
 {block name="script"}
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
+    $('.search>input').val('')
     var edu = localStorage.getItem('eduNum')==null?1:localStorage.getItem('eduNum');
     var num = 0;
     for(var i=0;i<$('.top>div').length;i++){
@@ -319,6 +333,53 @@
         $(".lists" ).append(html);
     }
 
+
+    //搜索
+    var search = $('.search>input');
+    var lock = false;
+    search.on('compositionstart',function(){
+        lock = true;
+    });
+    search.on('compositionend',function(){
+        lock = false;
+    });
+    search.on('input',function(){
+        var this_ = this;
+//        search.css('width','75vw');
+//        $('#cancel').show();
+//        $('body').css('position','fixed');
+        if(!lock){
+            var val = $(this_ ).val();
+            var html = '';
+            $.ajax({
+                type:"post",
+                url: "{:Url('education/booksearch')}",
+                data:{
+                    val:val
+                },
+                beforeSend: function(XMLHttpRequest){},
+                success:function(data){
+                    var result = data.data;
+                    var url = '';
+                    if(!data.data){
+                        html += '<div class="result limit">无搜索结果</div>'
+                    }
+                    for(var obj in result){
+                        html+= '<a href="/home/redcollection/filmdetail?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+//                        html +='<li>'
+//                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
+//                            +'<img data-original="'+list.path+'" class="list-img lazy">'
+//                            +'<div class="listTitle">'+list.title+'</div><div class="listSummary">'+list.introduction+'</div>'
+//                            +'</a>'
+//                            +'</li>'
+                    }
+//                    $('.results').show();
+                    $('.results' ).html(html);
+                }
+
+            });
+        }
+    });
 
 </script>
 {/block}

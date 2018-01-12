@@ -204,37 +204,57 @@
 				}
 			});
 		}else{
-            swal({
-                    title: "确定提交吗？",
-                    type: "warning",
-                    showCancelButton: true,
-                    closeOnConfirm: false,
-                    confirmButtonText:'确定',
-                    cancelButtonText:'取消'
-                },
-                function(isConfirm){
-                    if (isConfirm) {
-                        $.ajax({
-                            type:"post",
-                            url:"{:Url('Constitution/submits')}",
-                            data:{arr:answer,arrId:getDataID()},
-                            success:function(e){
-                                suc.fadeIn();
-                                setTimeout(function(){
-                                    objNow=null;
-                                    timer.fadeOut();
-                                    up.text('提交成功');
-                                    setTimeout(function(){
-                                        window.location.replace("{:Url('Constitution/score')}");
-                                    },1000)
-                                },2000);
-                            }
-                        });
-                    } else {
-                        objNow=1;
+            var msg = confirm('您未全部完成，是否确定提交');
+            if(msg){
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Constitution/submits')}",
+                    data:{arr:answer,arrId:getDataID()},
+                    success:function(e){
+                        suc.fadeIn();
+                        setTimeout(function(){
+                            objNow=null;
+                            timer.fadeOut();
+                            up.text('提交成功');
+                            setTimeout(function(){
+                                window.location.href= "{:Url('Constitution/score')}";
+                            },1000)
+                        },2000);
                     }
                 });
-
+            }else{
+                objNow=1;
+                swal({
+                        title: "确定提交吗？",
+                        type: "warning",
+                        showCancelButton: true,
+                        closeOnConfirm: false,
+                        confirmButtonText:'确定',
+                        cancelButtonText:'取消'
+                    },
+                    function(isConfirm){
+                        if (isConfirm) {
+                            $.ajax({
+                                type:"post",
+                                url:"{:Url('Constitution/submits')}",
+                                data:{arr:answer,arrId:getDataID()},
+                                success:function(e){
+                                    suc.fadeIn();
+                                    setTimeout(function(){
+                                        objNow=null;
+                                        timer.fadeOut();
+                                        up.text('提交成功');
+                                        setTimeout(function(){
+                                            window.location.replace("{:Url('Constitution/score')}");
+                                        },1000)
+                                    },2000);
+                                }
+                            });
+                        } else {
+                            objNow=1;
+                        }
+                    });
+            }
 		}
 	}
 	function getDataID(){
