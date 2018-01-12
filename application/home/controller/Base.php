@@ -193,17 +193,7 @@ class Base extends Controller {
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
      * 5 study
-     * 7 RedtutorCourse
-     * 8 RedtutorNotice
-     * 9 Redlead
-     * 10 RedforumDetail
-     * 11 RedforumNotice
-     * 12 Notice
-     * 13 Feedback
-     * 14 Centraltask
-     * 15 Hands
-     * 16 Clean
-     * 17 Pioneer
+     * 6 news
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -228,38 +218,8 @@ class Base extends Controller {
             case 5:
                 $table = "study";
                 break;
-            case 7:
-                $table = "RedtutorCourse";
-                break;
-            case 8:
-                $table = "RedtutorNotice";
-                break;
-            case 9:
-                $table = "Redlead";
-                break;
-            case 10:
-                $table = "RedforumDetail";
-                break;
-            case 11:
-                $table = "RedforumNotice";
-                break;
-            case 12:
-                $table = "Notice";
-                break;
-            case 13:
-                $table = "Opinion";
-                break;
-            case 14:
-                $table = "Centraltask";
-                break;
-            case 15:
-                $table = "Hands";
-                break;
-            case 16;
-                $table = "Clean";
-                break;
-            case 17;
-                $table = "Pioneer";
+            case 6:
+                $table = "news";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -315,17 +275,7 @@ class Base extends Controller {
      * 3 redmusic  红色音乐
      * 4 redbook  红色书籍
      * 5 study
-     * 7 RedtutorCourse
-     * 8 RedtutorNotice
-     * 9 Redlead
-     * 10 RedforumDetail
-     * 11 RedforumNotice
-     * 12 Notice
-     * 13 Opinion
-     * 14 Centraltask
-     * 15 Hands
-     * 16 Clean
-     * 17 Pioneer
+     * 6 news
      */
     public function comment(){
         if(IS_POST){
@@ -348,38 +298,8 @@ class Base extends Controller {
                 case 5:
                     $table = "study";
                     break;
-                case 7:
-                    $table = "RedtutorCourse";
-                    break;
-                case 8:
-                    $table = "RedtutorNotice";
-                    break;
-                case 9:
-                    $table = "Redlead";
-                    break;
-                case 10:
-                    $table = "RedforumDetail";
-                    break;
-                case 11:
-                    $table = "RedforumNotice";
-                    break;
-                case 12:
-                    $table = "Notice";
-                    break;
-                case 13:
-                    $table = "Opinion";
-                    break;
-                case 14:
-                    $table = "Centraltask";
-                    break;
-                case 15:
-                    $table = "Hands";
-                    break;
-                case 16:
-                    $table = "Clean";
-                    break;
-                case 17;
-                    $table = "Pioneer";
+                case 6:
+                    $table = "news";
                     break;
                 default:
                     return $this->error("无该数据表");

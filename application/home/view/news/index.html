@@ -9,102 +9,42 @@
 <div class="banners" style="height:50vw;">
     <div class="swiper-container">
         <div class="imgs swiper-wrapper">
+            {volist name="top" id="vo"}
             <div class="banner swiper-slide">
-                <a href="/home/education/detail.html">
-                    <img data-src="/home/images/banner/1.jpg"  class="banner-img swiper-lazy">
-                    <div class="title_ limit">测试测试测试</div>
+                <a href="{:Url('news/detail?id='.$vo.id)}">
+                    <img data-src="{$vo.front_cover|get_cover='path'}"  class="banner-img swiper-lazy">
+                    <div class="title_ limit">{$vo.title}</div>
                     <div class="swiper-lazy-preloader"></div>
                 </a>
             </div>
+            {/volist}
         </div>
         <!--<div class="swiper-pagination"></div>-->
     </div>
 </div>
 <div class="blocks" style="padding-top: 3.75vh;">
     <div class="block lists">
-        <a href="/home/education/detail.html" class="list clear">
+        {notempty name="$list"}
+        {volist name="list" id="vo"}
+        <a href="{:Url('detail?id='.$vo.id)}" class="list clear">
             <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
+                <img data-original="{$vo.front_cover|get_cover='path'}" class="lazy">
             </div>
             <div class="fr">
-                <div class="title limit_">测试测试测试</div>
+                <div class="title limit_">{$vo.title}</div>
                 <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
+                    <span class="dep fl limit">{$vo.publisher}</span>
+                    <span class="time fr">{$vo['create_time']|time_format='Y-m-d'}</span>
                 </div>
             </div>
         </a>
-        <a href="/home/education/detail.html" class="list clear">
-            <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-            </div>
-            <div class="fr">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear">
-            <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-            </div>
-            <div class="fr">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear">
-            <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-            </div>
-            <div class="fr">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear">
-            <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-            </div>
-            <div class="fr">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
-                </div>
-            </div>
-        </a>
-        <a href="/home/education/detail.html" class="list clear">
-            <div class="fl">
-                <img data-original="/home/images/banner/1.jpg" class="lazy">
-            </div>
-            <div class="fr">
-                <div class="title limit_">测试测试测试</div>
-                <div class="note clear">
-                    <span class="dep fl limit">测试测试测试</span>
-                    <span class="time fr">2017-12-18</span>
-                </div>
-            </div>
-        </a>
-
-
-        <!--暂无数据打开即可-->
-
-        <!--<div style="text-align: center;">-->
-            <!--<img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">-->
-            <!--<p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>-->
-        <!--</div>-->
-
-
-
+        {/volist}
+        {else/}
+        <div style="text-align: center;">
+            <img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">
+            <p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>
+        </div>
+        {/notempty}
     </div>
 </div>
 <div class="bg"></div>
