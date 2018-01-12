@@ -26,16 +26,28 @@
 </style>
 {/block}
 {block name="body"}
-<div class="swiper-container top">
-    <div class="swiper-wrapper" style="left:-40%;">
-        <div class="swiper-slide" data-side="1" data-history="slide1">党的历史</div>
-        <div class="swiper-slide" data-side="2" data-history="slide2">党的理论</div>
-        <div class="swiper-slide" data-side="3" data-history="slide3">党的修养</div>
-        <div class="swiper-slide" data-side="4" data-history="slide4">党务知识</div>
-        <div class="swiper-slide" data-side="5" data-history="slide5">党规党章</div>
-        <div class="swiper-slide" data-side="6" data-history="slide6">系列讲话</div>
+<div class="wrapper wrapper03" id="wrapper03">
+    <div class="scroller">
+        <ul class="clearfix">
+            <li data-side="1"><a href="javascript:void(0)">党的历史</a></li>
+            <li data-side="2"><a href="javascript:void(0)">党的理论</a></li>
+            <li data-side="3"><a href="javascript:void(0)">党的修养</a></li>
+            <li data-side="4"><a href="javascript:void(0)">党务知识</a></li>
+            <li data-side="5"><a href="javascript:void(0)">党规党章</a></li>
+            <li data-side="6"><a href="javascript:void(0)">系列讲话</a></li>
+        </ul>
     </div>
 </div>
+<!--<div class="swiper-container top">-->
+    <!--<div class="swiper-wrapper" style="left:-40%;">-->
+        <!--<div class="swiper-slide" data-side="1" data-history="slide1">党的历史</div>-->
+        <!--<div class="swiper-slide" data-side="2" data-history="slide2">党的理论</div>-->
+        <!--<div class="swiper-slide" data-side="3" data-history="slide3">党的修养</div>-->
+        <!--<div class="swiper-slide" data-side="4" data-history="slide4">党务知识</div>-->
+        <!--<div class="swiper-slide" data-side="5" data-history="slide5">党规党章</div>-->
+        <!--<div class="swiper-slide" data-side="6" data-history="slide6">系列讲话</div>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="banner"><img src="/home/images/banner/1.jpg" class="lazy"></div>
 <!--<div class="top">-->
     <!--<div data-side="1" class="active">党的历史</div>-->
@@ -136,7 +148,11 @@
 
 {/block}
 {block name="script"}
+<!--<script type="text/javascript" src="/home/js/study/flexible.js"></script>-->
+<script type="text/javascript" src="/home/js/study/iscroll.js"></script>
+<script type="text/javascript" src="/home/js/study/navbarscroll.js"></script>
 <script>
+    $('.wrapper').navbarscroll();
     var study = localStorage.getItem('studyNum')==undefined?1:localStorage.getItem('studyNum');
     var num = parseInt(study);
     if(study==1){
@@ -152,8 +168,8 @@
     }else if(study ==6 ){
         $('.banner img').attr('src','/home/images/banner/6.jpg')
     }
-    for(var i=0;i<$('.swiper-container .swiper-slide').length;i++){
-        $('.swiper-container .swiper-slide')[i].onclick = function(){
+    for(var i=0;i<$('.clearfix li').length;i++){
+        $('.clearfix li')[i].onclick = function(){
             var side = $(this).data('side');
             $('.subject').hide();
             $('#side'+side).show();
