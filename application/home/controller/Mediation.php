@@ -20,4 +20,7 @@ class Mediation extends Base
     public function details(){
         return $this->fetch();
     }
+    public function medcase(){
+        return $this->fetch();
+    }
 }

@@ -9,13 +9,13 @@
     <div class="box">
         <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>事件名称 ：</span>
-        <input type="text" placeholder="请输入事件名称"/>
+        <input type="text" placeholder="&nbsp;请输入事件名称" size="28"/>
     </div>
     <div class="box events">
         <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>事件类型 ：</span>
         <div class="event">
-             <span class="chose">请选择事件类型</span>
+             <span class="chose"> 请选择事件类型</span>
              <img class="icon3" src="/home/images/lxyz/icon/icon3.png"  alt=""/>
              <ul class="nav">
                 <li>妇女儿童与残疾人维权</li>
@@ -34,17 +34,17 @@
     <div class="box">
         <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>当事人 ：</span>
-        <input type="text" placeholder="请输入当事人名称"/>
+        <input style="text-indent: 4.1vw;" type="text" placeholder="&nbsp;请输入当事人名称" size="28"/>
     </div>
     <div class="box">
         <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>申请人 ：</span>
-        <input type="text" placeholder="请输入申请人名称"/>
+        <input type="text" style="text-indent: 4.1vw;" placeholder="&nbsp;请输入申请人名称" size="30"/>
     </div>
     <div class="box">
         <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>联系电话 ：</span>
-        <input onkeyup="value=value.replace(/[^\d]/g,'') " placeholder="请输入联系电话"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
+        <input onkeyup="value=value.replace(/[^\d]/g,'') " placeholder="&nbsp;请输入联系电话" size="28" style="text-indent: .5vw;"  onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))">
     </div>
     <div class="describe">
         <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>
@@ -82,9 +82,10 @@
 {block name="script"}
 
 <script>
+$(function () {
     $('.events').on('click',function(e){
         e.stopPropagation();
-        if($('.nav').css('display')=='block'){
+        if($('.nav').css('display')=='none'){
             $('.icon3').css('transform','rotate(180deg)')
         }else{
             $('.icon3').css('transform','rotate(0)')
@@ -97,7 +98,7 @@
         e.stopPropagation();
         $(this).addClass('color').siblings().removeClass('color');
 //        $('.nav').fadeOut();
-        if($('.nav').css('display')=='block'){
+        if($('.nav').css('display')=='none'){
             $('.icon3').css('transform','rotate(180deg)')
         }else{
             $('.icon3').css('transform','rotate(0)')
@@ -107,14 +108,14 @@
         var val=$(this).html();
         $('.chose').html(val);
     })
-//    $('.form').off('click').on('click',function(e){
-////        e.stopImmediatePropagation();
-//        $('.nav').fadeOut();
-//        $('body').css({position:'relative'})
-//        $('.icon3').css('transform','rotate(0)')
-//    })
-
-
+    $('.form').on('click',function(){
+        $('.nav').fadeOut();
+        console.log($('.nav').css('display'))
+        if($('.nav').css('display')=='block') {
+            $('.icon3').css('transform', 'rotate(0)');
+        }
+    })
+})
     $('.add' ).on('click',function(){
         var imglen = $('.img img' ).length;
         var this_ = $(this );
