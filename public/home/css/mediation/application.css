@@ -27,12 +27,16 @@ input{
     vertical-align: middle;
     margin-right:1.3vw;
 }
-
+.ev{
+    width:26vw;
+    float:left;
+    height:100%;
+}
 .event{
     padding-right:4vw;
     position: relative;
-    float: right;
-    width:68vw;
+    float: left;
+    width:65vw;
     height:100%;
     font-size:.3rem;
     color:#999999;
@@ -99,6 +103,7 @@ textarea{
 }
 .add{
     height:1.3rem;
+    /*width:16vw;*/
     width:100%;
     margin-bottom:.3rem;
 }
