@@ -4,8 +4,8 @@
 <title>部门简介</title>
 <link rel="stylesheet" href="/home/css/mediation/index.css">
 <style>
-    #side3 .apply a:active{
-        background: #fff;
+     .list:active{
+        background: #F3F2F7;
     }
 </style>
 {/block}
@@ -91,12 +91,6 @@
 <div class="mediationContenr" id="side3">
     <!--管理员网上申请-->
     <div class="apply Administrator line">
-        <a href="#" class="list" style="background: #FFFFFF">
-            <img class="adminimg" style="width:7vw;height:4.5vh;" src="/home/images/lxyz/icon/wait.png"  alt=""/>
-            <div class="fr1 ">
-                待审核 <span>(2)</span>
-            </div>
-        </a>
         <a href="#" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/not.png"  alt=""/>
             <div class="fr1">
@@ -129,7 +123,7 @@
 
     <!--调解员网上申请-->
     <div class="apply mediator1 line">
-        <a href="#" class="list" style="background: #FFFFFF">
+        <a href="#" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/verify.png"  alt=""/>
             <div class="fr1">
                 调解员待确认 <span>(2)</span>
@@ -155,48 +149,61 @@
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status wait" >待审核</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status wait" >待审核</span>
+                </div>
             </div>
         </a>
         <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status not">审核不通过</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status not">审核不通过</span>
+                </div>
             </div>
         </a>
         <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status verify">调解员待确认</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status verify">调解员待确认</span>
+                </div>
             </div>
         </a>
         <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status message" >纠纷待处理</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status verify">调解员待确认</span>
+                </div>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="#" class="list val">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt=""/>
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status appraise" >待评价</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status appraise" >待评价</span>
+                </div>
             </div>
+            <a href="#" id="evaluate">去评价</a>
         </a>
         <a href="#" class="list">
             <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
             <div class="fr1">
                 <p>进出口贸易有限公司劳动纠纷1</p>
-                <span class="time">2017-12-22</span>
-                <span class="status complete" >已完成</span>
+                <div class="bt">
+                    <div class="time">2017-12-22</div>
+                    <span class="status complete" >已完成</span>
+                </div>
             </div>
         </a>
         <a href='/home/mediation/application'class="share">

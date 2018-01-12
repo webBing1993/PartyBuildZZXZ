@@ -1,23 +1,25 @@
 
 .form{
     width:100%;
-    min-height:60vh;
+    min-height:8rem;
     background: #F5F5F5;
 }
 .box{
+
     width:100%;
-    height:7.6vh;
+    height:1rem;
     background: #fff;
     border-bottom:1px solid #D1D1D1;
-    line-height:7.6vh;
+    line-height:1rem;
     padding-left:4vw;
     font-size:.3rem;
     color:#333333;
 }
-input, select{
+input{
+    width:66.6vw;
     border:none;
     color:#999999;
-    height:6vh;
+    height:.8rem;
 }
 .star{
     width:2.3vw;
@@ -25,6 +27,7 @@ input, select{
     vertical-align: middle;
     margin-right:1.3vw;
 }
+
 .event{
     padding-right:4vw;
     position: relative;
@@ -37,7 +40,7 @@ input, select{
 
 .icon3{
     float: right;
-    margin-top:3vh;
+    margin-top:.4rem;
     width:3vw;
     height:1.4vh;
 }
@@ -47,7 +50,7 @@ input, select{
     width:50.6vw;
     position: absolute;
     right:4vw;
-    bottom:-58.6vh;
+    bottom:-7.8rem;
     border:1px solid #D1D1D1;
     border-bottom:none;
     display:none;
@@ -56,11 +59,11 @@ input, select{
 .nav li{
     cursor: pointer;
     padding-left:4.5vw;
-    line-height:6vh;
+    line-height:.8rem;
     color:#333333;
     border-bottom:1px solid #D1D1D1;
     width:100%;
-    height: 6vh;
+    height: .8rem;
 
 }
 .nav .color{
@@ -69,8 +72,8 @@ input, select{
 }
 .describe{
     background: #fff;
-    padding:2.2vh 7.7vw;
-    margin:2.2vh 0;
+    padding:.3rem 7.7vw;
+    margin:.3rem 0;
     font-size: .3rem;
     color: #999999;
 }
@@ -79,25 +82,25 @@ input, select{
 }
 textarea{
     width:100%;
-    height: 22.2vh;
+    height: 3rem;
 }
 .last{
     border-top:1px solid #D1D1D1;
-    margin-bottom:2.2vh;
+    margin-bottom:.3rem;
 }
 .present{
     text-align: center;
     width:100%;
-    height:6vh;
+    height:.8rem;
     background:#FE8B44;
     color:#fff;
     font-size: .32rem;
-    line-height:6vh;
+    line-height:.8rem;
 }
 .add{
-    height:9.9vh;
+    height:1.3rem;
     width:100%;
-    margin-bottom:2vh;
+    margin-bottom:.3rem;
 }
 .pic, .new{
     float: left;
@@ -119,7 +122,7 @@ textarea{
     width:66.6vw;
     height:100%;
     float:right;
-    line-height:6.8vh;
+    line-height:.9rem;
 }
 .image{
     width:9.6vw;
@@ -135,14 +138,14 @@ textarea{
     margin-left:4vw;
 }
 .g{
-    line-height: 7vh;
+    line-height: .9rem;
     float: right;
     margin-right:4vw;
 }
 .icon2{
     vertical-align: middle;
     width:4.2vw;
-    height:3vh;
+    height:.4rem;
 }
 .img{
     width:17.3vw;
