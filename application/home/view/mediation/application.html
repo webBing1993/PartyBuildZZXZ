@@ -127,39 +127,65 @@ $(function () {
     })
 })
     $('.new' ).on('click',function(){
-        var imglen = $('.img img' ).length;
+        var imglen = $('.img .img1' ).length;
         var this_ = $(this );
         $('#upimg').click().off("change").on('change',function(){
             var img = $(this)[0].files[0];
-            console.log(img)
-            var oFReader = new FileReader();
-            oFReader.readAsDataURL(img);
-            oFReader.onloadend = function(oFRevent){
-                var src = oFRevent.target.result;
+            console.log($(this)[0].files[0].size)
+            var size=$(this)[0].files[0].size;
+            if(size>22000){
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(img);
+                oFReader.onloadend = function(oFRevent) {
+                    if(imglen >= 3){
+                        $('.add' ).hide();
+                    }
+                    if(imglen ==0){
+                        $('.describe p').html('点击任意图片删除最后一张');
+                    }
+                    var image = new Image()
+                    console.log(image)
+                    image.src = oFRevent.target.result;
+                        // 创建一个 canvas 元素并获取其上下文
+                    var canvas=document.createElement('canvas')
+                    var ctx = canvas.getContext("2d");
+                    canvas.width = $('.img').width();
+                    canvas.height = $('.img').height();
+                        // 绘制图片
+                    ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height)
+                    var dataUrl = canvas.toDataURL('image/jpeg', 0.4);
+                    $('.imgs .img').eq(imglen).removeClass('hide' )
+                        .append('<img class="img1" src='+dataUrl+' alt="图片" >');
+                }
+//                alert('图片太大无法上传')
+            }else{
+                var oFReader = new FileReader();
+                oFReader.readAsDataURL(img);
+                oFReader.onloadend = function(oFRevent){
+                    var src = oFRevent.target.result;
                     //图片添加
                     if(imglen >= 3){
                         $('.add' ).hide();
                         $('.describe p').hide();
                     }
                     $('.imgs .img').eq(imglen).removeClass('hide' )
-                        .append('<img src='+src+' alt="图片" >');
-
-                    $('.imgs .img img').on('click',function(){
-                        $(this).parent().addClass('hide')
-                        $(this).remove();
-                        if($('.imgs .img img').length <4){
-                            $('.add' ).show();
-                            $('.describe p').show();
-                        }
-                    })
-
-
+                        .append('<img class="img1" src='+src+' alt="图片" >');
+                }
             }
-
-
         });
+        $('.imgs .img').on('click',function(){
+            console.log($(this).index())
+            var len =$('.imgs .img .img1').length;
+            $(this).addClass('hide')
+            $(this).parent().find('.img').eq(imglen).find('img').remove();
+            if($('.imgs .img .img1').length <4){
+                $('.add' ).show();
+            }
+        })
 
     });
 
-</script>
+
+
+    </script>
 {/block}

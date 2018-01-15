@@ -6,31 +6,45 @@
 {/block}
 {block name="body"}
  <div class="chart">
-      <div class="line"></div>
       <div class="lists">
           <div class="list">
-              <div class="num blue">1</div>
-              <p>已提交</p>
-              <span>2017-12-22 09:30</span>
+              <div class="num gray">1</div>
+              <div class="state">已提交</div>
+              <p class="posleft">
+                  01-15
+                  <br>
+                  <span>09:30</span>
+              </p>
           </div>
           <div class="list">
-              <div class="num blue">2</div>
-              <p>待审核</p>
-              <span>2017-12-22 09:30</span>
+              <div class="num gray">2</div>
+              <div class="state grc">待审核</div>
+              <p class="posleft">
+                  01-16
+                  <br>
+              <span>09:30</span>
+              </p>
           </div>
           <div class="list">
-              <div class="num blue">3</div>
-              <p>调解员待确认</p>
-              <span>2017-12-22 09:30</span>
+              <div class="num gray">3</div>
+              <div class="state grc">调解员待确认</div>
+              <p class="posleft">
+                  01-17
+                  <br>
+              <span>09:30</span>
+              </p>
           </div>
           <div class="list">
-              <div class="num yellow">4</div>
-              <p class="yec">纠纷待处理</p>
-              <span>2017-12-22 09:30</span>
+              <div class="num gray">4</div>
+              <div class="state grc">纠纷待处理</div>
           </div>
           <div class="list">
               <div class="num gray">5</div>
-              <p class="grc">待评价</p>
+              <div class="state grc" >待评价</div>
+          </div>
+          <div class="list">
+              <div class="num gray">6</div>
+              <div class="state grc" >已完成</div>
           </div>
       </div>
  </div>
@@ -63,6 +77,8 @@
 {block name="script"}
 
 <script>
-
+    $('.list').has('span').css('border-color','#52BDE3')
+    $('.list').has('span').find('.num').removeClass('gray').addClass('blue');
+    $('.list').has('span').find('.state').removeClass('grc').addClass('blue1');
 </script>
 {/block}
