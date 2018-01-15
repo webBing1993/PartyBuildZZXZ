@@ -5,36 +5,44 @@ body{
     background: #fff;
     padding-bottom: 1.5vh;
     margin-bottom: 1.5vh;
-    padding-left:7.4vw;
+    padding-left:28vw;
     padding-top:2.2vh;
 }
-.line{
-    width:.8vw;
-    height:2.5vh;
-    background: #DBDBDB;
-}
 .lists{
-    font-family:PingFang-SC-Medium;
-    border-left:.8vw solid #DBDBDB;
+    /*border-left:.8vw solid #DBDBDB;*/
+
 }
 .list{
-    padding-left:6.6vw;
     width:100%;
     position: relative;
-    padding-bottom:2.7vh;
+    border-left:.8vw solid #DBDBDB;
+    padding:1.5vh 0 1.5vh 8.9vw;
 }
 .list p{
     margin-bottom:1.2vh;
-    font-size: .32rem;
+    font-size: .26rem;
     color:#333;
+    width:10.4vw;
 }
 .list span{
-    font-size: .26rem;
+    font-size: .24rem;
     color:#999;
+}
+.posleft{
+    position: absolute;
+    left:-17vw;
+    top:1.5vh;
+    word-wrap:break-word;
+    word-break:break-all;
+    overflow: hidden;
+}
+.state{
+    font-size: .3rem;
 }
 .num{
     text-align: center;
-    line-height: 4.8vw;
+    line-height: 4.2vw;
+    font-size:.24rem;
     width:4.8vw;
     height:4.8vw;
     background: #52BDE3;
@@ -42,12 +50,15 @@ body{
     -moz-border-radius: 50%;
     border-radius: 50%;
     position: absolute;
-    left:-3vw;
+    left:-2.8vw;
     color:#fff;
 }
 .blue{
     background: #52BDE3;
     border:.4vh solid rgba(82,189,227,0.35);
+}
+.blue1{
+    color:#52BDE3;
 }
 .yellow{
     background:#FE8B44;
@@ -57,9 +68,7 @@ body{
     background:#999999;
     border:.4vh solid rgba(153,153,153,0.35);
 }
-.list .yec{
-    color:#FE8B44;
-}
+
 .list .grc{
     color:#999999;
 }
@@ -86,7 +95,7 @@ body{
 }
 .describe{
     height:15vh;
-    line-height: 6.5vh;
+    line-height: 6.7vh;
 }
 .describe-sp{
    position: absolute;

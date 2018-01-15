@@ -18,10 +18,7 @@
 			<li>
 				<div class="headerImg"><img data-original="{$vo.header}" class="lazy"></div>
 				<div class="appraisalRight">
-					<div class="appTop">
-						<p class="appraisalName">{$vo.username}</p>
-						<p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p>
-					</div>
+					<div class="appTop"><p class="appraisalName">{$vo.username}</p><p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p></div>
 					<div class="appText">{$vo.content}</div>
 					<p class="appshow">展开</p>
 					<div class="appImg my-gallery">
@@ -42,6 +39,10 @@
 			</li>
 			{/volist}
 		</ul>
+	</div>
+	<div class="tip"></div>
+	<div class="loading hidden">
+		<div class="typing_loader"></div>
 	</div>
 </div>
 <div id="side2" class="appraisal">
@@ -100,15 +101,16 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+	var type = 1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
     for(var P=0;P<$('.headerTop>div').length;P++){
         $('.headerTop>div')[P].onclick = function(){
             $('.headerTop>div').removeClass('active');
             $(this).addClass('active');
-            var side = $(this).data('side');
+            var type = $(this).data('side');
             $('.appraisal').hide();
-            $('#side'+side).show();
-            localStorage.setItem('appNum',side);
+            $('#side'+type).show();
+            localStorage.setItem('appNum',type);
         }
     }
     $('.headerTop>div').removeClass('active');
@@ -131,48 +133,193 @@
             }
         })
     }
+
+    $(function(){
+        $('.appraisal').each(function(){
+            if($(this).css('display')=='block'){
+                var len =$(this).find('.page>a').length;
+                if(len >= 1){
+                    $('.tip' ).text('上拉加载更多');
+                    //上拉加载
+                    loadScroll();
+                }
+                $('a').off('click' ).on('click',function(){
+                    window.location.href  =$(this ).attr('href');
+                });
+
+                loadScroll()
+            }
+        })
+    });
+    scrollNow = true;
+    loadScroll();
     //上拉加载
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $(".list" ).length;
+            var len = $('#side'+type).find('li').length;
             var tip = $(".tip");
             var loading = $('.loading');
             if(dh == end && scrollNow){
                 scrollNow = false;
-                $.ajax({
-                    type:"post",
-                    url:"{:Url('Feedback/indexmore')}",//我来推荐
+                if(app==1){
+                    $.ajax({
+                        type:"post",
+                        url:"{:Url('Feedback/indexmore')}",//我来推荐
 //                    url:"{:Url('Feedback/pioneermore')}",//典型引路
-                    data:{
-                        length:len
-                    },
-                    beforeSend: function(XMLHttpRequest){
-                        tip.hide();
-                        loading.toggleClass('hidden');
-                    },
-                    success:function(data){
-                        loading.toggleClass('hidden');
-                        tip.show();
-                        console.log(data);
-                        if(data.code == 1){
-                            addLists(data);
-                            var dataLen =data.data.length;
-                            if(data.data.length == 7){
-                                tip.text('上拉加载更多');
+                        data:{
+                            length:len
+                        },
+                        beforeSend: function(XMLHttpRequest){
+                            tip.hide();
+                            loading.toggleClass('hidden');
+                        },
+                        success:function(data){
+                            console.log(data)
+							console.log(type)
+                            loading.toggleClass('hidden');
+                            tip.show();
+                            if(data.code == 1){
+                                addLists(data);
+                                $('.appraisalSort li').each(function(){
+                                    if($(this).find('.appText').height()>120){
+                                        $(this).find('.appText').addClass('_height');
+                                        $(this).find('.appshow').show();
+                                    };
+                                    if($(this).find('.appshow').css('display')=='none'){
+                                        $(this).find('.appText').css('margin-bottom','2vh')
+                                    };
+                                    if($(this).find('.appImg figure').length==1){
+                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
+                                    };
+                                    if($(this).find('.appImg figure').length==4){
+                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
+                                    };
+                                });
+
+                                var dataLen =data.data.length;
+//                                console.log(dataLen)
+                                if(data.data.length > 1){
+                                    tip.text('上拉加载更多');
+                                }
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
                             }
-                        }else{
-                            tip.text('没有更多了');
-                            $(window ).off("scroll");
+                            scrollNow = true;
                         }
-                        scrollNow = true;
-                    }
-                })
+                    })
+				}else if(app==2){
+                    $.ajax({
+                        type:"post",
+//                        url:"{:Url('Feedback/indexmore')}",//我来推荐
+                    url:"{:Url('Feedback/pioneermore')}",//典型引路
+                        data:{
+                            length:len
+                        },
+                        beforeSend: function(XMLHttpRequest){
+                            tip.hide();
+                            loading.toggleClass('hidden');
+                        },
+                        success:function(data){
+                            console.log(data)
+							console.log(app)
+                            loading.toggleClass('hidden');
+                            tip.show();
+                            console.log(data);
+                            if(data.code == 1){
+                                addLists(data);
+                                $('.appraisalSort li').each(function(){
+                                    if($(this).find('.appText').height()>120){
+                                        $(this).find('.appText').addClass('_height');
+                                        $(this).find('.appshow').show();
+                                    };
+                                    if($(this).find('.appshow').css('display')=='none'){
+                                        $(this).find('.appText').css('margin-bottom','2vh')
+                                    };
+                                    if($(this).find('.appImg figure').length==1){
+                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
+                                    };
+                                    if($(this).find('.appImg figure').length==4){
+                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
+                                    };
+                                });
+
+                                var dataLen =data.data.length;
+                                console.log(dataLen)
+                                if(data.data.length > 1){
+                                    tip.text('上拉加载更多');
+                                }
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
+                            }
+                            scrollNow = true;
+                        }
+                    })
+				}
+
             }
         })
     }
+    function addLists(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        if(app==1) {
+            for (var i = 0; i < len; i++) {
+                var list = lists[i];
+                //var pid = $('.part div' ).eq(list.pid ).text();
+                var obj = '';
 
+                if (list.is_like == 0) {
+                    obj = '<span class="isgood good" onclick="isGood(this,8,' + list.id + ')">' + list.likes + '</span>'
+                } else {
+                    obj = '<span class="isgood good_" onclick="isGood(this,8,' + list.id + ')">' + list.likes + '</span>'
+                }
+                var obj1 = '';
+                for (var i = 0; i < list.images.length; i++) {
+                    obj1 += '<figure><a href="' + list.images[i] + '" data-size="800x800"><img data-original="' + list.images[i] + '" class="lazy"></a></figure>'
+                }
+                html += '<li>'
+                    + '<div class="headerImg"><img data-original="' + list.header + '" class="lazy"></div>'
+                    + '<div class="appraisalRight">'
+                    + '<div class="appTop"><p class="appraisalName">' + list.username + '</p><p class="appraisalTime">' + list.time + '</p></div>'
+                    + '<div class="appText">' + list.content + '</div>'
+                    + '<p class="appshow">展开</p>'
+                    + '<div class="appImg my-gallery">'
+                    + obj1
+                    + '</div>'
+                    + '<div class="note">'
+                    + obj
+                    + '</div>'
+                    + '</div>'
+                    + '</li>'
+            }
+            $('.appraisalSort').append(html);
+        }else if (app == 2){
+                for(var i = 0; i< len;i++){
+                    var list = lists[i];
+                    //var pid = $('.part div' ).eq(list.pid ).text();
+                    html +=
+						'<li>'
+                        +'<a href="/home/feedback/pioneer/id'+ list.id+'.html">'
+						+'<div class="appraisalUser_01">'
+                        +'<img src="'+list.path+'">'
+                        +'<div>'
+                        +'<p>姓名：<span>'+list.name+'</span></p>'
+                        +'<p>生日：<span>'+list.birthday+'</span></p>'
+                        +'<p>职位：<span>'+list.position+'</span></p>'
+                        +'</div>'
+                        +'</div>'
+                        +'<div class="appraisalUser_02">'+list.description+'</div>'
+                        +'</a>'
+                        +'</li>'
+                }
+            $('.appraisalUser').append(html);
+			}
+    }
     var Imgsrc='';
     var newarr = [];
     $('.appraisalSort li').each(function(){
