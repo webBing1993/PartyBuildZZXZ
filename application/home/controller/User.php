@@ -7,6 +7,7 @@
  */
 
 namespace app\home\controller;
+use app\home\model\Collect;
 use app\home\model\Picture;
 use app\home\model\WechatUser;
 use app\home\model\WechatUserTag;
@@ -28,25 +29,11 @@ class User extends Base {
         $user = WechatUser::where('userid',$userId)->find();
         $this->assign('user',$user);
 
-        if ($userId !== 'visitor') {
-
-            $dp = Db::table('pb_wechat_department_user')
-                ->alias('a')
-                ->join('pb_wechat_department b','a.departmentid = b.id','LEFT')
-                ->where('a.userid',$userId)
-                ->find();
-            //个人信息
-            $personal = WechatUser::where('userid',$userId)->find();
-            $personal['dpname'] = $dp['name'];
-            //总榜
-            $con['score'] = array('neq',0);
-            $all  = WechatUser::where($con)->order('score desc')->select();
-            foreach ($all as $k => $value){
-                if($value['userid'] == $userId){
-                    $personal['rank'] = $k+1;
-                }
-            }
-            $this->assign('personal',$personal);
+        $Tourist = WechatUserTag::where(['tagid' => 1, 'userid' => $userId])->find();
+        if ($Tourist){
+            $this ->assign('tourist',1);
+        }else{
+            $this ->assign('tourist',0);
         }
 
         return $this->fetch();
@@ -113,7 +100,26 @@ class User extends Base {
         $this->assign('userId',session('userId'));
         return $this->fetch();
     }
+    /**
+     * 我的收藏
+     */
+    public function myCollect(){
+        $userId = session('userId');
+        $order = array("create_time desc");
+        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->select();
+        $res = [];
+        foreach ($collectModelAll as $model) {
+            $res[] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,create_time,'.$model['type'].' as tab')->find();
+        }
+        $this->assign('res',$res);
+        return $this->fetch();
+    }
+    /**
+     * 获取更多数据
+     */
+    public function listMore(){
 
+    }
 
 
 }

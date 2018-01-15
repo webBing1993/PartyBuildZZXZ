@@ -12,6 +12,7 @@ use app\home\model\Like;
 use app\home\model\Opinion;
 use app\home\model\Pioneer;
 use app\home\model\Picture;
+use app\home\model\WechatUser;
 use com\wechat\TPQYWechat;
 use think\Config;
 use think\Db;
@@ -58,6 +59,14 @@ class Feedback extends Base {
             $value['comment'] = $comment;*/
         }
         $this->assign('list',$list);
+
+        $politics_status = WechatUser::where(['userid' => $userId])->value('politics_status');
+        if($politics_status == 3) {//党员才能推荐
+            $publish = 1;
+        }else{
+            $publish = 0;
+        }
+        $this->assign('publish',$publish);
 
         $map2 = [
             'status' => ['egt',0],
