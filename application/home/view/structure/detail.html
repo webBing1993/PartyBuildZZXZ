@@ -1,343 +1,75 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>组织架构</title>
-<link rel="stylesheet" href="/home/css/structure/structure.css">
-<link rel="stylesheet" href="/home/css/common/rem.css">
+<link rel="stylesheet" href="/home/css/service/organization.css">
+<title>组织概况</title>
 {/block}
-
 {block name="body"}
-
-<!--<div class="table">-->
-	<!--<div class="thead clear">-->
-		<!--<div class="th fl name">姓名</div>-->
-		<!--<div class="th fl position">党内职位</div>-->
-		<!--<div class="th fl phone">联系方式</div>-->
+<div class="vr">
+	<img data-original="/home/images/lxyz/icon_016.png" class="lazy">
+	<!--<div class="vrText" id="isVR">-->
+	<!--<img src="/home/images/lxyz/icon_015.png">-->
+	<!--<p>点击进入全景展示</p>-->
 	<!--</div>-->
-	<!--&lt;!&ndash;一组&ndash;&gt;-->
-	<!--<div class="tbody">-->
-		<!--<div class="tb fl party">-->
-			<!--<span>凫村党工委</span>-->
-		<!--</div>-->
-		<!--<div class="tb fl position">-->
-			<!--<span>书记</span>-->
-			<!--<span>副书记</span>-->
-			<!--<span>党建指导员</span>-->
-		<!--</div>-->
-		<!--<div class="tb fl name">-->
-			<!--<span>尹达文</span>-->
-			<!--<span>尹柱荣</span>-->
-			<!--<span>尹金海</span>-->
-		<!--</div>-->
-	<!--</div>-->
-	<!--&lt;!&ndash;/一组&ndash;&gt;-->
-<!--</div>-->
-<ul class="d_lists">
-	<!--<li class="d_list">-->
-		<!--<div class="d_img_box">-->
-			<!--<div class="d_img" style="background-color: #ef6776">-->
-				<!--陈-->
-			<!--</div>-->
-		<!--</div>-->
-		<!--<div class="d_name">陈叔叔</div>-->
-		<!--<a class="d_tel" href="tel:15824167420" >-->
-			<!--<span class="d_tel_icon"></span>-->
-			<!--15824167420-->
-		<!--</a>-->
-	<!--</li>-->
-</ul>
+	<div class="vrText" id="noVR">
+		<img src="/home/images/lxyz/icon_014.png">
+		<p>全景拍摄中....</p>
+	</div>
+</div>
+<div class="user">
+	<div class="userTop">
+		<img src="/home/images/lxyz/icon_017.png">{$departmentName}
+	</div>
+	<div class="userSort">
+		<ul>
+			{volist name="modelAll" id="vo"}
+			<li>
+				<div class="userleft">{$vo.surname}</div>
+				<div class="userright">
+					<p class="userright_01">{$vo.name}</p>
+					<p class="userright_02">{$vo.position}</p>
+				</div>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+</div>
 {/block}
 
 {block name="script"}
-<script>
-$('title' ).text('组织架构');
-var party3 = '{$party}';
-console.log(party3);
-	var data2 =[
-		{
-			"party3":"中共石淙镇集镇党支部",
-			"detail3":[
-				{
-					"detail4":[
-						{
-							"position":"支部委员",
-							"name":"严水江"
-						},
-						{
-							"position":"书记",
-							"name":"丁荣勇"
-						},
-						{
-							"position":"支部委员",
-							"name":"叶颖"
-						}
-					]
-				}]
-		},
-		{
-			"party3":"湖州德海新型建材有限公司党支部",
-			"detail3":[
-				{
-					"detail4":[
-						{
-							"position":"书记",
-							"name":"姚海生"
-						}
-					]
-				}]
-		},
-		{
-			"party3":"菱湖万事美毛纺织公司党支部",
-			"detail3":[
-				{
-					"detail4":[
-						{
-							"position":"副书记",
-							"name":"严桂祥"
-						},
-						{
-							"position":"支部委员",
-							"name":"丁新元"
-						},
-						{
-							"position":"支部委员",
-							"name":"周晔"
-						}
-					]
-				}]
-		},
-		{
-			"party3":"湖州新奥克化工有限公司党支部",
-			"detail3":[
-				{
-					"detail4":[
-						{
-							"position":"书记",
-							"name":"严连庆"
-						},
-						{
-							"position":"支部委员",
-							"name":"陈再兴"
-						},
-						{
-							"position":"支部委员",
-							"name":"严会章"
-						}
-					]
-				}]
-		},
-		{
-			"party3":"湖州德佳毛纺织品有限公司党支部",
-			"detail3":[
-				{
-					"detail4":[
-						{
-							"position":"书记",
-							"name":"唐敏"
-						},
-						{
-							"position":"支部委员",
-							"name":"朱如清"
-						},
-						{
-							"position":"支部委员",
-							"name":"费志荣"
-						}
-					]
-				}]
-		},
-	{
-		"party3":"湖州江南恒盛炼染有限公司党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"费银生"
-					},
-					{
-						"position":"副书记",
-						"name":"杨赞贤"
-					},
-					{
-						"position":"支部委员",
-						"name":"丁阿细"
-					},
-					{
-						"position":"支部委员",
-						"name":"方建华"
-					},
-					{
-						"position":"支部委员",
-						"name":"沈培新"
-					}
-				]
-			}]
-	},
-	{
-		"party3":"石淙镇国土资源管理所党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"杨勇"
-				}
-				]
-			}]
-	},	
-	{
-		"party3":"石淙镇供销社党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"陆建林"
-					},
-					{
-						"position":"支部委员",
-						"name":"胡建强"
-					},
-					{
-						"position":"支部委员",
-						"name":"费金水"
-					}
-				]
-			}]
-	},	
-	{
-		"party3":"石淙镇机关党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"张兰轩"
-					},
-					{
-						"position":"支部委员",
-						"name":"沈明强"
-					},
-					{
-						"position":"支部委员",
-						"name":"高曙光"
-					},
-				]
-			}]
-	},	
-	{
-		"party3":"石淙镇经济建设服务中心党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"嵇磊"
-					},
-					{
-						"position":"副书记",
-						"name":"沈晓琴"
-					}
-				]
-			}]
-	},
-	{
-		"party3":"石淙镇农业综合服务中心党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"周仁章"
-					}
-				]
-			}]
-	},
-	{
-		"party3":"石淙镇安监中心党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"沈金坤"
-					}
-				]
-			}]
-	},
-	{
-		"party3":"石淙镇机关退休党支部",
-		"detail3":[
-			{
-				"detail4":[
-					{
-						"position":"书记",
-						"name":"俞贵安"
-					},
-					{
-						"position":"支部委员",
-						"name":"陈晓腊"
-					}
-				]
-			}]
-	}
-];
-var bg_color=["#b1e3fc", "#aeefef", "#ffa351", "#9393f5", "#cf88f7", "#65abfa", "#ebcffb", "#76f4f0", "#ffcf6e", "#ff8ff4"];
-var len = data2.length;
-console.log(data2);
-for(var i = 0 ; i < len ;i++){
-	var party = data2[i];
-	if( party.party3 == party3){
-		var detail3 = party.detail3;
-		var len3 = detail3.length;
-		var html = '';
-		for(var j = 0; j < len3 ; j++){
-			console.log(len3)
-			var party4 = detail3[j];
-			var detail4 = party4.detail4;
-			var len4 = detail4.length;
-			for(var m = 0 ;m < len4 ;m++){
-				html+='<li class="d_list">'+
-						'<div class="d_img_box">'+
-						'<div class="d_img" style="background-color:'+bg_color[Math.floor(Math.random()*10)]+'">'+
-						detail4[m].name[0]+'</div>'+
-						'</div>'+
-						'<div class="d_name">'+ '<span>' + detail4[m].name + '</span>'+ '<span>' +  detail4[m].position + '</span>' + '</div>'+
-						/*'<a class="d_tel" href="tel:'+detail4[m].phone+'" >'+
-							'<span class="d_tel_icon"></span>'+
-								detail4[m].phone+
-						'</a>'+*/
-						'</li>';
-			}
-		}
-		$('.d_lists' ).append(html);
-		break;
-	}else{
-		console.log('百分百名字错了'+ party3 + '后：'+ party.party3)
-	}
-}
 
-//$(function(){
-//	getHistory();
-//	var flag=false;
-//	setTimeout(function(){
-//		flag=true
-//	},1000);
-//	window.addEventListener('popstate',function(e){
-//		//监听到返回事件
-//		if(flag){
-//			window.location.href = "/home/structure/index.html";
-//		}
-//		getHistory();
-//	},false);
-//	function getHistory(){
-//		var state={
-//			title:'',
-//			url:window.location.href
-//		} ;
-//		window.history.pushState(state,'title',state.url);
-//	}
-//})
+<script>
+    $("img.lazy").lazyload({
+        placeholder: "/home/images/loading.jpg",
+        effect: "fadeIn",
+        threshold : 500
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+
+    for(var j=0;j<$('.userSort .userleft').length;j++){
+        $('.userSort .userleft').eq(j).css('background',getColor())
+    }
+    //定义一个函数，实现随机生成十六进制颜色值
+    function getColor(){
+        //定义字符串变量colorValue存放可以构成十六进制颜色值的值
+        var colorValue="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+        //以","为分隔符，将colorValue字符串分割为字符数组["0","1",...,"f"]
+        var colorArray = colorValue.split(",");
+        var color="#";//定义一个存放十六进制颜色值的字符串变量，先将#存放进去
+        //使用for循环语句生成剩余的六位十六进制值
+        for(var i=0;i<6;i++){
+            //colorArray[Math.floor(Math.random()*16)]随机取出
+            // 由16个元素组成的colorArray的某一个值，然后将其加在color中，
+            //字符串相加后，得出的仍是字符串
+            color+=colorArray[Math.floor(Math.random()*16)];
+        }
+        return color;
+    }
 </script>
 {/block}

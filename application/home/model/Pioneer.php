@@ -18,7 +18,6 @@ class Pioneer extends Model {
     public function getThreeTop() {
         $map = array(
             'status' => 1,
-            'type' => 1,
         );
         $order = array("create_time desc");
         $res = $this->where($map)->order($order)->limit(3)->select();
@@ -26,38 +25,24 @@ class Pioneer extends Model {
     }
 
     /**
-     * 获取新闻资讯
+     * 获取数据
      */
     public function getNewMessage() {
         $map = array(
-            'status' => 1,
-            'type' => 1
+            'status' => 1
         );
         $order = array("create_time desc");
         $res = $this->where($map)->order($order)->limit(7)->select();
         return $res;
     }
 
-    /**
-     * 获取文件通知
-     */
-    public function getFileNote() {
-        $map = array(
-            'status' => 1,
-            'type' => 2
-        );
-        $order = array("create_time desc");
-        $res = $this->where($map)->order($order)->limit(7)->select();
-        return $res;
-    }
     
     /**
      * 获取更多
      */
     public function getMoreList($data) {
         $map = array(
-            'status' => 1,
-            'type' => $data['type']
+            'status' => 1
         );
         $order = array('create_time desc');
         $list = $this->where($map)->order($order)->limit($data['length'],5)->select();

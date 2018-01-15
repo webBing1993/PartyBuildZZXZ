@@ -10,6 +10,7 @@ namespace app\home\controller;
 use app\home\model\Comment;
 use app\home\model\Like;
 use app\home\model\Opinion;
+use app\home\model\Pioneer;
 use app\home\model\Picture;
 use com\wechat\TPQYWechat;
 use think\Config;
@@ -18,7 +19,7 @@ use think\Db;
 /**
  * Class Feedback
  * @package app\home\controller
- * 意见反馈
+ * 示范评比
  */
 class Feedback extends Base {
     /**
@@ -31,14 +32,20 @@ class Feedback extends Base {
             'status' => array('eq',0),
         ];
         $optionModel = new Opinion();
-        $list = $optionModel->where($map)->order('id desc')->limit(7)->select();
+        $list = $optionModel->where($map)->order('id desc')->limit(6)->select();
         foreach ($list as $value) {
             //获取用户信息
             $value['images'] = json_decode($value['images']);
             $value['username'] = $value->user->name;
             ($value->user->header) ? $value['header'] = $value->user->header : $value['header'] = $value->user->avatar;
+
+            //是否点赞
+            $likeModel = new Like;
+            $like = $likeModel->getLike(8,$value['id'],$userId);
+            $value['is_like'] = $like;
+
             //获取相关意见反馈评论
-            $map1 = [
+            /*$map1 = [
                 'aid' => $value['id'],
                 'type' => 13,
                 'status' => array('egt',0)
@@ -48,28 +55,36 @@ class Feedback extends Base {
 
                 $val['username'] = get_name($val['uid']);
             }
-            $value['comment'] = $comment;
-
-            //是否点赞
-            $map2 = [
-                'aid' => $value['id'],
-                'uid' => $userId,
-                'status' => 0,
-                'type' => 13,
-            ];
-            $msg = Like::where($map2)->find();
-            if ($msg) {
-
-                $value['is_like'] = 1;
-            } else {
-
-                $value['is_like'] = 0;
-            }
+            $value['comment'] = $comment;*/
         }
-
         $this->assign('list',$list);
 
+        $map2 = [
+            'status' => ['egt',0],
+        ];
+        $list2 = Pioneer::where($map2)->limit(6)->order('id desc')->select();
+        $this->assign('list2',$list2);
+
         return $this->fetch();
+    }
+    /**
+     * 主页加载更多
+     */
+    public function pioneermore(){
+        $len = input('length');
+        $map = [
+            'status' => ['egt',0],
+        ];
+        $list = Pioneer::where($map)->order('id desc')->limit($len,6)->select();
+        foreach($list as $value){
+            $img = Picture::get($value['front_cover']);
+            $value['path'] = $img['path'];
+        }
+        if($list){
+            return $this->success("加载成功",'',$list);
+        }else{
+            return $this->error("加载失败");
+        }
     }
 
     /**
@@ -105,12 +120,13 @@ class Feedback extends Base {
     /**
      * 加载更多
      */
-    public function more(){
+    public function indexmore(){
         $len = input('length');
+        $userId = session('userId');
         $map = [
             'status' => array('eq',0)
         ];
-        $list = Opinion::where($map)->order('id desc')->limit($len,7)->select();
+        $list = Opinion::where($map)->order('id desc')->limit($len,6)->select();
         foreach ($list as $value) {
             //获取用户信息
             $value['images'] = json_decode($value['images']);
@@ -124,8 +140,15 @@ class Feedback extends Base {
             $value['images'] = $image;
             $value['username'] = $value->user->name;
             ($value->user->header) ? $value['header'] = $value->user->header : $value['header'] = $value->user->avatar;
+
+            //是否点赞
+            $likeModel = new Like;
+            $like = $likeModel->getLike(8,$value['id'],$userId);
+            $value['is_like'] = $like;
+            $value['time'] = date("Y-m-d",$value['create_time']);
+
             //获取相关意见反馈评论
-            $map1 = [
+            /*$map1 = [
                 'aid' => $value['id'],
                 'type' => 13,
                 'status' => array('egt',0)
@@ -134,22 +157,7 @@ class Feedback extends Base {
             foreach ($comment as $k => $val) {
                 $val['username'] = get_name($val['uid']);
             }
-            $value['comment'] = $comment;
-
-            //是否点赞
-            $map2 = array(
-                'aid' => $value['id'],
-                'uid' => session('userId'),
-                'status' => 0,
-                'type' => 13,
-            );
-            $msg = Like::where($map2)->find();
-            if($msg) {
-                $value['is_like'] = 1;
-            }else{
-                $value['is_like'] = 0;
-            }
-            $value['time'] = date("Y.m.d",$value['create_time']);
+            $value['comment'] = $comment;*/
         }
         if ($list) {
 
@@ -158,6 +166,49 @@ class Feedback extends Base {
 
             return $this->error("加载失败");
         }
+    }
+    /*
+     * 典型引路
+     */
+    public function pioneer(){
+        $this->anonymous();        //判断是否是游客
+        $this->jssdk();
+
+        $userId = session('userId');
+        $id = input('id');
+        /*$learnsModel = new Pioneer();
+        //浏览加一
+        $info['views'] = ['exp','`views`+1'];
+        $learnsModel::where('id',$id)->update($info);
+        if($userId != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = [
+                'user_id' => $userId,
+                'learns_id' => $id,
+            ];
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                $s['score'] = ['exp','`score`+1'];
+//                if ($this->score_up()){
+                // 未满 15 分
+                Browse::create($con);
+                WechatUser::where('userid',$userId)->update($s);
+//                }
+            }
+        }*/
+        $article = Pioneer::get($id);
+        $article['user'] = session('userId');
+        //分享图片及链接及描述
+        $image = Picture::where('id',$article['front_cover'])->find();
+        $article['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $article['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
+        $article['desc'] = str_replace(" ",'',$article['desc']);
+        $article['desc'] = str_replace("\n",'',$article['desc']);
+
+        $this->assign('article',$article);
+
+        return $this->fetch();
     }
 
 }

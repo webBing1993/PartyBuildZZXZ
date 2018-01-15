@@ -1,293 +1,62 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>云上组织</title>
-<link rel="stylesheet" href="/home/css/structure/structure.css">
-<link rel="stylesheet" href="/home/css/common/rem.css">
-
+<link rel="stylesheet" href="/home/css/service/organization.css">
+<title>组织概况</title>
 {/block}
-
 {block name="body"}
-<div class="banner">
-	<img src="/home/images/banner/14.jpg" alt="组织架构banner" class="banner-img">
-</div>
-<div class="tabs">
-	<span class="tab active"><span>组织介绍</span></span>
-	<span class="tab"><span>组织架构</span></span>
-	<span class="tab"><span>全景展示</span></span>
-</div>
-<div class="listbox">
-	<div class="box summary active">
-		<div class="box_ ">
-			<p>	石淙镇是湖州市南浔区的首个“魅力水乡示范镇”和“五水共治示范镇”，位于湖州市区东南部，东与我区善琏镇、双林镇相邻，南与千金镇接壤，北与和孚镇毗邻，西与菱湖镇交界。全镇区域面积25平方公里，下辖7个行政村，1个社区，总人口13953人,城镇建成区面积1平方公里，常住人口2600多人。</p>
-			<p>石淙镇党委下辖基层党组织22个，党员762人。其中行政村党组织7个（4个党总支、3个党支部），企业党总支5个（4个单建、1个联建），机关事业党支部7个，社区、机关退休和返乡大学生党支部各1个。</p>
-		</div>
+<div class="banner"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+<div class="department">
+	<div class="departmentTop"><span>部门简介</span><img src="/home/images/icon/icon_01.png" alt=""></div>
+	<div class="departmentText">
+		<p>城市和农村按居民居住地区设立的居民委员会或者村民委员会是基层群众性自治组织。居民委员会、村民委员会设人民调解、治安保卫、公共卫生等委员会，办理本居住地区的公共事务和公益事业，调解民间纠纷，协助维护治安，并且向人民政府反映群众的意见、要求和提出建议。</p>
+		<p>人民调解委员会是在基层人民政府和基层人民法院指导下，调解民间纠纷的群众性组织。</p>
 	</div>
-	<div class="town box hidden">
-		<!--小镇党委-->
-		<div class="box_ or">
-			<div class="lists">
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">中共石淙镇集镇党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">中共石淙镇集镇党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">湖州德海新型建材有限公司党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">湖州德海新型建材有限公司党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">菱湖万事美毛纺织公司党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">菱湖万事美毛纺织公司党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">湖州新奥克化工有限公司党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">湖州新奥克化工有限公司党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">湖州德佳毛纺织品有限公司党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">湖州德佳毛纺织品有限公司党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure1"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">湖州江南恒盛炼染有限公司党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">湖州江南恒盛炼染有限公司党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure2"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇国土资源管理所党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇国土资源管理所党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure3"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇供销社党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇供销社党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-
-				<!--第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure4"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇机关党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇机关党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<!--/第一层-->
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure4"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇经济建设服务中心党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇经济建设服务中心党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure4"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇农业综合服务中心党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇农业综合服务中心党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure4"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇安监中心党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇安监中心党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-				<div class="list clear">
-					<div class="party1">
-						<div class="tri-left structure4"></div>
-						<a href="{:Url('Structure/detail')}"><div class="name1">石淙镇机关退休党支部</div></a>
-						<!--<div class="name1"><a class="name2 limit" href="{:Url('Structure/detail')}">石淙镇机关退休党支部<span class="rt sj"></span></a></div>-->
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--/小镇党委-->
-	</div>
-	<div class="box hidden  shouldKnow">
-		<div class="box_">
-			<a href="http://720yun.com/t/f2aj5dwvkw3">
-				<div class="title">石淙镇智慧党建全景展示</div>
-				<img src="/home/images/structure/vr.jpg" alt="vr封面">
-			</a>
-		</div>
-	</div>
-
-
 </div>
-
+<div class="organization">
+	<div class="organizationTop"><img src="/home/images/lxyz/icon_013.png">组织架构</div>
+	<div class="organization_link">
+		{volist name="list" id="vo"}
+		<a href="{:Url('structure/detail?id='.$vo.id)}">{$vo.name}</a>
+		{/volist}
+	</div>
+</div>
 {/block}
 
 {block name="script"}
-<script src="/home/js/reset.js"></script>
+
 <script>
-$(function(){
+    $("img.lazy").lazyload({
+        placeholder: "/home/images/loading.jpg",
+        effect: "fadeIn",
+        threshold : 500
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
 
-//	$(".shouldKnow .box_ img").on("click", function (e) {
-//		e.preventDefault();
-//		$(this).parent("a").css("outline",0);
-//		swal({
-//			title: '',
-//			text: '很抱歉！尚未开通！',
-//			type: 'error',
-//			confirmButtonText: '确定',
-//			timer: 3000
-//		})
-//	});
-
-	//tab初始化和数据存储
-	var c =  parseInt(window.location.href.split("index/c/")[1]);
-	$('.tabs>.tab').removeClass("active");
-	$('.tabs>.tab').eq(c-1).addClass('active');
-	$(".box").removeClass("active").addClass("hidden");
-	$(".box").eq(c-1).removeClass("hidden").addClass("active");
-	$(".listbox").css("left",-(c - 1) * $("body").width());
-	//组织架构切换
-//	slide();
-	$('.party1 a' ).each(function(){
-		var t = $(this ).text();
-		var href = '/home/structure/detail?party='+t+'';
-		$(this ).attr('href', href);
-	});
-	$(function(){
-//		//tab值记录
-//		tabRecord('.tab' ,'.box');
-//		//tab切换
-		tabSwitch('.tab' ,'.box');
-		//上拉加载
-	});
-//	isOut();
-});
-//function slide(){
-//	$('.lists .party1' ).on('click',function(){
-//		var it = $(this);
-//		var detail = it.next('.detail1' );
-//		if(detail.hasClass('down')){
-//			detail.slideUp();
-//			it.find('.tri').removeClass('toup').addClass('todown');
-//		}else{
-//			detail.slideDown();
-//			it.find('.tri').removeClass('todown').addClass('toup');
-//		}
-//		detail.toggleClass('down');
-//	});
-//}
-
-function tabSwitch(a,b,fn,url){
-	$(a).off('click').on('click',function(){
-		var this_ = this ;
-		var box = $(b ).parent();
-		var index = $(this_ ).index();
-		var ww = $(b ).parent().width();
-		$(this_ ).addClass('active' );
-		$(this_ ).siblings(a).removeClass('active');
-		$(b).removeClass('hidden');
-		ww = ww * index;
-		box.stop().animate({left: -ww +'px'},300,function(){
-			$(b).eq(index).siblings(b).addClass('hidden');
-			setCookie( 'tab', index );
-			if(fn){
-				var tab = $('.active' ).index() + 1;
-				fn(tab,url,7,5);
-			}
-		});
-
-	})
-}
-function tabRecord(a,b){
-	var tab = getCookie('tab');
-	if(tab){
-		var index = tab;
-		var box = $(b).parent();
-		var ww = $(b).parent().width();
-		$(a).eq(index).addClass('active');
-		$(a).eq(index).siblings(a).removeClass('active');
-		$(b).removeClass('hidden');
-		ww = ww * index;
-		box.css({left: -ww +'px'});
-		setTimeout(function(){
-			$(b).eq(index).siblings(b).addClass('hidden');
-		},100)
-	}
-}
-//退出清理tab缓存
-function isOut(){
-	pushHistory();
-	setTimeout(function(){
-		window.addEventListener("popstate", function(e) {
-			delCookie("type");
-			window.history.go(-1);
-		}, false);
-	},200)
-}
-//防止恶意刷新
-function pushHistory(){
-	var sta = {
-		title: "title"
-	};
-	if( window.history.state === null )
-	{
-		window.history.pushState( sta, "title" );
-	}
-}
-function setCookie(name,value){
-	var Days = 30;
-	var exp = new Date();
-	exp.setTime(exp.getTime() + Days*24*60*60*1000);
-	document.cookie = name + "="+ value + ";expires=" + exp.toGMTString();
-}
-function getCookie(name){
-	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-	if(arr=document.cookie.match(reg))
-		return arr[2];
-	else
-		return null;
-}
-function delCookie(name){
-	var exp = new Date();
-	exp.setTime(exp.getTime() - 1);
-	var cval=getCookie(name);
-	if(cval!=null)
-		document.cookie= name + "="+cval+";expires="+exp.toGMTString();
-}
+    for(var j=0;j<$('.organization_link a').length;j++){
+        $('.organization_link a').eq(j).css('border-left','.533vw solid'+getColor())
+    }
+    //定义一个函数，实现随机生成十六进制颜色值
+    function getColor(){
+        //定义字符串变量colorValue存放可以构成十六进制颜色值的值
+        var colorValue="0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
+        //以","为分隔符，将colorValue字符串分割为字符数组["0","1",...,"f"]
+        var colorArray = colorValue.split(",");
+        var color="#";//定义一个存放十六进制颜色值的字符串变量，先将#存放进去
+        //使用for循环语句生成剩余的六位十六进制值
+        for(var i=0;i<6;i++){
+            //colorArray[Math.floor(Math.random()*16)]随机取出
+            // 由16个元素组成的colorArray的某一个值，然后将其加在color中，
+            //字符串相加后，得出的仍是字符串
+            color+=colorArray[Math.floor(Math.random()*16)];
+        }
+        return color;
+    }
 </script>
 {/block}

@@ -24,46 +24,18 @@
         <div class="box" style="display:none;">
             <!--列表-->
             <div class="lists">
-                <a href="#" class="list">
-                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
+                {volist name="list" id="vo"}
+                <a href="{:Url('meetdetail?id='.$vo.id)}" class="list">
+                    <img data-original="{$vo.front_cover|get_cover='path'}" class="lazy">
                     <div class="lr">
                         <div class="title">
-                            <p>2017年度山下湖镇党支部考核情况</p>
+                            <p>{$vo.title}</p>
                         </div>
-                        <span class="time">2018-01-08</span>
-                        <span class="message">30</span>
+                        <span class="time">{$vo['create_time']|time_format='Y-m-d'}</span>
+                        <span class="message">{$vo.views}</span>
                     </div>
                 </a>
-                <a href="#" class="list">
-                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
-                    <div class="lr">
-                        <div class="title">
-                            <p>2017年度山下湖镇党支部考核情况</p>
-                        </div>
-                        <span class="time">2018-01-08</span>
-                        <span class="message">30</span>
-                    </div>
-                </a>
-                <a href="#" class="list">
-                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
-                    <div class="lr">
-                        <div class="title">
-                            <p>2017年度山下湖镇党支部考核情况</p>
-                        </div>
-                        <span class="time">2018-01-08</span>
-                        <span class="message">30</span>
-                    </div>
-                </a>
-                <a href="#" class="list">
-                    <img data-original="/home/images/banner/1.jpg" alt="图片展示" class="lazy">
-                    <div class="lr">
-                        <div class="title">
-                            <p>2017年度山下湖镇党支部考核情况</p>
-                        </div>
-                        <span class="time">2018-01-08</span>
-                        <span class="message">30</span>
-                    </div>
-                </a>
+                {/volist}
             </div>
             <div class="loading hidden">
                 <div class="typing_loader"></div>
@@ -155,7 +127,7 @@
 //                scrollNow = false;
 //                $.ajax({
 //                    type:"post",
-//                    url: "",
+//                    url: "{:Url('Service/indexMore')}",
 //                    data:{
 //                        type:type,
 //                        length:len

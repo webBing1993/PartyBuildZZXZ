@@ -1,0 +1,30 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/service/organization.css">
+<title>典型引路</title>
+{/block}
+{block name="body"}
+<div class="UserTop">
+    <div class="UserTop_01">
+        <img src="/home/images/banner/1.jpg">
+        <div class="UserTop_Text">
+            <p>姓名：<span>{$article.name}</span></p>
+            <p>生日：<span>{$article.birthday}</span></p>
+            <p>职位：<span>{$article.position | default='无'}</span></p>
+        </div>
+    </div>
+    <div class="UserTop_02">
+        <span>口 号：</span>
+        <p>{$article.description}</p>
+    </div>
+</div>
+<div class="UserContent">
+    <div class="UserTitle">先锋事迹</div>
+    <div class="UserText">
+        {$article.content}
+    </div>
+</div>
+{/block}
+{block name="script"}
+{/block}

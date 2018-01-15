@@ -1,405 +1,417 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>建言献策</title>
-<link rel="stylesheet" href="/static/viewer/viewer.min.css">
-<link rel="stylesheet" href="/home/css/feedback.css">
-<link rel="stylesheet" href="/static/sweetalert/sweetalert1.css">
-<script src="/static/sweetalert/sweetalert1.min.js"></script>
+<link rel="stylesheet" href="/home/css/service/appraisal.css">
+<link rel="stylesheet" href="/home/css/service/photoswipe.css"/>
+<link rel="stylesheet" href="/home/css/service/default-skin.css"/>
+<title>示范评比</title>
 {/block}
-
 {block name="body"}
-<div class="banner">
-	<img src="/home/images/banner/18.jpg" alt="建言献策banner图">
+<div class="headerTop">
+	<div data-side="1" class="active" id="show1">我来推荐</div>
+	<div data-side="2" id="show2">典型引路</div>
 </div>
-<div class="lists">
-	{volist name="list" id="vo"}
-	<div class="list clear">
-		<div class="fl">
-			<img src="{$vo.header}" alt="用户头像">
-		</div>
-		<div class="fr">
-			<div class="name limit">{$vo.username}</div>
-			<div class="content">{$vo.content}</div>
-			<div class="imgs">
-				{volist name="$vo.images" id="img"}
-				<div class="img">
-					<img src="{$img|get_cover='path'}" alt="评论图" data-original="">
+<div id="side1" class="appraisal all">
+	<div class="appraisalSort">
+		<ul>
+			{volist name="list" id="vo"}
+			<li>
+				<div class="headerImg"><img data-original="{$vo.header}" class="lazy"></div>
+				<div class="appraisalRight">
+					<div class="appTop">
+						<p class="appraisalName">{$vo.username}</p>
+						<p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p>
+					</div>
+					<div class="appText">{$vo.content}</div>
+					<p class="appshow">展开</p>
+					<div class="appImg my-gallery">
+						{volist name="$vo.images" id="img"}
+						<figure><a href="{$img|get_cover='path'}" data-size="800x800"><img data-original="{$img|get_cover='path'}" class="lazy"></a></figure>
+						{/volist}
+					</div>
+					<div class="note">
+						{eq name="visit" value="0"}
+						{eq name="vo.is_like" value="1"}
+						<span class="isgood good_" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
+						{else/}
+						<span class="isgood good" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
+						{/eq}
+						{/eq}
+					</div>
 				</div>
-				{/volist}
+			</li>
+			{/volist}
+		</ul>
+	</div>
+</div>
+<div id="side2" class="appraisal">
+	<ul class="appraisalUser">
+		{volist name="list2" id="vo"}
+		<li>
+			<a href="{:Url('pioneer?id='.$vo.id)}">
+				<div class="appraisalUser_01">
+					<img src="{$vo.front_cover|get_cover='path'}">
+					<div>
+						<p>姓名：<span>{$vo.name}</span></p>
+						<p>生日：<span>{$vo.birthday}</span></p>
+						<p>职位：<span>{$vo.position | default='无'}</span></p>
+					</div>
+				</div>
+				<div class="appraisalUser_02">{$vo.description}</div>
+			</a>
+		</li>
+		{/volist}
+	</ul>
+</div>
+<!--<div class="fixed"></div>-->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="pswp__bg"></div>
+	<div class="pswp__scroll-wrap">
+		<div class="pswp__container">
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+		</div>
+		<div class="pswp__ui pswp__ui--hidden">
+			<div class="pswp__top-bar">
+				<div class="pswp__counter"></div>
+				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+						<div class="pswp__preloader__cut">
+							<div class="pswp__preloader__donut"></div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="note clear">
-				<span class="fl">{$vo.department_name}/{$vo.create_time|time_format="Y.m.d"}发布</span>
-				<span class="fr message" onclick="send(this,13,{$vo.id})"></span>
-				<span class="fr goodnum">{$vo.likes}</span>
-				{eq name="vo.is_like" value="1"}
-				<span class="fr good_" onclick="isGood(this,13,{$vo.id})"></span>
-				{else/}
-				<span class="fr good" onclick="isGood(this,13,{$vo.id})"></span>
-				{/eq}
+			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+				<div class="pswp__share-tooltip"></div>
 			</div>
-			<ul class="comments">
-				{volist name="$vo.comment" id="com"}
-				<li>
-					<span class="name">{$com.username}：</span>
-					<span class="comment">{$com.content}</span>
-				</li>
-				{/volist}
-			</ul>
+			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+			<div class="pswp__caption">
+				<div class="pswp__caption__center"></div>
+			</div>
 		</div>
 	</div>
-	{/volist}
-</div>
-{eq name="visit" value="0"}
-<a id="publish" href="{:Url('Feedback/publish')}"></a>
-{/eq}
-<!--<div class="bottom">-->
-	<!--<div class="myword">-->
-		<!--<input type="text" placeholder="说说你的感想！">-->
-	<!--</div>-->
-	<!--<div class="send" onclick="send(this,13)">发送</div>-->
-	<!--<div class="not">-->
-		<!--<div class="bg"></div>-->
-		<!--<div class="msg">-->
-			<!--您的评论不能为空-->
-			<!--<div class="confirm">确定</div>-->
-		<!--</div>-->
-	<!--</div>-->
-<!--</div>-->
-<div class="tip"></div>
-<div class="loading hidden">
-	<div class="typing_loader"></div>
 </div>
 {/block}
-
 {block name="script"}
-<script src="/static/viewer/viewer-jquery.min.js"></script>
+<script src="/home/js/appraisal/photoswipe.min.js"></script>
+<script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+    var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
+    for(var P=0;P<$('.headerTop>div').length;P++){
+        $('.headerTop>div')[P].onclick = function(){
+            $('.headerTop>div').removeClass('active');
+            $(this).addClass('active');
+            var side = $(this).data('side');
+            $('.appraisal').hide();
+            $('#side'+side).show();
+            localStorage.setItem('appNum',side);
+        }
+    }
+    $('.headerTop>div').removeClass('active');
+    $('.headerTop>div').eq(app-1).addClass('active');
+    $('.appraisal').hide();
+    $('#side'+app).show();
+    function isGood(e,type,id){
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+                var n = $(e ).text();
+                $(e).toggleClass('good' ).toggleClass('good_');
+                $(e ).hasClass('good')?n--:n++;
+                $(e ).text(n);
+            }
+        })
+    }
+    //上拉加载
+    function loadScroll(){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $(".list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('Feedback/indexmore')}",//我来推荐
+//                    url:"{:Url('Feedback/pioneermore')}",//典型引路
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        console.log(data);
+                        if(data.code == 1){
+                            addLists(data);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 7){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
 
-var scrollNow = true;//判断下拉请求是否执行中.false为正在请求
-$(function(){
-	//reset
-	var len = $(".list" ).length;
-	if(len == 7){
-		$('.tip' ).text('上拉加载更多');
-		//上拉加载评论
-		loadScroll();
-	}
-	//ios fix兼容
-	tofixed();
-	//悬浮框移动
-	moveway();
-	$('.imgs').viewer({
-		url: 'data-original',
-		toolbar:false,
-		title:false
-	});
-});
-//点赞
-var isGood = function(e,type,id){
-	//样式变化，移到suc
-	{eq name="visit" value="0"}
-	var n = $(e).prev('.goodnum').text();
-	$(e).toggleClass('good' ).toggleClass('good_');
-	$(e ).hasClass('good')?n--:n++;
-	$(e ).prev('.goodnum').text(n);
-	$.ajax({
-		type:"post",
-		url:"{:Url('Base/like')}",
-		data:{
-			type: type,
-			aid: id
-		},
-		success:function(data){
+    var Imgsrc='';
+    var newarr = [];
+    $('.appraisalSort li').each(function(){
+        if($(this).find('.appText').height()>120){
+            $(this).find('.appText').addClass('_height');
+            $(this).find('.appshow').show();
+        };
+        if($(this).find('.appshow').css('display')=='none'){
+            $(this).find('.appText').css('margin-bottom','2vh')
+        };
+        if($(this).find('.appImg figure').length==1){
+            $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
+        };
+        if($(this).find('.appImg figure').length==4){
+            $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
+        };
+    });
 
-		}
-	})
-	{/eq}
-};
-//发送评论
-var send = function(e,type,id){
-	{eq name="visit" value="1"}
-	return '';
-	{/eq}
-	swal({
-				title: '',
-				text: '请输入您的评论！',
-				type: 'input',
-				showCancelButton: true,
-				closeOnConfirm: false,
-				cancelButtonText: "取消",
-				confirmButtonText: "确定",
-				animation: "slider-form-top"
+    $('.appImg').each(function(){
+        var _len = $(this).find('figure').length;
+        for(var N=0;N<_len;N++){
+            if(N>8){$(this).find('figure').eq(N).remove()}
+        }
+    })
 
-			},
-			function(inputValue){
-				if (inputValue === false) return false;
+    $('.appshow').on('click',function(){
+        if($(this).html()=='展开'){
+            $(this).html('收起');
+            $(this).parent().find('.appText').removeClass('_height');
+        }else {
+            $(this).html('展开');
+            $(this).parent().find('.appText').addClass('_height');
+        }
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+</script>
+<script type="text/javascript">
+    var initPhotoSwipeFromDOM = function(gallerySelector) {
 
-				if (inputValue.length < 1) {
-					swal.showInputError("评论字数不能少于1个字！");
-					return false
-				}
+        // parse slide data (url, title, size ...) from DOM elements
+        // (children of gallerySelector)
+        var parseThumbnailElements = function(el) {
+            var thumbElements = el.childNodes,
+                numNodes = thumbElements.length,
+                items = [],
+                figureEl,
+                linkEl,
+                size,
+                item;
 
-				if (inputValue.length > 300) {
-					swal.showInputError("您输入的字超过了300！");
-					return false
-				}
-				$.ajax({
-					type:"post",
-					url:"{:Url('Base/comment')}",
-					data:{
-						type:type,
-						aid:id,
-						content:inputValue
-					},
-					beforeSend:function(){
-						swal({
-							title: ' ',
-							text: '评论提交中...',
-							showConfirmButton:false
-						});
-					},
-					success:function(data){
-						var data = data.data;
-						var html = '';
-						html +=
-							'<li>'+
-								'<span class="name">'+data.nickname+'：</span>'+
-								'<span class="comment">'+data.content+'</span>'+
-							'</li>';
+            for (var i = 0; i < numNodes; i++) {
 
-						$(e).parent().next().append(html);
-						$(e).parent().next().removeClass("hide");
-						swal({
-							title: ' ',
-							text: '评论成功',
-							type: 'success',
-							confirmButtonText:'确定',
-							timer:3000
-						});
+                figureEl = thumbElements[i];
 
-					}
-				});
-			});
-};
-//上拉加载
-function loadScroll(){
-	$(window ).off("scroll" ).on("scroll",function(){
-		var dh = $(document).height();
-		var end = $(window).height() + $(window ).scrollTop();
-		var len = $(".list" ).length;
-		var tip = $(".tip");
-		var loading = $('.loading');
-		if(dh == end && scrollNow){
-			scrollNow = false;
-			$.ajax({
-				type:"post",
-				url:"{:Url('Feedback/more')}",
-				data:{
-					length:len
-				},
-				beforeSend: function(XMLHttpRequest){
-					tip.hide();
-					loading.toggleClass('hidden');
-				},
-				success:function(data){
-					loading.toggleClass('hidden');
-					tip.show();
-					console.log(data);
-					if(data.code == 1){
-						addLists(data);
-						var dataLen =data.data.length;
-						if(data.data.length == 7){
-							tip.text('上拉加载更多');
-						}
-					}else{
-						tip.text('没有更多了');
-						$(window ).off("scroll");
-					}
-					scrollNow = true;
-				}
-			})
-		}
-	})
-}
-function addLists(data){
-	var html = '';
-	var lists = data.data;
-	var len = lists.length;
-	for(var i = 0; i< len;i++){
-		var list = lists[i];
-		html +=
-				'<div class="list clear">'+
-				'<div class="fl">'+
-				'<img src="'+list.header+'" alt="用户头像">'+
-				'</div>'+
-				'<div class="fr">'+
-				'<div class="name limit">'+list.username+'</div>'+
-				'<div class="content limit_">'+list.content+'</div>'+
-				'<div class="imgs">';
-		var imglen = list.images.length;
-		for(var j = 0 ;j<imglen ;j++){
-			html+=
-					'<div class="img">'+
-					'<img src='+list.images[j]+' alt="评论图">'+
-					'</div>';
-		}
-		var good = list.is_like == 0?'good':'good_';
-		html +=
-				'</div>'+
-				'<div class="note clear">'+
-				'<span class="fl">'+list.department_name+'/'+list.time+'发布</span>'+
-				'<span class="fr message" onclick="send(this,13,'+list.id+')"></span>'+
-				'<span class="fr goodnum">'+list.likes+'</span>'+
-				'<span class="fr '+good+'" onclick="isGood(this,13,'+list.id+')"></span>'+
-				'</div>'+
-				'<ul class="comments">';
-		var commentlen = list.comment.length;
-		for(var x = 0 ;x <commentlen ;x++){
-			html+=
-					'<li>'+
-					'<span class="name">'+list.comment[x].username+'：</span>'+
-					'<span class="comment">'+list.comment[x].content+'</span>'+
-					'</li>'
-		}
-		html+=
-				'</ul>'+
-				'</div>'+
-				'</div>';
-	}
-	$(".lists" ).append(html);
-	//图片排版、评论框
-	layout();
-	imgresize();
-}
+                // include only element nodes
+                if (figureEl.nodeType !== 1) {
+                    continue;
+                }
+
+                linkEl = figureEl.children[0];
+
+                size = linkEl.getAttribute('data-size').split('x');
+
+                // create slide object
+                item = {
+                    src: linkEl.getAttribute('href'),
+                    w: parseInt(size[0], 10),
+                    h: parseInt(size[1], 10)
+                };
 
 
-var tosend = function(e,id){
-	var index = $(e).parents('.list' ).index();
-	$('.banner,.lists' ).off('click');
-	$('.bottom' ).animate({'bottom':'0'},500,'swing',function(){
-		$('.banner,.lists' ).off('click').one('click',function(){
-			$('.bottom' ).animate({'bottom':'-12vw'},500,'swing');
-			$('.myword input' ).val('');
-		})
-	}).attr('data-tab',index);
-	$('.send' ).attr('data-tab',id);
-};
+                if (figureEl.children.length > 1) {
+                    item.title = figureEl.children[1].innerHTML;
+                }
 
-//--------------------------------------------------------------------------
-//
-//
-//--------------------------------------------------------------------------
-var layout = function(){
-	$('.list' ).each(function(){
-		var this_ = $(this);
-		var n_img = this_.find('.imgs .img' ).length;
-		var n_li = this_.find('.comments li' ).length;
-		if(n_img == 4){
-			this_.find('.imgs .img' ).eq(1).after('<br>')
-		}
-		if(n_li == 0){
-			this_.find('.comments').addClass('hide');
-		}
-	})
-};
-var imgresize = function (){
-	$('.list' ).each(function(){
-		$(this).find('.imgs .img img' ).each(function(){
-			if($(this).width() == $(this).height()){
-				$(this).height('20.8vw');
-				$(this).width('20.8vw');
-			}else if($(this).width() > $(this).height()){
-				$(this).height('20.8vw' ).css({'left':-$(this).width()/2+78/2});
-			}else{
-				$(this).width('20.8vw').css({'top':-$(this).height()/2+78/2});
-			}
-		});
-	});
-};
-var tofixed = function(){
-	var u = navigator.userAgent;
-	var word = $('.myword input');
-	var bottom =$('.bottom');
-	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-	if(isiOS){
-		//兼容ios7
-		$(document).scrollTop(1);
-		word.focus(function(){
-			var noInputViewHeight = $(window).height() - bottom.height();
-			var contentHeight = $(document).height() - bottom.height();
-			contentHeight = contentHeight > noInputViewHeight ? contentHeight : noInputViewHeight;
-			setTimeout(function(){
-				var inputTopHeight = bottom.offset().top - $(window).scrollTop()+1;
-				var inputTopPos = bottom.offset().top + inputTopHeight+1;
-				inputTopPos = inputTopPos > contentHeight ? contentHeight : inputTopPos;
-				bottom.css({'position':'absolute', 'top':inputTopPos +1 });
-				$(window).on('touchstart', function(){
-					word.blur();
-				});
-			}, 100);
-		});
-		word.on('blur',function(){
-			//输入框失焦后还原初始状态
-			var a =$(window).height()-45;
-			bottom.css({'position': 'fixed','top':'','bottom':'0'});
-		})
-	}
-};
-var moveway = function(){
-	var oW,oH,touch_start,touch_end;
-	var block = document.getElementById("publish");
-	block.addEventListener("touchstart", function(e) {
-		var touches = e.touches[0];
-		touch_start = touches.clientX;
-		oW = touches.clientX - block.offsetLeft;
-		oH = touches.clientY - block.offsetTop;
-		//阻止页面的滑动默认事件
-		document.addEventListener("touchmove",defaultEvent,false);
-	},false);
-	block.addEventListener("touchmove", function(e) {
-		var touches = e.touches[0];
-		var oLeft = touches.clientX - oW;
-		var oTop = touches.clientY - oH;
-		touch_end = touches.clientX;
-		if(oLeft < 0) {
-			oLeft = 0;
-		}else if(oLeft > document.documentElement.clientWidth - block.offsetWidth) {
-			oLeft = (document.documentElement.clientWidth - block.offsetWidth);
-		}
-		if(oTop < 0) {
-			oTop = 0;
-		}else if(oTop > document.documentElement.clientHeight - block.offsetHeight) {
-			oTop = (document.documentElement.clientHeight - block.offsetHeight);
-		}
-		block.style.left = oLeft+ "px";
-		block.style.top = oTop + "px";
-		e.preventDefault();
-	},false);
-	block.addEventListener("touchend",function() {
-		document.removeEventListener("touchmove",defaultEvent,false);
-		if(touch_start != touch_end && touch_end){
-//			alert(touch_start);
-//			alert(touch_end);
-			if(block.offsetLeft>=(document.documentElement.clientWidth - block.offsetWidth)/2) {
-				$('#publish').animate({
-					left:document.documentElement.clientWidth - block.offsetWidth+'px'
-				},300);
-			}
-			if(block.offsetLeft<(document.documentElement.clientWidth - block.offsetWidth)/2) {
-				$('#publish').animate({
-					left:'0'
-				},300)
-			}
-		}
-	},false);
-	function defaultEvent(e) {
-		e.preventDefault();
-	}
-};
-//图片排版、评论框
-layout();
-//图片裁剪
-imgresize();
+                if (linkEl.children.length > 0) {
+                    item.msrc = linkEl.children[0].getAttribute('src');
+                }
+
+                item.el = figureEl; // save link to element for getThumbBoundsFn
+                items.push(item);
+            }
+
+            return items;
+        };
+        // find nearest parent element
+        var closest = function closest(el, fn) {
+            return el && (fn(el) ? el : closest(el.parentNode, fn));
+        };
+
+        // triggers when user clicks on thumbnail
+        var onThumbnailsClick = function(e) {
+            e = e || window.event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+            var eTarget = e.target || e.srcElement;
+
+            // find root element of slide
+            var clickedListItem = closest(eTarget, function(el) {
+                return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+            });
+
+            if (!clickedListItem) {
+                return;
+            }
+
+            // find index of clicked item by looping through all child nodes
+            // alternatively, you may define index via data- attribute
+            var clickedGallery = clickedListItem.parentNode,
+                childNodes = clickedListItem.parentNode.childNodes,
+                numChildNodes = childNodes.length,
+                nodeIndex = 0,
+                index;
+
+            for (var i = 0; i < numChildNodes; i++) {
+                if (childNodes[i].nodeType !== 1) {
+                    continue;
+                }
+
+                if (childNodes[i] === clickedListItem) {
+                    index = nodeIndex;
+                    break;
+                }
+                nodeIndex++;
+            }
+
+
+
+            if (index >= 0) {
+                // open PhotoSwipe if valid index found
+                openPhotoSwipe(index, clickedGallery);
+            }
+            return false;
+        };
+        var photoswipeParseHash = function() {
+            var hash = window.location.hash.substring(1),
+                params = {};
+
+            if (hash.length < 5) {
+                return params;
+            }
+
+            var vars = hash.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                if (!vars[i]) {
+                    continue;
+                }
+                var pair = vars[i].split('=');
+                if (pair.length < 2) {
+                    continue;
+                }
+                params[pair[0]] = pair[1];
+            }
+
+            if (params.gid) {
+                params.gid = parseInt(params.gid, 10);
+            }
+
+            return params;
+        };
+
+        var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+            var pswpElement = document.querySelectorAll('.pswp')[0],
+                gallery,
+                options,
+                items;
+
+            items = parseThumbnailElements(galleryElement);
+
+            // define options (if needed)
+            options = {
+                // define gallery index (for URL)
+                galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+                getThumbBoundsFn: function(index) {
+                    // See Options -> getThumbBoundsFn section of documentation for more info
+                    var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                        pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                        rect = thumbnail.getBoundingClientRect();
+
+                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                }
+
+            };
+
+            // PhotoSwipe opened from URL
+            if (fromURL) {
+                if (options.galleryPIDs) {
+                    // parse real index when custom PIDs are used
+                    // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                    for (var j = 0; j < items.length; j++) {
+                        if (items[j].pid == index) {
+                            options.index = j;
+                            break;
+                        }
+                    }
+                } else {
+                    // in URL indexes start from 1
+                    options.index = parseInt(index, 10) - 1;
+                }
+            } else {
+                options.index = parseInt(index, 10);
+            }
+
+            // exit if index not found
+            if (isNaN(options.index)) {
+                return;
+            }
+
+            if (disableAnimation) {
+                options.showAnimationDuration = 0;
+            }
+
+            // Pass data to PhotoSwipe and initialize it
+            gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+            gallery.init();
+        };
+
+        // loop through all gallery elements and bind events
+        var galleryElements = document.querySelectorAll(gallerySelector);
+
+        for (var i = 0, l = galleryElements.length; i < l; i++) {
+            galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+            galleryElements[i].onclick = onThumbnailsClick;
+        }
+
+        var hashData = photoswipeParseHash();
+        if (hashData.pid && hashData.gid) {
+            openPhotoSwipe(hashData.pid, galleryElements[ hashData.gid - 1 ], true, true);
+        }
+    };
+
+    // execute above function
+    initPhotoSwipeFromDOM('.my-gallery');
+
 </script>
 {/block}
