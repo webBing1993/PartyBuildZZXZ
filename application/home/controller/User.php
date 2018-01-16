@@ -42,6 +42,9 @@ class User extends Base {
     public function collect(){
         return $this->fetch();
     }
+    public function chart(){
+        return $this->fetch();
+    }
     /**
      * 个人信息页
      */

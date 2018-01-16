@@ -1,5 +1,5 @@
-.body{
-    background: #F5F5F5;
+body{
+    background: #F5F5F5 ;
 }
 .top{
     height:5.8vh;
@@ -9,18 +9,65 @@
     height:100%;
     margin:0 auto;
     text-align: center;
-    line-height: 5.8vh;
+    line-height:6.2vh;
     font-size: .3rem;
     color:#999999;
+}
+.gesture{
+    width:3.8vw;
+    height:3.8vw;
+    vertical-align: middle;
+    margin-right:1.8vw;
 }
 .lists{
     border-top:1px solid #D1D1D1;
     background: #fff;
 }
+
 .list{
+    text-decoration: none;
+    display:block;
+    border-bottom:1px solid #D1D1D1;
+    overflow: hidden;
+}
+
+.line-scroll-wrapper {
+    clear: both;
+    overflow: hidden;
+}
+.line-btn-delete {
+    float: left;
+    width: 19.9vw;
+}
+.line-btn-delete button {
+    width: 100%;
+    height: 100%;
+    background: #CF3636;
+    border: none; font-size: .3rem;
+    color: #fff;
+}
+.line-normal-wrapper {
+    /*height:100%;*/
+    display: block;
+    float: left;
+    overflow: hidden;
+}
+.cont{
     padding:4vw;
+    overflow: hidden;
 }
 .title{
     font-size:.3rem;
     color:#333;
+    margin-bottom:1.5vh;
+}
+.list span{
+    color:#999;
+    font-size:.26rem;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
 }
