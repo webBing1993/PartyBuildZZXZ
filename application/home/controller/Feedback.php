@@ -220,4 +220,9 @@ class Feedback extends Base {
         return $this->fetch();
     }
 
+//    新建推荐
+    public function detail(){
+        return $this->fetch();
+    }
+
 }

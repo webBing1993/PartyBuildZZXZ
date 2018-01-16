@@ -1,0 +1,86 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>事件申请</title>
+<style>
+    .user {position: relative;width:100vw;margin: auto;}
+    .user li {width:100%;padding: 2.25vh 4vw;height:13.5vh;border-bottom: 1px solid #d1d1d1;position: relative;}
+    .user li:last-child {border-bottom: transparent;}
+    .user li img {float:left;width:1.2rem;height:1.2rem;}
+    .userSort {margin-left: 1.5rem;position: relative;height:1.2rem;}
+    .userSort p:first-child {color: #333;font-size: .3rem;position: absolute;top:0;}
+    .userSort p:last-child {color: #999;font-size: .26rem;position: absolute;bottom:0;}
+
+    .user a {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 4vw;
+        width: 24vw;
+        height: .6rem;
+        border: 1px solid #FE8B44;
+        color: #FE8B44;
+        background: rgba(254, 139, 68, .2);
+        border-radius: .4rem;
+        text-align: center;
+        line-height: .6rem;
+        font-size: .3rem;
+        margin-top: -.3rem;
+    }
+</style>
+{/block}
+{block name="body"}
+<div class="user">
+    <ul>
+        <li>
+        <img src="/home/images/banner/1.jpg">
+        <div class="userSort">
+            <p>芊芊</p>
+            <p>已调解案例：<span>19</span>起</p>
+        </div>
+        <a href="#">找他调解</a>
+    </li>
+        <li>
+            <img src="/home/images/banner/1.jpg">
+            <div class="userSort">
+                <p>芊芊</p>
+                <p>已调解案例：<span>19</span>起</p>
+            </div>
+            <a href="#">找他调解</a>
+        </li>
+        <li>
+            <img src="/home/images/banner/1.jpg">
+            <div class="userSort">
+                <p>芊芊</p>
+                <p>已调解案例：<span>19</span>起</p>
+            </div>
+            <a href="#">找他调解</a>
+        </li>
+        <li>
+            <img src="/home/images/banner/1.jpg">
+            <div class="userSort">
+                <p>芊芊</p>
+                <p>已调解案例：<span>19</span>起</p>
+            </div>
+            <a href="#">找他调解</a>
+        </li>
+        <li>
+            <img src="/home/images/banner/1.jpg">
+            <div class="userSort">
+                <p>芊芊</p>
+                <p>已调解案例：<span>19</span>起</p>
+            </div>
+            <a href="#">找他调解</a>
+        </li>
+    </ul>
+</div>
+{/block}
+{block name="script"}
+<script>
+    $('li').each(function(){
+        $(this).find('a').on('click',function(){
+            history.go(-1)
+        })
+    })
+</script>
+{/block}

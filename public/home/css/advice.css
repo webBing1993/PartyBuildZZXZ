@@ -1,6 +1,6 @@
 @charset "utf-8";
 .t_b {
-  font-size: 1.8rem;
+  font-size: .36rem;
   font-weight: 600;
 }
 body {
@@ -27,7 +27,7 @@ textarea::-webkit-input-placeholder {
   min-height: 53.4vw;
   margin-top: 2.7vw;
   color: #999999;
-  font-size: 1.3rem;
+  font-size: .26rem;
 }
 .content .contentnum {
   width: 100%;
@@ -58,7 +58,7 @@ textarea::-webkit-input-placeholder {
   border: 2px solid #d9d9d9;
   text-align: center;
   line-height: 20.8vw;
-  font-size: 6rem;
+  font-size: 2rem;
   color: #d9d9d9;
   box-sizing: content-box;
 }
@@ -72,13 +72,13 @@ textarea::-webkit-input-placeholder {
 .bottom .ths {
   width: 89.3vw;
   margin: 2.7vw auto;
-  font-size: 1.2rem;
+  font-size: .24rem;
   color: #b4b4b4;
 }
 .bottom .sure {
   height: 12vw;
   background: #4dbf50;
-  font-size: 1.6rem;
+  font-size: .32rem;
   line-height: 12vw;
   color: #ffffff;
 }
@@ -90,7 +90,7 @@ textarea::-webkit-input-placeholder {
   left: 15%;
   width: 70%;
   background: #ffffff;
-  font-size: 1.5rem;
+  font-size: .3rem;
   text-align: center;
   line-height: 16vw;
   -webkit-border-radius: 3.2vw;
@@ -106,7 +106,7 @@ textarea::-webkit-input-placeholder {
   top: 25%;
   width: 70%;
   background: #ffffff;
-  font-size: 1.5rem;
+  font-size: .3rem;
   text-align: center;
   line-height: 8vw;
   -webkit-border-radius: 3.2vw;

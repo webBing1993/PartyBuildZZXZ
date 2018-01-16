@@ -79,6 +79,8 @@ body{
     padding-left:5.4vw;
     background: url('/home/images/service/message.png') no-repeat left top;
     background-size: 3.5vw 1.8vh;
+    text-align: left;
+    width:1rem;
 }
 /*流程展示模块*/
 .flow .list{

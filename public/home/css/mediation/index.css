@@ -5,13 +5,13 @@ body{background: #f5f5f5;}
 .mediationContenr {display: none;padding-top: 6vh;}
 .banner {width:100vw;height:22.5vh;position: relative;}
 .banner img {width:100%;height:100%;}
-.department {width:92vw;position: relative;margin:2.25vh auto 0;background: #fff;border-radius: .3rem;font-size: .28rem;color: #333;padding: 3.37vh 0;box-shadow: 0 0 .5rem rgba(0,0,0,.2);overflow: hidden;}
+.department {width:92vw;position: relative;margin:2.25vh auto 0;background: #fff;border-radius: .3rem;font-size: .28rem;color: #333;padding: 4vh 0;box-shadow: 0 0 .5rem rgba(0,0,0,.2);overflow: hidden;}
 .department p {line-height: .36rem;text-indent: 2em;width:84vw;margin: auto;}
 .department .departmentTop {position: absolute;top:0;left:0;font-size: .2rem;width:15vw;text-align: center;height:3.9vh;line-height:3.9vh;}
 .department .departmentTop span{position: relative;z-index: 8;}
 .department .departmentTop img {width:15vw;position: absolute;top:0;left:0;z-index: 1;}
 .case {position: relative;width:92vw;margin: auto;}
-.caseTop {width:100%;height:4.95vh;line-height: 4.95vh;font-size: .28rem;}
+.caseTop {width:100%;height:6vh;line-height: 6vh;font-size: .28rem;}
 /*.caseTop {width:100%;font-size: .28rem;margin: 1.2vh 0;}*/
 .caseTop>span {float:left;color: #dd5d3a;}
 .caseTop>a {float:right;color: #999;}
@@ -35,9 +35,10 @@ body{background: #f5f5f5;}
 }
 .caseSort_03 span:first-child{font-size: .26rem;color: #666;}
 .caseSort_03 span:last-child{float:right;font-size: .26rem;color: #666;}
-.mediator {position: relative;margin: auto;width:94vw;}
-.mediator ul li {width:100%;background: #fff;margin-top: 5.55vh;border-radius: 8px;box-shadow: 0 0 .2rem rgba(0,0,0,.2);height:20.7vh;padding-top: 4.8vh;text-align: center;position: relative;}
-.mediator img {width:10.13vw;height:5.7vh;position: absolute;top:-2.85vh;left:50%;margin-left: -5.065vw;}
+.mediator {position: relative;margin: auto;width:92vw;}
+.mediator ul li {width:100%;background: #fff;margin-top: 5.55vh;border-radius: 8px;box-shadow: 0 0 .2rem rgba(0,0,0,.2);height:22vh;padding-top: 4.8vh;text-align: center;position: relative;}
+.mediator .userImg img {width:.76rem;height:.76rem;position: absolute;left:-1px;top:-1px;}
+.userImg {width:.88rem;height:.88rem;border-radius: 50%;border: 4px solid #fff;position: absolute;top:-2.85vh;left:50%;margin-left: -5.065vw;text-align: center;line-height: .82rem;}
 .mediator .name {font-size: .32rem;font-weight: 900;}
 .mediator .num {font-size: .26rem;color: #999;margin: 1.12vh 0 1.57vh 0;}
 .mediator .num span {color:#dd5d3a;}

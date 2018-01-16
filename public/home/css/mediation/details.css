@@ -9,14 +9,14 @@ body{
     padding-top:2.2vh;
 }
 .lists{
-
-
+    position: relative;
 }
 .list{
     width:100%;
     position: relative;
-    border-left:.8vw solid #DBDBDB;
+    /*border-left:.8vw solid #DBDBDB;*/
     padding:1.5vh 4vw 1.5vh 8.9vw;
+    z-index: 9;
 }
 
 .list span{
@@ -37,10 +37,11 @@ body{
 .state{
     font-size: .3rem;
     margin-bottom:2.4vh;
+    color: #999;
 }
 .num{
     text-align: center;
-    line-height: 4.2vw;
+    line-height: 4.8vw;
     font-size:.24rem;
     width:4.8vw;
     height:4.8vw;
@@ -59,6 +60,8 @@ body{
     padding:4vw;
     margin-left:-4.8vw;
 }
+.active .state {color: #52BDE3;}
+.active .gray {background: #52BDE3;}
 .blue{
     background: #52BDE3;
     border:.4vh solid rgba(82,189,227,0.35);
@@ -71,10 +74,10 @@ body{
     border:.4vh solid rgba(254,139,68,0.35);
 }
 .gray{
-    background:#999999;
-    border:.4vh solid rgba(153,153,153,0.35);
+    background:#E1DEE2;
 }
-
+#hr01 {position: absolute;top:1.5vh;left:-.6vw;border-left: .04rem solid #C5C5C5;z-index: 7;}
+.hr02 {position: absolute;top:1.5vh;left:-.6vw;border-left: .04rem solid #52BDE3;z-index: -1;}
 .list .grc{
     color:#999999;
 }
