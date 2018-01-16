@@ -39,6 +39,9 @@ class User extends Base {
         return $this->fetch();
     }
 
+    public function collect(){
+        return $this->fetch();
+    }
     /**
      * 个人信息页
      */
