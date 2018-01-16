@@ -1,0 +1,410 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/service/appraisal.css">
+<link rel="stylesheet" href="/home/css/service/photoswipe.css"/>
+<link rel="stylesheet" href="/home/css/service/default-skin.css"/>
+<title>示范评比</title>
+{/block}
+{block name="body"}
+<div class="headerTop">
+    <div data-side="1" class="active" id="show1">我来推荐</div>
+    <div data-side="2" id="show2">典型引路</div>
+</div>
+<div id="side1" class="appraisal all">
+    <div class="appraisalSort">
+        <ul>
+            <li>
+                <div class="headerImg"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+                <div class="appraisalRight">
+                    <div class="appTop">
+                        <p class="appraisalName">张小小</p>
+                        <p class="appraisalTime">2018-00-09</p>
+                    </div>
+                    <div class="appText">曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。如果非要在这份爱上加上一个期限，我希望是……一万年！2曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。如果非要在这份爱上加上一个期限，我希望是……一万年！</div>
+                    <p class="appshow">展开</p>
+                    <div class="appImg my-gallery">
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/3.jpg" data-size="800x800"><img data-original="/home/images/banner/3.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/4.jpg" data-size="800x800"><img data-original="/home/images/banner/4.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/5.jpg" data-size="800x800"><img data-original="/home/images/banner/5.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/7.jpg" data-size="800x800"><img data-original="/home/images/banner/7.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/8.jpg" data-size="800x800"><img data-original="/home/images/banner/8.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/9.jpg" data-size="800x800"><img data-original="/home/images/banner/9.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/10.jpg" data-size="800x800"><img data-original="/home/images/banner/10.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/10.jpg" data-size="800x800"><img data-original="/home/images/banner/10.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/10.jpg" data-size="800x800"><img data-original="/home/images/banner/10.jpg" class="lazy"></a></figure>
+                    </div>
+                    <div class="note">
+                        <span class="isgood good" onclick="isGood(this,1,1)">0</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="headerImg"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+                <div class="appraisalRight">
+                    <div class="appTop">
+                        <p class="appraisalName">张小小</p>
+                        <p class="appraisalTime">2018-00-09</p>
+                    </div>
+                    <div class="appText">曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。如果非要在这份爱上加上一个期限，我希望是……一万年！2曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。如果非要在这份爱上加上一个期限，我希望是……一万年！</div>
+                    <p class="appshow">展开</p>
+                    <div class="appImg my-gallery">
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                    </div>
+                    <div class="note">
+                        <span class="isgood good" onclick="isGood(this,1,1)">0</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="headerImg"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
+                <div class="appraisalRight">
+                    <div class="appTop">
+                        <p class="appraisalName">张小小</p>
+                        <p class="appraisalTime">2018-00-09</p>
+                    </div>
+                    <div class="appText">啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊？</div>
+                    <p class="appshow">展开</p>
+                    <div class="appImg my-gallery">
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                        <figure><a href="/home/images/banner/2.jpg" data-size="800x800"><img data-original="/home/images/banner/2.jpg" class="lazy"></a></figure>
+                    </div>
+                    <div class="note">
+                        <span class="isgood good" onclick="isGood(this,1,1)">0</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="side2" class="appraisal">
+    <ul class="appraisalUser">
+        <li>
+            <a href="/home/service/appuser.html">
+                <div class="appraisalUser_01">
+                    <img src="/home/images/banner/1.jpg">
+                    <div>
+                        <p>姓名：<span>王丹丹</span></p>
+                        <p>生日：<span>1976-10-22</span></p>
+                        <p>职位：<span>无</span></p>
+                    </div>
+                </div>
+                <div class="appraisalUser_02">幸福就是猫爱吃鱼，狗爱吃肉，奥特曼爱打小怪兽。</div>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--<div class="fixed"></div>-->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)" style="color: #fff;font-size: .5rem;">×</button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script src="/home/js/appraisal/photoswipe.min.js"></script>
+<script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
+<script>
+    var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
+    for(var P=0;P<$('.headerTop>div').length;P++){
+        $('.headerTop>div')[P].onclick = function(){
+            $('.headerTop>div').removeClass('active');
+            $(this).addClass('active');
+            var side = $(this).data('side');
+            $('.appraisal').hide();
+            $('#side'+side).show();
+            localStorage.setItem('appNum',side);
+        }
+    }
+    $('.headerTop>div').removeClass('active');
+    $('.headerTop>div').eq(app-1).addClass('active');
+    $('.appraisal').hide();
+    $('#side'+app).show();
+    function isGood(e,type,id){
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+                var n = $(e ).text();
+                $(e).toggleClass('good' ).toggleClass('good_');
+                $(e ).hasClass('good')?n--:n++;
+                $(e ).text(n);
+            }
+        })
+    }
+
+    var Imgsrc='';
+    var newarr = [];
+    $('.appraisalSort li').each(function(){
+        if($(this).find('.appText').height()>120){
+            $(this).find('.appText').addClass('_height');
+            $(this).find('.appshow').show();
+        };
+        if($(this).find('.appshow').css('display')=='none'){
+            $(this).find('.appText').css('margin-bottom','2vh')
+        };
+        if($(this).find('.appImg figure').length==1){
+            $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
+        };
+        if($(this).find('.appImg figure').length==4){
+            $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
+        };
+    });
+
+    $('.appImg').each(function(){
+        var _len = $(this).find('figure').length;
+        for(var N=0;N<_len;N++){
+            if(N>8){$(this).find('figure').eq(N).remove()}
+        }
+    })
+
+    $('.appshow').on('click',function(){
+        if($(this).html()=='展开'){
+            $(this).html('收起');
+            $(this).parent().find('.appText').removeClass('_height');
+        }else {
+            $(this).html('展开');
+            $(this).parent().find('.appText').addClass('_height');
+        }
+    });
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+</script>
+<script type="text/javascript">
+    var initPhotoSwipeFromDOM = function(gallerySelector) {
+
+        // parse slide data (url, title, size ...) from DOM elements
+        // (children of gallerySelector)
+        var parseThumbnailElements = function(el) {
+            var thumbElements = el.childNodes,
+                numNodes = thumbElements.length,
+                items = [],
+                figureEl,
+                linkEl,
+                size,
+                item;
+
+            for (var i = 0; i < numNodes; i++) {
+
+                figureEl = thumbElements[i];
+
+                // include only element nodes
+                if (figureEl.nodeType !== 1) {
+                    continue;
+                }
+
+                linkEl = figureEl.children[0];
+
+                size = linkEl.getAttribute('data-size').split('x');
+
+                // create slide object
+                item = {
+                    src: linkEl.getAttribute('href'),
+                    w: parseInt(size[0], 10),
+                    h: parseInt(size[1], 10)
+                };
+
+
+                if (figureEl.children.length > 1) {
+                    item.title = figureEl.children[1].innerHTML;
+                }
+
+                if (linkEl.children.length > 0) {
+                    item.msrc = linkEl.children[0].getAttribute('src');
+                }
+
+                item.el = figureEl; // save link to element for getThumbBoundsFn
+                items.push(item);
+            }
+
+            return items;
+        };
+        // find nearest parent element
+        var closest = function closest(el, fn) {
+            return el && (fn(el) ? el : closest(el.parentNode, fn));
+        };
+
+        // triggers when user clicks on thumbnail
+        var onThumbnailsClick = function(e) {
+            e = e || window.event;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+            var eTarget = e.target || e.srcElement;
+
+            // find root element of slide
+            var clickedListItem = closest(eTarget, function(el) {
+                return (el.tagName && el.tagName.toUpperCase() === 'FIGURE');
+            });
+
+            if (!clickedListItem) {
+                return;
+            }
+
+            // find index of clicked item by looping through all child nodes
+            // alternatively, you may define index via data- attribute
+            var clickedGallery = clickedListItem.parentNode,
+                childNodes = clickedListItem.parentNode.childNodes,
+                numChildNodes = childNodes.length,
+                nodeIndex = 0,
+                index;
+
+            for (var i = 0; i < numChildNodes; i++) {
+                if (childNodes[i].nodeType !== 1) {
+                    continue;
+                }
+
+                if (childNodes[i] === clickedListItem) {
+                    index = nodeIndex;
+                    break;
+                }
+                nodeIndex++;
+            }
+
+
+
+            if (index >= 0) {
+                // open PhotoSwipe if valid index found
+                openPhotoSwipe(index, clickedGallery);
+            }
+            return false;
+        };
+        var photoswipeParseHash = function() {
+            var hash = window.location.hash.substring(1),
+                params = {};
+
+            if (hash.length < 5) {
+                return params;
+            }
+
+            var vars = hash.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                if (!vars[i]) {
+                    continue;
+                }
+                var pair = vars[i].split('=');
+                if (pair.length < 2) {
+                    continue;
+                }
+                params[pair[0]] = pair[1];
+            }
+
+            if (params.gid) {
+                params.gid = parseInt(params.gid, 10);
+            }
+
+            return params;
+        };
+
+        var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+            var pswpElement = document.querySelectorAll('.pswp')[0],
+                gallery,
+                options,
+                items;
+
+            items = parseThumbnailElements(galleryElement);
+
+            // define options (if needed)
+            options = {
+                // define gallery index (for URL)
+                galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+                getThumbBoundsFn: function(index) {
+                    // See Options -> getThumbBoundsFn section of documentation for more info
+                    var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                        pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                        rect = thumbnail.getBoundingClientRect();
+
+                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                }
+
+            };
+
+            // PhotoSwipe opened from URL
+            if (fromURL) {
+                if (options.galleryPIDs) {
+                    // parse real index when custom PIDs are used
+                    // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                    for (var j = 0; j < items.length; j++) {
+                        if (items[j].pid == index) {
+                            options.index = j;
+                            break;
+                        }
+                    }
+                } else {
+                    // in URL indexes start from 1
+                    options.index = parseInt(index, 10) - 1;
+                }
+            } else {
+                options.index = parseInt(index, 10);
+            }
+
+            // exit if index not found
+            if (isNaN(options.index)) {
+                return;
+            }
+
+            if (disableAnimation) {
+                options.showAnimationDuration = 0;
+            }
+
+            // Pass data to PhotoSwipe and initialize it
+            gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+            gallery.init();
+        };
+
+        // loop through all gallery elements and bind events
+        var galleryElements = document.querySelectorAll(gallerySelector);
+
+        for (var i = 0, l = galleryElements.length; i < l; i++) {
+            galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+            galleryElements[i].onclick = onThumbnailsClick;
+        }
+
+        var hashData = photoswipeParseHash();
+        if (hashData.pid && hashData.gid) {
+            openPhotoSwipe(hashData.pid, galleryElements[ hashData.gid - 1 ], true, true);
+        }
+    };
+
+    // execute above function
+    initPhotoSwipeFromDOM('.my-gallery');
+
+</script>
+{/block}

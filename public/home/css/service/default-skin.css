@@ -51,11 +51,11 @@
 
 .pswp__button,
 .pswp__button--arrow--left:before,
-.pswp__button--arrow--right:before {
-  background: url(../fonts/fbf146538d814997ba3d33ef3d8da645.svg); }
+/*.pswp__button--arrow--right:before {*/
+  /*background: url(../fonts/fbf146538d814997ba3d33ef3d8da645.svg); }*/
   .pswp--svg .pswp__button--arrow--left,
   .pswp--svg .pswp__button--arrow--right {
-    background: none; } }
+    background: none; }
 
 .pswp__button--close {
   background-position: 0 -44px; }
@@ -304,9 +304,9 @@ a.pswp__share--download:hover {
 
 .pswp__preloader--active {
   opacity: 1; }
-  .pswp__preloader--active .pswp__preloader__icn {
-    /* We use .gif in browsers that don't support CSS animation */
-    background: url(../images/preloader.gif) 0 0 no-repeat; }
+  /*.pswp__preloader--active .pswp__preloader__icn {*/
+    /*!* We use .gif in browsers that don't support CSS animation *!*/
+    /*background: url(../images/preloader.gif) 0 0 no-repeat; }*/
 
 .pswp--css_animation .pswp__preloader--active {
   opacity: 1; }
@@ -405,7 +405,7 @@ a.pswp__share--download:hover {
  */
 /* root element of UI */
 .pswp__ui {
-  -webkit-font-smoothing: auto;
+  /*-webkit-font-smoothing: auto;*/
   visibility: visible;
   opacity: 1;
   z-index: 1550; }

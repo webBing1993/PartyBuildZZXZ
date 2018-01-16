@@ -121,11 +121,6 @@
     }
     function loadScroll(type){
         $(window ).off("scroll" ).on("scroll",function(){
-            $("img.lazy").lazyload({
-                placeholder: "/home/images/loading.jpg",
-                effect: "fadeIn",
-                threshold : 1
-            });
             var ntc = $('.lists');
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();

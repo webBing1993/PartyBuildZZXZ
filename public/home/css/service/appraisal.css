@@ -1,10 +1,10 @@
 .headerTop {width:100vw;height:8.4vh;text-align: center;line-height: 8.4vh;background: #f7f7f7;color: #333;font-size: .3rem;}
 .headerTop div {width:50%;float:left;position: relative;}
 #show1:before {width:2px;height:3.75vh;background: #d1d1d1;position: absolute;right:0;top:50%;content: '';margin-top: -1.875vh;}
-#show1:after {content: '';background: url('/home/images/lxyz/icon_021.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:4.27vw;height:4.27vw;background-size: 4.27vw 4.27vw;margin-top: -2.135vw;}
-#show2:after {content: '';background: url('/home/images/lxyz/icon_023.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:4.27vw;height:4.27vw;background-size: 4.27vw 4.27vw;margin-top: -2.135vw;}
-.active#show1:after {content: '';background: url('/home/images/lxyz/icon_020.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:4.27vw;height:4.27vw;background-size: 4.27vw 4.27vw;margin-top: -2.135vw;}
-.active#show2:after {content: '';background: url('/home/images/lxyz/icon_022.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:4.27vw;height:4.27vw;background-size: 4.27vw 4.27vw;margin-top: -2.135vw;}
+#show1:after {content: '';background: url('/home/images/lxyz/icon_021.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:.32rem;height:.32rem;background-size: 4.27vw 4.27vw;margin-top: -.16rem;}
+#show2:after {content: '';background: url('/home/images/lxyz/icon_023.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:.32rem;height:.32rem;background-size: 4.27vw 4.27vw;margin-top:-.16rem;}
+.active#show1:after {content: '';background: url('/home/images/lxyz/icon_020.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:.32rem;height:.32rem;background-size: 4.27vw 4.27vw;margin-top: -.16rem;}
+.active#show2:after {content: '';background: url('/home/images/lxyz/icon_022.png') no-repeat;position: absolute;top:50%;left:11.33vw;width:.32rem;height:.32rem;background-size: 4.27vw 4.27vw;margin-top: -.16rem;}
 .headerTop .active {color: #DD5D3A;}
 .appraisal {position: relative;width:100vw;display: none;margin-top: 2.1vh;}
 .appraisalSort {width:100vw;position: relative;margin: auto;}
@@ -41,8 +41,11 @@
 .appraisalUser_01 div {display: block;margin-left: 26.4vw;font-size: .28rem;color: #999;}
 .appraisalUser_01 div p {height:3vh;line-height: 3vh;}
 .appraisalUser_01 div span {color: #333;}
-.appraisalUser_02 {position: absolute;left:0;bottom:0;width:100%;text-align: center;font-size: .26rem;color: #333;height:6vh;line-height: 6vh;white-space:nowrap;
+.appraisalUser_02 {position: absolute;left:6.67vw;bottom:0;width:90%;text-align: left;font-size: .26rem;color: #333;height:6vh;line-height: 6vh;white-space:nowrap;
     text-overflow:ellipsis;
     -o-text-overflow:ellipsis;
     overflow: hidden;}
 .appraisalUser a {display: block;width:100%;height:100%;}
+
+#share {width:1.2rem;height:1.2rem;background: #FE8B44;position: fixed;bottom:3.6vh;right:4vw;z-index: 9;border-radius: 50%;text-align: center;line-height: 1.2rem;}
+#share img {width:.48rem;height:.51rem;position: relative;vertical-align: middle;}
