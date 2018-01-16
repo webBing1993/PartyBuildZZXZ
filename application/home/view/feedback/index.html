@@ -40,10 +40,7 @@
 			{/volist}
 		</ul>
 	</div>
-	<div class="tip"></div>
-	<div class="loading hidden">
-		<div class="typing_loader"></div>
-	</div>
+
 </div>
 <div id="side2" class="appraisal">
 	<ul class="appraisalUser">
@@ -64,6 +61,11 @@
 		{/volist}
 	</ul>
 </div>
+<div class="tip"></div>
+<div class="loading hidden">
+	<div class="typing_loader"></div>
+</div>
+
 <!--<div class="fixed"></div>-->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="pswp__bg"></div>
@@ -103,7 +105,7 @@
 <script>
 	var type = 1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
-    for(var P=0;P<$('.headerTop>div').length;P++){
+    for(var P = 0;P < $('.headerTop>div').length; P++){
         $('.headerTop>div')[P].onclick = function(){
             $('.headerTop>div').removeClass('active');
             $(this).addClass('active');
@@ -138,7 +140,7 @@
         $('.appraisal').each(function(){
             if($(this).css('display')=='block'){
                 var len =$(this).find('.page>a').length;
-                if(len >= 1){
+                if(len >= 6){
                     $('.tip' ).text('上拉加载更多');
                     //上拉加载
                     loadScroll();
@@ -167,7 +169,6 @@
                     $.ajax({
                         type:"post",
                         url:"{:Url('Feedback/indexmore')}",//我来推荐
-//                    url:"{:Url('Feedback/pioneermore')}",//典型引路
                         data:{
                             length:len
                         },
@@ -176,8 +177,6 @@
                             loading.toggleClass('hidden');
                         },
                         success:function(data){
-                            console.log(data)
-							console.log(type)
                             loading.toggleClass('hidden');
                             tip.show();
                             if(data.code == 1){
@@ -186,26 +185,26 @@
                                     if($(this).find('.appText').height()>120){
                                         $(this).find('.appText').addClass('_height');
                                         $(this).find('.appshow').show();
-                                    };
+                                    }
                                     if($(this).find('.appshow').css('display')=='none'){
                                         $(this).find('.appText').css('margin-bottom','2vh')
-                                    };
+                                    }
                                     if($(this).find('.appImg figure').length==1){
                                         $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
-                                    };
+                                    }
                                     if($(this).find('.appImg figure').length==4){
                                         $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
-                                    };
+                                    }
                                 });
 
                                 var dataLen =data.data.length;
 //                                console.log(dataLen)
-                                if(data.data.length > 1){
+                                if(data.data.length > 6){
                                     tip.text('上拉加载更多');
+                                }else{
+                                    tip.text('没有更多了');
+                                    $(window ).off("scroll");
                                 }
-                            }else{
-                                tip.text('没有更多了');
-                                $(window ).off("scroll");
                             }
                             scrollNow = true;
                         }
@@ -213,8 +212,7 @@
 				}else if(app==2){
                     $.ajax({
                         type:"post",
-//                        url:"{:Url('Feedback/indexmore')}",//我来推荐
-                    url:"{:Url('Feedback/pioneermore')}",//典型引路
+                    	url:"{:Url('Feedback/pioneermore')}",//典型引路
                         data:{
                             length:len
                         },
@@ -223,37 +221,18 @@
                             loading.toggleClass('hidden');
                         },
                         success:function(data){
-                            console.log(data)
-							console.log(app)
                             loading.toggleClass('hidden');
                             tip.show();
                             console.log(data);
                             if(data.code == 1){
                                 addLists(data);
-                                $('.appraisalSort li').each(function(){
-                                    if($(this).find('.appText').height()>120){
-                                        $(this).find('.appText').addClass('_height');
-                                        $(this).find('.appshow').show();
-                                    };
-                                    if($(this).find('.appshow').css('display')=='none'){
-                                        $(this).find('.appText').css('margin-bottom','2vh')
-                                    };
-                                    if($(this).find('.appImg figure').length==1){
-                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'40vw','height':'40vw'})
-                                    };
-                                    if($(this).find('.appImg figure').length==4){
-                                        $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
-                                    };
-                                });
-
                                 var dataLen =data.data.length;
-                                console.log(dataLen)
-                                if(data.data.length > 1){
+                                if(data.data.length > 6){
                                     tip.text('上拉加载更多');
+                                }else{
+                                    tip.text('没有更多了');
+                                    $(window ).off("scroll");
                                 }
-                            }else{
-                                tip.text('没有更多了');
-                                $(window ).off("scroll");
                             }
                             scrollNow = true;
                         }
