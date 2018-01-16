@@ -9,26 +9,24 @@ body{
     padding-top:2.2vh;
 }
 .lists{
-    /*border-left:.8vw solid #DBDBDB;*/
+
 
 }
 .list{
     width:100%;
     position: relative;
     border-left:.8vw solid #DBDBDB;
-    padding:1.5vh 0 1.5vh 8.9vw;
+    padding:1.5vh 4vw 1.5vh 8.9vw;
 }
-.list p{
-    margin-bottom:1.2vh;
-    font-size: .26rem;
-    color:#333;
-    width:10.4vw;
-}
+
 .list span{
     font-size: .24rem;
     color:#999;
 }
 .posleft{
+    font-size: .26rem;
+    color:#333;
+    width:10.4vw;
     position: absolute;
     left:-17vw;
     top:1.5vh;
@@ -38,6 +36,7 @@ body{
 }
 .state{
     font-size: .3rem;
+    margin-bottom:2.4vh;
 }
 .num{
     text-align: center;
@@ -52,6 +51,13 @@ body{
     position: absolute;
     left:-2.8vw;
     color:#fff;
+}
+.direc{
+    background: #FFF8D3;
+    color:#DD5D3A;
+    font-size:.24rem;
+    padding:4vw;
+    margin-left:-4.8vw;
 }
 .blue{
     background: #52BDE3;
