@@ -119,23 +119,6 @@
     $('.headerTop>div').eq(app-1).addClass('active');
     $('.appraisal').hide();
     $('#side'+app).show();
-    function isGood(e,type,id){
-        $.ajax({
-            type:"post",
-            url:"{:Url('Base/like')}",
-            data:{
-                type:type,
-                aid:id,
-            },
-            success:function(data){
-                var n = $(e ).text();
-                $(e).toggleClass('good' ).toggleClass('good_');
-                $(e ).hasClass('good')?n--:n++;
-                $(e ).text(n);
-            }
-        })
-    }
-
     $(function(){
         $('.appraisal').each(function(){
             if($(this).css('display')=='block'){
@@ -196,7 +179,6 @@
                                         $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
                                     }
                                 });
-
                                 var dataLen =data.data.length;
 //                                console.log(dataLen)
                                 if(data.data.length > 6){
@@ -333,6 +315,22 @@
             $(this).parent().find('.appText').addClass('_height');
         }
     });
+    function isGood(e,type,id){
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+                var n = $(e).text();
+                $(e).toggleClass('good' ).toggleClass('good_');
+                $(e ).hasClass('good')?n--:n++;
+                $(e ).text(n);
+            }
+        })
+    }
     $(document).scroll(function() {
         $("img.lazy").lazyload({
             placeholder: "/home/images/loading.jpg",
