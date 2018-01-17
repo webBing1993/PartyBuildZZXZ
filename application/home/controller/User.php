@@ -39,19 +39,6 @@ class User extends Base {
         return $this->fetch();
     }
 
-    public function collect(){
-        return $this->fetch();
-    }
-    public function chart(){
-        return $this->fetch();
-    }
-
-    public function form(){
-        return $this->fetch();
-    }
-    public function party(){
-        return $this->fetch();
-    }
     /**
      * 个人信息页
      */
@@ -116,7 +103,7 @@ class User extends Base {
     /**
      * 我的收藏
      */
-    public function myCollect(){
+    public function collect(){
         $userId = session('userId');
         $order = array("create_time desc");
         $collectModelAll = Collect::where(['uid' => $userId])->order($order)->select();
@@ -127,12 +114,5 @@ class User extends Base {
         $this->assign('res',$res);
         return $this->fetch();
     }
-    /**
-     * 获取更多数据
-     */
-    public function listMore(){
-
-    }
-
 
 }
