@@ -195,6 +195,17 @@
             $('#side'+side).show();
             num = side;
             localStorage.setItem('eduNum',side);
+            if(side==1){
+                var mySwiper = new Swiper('.swiper-container', {
+                    autoplay: 3000,
+                    loop:true,
+                    pagination : '.swiper-pagination',
+                    paginationType : 'bullets',
+                    autoplayDisableOnInteraction:false,
+                    lazyLoading : true,
+                    lazyLoadingInPrevNext : true,
+                });
+            }
             if(side==2){
                 $('body').css('background','#fff');
             }else {
@@ -217,15 +228,17 @@
     $('.top>div').eq(edu-1).addClass('active');
     $('.subject').hide();
     $('#side'+edu).show();
-    var mySwiper = new Swiper('.swiper-container', {
-        autoplay: 3000,
-        loop:true,
-        pagination : '.swiper-pagination',
-        paginationType : 'bullets',
-        autoplayDisableOnInteraction:false,
-        lazyLoading : true,
-        lazyLoadingInPrevNext : true,
-    });
+    if(edu==1){
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 3000,
+            loop:true,
+            pagination : '.swiper-pagination',
+            paginationType : 'bullets',
+            autoplayDisableOnInteraction:false,
+            lazyLoading : true,
+            lazyLoadingInPrevNext : true,
+        });
+    }
     $(document).scroll(function() {
         $("img.lazy").lazyload({
             placeholder: "/home/images/loading.jpg",

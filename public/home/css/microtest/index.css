@@ -118,6 +118,7 @@ body{background: #f5f5f5;}
     color:#333;
     text-align: center;
     display:none;
+    font-size: .24rem;
 }
 #side3 .ranging>div>ul>li>.userImg{
     width: 8vw;

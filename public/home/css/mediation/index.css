@@ -17,14 +17,14 @@ body{background: #f5f5f5;}
 .caseTop>a {float:right;color: #999;}
 .caseTop>a img {width:1.6vw;height:1.5vh;vertical-align: initial;}
 .caseSort {position: relative;width:100%;background: #fff;}
-.caseSort a {display: block;border-bottom: 1px dashed #eee;padding: 2.25vh 4vw 1.2vh 4vw;}
+.caseSort a {display: block;border-bottom: 1px dashed #eee;padding: 4vw;}
 .caseSort a:last-child {border-bottom: transparent;}
 .caseSort_01 {position: relative;padding-left:4vw;font-size: .3rem;color: #333;white-space:nowrap;  text-overflow:ellipsis;  -o-text-overflow:ellipsis;  overflow: hidden;}
 .caseSort_01 span {position: absolute;width:.14rem;height:.14rem;border-radius: 50%;background: #858d98;top:50%;left:0;margin-top: -.07rem;}
 .caseSort_02 {
     margin: 1.2vh 0 1.5vh 0;
     font-size: .26rem;
-    min-height: 5vh;
+    min-height: .7rem;
     color: #666;
     display: -webkit-box;
     overflow: hidden;

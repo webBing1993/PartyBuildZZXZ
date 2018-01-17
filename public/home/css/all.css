@@ -338,13 +338,14 @@
 .comment .lists .list .mid .content {
     width: 100%;
     word-break: break-all;
-    font-size: .28rem;
+    font-size: .26rem;
     color: #666;
 }
 .comment .lists .list .mid .time {
     font-size: .24rem;
     line-height: 5.3vw;
     color: #999999;
+    padding-bottom: 2vw;
 }
 .comment .lists .list .fr {
     margin-top: 4vw;

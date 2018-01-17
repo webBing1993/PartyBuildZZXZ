@@ -114,25 +114,28 @@ a {
     width: 100vw;
     /*height: 11.85vh;*/
     overflow: hidden;
-    padding: 0 4vw;
+    padding: 4vw;
     border-bottom: 1px solid #f7f7f7;
+    position: relative;
 }
 .blocks .block .list .title {
     width: 100%;
     color: #333333;
     font-size: .28rem;
-    line-height: 6vw;
+    /*line-height: 6vw;*/
     font-weight: inherit;
-    padding-top: 2vw;
+    /*padding-top: 2vw;*/
     margin-bottom: .2vw;
     overflow: hidden;
-    height: 14vw;
+    /*height: 14vw;*/
 }
 .blocks .block .list .note {
     color: #999999;
     font-size: .24rem;
-    line-height: 6vw;
-    margin-bottom: 4vw;
+    /*line-height: 6vw;*/
+    /*margin-bottom: 4vw;*/
+    position: absolute;
+    bottom:4vw;
 }
 .blocks .block .list .note span {
     display: inline-block;
@@ -146,7 +149,7 @@ a {
     height:16vw;
     -webkit-border-radius: 1.1vw;
     border-radius: 1.1vw;
-    margin-top: 1.5vh;
+    /*margin-top: 1.5vh;*/
     margin-right: 5.33vw;
 }
 .blocks .block .fr {

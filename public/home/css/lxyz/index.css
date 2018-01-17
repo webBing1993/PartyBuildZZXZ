@@ -41,9 +41,9 @@ body{background: #eee;position: relative;}
 }
 .notice .lists .list {
     display: block;
-    padding: 0 4vw;
+    padding: 4vw;
     width: 100vw;
-    height: 26vw;
+    /*height: 26vw;*/
     border-bottom: 1px solid #f1f1f1;
     position: relative;
 }
@@ -51,12 +51,12 @@ body{background: #eee;position: relative;}
     display: block;
     width: 22vw;
     height: 16vw;
-    margin-top: 5vw;
+    /*margin-top: 5vw;*/
 }
 .notice .lists .list .fr {
     width: 66vw;
     height: 16vw;
-    margin-top: 5vw;
+    /*margin-top: 5vw;*/
 }
 .notice .lists .list .fr .title {
     width: 66vw;
@@ -71,7 +71,7 @@ body{background: #eee;position: relative;}
     height: 6vw;
     color: #999999;
     font-size: .24rem;
-    line-height: 6vw;
+    /*line-height: 6vw;*/
     position: absolute;
     bottom: 4vw;
 }

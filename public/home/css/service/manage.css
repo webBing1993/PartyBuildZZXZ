@@ -58,6 +58,7 @@ body{
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+    line-height: .36rem;
 }
 .lr span{
     color:rgba(153,153,153,1);
