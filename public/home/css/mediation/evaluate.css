@@ -1,0 +1,20 @@
+body{
+    background: #F5F5F5;
+}
+.head{
+    height:10.5vh;
+    background: #fff;
+    padding:4vw 2.2vh;
+    overflow: hidden;
+}
+.icon{
+    width:10.7vw;
+    height:100%;
+}
+.tit{
+    width:77vw;
+    padding-left:4vw;
+}
+.tit p{
+    padding-left:4vw;
+}
