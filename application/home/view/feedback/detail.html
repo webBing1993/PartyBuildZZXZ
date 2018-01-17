@@ -1,13 +1,47 @@
 {extend name="public/common"}
 
 {block name="style"}
-<link rel="stylesheet" href="/home/css/service/appraisal.css">
+<link rel="stylesheet" href="/home/css/easy_upload.css">
 <title>我来推荐</title>
+<style>
+    body {background: #eee;}
+    .Upload {width:100vw;padding: 4vw;background: #fff;}
+    .Upload textarea {font-size: .3rem;height:3.5rem;resize: none;width:100%;text-align: justify;}
+</style>
 {/block}
 {block name="body"}
-    <div class="">
+    <div class="Upload">
         <textarea placeholder="请您对党员的优秀事迹进行简要描述"></textarea>
+        <div id="easyContainer"></div>
     </div>
 {/block}
 {block name="script"}
+<script src="/home/js/easyupload.js"></script>
+<script>
+    $('#easyContainer').easyUpload({
+        allowFileTypes: '*.jpg;*.png;*.gif;',//允许上传文件类型，格式';*.doc;*.pdf'
+        allowFileSize: 100000,//允许上传文件大小(KB)
+        selectText: '<img src="/home/images/icon_xx.png" style="width:60%;">',//选择文件按钮文案
+        multi: true,//是否允许多文件上传
+        multiNum: 9,//多文件上传时允许的文件数
+        showNote: true,//是否展示文件上传说明
+        note: '请上传您的证据（可为空，限9张，大小限5m）',//文件上传说明
+        showPreview: true,//是否显示文件预览
+        url: '/api/file/upload',//上传文件地址
+        fileName: 'file',//文件filename配置参数
+//        formParam: {
+//            token: $.cookie('token_cookie')//不需要验证token时可以去掉
+//        },//文件filename以外的配置参数，格式：{key1:value1,key2:value2}
+        timeout: 30000,//请求超时时间
+        successFunc: function(res) {
+            console.log('成功回调', res);
+        },//上传成功回调函数
+        errorFunc: function(res) {
+            console.log('失败回调', res);
+        },//上传失败回调函数
+        deleteFunc: function(res) {
+            console.log('删除回调', res);
+        }//删除文件回调函数
+    });
+</script>
 {/block}

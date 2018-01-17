@@ -1,0 +1,125 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/mediation/details.css">
+<title>金牌调解</title>
+{/block}
+{block name="body"}
+ <div class="chart">
+      <div class="lists">
+          <div class="list active">
+              <div class="num gray">1</div>
+              <div class="state">已提交</div>
+              <p class="posleft">
+                  01-15<br>
+                  <span>09:30</span>
+              </p>
+          </div>
+          <div class="list active">
+              <div class="num gray">2</div>
+              <div class="state">待审核</div>
+              <p class="posleft">
+                  01-16<br>
+              <span>09:30</span>
+              </p>
+          </div>
+          <div class="list active">
+              <div class="num gray">3</div>
+              <div class="state">调解员待确认</div>
+              <p class="posleft">
+                  01-17<br>
+              <span>09:30</span>
+              </p>
+          </div>
+          <div class="list">
+              <div class="num gray">4</div>
+              <div class="state">纠纷已处理</div>
+              <p class="posleft">
+                  01-15<br>
+                  <span>09:30</span>
+              </p>
+              <p class="direc">
+                  情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速
+              </p>
+          </div>
+          <div class="list">
+              <div class="num gray">5</div>
+              <div class="state" >已评价</div>
+              <p class="posleft">
+                  01-15<br>
+                  <span>09:30</span>
+              </p>
+              <p class="direc">
+                  情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速
+              </p>
+          </div>
+          <!--<div class="list">-->
+              <!--<div class="num gray">3</div>-->
+              <!--<div class="state grc">调解员待确认</div>-->
+              <!--<p class="posleft">-->
+                  <!--01-17<br>-->
+                  <!--<span>09:30</span>-->
+              <!--</p>-->
+          <!--</div>-->
+          <div id="hr01"></div>
+          <!--<div class="hr02"></div>-->
+      </div>
+ </div>
+<div class="form">
+    <div class="box">
+        事件名称 ：<span class="con">民事纠纷</span>
+    </div>
+    <div class="box">
+        事件类型 ：<span class="con">劳动就业及社会保障</span>
+    </div>
+    <div class="box">
+        当事人 ：<span class="con">刘小二</span>
+    </div>
+    <div class="box">
+       联系电话 ：<span class="con">123-4567-8901</span>
+    </div>
+    <div class="box describe">
+        <span class="describe-sp">描述 ：</span><p class="describe-p">民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳</p>
+    </div>
+    <div class="box high">
+        调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
+        <span class="con">芊芊</span>
+    </div>
+</div>
+<div class="remark">
+    立即评价
+</div>
+{/block}
+
+{block name="script"}
+
+<script>
+    var h = $('.lists').height();
+    var num = 0;
+    for(var i=0;i<$('.list').length;i++){
+        if(i=$('.list').length){
+           num = i;
+        }
+    }
+    var s = $('.list').eq(num-1).height();
+//    $('.list').eq(num-1).find('.hr02').remove()
+    $('#hr01').css('height',h-s-10)
+    $('.list').each(function(){
+        if($(this).hasClass('active')){
+            $(this).append('<div class="hr02"></div>');
+        }
+        if($(this).next().hasClass('active')){
+            $(this).find('.hr02').css('height',$(this).height()*1.5)
+        }else {
+            if($(this).find('.direc').length>0){
+                $(this).find('.hr02').css('height',$(this).height()*.6)
+            }else {
+                $(this).find('.hr02').css('height',$(this).height()*1.1)
+            }
+        }
+    })
+    var lastH = $('.list').eq(num-2).find('.hr02').height()*0.8;
+    $('.list').eq(num-2).find('.hr02').css('height',lastH)
+    $('.list').eq(num-1).find('.hr02').remove()
+</script>
+{/block}

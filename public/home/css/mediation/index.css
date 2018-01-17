@@ -168,11 +168,12 @@ body{background: #f5f5f5;}
     bottom:0;
 }
 
-#evaluate{
+.evaluate{
     z-index:999;
     font-size:.3rem;
     position: absolute;
     right:4vw;
+    bottom:2.2vh;
     margin-top:-6.7vh;
     display:block;
     width:20vw;
@@ -250,6 +251,7 @@ body{background: #f5f5f5;}
     box-shadow: 0 0 1.3vw rgba(0,0,0,.5);
     text-align: center;
     line-height:15vw;
+    z-index: 99999;
 }
 .share:active{
     background:#FE8B44;

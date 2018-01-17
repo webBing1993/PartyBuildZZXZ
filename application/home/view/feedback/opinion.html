@@ -1,0 +1,48 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>意见反馈</title>
+<style>
+    body {background: #eee;}
+    .Upload {width:100vw;padding: 4vw;background: #fff;}
+    .Upload textarea {font-size: .3rem;height:3.5rem;resize: none;width:100%;text-align: justify;}
+    #btn {
+        position: fixed;
+        bottom:0;
+        left:0;
+        width:100vw;
+        height:.8rem;
+        text-align: center;
+        color: #fff;
+        font-size: .32rem;
+        line-height: .8rem;
+        background: #FE8B44;
+    }
+</style>
+{/block}
+{block name="body"}
+    <div class="Upload">
+        <textarea placeholder="请您对协调中遇到的问题进行反馈"></textarea>
+    </div>
+<div id="btn">反馈提交</div>
+{/block}
+{block name="script"}
+<script>
+    $('#btn').on('click',function(){
+        swal({
+                title: "确定提交吗？",
+                type: "warning",
+                showCancelButton: true,
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                confirmButtonText:'确定',
+                cancelButtonText:'取消'
+            },
+            function(){
+                setTimeout(function(){
+                    history.go(-1);
+                }, 2000);
+            });
+    })
+</script>
+{/block}

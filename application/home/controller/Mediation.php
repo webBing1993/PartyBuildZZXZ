@@ -32,5 +32,10 @@ class Mediation extends Base
     public function opinion(){
         return $this->fetch();
     }
-
+    public function tjydetails(){
+        return $this->fetch();
+    }
+    public function yhdetails(){
+        return $this->fetch();
+    }
 }
