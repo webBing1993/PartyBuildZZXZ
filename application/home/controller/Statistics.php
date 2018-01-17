@@ -325,6 +325,8 @@ class Statistics extends Base {
             'agepercent5' => $age5,
             'male' => $male,
             'female' => $female,
+            'malenum' => $m,
+            'femalenum' => $w,
             'edu1' => $edu1,
             'edu2' => $edu2,
             'edu3' => $edu3,
