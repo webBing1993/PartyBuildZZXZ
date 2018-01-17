@@ -12,6 +12,9 @@ body{
     border-bottom:1px solid #D1D1D1;
 }
 .hfl{
+    display: inline-block;
+    /*width:90px;*/
+    /*height:90px;*/
     width:24.5vw;
     height:100%;
     float: left;
@@ -19,8 +22,9 @@ body{
 }
 .hfr{
     width:63vw;
-    height:100%;
-    float:right;
+    height:18vh;
+    /*height:100%;*/
+    float:left;
 }
 .row1{
     width:100%;
@@ -66,12 +70,17 @@ body{
 }
 .title{
     margin-bottom:1.5vh;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 .line, .site,.time{
     font-size:.26rem;
     color:#666;
 }
 .line{
+    height:6.6vh;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;

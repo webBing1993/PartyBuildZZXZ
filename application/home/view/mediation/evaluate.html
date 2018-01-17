@@ -13,26 +13,31 @@
 <div class="con">
     <div class="yn"><p>您对本次调解结果是否满意？</p></div>
     <div class="pic pic1">
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span ><span class="code">3</span>分</span>
+        <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
+        <span ><span class="code">0</span> 分</span>
     </div>
     <div class="yn yn1"><p>您对调解员的评价是？</p></div>
     <div class="pic pic2">
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span ><span class="code">3</span>分</span>
+        <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
+        <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
+        <span ><span class="code">0</span> 分</span>
     </div>
 </div>
 
 <textarea name="content" id="text" placeholder="请输入评论信息" maxlength="1000"></textarea>
-
+<div class="shake">
+    <div class="tupian">
+        <img class="icon3" src="/home/images/lxyz/m3.png"  alt=""/>
+    </div>
+    <span>提交成功</span>
+</div>
 <div class="bot">提交反馈</div>
 
 
@@ -42,18 +47,38 @@
 
 <script>
 $(function(){
-    $('.pic1 img').on('click',function(){
+    $('.pic1 .icon1').on('click',function(){
         var index=$(this).index();
         $('.pic1 .code').html(index+1)
         console.log(index)
-        for(var i=0;i<0; i--){
-            $('.pic1 img').eq(i).attr('src','/home/images/lxyz/m2.png')
+        for(var i=0;i<$('.pic1 .icon1').length; i++){
+            $('.pic1 .icon1').eq(i).attr('src','/home/images/lxyz/m1.png')
         }
         for(var i=index;i>=0; i--){
-            $('.pic1 img').eq(i).attr('src','/home/images/lxyz/m2.png')
+            $('.pic1 .icon1').eq(i).attr('src','/home/images/lxyz/m2.png')
+        }
+    })
+    $('.pic2 .icon2').on('click',function(){
+        var index=$(this).index();
+        $('.pic2 .code').html(index+1)
+        console.log(index)
+        for(var i=0;i<$('.pic2 .icon2').length; i++){
+            $('.pic2 .icon2').eq(i).attr('src','/home/images/lxyz/m1.png')
+        }
+        for(var i=index;i>=0; i--){
+            $('.pic2 .icon2').eq(i).attr('src','/home/images/lxyz/m2.png')
         }
     })
 })
+    $('.bot').on('click',function(){
+        swal({
+            title: "提交成功",
+//            text: "2秒后自动关闭。",
+            timer: 2000,
+            showConfirmButton: false
+        });
+
+    })
 
 </script>
 {/block}

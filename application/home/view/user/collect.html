@@ -69,7 +69,27 @@
 {block name="script"}
    <script>
        $('.line-btn-delete').on('click',function(){
-           $(this).parent().parent().remove();
+           swal({
+                   title: "确定删除吗？",
+                   type: "warning",
+                   showCancelButton: true,
+                   confirmButtonColor: "#DD6B55",
+                   confirmButtonText: "确定删除！",
+                   cancelButtonText: "取消删除！",
+                   closeOnConfirm: false,
+                   closeOnCancel: false
+               },
+               function(isConfirm){
+                   if (isConfirm) {
+                       swal("删除！", "你的虚拟文件已经被删除。",
+                           "success");
+                       $(this).parent().parent().remove();
+                   } else {
+                       swal("取消！", "你的虚拟文件是安全的:)",
+                           "error");
+                   }
+               });
+
        })
     $(document).ready(function(e) {
         // 设定每一行的宽度=屏幕宽度+按钮宽度
