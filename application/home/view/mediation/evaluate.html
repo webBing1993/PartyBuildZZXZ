@@ -18,7 +18,7 @@
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span class="code">3 分</span>
+        <span ><span class="code">3</span>分</span>
     </div>
     <div class="yn yn1"><p>您对调解员的评价是？</p></div>
     <div class="pic pic2">
@@ -27,7 +27,7 @@
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span class="code">3 分</span>
+        <span ><span class="code">3</span>分</span>
     </div>
 </div>
 
@@ -41,7 +41,19 @@
 {block name="script"}
 
 <script>
-
+$(function(){
+    $('.pic1 img').on('click',function(){
+        var index=$(this).index();
+        $('.pic1 .code').html(index+1)
+        console.log(index)
+        for(var i=0;i<0; i--){
+            $('.pic1 img').eq(i).attr('src','/home/images/lxyz/m2.png')
+        }
+        for(var i=index;i>=0; i--){
+            $('.pic1 img').eq(i).attr('src','/home/images/lxyz/m2.png')
+        }
+    })
+})
 
 </script>
 {/block}
