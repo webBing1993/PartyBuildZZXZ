@@ -1,11 +1,15 @@
 body{
-    background: #F5F5F5;
+    background: #fff;
 }
 .head{
     height:10.5vh;
-    background: #fff;
     padding:4vw 2.2vh;
     overflow: hidden;
+    margin-bottom:2.2vh;
+}
+.padding{
+    height:2.2vh;
+    background: #F5F5F5;
 }
 .icon{
     width:10.7vw;
@@ -13,8 +17,64 @@ body{
 }
 .tit{
     width:77vw;
+    height:100%;
     padding-left:4vw;
 }
 .tit p{
-    padding-left:4vw;
+    font-size:.28rem;
+    color:#333;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.con{
+    width:100%;
+    height:26vh;
+    font-size: .3rem;
+    color:#333;
+    padding:4vw 2.2vh;
+}
+.yn{
+    margin-bottom:2.8vh;
+}
+.yn1{
+    margin-bottom:2.2vh;
+}
+.pic{
+    width:100%;
+    height:3.1vh;
+    margin-bottom:3.7vh;
+}
+.pic img{
+    display: inline-block;
+    width:5.6vw;
+    height:100%;
+    margin-right:4vw;
+}
+.pic2{
+    margin-bottom:0;
+}
+.code{
+    margin-left:4vw;
+}
+textarea{
+    width:100%;
+    height:27vh;
+    background: #F5F5F5;
+    padding:4vw 2.2vh;
+    font-size:.3rem;
+    color:#999;
+}
+.bot{
+    margin:4.5vh auto;
+    width:92vw;
+    height:6vh;
+    background: #DD5D3A;
+    border:1px solid #FE8B44;
+    color:#fff;
+    font-size: .3rem;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 6vh;
 }

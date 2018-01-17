@@ -38,4 +38,7 @@ class Mediation extends Base
     public function yhdetails(){
         return $this->fetch();
     }
+    public function evaluate(){
+        return $this->fetch();
+    }
 }
