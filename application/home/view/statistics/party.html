@@ -35,8 +35,8 @@
     <div class="tab"><span class="active">文字型</span></div>
     <div class="tab"><span>图表型</span></div>
 </div>
-<iframe src="/home/statistics/form.html" frameborder="0"  id="tab0" ></iframe>
-<iframe src="" frameborder="0"  id="tab1" ></iframe>
+<iframe target="_blank" src="/home/statistics/form.html" frameborder="0"  id="tab0"></iframe>
+<iframe src="" frameborder="0"  id="tab1"></iframe>
 {/block}
 {block name="script"}
 <script src="/home/js/reset.js"></script>
@@ -47,10 +47,12 @@
         $('#tab0').height(WH);
         $("iframe").css("margin-top","44px");
         //tab切换
+        var number = localStorage.getItem('num')==null?0:localStorage.getItem('num');
         $('.tabs>.tab ').on('click',function(){
             $("iframe").css("margin-top","44px");
             var ntc = $('.notices' );
             var eq = $(this ).index();
+            localStorage.setItem('num',eq);
             $(this ).siblings('.tab' ).find('span' ).removeClass('active');
             $(this ).find('span' ).addClass('active');
             //先全部隐藏
@@ -65,6 +67,19 @@
             $('#tab'+eq).show();
             //使用示例
         });
+
+        $('.tab').eq(number).siblings('.tab' ).find('span' ).removeClass('active');
+        $('.tab').eq(number).find('span' ).addClass('active');
+        //先全部隐藏
+        $('iframe').css('display','none');
+        $('iframe').height(0);
+        if(number == 0){
+            $('#tab'+number)[0].src='/home/statistics/form.html';
+        }else if(number == 1){
+            $('#tab'+number)[0].src='/home/statistics/chart.html';
+        }
+        $('#tab'+number).height(WH);
+        $('#tab'+number).show();
         isOut();
     });
 

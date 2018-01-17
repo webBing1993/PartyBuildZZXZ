@@ -74,6 +74,7 @@ body {
 }
 
 .cir span {
+    font-size: .3rem;
     position: absolute;
     bottom:10px;
     color: #b2b2b2;
