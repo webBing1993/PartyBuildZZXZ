@@ -14,11 +14,60 @@
 <!--三个模块-->
     <div class="boxs">
         <!--党员展示模块-->
-        <div class="box "  style="display:none;">
-            <div class="loading hidden">
-                <div class="typing_loader"></div>
+        <div class="box "  style="display:none;margin-top: -2.2vh;">
+            <div class="showLeft">
+                <ul>
+                    <li class="active">山下湖</li>
+                    <li>山下湖</li>
+                    <li>山下湖</li>
+                    <li>山下湖</li>
+                    <li>山下湖</li>
+                    <li>山下湖</li>
+                </ul>
             </div>
-            <div class="tip"></div>
+            <div class="showRight">
+                <div class="search">
+                    <input type="text" placeholder="请输入文字">
+                </div>
+                <div class="title"><div>共有党员<span>48</span>位</div></div>
+                <div class="userText">
+                    <ul>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!--参会情况模块-->
         <div class="box" style="display:none;">
@@ -80,6 +129,20 @@
         </div>
     </div>
 
+    <div id="fixed">
+        <div class="user">
+            <div class="userImg"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
+            <div class="userName">张然</div>
+            <div class="userSex">性别：男</div>
+            <div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">1356666888</a></span></div>
+            <div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>1973-05-12</span></div>
+            <div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>1993-08-12</span></div>
+            <div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>山下湖党支部</span></div>
+            <div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>组织部委员</span></div>
+        </div>
+        <img src="/home/images/service/icon_04.png" id="close">
+    </div>
+
 {/block}
 
 {block name="script"}
@@ -102,13 +165,6 @@
             placeholder: "/home/images/loading.jpg",
             effect: "fadeIn",
             threshold : 500
-        });
-        $(document).scroll(function() {
-            $("img.lazy").lazyload({
-                placeholder: "/home/images/loading.jpg",
-                effect: "fadeIn",
-                threshold: 1
-            });
         });
     var scrollNow = true;
         loadScroll()
@@ -178,6 +234,31 @@
             $('.list2').append(html);
         }
     }
+        $(document).scroll(function() {
+            $("img.lazy").lazyload({
+                placeholder: "/home/images/loading.jpg",
+                effect: "fadeIn",
+                threshold: 1
+            });
+        });
   });
+
+//    党员展示
+    var h = $(window).height()-$('.tab').height();
+    $('.showLeft , .showRight').css('height',h);
+    $('.showLeft li ').on('click',function(){
+        $('.showLeft li ').removeClass('active');
+        $(this).addClass('active');
+    });
+    $('.showRight li ').on('click',function(){
+        $('#fixed').stop().animate({
+            height:'100%'
+        },500);
+    });
+    $('#close ').on('click',function(){
+        $('#fixed').stop().animate({
+            height:0
+        },1);
+    });
 </script>
 {/block}
