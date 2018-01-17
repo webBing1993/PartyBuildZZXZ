@@ -84,7 +84,6 @@
     $(function() {
         //大饼图数据：data1、data2、data3，条形图数据：data4、data5，环形图数据：data6
         //党组织总数量表
-
         // 党组织总人数表
         var data1 = {
             labels: ["椒江区", "黄岩区", "路桥区", "临海市", "温岭市","玉环市","天台县","仙居县","三门县","开发区","温岭监管局"],
@@ -95,7 +94,7 @@
                     strokeColor: "rgba(26,179,148,0.8)",
                     highlightFill: "rgba(26,179,148,0.75)",
                     highlightStroke: "rgba(26,179,148,1)",
-                    data: [51,206,81,63,341,28,63,64,48,29,0]
+                    data: [{$msg.party1},{$msg.party2},{$msg.party3},{$msg.party4},{$msg.party5},{$msg.party6},{$msg.party7},{$msg.party8},{$msg.party9},{$msg.party10},{$msg.party11}]
     }
     ]
 
@@ -103,11 +102,11 @@
 
         //	党员总人数表
         var data3 = [{
-            label: "关注人数",
+            label: "关注人数："+{$msg['concernnum']}+"人",
             data: {$msg['concernnum']},
             color: "#5FB8C5"
         },{
-            label: "未关注人数",
+            label: "未关注人数："+{$msg['nonnum']}+"人",
             data: {$msg['nonnum']},
             color: "#d3d3d3"
         }];
@@ -229,8 +228,8 @@
                     },
                 },
                 data:[
-                    {value:801, name:'关注：'+Math.round(({$msg['concernnum']}/ {$msg['usernum']} )*100)+'%'},
-                    {value:23, name:'未关注：'+Math.round(({$msg['nonnum']} / {$msg['usernum']})*100)+'%'},
+                    {value:801, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
+                    {value:23, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
                 ]
             }
         ]

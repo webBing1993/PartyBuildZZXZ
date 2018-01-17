@@ -27,100 +27,105 @@ class Statistics extends Base {
      * 列表统计页
      */
     public function form(){
-        //判断是否推送贺卡
-//        $this->push_card();
-        //判断是否推送建党节推送
-//        $this->party_day();
-        /*党组织总数*/
-        $fa = WechatDepartment::where('parentid',1)->select(); //获取父级部门
-        $dpsum = 0; //党组织总数
-        foreach ($fa as $key => $value) {
-            $dp = WechatDepartment::where('parentid',$value['id'])->count();  //循环输出子部门取数
-            $dpsum += $dp;
-        }
-
-        //社会组织 id:2
-        $organizesum = WechatDepartment::where('parentid',2)->count();   //部门数
-        $organizeuser1 = 0; //三级部门人数
-        $organizeuser2 = 0; //四级部门人数
-        $organizeuser3 = WechatDepartmentUser::where('departmentid',2)->count();    //二级部门用户人数
-        $organize1 = WechatDepartment::where('parentid',2)->select();   //查找三级部门
-        foreach ($organize1 as $key => $value) {
-            $ouser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count(); //统计用户
-            $organizeuser1 += $ouser1;
-            $organize2 = WechatDepartment::where('parentid',$value['id'])->select();    //查找四级部门
-            if($organize2) {
-                foreach ($organize2 as $k => $val) {
-                    $ouser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();    //统计人数
-                    $organizeuser2 += $ouser2;
-                }
-            }
-        }
-        $organizenum = $organizeuser1 + $organizeuser2 + $organizeuser3; //总人数
-
-        //企业工作委员会 id:3
-        $companysum = WechatDepartment::where('parentid',3)->count();
-        $companyuser1 = 0;
-        $companyuser2 = 0;
-        $companyuser3 = WechatDepartmentUser::where('departmentid',3)->count();    //二级部门用户人数
-        $company1 = WechatDepartment::where('parentid',3)->select();
-        foreach ($company1 as $key => $value) {
-            $cuser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $companyuser1 += $cuser1;
-
-            $company2 = WechatDepartment::where('parentid',$value['id'])->select();    //查找四级部门
-            if($company2) {
-                foreach ($company2 as $k => $val) {
-                    $cuser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();    //统计人数
-                    $companyuser2 += $cuser2;
-                }
-            }
-        }
-        $companynum = $companyuser1 + $companyuser2 + $companyuser3;
-
-        //村社区 id:4
-        $villagesum = WechatDepartment::where('parentid',4)->count();
-        $villageuser1 = 0;
-        $villageuser2 = 0;
-        $villageuser3 = WechatDepartmentUser::where('departmentid',4)->count();    //二级部门用户人数
-        $village1 = WechatDepartment::where('parentid',4)->select();
-        foreach ($village1 as $key => $value) {
-            $vuser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $villageuser1 += $vuser1;
-            $village2 = WechatDepartment::where('parentid',$value['id'])->select();
-            if($village2) {
-                foreach ($village2 as $k => $val) {
-                    $vuser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-                    $villageuser2 += $vuser2;
-                }
-            }
-        }
-        $villagenum = $villageuser1 + $villageuser2 + $villageuser3;
-
-        //机关企事业 id:10
-        $partysum = WechatDepartment::where('parentid',10)->count();
-        $partyuser1 = 0;
-        $partyuser2 = 0;
-        $partyuser3 = WechatDepartmentUser::where('departmentid',10)->count();    //二级部门用户人数
-        $party1 = WechatDepartment::where('parentid',10)->select();
-        foreach ($party1 as $key => $value) {
-            $puser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $partyuser1 += $puser1;
-            $party2 = WechatDepartment::where('parentid',$value['id'])->select();
-            if($party2) {
-                foreach ($party2 as $k => $val) {
-                    $puser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-                    $partyuser2 += $puser2;
-                }
-            }
-        }
-        $partynum = $partyuser1 + $partyuser2 + $partyuser3;
-       
         /*党员信息*/
-        $map['department'] = array('neq','[9]');
+        $map['department'] = array('neq','[2]');
         $userNum = WechatUser::where($map)->count();     //总人数
         $concernNum = WechatUser::where('status',1)->where($map)->count(); //关注人数
-
+        // 党总支 总个数
+        $party_num = WechatDepartment::where(['parentid' => 1 ,'name' => ['neq','之图测试']])->count();
+        $party1 = 0;
+        $party2 = 0;
+        $party3 = 0;
+        $party4 = 0;
+        $party5 = 0;
+        $party6 = 0;
+        $party7 = 0;
+        $party8 = 0;
+        $party9 = 0;
+        $party10 = 0;
+        $party11 = 0;
+        $party = WechatDepartment::where(['parentid' => 1 ,'name' => ['neq','之图测试']])->field('id,name')->select();
+        foreach($party as $value){
+            switch ($value['name']){
+                case "椒江区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party1 = 0;
+                    foreach($arr as $val){
+                        $party1 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "黄岩区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party2 = 0;
+                    foreach($arr as $val){
+                        $party2 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "路桥区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party3 = 0;
+                    foreach($arr as $val){
+                        $party3 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "临海市个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party4 = 0;
+                    foreach($arr as $val){
+                        $party4 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "温岭市个协党工委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party5 = 0;
+                    foreach($arr as $val){
+                        $party5 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "玉环市民个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party6 = 0;
+                    foreach($arr as $val){
+                        $party6 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "天台县个协党委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party7 = 0;
+                    foreach($arr as $val){
+                        $party7 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "仙居县个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party8 = 0;
+                    foreach($arr as $val){
+                        $party8 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "三门县个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party9 = 0;
+                    foreach($arr as $val){
+                        $party9 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "开发区党支部":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party10 = 0;
+                    foreach($arr as $val){
+                        $party10 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "温岭市市场监管局党委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party11 = 0;
+                    foreach($arr as $val){
+                        $party11 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+            }
+        }
         $avg = WechatUser::avg('age');  //平均年龄
         $age = substr($avg,0,2);
         $age1 = WechatUser::where('age','lt',20)->where($map)->count();  //20一下百分比
@@ -149,15 +154,6 @@ class Statistics extends Base {
         $edu8 = WechatUser::where('education','eq',"硕士以上")->where($map)->count();
 
         $msg = array(
-            'allnum' => $dpsum, //党组织总数
-            'organizesum' => $organizesum,  //社会组织数
-            'organizenum' => $organizenum,  //人数
-            'companysum' => $companysum,    //企业工作委员会
-            'companynum' => $companynum,
-            'villagesum' => $villagesum,    //村社区
-            'villagenum' => $villagenum,
-            'partysum' => $partysum,        //机关企事业
-            'partynum' => $partynum,
             'usernum' => $userNum, //总人数
             'concernnum' => $concernNum, //关注人数
             'avgage' => $age, //平均年龄,
@@ -176,6 +172,18 @@ class Statistics extends Base {
             'edu6' => $edu6,
             'edu7' => $edu7,
             'edu8' => $edu8,
+            'party' => $party_num,
+            'party1' => $party1,
+            'party2' => $party2,
+            'party3' => $party3,
+            'party4' => $party4,
+            'party5' => $party5,
+            'party6' => $party6,
+            'party7' => $party7,
+            'party8' => $party8,
+            'party9' => $party9,
+            'party10' => $party10,
+            'party11' => $party11,
         );
         $this->assign('msg',$msg);
 
@@ -187,101 +195,104 @@ class Statistics extends Base {
      * 图表统计页
      */
     public function chart(){
-        //判断是否推送贺卡
-//        $this->push_card();
-        //判断是否推送建党节推送
-//        $this->party_day();
-        /*党组织总数*/
-        $fa = WechatDepartment::where('parentid',1)->select(); //获取父级部门
-        $dpsum = 0; //党组织总数
-        foreach ($fa as $key => $value) {
-            $dp = WechatDepartment::where('parentid',$value['id'])->count();  //循环输出子部门取数
-            $dpsum += $dp;
-        }
-
-        //社会组织 id:2
-        $organizesum = WechatDepartment::where('parentid',2)->count();   //部门数
-        $organizeuser1 = 0; //三级部门人数
-        $organizeuser2 = 0; //四级部门人数
-        $organizeuser3 = WechatDepartmentUser::where('departmentid',2)->count();    //二级部门用户人数
-        $organize1 = WechatDepartment::where('parentid',2)->select();   //查找三级部门
-        foreach ($organize1 as $key => $value) {
-            $ouser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count(); //统计用户
-            $organizeuser1 += $ouser1;
-            $organize2 = WechatDepartment::where('parentid',$value['id'])->select();    //查找四级部门
-            if($organize2) {
-                foreach ($organize2 as $k => $val) {
-                    $ouser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();    //统计人数
-                    $organizeuser2 += $ouser2;
-                }
-            }
-        }
-        $organizenum = $organizeuser1 + $organizeuser2 + $organizeuser3; //总人数
-
-        //企业工作委员会 id:3
-        $companysum = WechatDepartment::where('parentid',3)->count();
-        $companyuser1 = 0;
-        $companyuser2 = 0;
-        $companyuser3 = WechatDepartmentUser::where('departmentid',3)->count();    //二级部门用户人数
-        $company1 = WechatDepartment::where('parentid',3)->select();
-        foreach ($company1 as $key => $value) {
-            $cuser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $companyuser1 += $cuser1;
-
-            $company2 = WechatDepartment::where('parentid',$value['id'])->select();    //查找四级部门
-            if($company2) {
-                foreach ($company2 as $k => $val) {
-                    $cuser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();    //统计人数
-                    $companyuser2 += $cuser2;
-                }
-            }
-        }
-        $companynum = $companyuser1 + $companyuser2 + $companyuser3;
-
-        //村社区 id:4
-        $villagesum = WechatDepartment::where('parentid',4)->count();
-        $villageuser1 = 0;
-        $villageuser2 = 0;
-        $villageuser3 = WechatDepartmentUser::where('departmentid',4)->count();    //二级部门用户人数
-        $village1 = WechatDepartment::where('parentid',4)->select();
-        foreach ($village1 as $key => $value) {
-            $vuser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $villageuser1 += $vuser1;
-            $village2 = WechatDepartment::where('parentid',$value['id'])->select();
-            if($village2) {
-                foreach ($village2 as $k => $val) {
-                    $vuser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-                    $villageuser2 += $vuser2;
-                }
-            }
-        }
-        $villagenum = $villageuser1 + $villageuser2 + $villageuser3;
-
-        //机关企事业 id:10
-        $partysum = WechatDepartment::where('parentid',10)->count();
-        $partyuser1 = 0;
-        $partyuser2 = 0;
-        $partyuser3 = WechatDepartmentUser::where('departmentid',10)->count();    //二级部门用户人数
-        $party1 = WechatDepartment::where('parentid',10)->select();
-        foreach ($party1 as $key => $value) {
-            $puser1 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-            $partyuser1 += $puser1;
-            $party2 = WechatDepartment::where('parentid',$value['id'])->select();
-            if($party2) {
-                foreach ($party2 as $k => $val) {
-                    $puser2 = WechatDepartmentUser::where('departmentid',$value['id'])->count();
-                    $partyuser2 += $puser2;
-                }
-            }
-        }
-        $partynum = $partyuser1 + $partyuser2 + $partyuser3;
-
         /*党员信息*/
-        $map['department'] = array('neq','[9]');
+        $map['department'] = array('neq','[2]');
         $userNum = WechatUser::where($map)->count();     //总人数
         $concernNum = WechatUser::where('status',1)->where($map)->count(); //关注人数
         $nonNum = $userNum - $concernNum; //未关注人数
-
+        $party1 = 0;
+        $party2 = 0;
+        $party3 = 0;
+        $party4 = 0;
+        $party5 = 0;
+        $party6 = 0;
+        $party7 = 0;
+        $party8 = 0;
+        $party9 = 0;
+        $party10 = 0;
+        $party11 = 0;
+        $party = WechatDepartment::where(['parentid' => 1 ,'name' => ['neq','之图测试']])->field('id,name')->select();
+        foreach($party as $value){
+            switch ($value['name']){
+                case "椒江区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party1 = 0;
+                    foreach($arr as $val){
+                        $party1 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "黄岩区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party2 = 0;
+                    foreach($arr as $val){
+                        $party2 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "路桥区个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party3 = 0;
+                    foreach($arr as $val){
+                        $party3 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "临海市个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party4 = 0;
+                    foreach($arr as $val){
+                        $party4 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "温岭市个协党工委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party5 = 0;
+                    foreach($arr as $val){
+                        $party5 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "玉环市民个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party6 = 0;
+                    foreach($arr as $val){
+                        $party6 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "天台县个协党委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party7 = 0;
+                    foreach($arr as $val){
+                        $party7 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "仙居县个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party8 = 0;
+                    foreach($arr as $val){
+                        $party8 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "三门县个协党总支":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party9 = 0;
+                    foreach($arr as $val){
+                        $party9 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "开发区党支部":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party10 = 0;
+                    foreach($arr as $val){
+                        $party10 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+                case "温岭市市场监管局党委":
+                    $arr = WechatDepartment::where(['parentid' => $value['id']])->select();
+                    $party11 = 0;
+                    foreach($arr as $val){
+                        $party11 += WechatUser::where(['department' => "[".$val['id']."]"])->count();
+                    }
+                    break;
+            }
+        }
         $avg = WechatUser::avg('age');  //平均年龄
         $age = substr($avg,0,2);
         $age1 = WechatUser::where('age','lt',20)->where($map)->count();  //20一下百分比
@@ -305,15 +316,6 @@ class Statistics extends Base {
         $edu8 = WechatUser::where('education','eq',"硕士以上")->where($map)->count();
 
         $msg = array(
-            'allnum' => $dpsum, //党组织总数
-            'organizesum' => $organizesum,  //社会组织数
-            'organizenum' => $organizenum,  //人数
-            'companysum' => $companysum,    //企业工作委员会
-            'companynum' => $companynum,
-            'villagesum' => $villagesum,    //村社区
-            'villagenum' => $villagenum,
-            'partysum' => $partysum,        //机关企事业
-            'partynum' => $partynum,
             'usernum' => $userNum, //总人数
             'concernnum' => $concernNum, //关注人数
             'nonnum' => $nonNum, //未关注人数
@@ -335,6 +337,17 @@ class Statistics extends Base {
             'edu6' => $edu6,
             'edu7' => $edu7,
             'edu8' => $edu8,
+            'party1' => $party1,
+            'party2' => $party2,
+            'party3' => $party3,
+            'party4' => $party4,
+            'party5' => $party5,
+            'party6' => $party6,
+            'party7' => $party7,
+            'party8' => $party8,
+            'party9' => $party9,
+            'party10' => $party10,
+            'party11' => $party11,
         );
         $this->assign('msg',$msg);
 
