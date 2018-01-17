@@ -3,9 +3,36 @@
 {block name="style"}
 <link rel="stylesheet" href="/home/css/mediation/details.css">
 <title>金牌调解</title>
+<style>
+    #all {
+        width: 100vw;
+        text-align: center;
+        font-size: .3rem;
+        color: #FE8B44;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 1rem;
+        line-height: 1rem;
+        background: #fff;
+        z-index: 9999;
+        display: none;
+    }
+    #all:before {
+        content: '';
+        background:url(/home/images/icon_more.png)no-repeat ;
+        width:.3rem;
+        height:.3rem;
+        position: absolute;
+        top:50%;
+        margin-top: -.15rem;
+        right:32%;
+        background-size: .3rem .3rem;
+    }
+</style>
 {/block}
 {block name="body"}
- <div class="chart">
+ <div class="chart" style="position: relative;padding-bottom: 4.5vh;">
       <div class="lists">
           <div class="list active">
               <div class="num gray">1</div>
@@ -64,6 +91,7 @@
           <div id="hr01"></div>
           <!--<div class="hr02"></div>-->
       </div>
+     <div id="all">查看全部信息</div>
  </div>
 <div class="form">
     <div class="box">
@@ -99,6 +127,10 @@
     for(var i=0;i<$('.list').length;i++){
         if(i=$('.list').length){
            num = i;
+        };
+        if(i>3){
+            $('.chart').css({'height':'3rem','overflow':'hidden'});
+            $('#all').show();
         }
     }
     var s = $('.list').eq(num-1).height();
@@ -116,10 +148,14 @@
             }else {
                 $(this).find('.hr02').css('height',$(this).height()*1.1)
             }
-        }
+        };
     })
     var lastH = $('.list').eq(num-2).find('.hr02').height()*0.8;
-    $('.list').eq(num-2).find('.hr02').css('height',lastH)
-    $('.list').eq(num-1).find('.hr02').remove()
+    $('.list').eq(num-2).find('.hr02').css('height',lastH);
+    $('.list').eq(num-1).find('.hr02').remove();
+    $('#all').on('click',function(){
+        $('.chart').css({'height':'initial','overflow':'initial'});
+        $('#all').hide();
+    })
 </script>
 {/block}

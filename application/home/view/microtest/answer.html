@@ -131,31 +131,26 @@
 ////                javascript:history.go(-1);
 //            });
             window.addEventListener("popstate", function(e) {
-                swal({
-                        title: "您未保存，是否离开当前页面?",
-                        type: "warning",
-                        showCancelButton: true,
-                        closeOnConfirm: false,
-                        confirmButtonText:'确定',
-                        cancelButtonText:'取消'
-                    },
-                    function(isConfirm){
-                        if (isConfirm) {
-                            window.history.go(-1);
-                        } else {
-                            pushHistory();
-                        }
-                    });
-//                if(objNow){
-//                    var r=confirm("您未保存，是否离开当前页面");
-//                    if (r==true){
-//                        window.history.go(-1);
-//                    }else{
-//                        pushHistory();
-//                    }
-//                }else{
-//                    window.history.go(-1);
-//                }
+                if(objNow){
+                    swal({
+                            title: "您未保存，是否离开当前页面?",
+                            type: "warning",
+                            showCancelButton: true,
+                            closeOnConfirm: false,
+                            confirmButtonText: '确定',
+                            cancelButtonText: '取消'
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.history.go(-1);
+                            } else {
+                                pushHistory();
+                            }
+                        });
+                }
+                else{
+                    window.history.go(-1);
+                }
             }, false);
         },200)
     }

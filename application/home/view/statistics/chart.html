@@ -12,12 +12,13 @@
     }
     .list .pie {
         width: 80vw;
-        height: 40vw;
+        height: 45vw;
         margin-top: 15px;
     }
     #pie2{
         height:15vw!important;
     }
+    #pie3 canvas {height:80%;}
     body .list:nth-child(4) .legend{
         margin-top: 20px;
         line-height: 40px;
@@ -50,7 +51,7 @@
 </div>
 <div class="list">
     <div class="title">党员关注比例</div>
-    <div class="pie" id="pie3" ></div>
+    <div class="pie" id="pie3"></div>
 </div>
 
 <div class="list">
@@ -94,7 +95,8 @@
                     strokeColor: "rgba(26,179,148,0.8)",
                     highlightFill: "rgba(26,179,148,0.75)",
                     highlightStroke: "rgba(26,179,148,1)",
-                    data: [{$msg.party1},{$msg.party2},{$msg.party3},{$msg.party4},{$msg.party5},{$msg.party6},{$msg.party7},{$msg.party8},{$msg.party9},{$msg.party10},{$msg.party11}]
+//                    data: ['{$msg.party1}',{$msg.party2},{$msg.party3},{$msg.party4},{$msg.party5},{$msg.party6},{$msg.party7},{$msg.party8},{$msg.party9},{$msg.party10},{$msg.party11}]
+                    data: ['{$msg.party1}','{$msg.party2}','{$msg.party3}','{$msg.party4}','{$msg.party5}','{$msg.party6}','{$msg.party7}','{$msg.party8}','{$msg.party9}','{$msg.party10}','{$msg.party11}']
     }
     ]
 
@@ -102,6 +104,7 @@
 
         //	党员总人数表
         var data3 = [{
+            label: "关注人数："+{$msg['concernnum']}+"人",
             label: "关注人数："+{$msg['concernnum']}+"人",
             data: {$msg['concernnum']},
             color: "#5FB8C5"
@@ -216,6 +219,7 @@
                 name:'',
                 type:'pie',
                 color:["#5EB8C5","#2E8B57"],
+                selectedMode: 'single',
                 itemStyle : {
                     normal : {
                         label : {

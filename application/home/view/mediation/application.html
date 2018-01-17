@@ -2,6 +2,7 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/mediation/application.css">
+<link rel="stylesheet" href="/home/css/mediation/iosselect.css">
 <title>事件申请</title>
 {/block}
 {block name="body"}
@@ -18,21 +19,13 @@
             <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>事件类型 ：</span>
         </div>
-        <div class="event">
-             <span class="chose"> 请选择事件类型</span>
+        <div class="event" id="showBank">
+             <!--<span class="chose"> 请选择事件类型</span>-->
              <img class="icon3" src="/home/images/lxyz/icon/icon3.png"  alt=""/>
-             <ul class="nav">
-                <li>妇女儿童与残疾人维权</li>
-                <li>劳动就业及社会保障</li>
-                <li>婚姻家庭与遗产纠纷</li>
-                <li>交通事故与医患纠纷</li>
-                <li>债权及损害赔偿</li>
-                <li>网络交易与购物纠纷</li>
-                <li>旅游消费与保险纠纷</li>
-                <li>房地产与物业纠纷</li>
-                <li>债权债务及合同纠纷</li>
-                <li>刑事诉讼其他纠纷</li>
-             </ul>
+            <div class="pc-box">
+                <input type="hidden" name="bank_id" id="bankId" value="">
+                <span >请选择事件类型</span>
+            </div>
         </div>
     </div>
     <div class="box">
@@ -87,45 +80,47 @@
         提交申请
     </div>
 </div>
+<div class="container"></div>
 {/block}
 
 {block name="script"}
-
+<script src="/home/js/iscroll.js"></script>
+<script src="/home/js/iosselect.js"></script>
 <script>
-$(function () {
-    $('.events').on('click',function(e){
-        e.stopPropagation();
-        $('body').css({position:' fixed', width:'100%'})
-        if($('.nav').css('display')=='none'){
-            $('.icon3').css('transform','rotate(180deg)')
-        }else{
-            $('.icon3').css('transform','rotate(0)')
-            $('body').css({position:'relative'})
-        }
-        $('.nav').stop().fadeToggle("slow");
-    })
-    $('.nav li').on('click',function(e){
-        e.stopPropagation();
-        $(this).addClass('color').siblings().removeClass('color');
-//        $('.nav').fadeOut();
-        if($('.nav').css('display')=='none'){
-            $('.icon3').css('transform','rotate(180deg)')
-        }else{
-            $('.icon3').css('transform','rotate(0)')
-        }
-        $('.nav').stop().fadeToggle("slow");
-        $('body').css({position:'relative'})
-        var val=$(this).html();
-        $('.chose').html(val);
-    })
-    $('.form').on('click',function(){
-        $('.nav').stop().fadeOut();
-        $('body').css({position:'relative'})
-        if($('.nav').css('display')=='block') {
-            $('.icon3').css('transform', 'rotate(0)');
-        }
-    })
-})
+//$(function () {
+//    $('.events').on('click',function(e){
+//        e.stopPropagation();
+//        $('body').css({position:' fixed', width:'100%'})
+//        if($('.nav').css('display')=='none'){
+//            $('.icon3').css('transform','rotate(180deg)')
+//        }else{
+//            $('.icon3').css('transform','rotate(0)')
+//            $('body').css({position:'relative'})
+//        }
+//        $('.nav').stop().fadeToggle("slow");
+//    })
+//    $('.nav li').on('click',function(e){
+//        e.stopPropagation();
+//        $(this).addClass('color').siblings().removeClass('color');
+////        $('.nav').fadeOut();
+//        if($('.nav').css('display')=='none'){
+//            $('.icon3').css('transform','rotate(180deg)')
+//        }else{
+//            $('.icon3').css('transform','rotate(0)')
+//        }
+//        $('.nav').stop().fadeToggle("slow");
+//        $('body').css({position:'relative'})
+//        var val=$(this).html();
+//        $('.chose').html(val);
+//    })
+//    $('.form').on('click',function(){
+//        $('.nav').stop().fadeOut();
+//        $('body').css({position:'relative'})
+//        if($('.nav').css('display')=='block') {
+//            $('.icon3').css('transform', 'rotate(0)');
+//        }
+//    })
+//})
     $('.new' ).on('click',function(){
         var imglen = $('.img .img1' ).length;
         var this_ = $(this );
@@ -184,204 +179,46 @@ $(function () {
         })
 
     });
-
-//        $(function(){
-//            //上传
-//            $('.sure' ).on('click',function(){
-//                var content = $("textarea[name='content']").val();
-//                var img = $('.img img' );
-//                var data;
-//                var images = [];
-//                var imglen = img.length;
-//                if(imglen > 0){
-//                    for(var i =0 ;i< imglen ;i++){
-//                        images.push(img.eq(i ).attr('data-tab'));
-//                    }
-//                    data ={
-//                        content:content,
-//                        images:images
-//                    };
-//                }else{
-//                    data ={
-//                        content:content,
-//                        images:''
-//                    };
-//                }
-//                if(content != ''){
-//                    var tnum =  $('textarea').val().length;
-//                    if(tnum <= 400){
-//                        // 弹窗
-//                        swal({
-//                                title: ' ',
-//                                text: '我已完成编辑，马上发送！',
-//                                type: 'success',
-//                                showCancelButton: true,
-//                                confirmButtonText:'确定',
-//                                cancelButtonText: "取消",
-//                                closeOnConfirm: false
-//                            },
-//                            function(){
-//                                $(".sweet-alert .sa-confirm-button-container").css("display","none");
-//                                swal("", "发送中...", "success");
-//                                $.ajax({
-//                                    type:"post",
-//                                    url: "{:Url('Feedback/publish')}",
-//                                    data:data,
-//                                    success:function(data){
-//                                        setTimeout(function(){
-//                                            window.location.href = "{:Url('Feedback/index')}";
-//                                        },800);
-//                                    }
-//                                });
-//                            });
-//                    }else{
-//                        swal({
-//                            title: ' ',
-//                            text: '请输入少于400字的意见！',
-//                            type: 'error',
-//                            confirmButtonText:'确定',
-//                            timer:3000
-//                        });
-//                    }
-//                }else{
-//                    swal({
-//                        title: ' ',
-//                        text: '请输入您的意见后上传!',
-//                        type: 'error',
-//                        confirmButtonText:'确定',
-//                        timer:2500
-//                    });
-//                }
-//            });
-//            //--------------------------------------------------------------------------
-//            //
-//            // 清除同一张图片再次上传bug
-//            function clearImg() {
-//                $("input[type = 'file']").remove();
-//            }
-//
-//            function addImg() {
-//                var addImg = '<input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">';
-//                $(".imgs").append(addImg);
-//            }
-//            //
-//            //--------------------------------------------------------------------------
-//            //图片预览
-//            $('.add' ).on('click',function(){
-//                var imglen = $('.img img' ).length;
-//                var this_ = $(this );
-//                var loading = $('.loading');
-//                $('#upimg').click().off("change").on('change',function(){
-//                    var size = ($(this)[0].files[0].size / 1024).toFixed(2);
-//                    if(size <= 2048){
-//                        var img = $(this)[0].files[0];
-//                        var formData = new FormData();
-//                        formData.append("picture",img);
-//                        $.ajax({
-//                            type: "post",
-//                            url: "{:Url('File/uploadPicture')}",
-//                            data: formData,
-//                            processData : false,
-//                            contentType : false,
-//                            beforeSend: function(XMLHttpRequest){
-//                                loading.toggleClass('hidden');
-//                            },
-//                            success:function(data){
-//                                clearImg();
-//                                var msg = $.parseJSON(data);
-//                                loading.toggleClass('hidden');
-//                                if(msg.code == 1){
-//                                    if(this_.hasClass('add')){
-//                                        //图片添加
-//                                        if(imglen == 3){
-//                                            $('.add' ).fadeOut();
-//                                        }
-//                                        $('.img').eq(imglen).removeClass('hide' )
-//                                            .append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
-//                                    }else{
-//                                        //图片修改
-//                                        this_.find('img').remove();
-//                                        this_.append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
-//                                    }
-//                                    imgresize();
-//
-//                                } else {
-//                                    swal({
-//                                        title: ' ',
-//                                        html: '上传失败',
-//                                        type: 'error',
-//                                        showConfirmButton:false,
-//                                        timer:1500
-//                                    });
-//                                }
-//                                addImg();
-//                            }
-//                        });
-//                    } else {
-//                        clearImg();
-//                        swal({
-//                            title: ' ',
-//                            text: '您的图片超过2M',
-//                            type: 'warning',
-//                            showConfirmButton:false,
-//                            timer:1500
-//                        });
-//                        addImg();
-//                    }
-//                });
-//
-//            });
-//
-//            // 字数限定
-//            numlimit(400)
-//        });
-//        function imgresize(){
-//            setTimeout(function(){
-//                var img = $('.img img' );
-//                img.each(function(){
-//                    if($(this).width() == $(this).height()){
-//                        $(this).height('20.8vw');
-//                        $(this).width('20.8vw');
-//                    }else if($(this).width() > $(this).height()){
-//                        $(this).height('20.8vw' ).css({'left':-$(this).width()/2+78/2});
-//                    }else{
-//                        $(this).width('20.8vw').css({'top':-$(this).height()/2+78/2});
-//                    }
-//                });
-//            },100);
-//        }
-//        function numlimit(n){
-//            var textarea = $('textarea');
-//            var lock = false;
-//            textarea.on('compositionstart',function(){
-//                lock = true;
-//            });
-//            textarea.on('compositionend',function(){
-//                lock = false;
-//            });
-//            textarea.on('input',function(){
-//                if(!lock){
-//                    //键盘输入
-//                    var text = $(this).val();
-//                    text = text.substring(0,n);
-//                    var num = text.length;
-//                    $(this).val(text);
-//                    $('.contentnum span').text(num);
-//                }
-//            });
-//            textarea.bind("paste",function(){
-//                //黏贴输入
-//                var text = $(this).val();
-//                text = text.substring(0,n);
-//                var num = text.length;
-//                $(this).val(text);
-//                $('.contentnum span').text(num);
-//            }).css("ime-mode", "disabled"); //CSS设置输入法不可用
-//        }
-
     $('.last').on('click',function(){
         window.location.href='/home/mediation/applicationdetail.html'
     })
 
+</script>
+<script type="text/javascript">
+
+var data = [
+    {'id': '10001', 'value': '妇女儿童与残疾人维权'},
+    {'id': '10002', 'value': '劳动就业及社会保障'},
+    {'id': '10003', 'value': '婚姻家庭与遗产纠纷'},
+    {'id': '10004', 'value': '交通事故与医患纠纷'},
+    {'id': '10001', 'value': '债权及损害赔偿'},
+    {'id': '10001', 'value': '网络交易与购物纠纷'},
+    {'id': '10001', 'value': '旅游消费与保险纠纷'},
+    {'id': '10001', 'value': '房地产与物业纠纷'},
+    {'id': '10001', 'value': '债权债务及合同纠纷'},
+    {'id': '10001', 'value': '刑事诉讼其他纠纷'}
+];
+    var showBankDom = document.querySelector('#showBank');
+    var bankIdDom = document.querySelector('#bankId');
+    showBankDom.addEventListener('click', function () {
+        var bankId = showBankDom.dataset['id'];
+        var bankName = showBankDom.dataset['value'];
+
+        var bankSelect = new IosSelect(1,
+            [data],
+            {
+                container: '.container',
+                title: '银行卡选择',
+                itemHeight: 50,
+                itemShowCount: 3,
+                oneLevelId: bankId,
+                callback: function (selectOneObj) {
+                    bankIdDom.value = selectOneObj.id;
+                    showBankDom.innerHTML = selectOneObj.value;
+                    showBankDom.dataset['id'] = selectOneObj.id;
+                    showBankDom.dataset['value'] = selectOneObj.value;
+                }
+            });
+    });
 </script>
 {/block}

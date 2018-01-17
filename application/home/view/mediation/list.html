@@ -1,0 +1,217 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/static/swiper/swiper-3.3.1.min.css">
+<link rel="stylesheet" href="/home/css/news/newIndex.css">
+<title>案例列表</title>
+{/block}
+{block name="body"}
+<div class="blocks">
+    <div class="block lists">
+        <a href="#" class="list clear">
+            <div class="fl">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+            </div>
+            <div class="fr">
+                <div class="title limit_">测试</div>
+                <div class="note clear">
+                    <span class="dep fl limit">之图</span>
+                    <span class="time fr">2017-78-45</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list clear">
+            <div class="fl">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+            </div>
+            <div class="fr">
+                <div class="title limit_">测试</div>
+                <div class="note clear">
+                    <span class="dep fl limit">之图</span>
+                    <span class="time fr">2017-78-45</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list clear">
+            <div class="fl">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+            </div>
+            <div class="fr">
+                <div class="title limit_">测试</div>
+                <div class="note clear">
+                    <span class="dep fl limit">之图</span>
+                    <span class="time fr">2017-78-45</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="list clear">
+            <div class="fl">
+                <img data-original="/home/images/banner/1.jpg" class="lazy">
+            </div>
+            <div class="fr">
+                <div class="title limit_">测试</div>
+                <div class="note clear">
+                    <span class="dep fl limit">之图</span>
+                    <span class="time fr">2017-78-45</span>
+                </div>
+            </div>
+        </a>
+        <div style="text-align: center;">
+            <img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">
+            <p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>
+        </div>
+    </div>
+</div>
+<div class="bg"></div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
+
+<script>
+    $("img.lazy").lazyload({
+        placeholder: "/home/images/loading.jpg",
+        effect: "fadeIn",
+        threshold : 500
+    });
+    var scrollNow = true;
+    $(function(){
+        //轮播
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 3000,
+            loop:true,
+            autoplayDisableOnInteraction:false,
+            pagination: '.swiper-pagination',
+            lazyLoading : true,
+            lazyLoadingInPrevNext : true,
+        });
+        init();
+        $('.tab' ).off('click' ).on('click',function(){
+            var this_ = $(this );
+            var block = $('.block');
+            var n = this_.index();
+            window.scrollTo(0,0);
+            $(window ).off("scroll" );
+            this_.siblings('.tab' ).removeClass('active');
+            this_.addClass('active');
+            block.eq(n ).siblings('.block' ).hide();
+            block.eq(n ).fadeIn();
+//		setCookie("type",n + 1);
+            var len =$('.block').find('a').length;
+            if(len >= 5){
+                $(".tip").text('上拉加载更多');
+                loadScroll(n+1);
+            }else{
+                $(".tip").text('没有更多了');
+            }
+        });
+    });
+    function init(){
+        var tab =$('.tab' );
+        var co = 1;
+        var tip = $(".tip");
+        var c = 1;
+        if(co){c = co;}
+        tab.eq(c - 1 ).addClass('active');
+        tab.eq(c - 1 ).siblings('.tab').removeClass('active');
+        $('.block').eq(c-1 ).siblings('.block' ).hide();
+        var n = c -1 ;
+        var len =$('.block').find('a').length;
+        if(len >= 5){
+            tip.text('上拉加载更多');
+            loadScroll(c);
+        }else{
+            tip.hide();
+        }
+//	pushHistory();
+//	window.addEventListener( "popstate", function( e ){
+//		delCookie( 'type' );
+//		window.history.go( -1 );
+//	}, false );
+    }
+    function loadScroll(type){
+        $(window ).off("scroll" ).on("scroll",function(){
+            var ntc = $('.lists');
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $('.lists a').length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            var tag = $('.choose' ).attr('data-tag');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url: "{:Url('News/indexMore')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addLists(data,type-1);
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
+                            }
+                            $("img.lazy").lazyload({
+                                placeholder: "/home/images/loading.jpg",
+                                effect: "fadeIn",
+                                threshold: 1
+                            });
+                        } else {
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
+    function addLists(data,type){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var list = lists[i];
+            //var pid = $('.part div' ).eq(list.pid ).text();
+            html +=
+                '<a href="/home/news/detail/id/'+ list.id+'.html" class="list clear">'+
+                '<div class="fl">'+
+                '<img class="lazy" data-original='+list.path+'>'+
+                '</div>'+
+                '<div class="fr">'+
+                '<div class="title limit_">'+list.title+'</div>'+
+                '<div class="note clear">'+
+                '<span class="dep fl limit">'+list.publisher+'</span>'+
+                '<span class="time fr">'+list.time+'</span>'+
+                '</div>'+
+                '</div>'+
+                '</a>'
+        }
+        $('.lists').append(html);
+    }
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+
+</script>
+{/block}

@@ -187,6 +187,7 @@
     var num = 0;
     for(var i=0;i<$('.top>div').length;i++){
         $('.top>div')[i].onclick = function(){
+            $('.result').remove();
             $('.top>div').removeClass('active');
             $(this).addClass('active');
             var side = $(this).data('side');
@@ -381,7 +382,9 @@
             });
         }
     });
-    search.blur(function(){$('.result').remove()})
-
+//    search.blur(function(){$('.result').remove()})
+    $('.banner').on('click',function(){
+        $('.result').remove()
+    })
 </script>
 {/block}
