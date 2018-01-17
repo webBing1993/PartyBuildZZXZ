@@ -229,55 +229,13 @@
                     },
                 },
                 data:[
-                    {value:801, name:'关注：'+Math.round((100/ 234 )*100)+'%'},
-                    {value:23, name:'未关注：'+Math.round((23 / '35')*100)+'%'},
+                    {value:801, name:'关注：'+Math.round(({$msg['concernnum']}/ {$msg['usernum']} )*100)+'%'},
+                    {value:23, name:'未关注：'+Math.round(({$msg['nonnum']} / {$msg['usernum']})*100)+'%'},
                 ]
             }
         ]
     }
     myGender.setOption(genderOption);
 
-    $('.pie').on('plothover',function(){
-        var datas=[{
-            label: "机关单位数量",
-            data: {$msg['partysum']}
-        }, {
-            label: "村（社区）数量",
-            data: {$msg['villagesum']}
-        }, {
-            label: "非公企业数量",
-            data: {$msg['companysum']}
-        }, {
-            label: "社会组织数量",
-            data: {$msg['organizesum']}
-        },{
-            label: "机关单位人数",
-            data: {$msg['partynum']}
-        }, {
-            label: "村（社区）人数",
-            data: {$msg['villagenum']}
-        }, {
-            label: "非公企业人数",
-            data: {$msg['companynum']}
-        }, {
-            label: "社会组织人数",
-            data: {$msg['organizesum']}
-        },{
-            label: "关注人数",
-            data: {$msg['concernnum']}
-        },{
-            label: "未关注人数",
-            data: {$msg['nonnum']}
-        }];
-        var len = datas.length;
-        var tip = $('#flotTip');
-        var tit = tip.find('.tit' ).text();
-        for(var i = 0 ;i< len ; i++){
-            if( tit == datas[i].label ){
-                tip.find('.num' ).text(datas[i].data);
-                return;
-            }
-        }
-    })
 </script>
 {/block}
