@@ -22,12 +22,12 @@ input{
     height:.8rem;
 }
 .star{
-    width:18px;
-    height:18px;
+    width:.17rem;
+    height:.17rem;
     /*vertical-align: middle;*/
     position: relative;
     top:50%;
-    margin-top:-9px;
+    margin-top:-0.085rem;
     margin-right:1.3vw;
 }
 .ev{

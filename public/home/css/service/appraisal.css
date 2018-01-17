@@ -36,10 +36,10 @@
 .appraisalSort li {border-bottom: 1px solid #eee;width:100vw;padding: 0 4vw;margin-bottom: 2.25vh;}
 
 
-.appraisalUser li {width:92vw;height:21vh;position: relative;margin: 0 auto 2.25vh;background: url('/home/images/lxyz/icon_024.png') no-repeat;background-size: 92vw 21vh;padding-top: 3.75vh;}
-.appraisalUser_01 img {width:15.733vw;height:15.733vw;float:left;margin-left: 6.67vw;}
-.appraisalUser_01 div {display: block;margin-left: 26.4vw;font-size: .28rem;color: #999;}
-.appraisalUser_01 div p {height:3vh;line-height: 3vh;}
+.appraisalUser li {width:92vw;height:2.8rem;position: relative;margin: 0 auto 2.25vh;background: url('/home/images/lxyz/icon_024.png') no-repeat;background-size:    92vw 21vh;padding-top:.15rem;}
+.appraisalUser_01 img {width:1.18rem;height:1.18rem;float:left;margin-left: 6.67vw;}
+.appraisalUser_01 div {display: block;margin-left: 26.4vw;font-size: .28rem;color: #999;height:100%;}
+.appraisalUser_01 div p {}
 .appraisalUser_01 div span {color: #333;}
 .appraisalUser_02 {position: absolute;left:6.67vw;bottom:0;width:90%;text-align: left;font-size: .26rem;color: #333;height:6vh;line-height: 6vh;white-space:nowrap;
     text-overflow:ellipsis;

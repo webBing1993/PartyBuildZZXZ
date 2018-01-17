@@ -22,16 +22,15 @@ body{
 }
 .hfr{
     width:63vw;
-    height:18vh;
+    height:100%;
     /*height:100%;*/
     float:left;
 }
 .row1{
     width:100%;
-    height:2.5vh;
     font-size:.3rem;
     color:#333;
-    margin-bottom:1.3vh;
+    margin-bottom:0.07rem;
 }
 .row1:last-of-type{
     margin-bottom:0;
