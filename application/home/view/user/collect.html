@@ -17,7 +17,7 @@
 </div>
 <div class="lists">
     {volist name="res" id="vo"}
-    <a class="list line-wrapper">
+    <a href="#" class="list line-wrapper" data-id="{$vo.id}">
         <div class="line-scroll-wrapper">
             <div class="line-normal-wrapper">
                 <div class="cont">
@@ -33,6 +33,8 @@
     </a>
     {/volist}
 </div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="tip"></div>
 <div class="loading hidden">
     <div class="typing_loader"></div>
@@ -41,7 +43,8 @@
 
 {block name="script"}
    <script>
-       $('.line-btn-delete').on('click',function(){
+       $('.line-btn-delete').on('click',function(event){
+           var that=$(this)
            swal({
                    title: "确定删除吗？",
                    type: "warning",
@@ -52,18 +55,95 @@
                    closeOnConfirm: false,
                    closeOnCancel: false
                },
+
                function(isConfirm){
                    if (isConfirm) {
-                       swal("删除！", "你的虚拟文件已经被删除。",
-                           "success");
-                       $(this).parent().parent().remove();
+                       swal("已经删除");
+                       $.ajax({
+                           type:'post',
+                           url:"{:Url('Base/collect')}",
+                           data:{
+                               aid:id,
+                           },
+                           success:function(data){
+                               console.log(data)
+                           }
+                       })
+//                       that.parent().parent().remove();
                    } else {
-                       swal("取消！", "你的虚拟文件是安全的:)",
-                           "error");
+                       swal("取消");
+
                    }
                });
 
        })
+       var scrollNow = true;
+       loadScroll()
+       function loadScroll(){
+           $(window ).off("scroll" ).on("scroll",function(){
+               var dh = $(document).height();
+               var end = $(window).height() + $(window ).scrollTop();
+               var len = $('.list').length;
+               var tip = $(".tip");
+               var loading = $('.loading');
+               if(dh == end && scrollNow){
+                   scrollNow = false;
+                       $.ajax({
+                           type:"post",
+                           url: "{:Url('user/morecollect')}",
+                           data:{
+                               length:len
+                           },
+                           beforeSend: function(XMLHttpRequest){
+                               tip.hide();
+                               loading.toggleClass('hidden');
+                           },
+                           success:function(data){
+                               console.log(data)
+                               loading.toggleClass('hidden');
+                               tip.show();
+                               if(data.code == 1){
+                                   addLists(data);
+                                   var dataLen =data.data.length;
+                                   if(data.data.length >= 6){
+                                       tip.text('上拉加载更多');
+                                   } else {
+                                       tip.text('没有更多了');
+                                       $(window ).off("scroll");
+                                   }
+                               }else{
+                                   tip.text('没有更多了');
+                                   $(window ).off("scroll");
+                               }
+                               scrollNow = true;
+                           }
+                       })
+               }
+           })
+       }
+       function addLists(data){
+           var html = '';
+           var lists = data.data;
+           var len = lists.length;
+               for(var i = 0; i< len;i++){
+                   var list = lists[i];
+                   //var pid = $('.part div' ).eq(list.pid ).text();
+                   html +=
+                       '<a class="list line-wrapper" data-id="{$vo.id}">'+
+                       '<div class="line-scroll-wrapper">'+
+                       '<div class="line-normal-wrapper">'+
+                       '<div class="cont">'+
+                       '<div class="title"><p></p></div>'+
+                       '<div class="bot">'+
+                       '<span class="fl"></span>'+
+                       '<span class="fr"></span>'+
+                       '</div></div></div>'+
+                       '<div class="line-btn-delete"><button>删除</button></div>'+
+                       '</div>'+
+                       '</a>'
+               }
+               $('.lists').append(html);
+       }
     $(document).ready(function(e) {
         // 设定每一行的宽度=屏幕宽度+按钮宽度
         $(".line-scroll-wrapper").width($(".line-wrapper").width() + $(".line-btn-delete").width()+.6);
@@ -155,89 +235,6 @@
             });
         }
     });
-
-//    var scrollNow = true;
-//    loadScroll()
-//    function loadScroll(){
-//        $(window ).off("scroll" ).on("scroll",function(){
-//            var dh = $(document).height();
-//            var end = $(window).height() + $(window ).scrollTop();
-//            var len = $('.caseSort a').length;
-//            var tip = $(".tip");
-//            var loading = $('.loading');
-//            if(dh == end && scrollNow){
-//                scrollNow = false;
-//                $.ajax({
-//                    type:"post",
-//                    url: "{:Url('Notice/indexmore')}",
-//                    data:{
-//                        type:type,
-//                        length:len
-//                    },
-//                    beforeSend: function(XMLHttpRequest){
-//                        tip.hide();
-//                        loading.toggleClass('hidden');
-//                    },
-//                    success:function(data){
-//                        console.log(data)
-//                        loading.toggleClass('hidden');
-//                        tip.show();
-//                        if(data.code == 1){
-//                            addLists(data,type);
-//                            var dataLen =data.data.length;
-//                            if(data.data.length >= 2){
-//                                tip.text('上拉加载更多');
-//                            } else {
-//                                tip.text('没有更多了');
-//                                $(window ).off("scroll");
-//                            }
-//                        }else{
-//                            tip.text('没有更多了');
-//                            $(window ).off("scroll");
-//                        }
-//                        scrollNow = true;
-//                    }
-//                })
-//            }
-//        })
-//    }
-//    function addLists(data,t){
-//        var html = '';
-//        var len = data.data.length;
-//        var lists = data.data;
-//        if(t == 1){
-//            for(var i=0;i<len;i++){
-//                if(lists[i].description == null){
-//                    lists[i].description = ''
-//                }
-//                html +='<a href="/home/notice/detail/id/'+lists[i].id+'.html" class="list clear">'
-//                    +'<div class="fr right">'
-//                    +'<div class="title limit_" style="position: relative;padding-left: 4vw;"><span></span><span style="display: block;min-height: 6vh;">'+lists[i].title+'</span></div>'
-//                    +'<div class="labels">'+lists[i].description+'</div>'
-//                    +'<div class="clear time"><span class="fl">'+lists[i].publisher+'</span><span class="fr" style="color: #999;">'+lists[i].time+'</span></div>'
-//                    +'</div>'
-//                    +'</div>'
-//                    +'</a>'
-//            }
-//            $('.notices').eq(t-1).find('.volunteer').append(html);
-//        }else {
-//            for(var j=0;j<len;j++){
-//                if(lists[j].description == null){
-//                    lists[j].description = ''
-//                }
-//                html +='<a href="/home/notice/detail/id/'+lists[j].id+'.html" class="list clear">'
-//                    +'<div class="fr right">'
-//                    +'<div class="title limit_" style="position: relative;padding-left: 4vw;"><span></span><span style="display: block;min-height: 6vh;">'+lists[j].title+'</span></div>'
-//                    +'<div class="labels" style="display: none;">'+lists[j].description+'</div>'
-//                    +'<div class="clear time"><span class="fl">'+lists[j].publisher+'</span><span class="fr" style="color: #999;">'+lists[j].time+'</span></div>'
-//                    +'</div>'
-//                    +'</div>'
-//                    +'</a>'
-//            }
-//            $('.notices').eq(t-1).find('.volunteer').append(html);
-//        }
-//    }
-
 
 
 

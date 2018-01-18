@@ -5,6 +5,17 @@
 <link rel="stylesheet" href="/home/css/service/photoswipe.css"/>
 <link rel="stylesheet" href="/home/css/service/default-skin.css"/>
 <title>示范评比</title>
+<style>
+    .headerTop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+    }
+    .appraisal {
+        margin-top: 10.5vh;
+    }
+</style>
 {/block}
 {block name="body"}
 <div class="headerTop">
@@ -140,7 +151,7 @@
     loadScroll();
     //上拉加载
     function loadScroll(){
-        $(window ).off("scroll" ).on("scroll",function(){
+        $(window ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('#side'+type).find('li').length;

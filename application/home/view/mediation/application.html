@@ -147,6 +147,7 @@
 //    })
 //})
     $('.new' ).on('click',function(){
+        console.log($('.img').length)
         var imglen = $('.img .img1' ).length;
         var this_ = $(this );
         $('#upimg').click().off("change").on('change',function(){
@@ -174,8 +175,7 @@
                         // 绘制图片
                     ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height)
                     var dataUrl = canvas.toDataURL('image/jpeg', 0.4);
-                    $('.imgs .img').eq(imglen).removeClass('hide' )
-                        .append('<img class="img1" src='+dataUrl+' alt="图片" >');
+                       $('.add').before('<div class="img fl"><img class="img1" src='+dataUrl+' alt="图片" ></div>').removeClass('hide' )
                 }
 //                alert('图片太大无法上传')
             }else{
@@ -193,15 +193,16 @@
                 }
             }
         });
-//        $('.imgs .img').on('click',function(){
-//            console.log($(this).index())
-//            var len =$('.imgs .img .img1').length;
+        $('.imgs .img').on('click',function(){
+
+            console.log($('.img img').length)
+//            $(this).find('img').remove();
 //            $(this).addClass('hide')
-//            $(this).parent().find('.img').eq(imglen).find('img').remove();
+//
 //            if($('.imgs .img .img1').length <4){
 //                $('.add' ).show();
 //            }
-//        })
+        })
 
     });
     $('.last').on('click',function(){
