@@ -132,6 +132,7 @@ $(function(){
 				beforeSend: function(XMLHttpRequest){},
 				success:function(data){
 					var result = data.data;
+					console.log(result)
 					var url = '';
 					if(!data.data){
 						html += '<div class="result limit">无搜索结果</div>'

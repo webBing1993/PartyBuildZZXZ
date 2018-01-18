@@ -87,9 +87,31 @@
 <script src="/home/js/iscroll.js"></script>
 <script src="/home/js/iosselect.js"></script>
 <script>
-    $('.present').on('click',function(){
-
-    })
+//    $('#easyContainer').easyUpload({
+//        allowFileTypes: '*.jpg;*.png;*.gif;',//允许上传文件类型，格式';*.doc;*.pdf'
+//        allowFileSize: 100000,//允许上传文件大小(KB)
+//        selectText: '<img src="/home/images/icon_xx.png" style="width:60%;">',//选择文件按钮文案
+//        multi: true,//是否允许多文件上传
+//        multiNum: 9,//多文件上传时允许的文件数
+//        showNote: true,//是否展示文件上传说明
+//        note: '请上传您的证据（可为空，限9张，大小限5m）',//文件上传说明
+//        showPreview: true,//是否显示文件预览
+//        url: '/api/file/upload',//上传文件地址
+//        fileName: 'file',//文件filename配置参数
+////        formParam: {
+////            token: $.cookie('token_cookie')//不需要验证token时可以去掉
+////        },//文件filename以外的配置参数，格式：{key1:value1,key2:value2}
+//        timeout: 30000,//请求超时时间
+//        successFunc: function(res) {
+//            console.log('成功回调', res);
+//        },//上传成功回调函数
+//        errorFunc: function(res) {
+//            console.log('失败回调', res);
+//        },//上传失败回调函数
+//        deleteFunc: function(res) {
+//            console.log('删除回调', res);
+//        }//删除文件回调函数
+//    });
 //$(function () {
 //    $('.events').on('click',function(e){
 //        e.stopPropagation();
@@ -171,15 +193,15 @@
                 }
             }
         });
-        $('.imgs .img').on('click',function(){
-            console.log($(this).index())
-            var len =$('.imgs .img .img1').length;
-            $(this).addClass('hide')
-            $(this).parent().find('.img').eq(imglen).find('img').remove();
-            if($('.imgs .img .img1').length <4){
-                $('.add' ).show();
-            }
-        })
+//        $('.imgs .img').on('click',function(){
+//            console.log($(this).index())
+//            var len =$('.imgs .img .img1').length;
+//            $(this).addClass('hide')
+//            $(this).parent().find('.img').eq(imglen).find('img').remove();
+//            if($('.imgs .img .img1').length <4){
+//                $('.add' ).show();
+//            }
+//        })
 
     });
     $('.last').on('click',function(){

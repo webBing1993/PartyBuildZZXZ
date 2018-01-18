@@ -1,3 +1,4 @@
+
 .headerTop {
     width: 100vw;
     height: 8.4vh;
@@ -6,6 +7,7 @@
     background: #f7f7f7;
     color: #333;
     font-size: .3rem;
+
 }
 
 .headerTop div {
@@ -87,7 +89,7 @@
 .appraisalSort {
     width: 100vw;
     position: relative;
-    margin: auto;
+    margin-top: 6vh;
 }
 
 .headerImg {

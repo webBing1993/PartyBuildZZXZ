@@ -87,6 +87,7 @@ body{
 	opacity: 0;
 }
 .list .option{
+	margin-right:1vw;
 	width: 25px;
 	height: 25px;
 	font-size: .2rem;
@@ -98,7 +99,6 @@ body{
 	line-height: 25px;
 	text-align: center;
 	font-weight: 400;
-	position: absolute;
 	top:0;
 	left: 0;
 	/*opacity: 0;*/

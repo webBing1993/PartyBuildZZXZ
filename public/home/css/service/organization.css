@@ -49,7 +49,7 @@ body {background: #F5F5F5;}
 .UserTop_01 {border-bottom: 1px solid #d1d1d1;margin-bottom: 2vh;}
 .UserTop_01 img {float:left;width:1.8rem;height:1.8rem;border-radius: 50%;}
 /*.UserTop_01 img {float:left;width:1.8rem;height:1.8rem;border-radius: 50%;}*/
-.UserTop_Text {margin-left: 28vw;font-size: .3rem;color: #333;padding-top: 1.8vh;margin-bottom: 2.25vh;}
+.UserTop_Text {margin-left: 28vw;font-size: .3rem;color: #333;padding-top: 1vh;margin-bottom: 2.25vh;}
 .UserTop_Text p {margin-bottom: 1.3vh;}
 .UserTop_02 {color: #999;font-size: .3rem;}
 .UserTop_02 span {float:left;}
