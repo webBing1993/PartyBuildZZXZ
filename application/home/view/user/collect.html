@@ -17,7 +17,7 @@
 </div>
 <div class="lists">
     {volist name="res" id="vo"}
-    <a href="#" class="list line-wrapper" data-id="{$vo.id}">
+    <a href="{$vo.url}" class="list line-wrapper" data-id="{$vo.id}">
         <div class="line-scroll-wrapper">
             <div class="line-normal-wrapper">
                 <div class="cont">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="line-btn-delete"><button onclick="shanchu(this,1,1)">删除</button></div>
+            <div class="line-btn-delete"><button onclick="shanchu(this,{$vo.tab},{$vo.id})">删除</button></div>
         </div>
     </a>
     {/volist}

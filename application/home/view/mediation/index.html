@@ -31,16 +31,16 @@
     <div class="case">
         <div class="caseTop">
             <span>案例调解</span>
-            <a href="/home/mediation/list.html">更 多 <img src="/home/images/icon/icon_right.png" alt=""></a>
+            <!--<a href="/home/mediation/list.html">更 多 <img src="/home/images/icon/icon_right.png" alt=""></a>-->
         </div>
         <div class="caseSort">
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综村找问题山</div><div class="caseSort_02">连日作人员走遍全镇11五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
-            <a href="/home/education/detail.html"><div class="caseSort_01"><span></span>山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题山下湖镇综治办主动进村找问题</div><div class="caseSort_02">连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农连日来，山下湖镇综治办工作人员走遍全镇11个行政村，协助调解村内矛盾纠纷，为“五水共治”、新农</div><div class="caseSort_03"><span>珍珠小镇</span><span>2017-12-21</span></div></a>
+            {volist name="list1" id="vo"}
+            <a href="{:Url('Mediation/newdetail?id='.$vo.id)}">
+                <div class="caseSort_01"><span></span>{$vo.title}</div>
+                <div class="caseSort_02">{$vo.description}</div>
+                <div class="caseSort_03">
+                    <span>{$vo.publisher}</span><span>{$vo.create_time|time_format="Y-m-d"}</span></div></a>
+            {/volist}
         </div>
     </div>
 </div>
@@ -50,41 +50,15 @@
     <!--调解员-->
     <div class="mediator">
         <ul>
+            {volist name="list2" id="vo"}
             <li>
-                <div class="userImg"><img src="/home/images/icon/icon_10.png" alt=""></div>
-                <p class="name">芊芊</p>
-                <p class="num">已调解案例　<span>26</span>　起</p>
-                <a href="/home/mediation/application" class="liao">找他调解</a>
-                <a href="/home/mediation/medcase.html" class="more">查看更多</a>
+                <div class="userImg"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
+                <p class="name">{$vo.name}</p>
+                <p class="num">已调解案例　<span>{$vo.num}</span>　起</p>
+                <a href="{:Url('Mediation/application?id='.$vo.id)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
+                <a href="{:Url('Mediation/medcase?id='.$vo.id)}" class="more">查看更多</a>
             </li>
-            <li>
-                <div class="userImg"><img src="/home/images/icon/icon_10.png" alt=""></div>
-                <p class="name">芊芊</p>
-                <p class="num">已调解案例　<span>26</span>　起</p>
-                <a href="/home/mediation/application" class="liao">找他调解</a>
-                <a href="/home/mediation/medcase.html" class="more">查看更多</a>
-            </li>
-            <li>
-                <div class="userImg"><img src="/home/images/icon/icon_10.png" alt=""></div>
-                <p class="name">芊芊</p>
-                <p class="num">已调解案例　<span>26</span>　起</p>
-                <a href="/home/mediation/application" class="liao">找他调解</a>
-                <a href="/home/mediation/medcase.html" class="more">查看更多</a>
-            </li>
-            <li>
-                <div class="userImg"><img src="/home/images/icon/icon_10.png" alt=""></div>
-                <p class="name">芊芊</p>
-                <p class="num">已调解案例　<span>26</span>　起</p>
-                <a href="/home/mediation/application" class="liao">找他调解</a>
-                <a href="/home/mediation/medcase.html" class="more">查看更多</a>
-            </li>
-            <li>
-                <div class="userImg"><img src="/home/images/icon/icon_10.png" alt=""></div>
-                <p class="name">芊芊</p>
-                <p class="num">已调解案例　<span>26</span>　起</p>
-                <a href="/home/mediation/application" class="liao">找他调解</a>
-                <a href="/home/mediation/medcase.html" class="more">查看更多</a>
-            </li>
+            {/volist}
         </ul>
     </div>
 </div>
@@ -258,7 +232,7 @@ $('#side'+med).show();
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url: "{:Url('Notice/indexmore')}",
+                    url: "{:Url('Mediation/indexmore')}",
                     data:{
                         length:len
                     },

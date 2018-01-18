@@ -108,8 +108,12 @@ class User extends Base {
         $order = array("create_time desc");
         $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit(10)->select();
         $res = [];
-        foreach ($collectModelAll as $model) {
+        foreach ($collectModelAll as $key => $model) {
             $res[$model['id']] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,publisher,create_time,type,'.$model['type'].' as tab')->find();
+            if(empty($res[$model['id']])){
+                unset($res[$model['id']]);
+                continue;
+            }
             if ($model['type'] == 1) {
                 $res[$model['id']]['url'] = $res[$model['id']]['type']==1 ? "/home/learns/video/id/".$res[$model['id']]['id'] : "/home/learns/article/id/".$res[$model['id']]['id'];
             }else{
