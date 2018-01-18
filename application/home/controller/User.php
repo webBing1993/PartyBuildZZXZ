@@ -106,13 +106,43 @@ class User extends Base {
     public function collect(){
         $userId = session('userId');
         $order = array("create_time desc");
-        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->select();
+        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit(6)->select();
         $res = [];
         foreach ($collectModelAll as $model) {
-            $res[] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,create_time,'.$model['type'].' as tab')->find();
+            $res[$model['id']] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,publisher,create_time,type,'.$model['type'].' as tab')->find();
+            if ($model['type'] == 1) {
+                $res[$model['id']]['url'] = $res[$model['id']]['type']==1 ? "/home/learns/video/id/".$res[$model['id']]['id'] : "/home/learns/article/id/".$res[$model['id']]['id'];
+            }else{
+                $res[$model['id']]['url'] = "/home/study/detail/id/".$res[$model['id']]['id'];
+            }
+            $res[$model['id']]['time'] = date("Y-m-d",$res[$model['id']]['create_time']);
         }
         $this->assign('res',$res);
         return $this->fetch();
+    }
+    /**
+     * 更多收藏
+     */
+    public function morecollect(){
+        $userId = session('userId');
+        $len = input('length');
+        $order = array("create_time desc");
+        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit($len,1)->select();
+        $res = [];
+        foreach ($collectModelAll as $model) {
+            $res[$model['id']] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,publisher,create_time,type,'.$model['type'].' as tab')->find();
+            if ($model['type'] == 1) {
+                $res[$model['id']]['url'] = $res[$model['id']]['type']==1 ? "/home/learns/video/id/".$res[$model['id']]['id'] : "/home/learns/article/id/".$res[$model['id']]['id'];
+            }else{
+                $res[$model['id']]['url'] = "/home/study/detail/id/".$res[$model['id']]['id'];
+            }
+            $res[$model['id']]['time'] = date("Y-m-d",$res[$model['id']]['create_time']);
+        }
+        if($res){
+            return $this->success("加载成功",'',$res);
+        }else{
+            return $this->error("加载失败");
+        }
     }
 
 }

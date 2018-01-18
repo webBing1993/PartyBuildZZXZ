@@ -16,49 +16,22 @@
     </div>
 </div>
 <div class="lists">
+    {volist name="res" id="vo"}
     <a class="list line-wrapper">
         <div class="line-scroll-wrapper">
             <div class="line-normal-wrapper">
                 <div class="cont">
-                    <div class="title"><p>与文明同行，为“创文”加分</p></div>
+                    <div class="title"><p>{$vo.title}</p></div>
                     <div class="bot">
-                        <span class="fl">珍珠小镇</span>
-                        <span class="fr">2017-12-06</span>
+                        <span class="fl">{$vo.publisher}</span>
+                        <span class="fr">{$vo.time}</span>
                     </div>
                 </div>
             </div>
             <div class="line-btn-delete"><button>删除</button></div>
         </div>
     </a>
-    <a class="list line-wrapper">
-        <div class="line-scroll-wrapper">
-            <div class="line-normal-wrapper">
-                <div class="cont">
-                    <div class="title"><p>与文明同行，为“创文”加分</p></div>
-                    <div class="bot">
-                        <span class="fl">珍珠小镇</span>
-                        <span class="fr">2017-12-06</span>
-                    </div>
-                </div>
-            </div>
-            <div class="line-btn-delete"><button>删除</button></div>
-        </div>
-    </a>
-    <a class="list line-wrapper">
-        <div class="line-scroll-wrapper">
-            <div class="line-normal-wrapper">
-                <div class="cont">
-                    <div class="title"><p>与文明同行，为“创文”加分</p></div>
-                    <div class="bot">
-                        <span class="fl">珍珠小镇</span>
-                        <span class="fr">2017-12-06</span>
-                    </div>
-                </div>
-            </div>
-            <div class="line-btn-delete"><button>删除</button></div>
-        </div>
-    </a>
-
+    {/volist}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
