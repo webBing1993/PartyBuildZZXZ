@@ -106,7 +106,7 @@ class User extends Base {
     public function collect(){
         $userId = session('userId');
         $order = array("create_time desc");
-        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit(6)->select();
+        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit(10)->select();
         $res = [];
         foreach ($collectModelAll as $model) {
             $res[$model['id']] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,publisher,create_time,type,'.$model['type'].' as tab')->find();
@@ -127,7 +127,7 @@ class User extends Base {
         $userId = session('userId');
         $len = input('length');
         $order = array("create_time desc");
-        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit($len,1)->select();
+        $collectModelAll = Collect::where(['uid' => $userId])->order($order)->limit($len,6)->select();
         $res = [];
         foreach ($collectModelAll as $model) {
             $res[$model['id']] = Db::name($model['table'])->where(['id' => $model['aid']])->field('id,title,publisher,create_time,type,'.$model['type'].' as tab')->find();
