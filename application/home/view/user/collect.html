@@ -28,13 +28,11 @@
                     </div>
                 </div>
             </div>
-            <div class="line-btn-delete"><button>删除</button></div>
+            <div class="line-btn-delete"><button onclick="shanchu(this)">删除</button></div>
         </div>
     </a>
     {/volist}
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="tip"></div>
 <div class="loading hidden">
     <div class="typing_loader"></div>
@@ -43,15 +41,17 @@
 
 {block name="script"}
    <script>
-       $('.line-btn-delete').on('click',function(event){
-           var that=$(this)
+      function shanchu(e){
+//           var that=$(this)
+          console.log($(e))
+
            swal({
                    title: "确定删除吗？",
                    type: "warning",
                    showCancelButton: true,
                    confirmButtonColor: "#DD6B55",
-                   confirmButtonText: "确定删除！",
-                   cancelButtonText: "取消删除！",
+                   confirmButtonText: "确定！",
+                   cancelButtonText: "取消！",
                    closeOnConfirm: false,
                    closeOnCancel: false
                },
@@ -59,24 +59,23 @@
                function(isConfirm){
                    if (isConfirm) {
                        swal("已经删除");
-                       $.ajax({
-                           type:'post',
-                           url:"{:Url('Base/collect')}",
-                           data:{
-                               aid:id,
-                           },
-                           success:function(data){
-                               console.log(data)
-                           }
-                       })
-//                       that.parent().parent().remove();
+//                       $.ajax({
+//                           type:'post',
+//                           url:"{:Url('Base/collect')}",
+//                           data:{
+//                               aid:id,
+//                           },
+//                           success:function(data){
+//                               console.log(data)
+//                           }
+//                       })
+                       $(e).parent().parent().parent().remove();
                    } else {
                        swal("取消");
 
                    }
                });
-
-       })
+       }
        var scrollNow = true;
        loadScroll()
        function loadScroll(){
