@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="line-btn-delete"><button onclick="shanchu(this)">删除</button></div>
+            <div class="line-btn-delete"><button onclick="shanchu(this,1,1)">删除</button></div>
         </div>
     </a>
     {/volist}
@@ -41,7 +41,7 @@
 
 {block name="script"}
    <script>
-      function shanchu(e){
+      function shanchu(e,type,id){
 //           var that=$(this)
           console.log($(e))
 
@@ -59,16 +59,17 @@
                function(isConfirm){
                    if (isConfirm) {
                        swal("已经删除");
-//                       $.ajax({
-//                           type:'post',
-//                           url:"{:Url('Base/collect')}",
-//                           data:{
-//                               aid:id,
-//                           },
-//                           success:function(data){
-//                               console.log(data)
-//                           }
-//                       })
+                       $.ajax({
+                           type:'post',
+                           url:"{:Url('Base/collect')}",
+                           data:{
+                               type:type,
+                               aid:id,
+                           },
+                           success:function(data){
+                               console.log(data)
+                           }
+                       })
                        $(e).parent().parent().parent().remove();
                    } else {
                        swal("取消");
@@ -98,7 +99,7 @@
                                loading.toggleClass('hidden');
                            },
                            success:function(data){
-                               console.log(data)
+                               console.log(data.data)
                                loading.toggleClass('hidden');
                                tip.show();
                                if(data.code == 1){
@@ -128,14 +129,14 @@
                    var list = lists[i];
                    //var pid = $('.part div' ).eq(list.pid ).text();
                    html +=
-                       '<a class="list line-wrapper" data-id="{$vo.id}">'+
+                       '<a class="list line-wrapper">'+
                        '<div class="line-scroll-wrapper">'+
                        '<div class="line-normal-wrapper">'+
                        '<div class="cont">'+
-                       '<div class="title"><p></p></div>'+
+                       '<div class="title"><p>"+list.title+"</p></div>'+
                        '<div class="bot">'+
-                       '<span class="fl"></span>'+
-                       '<span class="fr"></span>'+
+                       '<span class="fl">"+list.publisher+"</span>'+
+                       '<span class="fr">"+list.time+"</span>'+
                        '</div></div></div>'+
                        '<div class="line-btn-delete"><button>删除</button></div>'+
                        '</div>'+
