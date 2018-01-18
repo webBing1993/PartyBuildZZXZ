@@ -226,6 +226,7 @@ body{background: #f5f5f5;}
     font-size: .24rem;
     position: absolute;
     bottom:4vw;
+    width:72%;
 }
 #side3 .lists .list .content .note .scan {
     background: url('/home/images/news/scan_.png') 0 1px no-repeat;

@@ -34,7 +34,7 @@ body{background: #f5f5f5;}
     word-break: break-all;
     font-size: .28rem;
     color: #666;
-    line-height: .3rem;
+    /*line-height: .3rem;*/
     margin-top:1.5vh;
 }
 /*#notess {position: relative;top:-1.5vh;}*/

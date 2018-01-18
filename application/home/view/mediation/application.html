@@ -47,7 +47,7 @@
             <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>联系电话 ：</span>
         </div>
-        <input  placeholder="请输入联系电话" size="28" style="text-indent: .5vw;">
+        <input  placeholder="请输入联系电话" size="28" style="text-indent: .5vw;" id="phone">
     </div>
     <div class="describe">
         <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>
@@ -363,5 +363,18 @@ var data = [
                 }
             });
     });
+</script>
+
+<script>
+$("#phone").bind("input propertychange",function(){
+    var reg = new RegExp("^[0-9]*$");
+    var obj = document.getElementById("phone");
+    if(!reg.test(obj.value)){
+        $(this).val('')
+    }
+    if(!/^[0-9]*$/.test(obj.value)){
+        $(this).val('')
+    }
+});
 </script>
 {/block}

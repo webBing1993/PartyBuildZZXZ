@@ -271,6 +271,14 @@
     margin-right: 3vw;
     line-height: 8vw;
 }
+.all .note span:first-child {
+    width:40vw;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+    text-align: left;
+}
 .all .note_ span{
     margin-right: 0;
 }

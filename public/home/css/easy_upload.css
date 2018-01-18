@@ -102,7 +102,7 @@
   align-items: center;
   font-size: .28rem;
   position: relative;
-  width: 1.4rem;
+  width: 21vw;
   height:1.4rem;
   display: inline-block;
   margin-right: 2vw;
@@ -217,19 +217,21 @@
   top:-.1rem;
   right:-.4rem;
 }
-.easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn .btn {
+.easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn .btn img {
+  width:.42rem;
+  height:.42rem;
   /*width: 80px;*/
   /*height: 30px;*/
   /*border: 1px #eee solid;*/
   /*text-align: center;*/
   /*line-height: 30px;*/
   /*border-radius: 5px;*/
-  width:.5rem;
-  height:.5rem;
-  cursor: pointer;
-  color: red;
-  font-size: .24rem;
-  background: #eee;
+  /*width:.5rem;*/
+  /*height:.5rem;*/
+  /*cursor: pointer;*/
+  /*color: red;*/
+  /*font-size: .24rem;*/
+  /*background: #eee;*/
 }
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn .easy_upload_upbtn {
   margin-bottom: 10px;

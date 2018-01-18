@@ -88,7 +88,7 @@
 	<ul>
 		{volist name="list" id="vo"}
 		<li>
-			<a href="{:Url('Redcollection/filmdetail?id='.$vo['id'])}" class="list">
+			<a href="{:Url('education/movedetail?id='.$vo['id'])}" class="list">
 				<img data-original="{$vo.front_cover|get_cover='path'}" class="list-img lazy">
 				<div class="listTitle">{$vo.title}</div><div class="listSummary">{$vo.introduction}</div>
 			</a>
@@ -138,7 +138,7 @@ $(function(){
 						html += '<div class="result limit">无搜索结果</div>'
 					}
 					for(var obj in result){
-						html+= '<a href="/home/redcollection/filmdetail?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+						html+= '<a href="/home/education/movedetail?id='+obj+'" class="result limit">'+result[obj]+'</a>';
 //                        html +='<li>'
 //                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
 //                            +'<img data-original="'+list.path+'" class="list-img lazy">'
@@ -222,7 +222,7 @@ function addCourse(data){
     for(var i = 0; i< len;i++){
         var list = lists[i];
         html +='<li>'
-        		+'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
+        		+'<a href="/home/education/movedetail/id/'+list.id+'.html" class="list">'
         		+'<img data-original="'+list.path+'" class="list-img lazy">'
         		+'<div class="listTitle">'+list.title+'</div><div class="listSummary">'+list.introduction+'</div>'
         		+'</a>'

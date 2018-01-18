@@ -39,21 +39,21 @@
 }
 .activity .lists .list:before {
   position: absolute;
-  top: 5.6vw;
+  top: .5rem;
   left: 4vw;
   content: '';
-  width: 15px;
-  height: 15px;
+  width: .15rem;
+  height: .15rem;
   background: url('/home/images/constitution/circle01.png') 0 0 no-repeat;
-  background-size: 15px 15px;
+  background-size: .15rem .15rem;
 }
 .activity .lists .list:nth-child(2):before {
   background: url('/home/images/constitution/circle02.png') 0 0 no-repeat;
-  background-size: 15px 15px;
+  background-size:  .15rem .15rem;
 }
 .activity .lists .list:nth-child(3):before {
   background: url('/home/images/constitution/circle03.png') 0 0 no-repeat;
-  background-size: 15px 15px;
+  background-size:  .15rem .15rem;
 }
 .activity .lists .list .title {
   width: 100%;

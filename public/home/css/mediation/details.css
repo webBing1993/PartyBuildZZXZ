@@ -91,7 +91,7 @@ body{
     padding-left:4vw;
     padding-right:4vw;
     width:100%;
-    height:7.5vh;
+    height:1rem;
     font-size:.32rem;
     font-family:PingFang-SC-Medium;
     border-bottom:1px solid #D1D1D1;
@@ -103,7 +103,7 @@ body{
     color:#333333;
     display:inline-block;
     height:100%;
-    line-height:7.4vh;
+    line-height:1rem;
 }
 .describe{
     height:15vh;
@@ -127,9 +127,10 @@ body{
 .images{
     position: relative;
     top:50%;
-    margin-top:-.17rem;
-    width:.34rem;
-    height:.34rem;
+    margin-top:-.38rem;
+    width:.76rem;
+    height:.76rem;
+    /*vertical-align: middle;*/
 }
 .remark{
     width: 100%;

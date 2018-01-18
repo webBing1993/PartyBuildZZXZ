@@ -92,7 +92,7 @@ https://github.com/funnyque
             // alert(1)
             // $(this).parent().find('.fileInput').trigger('click');
             $('.easy_upload-head').find('.fileInput').trigger('click');
-            $('.easy_upload_queue').find('.easy_upload_select').remove();
+            // $('.easy_upload_queue').find('.easy_upload_select').remove();
           });
           $('.fileInput').off('change').change(function () {
             var count = Number($(this).attr('data-count'));
@@ -114,6 +114,7 @@ https://github.com/funnyque
               // var flag = $(this).attr('data-checked');
                   opt.check = 'yes';
               _this._handleCheck(opt);
+              // $('.easy_upload_queue').find('.easy_upload_select').remove();
           });
           // $('.head_check').off('click').click(function () {
           //   var opt = { type:'all', target:this };
@@ -129,12 +130,18 @@ https://github.com/funnyque
           $('.easy_upload_head_btn1').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
             var arr = _this._findItems(1, queueUl);
-            if (arr.length>0) {
-              allowFiles = allowFiles.concat(arr);
-              upFiniehed = true;
-              _this._uploadFile(queueUl);
+            if($('textarea').val()==''&& arr==''){
+              alert('描述或图片不能同时为空！')
+            }else {
+                if (arr.length>0) {
+                    allowFiles = allowFiles.concat(arr);
+                    upFiniehed = true;
+                    _this._uploadFile(queueUl);
+                }
             }
-            console.log(arr)
+            console.log(arr=='')
+
+            // console.log(arr)
           });
           $('.easy_upload_head_btn2').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
@@ -235,7 +242,7 @@ https://github.com/funnyque
             $html += '</div>';
             $html += '<div class="easy_upload_btn queue_item-section">';
             $html += file.allow ? '<p class="easy_upload_upbtn btn noselect">上传</p>' : '';
-            $html += '<p class="easy_upload_delbtn btn noselect">×</p>';
+            $html += '<p class="easy_upload_delbtn btn noselect"><img src="/home/images/chacha.png"></p>';
             $html += '</div>';
             $html += '<div class="easy_upload_checkone queue_item-section">';
             $html += '<i class="easyUploadIcon noselect queue_check queue_check_allow_'+ file.allow +'" data-checked="no" data-up="1">&#xe693;</i>';
@@ -254,6 +261,7 @@ https://github.com/funnyque
               render(fileArr[i]);
             }
           }
+            $('.easy_upload_queue').find('.easy_upload_select').remove();
           if($(queueUl).find('li').length>=9){
               queueUl.find('.easy_upload_select').remove();
           }else{
@@ -264,7 +272,7 @@ https://github.com/funnyque
             $('.easy_upload_select').off('click').click(function () {
                 // $(this).parent().find('.fileInput').trigger('click');
                 $('.easy_upload-head').find('.fileInput').trigger('click');
-                $('.easy_upload_queue').find('.easy_upload_select').remove();
+                // $('.easy_upload_queue').find('.easy_upload_select').remove();
                 $('.easy_upload-head').find('.easy_upload_select').hide();
             });
         },

@@ -50,6 +50,7 @@
         text-align: left;
         background: #fff;
         font-size: .28rem;
+        overflow: initial;
     }
 </style>
 {/block}
@@ -380,7 +381,7 @@
                         html += '<div class="result limit">无搜索结果</div>'
                     }
                     for(var obj in result){
-                        html+= '<a href="/home/redcollection/filmdetail?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+                        html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
 //                        html +='<li>'
 //                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
 //                            +'<img data-original="'+list.path+'" class="list-img lazy">'

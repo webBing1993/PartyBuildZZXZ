@@ -58,7 +58,11 @@
 
                function(isConfirm){
                    if (isConfirm) {
-                       swal("已经删除");
+                       swal({
+                           title: "删除成功！",
+                           timer: 2000,
+                           showConfirmButton: false
+                       });
                        $.ajax({
                            type:'post',
                            url:"{:Url('Base/collect')}",
@@ -191,18 +195,18 @@
 
             lines[i].addEventListener('touchend', function(e){
                 if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
-                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 右滑
+                    $(lastLeftObj).animate({marginLeft:"0"}, 200); // 右滑
                     lastLeftObj = null; // 清空上一个左滑的对象
                 }
                 var diffX = e.changedTouches[0].pageX - lastXForMobile;
                 if (diffX < -100) {
-                    $(pressedObj).animate({marginLeft:"-20vw"}, 500); // 左滑
+                    $(pressedObj).animate({marginLeft:"-20vw"}, 200); // 左滑
                     lastLeftObj && lastLeftObj != pressedObj &&
-                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
+                    $(lastLeftObj).animate({marginLeft:"0"}, 200); // 已经左滑状态的按钮右滑
                     lastLeftObj = pressedObj; // 记录上一个左滑的对象
                 } else if (diffX > 100) {
                     if (pressedObj == lastLeftObj) {
-                    $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
+                    $(pressedObj).animate({marginLeft:"0"}, 200); // 右滑
                     lastLeftObj = null; // 清空上一个左滑的对象
                     }
                 }

@@ -78,7 +78,7 @@ body{background: #eee;position: relative;}
 .notice .lists .list .fr .note span {
     width: 31.5vw;
 }
-.notice .lists .list .fr .note span:nth-child(1) {float:left;}
+.notice .lists .list .fr .note span:nth-child(1) {float:left;margin-left: -4px;}
 .notice .lists .list .fr .note span:nth-child(2) {float:right;text-align: right;}
 .notice .lists .list .fr .note span.fa {
     text-align: right;
