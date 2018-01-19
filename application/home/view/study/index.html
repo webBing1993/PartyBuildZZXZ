@@ -189,6 +189,7 @@
             }else if(side ==6 ){
                 $('.banner img').attr('src','/home/images/banner/6.jpg')
             }
+            loadScroll();
         }
     }
     $('.subject').hide();
@@ -235,9 +236,10 @@
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $(".subject a").eq(num-1).length;
+            var len = $(".subject").eq(num-1).find('a').length;
             var tip = $(".tip");
             var loading = $('.loading');
+//            console.log(dh,end)
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({

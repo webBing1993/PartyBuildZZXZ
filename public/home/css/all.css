@@ -267,12 +267,12 @@
 }
 .all .note span {
     height: 8vw;
-    display: inline-block;
+    /*display: inline-block;*/
     margin-right: 3vw;
     line-height: 8vw;
 }
 .all .note span:first-child {
-    width:40vw;
+    max-width:40vw;
     white-space:nowrap;
     text-overflow:ellipsis;
     -o-text-overflow:ellipsis;
@@ -462,5 +462,5 @@
     margin-left: 2vw;
     margin-right: 0;
 }
-.note.notess .read {padding-right: 5vw;background: url('/home/images/lxyz/icon_005.png') 0 center no-repeat;background-size: .4rem .24rem;padding-left: .5rem;}
+.note.notess .read {background: url('/home/images/lxyz/icon_005.png') 0 center no-repeat;background-size: .4rem .24rem;padding-left: .5rem;}
 .note.notess .isgood {background: url('/home/images/lxyz/icon_006.png') 0 center no-repeat;background-size: .4rem .3rem;padding-left: .5rem;}
