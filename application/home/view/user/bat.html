@@ -1,161 +1,94 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>消息审核</title>
-<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
-<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
-<link rel="stylesheet" href="/home/css/approved/review.css">
-<link rel="stylesheet" href="/home/css/common/tip.css">
-<style>
-    body{overflow: initial;!important;font-size: 1.4rem;!important;}
+<link rel="stylesheet" href="/home/css/user/collect.css">
+<title>我的收藏</title>
+<style type="text/css">
+    * { margin: 0; padding: 0; }
+
 </style>
 {/block}
-
 {block name="body"}
-<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
-<div class="list-t-wrap" style="margin-top: 6vh;">
-    <div class="list-wrapper">
-        <!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
-        <div class="list-block" id="list-block-company">
-            <div id="nomessage">
-                <img src="/home/images/nomessage.png" alt="无消息">
-            </div>
-            <ul>
-                {volist name="list" id="vo"}
-                <li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
-                    {if condition="$vo.type eq 1"}
-                    <?php $url = Url('approved/leavedetail?id='.$vo['id'].'&visit=1');?>
-                    <div class="swipeout-content" onclick="jump('{$url}')">
-                        {elseif condition="$vo.type eq 2"/}
-                        <?php $url = Url('approved/tripdetail?id='.$vo['id'].'&visit=1');?>
-                        <div class="swipeout-content" onclick="jump('{$url}')">
-                            {else/}
-                            <?php $url = Url('approved/reimbursementdetail?id='.$vo['id'].'&visit=1');?>
-                            <div class="swipeout-content" onclick="jump('{$url}')">
-                                {/if}
-                                <div class="list" style="width:100%;">
-                                    <span class="title">{$vo.publisher}</span>
-                                    <span class="sent_time" style="width:88vw;">
-
-							<span>{$vo.create_time|time_format='Y-m-d H:i'}</span>
-						</span>
-                                    <!--.qingjia .chuchai .baoxiao 三种颜色-->
-                                    <span class="yuan {eq name='$vo.type' value='1'}qingjia{else/}{eq name='$vo.type' value='2'}chuchai{else/}baoxiao{/eq}{/eq}">{$vo.title}</span>
-                                    <span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
-                                </div>
-                                <div class="arrow">
-                                    <img src="/home/images/review/rightArrow.png" alt="">
-                                </div>
-                            </div>
-                            <div class="swipeout-actions-right">
-                                <a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.type}")'>同 意</a>
-                                <a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.type}")'>不同意</a>
-                            </div>
-                </li>
-                {/volist}
-            </ul>
-        </div>
-        <!--加载更多-->
-        <div class="tip"></div>
-        <div class="loading hidden">
-            <div class="typing_loader"></div>
-        </div>
+<div class="top">
+    <div class="hint">
+        <img class="gesture" src="/home/images/user/gesture.png"/>
+        <span>向左滑动</span>
     </div>
+</div>
+<div class="lists">
+    {volist name="res" id="vo"}
+    <a href="{$vo.url}" class="list line-wrapper" data-id="{$vo.id}">
+        <div class="line-scroll-wrapper">
+            <div class="line-normal-wrapper">
+                <div class="cont"><div class="title"><p>{$vo.title}</p></div><div class="bot"><span class="fl">{$vo.publisher}</span><span class="fr">{$vo.time}</span></div></div>
+            </div>
+            <div class="line-btn-delete"><button onclick="shanchu(this,{$vo.tab},{$vo.id})">删除</button></div>
+        </div>
+    </a>
+    {/volist}
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
 </div>
 {/block}
 
 {block name="script"}
-<script src="/static/framework7/framework7.js"></script>
 <script>
-    var myApp=new Framework7;
-    var $$=Dom7;
+    function shanchu(e,type,id){
+//           var that=$(this)
+        console.log($(e))
 
-    $(function(){
-        check();
-    });
-    //没有消息显示无消息提醒
-    function check(){
-        if($("ul").find("li").length == 0){
-            $('#nomessage').show();
-        }
-    }
-
-    //跳转新闻详情
-    function jump(url){
-        parent.location.href= url;
-    }
-    //提交操作
-    function dispose(i,id,status,type){
         swal({
-            title: ' ',
-            text: '确认当前操作吗？',
-            type: 'warning',
-            confirmButtonText:'确定',
-            showCancelButton:true,
-            cancelButtonText:'取消'
-        },function(isConfirm){
-            //确认之后执行函数
-            if (isConfirm) {
-                $.ajax({
-                    type: "post",
-                    url: "{:Url('approved/review')}",
-                    data: {
-                        id:id,
-                        status:status,
-                        tab : type
-                    },
-                    success: function(data){
-                        //成功后刷新页面
-                        if(data.code == 1){
-                            //未审核页面有操作,审核页面用来判断刷新
-                            sessionStorage.setItem("review","true");
-                            $(i).parent().parent().fadeOut(500);
-                            $(i).parent().parent().remove();
-                            //判断是否还有消息
-                            check();
-                            //swal回调里继续使用swal有时不会被触发
-                            setTimeout(function(){
-                                swal("操作成功！","",'success')
-                            },200);
-                        }else{
-                            setTimeout(function(){
-                                swal("操作失败","",'error')
-                            },200);
+                title: "确定删除吗？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "确定！",
+                cancelButtonText: "取消！",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+
+            function(isConfirm){
+                if (isConfirm) {
+                    swal({
+                        title: "删除成功！",
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        type:'post',
+                        url:"{:Url('Base/collect')}",
+                        data:{
+                            type:type,
+                            aid:id,
+                        },
+                        success:function(data){
+                            console.log(data)
                         }
-                    }
-                })
-            }
-        });
-    }
+                    })
+                    $(e).parent().parent().parent().remove();
+                } else {
+                    swal("取消");
 
-    function aleats(msg,status){
-        swal({
-                title: ' ',
-                text: msg,
-                type: status,
-                confirmButtonText:'确定',
-                showConfirmButton:false
-            },function () {},
-            function (dismiss) {
-                if (dismiss === 'timer') {
-                    history.go(0);
                 }
-            })
+            });
     }
     var scrollNow = true;
-    loadScroll();
+    loadScroll()
     function loadScroll(){
-        $(window).off("scroll").on("scroll",function(){
+        $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $('.views li').length;
+            var len = $('.lists a').length;
             var tip = $(".tip");
             var loading = $('.loading');
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url: "{:Url('approved/reviewlistMore')}",
+                    url: "{:Url('user/morecollect')}",
                     data:{
                         length:len
                     },
@@ -169,16 +102,14 @@
                         tip.show();
                         if(data.code == 1){
                             addLists(data);
-                            if(data.data.length == 5){
+                            var dataLen =data.data.length;
+                            if(data.data.length >= 6){
                                 tip.text('上拉加载更多');
-
-                            }else{
-
+                            } else {
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
                             }
-                        } else {
-
+                        }else{
                             tip.text('没有更多了');
                             $(window ).off("scroll");
                         }
@@ -192,40 +123,116 @@
         var html = '';
         var lists = data.data;
         var len = lists.length;
-        for(var i = 0; i< len;i++){
-            var _url = '';
+        console.log(lists[18])
+        for(var i = 0; i< 6;i++){
             var list = lists[i];
-            var _cliass = '';
-            if(list.type==1){
-                _url = '/home/approved/leavedetail/id/'+list.id+'.html';
-                _cliass = 'qingjia'
-            }else if(list.type==2){
-                _url = '/home/approved/tripdetail/id/'+list.id+'.html';
-                _cliass = 'chuchai'
-            }else if(list.type==3){
-                _url = '/home/approved/reimbursementdetail/id/'+list.id+'.html';
-                _cliass = 'baoxiao'
-            }
-            html +='<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">'
-                +'<div class="swipeout-content" onclick="jump(\''+_url+'\')">'
-                +'<div class="list" style="width:100%;">'
-                +'<span class="title">'+list.publisher+'</span>'
-                +'<span class="sent_time" style="width:88vw;">'
-                +'<span>'+list.time+'</span>'
-                +'</span>'
-                +'<span class="yuan '+_cliass+'">'+list.title+'</span>'
-                +'<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>'
+            //var pid = $('.part div' ).eq(list.pid ).text();
+            html += '<a href="'+list.url+'.html" class="list line-wrapper" data-id="'+list.id+'">'
+                +'<div class="line-scroll-wrapper">'
+                +'<div class="line-normal-wrapper">'
+                +'<div class="cont"><div class="title"><p>'+list.title+'</p></div><div class="bot"><span class="fl">'+list.publisher+'</span><span class="fr">'+list.time+'</span></div></div>'
+                +'<div class="line-btn-delete"><button onclick="shanchu(this,'+list.tab+','+list.id+')">删除</button></div>'
                 +'</div>'
-                +'<div class="arrow"><img src="/home/images/review/rightArrow.png" alt=""></div>'
                 +'</div>'
-                +'<div class="swipeout-actions-right">'
-                +'<a class="green" onclick="dispose(this,'+list.id+',1,'+list.type+')">同 意</a>'
-                +'<a class="red" onclick="dispose(this,'+list.id+',-1,'+list.type+')">同 意</a>'
-                +'</div>'
-                +'</li>'
+                +'</a>'
         }
-        $('#list-block-company ul').append(html);
+        $('.lists').append(html);
+        console.log(html)
     }
+    $(document).ready(function(e) {
+        // 设定每一行的宽度=屏幕宽度+按钮宽度
+        $(".line-scroll-wrapper").width($(".line-wrapper").width() + $(".line-btn-delete").width()+.6);
+        // 设定常规信息区域宽度=屏幕宽度
+        $(".line-normal-wrapper").width($(".line-wrapper").width());
+        $('.line-btn-delete').height($(".line-wrapper").height());
+        // 设定文字部分宽度（为了实现文字过长时在末尾显示...）
+        // 获取所有行，对每一行设置监听
+        var lines = $(".line-normal-wrapper");
+        var len = lines.length;
+        var lastX, lastXForMobile;
+
+        // 用于记录被按下的对象
+        var pressedObj;  // 当前左滑的对象
+        var lastLeftObj; // 上一个左滑的对象
+
+        // 用于记录按下的点
+        var start;
+        // 网页在移动端运行时的监听
+        for (var i = 0; i < len; ++i) {
+            lines[i].addEventListener('touchstart', function(e){
+                lastXForMobile = e.changedTouches[0].pageX;
+                pressedObj = this; // 记录被按下的对象
+                // 记录开始按下时的点
+                var touches = event.touches[0];
+                start = {
+                    x: touches.pageX, // 横坐标
+                    y: touches.pageY  // 纵坐标
+                };
+            });
+
+            lines[i].addEventListener('touchmove',function(e){
+                // 计算划动过程中x和y的变化量
+                var touches = event.touches[0];
+                delta = {
+                    x: touches.pageX - start.x,
+                    y: touches.pageY - start.y
+                };
+
+                // 横向位移大于纵向位移，阻止纵向滚动
+                if (Math.abs(delta.x) > Math.abs(delta.y)) {
+                    event.preventDefault();
+                }
+            });
+
+            lines[i].addEventListener('touchend', function(e){
+                if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
+                    $(lastLeftObj).animate({marginLeft:"0"}, 200); // 右滑
+                    lastLeftObj = null; // 清空上一个左滑的对象
+                }
+                var diffX = e.changedTouches[0].pageX - lastXForMobile;
+                if (diffX < -100) {
+                    $(pressedObj).animate({marginLeft:"-20vw"}, 200); // 左滑
+                    lastLeftObj && lastLeftObj != pressedObj &&
+                    $(lastLeftObj).animate({marginLeft:"0"}, 200); // 已经左滑状态的按钮右滑
+                    lastLeftObj = pressedObj; // 记录上一个左滑的对象
+                } else if (diffX > 100) {
+                    if (pressedObj == lastLeftObj) {
+                        $(pressedObj).animate({marginLeft:"0"}, 200); // 右滑
+                        lastLeftObj = null; // 清空上一个左滑的对象
+                    }
+                }
+            });
+        }
+        // 网页在PC浏览器中运行时的监听
+        for (var i = 0; i < len; ++i) {
+            $(lines[i]).bind('mousedown', function(e){
+                lastX = e.clientX;
+                pressedObj = this; // 记录被按下的对象
+            });
+
+            $(lines[i]).bind('mouseup', function(e){
+                if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
+                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 右滑
+                    lastLeftObj = null; // 清空上一个左滑的对象
+                }
+                var diffX = e.clientX - lastX;
+                if (diffX < -100) {
+                    $(pressedObj).animate({marginLeft:"-20vw"}, 500); // 左滑
+                    lastLeftObj && lastLeftObj != pressedObj &&
+                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
+                    lastLeftObj = pressedObj; // 记录上一个左滑的对象
+                } else if (diffX > 100) {
+                    if (pressedObj == lastLeftObj) {
+                        $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
+                        lastLeftObj = null; // 清空上一个左滑的对象
+                    }
+                }
+            });
+        }
+    });
+
+
+
 
 </script>
 {/block}
