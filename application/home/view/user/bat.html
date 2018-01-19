@@ -1,0 +1,231 @@
+{extend name="public/common"}
+
+{block name="style"}
+<title>消息审核</title>
+<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
+<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
+<link rel="stylesheet" href="/home/css/approved/review.css">
+<link rel="stylesheet" href="/home/css/common/tip.css">
+<style>
+    body{overflow: initial;!important;font-size: 1.4rem;!important;}
+</style>
+{/block}
+
+{block name="body"}
+<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
+<div class="list-t-wrap" style="margin-top: 6vh;">
+    <div class="list-wrapper">
+        <!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
+        <div class="list-block" id="list-block-company">
+            <div id="nomessage">
+                <img src="/home/images/nomessage.png" alt="无消息">
+            </div>
+            <ul>
+                {volist name="list" id="vo"}
+                <li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
+                    {if condition="$vo.type eq 1"}
+                    <?php $url = Url('approved/leavedetail?id='.$vo['id'].'&visit=1');?>
+                    <div class="swipeout-content" onclick="jump('{$url}')">
+                        {elseif condition="$vo.type eq 2"/}
+                        <?php $url = Url('approved/tripdetail?id='.$vo['id'].'&visit=1');?>
+                        <div class="swipeout-content" onclick="jump('{$url}')">
+                            {else/}
+                            <?php $url = Url('approved/reimbursementdetail?id='.$vo['id'].'&visit=1');?>
+                            <div class="swipeout-content" onclick="jump('{$url}')">
+                                {/if}
+                                <div class="list" style="width:100%;">
+                                    <span class="title">{$vo.publisher}</span>
+                                    <span class="sent_time" style="width:88vw;">
+
+							<span>{$vo.create_time|time_format='Y-m-d H:i'}</span>
+						</span>
+                                    <!--.qingjia .chuchai .baoxiao 三种颜色-->
+                                    <span class="yuan {eq name='$vo.type' value='1'}qingjia{else/}{eq name='$vo.type' value='2'}chuchai{else/}baoxiao{/eq}{/eq}">{$vo.title}</span>
+                                    <span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
+                                </div>
+                                <div class="arrow">
+                                    <img src="/home/images/review/rightArrow.png" alt="">
+                                </div>
+                            </div>
+                            <div class="swipeout-actions-right">
+                                <a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.type}")'>同 意</a>
+                                <a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.type}")'>不同意</a>
+                            </div>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+        <!--加载更多-->
+        <div class="tip"></div>
+        <div class="loading hidden">
+            <div class="typing_loader"></div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/static/framework7/framework7.js"></script>
+<script>
+    var myApp=new Framework7;
+    var $$=Dom7;
+
+    $(function(){
+        check();
+    });
+    //没有消息显示无消息提醒
+    function check(){
+        if($("ul").find("li").length == 0){
+            $('#nomessage').show();
+        }
+    }
+
+    //跳转新闻详情
+    function jump(url){
+        parent.location.href= url;
+    }
+    //提交操作
+    function dispose(i,id,status,type){
+        swal({
+            title: ' ',
+            text: '确认当前操作吗？',
+            type: 'warning',
+            confirmButtonText:'确定',
+            showCancelButton:true,
+            cancelButtonText:'取消'
+        },function(isConfirm){
+            //确认之后执行函数
+            if (isConfirm) {
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('approved/review')}",
+                    data: {
+                        id:id,
+                        status:status,
+                        tab : type
+                    },
+                    success: function(data){
+                        //成功后刷新页面
+                        if(data.code == 1){
+                            //未审核页面有操作,审核页面用来判断刷新
+                            sessionStorage.setItem("review","true");
+                            $(i).parent().parent().fadeOut(500);
+                            $(i).parent().parent().remove();
+                            //判断是否还有消息
+                            check();
+                            //swal回调里继续使用swal有时不会被触发
+                            setTimeout(function(){
+                                swal("操作成功！","",'success')
+                            },200);
+                        }else{
+                            setTimeout(function(){
+                                swal("操作失败","",'error')
+                            },200);
+                        }
+                    }
+                })
+            }
+        });
+    }
+
+    function aleats(msg,status){
+        swal({
+                title: ' ',
+                text: msg,
+                type: status,
+                confirmButtonText:'确定',
+                showConfirmButton:false
+            },function () {},
+            function (dismiss) {
+                if (dismiss === 'timer') {
+                    history.go(0);
+                }
+            })
+    }
+    var scrollNow = true;
+    loadScroll();
+    function loadScroll(){
+        $(window).off("scroll").on("scroll",function(){
+            var dh = $(document).height();
+            var end = $(window).height() + $(window ).scrollTop();
+            var len = $('.views li').length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                $.ajax({
+                    type:"post",
+                    url: "{:Url('approved/reviewlistMore')}",
+                    data:{
+                        length:len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        console.log(data)
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            addLists(data);
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+
+                            }else{
+
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
+                            }
+                        } else {
+
+                            tip.text('没有更多了');
+                            $(window ).off("scroll");
+                        }
+                        scrollNow = true;
+                    }
+                })
+            }
+        })
+    }
+    function addLists(data){
+        var html = '';
+        var lists = data.data;
+        var len = lists.length;
+        for(var i = 0; i< len;i++){
+            var _url = '';
+            var list = lists[i];
+            var _cliass = '';
+            if(list.type==1){
+                _url = '/home/approved/leavedetail/id/'+list.id+'.html';
+                _cliass = 'qingjia'
+            }else if(list.type==2){
+                _url = '/home/approved/tripdetail/id/'+list.id+'.html';
+                _cliass = 'chuchai'
+            }else if(list.type==3){
+                _url = '/home/approved/reimbursementdetail/id/'+list.id+'.html';
+                _cliass = 'baoxiao'
+            }
+            html +='<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">'
+                +'<div class="swipeout-content" onclick="jump(\''+_url+'\')">'
+                +'<div class="list" style="width:100%;">'
+                +'<span class="title">'+list.publisher+'</span>'
+                +'<span class="sent_time" style="width:88vw;">'
+                +'<span>'+list.time+'</span>'
+                +'</span>'
+                +'<span class="yuan '+_cliass+'">'+list.title+'</span>'
+                +'<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>'
+                +'</div>'
+                +'<div class="arrow"><img src="/home/images/review/rightArrow.png" alt=""></div>'
+                +'</div>'
+                +'<div class="swipeout-actions-right">'
+                +'<a class="green" onclick="dispose(this,'+list.id+',1,'+list.type+')">同 意</a>'
+                +'<a class="red" onclick="dispose(this,'+list.id+',-1,'+list.type+')">同 意</a>'
+                +'</div>'
+                +'</li>'
+        }
+        $('#list-block-company ul').append(html);
+    }
+
+</script>
+{/block}
