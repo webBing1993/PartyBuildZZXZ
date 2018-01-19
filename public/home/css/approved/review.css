@@ -53,29 +53,42 @@ li {
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	font-size: .3rem;
-	margin-left: 20vw;
+	margin-left:4vw;
+	position: absolute;
+	left:0;
+	bottom:4vw;
 }
 .list .sent_time {
 	display: block;
-	width: 61.7vw;
+	/*width: 61.7vw;*/
 	font-size: .24rem;
 	color: #999;
 	position:absolute;
-	bottom: 6vw;
-	margin-left: 20vw;
+	bottom: 4vw;
+	right:4vw;
+	/*margin-left: 20vw;*/
 }
 .yuan {
-	position: absolute;
-	top:3vh;
-	left:4vw;
-	width:11.73vw;
-	height:11.73vw;
-	background: #eee;
-	border-radius: 50%;
-	text-align: center;
-	line-height: 11.73vw;
-	font-size: .32rem;
-	color: #fff;
+	width:86vw;
+	display: block;
+	margin:4vw auto 0;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	word-break: break-all;
+	/*position: absolute;*/
+	/*top:3vh;*/
+	/*left:4vw;*/
+	/*width:11.73vw;*/
+	/*height:11.73vw;*/
+	/*background: #eee;*/
+	/*border-radius: 50%;*/
+	/*text-align: center;*/
+	/*line-height: 11.73vw;*/
+	/*font-size: .32rem;*/
+	/*color: #fff;*/
 }
 .rights {
 	position: absolute;

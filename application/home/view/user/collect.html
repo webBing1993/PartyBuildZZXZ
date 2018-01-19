@@ -26,20 +26,20 @@
                     <div class="swipeout-content" onclick="jump('{$vo.url}')">
                         <div class="list" style="width:100%;">
                             <span class="title">{$vo.publisher}</span>
-                            <span class="sent_time" style="width:88vw;">
+                            <span class="sent_time">
                             <span>{$vo.time}</span>
 						</span>
                             <!--.qingjia .chuchai .baoxiao 三种颜色-->
-                            <span class="yuan {eq name='$vo.type' value='1'}qingjia{else/}{eq name='$vo.type' value='2'}chuchai{else/}baoxiao{/eq}{/eq}">{$vo.title}</span>
-                            <span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
+                            <span  class="yuan">{$vo.title}</span>
+                            <!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
                         </div>
                         <div class="arrow">
                             <img src="/home/images/review/rightArrow.png" alt="">
                         </div>
                     </div>
                     <div class="swipeout-actions-right">
-                        <a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.tab}")'>同 意</a>
-                        <a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.tab}")'>不同意</a>
+                        <!--<a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.tab}")'>同 意</a>-->
+                        <a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.tab}")'>删除</a>
                     </div>
                 </li>
                 {/volist}
@@ -88,11 +88,10 @@
             if (isConfirm) {
                 $.ajax({
                     type: "post",
-                    url: "{:Url('approved/review')}",
+                    url:"{:Url('Base/collect')}",
                     data: {
-                        id:id,
-                        status:status,
-                        tab : type
+                        aid:id,
+                        type : type
                     },
                     success: function(data){
                         //成功后刷新页面
@@ -145,7 +144,7 @@
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url: "{:Url('approved/reviewlistMore')}",
+                    url: "{:Url('user/morecollect')}",
                     data:{
                         length:len
                     },
@@ -186,31 +185,21 @@
             var _url = '';
             var list = lists[i];
             var _cliass = '';
-            if(list.type==1){
-                _url = '/home/approved/leavedetail/id/'+list.id+'.html';
-                _cliass = 'qingjia'
-            }else if(list.type==2){
-                _url = '/home/approved/tripdetail/id/'+list.id+'.html';
-                _cliass = 'chuchai'
-            }else if(list.type==3){
-                _url = '/home/approved/reimbursementdetail/id/'+list.id+'.html';
-                _cliass = 'baoxiao'
-            }
             html +='<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">'
-                +'<div class="swipeout-content" onclick="jump(\''+_url+'\')">'
+                +'<div class="swipeout-content" onclick="jump(\''+list.url+'\')">'
                 +'<div class="list" style="width:100%;">'
                 +'<span class="title">'+list.publisher+'</span>'
-                +'<span class="sent_time" style="width:88vw;">'
+                +'<span class="sent_time">'
                 +'<span>'+list.time+'</span>'
                 +'</span>'
-                +'<span class="yuan '+_cliass+'">'+list.title+'</span>'
-                +'<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>'
+                +'<span class="yuan">'+list.title+'</span>'
+//                +'<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>'
                 +'</div>'
-                +'<div class="arrow"><img src="/home/images/review/rightArrow.png" alt=""></div>'
+//                +'<div class="arrow"><img src="/home/images/review/rightArrow.png" alt=""></div>'
                 +'</div>'
                 +'<div class="swipeout-actions-right">'
-                +'<a class="green" onclick="dispose(this,'+list.id+',1,'+list.type+')">同 意</a>'
-                +'<a class="red" onclick="dispose(this,'+list.id+',-1,'+list.type+')">同 意</a>'
+//                +'<a class="green" onclick="dispose(this,'+list.id+',1,'+list.type+')">同 意</a>'
+                +'<a class="red" onclick="dispose(this,'+list.id+',-1,'+list.type+')">删除</a>'
                 +'</div>'
                 +'</li>'
         }
