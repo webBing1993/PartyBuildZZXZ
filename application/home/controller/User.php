@@ -121,7 +121,7 @@ class User extends Base {
             }
             $res[$model['id']]['time'] = date("Y-m-d",$res[$model['id']]['create_time']);
         }
-        $this->assign('res',$res);
+        $this->assign('res',array_values($res));
         return $this->fetch();
     }
     /**
@@ -143,7 +143,7 @@ class User extends Base {
             $res[$model['id']]['time'] = date("Y-m-d",$res[$model['id']]['create_time']);
         }
         if($res){
-            return $this->success("加载成功",'',$res);
+            return $this->success("加载成功",'',array_values($res));
         }else{
             return $this->error("加载失败");
         }
