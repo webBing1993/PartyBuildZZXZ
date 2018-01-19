@@ -62,8 +62,8 @@ body{
 }
 .lr span{
     color:rgba(153,153,153,1);
-    font-size:0.28rem;
-    font-family:PingFang-SC-Medium;
+    font-size:.24rem;
+    /*font-family:PingFang-SC-Medium;*/
 }
 .time{
     width:23vw;

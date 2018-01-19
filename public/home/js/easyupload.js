@@ -116,17 +116,6 @@ https://github.com/funnyque
               _this._handleCheck(opt);
               // $('.easy_upload_queue').find('.easy_upload_select').remove();
           });
-          // $('.head_check').off('click').click(function () {
-          //   var opt = { type:'all', target:this };
-          //   var flag = $(this).attr('data-checked');
-          //   if (flag == 'no') {
-          //     opt.check = 'yes';
-          //   } else {
-          //     opt.check = 'no';
-          //   }
-          //   _this._handleCheck(opt);
-          //   console.log(opt)
-          // });
           $('.easy_upload_head_btn1').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
             var arr = _this._findItems(1, queueUl);
@@ -139,9 +128,6 @@ https://github.com/funnyque
                     _this._uploadFile(queueUl);
                 }
             }
-            console.log(arr=='')
-
-            // console.log(arr)
           });
           $('.easy_upload_head_btn2').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
@@ -183,6 +169,15 @@ https://github.com/funnyque
               var target = $(this).parent().parent().parent();
               _this._deleFiles([indx], target);
             }
+            // console.log($('.easy_upload_queue .easy_upload_queue_item').css('display')!=='none')
+              var num = [];
+              for(var P=0;P<$('.easy_upload_queue .easy_upload_queue_item').length;P++){
+                  if($('.easy_upload_queue .easy_upload_queue_item').eq(P).css('display')!=='none'){
+                      num.push($('.easy_upload_queue .easy_upload_queue_item').eq(P))
+                  }
+              }
+              console.log(num.length)
+              _this.bindHead();
           });
         },
         _checkFile: function (fileArr, target) {
@@ -263,18 +258,22 @@ https://github.com/funnyque
           }
             $('.easy_upload_queue').find('.easy_upload_select').remove();
           if($(queueUl).find('li').length>=9){
-              queueUl.find('.easy_upload_select').remove();
-          }else{
+              // queueUl.find('.easy_upload_select').remove();
+              queueUl.append('<span class="easy_upload_select noselect">' + option.selectText + '</span>');
+              // queueUl.find('.easy_upload_select').hide();
+          }
+          else{
               queueUl.append('<span class="easy_upload_select noselect">' + option.selectText + '</span>')
           }
 
-          this.bindQueue();
+
             $('.easy_upload_select').off('click').click(function () {
                 // $(this).parent().find('.fileInput').trigger('click');
                 $('.easy_upload-head').find('.fileInput').trigger('click');
                 // $('.easy_upload_queue').find('.easy_upload_select').remove();
                 $('.easy_upload-head').find('.easy_upload_select').hide();
             });
+            this.bindQueue();
         },
         _handleCheck: function (opt) {
           if (opt.type=='all') {

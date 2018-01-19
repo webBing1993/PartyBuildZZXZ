@@ -130,15 +130,18 @@ textarea{
     width:66.6vw;
     height:100%;
     float:right;
-    line-height:.9rem;
+    /*line-height:.9rem;*/
 }
 .image{
-    width:9.6vw;
-    height:9.6vw;
-    vertical-align: middle;
+    width:.76rem;
+    height:.76rem;
+    /*vertical-align: middle;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
+    position: relative;
+    top:50%;
+    margin-top: -.38rem;
 }
 .name{
     font-size:.3rem;
