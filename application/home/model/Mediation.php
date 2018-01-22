@@ -59,4 +59,18 @@ class Mediation extends Model {
         self::STATUS_TOTIME_FEEDBACK  => 'feedback_time',
         self::STATUS_TOTIME_ESTIMATE  => 'estimate_time',
     ];
+    const STATUS_COLOR_NOAPPROVE = -1;
+    const STATUS_COLOR_COMMIT = 1;
+    const STATUS_COLOR_CHECK = 2;
+    const STATUS_COLOR_CONFIRM = 3;
+    const STATUS_COLOR_FEEDBACK = 4;
+    const STATUS_COLOR_ESTIMATE = 5;
+    const STATU_COLOR_ARRAY = [
+        self::STATUS_COLOR_NOAPPROVE  => 'not',
+        self::STATUS_COLOR_COMMIT  => 'wait',
+        self::STATUS_COLOR_CHECK  => 'verify',
+        self::STATUS_COLOR_CONFIRM  => 'message',
+        self::STATUS_COLOR_FEEDBACK  => 'appraise',
+        self::STATUS_COLOR_ESTIMATE  => 'complete',
+    ];
 }

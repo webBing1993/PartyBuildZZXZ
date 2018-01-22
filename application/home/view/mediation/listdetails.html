@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>部门简介</title>
+<title>网上申请</title>
 <link rel="stylesheet" href="/home/css/mediation/index.css">
 <style>
     .list:active{
@@ -15,74 +15,19 @@
 {block name="body"}
     <!--用户网上申请-->
     <div class="apply user">
+        {volist name="list" id="vo"}
         <div style="position: relative;" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list">
+            <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
                 <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
                 <div class="fr1">
-                    <p>进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1进出口贸易有限公司劳动纠纷1</p>
+                    <p>{$vo.title}</p>
                     <div class="bt">
-                        <div class="time">2017-12-22</div>
+                        <div class="time">{$vo.create_time|time_format="Y-m-d"}</div>
                     </div>
                 </div>
             </a>
         </div>
-        <div style="position: relative;" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list">
-                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
-                <div class="fr1">
-                    <p>进出口贸易有限公司劳动纠纷1</p>
-                    <div class="bt">
-                        <div class="time">2017-12-22</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div style="position: relative;" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list">
-                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
-                <div class="fr1">
-                    <p>进出口贸易有限公司劳动纠纷1</p>
-                    <div class="bt">
-                        <div class="time">2017-12-22</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div style="position: relative;" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list">
-            <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
-            <div class="fr1">
-                <p>进出口贸易有限公司劳动纠纷1</p>
-                <div class="bt">
-                    <div class="time">2017-12-22</div>
-                </div>
-            </div>
-        </a></div>
-        <div style="position: relative;" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list val">
-                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt=""/>
-                <div class="fr1">
-                    <p>进出口贸易有限公司劳动纠纷1</p>
-                    <div class="bt">
-                        <div class="time">2017-12-22</div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div style="position: relative" class="userlist">
-            <a href="/home/mediation/yhdetails.html" class="list">
-                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
-                <div class="fr1">
-                    <p>进出口贸易有限公司劳动纠纷1</p>
-                    <div class="bt">
-                        <div class="time">2017-12-22</div>
-
-                    </div>
-                </div>
-            </a>
-        </div>
+        {/volist}
     </div>
 <div class="tip"></div>
 <div class="loading hidden">

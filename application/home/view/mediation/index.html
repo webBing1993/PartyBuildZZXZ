@@ -59,8 +59,8 @@
                 <div class="userImg"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
                 <p class="name">{$vo.name}</p>
                 <p class="num">已调解案例　<span>{$vo.num}</span>　起</p>
-                <a href="{:Url('Mediation/application?id='.$vo.id)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
-                <a href="{:Url('Mediation/medcase?id='.$vo.id)}" class="more">查看更多</a>
+                <a href="{:Url('Mediation/application?id='.$vo.userid)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
+                <a href="{:Url('Mediation/medcase?id='.$vo.userid)}" class="more">查看更多</a>
             </li>
             {/volist}
         </ul>
@@ -68,29 +68,30 @@
 </div>
 <div class="mediationContenr" id="side3">
     <!--管理员网上申请-->
+    {eq name="$user_tag" value="1"}
     <div class="apply Administrator line">
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=1')}" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/not.png"  alt=""/>
             <div class="fr1">
-                审核不通过 <span>(2)</span>
+                审核不通过 <span>({$count_noapprove})</span>
             </div>
         </a>
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=2')}" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/verify.png"  alt=""/>
             <div class="fr1">
-                调解员待确认 <span>(2)</span>
+                调解员待确认 <span>({$count_check})</span>
             </div>
         </a>
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=3')}" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/message.png"  alt=""/>
             <div class="fr1">
-                纠纷待处理 <span>(1)</span>
+                纠纷待处理 <span>({$count_confirm})</span>
             </div>
         </a>
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=4')}" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/complete.png"  alt=""/>
             <div class="fr1">
-                已完成 <span>(2)</span>
+                已完成 <span>({$count_done})</span>
             </div>
         </a>
         <!--<div class="newimg">-->
@@ -98,30 +99,34 @@
         <!--</div>-->
         <!--<span class="creation">新建申请</span>-->
     </div>
+    {/eq}
 
     <!--调解员网上申请-->
+    {eq name="$user_tag" value="2"}
     <div class="apply mediator1 line">
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=2')}" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/verify.png"  alt=""/>
             <div class="fr1">
-                调解员待确认 <span>(2)</span>
+                调解员待确认 <span>({$count_check})</span>
             </div>
         </a>
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=3')}" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/message.png"  alt=""/>
             <div class="fr1">
-                纠纷待处理 <span>(1)</span>
+                纠纷待处理 <span>({$count_confirm})</span>
             </div>
         </a>
-        <a href="/home/mediation/listdetails.html" class="list">
+        <a href="{:Url('Mediation/listdetails?type=4')}" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/complete.png"  alt=""/>
             <div class="fr1">
-                已完成 <span>(2)</span>
+                已完成 <span>({$count_done})</span>
             </div>
         </a>
     </div>
+    {/eq}
 
     <!--用户网上申请-->
+    {eq name="$user_tag" value="3"}
     <div class="apply user">
         {volist name="list3" id="vo"}
         <div style="position: relative;">
@@ -131,7 +136,7 @@
                     <p>{$vo.title}</p>
                     <div class="bt">
                         <div class="time">{$vo.create_time|time_format="Y-m-d"}</div>
-                        <span class="status wait" >{$vo.status_text}</span>
+                        <span class="status {$vo.status_color}" >{$vo.status_text}</span>
                     </div>
                 </div>
             </a>
@@ -144,6 +149,7 @@
             <img class="shareimg" src="/home/images/lxyz/icon/share.png"  alt=""/>
         </a>
     </div>
+    {/eq}
 </div>
 
 
