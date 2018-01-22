@@ -305,6 +305,160 @@
 //            // 字数限定
 //            numlimit(400)
 //        });
+        $(function(){
+            //上传
+            $('.present' ).on('click',function(){
+                var content = $("textarea[name='content']").val();
+                var img = $('.img img' );
+                var data;
+                var images = [];
+                var imglen = img.length;
+                if(imglen > 0){
+                    for(var i =0 ;i< imglen ;i++){
+                        images.push(img.eq(i ).attr('data-tab'));
+                    }
+                    data ={
+                        content:content,
+                        images:images
+                    };
+                }else{
+                    data ={
+                        content:content,
+                        images:''
+                    };
+                }
+                if(content != ''){
+                    var tnum =  $('textarea').val().length;
+                    if(tnum <= 400){
+                        // 弹窗
+                        swal({
+                                title: ' ',
+                                text: '我已完成编辑，马上发送！',
+                                type: 'success',
+                                showCancelButton: true,
+                                confirmButtonText:'确定',
+                                cancelButtonText: "取消",
+                                closeOnConfirm: false
+                            },
+                            function(){
+                                $(".sweet-alert .sa-confirm-button-container").css("display","none");
+                                swal("", "发送中...", "success");
+                                $.ajax({
+                                    type:"post",
+//                                    url: "{:Url('Feedback/publish')}",
+                                    data:data,
+                                    success:function(data){
+                                        setTimeout(function(){
+//                                            window.location.href = "{:Url('Feedback/index')}";
+                                        },800);
+                                    }
+                                });
+                            });
+                    }else{
+                        swal({
+                            title: ' ',
+                            text: '请输入少于400字的意见！',
+                            type: 'error',
+                            confirmButtonText:'确定',
+                            timer:3000
+                        });
+                    }
+                }else{
+                    swal({
+                        title: ' ',
+                        text: '请输入您的意见后上传!',
+                        type: 'error',
+                        confirmButtonText:'确定',
+                        timer:2500
+                    });
+                }
+            });
+            //--------------------------------------------------------------------------
+            //
+            // 清除同一张图片再次上传bug
+            function clearImg() {
+                $("input[type = 'file']").remove();
+            }
+
+            function addImg() {
+                var addImg = '<input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">';
+                $(".imgs").append(addImg);
+            }
+
+            //--------------------------------------------------------------------------
+//            图片预览
+            $('.new' ).on('click',function(){
+                var imglen = $('.img img' ).length;
+                var this_ = $(this );
+                var loading = $('.loading');
+                $('#upimg').click().off("change").on('change',function(){
+                    var size = ($(this)[0].files[0].size / 1024).toFixed(2);
+                    if(size <= 5120){
+                        var img = $(this)[0].files[0];
+                        var formData = new FormData();
+                        formData.append("picture",img);
+                        $.ajax({
+                            type: "post",
+                            url: "{:Url('File/uploadPicture')}",
+                            data: formData,
+                            processData : false,
+                            contentType : false,
+                            beforeSend: function(XMLHttpRequest){
+                                loading.toggleClass('hidden');
+                            },
+                            success:function(data){
+                                clearImg();
+                                var msg = $.parseJSON(data);
+                                loading.toggleClass('hidden');
+                                if(msg.code == 1){
+                                        //图片添加
+                                        if(imglen == 3){
+                                            $('.add' ).hide()
+                                        }
+                                        $('.img').eq(imglen).removeClass('hide' )
+                                            .append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
+                                        if(imglen>=0){
+                                               $('.x').on('click',function(){
+                                                   console.log(11111)
+                                                $(this).parents(".img").remove();
+                                                $('.add').before('<div class="img fl hide"><span class="x">X</span></div>')
+                                                if(imglen<4){
+                                                    $('.add' ).show();
+                                                }
+                                            })
+                                        }
+                                    imgresize();
+
+                                } else {
+                                    swal({
+                                        title: ' ',
+                                        html: '上传失败',
+                                        type: 'error',
+                                        showConfirmButton:false,
+                                        timer:1500
+                                    });
+                                }
+                                addImg();
+                            }
+                        });
+                    } else {
+                        clearImg();
+                        swal({
+                            title: ' ',
+                            text: '您的图片超过5M',
+                            type: 'warning',
+                            showConfirmButton:false,
+                            timer:1500
+                        });
+                        addImg();
+                    }
+                });
+
+            });
+
+            // 字数限定
+            numlimit(400)
+        });
         function imgresize(){
             setTimeout(function(){
                 var img = $('.img img' );

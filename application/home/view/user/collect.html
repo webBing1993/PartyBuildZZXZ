@@ -1,56 +1,41 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>消息审核</title>
-<link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
-<link rel="stylesheet" href="/static/framework7/framework7.ios.css">
-<link rel="stylesheet" href="/home/css/approved/review.css">
-<link rel="stylesheet" href="/home/css/common/tip.css">
-<style>
-    body{overflow: initial;!important;font-size: 1.4rem;!important;}
+<link rel="stylesheet" href="/home/css/user/collect.css">
+<title>我的收藏</title>
+<style type="text/css">
+    * { margin: 0; padding: 0; }
+
 </style>
 {/block}
-
 {block name="body"}
-<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
-<div class="list-t-wrap" style="margin-top: 6vh;">
-    <div class="list-wrapper">
-        <!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
-        <div class="list-block" id="list-block-company">
-            <div id="nomessage">
-                <img src="/home/images/nomessage.png" alt="无消息">
-            </div>
-            <ul>
-                {volist name="res" id="vo"}
-                <li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
-                    <div class="swipeout-content" onclick="jump('{$vo.url}')">
-                        <div class="list" style="width:100%;">
-                            <span class="title">{$vo.publisher}</span>
-                            <span class="sent_time">
-                            <span>{$vo.time}</span>
-						</span>
-                            <!--.qingjia .chuchai .baoxiao 三种颜色-->
-                            <span  class="yuan">{$vo.title}</span>
-                            <!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
-                        </div>
-                        <div class="arrow">
-                            <img src="/home/images/review/rightArrow.png" alt="">
-                        </div>
-                    </div>
-                    <div class="swipeout-actions-right">
-                        <!--<a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.tab}")'>同 意</a>-->
-                        <a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.tab}")'>删除</a>
-                    </div>
-                </li>
-                {/volist}
-            </ul>
-        </div>
-        <!--加载更多-->
-        <div class="tip"></div>
-        <div class="loading hidden">
-            <div class="typing_loader"></div>
-        </div>
+<div class="top">
+    <div class="hint">
+        <img class="gesture" src="/home/images/user/gesture.png"/>
+        <span>向左滑动</span>
     </div>
+</div>
+<div class="lists">
+    {volist name="res" id="vo"}
+    <a href="#" class="list line-wrapper" data-id="{$vo.id}">
+        <div class="line-scroll-wrapper">
+            <div class="line-normal-wrapper">
+                <div class="cont">
+                    <div class="title"><p>{$vo.title}</p></div>
+                    <div class="bot">
+                        <span class="fl">{$vo.publisher}</span>
+                        <span class="fr">{$vo.time}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line-btn-delete"><button onclick="shanchu(this,1,1)">删除</button></div>
+        </div>
+    </a>
+    {/volist}
+</div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
 </div>
 {/block}
 
