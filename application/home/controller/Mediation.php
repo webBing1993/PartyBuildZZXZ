@@ -8,6 +8,7 @@
 
 namespace app\home\controller;
 use app\home\model\Like;
+use app\home\model\WechatUserTag;
 use think\Db;
 use think\Request;
 use think\Controller;
@@ -15,6 +16,7 @@ use app\home\model\Browse;
 use app\home\model\Comment;
 use app\admin\model\Picture;
 use app\home\model\WechatUser;
+use app\home\model\Mediation as MediationModel;
 use app\home\model\MediationCase;
 use app\home\model\MediationUser;
 
@@ -31,10 +33,36 @@ class Mediation extends Base
 
         $list2 = MediationUser::where($map)->order('id desc')->select();
         $this->assign('list2',$list2);
+
+
+        $userId = session('userId');
+        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 1])->find();
+        if($tag){
+            $user_tag = 1;//管理员
+        }else{
+            $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 2])->find();
+            if($tag){
+                $user_tag = 2;//调解员
+            }else{
+                $user_tag = 3;//申请人
+            }
+        }
+        $list3 = [];
+        if($user_tag == 3){
+            $map_to = [
+                'userid' => $userId,
+            ];
+            $list3 = MediationModel::where($map_to)->limit(10)->order('id desc')->select();
+            foreach ($list3 as $value) {
+                $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
+            }
+        }
+        $this->assign('user_tag',$user_tag);
+        $this->assign('list3',$list3);
         return $this->fetch();
     }
     /**
-     * 加载更多
+     * 案例加载更多
      */
     public function indexmore(){
         $len = input('length');
@@ -46,6 +74,29 @@ class Mediation extends Base
             $map['uid'] = $uid;
         }
         $list = MediationCase::where($map)->order('id desc')->limit($len,6)->select();
+        foreach($list as $value){
+            $value['time'] = date("Y-m-d",$value['create_time']);
+        }
+        if($list){
+            return $this->success("加载成功",'',$list);
+        }else{
+            return $this->error("加载失败");
+        }
+    }
+    /**
+     * 网上申请加载更多
+     */
+    public function mediationmore(){
+        $userId = session('userId');
+        $len = input('length');
+        $status = input('status');
+        $map = array(
+            'userid' => $userId,
+        );
+        if($status){
+            $map['status'] = $status;
+        }
+        $list = MediationModel::where($map)->limit($len,6)->order('id desc')->select();
         foreach($list as $value){
             $value['time'] = date("Y-m-d",$value['create_time']);
         }
