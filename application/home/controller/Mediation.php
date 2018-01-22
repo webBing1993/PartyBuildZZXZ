@@ -146,4 +146,7 @@ class Mediation extends Base
     public function evaluate(){
         return $this->fetch();
     }
+    public function listdetails(){
+        return $this->fetch();
+    }
 }

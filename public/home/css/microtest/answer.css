@@ -98,7 +98,7 @@ body{
 	line-height: 25px;
 	text-align: center;
 	font-weight: 400;
-	position: absolute;
+	/*position: absolute;*/
 	top:0;
 	left: 0;
 	/*opacity: 0;*/

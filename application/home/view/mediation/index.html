@@ -44,6 +44,10 @@
         </div>
     </div>
 </div>
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
 <div class="mediationContenr" id="side2">
     <!--banner-->
     <div class="banner"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
@@ -63,27 +67,27 @@
     </div>
 </div>
 <div class="mediationContenr" id="side3">
-    管理员网上申请
+    <!--管理员网上申请-->
     <div class="apply Administrator line">
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/not.png"  alt=""/>
             <div class="fr1">
                 审核不通过 <span>(2)</span>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/verify.png"  alt=""/>
             <div class="fr1">
                 调解员待确认 <span>(2)</span>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/message.png"  alt=""/>
             <div class="fr1">
                 纠纷待处理 <span>(1)</span>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="adminimg" src="/home/images/lxyz/icon/complete.png"  alt=""/>
             <div class="fr1">
                 已完成 <span>(2)</span>
@@ -95,21 +99,21 @@
         <!--<span class="creation">新建申请</span>-->
     </div>
 
-    调解员网上申请
+    <!--调解员网上申请-->
     <div class="apply mediator1 line">
-        <a href="/home/mediation/tjydetails.html" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/verify.png"  alt=""/>
             <div class="fr1">
                 调解员待确认 <span>(2)</span>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/message.png"  alt=""/>
             <div class="fr1">
                 纠纷待处理 <span>(1)</span>
             </div>
         </a>
-        <a href="#" class="list">
+        <a href="/home/mediation/listdetails.html" class="list">
             <img class="medimg" src="/home/images/lxyz/icon/complete.png"  alt=""/>
             <div class="fr1">
                 已完成 <span>(2)</span>
@@ -117,7 +121,7 @@
         </a>
     </div>
 
-    用户网上申请
+    <!--用户网上申请-->
     <div class="apply user">
         {volist name="list3" id="vo"}
         <div style="position: relative;">
@@ -142,10 +146,7 @@
     </div>
 </div>
 
-<div class="tip"></div>
-<div class="loading hidden">
-    <div class="typing_loader"></div>
-</div>
+
 
 {/block}
 {block name="script"}
@@ -175,76 +176,60 @@ $('#side'+med).show();
             var len = $('.caseSort a').length;
             var tip = $(".tip");
             var loading = $('.loading');
-            if(dh == end && scrollNow){
-                scrollNow = false;
-                $.ajax({
-                    type:"post",
-                    url: "{:Url('Mediation/indexmore')}",
-                    data:{
-                        length:len
-                    },
-                    beforeSend: function(XMLHttpRequest){
-                        tip.hide();
-                        loading.toggleClass('hidden');
-                    },
-                    success:function(data){
-                        console.log(data)
-                        loading.toggleClass('hidden');
-                        tip.show();
-                        if(data.code == 1){
-                            addLists(data,type);
-                            var dataLen =data.data.length;
-                            if(data.data.length >= 2){
-                                tip.text('上拉加载更多');
-                            } else {
+            if(med==1){
+                if(dh == end && scrollNow){
+                    scrollNow = false;
+                    $.ajax({
+                        type:"post",
+                        url: "{:Url('Mediation/indexmore')}",
+                        data:{
+                            length:len
+                        },
+                        beforeSend: function(XMLHttpRequest){
+                            tip.hide();
+                            loading.toggleClass('hidden');
+                        },
+                        success:function(data){
+                            console.log(data)
+                            console.log(med)
+                            loading.toggleClass('hidden');
+                            tip.show();
+                            if(data.code == 1){
+                                addLists(data,med);
+                                var dataLen =data.data.length;
+                                if(data.data.length >= 2){
+                                    tip.text('上拉加载更多');
+                                } else {
+                                    tip.text('没有更多了');
+                                    $(window ).off("scroll");
+                                }
+                            }else{
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
                             }
-                        }else{
-                            tip.text('没有更多了');
-                            $(window ).off("scroll");
+                            scrollNow = true;
                         }
-                        scrollNow = true;
-                    }
-                })
+                    })
+                }
             }
+
         })
     }
     function addLists(data,t){
         var html = '';
         var len = data.data.length;
         var lists = data.data;
-        if(t == 1){
-            for(var i=0;i<len;i++){
-                if(lists[i].description == null){
-                    lists[i].description = ''
+            if(t == 1){
+                for(var i=0;i<len;i++){
+                    html +='<a href="/home/mediation/newdetail/id/'+lists[i].id+'.html">'
+                        +'<div class="caseSort_01"><span></span>'+lists[i].title+'</div>'
+                        +'<div class="caseSort_02">'+lists[i].description+'</div>'
+                        +' <div class="caseSort_03">'
+                        +'<span>'+lists[i].publisher+'</span><span>'+lists[i].time+'</span></div></a>'
+
                 }
-                html +='<a href="/home/notice/detail/id/'+lists[i].id+'.html" class="list clear">'
-                    +'<div class="fr right">'
-                    +'<div class="title limit_" style="position: relative;padding-left: 4vw;"><span></span><span style="display: block;min-height: 6vh;">'+lists[i].title+'</span></div>'
-                    +'<div class="labels">'+lists[i].description+'</div>'
-                    +'<div class="clear time"><span class="fl">'+lists[i].publisher+'</span><span class="fr" style="color: #999;">'+lists[i].time+'</span></div>'
-                    +'</div>'
-                    +'</div>'
-                    +'</a>'
+                $('.caseSort').append(html);
             }
-            $('.notices').eq(t-1).find('.volunteer').append(html);
-        }else {
-            for(var j=0;j<len;j++){
-                if(lists[j].description == null){
-                    lists[j].description = ''
-                }
-                html +='<a href="/home/notice/detail/id/'+lists[j].id+'.html" class="list clear">'
-                    +'<div class="fr right">'
-                    +'<div class="title limit_" style="position: relative;padding-left: 4vw;"><span></span><span style="display: block;min-height: 6vh;">'+lists[j].title+'</span></div>'
-                    +'<div class="labels" style="display: none;">'+lists[j].description+'</div>'
-                    +'<div class="clear time"><span class="fl">'+lists[j].publisher+'</span><span class="fr" style="color: #999;">'+lists[j].time+'</span></div>'
-                    +'</div>'
-                    +'</div>'
-                    +'</a>'
-            }
-            $('.notices').eq(t-1).find('.volunteer').append(html);
-        }
     }
 
     $('.user>div').each(function(){

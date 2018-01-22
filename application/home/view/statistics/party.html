@@ -45,12 +45,12 @@
         var WH = $(window).height();
         var WW = $(window).width();
         $('#tab0').height(WH);
-        $("iframe").css("margin-top","44px");
+        $("iframe").css("margin-top",".88rem");
         //tab切换
         var number = localStorage.getItem('num')==null?0:localStorage.getItem('num');
         $('.tabs>.tab ').on('click',function(){
+            $("iframe").css("margin-top",".88rem");
             $("iframe").attr("src","");
-            $("iframe").css("margin-top","44px");
             var ntc = $('.notices' );
             var eq = $(this ).index();
             localStorage.setItem('num',eq);

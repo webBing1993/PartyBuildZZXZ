@@ -70,6 +70,7 @@
         //同级触发input点击的事件
         $('.option,.opt' ).on('click',function(){
             var it = $(this).siblings('input');
+
 //			var it = $(this).parent('.option_');
             it.click();
             if(it.attr('type')== 'radio'){

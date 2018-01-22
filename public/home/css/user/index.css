@@ -10,8 +10,8 @@
 /*tab*/
 .tabs {
     width: 100vw;
-    height: 44px;
-    padding: 8px 0;
+    height: 6.6vh;
+    padding:1.2vh 0;
     background: #f1f1f1;
     position: absolute;
     top: 0;
@@ -23,7 +23,7 @@
     height: 100%;
     color: #333333;
     font-size: .3rem;
-    line-height: 28px;
+    line-height: 4.2vh;
     text-align: center;
 }
 .tabs .tab:first-child {
