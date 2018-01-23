@@ -55,15 +55,15 @@ body{
 	width: 100%;
 	border-bottom: 1px solid #d10000;
 	font-size: .28rem;
-	padding-top: 20px;
+	padding-top: .2rem;
 }
 .list:last-child{
-	margin-bottom: 80px;
+	margin-bottom: .9rem;
 	border-bottom: none;
 }
 .list .question{
-	width: calc(100% - 26px);
-	padding-bottom: 20px;
+	width: calc(100% - .26rem);
+	padding-bottom: .2rem;
 	margin: 0 auto;
 }
 .list .type{
@@ -79,36 +79,34 @@ body{
 .list .option_{
 	display: block;
 	position: relative;
-	width: calc(100% - 30px);
-	margin: 0 auto 0 15px;
-	padding-bottom: 10px;
+	width: calc(100% - .3rem);
+	margin: 0 auto 0 .15rem;
+	padding-bottom: .1rem;
 }
 .list input{
 	opacity: 0;
 }
 .list .option{
-	width: 25px;
-	height: 25px;
+	width: .3rem;
+	height: .3rem;
 	font-size: .2rem;
 	background:#ffffff ;
 	border:1px solid #d10000;
 	-webkit-border-radius:50%;
 	border-radius:50%;
 	color:#d10000;
-	line-height: 25px;
 	text-align: center;
 	font-weight: 400;
-	/*position: absolute;*/
-	top:0;
+	position: absolute;
+	top:0.08rem;
 	left: 0;
 	/*opacity: 0;*/
 }
 .list .opt{
 	width: calc(100% - 70px);
-	margin-left: 20px;
+	margin-left: .2rem;
 	font-size: .28rem;
 	font-weight: 400;
-	line-height: 20px;
 }
 .list .active{
 	background:#d10000 ;
@@ -117,7 +115,7 @@ body{
 .list .sum{
 	width: 100%;
 	text-align: right;
-	padding-right: 10px;
+	padding-right: .1rem;
 	color:#999999;
 }
 .sum .num{
@@ -170,10 +168,10 @@ body{
 	background-color: #fff;
 }
 .timer:after{
-	width: 12px;
-	height: 2px;
-	top: 14px;
-	left: 14px;
+	width: .12rem;
+	height: 0.02rem;
+	top: .14rem;
+	left: .14rem;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
@@ -183,10 +181,10 @@ body{
 }
 
 .timer:before{
-	width: 10px;
-	height: 2px;
-	top: 14px;
-	left: 14px;
+	width: .1rem;
+	height: 0.02rem;
+	top: .14rem;
+	left: .14rem;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
@@ -219,12 +217,12 @@ body{
 	color:#ffffff;
 	font-size: .4rem;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: .20rem;
 }
 
 .answer{
-	padding-left: 25px;
-	font-size: 16px;
+	padding-left: .25rem;
+	font-size: .16rem;
 }
 .answer span{
 	color:#d10000;
