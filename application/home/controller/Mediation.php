@@ -197,7 +197,7 @@ class Mediation extends Base
      */
     public function medcase(){
         $map = [
-            'id' => input('id'),
+            'userid' => input('id'),
         ];
         $model = MediationUser::where($map)->find();
         $this->assign('model',$model);
