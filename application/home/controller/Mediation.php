@@ -207,6 +207,7 @@ class Mediation extends Base
             'status' => ['egt',0],
         ];
         $list = MediationCase::where($map)->limit(5)->order('id desc')->select();
+        $this->assign('uid',input('id'));
         $this->assign('list',$list);
         return $this->fetch();
     }
