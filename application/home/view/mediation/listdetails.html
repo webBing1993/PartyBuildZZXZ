@@ -36,7 +36,6 @@
 {/block}
 {block name="script"}
 <script>
-
     var scrollNow = true;
     loadScroll()
     function loadScroll(){
@@ -44,15 +43,17 @@
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.userlist').length;
+            var type={$type};
             var tip = $(".tip");
             var loading = $('.loading');
                 if(dh == end && scrollNow){
                     scrollNow = false;
                     $.ajax({
                         type:"post",
-                        url: "{:Url('Mediation/indexmore')}",
+                        url: "{:Url('Mediation/mediationmore')}",
                         data:{
-                            length:len
+                            length:len,
+                            type:type,
                         },
                         beforeSend: function(XMLHttpRequest){
                             tip.hide();
@@ -66,7 +67,7 @@
                             if(data.code == 1){
                                 addLists(data);
                                 var dataLen =data.data.length;
-                                if(data.data.length >= 2){
+                                if(data.data.length >= 6){
                                     tip.text('上拉加载更多');
                                 } else {
                                     tip.text('没有更多了');
@@ -90,14 +91,14 @@
                 html +=
                     '<div style="position: relative" class="userlist">'
                     + '<a href="/home/mediation/yhdetails.html/id/'+lists[i].id+'.html" class="list">'
-                    +'<img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />'
+                    +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
                     +'<div class="fr1">'
                     +'<p>'+lists[i].title+'</p>'
                     +'<div class="bt">'
                     +'<div class="time">'+lists[i].time+'</div></div></div></a></div>'
 
             }
-            $('.apply').append(html);
+            $('.user').append(html);
     }
 
     $(document).scroll(function() {
