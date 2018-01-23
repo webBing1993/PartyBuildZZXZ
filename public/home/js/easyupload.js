@@ -71,7 +71,7 @@ https://github.com/funnyque
           $html = '<div class="easy_upload-container"><div class="easy_upload-head">';
           $html += '<input type="file" '
           $html += option.multi ? 'multiple ' : '';
-          $html += 'class="fileInput" data-count="0" style="display:none;" />';
+          $html += 'class="fileInput" data-count="0" name="file" style="display:none;"/>';
           $html += '<span class="easy_upload_select noselect">' + option.selectText + '</span>';
           // $html += '<span class="easy_upload_head_btn1 noselect">上传</span>';
           // $html += '<span class="easy_upload_head_btn2 noselect">删除</span>';
@@ -91,8 +91,10 @@ https://github.com/funnyque
           $('.easy_upload_select').off('click').click(function () {
             // alert(1)
             // $(this).parent().find('.fileInput').trigger('click');
+            //   _this.isIos();
             $('.easy_upload-head').find('.fileInput').trigger('click');
             // $('.easy_upload_queue').find('.easy_upload_select').remove();
+
           });
           $('.fileInput').off('change').change(function () {
             var count = Number($(this).attr('data-count'));
@@ -176,7 +178,10 @@ https://github.com/funnyque
                       num.push($('.easy_upload_queue .easy_upload_queue_item').eq(P))
                   }
               }
-              console.log(num.length)
+              if(num.length<=8){
+                  $('.easy_upload_queue').find('.easy_upload_select').remove();
+                  $('.easy_upload_queue').append('<span class="easy_upload_select noselect">' + option.selectText + '</span>')
+              }
               _this.bindHead();
           });
         },
@@ -205,7 +210,7 @@ https://github.com/funnyque
             var preview;
             var f = file.file;
             var fileType = f.name.split('.').pop();
-            if (fileType == 'bmp' || fileType == 'jpg' || fileType == 'jpeg' || fileType == 'png' || fileType == 'gif') {
+            if (fileType == 'bmp' || fileType == 'jpg' || fileType == 'jpeg' || fileType == 'png' || fileType == 'gif' || fileType == 'JPG' || fileType == 'PNG' || fileType == 'GIF' || fileType == 'JPEG' || fileType == 'BMP') {
               var imgSrc = URL.createObjectURL(f);
               preview = '<img class="easy_upload_img" src="' + imgSrc + '" />';
             } else if (fileType == 'rar' || fileType == 'zip' || fileType == 'arj' || fileType == 'z') {
@@ -256,10 +261,10 @@ https://github.com/funnyque
               render(fileArr[i]);
             }
           }
-            $('.easy_upload_queue').find('.easy_upload_select').remove();
+            $('.easy_upload_queue').find('.easy_upload_select').hide();
           if($(queueUl).find('li').length>=9){
               // queueUl.find('.easy_upload_select').remove();
-              queueUl.append('<span class="easy_upload_select noselect">' + option.selectText + '</span>');
+              // queueUl.append('<span class="easy_upload_select noselect">' + option.selectText + '</span>');
               // queueUl.find('.easy_upload_select').hide();
           }
           else{
@@ -483,7 +488,18 @@ https://github.com/funnyque
           increasePercent = 1;
           showTimer = undefined;
           uploadCompleted = false;
-        }
+        },
+          isIos:function(){
+              var u = navigator.userAgent, app = navigator.appVersion;
+              var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //android终端或者uc浏览器
+              var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+              if(isAndroid){
+                  $(".easy_upload-head").find("input[type='file']").attr("capture","camera");
+              }
+              if(isiOS){
+                  $(".easy_upload-head").find("input[type='file']").removeAttr("capture");
+              }
+          }
       };
       easyManager.init();
     });
