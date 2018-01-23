@@ -64,9 +64,13 @@
     $(function(){
         var u = navigator.userAgent;
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-        $('.option' ).css({'line-height':'.25rem'});
-        if($(window).width()>1000){$('.option' ).css({'top':'0.06rem'})}
-        $('.opt').css({'margin-left':'0.06rem'});
+//        $('.option' ).css({'line-height':'.3rem'});
+//        if($(window).width()>=768){
+//            $('.option' ).css({'top':'0.02rem'});
+//            $('.opt').css({"margin-left":'.3rem'})
+//        }
+//        if($(window).width()<=320){$('.option' ).css({'top':'0.1rem'})}
+//        $('.opt').css({'margin-left':'0.06rem'});
         //同级触发input点击的事件
         $('.option,.opt' ).on('click',function(){
             var it = $(this).siblings('input');

@@ -63,7 +63,7 @@
                     <img class="newimg" src="/home/images/lxyz/icon/new.png"  alt=""/>
                 </div>
             </div>
-            <input type="file" class="hide" id="upimg" accept="image/*">
+            <input type="file" class="hide" id="upimg" accept="image/*" >
         </div>
         <p>请上传您的证据，（可为空，限4张）</p>
     </div>
@@ -266,7 +266,6 @@
                                 console.log(data)
                                 clearImg();
                                 var msg = $.parseJSON(data);
-                                console.log(msg)
                                 loading.toggleClass('hidden');
                                 if(msg.code == 1){
                                         //图片添加
@@ -277,6 +276,7 @@
                                             .append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
                                         if(imglen>=0){
                                                $('.x').on('click',function(){
+                                                   console.log(11111)
                                                 $(this).parents(".img").remove();
                                                 $('.add').before('<div class="img fl hide"><span class="x">X</span></div>')
                                                 if(imglen<4){
