@@ -18,7 +18,7 @@
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span ><span class="code">0</span> 分</span>
+        <span class="code">0 分</span>
     </div>
     <div class="yn yn1"><p>您对调解员的评价是？</p></div>
     <div class="pic pic2">
@@ -27,7 +27,7 @@
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span ><span class="code">0</span> 分</span>
+        <span class="code1">0 分</span>
     </div>
 </div>
 
@@ -49,7 +49,7 @@
 $(function(){
     $('.pic1 .icon1').on('click',function(){
         var index=$(this).index();
-        $('.pic1 .code').html(index+1)
+        $('.pic1 .code').html(index+1+'&nbsp;'+'分')
         console.log(index)
         for(var i=0;i<$('.pic1 .icon1').length; i++){
             $('.pic1 .icon1').eq(i).attr('src','/home/images/lxyz/m1.png')
@@ -60,7 +60,7 @@ $(function(){
     })
     $('.pic2 .icon2').on('click',function(){
         var index=$(this).index();
-        $('.pic2 .code').html(index+1)
+        $('.pic2 .code1').html(index+1+'&nbsp;'+'分')
         console.log(index)
         for(var i=0;i<$('.pic2 .icon2').length; i++){
             $('.pic2 .icon2').eq(i).attr('src','/home/images/lxyz/m1.png')
@@ -71,6 +71,15 @@ $(function(){
     })
 })
     $('.bot').on('click',function(){
+        var val1=$('.code').html();
+        var val2=$('.code1').html();
+        console.log(val1,val2)
+        if(val1=='0 分'){
+            alert('请对本次调解结果做出评价')
+        }
+        if(val2=='0 分'){
+            alert('请对调解员做出评价')
+        }
         var val=$('#text').val();
         if(val==''){
             alert('输入信息不能为空');
@@ -82,6 +91,16 @@ $(function(){
 //            text: "2秒后自动关闭。",
             timer: 2000,
             showConfirmButton: false
+        });
+        $.ajax({
+            type:"post",
+//          url: "{:Url('Feedback/publish')}",
+            data:data,
+            success:function(data){
+                setTimeout(function(){
+//              window.location.href = "{:Url('Feedback/index')}";
+                },800);
+            }
         });
 
     })

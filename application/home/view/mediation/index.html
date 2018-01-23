@@ -126,7 +126,7 @@
     <div class="apply user">
         {volist name="list3" id="vo"}
         <div style="position: relative;" class="lists">
-            <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
+            <a href="{:Url('Mediation/details?id='.$vo.id)}" class="list">
                 <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
                 <div class="fr1">
                     <p>{$vo.title}</p>
@@ -273,7 +273,7 @@ $('#side'+med).show();
                 for(var i=0;i<len;i++){
                     if(lists[i].status_text=='待评价'){
                         html +='<div style="position: relative;" class="lists">'
-                            +'<a href="/home/Mediation/yhdetails/id/'+lists[i].id+'.html" class="list">'
+                            +'<a href="/home/Mediation/details/id/'+lists[i].id+'.html" class="list">'
                             +'<img class="userimg lazy" data-original="'+lists[i].images+'"  alt="" />'
                             +'<div class="fr1"><p>'+lists[i].title+'</p><div class="bt">'
                             +'<div class="time">'+lists[i].time+'</div><span class="status  '+lists[i].status_color+'" >'+lists[i].status_text+'</span>'
@@ -289,12 +289,13 @@ $('#side'+med).show();
 
 
                 }
-                $('.user').append(html);
+                $('.share').before(html);
             }
     }
 
     $('.user>div').each(function(){
         $(this).find('.evaluate').on('click',function(){
+            console.log(1111111)
             window.location.href = '/home/mediation/evaluate.html'
         })
     })

@@ -86,14 +86,17 @@
         <span class="con">芊芊</span>
     </div>
 </div>
-<div class="remark">
+<a href="/home/mediation/evaluate.html" class="remark">
     立即评价
-</div>
+</a>
 {/block}
 
 {block name="script"}
 
 <script>
+    $('.remark').on('click',function(){
+        window.location.href=''
+    })
     var h = $('.lists').height();
     var num = 0;
     for(var i=0;i<$('.list').length;i++){
