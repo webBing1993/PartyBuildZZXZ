@@ -92,16 +92,17 @@ $(function(){
             timer: 2000,
             showConfirmButton: false
         });
-        $.ajax({
-            type:"post",
-//          url: "{:Url('Feedback/publish')}",
-            data:data,
-            success:function(data){
-                setTimeout(function(){
-//              window.location.href = "{:Url('Feedback/index')}";
-                },800);
-            }
-        });
+        window.location.href = "/home/mediation/index.html";
+//        $.ajax({
+//            type:"post",
+////          url: "{:Url('Feedback/publish')}",
+//            data:data,
+//            success:function(data){
+//                setTimeout(function(){
+////              window.location.href = "{:Url('Feedback/index')}";
+//                },800);
+//            }
+//        });
 
     })
 

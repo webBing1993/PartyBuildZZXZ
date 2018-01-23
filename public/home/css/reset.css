@@ -194,8 +194,8 @@ table {
 }
 
 .typing_loader {
-    width: 1.6vw;
-    height: 1.6vw;
+    width:10px;
+    height:10px;
     border-radius: 50%;
     -webkit-animation: typing 1s linear infinite alternate;
     -moz-animation: Typing 1s linear infinite alternate;

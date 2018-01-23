@@ -170,6 +170,7 @@
         loadScroll()
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
+            var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.list').length;

@@ -121,6 +121,7 @@ https://github.com/funnyque
           $('.easy_upload_head_btn1').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
             var arr = _this._findItems(1, queueUl);
+            console.log(arr)
             if($('textarea').val()==''&& arr==''){
               alert('描述或图片不能同时为空！')
             }else {
