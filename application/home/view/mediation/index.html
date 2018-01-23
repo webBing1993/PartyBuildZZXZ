@@ -126,8 +126,8 @@
     <div class="apply user">
         {volist name="list3" id="vo"}
         <div style="position: relative;" class="lists">
-            <a href="{:Url('Mediation/details?id='.$vo.id)}" class="list">
-                <img class="userimg lazy" data-original="{$vo.path}"  alt="" />
+            <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
+                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
                 <div class="fr1">
                     <p>{$vo.title}</p>
                     <div class="bt">
@@ -156,9 +156,7 @@
 {/block}
 {block name="script"}
 <script>
-//    alert($(window).width())
 var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
-console.log(med)
     for(var i=0;i<$('.top>div').length;i++){
         $('.top>div')[i].onclick = function(){
             $('.top>div').removeClass('active');
@@ -177,12 +175,12 @@ $('#side'+med).show();
     loadScroll()
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
+            var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.caseSort a').length;
             var len1=$('.user .lists').length;
             var tip = $(".tip");
-
             var loading = $('.loading');
             if(med==1){
                 if(dh == end && scrollNow){
@@ -199,6 +197,7 @@ $('#side'+med).show();
                         },
                         success:function(data){
                             console.log(data)
+                            console.log(med)
                             loading.toggleClass('hidden');
                             tip.show();
                             if(data.code == 1){
@@ -210,6 +209,9 @@ $('#side'+med).show();
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
+                                $('.evaluate').on('click',function(){
+                                    window.location.href = '/home/mediation/evaluate.html'
+                                })
                             }else{
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
@@ -233,6 +235,7 @@ $('#side'+med).show();
                         },
                         success:function(data){
                             console.log(data)
+                            console.log(med)
                             loading.toggleClass('hidden');
                             tip.show();
                             if(data.code == 1){
@@ -244,6 +247,9 @@ $('#side'+med).show();
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
+                                $('.evaluate').on('click',function(){
+                                    window.location.href = '/home/mediation/evaluate.html'
+                                })
                             }else{
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
@@ -274,15 +280,15 @@ $('#side'+med).show();
                 for(var i=0;i<len;i++){
                     if(lists[i].status_text=='待评价'){
                         html +='<div style="position: relative;" class="lists">'
-                            +'<a href="/home/Mediation/details/id/'+lists[i].id+'.html" class="list">'
-                            +'<img class="userimg lazy" data-original="'+lists[i].images+'"  alt="" />'
+                            +'<a href="/home/Mediation/yhdetails/id/'+lists[i].id+'.html" class="list">'
+                            +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
                             +'<div class="fr1"><p>'+lists[i].title+'</p><div class="bt">'
                             +'<div class="time">'+lists[i].time+'</div><span class="status  '+lists[i].status_color+'" >'+lists[i].status_text+'</span>'
                             +'</div></div></a><div  class="evaluate">去评价</div></div>'
                     }else{
                         html +='<div style="position: relative;" class="lists">'
                             +'<a href="/home/Mediation/yhdetails/id/'+lists[i].id+'.html" class="list">'
-                            +'<img class="userimg lazy" data-original="'+lists[i].images+'"  alt="" />'
+                            +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
                             +'<div class="fr1"><p>'+lists[i].title+'</p><div class="bt">'
                             +'<div class="time">'+lists[i].time+'</div><span class="status '+lists[i].status_color+'" >'+lists[i].status_text+'</span>'
                             +'</div></div></a></div>'
@@ -294,11 +300,15 @@ $('#side'+med).show();
             }
     }
 
-    $('.user>div').each(function(){
-        $(this).find('.evaluate').on('click',function(){
-            console.log(1111111)
-            window.location.href = '/home/mediation/evaluate.html'
-        })
+//    $('.user>div').each(function(){
+//        console.log( $(this).find('.evaluate'))
+//        $(this).find('.evaluate').on('click',function(){
+//
+//            window.location.href = '/home/mediation/evaluate.html'
+//        })
+//    })
+    $('.evaluate').on('click',function(){
+        window.location.href = '/home/mediation/evaluate.html'
     })
 
     $(document).scroll(function() {
