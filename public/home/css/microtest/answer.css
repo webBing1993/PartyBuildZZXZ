@@ -92,7 +92,7 @@ body{
 .list .option{
 	width: 4vw;
 	height: 4vw;
-	line-height:4vw;
+	line-height:3.5vw;
 	font-size: .2rem;
 	background:#ffffff ;
 	border:1px solid #d10000;
@@ -102,7 +102,7 @@ body{
 	text-align: center;
 	font-weight: 400;
 	position: absolute;
-	top:10%;
+	top:6%;
 	left: 1vw;
 }
 .list .opt{
