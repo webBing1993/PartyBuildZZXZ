@@ -55,6 +55,11 @@ class Mediation extends Base
             foreach ($list3 as $value) {
                 $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
                 $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
+                if ($value['images']) {
+                    $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
+                } else {
+                    $value['path'] = '/home/images/lxyz/icon/default.png';
+                }
             }
 
             $this->assign('list3',$list3);
@@ -109,6 +114,15 @@ class Mediation extends Base
             $map['mediatorid'] = $userId;
         }
         $list = MediationModel::where($map)->limit(10)->order('id desc')->select();
+        foreach ($list as $value) {
+            $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
+            $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
+            if ($value['images']) {
+                $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
+            } else {
+                $value['path'] = '/home/images/lxyz/icon/default.png';
+            }
+        }
         $this->assign('type',$type);
         $this->assign('list',$list);
         return $this->fetch();
@@ -184,6 +198,11 @@ class Mediation extends Base
             $value['time'] = date("Y-m-d",$value['create_time']);
             $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
             $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
+            if ($value['images']) {
+                $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
+            } else {
+                $value['path'] = '/home/images/lxyz/icon/default.png';
+            }
         }
         if($list){
             return $this->success("加载成功",'',$list);
@@ -211,6 +230,11 @@ class Mediation extends Base
         $this->assign('list',$list);
         return $this->fetch();
     }
+    public function yhdetails(){
+
+        return $this->fetch();
+    }
+
     public function application(){
         return $this->fetch();
     }
@@ -221,12 +245,6 @@ class Mediation extends Base
         return $this->fetch();
     }
     public function applicationdetail(){
-        return $this->fetch();
-    }
-    public function tjydetails(){
-        return $this->fetch();
-    }
-    public function yhdetails(){
         return $this->fetch();
     }
     public function evaluate(){

@@ -18,7 +18,7 @@
         {volist name="list" id="vo"}
         <div style="position: relative;" class="userlist">
             <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
-                <img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />
+                <img class="userimg lazy" data-original="{$vo.path}"  alt="" />
                 <div class="fr1">
                     <p>{$vo.title}</p>
                     <div class="bt">
