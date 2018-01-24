@@ -111,7 +111,7 @@
 {eq name="$model.status" value="1"}
 <div class="bot">
     <span class="fle">审核通过</span>
-    <span class="fri">审核不通过</span>
+    <span class="fri" onclick="go({$id})">审核不通过</span>
 </div>
 {/eq}
 {/eq}
@@ -140,16 +140,60 @@
 
     });
     $('.remark1').on('click',function(){
+        var id= {$id};
         $('.lists .state').each(function(){
             if($(this).html()=='调解员待确认') {
                 $(this).html('调解员已确认')
                 $(this).parent().addClass('active');
-                $('.remark1').css('display','none');
+                $.ajax({
+                    type: "post",
+                    url:"{:Url('Mediation/confirm')}",
+                    data: {
+                        id:id,
+                    },
+                    success: function(data){
+                        console.log(data)
+                        //成功后刷新页面
+                        if(data.code == 1){
+                            $('.remark1').css('display','none');
+                        }else{
+                            setTimeout(function(){
+                                swal("操作失败","",'error')
+                            },200);
+                        }
+                    }
+                })
+
             };
 
         });
     })
+    $('.fle').on('click',function () {
+        var id='{$id}';
+        $.ajax({
+            type: "post",
+            url:"{:Url('Mediation/check')}",
+            data: {
+                id:id,
+                status : 1,
+                mediatorid:1
+            },
+            success: function(data){
+                console.log(data)
+                //成功后刷新页面
+                if(data.code == 1){
 
+                }else{
+                    setTimeout(function(){
+                        swal("操作失败","",'error')
+                    },200);
+                }
+            }
+        })
+    });
+    function go(id) {
+        window.location.href='/home/mediation/noapprove/id/'+id+'.html'
+    }
     var h = $('.lists').height();
     var num = 0;
     for(var i=0;i<$('.list').length;i++){

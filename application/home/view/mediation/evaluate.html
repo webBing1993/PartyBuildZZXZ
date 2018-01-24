@@ -18,7 +18,7 @@
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon1" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span class="code">0 分</span>
+        <span class="code">0分</span>
     </div>
     <div class="yn yn1"><p>您对调解员的评价是？</p></div>
     <div class="pic pic2">
@@ -27,7 +27,7 @@
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
         <img class="icon2" src="/home/images/lxyz/m1.png"  alt=""/>
-        <span class="code1">0 分</span>
+        <span class="code1">0分</span>
     </div>
 </div>
 
@@ -49,19 +49,17 @@
 $(function(){
     $('.pic1 .icon1').on('click',function(){
         var index=$(this).index();
-        $('.pic1 .code').html(index+1+'&nbsp;'+'分')
-        console.log(index)
+        $('.pic1 .code').html(index+1+'分');
         for(var i=0;i<$('.pic1 .icon1').length; i++){
             $('.pic1 .icon1').eq(i).attr('src','/home/images/lxyz/m1.png')
         }
         for(var i=index;i>=0; i--){
             $('.pic1 .icon1').eq(i).attr('src','/home/images/lxyz/m2.png')
         }
-    })
+    });
     $('.pic2 .icon2').on('click',function(){
         var index=$(this).index();
-        $('.pic2 .code1').html(index+1+'&nbsp;'+'分')
-        console.log(index)
+        $('.pic2 .code1').html(index+1+'分');
         for(var i=0;i<$('.pic2 .icon2').length; i++){
             $('.pic2 .icon2').eq(i).attr('src','/home/images/lxyz/m1.png')
         }
@@ -69,30 +67,49 @@ $(function(){
             $('.pic2 .icon2').eq(i).attr('src','/home/images/lxyz/m2.png')
         }
     })
-})
+});
     $('.bot').on('click',function(){
-        var val1=$('.code').html();
-        var val2=$('.code1').html();
-        console.log(val1,val2)
-        if(val1=='0 分'){
+        var val=$('#text').val();
+        var id= '{$id}';
+        var val1=$('.code').html().split("分")[0];
+        var val2=$('.code1').html().split("分")[0];
+        if(val1!='0 分'&&val2!='0 分'&&val!=''){
+            $.ajax({
+                type: "post",
+                url:"{:Url('Mediation/evaluate')}",
+                data: {
+                    satisfact:val1,
+                    satisfact_mediator:val2,
+                    feedback_user:val,
+                    id:id
+                },
+                success: function(data){
+                    console.log(data)
+                    //成功后刷新页面
+                    if(data.code == 1){
+                        swal({
+                            type: "success",
+                            title: "提交成功",
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                        setTimeout(function () {
+                            window.location.href = "/home/mediation/yhdetails/id/" +id +".html";
+                        },1500)
+
+                    }else{
+                        setTimeout(function(){
+                            swal("操作失败","",'error')
+                        },200);
+                    }
+                }
+            })
+
+        }else{
             alert('请对本次调解结果做出评价')
         }
-        if(val2=='0 分'){
-            alert('请对调解员做出评价')
-        }
-        var val=$('#text').val();
-        if(val==''){
-            alert('输入信息不能为空');
-            return false;
-        }
-        swal({
-            type: "success",
-            title: "提交成功",
-//            text: "2秒后自动关闭。",
-            timer: 2000,
-            showConfirmButton: false
-        });
-        window.location.href = "/home/mediation/index.html";
+
+
 //        $.ajax({
 //            type:"post",
 ////          url: "{:Url('Feedback/publish')}",

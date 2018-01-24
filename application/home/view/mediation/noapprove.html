@@ -29,6 +29,26 @@
 {block name="script"}
 <script>
     $('#btn').on('click',function(){
+        $.ajax({
+            type: "post",
+            url:"{:Url('Mediation/check')}",
+            data: {
+                id:id,
+                status : 1,
+                mediatorid:1
+            },
+            success: function(data){
+                console.log(data)
+                //成功后刷新页面
+                if(data.code == 1){
+
+                }else{
+                    setTimeout(function(){
+                        swal("操作失败","",'error')
+                    },200);
+                }
+            }
+        })
         swal({
                 title: "确定提交吗？",
                 type: "warning",
