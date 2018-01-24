@@ -22,27 +22,67 @@
 {/block}
 {block name="body"}
     <div class="Upload">
-        <textarea placeholder="请您对协调中遇到的问题进行反馈"></textarea>
+        <textarea name="content" placeholder="请您对协调中遇到的问题进行反馈"></textarea>
     </div>
 <div id="btn">反馈提交</div>
 {/block}
 {block name="script"}
 <script>
+
     $('#btn').on('click',function(){
-        swal({
-                title: "确定提交吗？",
-                type: "warning",
-                showCancelButton: true,
-                closeOnConfirm: false,
-                showLoaderOnConfirm: true,
-                confirmButtonText:'确定',
-                cancelButtonText:'取消'
-            },
-            function(){
-                setTimeout(function(){
-                    history.go(-1);
-                }, 2000);
-            });
+        var id= {$id};
+        var content=$("textarea[name='content']").val();
+        console.log(content)
+        if(content==''){
+            alert('请您对协调中遇到的问题进行反馈')
+        }else{
+            swal({
+                    title: "确定提交吗？",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            type: "post",
+                            url: "{:Url('Mediation/opinion')}",
+                            data: {
+                                feedback_mediator:content,
+                                id: id,
+                            },
+                            success: function (data) {
+                                console.log(data)
+                                //成功后刷新页面
+                                if (data.code == 1) {
+                                    swal({
+                                        title: "提交成功",
+                                        timer: 1500,
+                                        showConfirmButton: false
+                                    });
+                                    history.go(-1);
+                                } else {
+                                    setTimeout(function () {
+                                        swal("操作失败", "", 'error')
+                                    }, 200);
+                                }
+                            }
+                        })
+                    } else {
+                        swal("取消！", "取消:)",
+                            "error");
+                    }
+                }
+            );
+        }
+
+//                setTimeout(function(){
+//                    history.go(-1);
+//                }, 2000)
+
     })
 </script>
 {/block}

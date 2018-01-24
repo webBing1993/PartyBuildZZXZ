@@ -15,8 +15,9 @@
     <div class="boxs">
         <!--党员展示模块-->
         <div class="box "  style="display:none;margin-top: -2.2vh;">
+
             <div class="showLeft">
-                <ul>
+                <ul class="nav">
                     {volist name="dList" id="vo" key="k"}
                         {eq name="$k" value="1"}
                         <li class="active" data-id="{$vo.id}">{$vo.name}</li>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="title"><div>共有党员<span>48</span>位</div></div>
                 <div class="userText">
-                    <ul>
+                    <ul class="lists">
                         <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
                         <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
                     </ul>
@@ -141,6 +142,7 @@
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
+            console.log(number)
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.list').length;
@@ -226,9 +228,10 @@
             url: "{:Url('Service/getDepartmentMember')}",
             data: {did:did},
             success:function(data){
-                console.log(data);
                 if (data.code == 1) {
                     var data = JSON.parse(data.data);
+                    console.log(data);
+                    addLists1(data);
                     // 数据循环
                     console.log(data);
                 } else {
@@ -239,6 +242,18 @@
         })
 
     });
+    function addLists1(data){
+        var html = '';
+        var lists = data
+        var len = lists.length;
+            for(var i = 0; i< len;i++){
+                var list = lists[i];
+                //var pid = $('.part div' ).eq(list.pid ).text();
+                html += '<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>'+list.name+'</div></li>'
+
+            }
+            $('.lists').html(html);
+    }
     $('.showRight li ').on('click',function(){
         $('#fixed').stop().animate({
             height:'100%'
@@ -252,5 +267,52 @@
     });
 
 //    搜索接口 get url: "{:Url('Service/getMember')}" data: {searh:'搜索内容'}
+
+    var search = $('.search>input');
+    var lock = false;
+    search.on('compositionstart',function(){
+        lock = true;
+    });
+    search.on('compositionend',function(){
+        lock = false;
+    });
+    search.on('input',function(){
+        var this_ = this;
+//        search.css('width','75vw');
+//        $('#cancel').show();
+//        $('body').css('position','fixed');
+//        if(!lock){
+        var val = $(this_ ).val();
+        var html = '';
+        $.ajax({
+            type:"get",
+            url: "{:Url('Service/getMember')}",
+            data:{
+                search:val
+            },
+            beforeSend: function(XMLHttpRequest){},
+            success:function(data){
+                console.log(data)
+                var result = data.data;
+                var url = '';
+                if(!data.data){
+                    html += '<div class="result limit">无搜索结果</div>'
+                }
+                for(var obj in result){
+                    html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+//                        html +='<li>'
+//                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
+//                            +'<img data-original="'+list.path+'" class="list-img lazy">'
+//                            +'<div class="listTitle">'+list.title+'</div><div class="listSummary">'+list.introduction+'</div>'
+//                            +'</a>'
+//                            +'</li>'
+                }
+//                    $('.results').show();
+                $('.results' ).html(html);
+            }
+
+        });
+//        }
+    });
 </script>
 {/block}

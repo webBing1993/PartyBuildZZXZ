@@ -279,6 +279,10 @@ class Approved extends Base
 //        $this->assign('list',$list);
         return $this->fetch();
     }
+    public function lists() {
+
+        return $this->fetch();
+    }
 
     /**
      * 未审核列表 加载更多

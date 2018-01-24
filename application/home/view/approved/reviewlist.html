@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="/home/css/common/tip.css">
 <style>
 	body{overflow: initial;!important;font-size: 1.4rem;!important;background:#F5F5F5;}
+	.list-t-wrap>div {
+		display: none;
+	}
 </style>
 {/block}
 
@@ -85,27 +88,16 @@
 	</div>
 	<!--调解申请模块-->
 	<div class="apply">
-		<a href="#" class="lists">
-			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
-			<div class="fri1">
-				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
-				<span class="time1">2017-12-06</span>
-			</div>
-		</a>
-		<a href="#" class="lists">
-			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
-			<div class="fri1">
-				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
-				<span class="time1">2017-12-06</span>
-			</div>
-		</a>
-		<a href="#" class="lists">
-			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
-			<div class="fri1">
-				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
-				<span class="time1">2017-12-06</span>
-			</div>
-		</a>
+		<ul>
+			<li class="lists" onclick="change(46)">
+				<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
+				<div class="fri1">
+					<p class="title1">进出口贸易有限公司劳动纠纷2</p>
+					<span class="time1">2017-12-06</span>
+				</div>
+			</li>
+		</ul>
+
 	</div>
 	<!--加载更多-->
 	<div class="tip"></div>
@@ -134,37 +126,40 @@ function check(){
 
   }
 var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
-console.log(type)
+// 初始化
+$('.top>div').find("span").removeClass("active");
+$('.top>div').eq(type).find('span').addClass('active');
+$(".list-t-wrap >div").hide();
+$(".list-t-wrap >div").eq(type).show();
 $('.top div').on('click',function(){
-    console.log($(this).index())
 	var index=$(this).index();
     localStorage.setItem('num',index);
-	if($(this).index()=='0'){
+	if($(this).index()== 0){
         $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
         $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
-        $('.list-block').show();
+        $('.list-wrapper').show();
         $('.apply').hide();
 	}else{
         $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
         $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
-        $('.list-block').hide();
+        $('.list-wrapper').hide();
         $('.apply').show();
 	}
-    $(this).siblings().find('span').removeClass('active')
+    $(this).siblings().find('span').removeClass('active');
     $(this).find('span').addClass('active')
-})
+});
 if(type=='0'){
     $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
     $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
-    $('.list-block').show();
+    $('.list-wrapper').show();
     $('.apply').hide();
 }else{
     $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
     $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
-    $('.list-block').hide();
+    $('.list-wrapper').hide();
     $('.apply').show();
 }
-$('.top>div').eq(type).find('span').addClass('active');
+
 //跳转新闻详情
 function jump(url){
 	parent.location.href= url;
@@ -312,6 +307,18 @@ function addLists(data){
     }
     $('#list-block-company ul').append(html);
 }
+
+
+function change(id) {
+	window.location.href = "/home/mediation/yhdetails/id/" + id + ".html";
+}
+$(function () {
+	$(".apply a").on("click",function (e) {
+	    e.preventDefault();
+		$(this).attr("href",$(this).attr("href"));
+		return false;
+    })
+})
 
 </script>
 {/block}

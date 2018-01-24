@@ -1,0 +1,217 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/mediation/evaluate.css">
+<title>党员搜索</title>
+<style>
+    .search {
+        padding:4vw 2.25vh;
+        background: #f5f5f5;
+        width:100%;
+        height:9.7vh;
+        border: 1px solid #c3c3c3;
+        font-size: .24rem;
+        margin-bottom:4.5vh;
+    }
+    input{
+        float: left;
+        text-indent: 2.6vw;
+        width:85%;
+        height:100%;
+        background:#fff;
+    }
+    .back{
+        float: left;
+        display: inline-block;
+        width:15%;
+        height:100%;
+        text-align: center;
+        line-height: 5.2vh;
+    }
+    ul{
+        padding:0 3.2vw;
+    }
+    ul li{
+
+        border:1px solid #f5f5f5;
+        width: 1.4rem;
+        height: 1.8rem;
+        position: relative;
+        float: left;
+        margin-right: .52rem;
+        margin-bottom: .33rem;
+    }
+    li img{
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+    li div{
+        text-align: center;
+    }
+
+    #fixed {
+        width:100vw;
+        height:0;
+        background: rgba(0,0,0,.6);
+        position: fixed;
+        bottom:0;
+        left:0;
+        z-index: 9999;
+        overflow: hidden;
+        /*display: none;*/
+    }
+    #fixed .user {
+        width:100%;
+        height:8.44rem;
+        position: absolute;
+        bottom:0;
+        left:0;
+        background: #fff;
+    }
+    .userImg {
+        width:100%;
+        text-align: center;
+        position: absolute;
+        top:-1rem;
+    }
+    .userImg img{
+        width:2.1rem;
+        height:2.1rem;
+        border-radius: 50%;
+    }
+    .userName {
+        text-align: center;
+        font-size: .36rem;
+        color: #333;
+        margin: 1.2rem 0 .2rem 0;
+    }
+    .userSex {
+        text-align: center;
+        font-size: .3rem;
+        color: #999;
+        margin-bottom: .72rem;
+    }
+    .userSort {
+        width:92vw;
+        height:.8rem;
+        line-height: .8rem;
+        /*font-size: .3rem;*/
+        border-bottom: 1px solid #d1d1d1;
+        margin: auto;
+        color: #333;
+    }
+    .userSort span {
+        display: block;
+        float:left;
+    }
+    .userSort span:nth-child(1) {width:.76rem;}
+    .userSort span:nth-child(1) img {
+        width:.42rem;
+        height:.42rem;
+        vertical-align: middle;
+    }
+    .userSort span:nth-child(2) ,.userSort span:nth-child(3) {
+        font-size: .3rem;
+    }
+    .userSort span:nth-child(3) {
+        float:right;
+        color: #666;
+    }
+    #close {
+        position: absolute;
+        top: 20%;
+        right: 4vw;
+        width: .48rem;
+        height: .48rem;
+    }
+</style>
+{/block}
+{block name="body"}
+<div class="search">
+    <input type="text" placeholder="请输入文字">
+    <a class="back" href="/home/service/manage.html">取消</a>
+</div>
+<ul class="lists clearfix">
+
+</ul>
+<div id="fixed">
+    <div class="user">
+        <div class="userImg"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
+        <div class="userName">张然</div>
+        <div class="userSex">性别：男</div>
+        <div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">1356666888</a></span></div>
+        <div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>1973-05-12</span></div>
+        <div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>1993-08-12</span></div>
+        <div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>山下湖党支部</span></div>
+        <div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>组织部委员</span></div>
+    </div>
+    <img src="/home/images/service/icon_04.png" id="close">
+</div>
+{/block}
+
+{block name="script"}
+
+<script>
+    $(function() {
+        var search = $('.search>input');
+        var lock = false;
+        search.on('compositionstart',function(){
+            lock = true;
+        });
+        search.on('compositionend',function(){
+            lock = false;
+        });
+        search.on('input',function(){
+            var this_ = this;
+//        search.css('width','75vw');
+//        $('#cancel').show();
+//        $('body').css('position','fixed');
+//        if(!lock){
+            var val = $(this_ ).val();
+            var html = '';
+            $.ajax({
+                type:"get",
+                url: "{:Url('Service/getMember')}",
+                data:{
+                    search:val
+                },
+                beforeSend: function(XMLHttpRequest){},
+                success:function(data){
+                    console.log(data)
+                    if (data != "[]") {
+                        var date=JSON.parse(data.data);
+                        console.log(date);
+                        var result = date;
+                        var url = '';
+                        if(!result){
+                            html += '<div class="result limit">无搜索结果</div>'
+                        }
+                        for(var i=0;i< result.length;i++){
+//                            html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
+                            html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
+
+                        }
+
+                        $('.lists' ).html(html);
+                        $('.lists li').on('click',function(){
+                            $('#fixed').stop().animate({
+                                height:'100%'
+                            },500);
+
+                        });
+                        $('#close ').on('click',function(){
+                            $('#fixed').stop().animate({
+                                height:0
+                            },1);
+                        });
+                    }
+                }
+
+            });
+//        }
+        });
+
+    })
+
+</script>
+{/block}

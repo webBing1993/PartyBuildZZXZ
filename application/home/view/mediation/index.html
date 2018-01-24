@@ -137,7 +137,7 @@
                 </div>
             </a>
             {eq name="$vo.status" value="4"}
-            <div  class="evaluate">去评价</div>
+            <div  class="evaluate" onclick="window.location.href = '/home/mediation/evaluate/id/{$vo.id}.html'">去评价</div>
             {/eq}
         </div>
         {/volist}
@@ -209,9 +209,9 @@ $('#side'+med).show();
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
-                                $('.evaluate').on('click',function(){
-                                    window.location.href = '/home/mediation/evaluate.html'
-                                })
+//                                $('.evaluate').on('click',function(){
+//                                    window.location.href = '/home/mediation/evaluate.html'
+//                                })
                             }else{
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
@@ -247,9 +247,9 @@ $('#side'+med).show();
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
-                                $('.evaluate').on('click',function(){
+                                /*$('.evaluate').on('click',function(){
                                     window.location.href = '/home/mediation/evaluate.html'
-                                })
+                                })*/
                             }else{
                                 tip.text('没有更多了');
                                 $(window ).off("scroll");
@@ -284,7 +284,9 @@ $('#side'+med).show();
                             +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
                             +'<div class="fr1"><p>'+lists[i].title+'</p><div class="bt">'
                             +'<div class="time">'+lists[i].time+'</div><span class="status  '+lists[i].status_color+'" >'+lists[i].status_text+'</span>'
-                            +'</div></div></a><div  class="evaluate">去评价</div></div>'
+                            +'</div></div></a><div  class="evaluate" onclick="window.location.href = \'/home/mediation/evaluate/id/ ' +
+                                lists[i].id +
+                            '.html\'">去评价</div></div>'
                     }else{
                         html +='<div style="position: relative;" class="lists">'
                             +'<a href="/home/Mediation/yhdetails/id/'+lists[i].id+'.html" class="list">'
@@ -307,9 +309,7 @@ $('#side'+med).show();
 //            window.location.href = '/home/mediation/evaluate.html'
 //        })
 //    })
-    $('.evaluate').on('click',function(){
-        window.location.href = '/home/mediation/evaluate.html'
-    })
+
 
     $(document).scroll(function() {
         $("img.lazy").lazyload({
