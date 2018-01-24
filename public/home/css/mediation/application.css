@@ -20,7 +20,7 @@ body{
 input{
     width:66.6vw;
     border:none;
-    color:#999999;
+    color:#333;
     height:.8rem;
 }
 .star{
@@ -92,6 +92,7 @@ input{
 textarea{
     width:100%;
     height: 3rem;
+    color: #333;
 }
 .last{
     border-top:1px solid #D1D1D1;
