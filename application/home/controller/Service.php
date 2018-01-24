@@ -16,9 +16,11 @@ use app\home\model\WechatUser;
 use app\home\model\WechatDepartment;
 use app\home\model\WechatUserTag;
 use app\home\model\Meet;
+use think\Db;
 
 class Service extends Base
 {
+    static $MEMBER_TAG = 1; // 党员标签ID
     /**
      * 党员管理
      */
@@ -31,7 +33,42 @@ class Service extends Base
         $list = Meet::where($map)->limit(10)->order('id desc')->select();
         $this->assign('list',$list);
 
+        // 党员情况
+
+        $dLists = WechatDepartment::where(['parentid'=>1])->select(); // 部门列表
+        $this->assign('dList',$dLists);
+
         return $this->fetch();
+    }
+
+    /**
+     *  获取部门党员列表
+     */
+    public function getDepartmentMember($did)
+    {
+        if (empty($did)) {
+
+            $this->error('部门参数错输！');
+        } else {
+            $list = Db::table('pb_wechat_user')
+                ->alias('a')
+                ->join('pb_wechat_department_user b','a.userid = b.userid')
+                ->join('pb_wechat_user_tag c','a.userid = c.userid')
+                ->join('pb_wechat_department d','b.departmentid = d.id')
+                ->field('d.name as dname,a.userid,a.name,a.mobile,a.avatar,a.position')
+                ->where(['departmentid'=>$did,'tagid'=>$this::$MEMBER_TAG])
+                ->select();
+
+            return $this->success('获取成功！',null,json_encode($list));
+        }
+    }
+
+    /**
+     * 党员单人搜索
+     */
+    public function getMember($did)
+    {
+
     }
 
     /**

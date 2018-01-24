@@ -17,12 +17,13 @@
         <div class="box "  style="display:none;margin-top: -2.2vh;">
             <div class="showLeft">
                 <ul>
-                    <li class="active">山下湖</li>
-                    <li>山下湖</li>
-                    <li>山下湖</li>
-                    <li>山下湖</li>
-                    <li>山下湖</li>
-                    <li>山下湖</li>
+                    {volist name="dList" id="vo" key="k"}
+                        {eq name="$k" value="1"}
+                        <li class="active" data-id="{$vo.id}">{$vo.name}</li>
+                        {else/}
+                        <li data-id="{$vo.id}">{$vo.name}</li>
+                        {/eq}
+                    {/volist}
                 </ul>
             </div>
             <div class="showRight">
@@ -32,37 +33,6 @@
                 <div class="title"><div>共有党员<span>48</span>位</div></div>
                 <div class="userText">
                     <ul>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
                         <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
                         <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
                     </ul>
@@ -250,12 +220,31 @@
     $('.showLeft li ').on('click',function(){
         $('.showLeft li ').removeClass('active');
         $(this).addClass('active');
+        var did = $(this).attr('data-id');
+        $.ajax({
+            type: "get",
+            url: "{:Url('Service/getDepartmentMember')}",
+            data: {did:did},
+            success:function(data){
+                console.log(data);
+                if (data.code == 1) {
+                    var data = JSON.parse(data.data);
+                    // 数据循环
+                    console.log(data);
+                } else {
+                    console.log('请求失败！');
+                }
+
+            }
+        })
+
     });
     $('.showRight li ').on('click',function(){
         $('#fixed').stop().animate({
             height:'100%'
         },500);
-    });
+
+    })
     $('#close ').on('click',function(){
         $('#fixed').stop().animate({
             height:0

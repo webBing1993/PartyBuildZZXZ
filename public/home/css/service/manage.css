@@ -119,7 +119,7 @@ body{
 .showLeft li {
     width:100%;
     text-align: center;
-    height:.5rem;
+    /*height:.5rem;*/
     line-height: .5rem;
     margin-bottom: .3rem;
 }
