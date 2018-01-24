@@ -475,3 +475,14 @@
 .sweet-alert p {
     font-size: .32rem!important;
 }
+.sweet-alert {
+    width: 90vw!important;
+    left: 5vw!important;
+    right: 5vw!important;
+    margin-left: 0!important;
+}
+.sweet-alert button {
+    padding: 1.6vw 8.2vw !important;
+    margin: 2.4vw 1.6vw 0 1.6vw !important;
+    font-size: .34rem !important;
+}
