@@ -87,4 +87,14 @@ class Mediation extends Model {
         self::STATUS_COLOR_FEEDBACK  => 'appraise',
         self::STATUS_COLOR_ESTIMATE  => 'complete',
     ];
+
+    /**
+     * 获取调解员id
+     * @param $id
+     * @return mixed
+     */
+    public static function getMediatorid($id) {
+        $model = Mediation::get($id);
+        return $model['mediatorid'];
+    }
 }
