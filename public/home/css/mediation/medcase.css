@@ -20,6 +20,10 @@ body{
     float: left;
     margin-right:4vw;
 }
+.hfl img{
+    width:100%;
+    height:100%;
+}
 .hfr{
     width:63vw;
     height:100%;

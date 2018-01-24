@@ -97,20 +97,30 @@ body{
     border-bottom:1px solid #D1D1D1;
     background: #fff;
     color:#999999;
+    line-height:1rem;
 }
 
 .con{
     color:#333333;
-    display:inline-block;
     height:100%;
-    line-height:1rem;
 }
 .describe{
     height:15vh;
     line-height: 6.7vh;
 }
-.describe-sp{
+.describe-sp,.describe-title{
    position: absolute;
+}
+.describe-t{
+    text-indent:20.5vw;
+    width:100%;
+    height:100%;
+    color:#333333;
+    word-break:break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 .describe-p{
     text-indent:13.6vw;
@@ -141,4 +151,44 @@ body{
     color:#fff;
     font-size:.36rem;
     text-align: center;
+    position: fixed;
+    bottom:0;
+    left:0;
 }
+.bot{
+    display:none;
+    width:100%;
+    height:6vh;
+    position: fixed;
+    bottom: 0;
+    left:0;
+}
+.bot span{
+    display:block;
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 6vh;
+    color:#fff;
+    font-size: .3rem;
+}
+.fle{
+    background: #A6D250;
+}
+.fri{
+    background: #FE8B44;
+}
+.fle:active{
+    color:red;
+}
+.fri:active{
+    color:red;
+}
+
+
+
+
+
+
+

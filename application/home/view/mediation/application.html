@@ -54,10 +54,10 @@
         <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>
         <!--<div id="easyContainer"></div>-->
         <div class="imgs clear">
-            <div class="img fl hide"><span class="x">X</span></div>
-            <div class="img fl hide"><span class="x">X</span></div>
-            <div class="img fl hide"><span class="x">X</span></div>
-            <div class="img fl hide"><span class="x">X</span></div>
+            <div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>
+            <div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>
+            <div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>
+            <div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>
             <div class="add">
                 <div class="new">
                     <img class="newimg" src="/home/images/lxyz/icon/new.png"  alt=""/>
@@ -78,11 +78,11 @@
             </span>
         </div>
     </div>
-    <div class="present">
-        提交申请
-    </div>
 </div>
-<div class="container"></div>
+<div class="present">
+    提交申请
+</div>
+<!--<div class="container"></div>-->
 {/block}
 
 {block name="script"}
@@ -156,6 +156,9 @@
 //        }
 //    })
 //})
+    if($(window).width()>=768){
+        $('.last').css('margin-bottom','10.5vh')
+    }
 
     $('.last').on('click',function(){
         window.location.href='/home/mediation/applicationdetail.html'
@@ -166,7 +169,7 @@
             //上传
             $('.present' ).on('click',function(){
                 var content = $("textarea[name='content']").val();
-                var img = $('.img img' );
+                var img = $('.img  .img1' );
                 var data;
                 var images = [];
                 var imglen = img.length;
@@ -245,7 +248,7 @@
             //--------------------------------------------------------------------------
 //            图片预览
             $('.new' ).on('click',function(){
-                var imglen = $('.img img' ).length;
+                var imglen = $('.img  .img1' ).length;
                 var this_ = $(this );
                 var loading = $('.loading');
                 $('#upimg').click().off("change").on('change',function(){
@@ -274,7 +277,7 @@
                                             $('.add' ).hide()
                                         }
                                         $('.img').eq(imglen).removeClass('hide' )
-                                            .append('<img src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
+                                            .append('<img class="img1" src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
                                         if(imglen>=0){
                                                $('.x').on('click',function(){
                                                    console.log(11111)
@@ -319,7 +322,7 @@
         });
         function imgresize(){
             setTimeout(function(){
-                var img = $('.img img' );
+                var img = $('.img .img1' );
                 img.each(function(){
                     if($(this).width() == $(this).height()){
                         $(this).height('20.8vw');

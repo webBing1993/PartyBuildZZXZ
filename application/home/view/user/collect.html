@@ -96,21 +96,24 @@
                     success: function(data){
                         //成功后刷新页面
                         if(data.code == 1){
-                            //未审核页面有操作,审核页面用来判断刷新
-                            sessionStorage.setItem("review","true");
-                            $(i).parent().parent().fadeOut(500);
-                            $(i).parent().parent().remove();
-                            //判断是否还有消息
-                            check();
                             //swal回调里继续使用swal有时不会被触发
                             setTimeout(function(){
                                 swal({
                                     title: "确定删除吗？",
                                     confirmButtonText: "确定",
                                     text: "",
-                                    timer: 1500,
+                                    timer: 1000,
                                 })
                             },200);
+                            setTimeout(function(){
+                                sessionStorage.setItem("review","true");
+                                $(i).parent().parent().fadeOut(500);
+                                $(i).parent().parent().remove();
+                                //判断是否还有消息
+                                check();
+                            },1000)
+                            //未审核页面有操作,审核页面用来判断刷新
+
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')

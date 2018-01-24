@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="/home/css/mediation/details.css">
 <title>人员办理、金牌调解</title>
 <style>
+    a:active{
+        background: #fff;
+        color:red;
+    }
     #all {
         width: 100vw;
         text-align: center;
@@ -71,7 +75,8 @@
  </div>
 <div class="form">
     <div class="box">
-        事件名称 ：<span class="con">{$model.title}</span>
+        <span class="describe-title">事件名称 :</span><p class="describe-t">{$model.title}</p>
+        <!--事件名称 ：<span class="con">{$model.title}</span>-->
     </div>
     <div class="box">
         当事人 ：<span class="con">{$model.parties}</span>
@@ -93,24 +98,40 @@
 </a>
 {/eq}
 {eq name="$user_tag" value="2"}
+
 <a href="#" class="remark1">
     确认
 </a>
+<a class="remark2" href="/home/feedback/opinion.html">处理反馈</a>
 {/eq}
 {eq name="$user_tag" value="1"}
-<a class="remark2" style="display: block;" href="/home/feedback/opinion.html">处理反馈</a>
+<div class="bot">
+    <span class="fle">审核通过</span>
+    <span class="fri">审核不通过</span>
+</div>
 {/eq}
 {/block}
 
 {block name="script"}
 
 <script>
+    if($(window).width()>=768){
+        $('.form').css('margin-bottom','9vh')
+    }
     $('.lists .state').each(function(){
-        console.log($(this))
+        if($(this).html()=='待审核') {
+            $('.bot').css('display','block');
+        };
         if($(this).html()=='已审核') {
             $(this).parent().addClass('active');
             $('.remark1').css('display','block');
         };
+        if($(this).html()=='调解员已确认') {
+            $(this).parent().addClass('active');
+            $('.remark1').css('display','none');
+            $('.remark2').css('display','block')
+        };
+
 
     });
     $('.remark1').on('click',function(){
@@ -123,6 +144,7 @@
 
         });
     })
+
     var h = $('.lists').height();
     var num = 0;
     for(var i=0;i<$('.list').length;i++){
@@ -142,7 +164,7 @@
             $(this).append('<div class="hr02"></div>');
         }
         if($(this).next().hasClass('active')){
-            $(this).find('.hr02').css('height',$(this).height()*1.5)
+            $(this).find('.hr02').css('height',$(this).height()*1.6)
         }else {
             if($(this).find('.direc').length>0){
                 $(this).find('.hr02').css('height',$(this).height()*.6)

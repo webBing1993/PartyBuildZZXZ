@@ -12,7 +12,10 @@
 {/block}
 
 {block name="body"}
-<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
+<div class="top">
+	<span>新闻通知</span>
+	<span>调解申请</span>
+</div>
 <div class="list-t-wrap" style="margin-top: 6vh;">
 	<div class="list-wrapper">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
@@ -21,26 +24,16 @@
 				<img src="/home/images/nomessage.png" alt="无消息">
 			</div>
 			<ul>
-				{volist name="list" id="vo"}
 				<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
-					{if condition="$vo.type eq 1"}
-					<?php $url = Url('approved/leavedetail?id='.$vo['id'].'&visit=1');?>
-					<div class="swipeout-content" onclick="jump('{$url}')">
-						{elseif condition="$vo.type eq 2"/}
-						<?php $url = Url('approved/tripdetail?id='.$vo['id'].'&visit=1');?>
-						<div class="swipeout-content" onclick="jump('{$url}')">
-							{else/}
-							<?php $url = Url('approved/reimbursementdetail?id='.$vo['id'].'&visit=1');?>
-							<div class="swipeout-content" onclick="jump('{$url}')">
-								{/if}
+					<div class="swipeout-content" onclick="jump(1)">
 								<div class="list" style="width:100%;">
-									<span class="title">{$vo.publisher}</span>
+									<span class="title">1</span>
 									<span class="sent_time" style="width:88vw;">
 
-							<span>{$vo.create_time|time_format='Y-m-d H:i'}</span>
+							<span>2017-17-55</span>
 						</span>
 									<!--.qingjia .chuchai .baoxiao 三种颜色-->
-									<span class="yuan {eq name='$vo.type' value='1'}qingjia{else/}{eq name='$vo.type' value='2'}chuchai{else/}baoxiao{/eq}{/eq}">{$vo.title}</span>
+									<span class="yuan">1</span>
 									<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
 								</div>
 								<div class="arrow">
@@ -48,11 +41,10 @@
 								</div>
 							</div>
 							<div class="swipeout-actions-right">
-								<a class="green" onclick='dispose(this,"{$vo.id}",1,"{$vo.type}")'>同 意</a>
-								<a class="red" onclick='dispose(this,"{$vo.id}",-1,"{$vo.type}")'>不同意</a>
+								<a class="green" onclick='dispose(this,1,1,1)'>同 意</a>
+								<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
 							</div>
 				</li>
-				{/volist}
 			</ul>
 		</div>
 		<!--加载更多-->

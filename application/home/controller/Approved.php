@@ -259,24 +259,24 @@ class Approved extends Base
      * 未审核列表
      */
     public function reviewlist() {
-        $userId = session('userId');
-        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 1])->find();
-        if(!$tag){
-            $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 2])->find();
-            if(!$tag){
-                return $this->redirect("index/index");
-            }else{
-                $user_tag = 2;
-            }
-        }else{
-            $user_tag = 1;
-        }
-        $map = array(
-            'tag' => $user_tag,
-            'status' => 0,
-        );
-        $list = ApprovedModel::where($map)->order('id desc')->limit(10)->select();
-        $this->assign('list',$list);
+//        $userId = session('userId');
+//        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 1])->find();
+//        if(!$tag){
+//            $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 2])->find();
+//            if(!$tag){
+//                return $this->redirect("index/index");
+//            }else{
+//                $user_tag = 2;
+//            }
+//        }else{
+//            $user_tag = 1;
+//        }
+//        $map = array(
+//            'tag' => $user_tag,
+//            'status' => 0,
+//        );
+//        $list = ApprovedModel::where($map)->order('id desc')->limit(10)->select();
+//        $this->assign('list',$list);
         return $this->fetch();
     }
 
@@ -322,14 +322,14 @@ class Approved extends Base
      */
     public function review()
     {
-        $id = input('id');
-        $status = input('status');
-        $info = ApprovedModel::update(['status' => $status], ['id' => $id]);
-        if ($info) {
-            return $this->success();
-        } else {
+//        $id = input('id');
+//        $status = input('status');
+//        $info = ApprovedModel::update(['status' => $status], ['id' => $id]);
+//        if ($info) {
+//            return $this->success();
+//        } else {
             return $this->error();
-        }
+//        }
     }
 
     /**
@@ -393,4 +393,5 @@ class Approved extends Base
             return $this->error("加载失败");
         }
     }
+
 }
