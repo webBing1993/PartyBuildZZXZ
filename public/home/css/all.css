@@ -464,3 +464,10 @@
 }
 .note.notess .read {background: url('/home/images/lxyz/icon_005.png') 0 center no-repeat;background-size: .4rem .24rem;padding-left: .5rem;}
 .note.notess .isgood {background: url('/home/images/lxyz/icon_006.png') 0 center no-repeat;background-size: .4rem .3rem;padding-left: .5rem;}
+
+
+.sweet-alert.show-input textarea {
+    font-size: .28rem;
+    padding: 1.6vw;
+    line-height: .36rem;
+}

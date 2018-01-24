@@ -123,7 +123,11 @@ https://github.com/funnyque
             var arr = _this._findItems(1, queueUl);
             console.log(arr)
             if($('textarea').val()==''&& arr==''){
-              alert('描述或图片不能同时为空！')
+                swal({
+                    title: "描述或图片不能同时为空！",
+                    type: "warning"
+                })
+                // sweetAlert("描述或图片不能同时为空","");
             }else {
                 if (arr.length>0) {
                     allowFiles = allowFiles.concat(arr);
