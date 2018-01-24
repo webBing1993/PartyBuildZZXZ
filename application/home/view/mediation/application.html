@@ -82,7 +82,13 @@
 <div class="present">
     提交申请
 </div>
-<!--<div class="container"></div>-->
+<div class="showbox">
+    <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+    </div>
+</div>
 {/block}
 
 {block name="script"}
@@ -172,7 +178,6 @@
 //            图片预览
         $('.new' ).on('click',function(){
             var imglen = $('.img  .img1' ).length;
-            var loading = $('.loading');
             var ua = navigator.userAgent.toLowerCase();
             var isiOS = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);  // ios终端
             if(!isiOS){
@@ -191,13 +196,12 @@
                         processData : false,
                         contentType : false,
                         beforeSend: function(XMLHttpRequest){
-                            loading.toggleClass('hidden');
+                            $('.showbox').show();
                         },
                         success:function(data){
-                            console.log(data)
+                            $('.showbox').hide();
                             clearImg();
                             var msg = $.parseJSON(data);
-                            loading.toggleClass('hidden');
                             if(msg.code == 1){
                                 //图片添加
                                 if(imglen == 3){
