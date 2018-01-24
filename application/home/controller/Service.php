@@ -66,8 +66,23 @@ class Service extends Base
     /**
      * 党员单人搜索
      */
-    public function getMember($did)
+    public function getMember($search)
     {
+        if (empty($search)) {
+
+            $this->error('参数错输！');
+        } else {
+            $list = Db::table('pb_wechat_user')
+                ->alias('a')
+                ->join('pb_wechat_department_user b','a.userid = b.userid','left')
+                ->join('pb_wechat_user_tag c','a.userid = c.userid','left')
+                ->join('pb_wechat_department d','b.departmentid = d.id','left')
+                ->field('d.name as dname,a.userid,a.name,a.mobile,a.avatar,a.position')
+                ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG])
+                ->select();
+
+            return $this->success('搜索获取成功！',null,json_encode($list));
+        }
 
     }
 
