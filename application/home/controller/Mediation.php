@@ -301,6 +301,11 @@ class Mediation extends Base
         return $this->fetch();
     }
     public function applicationdetail(){
+        $map = [
+            'status' => ['egt',0],
+        ];
+        $list = MediationUser::where($map)->order('id desc')->select();
+        $this->assign('list',$list);
         return $this->fetch();
     }
     public function evaluate(){

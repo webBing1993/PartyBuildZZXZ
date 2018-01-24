@@ -32,46 +32,16 @@
 {block name="body"}
 <div class="user">
     <ul>
+        {volist name="list" id="vo"}
         <li>
-        <img src="/home/images/banner/1.jpg">
-        <div class="userSort">
-            <p>芊芊</p>
-            <p>已调解案例：<span>19</span>起</p>
-        </div>
-        <a href="#">找他调解</a>
-    </li>
-        <li>
-            <img src="/home/images/banner/1.jpg">
+            <img src="{$vo.front_cover|get_cover='path'}">
             <div class="userSort">
-                <p>芊芊</p>
-                <p>已调解案例：<span>19</span>起</p>
+                <p>{$vo.name}</p>
+                <p>已调解案例：<span>{$vo.num}</span>起</p>
             </div>
-            <a href="#">找他调解</a>
+            <a href="#">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
         </li>
-        <li>
-            <img src="/home/images/banner/1.jpg">
-            <div class="userSort">
-                <p>芊芊</p>
-                <p>已调解案例：<span>19</span>起</p>
-            </div>
-            <a href="#">找他调解</a>
-        </li>
-        <li>
-            <img src="/home/images/banner/1.jpg">
-            <div class="userSort">
-                <p>芊芊</p>
-                <p>已调解案例：<span>19</span>起</p>
-            </div>
-            <a href="#">找他调解</a>
-        </li>
-        <li>
-            <img src="/home/images/banner/1.jpg">
-            <div class="userSort">
-                <p>芊芊</p>
-                <p>已调解案例：<span>19</span>起</p>
-            </div>
-            <a href="#">找他调解</a>
-        </li>
+        {/volist}
     </ul>
 </div>
 {/block}
