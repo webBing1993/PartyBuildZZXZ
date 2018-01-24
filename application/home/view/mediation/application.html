@@ -101,8 +101,8 @@
         //上传
         $('.present' ).on('click',function(){
             var single = false;
-            if($("input[name='name']").val() != "" ||$("input[name='people']").val() != "" ||$("input[name='thing']").val() != ""||$("input[name='num']").val() != ""||$("textarea[name='content']").val()!="" ){
-                single = true
+            if($("input[name='name']").val() != "" && $("input[name='people']").val() != "" && $("input[name='thing']").val() != "" && $("input[name='num']").val() != "" && $("textarea[name='content']").val() != "" ){
+               single = true;
             }else{
                 single = false;
                 swal({
@@ -122,6 +122,7 @@
                 status: 3
             };
             if(single){
+                console.log(single)
                 data['list_images']=[];
                 $(".img img").each(function(){
                     if($(this).data("tab")){
