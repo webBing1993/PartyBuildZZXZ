@@ -42,15 +42,15 @@
                   <span>09:30</span>
               </p>
           </div>
-          <div class="list active">
+          <div class="list">
               <div class="num gray">2</div>
-              <div class="state">待审核</div>
+              <div class="state">已审核</div>
               <p class="posleft">
                   01-16<br>
               <span>09:30</span>
               </p>
           </div>
-          <div class="list active">
+          <div class="list">
               <div class="num gray">3</div>
               <div class="state">调解员待确认</div>
               <p class="posleft">
@@ -117,15 +117,33 @@
 <a href="/home/mediation/evaluate.html" class="remark">
     立即评价
 </a>
-<a href="#" class="remark">
+<a href="#" class="remark1">
     确认
 </a>
-<a class="remark" style="display: block;" href="/home/feedback/opinion.html">处理反馈</a>
+<a class="remark2"href="/home/feedback/opinion.html">处理反馈</a>
 {/block}
 
 {block name="script"}
 
 <script>
+    $('.lists .state').each(function(){
+        console.log($(this))
+       if($(this).html()=='已审核') {
+          $(this).parent().addClass('active');
+          $('.remark1').css('display','block');
+       };
+
+    });
+    $('.remark1').on('click',function(){
+        $('.lists .state').each(function(){
+            if($(this).html()=='调解员待确认') {
+                $(this).html('调解员已确认')
+                $(this).parent().addClass('active');
+                $('.remark1').css('display','none');
+            };
+
+        });
+    })
     var h = $('.lists').height();
     var num = 0;
     for(var i=0;i<$('.list').length;i++){
