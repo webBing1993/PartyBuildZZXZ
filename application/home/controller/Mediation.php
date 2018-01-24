@@ -290,6 +290,14 @@ class Mediation extends Base
             }
         }
         $title = MediationModel::TOTAL_STATU_ARRAY[$model['status']];
+        if($model['status'] == MediationModel::STATUS_COMMIT){
+            $map = [
+                'status' => ['egt',0],
+            ];
+            $list = MediationUser::where($map)->order('id desc')->select();
+            $this->assign('list',$list);
+        }
+
         $this->assign('response',$response);
         $this->assign('model',$model);
         $this->assign('title',$title);
@@ -303,12 +311,34 @@ class Mediation extends Base
      * 调解申请页面
      */
     public function application(){
-        $map = [
-            'status' => ['egt',0],
-        ];
-        $list = MediationUser::where($map)->order('id desc')->select();
-        $this->assign('list',$list);
-        return $this->fetch();
+        $this->checkAnonymous();
+        $userId = session('userId');
+        if(IS_POST) {
+            $data = input('post.');
+            $data['userid'] = $userId;
+            $data['mediator'] = MediationUser::getMediator($data['mediatorid']);
+            $data['images'] = json_encode($data['images']);
+            $opinionModel = new MediationModel();
+            $model = $opinionModel->create($data);
+            if ($model) {
+                return $this->success("提交成功");
+            } else {
+                return $this->error("提交失败");
+            }
+        }else{
+            $mediatorid = input('id');
+            $mediator = MediationUser::getMediator($mediatorid);
+            $model = WechatUser::where(['userid' => $userId])->find();
+            $map = [
+                'status' => ['egt',0],
+            ];
+            $list = MediationUser::where($map)->order('id desc')->select();
+            $this->assign('mediatorid',$mediatorid);
+            $this->assign('mediator',$mediator);
+            $this->assign('model',$model);
+            $this->assign('list',$list);
+            return $this->fetch();
+        }
     }
 
     /**

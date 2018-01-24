@@ -14,4 +14,13 @@ class WechatUser extends Model {
     public function checkUserExist($userId) {
         return $this->where('userId', $userId)->find();
     }
+    /**
+     * 获取姓名
+     * @param $id
+     * @return mixed
+     */
+    public static function getName($id) {
+        $name = WechatUser::where(['userid' => $id])->value('name');
+        return $name;
+    }
 }
