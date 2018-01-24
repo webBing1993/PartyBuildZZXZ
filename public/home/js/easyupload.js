@@ -121,14 +121,20 @@ https://github.com/funnyque
           $('.easy_upload_head_btn1').off('click').click(function(){
             var queueUl = $(this).parent().parent().find('.easy_upload_queue');
             var arr = _this._findItems(1, queueUl);
-            console.log(arr)
+            console.log(arr);
             if($('textarea').val()==''&& arr==''){
                 swal({
                     title: "描述或图片不能同时为空！",
                     type: "warning"
-                })
-                // sweetAlert("描述或图片不能同时为空","");
+                });
             }else {
+              swal({
+                title: "上传成功！",
+                type: "success",
+                timer: 1500
+              }, function () {
+                //window.history.go(-1);
+              });
                 if (arr.length>0) {
                     allowFiles = allowFiles.concat(arr);
                     upFiniehed = true;

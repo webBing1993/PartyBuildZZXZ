@@ -63,7 +63,7 @@
                     <img class="newimg" src="/home/images/lxyz/icon/new.png"  alt=""/>
                 </div>
             </div>
-            <input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">
+            <input type="file" class="hide" id="upimg" accept="image/*">
         </div>
         <p>请上传您的证据，（可为空，限4张）</p>
     </div>
@@ -86,85 +86,11 @@
 {/block}
 
 {block name="script"}
-<!--<script src="/home/js/iscroll.js"></script>-->
-<!--<script src="/home/js/iosselect.js"></script>-->
-<!--<script src="/home/js/easyupload.js"></script>-->
 <script>
-    //    $('.easy_upload_head_btn1').on('click',function(){
-    //        alert(1)
-    //    })
-//    $('#easyContainer').easyUpload({
-//        allowFileTypes: '*.jpg;*.png;*.gif;',//允许上传文件类型，格式';*.doc;*.pdf'
-//        allowFileSize: 100000,//允许上传文件大小(KB)
-//        selectText: '<img src="/home/images/icon_xx.png" style="width:60%;">',//选择文件按钮文案
-//        multi: true,//是否允许多文件上传
-//        multiNum: 9,//多文件上传时允许的文件数
-//        showNote: true,//是否展示文件上传说明
-//        note: '请上传您的证据（可为空，限9张，大小限5m）',//文件上传说明
-//        showPreview: true,//是否显示文件预览
-//        url: '/api/file/upload',//上传文件地址
-//        fileName: 'file',//文件filename配置参数
-////        formParam: {
-////            token: $.cookie('token_cookie')//不需要验证token时可以去掉
-////        },//文件filename以外的配置参数，格式：{key1:value1,key2:value2}
-//        timeout: 30000,//请求超时时间
-//        successFunc: function(res) {
-//            console.log('成功回调', res);
-//        },//上传成功回调函数
-//        errorFunc: function(res) {
-//            console.log('失败回调', res);
-//        },//上传失败回调函数
-//        deleteFunc: function(res) {
-//            console.log('删除回调', res);
-//        }//删除文件回调函数
-//    });
-
-
-
-
-//$(function () {
-//    $('.events').on('click',function(e){
-//        e.stopPropagation();
-//        $('body').css({position:' fixed', width:'100%'})
-//        if($('.nav').css('display')=='none'){
-//            $('.icon3').css('transform','rotate(180deg)')
-//        }else{
-//            $('.icon3').css('transform','rotate(0)')
-//            $('body').css({position:'relative'})
-//        }
-//        $('.nav').stop().fadeToggle("slow");
-//    })
-//    $('.nav li').on('click',function(e){
-//        e.stopPropagation();
-//        $(this).addClass('color').siblings().removeClass('color');
-////        $('.nav').fadeOut();
-//        if($('.nav').css('display')=='none'){
-//            $('.icon3').css('transform','rotate(180deg)')
-//        }else{
-//            $('.icon3').css('transform','rotate(0)')
-//        }
-//        $('.nav').stop().fadeToggle("slow");
-//        $('body').css({position:'relative'})
-//        var val=$(this).html();
-//        $('.chose').html(val);
-//    })
-//    $('.form').on('click',function(){
-//        $('.nav').stop().fadeOut();
-//        $('body').css({position:'relative'})
-//        if($('.nav').css('display')=='block') {
-//            $('.icon3').css('transform', 'rotate(0)');
-//        }
-//    })
-//})
-    if($(window).width()>=768){
-        $('.last').css('margin-bottom','10.5vh')
-    }
 
     $('.last').on('click',function(){
         window.location.href='/home/mediation/applicationdetail.html'
-    })
-//
-//
+    });
         $(function(){
             //上传
             $('.present' ).on('click',function(){
@@ -241,7 +167,7 @@
             }
 
             function addImg() {
-                var addImg = '<input type="file" class="hide" id="upimg" accept="image/jpg, image/png, image/gif, image/jpeg">';
+                var addImg = '<input type="file" class="hide" id="upimg" accept="image/*">';
                 $(".imgs").append(addImg);
             }
 
@@ -249,7 +175,6 @@
 //            图片预览
             $('.new' ).on('click',function(){
                 var imglen = $('.img  .img1' ).length;
-                var this_ = $(this );
                 var loading = $('.loading');
                 $('#upimg').click().off("change").on('change',function(){
                     var size = ($(this)[0].files[0].size / 1024).toFixed(2);
@@ -280,9 +205,8 @@
                                             .append('<img class="img1" src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
                                         if(imglen>=0){
                                                $('.x').on('click',function(){
-                                                   console.log(11111)
                                                 $(this).parents(".img").remove();
-                                                $('.add').before('<div class="img fl hide"><span class="x">X</span></div>')
+                                                $('.add').before('<div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>')
                                                 if(imglen<4){
                                                     $('.add' ).show();
                                                 }
@@ -363,57 +287,5 @@
                 $('.contentnum span').text(num);
             }).css("ime-mode", "disabled"); //CSS设置输入法不可用
         }
-
-
-
-
-
-<!--var data = [&ndash;&gt;-->
-<!--{'id': '10001', 'value': '妇女儿童与残疾人维权'},-->
-<!--{'id': '10002', 'value': '劳动就业及社会保障'},-->
-<!--{'id': '10003', 'value': '婚姻家庭与遗产纠纷'},-->
-<!--{'id': '10004', 'value': '交通事故与医患纠纷'},-->
-<!--{'id': '10005', 'value': '债权及损害赔偿'},-->
-<!--{'id': '10006', 'value': '网络交易与购物纠纷'},-->
-<!--{'id': '10007', 'value': '旅游消费与保险纠纷'},-->
-<!--{'id': '10008', 'value': '房地产与物业纠纷'},-->
-<!--{'id': '10009', 'value': '债权债务及合同纠纷'},-->
-<!--{'id': '10010', 'value': '刑事诉讼其他纠纷'}-->
-<!--];-->
-<!--var showBankDom = document.querySelector('#showBank');-->
-<!--var bankIdDom = document.querySelector('#bankId');-->
-<!--showBankDom.addEventListener('click', function () {-->
-<!--var bankId = showBankDom.dataset['id'];-->
-<!--var bankName = showBankDom.dataset['value'];-->
-<!--console.log(data)-->
-<!--var bankSelect = new IosSelect(1,-->
-<!--[data],-->
-<!--{-->
-<!--container: '.container',-->
-<!--title: '事件选择',-->
-<!--itemHeight: 60,-->
-<!--itemShowCount: 3,-->
-<!--oneLevelId: bankId,-->
-<!--callback: function (selectOneObj) {-->
-<!--bankIdDom.value = selectOneObj.id;-->
-<!--showBankDom.innerHTML = selectOneObj.value;-->
-<!--showBankDom.dataset['id'] = selectOneObj.id;-->
-<!--showBankDom.dataset['value'] = selectOneObj.value;-->
-<!--}-->
-<!--});-->
-<!--});-->
-
-
-
-<!--$("#phone").bind("input propertychange",function(){-->
-<!--var reg = new RegExp("^[0-9]*$");-->
-<!--var obj = document.getElementById("phone");-->
-<!--if(!reg.test(obj.value)){-->
-<!--$(this).val('')-->
-<!--}-->
-<!--if(!/^[0-9]*$/.test(obj.value)){-->
-<!--$(this).val('')-->
-<!--}-->
-
 </script>
 {/block}

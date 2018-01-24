@@ -38,11 +38,6 @@
   font-size: .32rem;
   line-height: .8rem;
 }
-.easy_upload-container {
-  width: 100%;
-  /*border: 1px #eee solid;*/
-  /*padding: 10px;*/
-}
 .easy_upload-container ul,
 .easy_upload-container p {
   list-style: none;
@@ -65,6 +60,7 @@
   line-height: 1.4rem;
   /*font-size: 1rem;*/
   color: #999;
+  margin-bottom: 2vw;
 }
 .easy_upload_select img {position: relative;line-height: 1.4rem;vertical-align: middle;}
 .easy_upload_queue .easy_upload_select {
@@ -77,6 +73,7 @@
   display: inline-block;
   margin-right: 4vw;
   vertical-align: top;
+  margin-bottom: 2vw;
 }
 .easy_upload-container .easy_upload-head .easy_upload_head_btn1,
 .easy_upload-container .easy_upload-head .easy_upload_head_btn2 {
@@ -87,9 +84,7 @@
   cursor: pointer;
 }
 .easy_upload-container .easy_upload-head .head_check {
-  margin-left: 10px;
-  font-size: 14px;
-  color: #999;
+  display: none;
 }
 .easy_upload_note {
   font-size: .24rem;
@@ -121,6 +116,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #d1d1d1;
 }
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_preview .easy_upload_img {
   display: block;
@@ -215,7 +211,7 @@
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn {
   position: absolute;
   top:-.2rem;
-  left:1.2rem;
+  left:1.15rem;
 }
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn .btn img {
   width:.42rem;

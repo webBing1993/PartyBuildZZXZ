@@ -7,6 +7,9 @@
     body {background: #eee;}
     .Upload {width:100vw;padding: 4vw;background: #fff;}
     .Upload textarea {font-size: .3rem;height:3.5rem;resize: none;width:100%;text-align: justify;}
+    .sweet-alert h2{
+        font-size: .4rem;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -46,5 +49,32 @@
             console.log('删除回调', res);
         }//删除文件回调函数
     });
+    $(function () {
+        // 上传
+        $('.easy_upload_head_btn1').off('click').click(function(){
+            var queueUl = $(this).parent().parent().find('.easy_upload_queue');
+
+            var arr = _this._findItems(1, queueUl);
+            if($('textarea').val()==''&& arr==''){
+                swal({
+                    title: "描述或图片不能同时为空！",
+                    type: "warning"
+                });
+            }else {
+                swal({
+                    title: "上传成功！",
+                    type: "success",
+                    timer: 1500
+                }, function () {
+                    window.history.go(-1);
+                });
+                if (arr.length>0) {
+                    allowFiles = allowFiles.concat(arr);
+                    upFiniehed = true;
+                    _this._uploadFile(queueUl);
+                }
+            }
+        });
+    })
 </script>
 {/block}
