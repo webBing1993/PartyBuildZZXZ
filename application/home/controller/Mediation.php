@@ -289,8 +289,10 @@ class Mediation extends Base
 
             }
         }
+        $title = MediationModel::TOTAL_STATU_ARRAY[$model['status']];
         $this->assign('response',$response);
         $this->assign('model',$model);
+        $this->assign('title',$title);
         $this->assign('id',$id);
         $this->assign('user_tag',$user_tag);
 
@@ -308,6 +310,18 @@ class Mediation extends Base
         $this->assign('list',$list);
         return $this->fetch();
     }
+
+    /**
+     * 管理员审核不通过页面
+     */
+    public function noapprove(){
+        $id = input('id');
+        $this->assign('id',$id);
+        return $this->fetch();
+    }
+    /**
+     * 调解员列表
+     */
     public function applicationdetail(){
         $map = [
             'status' => ['egt',0],
@@ -315,6 +329,38 @@ class Mediation extends Base
         $list = MediationUser::where($map)->order('id desc')->select();
         $this->assign('list',$list);
         return $this->fetch();
+    }
+
+    /**
+     * 管理员审核
+     */
+    public function check(){
+        $data = input('post.');
+        $status = input('status');
+        if($status){//审核通过
+            $data['status'] = MediationModel::STATUS_CHECK;
+            if($data['mediatorid']){
+                $data['mediator'] = MediationUser::getMediator($data['mediatorid']);
+            }
+        }else{//审核不通过
+            $data['status'] = MediationModel::STATUS_NOAPPROVE;
+        }
+        $data['check_time'] = time();
+        $model = MediationModel::update($data,['id'=>input('id')]);
+        if($model) {
+            if($status){//审核通过
+                $userid = MediationModel::getUserid(input('id'));
+//                $this->push_review("审核通过通知", "【调解申请】审核已通过", "点击查看", 0, $userid);
+                $mediatorid = MediationModel::getMediatorid(input('id'));
+//                $this->push_review("调解确认通知", "【调解申请】未确认", "请尽快确认", 0, $mediatorid);
+            }else{//审核不通过
+                $userid = MediationModel::getUserid(input('id'));
+//                $this->push_review("审核不通过通知", "【调解申请】审核不通过", "点击查看", 0, $userid);
+            }
+            return $this->success("提交成功");
+        }else{
+            return $this->error("提交失败");
+        }
     }
 
     /**
@@ -326,7 +372,7 @@ class Mediation extends Base
         $model = MediationModel::update($data,['id'=>input('id')]);
         if($model) {
             $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("【调解完成】", $userid);
+//                $this->push_review("调解员已确认通知", "【调解申请】调解员已确认", "点击查看", 0, $userid);
             return $this->success("提交成功");
         }else{
             return $this->error("提交失败");
@@ -344,7 +390,7 @@ class Mediation extends Base
             $model = MediationModel::update($data,['id'=>input('id')]);
             if($model) {
                 $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("【调解完成】", $userid);
+//                $this->push_review("评价通知", "【调解申请】未评价", "快去评价吧", 0, $userid);
                 return $this->success("提交成功");
             }else{
                 return $this->error("提交失败");
@@ -367,7 +413,7 @@ class Mediation extends Base
             $model = MediationModel::update($data,['id'=>input('id')]);
             if($model) {
                 $mediatorid = MediationModel::getMediatorid(input('id'));
-//                $this->push_review("【调解评价】", $mediatorid);
+//                $this->push_review("评价查看通知", "【调解申请】评价未查看", "快去看看吧", 0, $mediatorid);
                 return $this->success("提交成功");
             }else{
                 return $this->error("提交失败");
@@ -382,11 +428,11 @@ class Mediation extends Base
     /**
      * 文本卡片推送公用方法
      */
-    public function push_review($pre, $tag, $user=null){
+    public function push_review($title, $pre, $end, $tag, $user=null){
         $httpUrl = config('http_url');
         $send = array(
-            "title" => "审核通知",
-            "description" => "您有一条".$pre."未审核<br>请尽快审核",
+            "title" => $title,
+            "description" => "您有一条".$pre."<br>".$end,
             "url" => $httpUrl."/home/approved/reviewlist",
         );
         //发送给企业号

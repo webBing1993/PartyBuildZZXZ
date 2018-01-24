@@ -12,5 +12,13 @@ namespace app\home\model;
 use think\Model;
 
 class MediationUser extends Model {
-
+    /**
+     * 获取调解员姓名
+     * @param $id
+     * @return mixed
+     */
+    public static function getMediator($id) {
+        $mediator = MediationUser::where(['userid' => $id])->value('name');
+        return $mediator;
+    }
 }
