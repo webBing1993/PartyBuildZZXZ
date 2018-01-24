@@ -6,13 +6,6 @@
 <link rel="stylesheet" href="/home/css/common/comment.css">
 <script src="/static/sweetalert/sweetalert1.min.js"></script>
 <title>十九大专区</title>
-<style>
-    .sweet-alert.show-input textarea {
-        font-size: .28rem;
-        padding: 1.6vw;
-        line-height: .36rem;
-    }
-</style>
 {/block}
 {block name="body"}
 <div class="article all">
@@ -27,21 +20,23 @@
         </div>
         <div class="note">
             <span class="read">{$article.views}</span>
-            {eq name="visit" value="0"}
-            {eq name="article.is_like" value="1"}
-            <span class="isgood good_" onclick="isGood(this,1,{$article.id})">{$article.likes}</span>
-            {else/}
-            <span class="isgood good" onclick="isGood(this,1,{$article.id})">{$article.likes}</span>
-            {/eq}
-            {else/}
-            <span class="isgood good">{$article.likes}</span>
-            {/eq}
 
             {eq name="article.is_collect" value="1"}
-            <span class="collect star_ " onclick="isCollect(this,1,{$article.id})">&nbsp;</span>
+            <span class="fr collect star_ " onclick="isCollect(this,1,{$article.id})">&nbsp;</span>
             {else/}
-            <span class="collect star " onclick="isCollect(this,1,{$article.id})">&nbsp; </span>
+            <span class="fr collect star " onclick="isCollect(this,1,{$article.id})">&nbsp; </span>
             {/eq}
+
+            {eq name="visit" value="0"}
+            {eq name="article.is_like" value="1"}
+            <span class="fr isgood good_" onclick="isGood(this,1,{$article.id})">{$article.likes}</span>
+            {else/}
+            <span class="fr isgood good" onclick="isGood(this,1,{$article.id})">{$article.likes}</span>
+            {/eq}
+            {else/}
+            <span class="fr isgood good">{$article.likes}</span>
+            {/eq}
+
         </div>
     </div>
 </div>

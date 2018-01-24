@@ -67,7 +67,7 @@
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
             <span class="read">{$vo.views}</span>
-            <span class="isgood good">{$vo.comments}</span>
+            <span class="fr isgood good">{$vo.comments}</span>
         </div>
     </a>
     {/volist}
@@ -82,7 +82,7 @@
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
             <span class="read">{$vo.views}</span>
-            <span class="isgood good">{$vo.comments}</span>
+            <span class="fr isgood good">{$vo.comments}</span>
         </div>
     </a>
     {/volist}
@@ -97,7 +97,7 @@
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
             <span class="read">{$vo.views}</span>
-            <span class="isgood good">{$vo.comments}</span>
+            <span class="fr isgood good">{$vo.comments}</span>
         </div>
     </a>
     {/volist}
@@ -112,7 +112,7 @@
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
             <span class="read">{$vo.views}</span>
-            <span class="isgood good">{$vo.comments}</span>
+            <span class="fr isgood good">{$vo.comments}</span>
         </div>
     </a>
     {/volist}
@@ -127,7 +127,7 @@
         </div>
         <div class="note notess" style="width:84vw;margin: auto ;">
             <span class="read">{$vo.views}</span>
-            <span class="isgood good">{$vo.comments}</span>
+            <span class="fr isgood good">{$vo.comments}</span>
         </div>
     </a>
     {/volist}
@@ -137,7 +137,7 @@
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
         <div class="side1Content_Text"><p class="side1Content_Text_01">{$vo.title}</p><p class="side1Content_Text_02">{$vo.desc}</p></div>
-        <div class="note notess" style="width:84vw;margin: auto ;"><span class="read">{$vo.views}</span><span class="isgood good">{$vo.comments}</span></div>
+        <div class="note notess" style="width:84vw;margin: auto ;"><span class="read">{$vo.views}</span><span class="fr isgood good">{$vo.comments}</span></div>
     </a>
     {/volist}
 </div>
@@ -288,7 +288,7 @@
             html +='<a class="side1Content" href="/home/study/detail?id='+list.id+'">'
                     +str
                     +'<div class="side1Content_Text"><p class="side1Content_Text_01">'+list.title+'</p><p class="side1Content_Text_02">'+list.desc+'</p></div>'
-                    +'<div class="note notess" style="width:84vw;margin: auto ;"><span class="read">'+list.views+'</span><span class="isgood good">'+list.comments+'</span></div>'
+                    +'<div class="note notess" style="width:84vw;margin: auto ;"><span class="read">'+list.views+'</span><span class="fr isgood good">'+list.comments+'</span></div>'
                     +'</a>'
         }
         $("#side"+num ).append(html);

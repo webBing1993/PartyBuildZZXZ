@@ -21,13 +21,13 @@
             <span class="read">{$music.views}</span>
             {eq name="visit" value="0"}
             {eq name="music.is_like" value="0"}
-            <span class="isgood good" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
+            <span class="fr isgood good" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
             <!--点过赞good_-->
             {else/}
-            <span class="isgood good_" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
+            <span class="fr isgood good_" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
             {/eq}
             {else/}
-            <span class="isgood good">{$music.likes}</span>
+            <span class="fr isgood good">{$music.likes}</span>
             {/eq}
         </div>
     </div>

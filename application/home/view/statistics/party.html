@@ -35,8 +35,8 @@
     <div class="tab"><span class="active">文字型</span></div>
     <div class="tab"><span>图表型</span></div>
 </div>
-<iframe src="" frameborder="0"  id="tab0"></iframe>
-<iframe src="" frameborder="0"  id="tab1"></iframe>
+<iframe src="/home/statistics/form.html" frameborder="0"  id="tab0"></iframe>
+<iframe src="/home/statistics/chart.html" frameborder="0"  id="tab1"></iframe>
 {/block}
 {block name="script"}
 <script src="/home/js/reset.js"></script>
@@ -47,52 +47,23 @@
         $('#tab0').height(WH);
         $("iframe").css("margin-top",".88rem");
         //tab切换
-        var number = localStorage.getItem('num')==null?0:localStorage.getItem('num');
+        var number = getCookie('num')==null?0:getCookie('num');
         $('.tabs>.tab ').on('click',function(){
             $("iframe").css("margin-top",".88rem");
-            $("iframe").attr("src","");
-            var ntc = $('.notices' );
             var eq = $(this ).index();
-            localStorage.setItem('num',eq);
+            setCookie('num',eq);
             $(this ).siblings('.tab' ).find('span' ).removeClass('active');
             $(this ).find('span' ).addClass('active');
-            /*//先全部隐藏
-            $('iframe').css('display','none');
-            $('iframe').height(0);*/
-            if(eq == 0){
-                $('#tab'+eq)[0].src='/home/statistics/form.html';
-            }else if(eq == 1){
-                $('#tab'+eq)[0].src='/home/statistics/chart.html';
-            }
             $('#tab'+eq).height(WH);
             $('#tab'+eq).show().siblings("iframe").hide();
-            //使用示例
         });
 
+        // 初始化
         $('.tab').eq(number).siblings('.tab' ).find('span' ).removeClass('active');
         $('.tab').eq(number).find('span' ).addClass('active');
-        //先全部隐藏
-        $('iframe').css('display','none');
-        $('iframe').height(0);
-        if(number == 0){
-            $('#tab'+number)[0].src='/home/statistics/form.html';
-        }else if(number == 1){
-            $('#tab'+number)[0].src='/home/statistics/chart.html';
-        }
         $('#tab'+number).height(WH);
-        $('#tab'+number).show();
-        isOut();
+        $('#tab'+number).show().siblings("iframe").hide();
     });
 
-    //退出清理tab缓存
-    function isOut(){
-        pushHistory();
-        setTimeout(function(){
-            window.addEventListener("popstate", function(e) {
-                delCookie("type");
-                window.history.go(-1);
-            }, false);
-        },200)
-    }
 </script>
 {/block}

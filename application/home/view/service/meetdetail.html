@@ -6,13 +6,6 @@
 <link rel="stylesheet" href="/home/css/common/comment.css">
 <script src="/static/sweetalert/sweetalert1.min.js"></script>
 <title>参会情况</title>
-<style>
-    .sweet-alert.show-input textarea {
-        font-size: .28rem;
-        padding: 1.6vw;
-        line-height: .36rem;
-    }
-</style>
 {/block}
 {block name="body"}
 <div class="article all">
@@ -29,12 +22,12 @@
             <span class="read">{$article.views}</span>
             {eq name="visit" value="0"}
             {eq name="article.is_like" value="1"}
-            <span class="isgood good_" onclick="isGood(this,7,{$article.id})">{$article.likes}</span>
+            <span class="fr isgood good_" onclick="isGood(this,7,{$article.id})">{$article.likes}</span>
             {else/}
-            <span class="isgood good" onclick="isGood(this,7,{$article.id})">{$article.likes}</span>
+            <span class="fr isgood good" onclick="isGood(this,7,{$article.id})">{$article.likes}</span>
             {/eq}
             {else/}
-            <span class="isgood good">{$article.likes}</span>
+            <span class="fr isgood good">{$article.likes}</span>
             {/eq}
         </div>
     </div>

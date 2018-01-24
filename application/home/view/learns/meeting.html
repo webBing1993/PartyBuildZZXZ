@@ -19,7 +19,7 @@
             {/eq}
                 <img data-original="{$vo.front_cover|get_cover='path'}" class="lazy">
                 <p>{$vo.title}</p>
-                <div class="note notess" style="width:84vw;margin: auto;"><span class="read">{$vo.views}</span><span class="isgood good">{$vo.comments}</span></div>
+                <div class="note notess" style="width:84vw;margin: auto;"><span class="read">{$vo.views}</span><span class="fr isgood good">{$vo.comments}</span></div>
             </a>
         </li>
         {/volist}
@@ -106,7 +106,7 @@
                     +'<a href="'+str+'.html">'
                     +'<img data-original="'+list.path+'" class="lazy">'
                     +'<p>'+list.title+'</p>'
-                    +'<div class="note notess" style="width:84vw;margin: auto;"><span class="read">'+list.views+'</span><span class="isgood good">'+list.comments+'</span></div>'
+                    +'<div class="note notess" style="width:84vw;margin: auto;"><span class="read">'+list.views+'</span><span class="fr isgood good">'+list.comments+'</span></div>'
                     +'</a>'
                     +'</li>'
         }

@@ -32,12 +32,12 @@
             <span class="read">{$film.views}</span>
             {eq name="visit" value="0"}
             {eq name="film.is_like" value="1"}
-            <span class="isgood good_" onclick="isGood(this,2,{$film.id})">{$film.likes}</span>
+            <span class="fr isgood good_" onclick="isGood(this,2,{$film.id})">{$film.likes}</span>
             {else/}
-            <span class="isgood good" onclick="isGood(this,2,{$film.id})">{$film.likes}</span>
+            <span class="fr isgood good" onclick="isGood(this,2,{$film.id})">{$film.likes}</span>
             {/eq}
             {else/}
-            <span class="isgood good">{$film.likes}</span>
+            <span class="fr isgood good">{$film.likes}</span>
             {/eq}
         </div>
     </div>
@@ -306,5 +306,25 @@
             })
         }
     }
+
+    // 视频播放返回后脱离文档流的处理
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            $("iframe").remove();
+            setTimeout(function () {
+                window.history.go(-1);
+            },100);
+        }, false);
+        function pushHistory() {
+            var sta = {
+                title: "title"
+            };
+            if( window.history.state === null )
+            {
+                window.history.pushState( sta, "title" );
+            }
+        }
+    });
 </script>
 {/block}

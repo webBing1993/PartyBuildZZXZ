@@ -267,7 +267,7 @@
 }
 .all .note span {
     height: 8vw;
-    /*display: inline-block;*/
+    display: inline-block;
     margin-right: 3vw;
     line-height: 8vw;
 }
@@ -469,5 +469,9 @@
 .sweet-alert.show-input textarea {
     font-size: .28rem;
     padding: 1.6vw;
-    line-height: .36rem;
+    line-height: normal;
+    height: 24vw;
+}
+.sweet-alert p {
+    font-size: .32rem!important;
 }

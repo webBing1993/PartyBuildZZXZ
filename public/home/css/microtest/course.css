@@ -39,7 +39,7 @@
 }
 .activity .lists .list:before {
   position: absolute;
-  top: .5rem;
+  top: 7vw;
   left: 4vw;
   content: '';
   width: .15rem;

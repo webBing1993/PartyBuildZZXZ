@@ -66,12 +66,12 @@
             <span class="read">{$book.views}</span>
             {eq name="visit" value="0"}
             {eq name="book.is_like" value="0"}
-            <span class="isgood good" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
+            <span class="fr isgood good" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
             {else/}
-            <span class="isgood good_" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
+            <span class="fr isgood good_" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
             {/eq}
             {else/}
-            <span class="isgood good">{$book.likes}</span>
+            <span class="fr isgood good">{$book.likes}</span>
             {/eq}
         </div>
     </div>
