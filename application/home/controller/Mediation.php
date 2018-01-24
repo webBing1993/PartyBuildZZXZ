@@ -321,6 +321,7 @@ class Mediation extends Base
             $opinionModel = new MediationModel();
             $model = $opinionModel->create($data);
             if ($model) {
+                 $this->push_review("审核通知", "【调解申请】未审核", "请尽快审核", 1);
                 return $this->success("提交成功");
             } else {
                 return $this->error("提交失败");
