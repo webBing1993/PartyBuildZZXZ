@@ -51,6 +51,30 @@
 .hidden {
     display: none;
 }
+
 .top{
+    padding:2.2vh 0;
     width:100%;
+    height:8.4vh;
+    background:pink;
+    text-align: center;
+    overflow: hidden;
+}
+.top div{
+    color: #333333;
+    padding:.75vh 0;
+    font-size:.3rem;
+    height:100%;
+    width:49%;
+    float:left;
+    line-height: 100%;
+    text-align: center;
+}
+.tab1{
+    border-right:1px solid #D1D1D1
+}
+.tab1 span{
+    padding-left:7vw;
+    background: url('/home/images/approved/icon/1.png') no-repeat left top ;
+    background-size: 4.8vw 2.25vh;
 }
