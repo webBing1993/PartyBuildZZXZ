@@ -291,6 +291,7 @@ class Mediation extends Base
         }
         $this->assign('response',$response);
         $this->assign('model',$model);
+        $this->assign('id',$id);
         $this->assign('user_tag',$user_tag);
 
         return $this->fetch();
@@ -349,6 +350,8 @@ class Mediation extends Base
                 return $this->error("提交失败");
             }
         }else{
+            $id = input('id');
+            $this->assign('id',$id);
             return $this->fetch();
         }
     }
@@ -370,6 +373,8 @@ class Mediation extends Base
                 return $this->error("提交失败");
             }
         }else{
+            $id = input('id');
+            $this->assign('id',$id);
             return $this->fetch();
         }
     }

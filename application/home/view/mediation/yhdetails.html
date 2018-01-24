@@ -94,7 +94,7 @@
 </div>
 {eq name="$user_tag" value="3"}
 {eq name="$model.status" value="4"}
-<a href="/home/mediation/evaluate.html" class="remark">
+<a href="{:Url('Mediation/evaluate?id='.$id)}" class="remark">
     立即评价
 </a>
 {/eq}
@@ -104,7 +104,7 @@
     <a href="#" class="remark1">确认</a>
     {/eq}
     {eq name="$model.status" value="3"}
-    <a class="remark2" href="/home/mediation/opinion.html">处理反馈</a>
+    <a class="remark2" href="{:Url('Mediation/opinion?id='.$id)}">处理反馈</a>
     {/eq}
 {/eq}
 {eq name="$user_tag" value="1"}
