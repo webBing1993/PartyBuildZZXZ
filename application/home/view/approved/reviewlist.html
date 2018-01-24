@@ -16,7 +16,7 @@
 	<div class="tab1"><span >新闻通知</span></div>
 	<div class="tab2"><span >调解申请</span></div>
 </div>
-<div class="list-t-wrap" style="margin-top: 6vh;">
+<div class="list-t-wrap">
 	<div class="list-wrapper">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
@@ -24,27 +24,32 @@
 				<img src="/home/images/nomessage.png" alt="无消息">
 			</div>
 			<ul>
-				<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
+				<li class="swipeout" style="margin-right: 3vw;">
 					<div class="swipeout-content" onclick="jump(1)">
-								<div class="list" style="width:100%;">
-									<span class="title">1</span>
-									<span class="sent_time" style="width:88vw;">
+						<div class="list" style="width:100%;">
+							<span class="yuan"></span>
+							<div class="fri">
+								<span class="title">“珍珠小镇”深度挖掘美丽经济</span>
+								<p>浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>
+								<div class="bt">
+									<span>【第一聚焦】</span>
+									<span>2017-12-06</span>
+								</div>
+							</div>
 
-							<span>2017-17-55</span>
-						</span>
-									<!--.qingjia .chuchai .baoxiao 三种颜色-->
-									<span class="yuan">1</span>
-									<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
-								</div>
-								<div class="arrow">
-									<img src="/home/images/review/rightArrow.png" alt="">
-								</div>
-							</div>
-							<div class="swipeout-actions-right">
-								<a class="green" onclick='dispose(this,1,1,1)'>同 意</a>
-								<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
-							</div>
+							<!--.qingjia .chuchai .baoxiao 三种颜色-->
+							<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
+						</div>
+						<div class="arrow">
+							<img src="/home/images/review/rightArrow.png" alt="">
+						</div>
+					</div>
+					<div class="swipeout-actions-right">
+						<a class="green" onclick='dispose(this,1,1,1)'>同 意</a>
+						<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
+					</div>
 				</li>
+
 			</ul>
 		</div>
 		<!--加载更多-->
