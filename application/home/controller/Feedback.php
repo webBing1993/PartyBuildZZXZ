@@ -224,8 +224,5 @@ class Feedback extends Base {
     public function detail(){
         return $this->fetch();
     }
-    public function opinion(){
-        return $this->fetch();
-    }
 
 }

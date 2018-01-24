@@ -9,6 +9,8 @@
 namespace app\home\controller;
 use app\home\model\Like;
 use app\home\model\WechatUserTag;
+use com\wechat\TPQYWechat;
+use think\Config;
 use think\Db;
 use think\Request;
 use think\Controller;
@@ -294,15 +296,15 @@ class Mediation extends Base
         return $this->fetch();
     }
 
+    /**
+     * 调解申请页面
+     */
     public function application(){
         $map = [
             'status' => ['egt',0],
         ];
         $list = MediationUser::where($map)->order('id desc')->select();
         $this->assign('list',$list);
-        return $this->fetch();
-    }
-    public function newdetail(){
         return $this->fetch();
     }
     public function applicationdetail(){
@@ -313,7 +315,68 @@ class Mediation extends Base
         $this->assign('list',$list);
         return $this->fetch();
     }
+
+    /**
+     * 申请人情况反馈
+     */
     public function evaluate(){
+        if(IS_POST) {
+            $data = input('post.');
+            $model = MediationModel::update($data,['id'=>input('id')]);
+            if($model) {
+                $mediatorid = MediationModel::getMediatorid(input('id'));
+                $this->push_review("【调解评价】", $mediatorid);
+                return $this->success("提交成功");
+            }else{
+                return $this->error("提交失败");
+            }
+        }else{
+            return $this->fetch();
+        }
+    }
+
+    /**
+     * 调解员处理反馈
+     */
+    public function opinion(){
         return $this->fetch();
     }
+
+    /**
+     * 文本卡片推送公用方法
+     */
+    public function push_review($pre, $tag, $user=null){
+        $httpUrl = config('http_url');
+        $send = array(
+            "title" => "审核通知",
+            "description" => "您有一条".$pre."未审核<br>请尽快审核",
+            "url" => $httpUrl."/home/approved/reviewlist",
+        );
+        //发送给企业号
+        $Wechat = new TPQYWechat(Config::get('review'));
+        $newsConf = config('review');
+        $message = array(
+            "msgtype" => 'textcard',
+            "agentid" => $newsConf['agentid'],
+            "textcard" => $send,
+            "safe" => "0"
+        );
+        if($httpUrl == "http://dzgcpb.0571ztnet.com"){
+            $message['totag'] = $tag;
+        }else{
+            if($tag){
+                $message['totag'] = $tag;
+            }else{
+                if($user){
+                    $message['touser'] = $user;
+                }else{
+                    $message['touser'] = config('touser');
+                }
+
+            }
+        }
+        return $Wechat->sendMessage($message);
+    }
+
+
 }
