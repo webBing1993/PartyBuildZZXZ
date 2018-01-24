@@ -215,7 +215,7 @@
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn {
   position: absolute;
   top:-.2rem;
-  right:-.3rem;
+  left:1.2rem;
 }
 .easy_upload-container .easy_upload_queue .easy_upload_queue_item .easy_upload_btn .btn img {
   width:.42rem;
