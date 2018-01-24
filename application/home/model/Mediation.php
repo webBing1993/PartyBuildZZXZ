@@ -43,7 +43,21 @@ class Mediation extends Model {
         self::NEXT_STATUS_CHECK  => '调解员待确认',
         self::NEXT_STATUS_CONFIRM  => '纠纷待处理',
         self::NEXT_STATUS_FEEDBACK  => '待评价',
-        self::NEXT_STATUS_ESTIMATE  => '已完成',
+        self::NEXT_STATUS_ESTIMATE  => '',
+    ];
+    const TOTAL_STATUS_NOAPPROVE = -1;
+    const TOTAL_STATUS_COMMIT = 1;
+    const TOTAL_STATUS_CHECK = 2;
+    const TOTAL_STATUS_CONFIRM = 3;
+    const TOTAL_STATUS_FEEDBACK = 4;
+    const TOTAL_STATUS_ESTIMATE = 5;
+    const TOTAL_STATU_ARRAY = [
+        self::TOTAL_STATUS_NOAPPROVE  => '审核不通过',
+        self::TOTAL_STATUS_COMMIT  => '待审核',
+        self::TOTAL_STATUS_CHECK  => '调解员待确认',
+        self::TOTAL_STATUS_CONFIRM  => '纠纷待处理',
+        self::TOTAL_STATUS_FEEDBACK  => '待评价',
+        self::TOTAL_STATUS_ESTIMATE  => '已完成',
     ];
     const STATUS_TOTIME_NOAPPROVE = -1;
     const STATUS_TOTIME_COMMIT = 1;

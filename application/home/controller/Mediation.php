@@ -53,7 +53,7 @@ class Mediation extends Base
             ];
             $list3 = MediationModel::where($map_to)->limit(10)->order('id desc')->select();
             foreach ($list3 as $value) {
-                $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
+                $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
                 $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
                 if ($value['images']) {
                     $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
@@ -115,7 +115,7 @@ class Mediation extends Base
         }
         $list = MediationModel::where($map)->limit(10)->order('id desc')->select();
         foreach ($list as $value) {
-            $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
+            $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
             $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
             if ($value['images']) {
                 $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
@@ -196,7 +196,7 @@ class Mediation extends Base
         $list = MediationModel::where($map)->limit($len,6)->order('id desc')->select();
         foreach ($list as $value) {
             $value['time'] = date("Y-m-d",$value['create_time']);
-            $value['status_text'] = MediationModel::NEXT_STATU_ARRAY[$value['status']];
+            $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
             $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
             if ($value['images']) {
                 $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
@@ -230,15 +230,71 @@ class Mediation extends Base
         $this->assign('list',$list);
         return $this->fetch();
     }
+    /**
+     * 调解详情页
+     */
     public function yhdetails(){
+        $userId = session('userId');
+        $id = input('id');
+        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 1])->find();
+        if($tag){
+            $user_tag = 1;//管理员
+        }else{
+            $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 2])->find();
+            if($tag){
+                $user_tag = 2;//调解员
+            }else{
+                $user_tag = 3;//申请人
+            }
+        }
+        $model = MediationModel::get($id);
+//        var_dump($model);die;
+        $response = [];
+
+        if($model['status'] == MediationModel::STATUS_NOAPPROVE){
+            $response[1] = [
+                'd_time' => date('m-d', $model['create_time']),
+                's_time' => date('H:i', $model['create_time']),
+                'num' => 1,
+                'check' => 1,
+                'status_text' => MediationModel::STATU_ARRAY[MediationModel::STATUS_COMMIT],
+            ];
+            $response[2] = [
+                'd_time' => date('m-d', $model['check_time']),
+                's_time' => date('H:i', $model['check_time']),
+                'num' => 2,
+                'check' => 1,
+                'status_text' => MediationModel::STATU_ARRAY[MediationModel::STATUS_NOAPPROVE],
+            ];
+
+        }else{
+            for($i=1; $i<=5; $i++){
+                $response[$i]['d_time'] = null;
+                $response[$i]['s_time'] = null;
+                $time_field = MediationModel::STATU_TOTIME_ARRAY[$i];
+                if (!empty($model[$time_field])) {
+                    $response[$i]['d_time'] = date('m-d', $model[$time_field]);
+                    $response[$i]['s_time'] = date('H:i', $model[$time_field]);
+                }
+                $response[$i]['num'] = $i;
+                if ($model['status'] >= $i) {
+                    $response[$i]['check'] = 1;
+                    $response[$i]['status_text'] = MediationModel::STATU_ARRAY[$i];
+                }else{
+                    $response[$i]['check'] = 0;
+                    $response[$i]['status_text'] = MediationModel::NEXT_STATU_ARRAY[$i-1];
+                }
+
+            }
+        }
+        $this->assign('response',$response);
+        $this->assign('model',$model);
+        $this->assign('user_tag',$user_tag);
 
         return $this->fetch();
     }
 
     public function application(){
-        return $this->fetch();
-    }
-    public function details(){
         return $this->fetch();
     }
     public function newdetail(){

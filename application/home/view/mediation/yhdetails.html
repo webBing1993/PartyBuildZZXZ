@@ -2,7 +2,7 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/mediation/details.css">
-<title>金牌调解</title>
+<title>人员办理、金牌调解</title>
 <style>
     #all {
         width: 100vw;
@@ -34,60 +34,36 @@
 {block name="body"}
  <div class="chart" style="position: relative;padding-bottom: 4.5vh;">
       <div class="lists">
-          <div class="list active">
-              <div class="num gray">1</div>
-              <div class="state">已提交</div>
+          {volist name="response" id="vo"}
+          <div class="list {eq name='$vo.check' value='1'}active{/eq}">
+              <div class="num gray">{$vo.num}</div>
+              <div class="state">{$vo.status_text}</div>
+              {notempty name="$vo.d_time"}
               <p class="posleft">
-                  01-15<br>
-                  <span>09:30</span>
+                  {$vo.d_time}<br>
+                  <span>{$vo.s_time}</span>
               </p>
-          </div>
-          <div class="list">
-              <div class="num gray">2</div>
-              <div class="state">已审核</div>
-              <p class="posleft">
-                  01-16<br>
-              <span>09:30</span>
-              </p>
-          </div>
-          <div class="list">
-              <div class="num gray">3</div>
-              <div class="state">调解员待确认</div>
-              <p class="posleft">
-                  01-17<br>
-              <span>09:30</span>
-              </p>
-          </div>
-          <div class="list">
-              <div class="num gray">4</div>
-              <div class="state">纠纷已处理</div>
-              <p class="posleft">
-                  01-15<br>
-                  <span>09:30</span>
-              </p>
+              {/notempty}
+              {eq name="$vo.num" value="4"}
+              {notempty name="$model.feedback_mediator"}
               <p class="direc">
-                  情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速
+                  情况反馈：{$model.feedback_mediator}
               </p>
-          </div>
-          <div class="list">
-              <div class="num gray">5</div>
-              <div class="state" >已评价</div>
-              <p class="posleft">
-                  01-15<br>
-                  <span>09:30</span>
-              </p>
+              {/notempty}
+              {/eq}
+              {eq name="$vo.num" value="5"}
+              {notempty name="$model.satisfact"}
               <p class="direc">
-                  情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速情况反馈：奠定了卡时间段来看就是领导看见水电费看见了快速
+                  本次协调满意度：{$model.satisfact}分<br>
+                  对调解员满意度：{$model.satisfact_mediator}分<br>
+                  {notempty name="$model.feedback_user"}
+                  问题反馈：{$model.feedback_user}
+                  {/notempty}
               </p>
+              {/notempty}
+              {/eq}
           </div>
-          <!--<div class="list">-->
-              <!--<div class="num gray">3</div>-->
-              <!--<div class="state grc">调解员待确认</div>-->
-              <!--<p class="posleft">-->
-                  <!--01-17<br>-->
-                  <!--<span>09:30</span>-->
-              <!--</p>-->
-          <!--</div>-->
+          {/volist}
           <div id="hr01"></div>
           <!--<div class="hr02"></div>-->
       </div>
@@ -95,32 +71,35 @@
  </div>
 <div class="form">
     <div class="box">
-        事件名称 ：<span class="con">民事纠纷</span>
+        事件名称 ：<span class="con">{$model.title}</span>
     </div>
     <div class="box">
-        事件类型 ：<span class="con">劳动就业及社会保障</span>
+        当事人 ：<span class="con">{$model.parties}</span>
     </div>
     <div class="box">
-        当事人 ：<span class="con">刘小二</span>
-    </div>
-    <div class="box">
-       联系电话 ：<span class="con">123-4567-8901</span>
+       联系电话 ：<span class="con">{$model.mobile}</span>
     </div>
     <div class="box describe">
-        <span class="describe-sp">描述 ：</span><p class="describe-p">民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳民事纠纷劳</p>
+        <span class="describe-sp">描述 ：</span><p class="describe-p">{$model.content}</p>
     </div>
     <div class="box high">
         调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
-        <span class="con">芊芊</span>
+        <span class="con">{$model.mediator}</span>
     </div>
 </div>
+{eq name="$user_tag" value="3"}
 <a href="/home/mediation/evaluate.html" class="remark">
     立即评价
 </a>
+{/eq}
+{eq name="$user_tag" value="2"}
 <a href="#" class="remark1">
     确认
 </a>
-<a class="remark2"href="/home/feedback/opinion.html">处理反馈</a>
+{/eq}
+{eq name="$user_tag" value="1"}
+<a class="remark2" style="display: block;" href="/home/feedback/opinion.html">处理反馈</a>
+{/eq}
 {/block}
 
 {block name="script"}
@@ -128,10 +107,10 @@
 <script>
     $('.lists .state').each(function(){
         console.log($(this))
-       if($(this).html()=='已审核') {
-          $(this).parent().addClass('active');
-          $('.remark1').css('display','block');
-       };
+        if($(this).html()=='已审核') {
+            $(this).parent().addClass('active');
+            $('.remark1').css('display','block');
+        };
 
     });
     $('.remark1').on('click',function(){
