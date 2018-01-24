@@ -60,7 +60,7 @@ a {
   color: #007aff;
 }
 p {
-  margin: 1em 0;
+  /*margin: 1em 0;*/
 }
 /* === Grid === */
 .row {
@@ -2242,7 +2242,7 @@ html.pixel-ratio-3 .content-block-inner:after {
 }
 /* === Lists === */
 .list-block {
-  margin: 35px 0;
+  /*margin: 35px 0;*/
   font-size: 17px;
 }
 .list-block ul {

@@ -13,33 +13,62 @@
 
 {block name="body"}
 <div class="top">
-	<div class="tab1"><span >新闻通知</span></div>
-	<div class="tab2"><span >调解申请</span></div>
+	<div class="tab1"><img src="/home/images/approved/icon/1.png"/><span >新闻通知</span></div>
+	<div class="tab2"><img src="/home/images/approved/icon/3.png"/><span >调解申请</span></div>
 </div>
+
 <div class="list-t-wrap">
+
+	<!--新闻通知模块-->
 	<div class="list-wrapper">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
+			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
 			<div id="nomessage">
 				<img src="/home/images/nomessage.png" alt="无消息">
 			</div>
 			<ul>
 				<li class="swipeout" style="margin-right: 3vw;">
 					<div class="swipeout-content" onclick="jump(1)">
-						<div class="list" style="width:100%;">
+						<a href="#" class="list" style="width:100%;">
 							<span class="yuan"></span>
 							<div class="fri">
-								<span class="title">“珍珠小镇”深度挖掘美丽经济</span>
-								<p>浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>
-								<div class="bt">
-									<span>【第一聚焦】</span>
-									<span>2017-12-06</span>
-								</div>
+								<p class="title">珍珠小镇深度挖掘美丽经济珍珠小镇深度挖掘美丽经济</p>
+								<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>
+								<!--<div class="bt">-->
+									<span class="biao">【第一聚焦】</span>
+									<span class="time">2017-12-06</span>
+								<!--</div>-->
 							</div>
 
 							<!--.qingjia .chuchai .baoxiao 三种颜色-->
-							<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>
+							<!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
+						</a>
+						<div class="arrow">
+							<img src="/home/images/review/rightArrow.png" alt="">
 						</div>
+					</div>
+					<div class="swipeout-actions-right">
+						<a class="green" onclick='dispose(this,1,1,1)'>同 意</a>
+						<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
+					</div>
+				</li>
+				<li class="swipeout" style="margin-right: 3vw;">
+					<div class="swipeout-content" onclick="jump(1)">
+						<a href="#" class="list" style="width:100%;">
+							<span class="yuan"></span>
+							<div class="fri">
+								<p class="title">珍珠小镇深度挖掘美丽经济珍珠小镇深度挖掘美丽经济</p>
+								<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>
+								<!--<div class="bt">-->
+								<span class="biao">【第一聚焦】</span>
+								<span class="time">2017-12-06</span>
+								<!--</div>-->
+							</div>
+
+							<!--.qingjia .chuchai .baoxiao 三种颜色-->
+							<!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
+						</a>
 						<div class="arrow">
 							<img src="/home/images/review/rightArrow.png" alt="">
 						</div>
@@ -50,13 +79,38 @@
 					</div>
 				</li>
 
+
 			</ul>
 		</div>
-		<!--加载更多-->
-		<div class="tip"></div>
-		<div class="loading hidden">
-			<div class="typing_loader"></div>
-		</div>
+	</div>
+	<!--调解申请模块-->
+	<div class="apply">
+		<a href="#" class="lists">
+			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
+			<div class="fri1">
+				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
+				<span class="time1">2017-12-06</span>
+			</div>
+		</a>
+		<a href="#" class="lists">
+			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
+			<div class="fri1">
+				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
+				<span class="time1">2017-12-06</span>
+			</div>
+		</a>
+		<a href="#" class="lists">
+			<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
+			<div class="fri1">
+				<p class="title1">进出口贸易有限公司劳动纠纷2</p>
+				<span class="time1">2017-12-06</span>
+			</div>
+		</a>
+	</div>
+	<!--加载更多-->
+	<div class="tip"></div>
+	<div class="loading hidden">
+		<div class="typing_loader"></div>
 	</div>
 </div>
 {/block}
@@ -76,7 +130,41 @@ function check(){
 		$('#nomessage').show();
 	}
 }
+  if($(window).width()>=768){
 
+  }
+var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
+console.log(type)
+$('.top div').on('click',function(){
+    console.log($(this).index())
+	var index=$(this).index();
+    localStorage.setItem('num',index);
+	if($(this).index()=='0'){
+        $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
+        $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
+        $('.list-block').show();
+        $('.apply').hide();
+	}else{
+        $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
+        $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
+        $('.list-block').hide();
+        $('.apply').show();
+	}
+    $(this).siblings().find('span').removeClass('active')
+    $(this).find('span').addClass('active')
+})
+if(type=='0'){
+    $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
+    $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
+    $('.list-block').show();
+    $('.apply').hide();
+}else{
+    $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
+    $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
+    $('.list-block').hide();
+    $('.apply').show();
+}
+$('.top>div').eq(type).find('span').addClass('active');
 //跳转新闻详情
 function jump(url){
 	parent.location.href= url;
@@ -148,6 +236,7 @@ function loadScroll(){
         var len = $('.views li').length;
         var tip = $(".tip");
         var loading = $('.loading');
+
         if(dh == end && scrollNow){
             scrollNow = false;
             $.ajax({
