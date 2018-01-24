@@ -120,6 +120,8 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+	// 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
+
 	var type = 1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
     for(var P = 0;P < $('.headerTop>div').length; P++){
