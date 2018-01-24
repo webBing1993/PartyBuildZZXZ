@@ -317,15 +317,33 @@ class Mediation extends Base
     }
 
     /**
-     * 申请人情况反馈
+     * 调解员确认
      */
-    public function evaluate(){
+    public function confirm(){
+        $data['status'] = MediationModel::STATUS_CONFIRM;
+        $data['confirm_time'] = time();
+        $model = MediationModel::update($data,['id'=>input('id')]);
+        if($model) {
+            $userid = MediationModel::getUserid(input('id'));
+//                $this->push_review("【调解完成】", $userid);
+            return $this->success("提交成功");
+        }else{
+            return $this->error("提交失败");
+        }
+    }
+
+    /**
+     * 调解员处理反馈
+     */
+    public function opinion(){
         if(IS_POST) {
             $data = input('post.');
+            $data['status'] = MediationModel::STATUS_FEEDBACK;
+            $data['feedback_time'] = time();
             $model = MediationModel::update($data,['id'=>input('id')]);
             if($model) {
-                $mediatorid = MediationModel::getMediatorid(input('id'));
-                $this->push_review("【调解评价】", $mediatorid);
+                $userid = MediationModel::getUserid(input('id'));
+//                $this->push_review("【调解完成】", $userid);
                 return $this->success("提交成功");
             }else{
                 return $this->error("提交失败");
@@ -336,10 +354,24 @@ class Mediation extends Base
     }
 
     /**
-     * 调解员处理反馈
+     * 申请人情况反馈
      */
-    public function opinion(){
-        return $this->fetch();
+    public function evaluate(){
+        if(IS_POST) {
+            $data = input('post.');
+            $data['status'] = MediationModel::STATUS_ESTIMATE;
+            $data['estimate_time'] = time();
+            $model = MediationModel::update($data,['id'=>input('id')]);
+            if($model) {
+                $mediatorid = MediationModel::getMediatorid(input('id'));
+//                $this->push_review("【调解评价】", $mediatorid);
+                return $this->success("提交成功");
+            }else{
+                return $this->error("提交失败");
+            }
+        }else{
+            return $this->fetch();
+        }
     }
 
     /**

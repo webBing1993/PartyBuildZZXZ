@@ -97,4 +97,13 @@ class Mediation extends Model {
         $model = Mediation::get($id);
         return $model['mediatorid'];
     }
+    /**
+     * 获取申请人id
+     * @param $id
+     * @return mixed
+     */
+    public static function getUserid($id) {
+        $model = Mediation::get($id);
+        return $model['userid'];
+    }
 }

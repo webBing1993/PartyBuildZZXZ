@@ -93,22 +93,27 @@
     </div>
 </div>
 {eq name="$user_tag" value="3"}
+{eq name="$model.status" value="4"}
 <a href="/home/mediation/evaluate.html" class="remark">
     立即评价
 </a>
 {/eq}
+{/eq}
 {eq name="$user_tag" value="2"}
-
-<a href="#" class="remark1">
-    确认
-</a>
-<a class="remark2" href="/home/mediation/opinion.html">处理反馈</a>
+    {eq name="$model.status" value="2"}
+    <a href="#" class="remark1">确认</a>
+    {/eq}
+    {eq name="$model.status" value="3"}
+    <a class="remark2" href="/home/mediation/opinion.html">处理反馈</a>
+    {/eq}
 {/eq}
 {eq name="$user_tag" value="1"}
+{eq name="$model.status" value="1"}
 <div class="bot">
     <span class="fle">审核通过</span>
     <span class="fri">审核不通过</span>
 </div>
+{/eq}
 {/eq}
 {/block}
 
