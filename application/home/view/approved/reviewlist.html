@@ -32,7 +32,7 @@
 			</div>
 			<ul>
 				<li class="swipeout" style="margin-right: 3vw;">
-					<div class="swipeout-content" onclick="jump(1)">
+					<div class="swipeout-content" onclick="jump()">
 						<a href="#" class="list" style="width:100%;">
 							<span class="yuan"></span>
 							<div class="fri">
@@ -57,7 +57,7 @@
 					</div>
 				</li>
 				<li class="swipeout" style="margin-right: 3vw;">
-					<div class="swipeout-content" onclick="jump(1)">
+					<div class="swipeout-content" onclick="jump()">
 						<a href="#" class="list" style="width:100%;">
 							<span class="yuan"></span>
 							<div class="fri">
@@ -161,8 +161,8 @@ if(type=='0'){
 }
 
 //跳转新闻详情
-function jump(url){
-	parent.location.href= url;
+function jump(){
+	parent.location.href= '/home/approved/detail.html';
 }
 //提交操作
 function dispose(i,id,status,type){
@@ -312,13 +312,13 @@ function addLists(data){
 function change(id) {
 	window.location.href = "/home/mediation/yhdetails/id/" + id + ".html";
 }
-$(function () {
-	$(".apply a").on("click",function (e) {
-	    e.preventDefault();
-		$(this).attr("href",$(this).attr("href"));
-		return false;
-    })
-})
+//$(function () {
+//	$(".apply a").on("click",function (e) {
+//	    e.preventDefault();
+//		$(this).attr("href",$(this).attr("href"));
+//		return false;
+//    })
+//})
 
 </script>
 {/block}

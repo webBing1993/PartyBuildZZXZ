@@ -17,10 +17,11 @@
     <div data-side="3">网上申请</div>
 </div>
 <!--主体切换-->
+<!--部门简介-->
 <div class="mediationContenr" id="side1">
     <!--banner-->
     <div class="banner"><img data-original="/home/images/banner/1.jpg" class="lazy"></div>
-    <!--部门简介-->
+
     <div class="department">
         <div class="departmentTop"><span style="color: #fff;">部门简介</span><img src="/home/images/icon/icon_01.png" alt=""></div>
         <div class="departmentText">
@@ -48,6 +49,8 @@
         <div class="typing_loader"></div>
     </div>
 </div>
+
+<!--金牌调解-->
 <div class="mediationContenr" id="side2">
     <!--banner-->
     <div class="banner"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
@@ -65,7 +68,13 @@
             {/volist}
         </ul>
     </div>
+    <div class="tip tip2"></div>
+    <div class="loading hidden loading2">
+        <div class="typing_loader"></div>
+    </div>
 </div>
+
+<!--网上申请-->
 <div class="mediationContenr" id="side3">
     <!--管理员网上申请-->
     {eq name="$user_tag" value="1"}
@@ -162,100 +171,134 @@
 {block name="script"}
 <script>
 var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
-    for(var i=0;i<$('.top>div').length;i++){
-        $('.top>div')[i].onclick = function(){
-            $('.top>div').removeClass('active');
-            $(this).addClass('active');
-            var side = $(this).data('side');
-            $('.mediationContenr').hide();
-            $('#side'+side).show();
-            localStorage.setItem('medNum',side);
-            $(".loading1").addClass('hidden');
-            $(".loading3").addClass('hidden');
-        }
-    }
-$('.top>div').removeClass('active');
-$('.top>div').eq(med-1).addClass('active');
-$('.subject').hide();
-$('#side'+med).show();
-    var scrollNow = true;
+$('.top>div').on("click",function(){
+    $('.top>div').removeClass('active');
+    $(this).addClass('active');
+    var side = $(this).data('side');
+    $('#side'+side).show().siblings(".mediationContenr").hide();
+    localStorage.setItem('medNum',side);
+    med = side;
     loadScroll();
+});
+$('.top>div').eq(med-1).click();
+$('.subject').hide();
+//$('#side'+med).show();
+    var scrollNow = true;
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
-            var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
+
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.caseSort a').length;
             var len1=$('.user .lists').length;
+            var len2=$('.mediator li').length;
             var tip1 = $(".tip1");
+            var tip2 = $(".tip2");
             var tip3 = $(".tip3");
             var loading1 = $('.loading1');
+            var loading2 = $('.loading2');
             var loading3 = $('.loading3');
-            if(med==1){
+            if(med == 1){
                 if(dh == end && scrollNow){
+                    console.log(1111);
                     scrollNow = false;
                     $.ajax({
-                        type:"post",
+                        type: "post",
                         url: "{:Url('Mediation/indexmore')}",
-                        data:{
-                            length:len,
+                        data: {
+                            length: len,
                         },
-                        beforeSend: function(XMLHttpRequest){
+                        beforeSend: function (XMLHttpRequest) {
                             tip1.hide();
                             loading1.removeClass('hidden');
                         },
-                        success:function(data){
+                        success: function (data) {
                             loading1.addClass('hidden');
                             tip1.show();
-                            if(data.code == 1){
-                                addLists(data,med);
-                                var dataLen =data.data.length;
-                                if(data.data.length >= 6){
+                            if (data.code == 1) {
+                                addLists(data, med);
+                                var dataLen = data.data.length;
+                                if (data.data.length >= 6) {
                                     tip1.text('上拉加载更多');
                                 } else {
                                     tip1.text('没有更多了');
-                                    $(window ).off("scroll");
+                                    $(window).off("scroll");
                                 }
-                            }else{
+                            } else {
                                 tip1.text('没有更多了');
-                                $(window ).off("scroll");
+                                $(window).off("scroll");
                             }
                             scrollNow = true;
                         }
                     })
                 }
-            }else if(med==3){
-                $(".loading3").addClass('hidden');
+            }else if(med == 2){
                 if(dh == end && scrollNow){
                     scrollNow = false;
                     $.ajax({
-                        type:"post",
-                        url: "{:Url('Mediation/mediationmore')}",
-                        data:{
-                            length:len1,
+                        type: "post",
+                        url: "{:Url('Mediation/indexmore')}",
+                        data: {
+                            length: len2,
                         },
-                        beforeSend: function(XMLHttpRequest){
+                        beforeSend: function (XMLHttpRequest) {
+                            tip2.hide();
+                            loading2.removeClass('hidden');
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            console.log(med)
+                            loading2.addClass('hidden');
+                            tip2.show();
+                            if (data.code == 1) {
+                                addLists(data, med);
+                                var dataLen = data.data.length;
+                                if (data.data.length >= 6) {
+                                    tip2.text('上拉加载更多');
+                                } else {
+                                    tip2.text('没有更多了');
+                                    $(window).off("scroll");
+                                }
+                            } else {
+                                tip2.text('没有更多了');
+                                $(window).off("scroll");
+                            }
+                            scrollNow = true;
+                        }
+                    })
+                }
+            } else if(med==3){
+                if(dh == end && scrollNow) {
+                    console.log(3333);
+                    scrollNow = false;
+                    $.ajax({
+                        type: "post",
+                        url: "{:Url('Mediation/mediationmore')}",
+                        data: {
+                            length: len1,
+                        },
+                        beforeSend: function (XMLHttpRequest) {
                             tip3.hide();
                             loading3.removeClass('hidden');
                         },
-                        success:function(data){
+                        success: function (data) {
                             loading3.addClass('hidden');
                             tip3.show();
-                            if(data.code == 1){
-                                addLists(data,med);
-                                var dataLen =data.data.length;
-                                if(data.data.length >= 6){
+                            if (data.code == 1) {
+                                addLists(data, med);
+                                var dataLen = data.data.length;
+                                if (data.data.length >= 6) {
                                     tip3.text('上拉加载更多');
                                 } else {
                                     tip3.text('没有更多了');
-                                    $(window ).off("scroll");
+                                    $(window).off("scroll");
                                 }
                                 /*$('.evaluate').on('click',function(){
-                                    window.location.href = '/home/mediation/evaluate.html'
-                                })*/
-                            }else{
+                                       window.location.href = '/home/mediation/evaluate.html'
+                                   })*/
+                            } else {
                                 tip3.text('没有更多了');
-                                $(window ).off("scroll");
+                                $(window).off("scroll");
                             }
                             scrollNow = true;
                         }
@@ -279,7 +322,19 @@ $('#side'+med).show();
 
                 }
                 $('.caseSort').append(html);
-            }else if(t==3){
+            }else if(t == 2){
+                for(var i=0;i<len;i++){
+//                    html +='<li>'
+//                        +'<div class="userImg"><img src="" alt=""></div>'
+//                        +'<p class="name">{$vo.name}</p>'
+//                        +'<p class="num">已调解案例　<span>{$vo.num}</span>　起</p>'
+//                        +'<a href="{:Url(\'Mediation/application?id=\'.$vo.userid)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>'
+//                        +'<a href="{:Url(\'Mediation/medcase?id=\'.$vo.userid)}" class="more">查看更多</a>'
+//                        +' </li>'
+
+                }
+                $('.mediator ul').append(html);
+        } else if(t==3){
                 for(var i=0;i<len;i++){
                     if(lists[i].status_text=='待评价'){
                         html +='<div style="position: relative;" class="lists">'
@@ -313,6 +368,7 @@ $('#side'+med).show();
             threshold: 1
         });
     });
+
 
 
 

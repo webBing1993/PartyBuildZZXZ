@@ -227,6 +227,18 @@
             }
         }
     }
+    if($(window).width()>1068){
+        for(var i=0;i<$('.list').length;i++){
+            if(i=$('.list').length){
+                num = i;
+            };
+
+            if(i=2){
+                $('.chart').css({'height':'1.8rem','overflow':'hidden'});
+
+            }
+        }
+    }
     var s = $('.list').eq(num-1).height();
 //    $('.list').eq(num-1).find('.hr02').remove()
     $('#hr01').css('height',h-s-10);

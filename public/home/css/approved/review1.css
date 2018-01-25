@@ -282,8 +282,8 @@ li {
 	background: rgba(0, 0, 0, 0.4);
 }
 .list-block .swipeout-actions-left a, .list-block .swipeout-actions-right a {
-	padding: 0 20px;
-	font-size:16px;
+	padding: 0 5.3vw;
+	font-size:.26rem;
 }
 .initials{
 	color:#666;
