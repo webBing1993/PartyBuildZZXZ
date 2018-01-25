@@ -283,6 +283,10 @@ class Approved extends Base
 
         return $this->fetch();
     }
+    public function detail() {
+
+        return $this->fetch();
+    }
 
     /**
      * 未审核列表 加载更多
