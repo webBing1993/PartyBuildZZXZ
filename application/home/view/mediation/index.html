@@ -44,10 +44,6 @@
             {/volist}
         </div>
     </div>
-    <div class="tip tip1"></div>
-    <div class="loading hidden loading1">
-        <div class="typing_loader"></div>
-    </div>
 </div>
 
 <!--金牌调解-->
@@ -67,10 +63,6 @@
             </li>
             {/volist}
         </ul>
-    </div>
-    <div class="tip tip2"></div>
-    <div class="loading hidden loading2">
-        <div class="typing_loader"></div>
     </div>
 </div>
 
@@ -159,49 +151,44 @@
         </a>
     </div>
     {/eq}
-    <div class="tip tip3"></div>
-    <div class="loading hidden loading3">
-        <div class="typing_loader"></div>
-    </div>
 </div>
 
-
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
+</div>
 
 {/block}
 {block name="script"}
 <script>
 var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
+var scrollNow = true;
 $('.top>div').on("click",function(){
-    $('.top>div').removeClass('active');
-    $(this).addClass('active');
+    $(this).addClass('active').siblings("div").removeClass("active");
     var side = $(this).data('side');
     $('#side'+side).show().siblings(".mediationContenr").hide();
     localStorage.setItem('medNum',side);
     med = side;
     loadScroll();
+    $(".tip").hide();
+    $(".loading").hide();
+    scrollNow = true;
 });
+// 初始化
 $('.top>div').eq(med-1).click();
-$('.subject').hide();
-//$('#side'+med).show();
-    var scrollNow = true;
+
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
-
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.caseSort a').length;
             var len1=$('.user .lists').length;
             var len2=$('.mediator li').length;
-            var tip1 = $(".tip1");
-            var tip2 = $(".tip2");
-            var tip3 = $(".tip3");
-            var loading1 = $('.loading1');
-            var loading2 = $('.loading2');
-            var loading3 = $('.loading3');
-            if(med == 1){
-                if(dh == end && scrollNow){
-                    console.log(1111);
-                    scrollNow = false;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                if(med == 1){
                     $.ajax({
                         type: "post",
                         url: "{:Url('Mediation/indexmore')}",
@@ -209,32 +196,29 @@ $('.subject').hide();
                             length: len,
                         },
                         beforeSend: function (XMLHttpRequest) {
-                            tip1.hide();
-                            loading1.removeClass('hidden');
+                            tip.hide();
+                            loading.removeClass('hidden').show();
                         },
                         success: function (data) {
-                            loading1.addClass('hidden');
-                            tip1.show();
+                            loading.addClass('hidden');
+                            tip.show();
                             if (data.code == 1) {
                                 addLists(data, med);
                                 var dataLen = data.data.length;
                                 if (data.data.length >= 6) {
-                                    tip1.text('上拉加载更多');
+                                    tip.text('上拉加载更多');
                                 } else {
-                                    tip1.text('没有更多了');
+                                    tip.text('没有更多了');
                                     $(window).off("scroll");
                                 }
                             } else {
-                                tip1.text('没有更多了');
+                                tip.text('没有更多了');
                                 $(window).off("scroll");
                             }
                             scrollNow = true;
                         }
                     })
-                }
-            }else if(med == 2){
-                if(dh == end && scrollNow){
-                    scrollNow = false;
+                }else if(med == 2){
                     $.ajax({
                         type: "post",
                         url: "{:Url('Mediation/indexmore')}",
@@ -242,35 +226,31 @@ $('.subject').hide();
                             length: len2,
                         },
                         beforeSend: function (XMLHttpRequest) {
-                            tip2.hide();
-                            loading2.removeClass('hidden');
+                            tip.hide();
+                            loading.removeClass('hidden').show();
                         },
                         success: function (data) {
                             console.log(data)
                             console.log(med)
-                            loading2.addClass('hidden');
-                            tip2.show();
+                            loading.addClass('hidden');
+                            tip.show();
                             if (data.code == 1) {
                                 addLists(data, med);
                                 var dataLen = data.data.length;
                                 if (data.data.length >= 6) {
-                                    tip2.text('上拉加载更多');
+                                    tip.text('上拉加载更多');
                                 } else {
-                                    tip2.text('没有更多了');
+                                    tip.text('没有更多了');
                                     $(window).off("scroll");
                                 }
                             } else {
-                                tip2.text('没有更多了');
+                                tip.text('没有更多了');
                                 $(window).off("scroll");
                             }
                             scrollNow = true;
                         }
                     })
-                }
-            } else if(med==3){
-                if(dh == end && scrollNow) {
-                    console.log(3333);
-                    scrollNow = false;
+                } else if(med==3){
                     $.ajax({
                         type: "post",
                         url: "{:Url('Mediation/mediationmore')}",
@@ -278,26 +258,23 @@ $('.subject').hide();
                             length: len1,
                         },
                         beforeSend: function (XMLHttpRequest) {
-                            tip3.hide();
-                            loading3.removeClass('hidden');
+                            tip.hide();
+                            loading.removeClass('hidden');
                         },
                         success: function (data) {
-                            loading3.addClass('hidden');
-                            tip3.show();
+                            loading.addClass('hidden').show();
+                            tip.show();
                             if (data.code == 1) {
                                 addLists(data, med);
                                 var dataLen = data.data.length;
                                 if (data.data.length >= 6) {
-                                    tip3.text('上拉加载更多');
+                                    tip.text('上拉加载更多');
                                 } else {
-                                    tip3.text('没有更多了');
+                                    tip.text('没有更多了');
                                     $(window).off("scroll");
                                 }
-                                /*$('.evaluate').on('click',function(){
-                                       window.location.href = '/home/mediation/evaluate.html'
-                                   })*/
                             } else {
-                                tip3.text('没有更多了');
+                                tip.text('没有更多了');
                                 $(window).off("scroll");
                             }
                             scrollNow = true;
