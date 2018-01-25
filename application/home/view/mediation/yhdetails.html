@@ -182,7 +182,7 @@
                 console.log(data)
                 //成功后刷新页面
                 if(data.code == 1){
-
+                      history.go(0);
                 }else{
                     setTimeout(function(){
                         swal("操作失败","",'error')
@@ -227,22 +227,24 @@
             }
         }
     }
+
+    var s = $('.list').eq(num-1).height();
+//    $('.list').eq(num-1).find('.hr02').remove()
+    $('#hr01').css('height',h-s-10);
     if($(window).width()>1068){
         for(var i=0;i<$('.list').length;i++){
             if(i=$('.list').length){
                 num = i;
             };
-
             if(i=2){
-                $('.chart').css({'height':'1.8rem','overflow':'hidden'});
+                $('#hr01').css('height',h-s-15);
 
+            }
+            if(i>3){
+                $('#hr01').css('height',h-s-25);
             }
         }
     }
-    var s = $('.list').eq(num-1).height();
-//    $('.list').eq(num-1).find('.hr02').remove()
-    $('#hr01').css('height',h-s-10);
-
     $('.list').each(function(){
         if($(this).hasClass('active')){
             $(this).append('<div class="hr02"></div>');
