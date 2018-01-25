@@ -39,6 +39,9 @@
         font-size: .3rem;
         margin-top: -.3rem;
     }
+    .med .last_ts {
+        color: #999;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -50,20 +53,6 @@
         </div>
         <input type="text" placeholder="请输入事件名称" size="28" name="name"/>
     </div>
-    <!--<div class="box events">-->
-    <!--<div class="ev">-->
-    <!--<img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>-->
-    <!--<span>事件类型 ：</span>-->
-    <!--</div>-->
-    <!--<div class="event" id="showBank">-->
-    <!--&lt;!&ndash;<span class="chose"> 请选择事件类型</span>&ndash;&gt;-->
-    <!--<img class="icon3" src="/home/images/lxyz/icon/icon3.png"  alt=""/>-->
-    <!--<div class="pc-box">-->
-    <!--<input type="hidden" name="bank_id" id="bankId" value="">-->
-    <!--<span >请选择事件类型</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
     <div class="box">
         <div class="ev">
             <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
@@ -106,12 +95,15 @@
         <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
         <span>选择调解员 :</span>
         <div class="med">
-            <img class="image" src="/home/images/lxyz/icon/not.png"  alt=""/>
-            <span class="name">芊芊</span>
+            <span hidden class="last_ts">请选择调解员</span>
+
+            <img class="image" src="{$mediator3}"  alt=""/>
+            <span class="name">{$mediator}</span>
             <span class="g">
                 <img class="icon2"  src="/home/images/lxyz/icon/icon2.png"  alt=""/>
             </span>
         </div>
+
     </div>
 </div>
 <div class="present">
@@ -122,6 +114,7 @@
         <ul>
             {volist name="list" id="vo"}
             <li>
+                <span class="user_hide" hidden>{$vo.userid}</span>
                 <img src="{$vo.front_cover|get_cover='path'}">
                 <div class="userSort">
                     <p class="na">{$vo.name}</p>
@@ -148,31 +141,38 @@
      if($(window).width()>=768){
          $('.form').css('margin-bottom','11.5vh')
      }
-    $('.last').on('click',function(){
-        $('.shadow').fadeIn();
-//        window.location.href='/home/mediation/applicationdetail.html'
-    });
+     var id;
+     var href = window.location.href;
+     if (href.indexOf("id/") < 0) {
+         $(".med .image,.med .name").hide();
+         $(".last_ts").show();
+         $('.last').on('click',function(){
+             $('.shadow').fadeIn();
+         });
+     }else {
+         $(".med .image,.med .name").show();
+         $(".last_ts").hide();
+         id = '{$mediatorid}';
+     }
     $('.shadow').on('click',function(e){
         e.preventDefault();
         $('.shadow').fadeOut();
-    })
-    $('li').each(function(){
+    });
+
+    $('.user li').each(function(){
         $(this).find('a').on('click',function(e){
             e.preventDefault();
             var src=$(this).parent().find('img').attr('src');
             var name=$(this).parent().find('.na').html();
-            console.log(src,name)
-            $('.image').attr('src',src);
-            $('.name').html(name);
+            $(".last_ts").hide();
+            $('.image').attr('src',src).show();
+            $('.name').html(name).show();
             setTimeout(function(){
                 $('.shadow').fadeOut()
             },800);
-//            setTimeout(function(
-//                $('.shadow').fadeOut()
-//            ),1500);
-
+            id = $(this).siblings(".user_hide").html();
         })
-    })
+    });
     $(function(){
         //上传
         $('.present' ).on('click',function(){
@@ -182,7 +182,8 @@
             var proposer=$("input[name='thing']").val();
             var mobile= $("input[name='num']").val();
             var content=$("textarea[name='content']").val();
-            if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" ){
+            var images = [];
+            if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
                single = true;
             }else{
                 single = false;
@@ -200,15 +201,18 @@
                 proposer: proposer,
                 mobile: mobile,
                 content: content,
-                mediatorid : 15558023165
+                mediatorid : id,
+                images: images
             };
             if(single){
-                data['images']=[];
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
-                        data['images'].push($(this).data("tab")+"");
+                        images.push($(this).data("tab")+"");
                     }
                 });
+                if ($(".img .img1").length == 0) {
+                    images.push("");
+                }
                 // 弹窗
                 swal({
                         title: ' ',

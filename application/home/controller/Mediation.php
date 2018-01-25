@@ -329,13 +329,22 @@ class Mediation extends Base
         }else{
             $mediatorid = input('id');
             $mediator = MediationUser::getMediator($mediatorid);
+
+            $mediator2 = MediationUser::where('name',$mediator)->value('front_cover');
+            $mediator3 = Picture::where('id',$mediator2)->value('path');
+
             $model = WechatUser::where(['userid' => $userId])->find();
+
             $map = [
                 'status' => ['egt',0],
             ];
             $list = MediationUser::where($map)->order('id desc')->select();
+            //dump($list);exit();
             $this->assign('mediatorid',$mediatorid);
             $this->assign('mediator',$mediator);
+
+            $this->assign('mediator3',$mediator3);
+
             $this->assign('model',$model);
             $this->assign('list',$list);
             return $this->fetch();
