@@ -30,11 +30,11 @@
                 </ul>
             </div>
             <div class="showRight">
-                <div class="title"><div>共有党员<span>48</span>位</div></div>
+                <!--<div class="title"><div>共有党员<span>48</span>位</div></div>-->
                 <div class="userText">
                     <ul class="lists">
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
-                        <li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>
+                        <!--<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>-->
+                        <!--<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>张然</div></li>-->
                     </ul>
                 </div>
             </div>
@@ -121,7 +121,6 @@
     $(function(){
         $(".tab").on('click',function(){
             var index=$(this).index();
-            console.log(index)
             $(this).addClass('active').siblings().removeClass('active');
             $(".box").eq(index).show().siblings().hide();
             localStorage.setItem('data',index);
@@ -129,6 +128,7 @@
         var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $('.tabs .tab').removeClass('active');
         $('.tabs .tab').eq(number).addClass('active');
+//        $('.tabs .tab').eq(number).click();
         $(".box").eq(number).show();
 
         $("img.lazy").lazyload({
@@ -137,11 +137,10 @@
             threshold : 500
         });
     var scrollNow = true;
-        loadScroll()
+        loadScroll();
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
-            console.log(number)
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.list').length;
@@ -200,7 +199,7 @@
                     '<div class="lr">'+
                     '<div class="title"><p>'+list.title+'</p></div>'+
                     '<span class="time">'+list.time+'</span>'+
-                    ' <span class="message">'+list.views+'</span>'+
+                    '<span class="message">'+list.views+'</span>'+
                     '</div>'+
                     '</a>'
             }
@@ -220,6 +219,7 @@
     var h = $(window).height()-$('.tab').height();
     $('.showLeft , .showRight').css('height',h);
     $('.showLeft li ').on('click',function(){
+        localStorage.setItem("num",$(this).index());
         $('.showLeft li ').removeClass('active');
         $(this).addClass('active');
         var did = $(this).attr('data-id');
@@ -242,7 +242,7 @@
                             height:'100%'
                         },500);
 
-                    })
+                    });
                     $('#close ').on('click',function(){
                         $('#fixed').stop().animate({
                             height:0
@@ -261,11 +261,10 @@
     });
     function addLists1(data){
         var html = '';
-        var lists = data
+        var lists = data;
         var len = lists.length;
             for(var i = 0; i< len;i++){
                 var list = lists[i];
-                //var pid = $('.part div' ).eq(list.pid ).text();
                 html += '<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>'+list.name+'</div></li>'
 
             }
@@ -276,12 +275,16 @@
             height:'100%'
         },500);
 
-    })
+    });
     $('#close ').on('click',function(){
         $('#fixed').stop().animate({
             height:0
         },1);
     });
+
+    // 党员展示初始化
+    var num = localStorage.getItem("num") == null? 0 : localStorage.getItem("num");
+    $(".showLeft li").eq(num).click();
 
 //    搜索接口 get url: "{:Url('Service/getMember')}" data: {searh:'搜索内容'}
 
@@ -295,10 +298,6 @@
     });
     search.on('input',function(){
         var this_ = this;
-//        search.css('width','75vw');
-//        $('#cancel').show();
-//        $('body').css('position','fixed');
-//        if(!lock){
         var val = $(this_ ).val();
         var html = '';
         $.ajax({
@@ -309,7 +308,6 @@
             },
             beforeSend: function(XMLHttpRequest){},
             success:function(data){
-                console.log(data)
                 var result = data.data;
                 var url = '';
                 if(!data.data){
@@ -317,14 +315,7 @@
                 }
                 for(var obj in result){
                     html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
-//                        html +='<li>'
-//                            +'<a href="/home/redcollection/filmdetail?id='+list.id+'" class="list">'
-//                            +'<img data-original="'+list.path+'" class="list-img lazy">'
-//                            +'<div class="listTitle">'+list.title+'</div><div class="listSummary">'+list.introduction+'</div>'
-//                            +'</a>'
-//                            +'</li>'
                 }
-//                    $('.results').show();
                 $('.results' ).html(html);
             }
 
