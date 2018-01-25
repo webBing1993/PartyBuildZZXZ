@@ -116,7 +116,7 @@
 {/block}
 
 {block name="script"}
-
+<script src="/home/js/reset.js"></script>
 <script>
     $(function(){
         $(".tab").on('click',function(){
@@ -128,7 +128,13 @@
         var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $('.tabs .tab').removeClass('active');
         $('.tabs .tab').eq(number).addClass('active');
-//        $('.tabs .tab').eq(number).click();
+
+        // 党员展示初始化
+        if (number == 0) {
+            var num = getCookie("num") == null? 0 : getCookie("num");
+            $(".showLeft li").eq(num).click();
+        }
+
         $(".box").eq(number).show();
 
         $("img.lazy").lazyload({
@@ -219,7 +225,7 @@
     var h = $(window).height()-$('.tab').height();
     $('.showLeft , .showRight').css('height',h);
     $('.showLeft li ').on('click',function(){
-        localStorage.setItem("num",$(this).index());
+        setCookie("num",$(this).index());
         $('.showLeft li ').removeClass('active');
         $(this).addClass('active');
         var did = $(this).attr('data-id');
@@ -268,7 +274,7 @@
                 html += '<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>'+list.name+'</div></li>'
 
             }
-            $('.lists').html(html);
+            $('.showRight .lists').html(html);
     }
     $('.showRight li ').on('click',function(){
         $('#fixed').stop().animate({
@@ -282,9 +288,8 @@
         },1);
     });
 
-    // 党员展示初始化
-    var num = localStorage.getItem("num") == null? 0 : localStorage.getItem("num");
-    $(".showLeft li").eq(num).click();
+
+
 
 //    搜索接口 get url: "{:Url('Service/getMember')}" data: {searh:'搜索内容'}
 
