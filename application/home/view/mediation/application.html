@@ -5,6 +5,41 @@
 <link rel="stylesheet" href="/home/css/mediation/iosselect.css">
 <link rel="stylesheet" href="/home/css/easy_upload.css">
 <title>事件申请</title>
+<style>
+    .shadow{
+        display:none;
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,.5);
+    }
+    .user {position: relative;width:100vw;margin: auto;background: #fff;}
+    .user li {width:100%;padding: 2.25vh 4vw;height:13.5vh;border-bottom: 1px solid #d1d1d1;position: relative;}
+    .user li:last-child {border-bottom: transparent;}
+    .user li img {float:left;width:1.2rem;height:1.2rem;}
+    .userSort {margin-left: 1.5rem;position: relative;height:1.2rem;}
+    .userSort p:first-child {color: #333;font-size: .3rem;position: absolute;top:0;}
+    .userSort p:last-child {color: #999;font-size: .26rem;position: absolute;bottom:0;}
+
+    .user a {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 4vw;
+        width: 24vw;
+        height: .6rem;
+        border: 1px solid #FE8B44;
+        color: #FE8B44;
+        background: rgba(254, 139, 68, .2);
+        border-radius: .4rem;
+        text-align: center;
+        line-height: .6rem;
+        font-size: .3rem;
+        margin-top: -.3rem;
+    }
+</style>
 {/block}
 {block name="body"}
 <div class="form">
@@ -82,6 +117,23 @@
 <div class="present">
     提交申请
 </div>
+<div class="shadow">
+    <div class="user">
+        <ul>
+            {volist name="list" id="vo"}
+            <li>
+                <img src="{$vo.front_cover|get_cover='path'}">
+                <div class="userSort">
+                    <p class="na">{$vo.name}</p>
+                    <p>已调解案例：<span>{$vo.num}</span>起</p>
+                </div>
+                <a href="#">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+
 <div class="showbox">
     <div class="loader">
         <svg class="circular" viewBox="25 25 50 50">
@@ -95,8 +147,30 @@
 <script>
 
     $('.last').on('click',function(){
-        window.location.href='/home/mediation/applicationdetail.html'
+        $('.shadow').fadeIn();
+//        window.location.href='/home/mediation/applicationdetail.html'
     });
+    $('.shadow').on('click',function(e){
+        e.preventDefault();
+        $('.shadow').fadeOut();
+    })
+    $('li').each(function(){
+        $(this).find('a').on('click',function(e){
+            e.preventDefault();
+            var src=$(this).parent().find('img').attr('src');
+            var name=$(this).parent().find('.na').html();
+            console.log(src,name)
+            $('.image').attr('src',src);
+            $('.name').html(name);
+            setTimeout(function(){
+                $('.shadow').fadeOut()
+            },800);
+//            setTimeout(function(
+//                $('.shadow').fadeOut()
+//            ),1500);
+
+        })
+    })
     $(function(){
         //上传
         $('.present' ).on('click',function(){
@@ -104,14 +178,8 @@
             var title=$("input[name='name']").val();
             var parties=$("input[name='people']").val();
             var proposer=$("input[name='thing']").val();
-            var mobile=$("input[name='num']").val();
+            var mobile= $("input[name='num']").val();
             var content=$("textarea[name='content']").val();
-            var img=$('.img1');
-            var imglen=img.length;
-            var images = [];
-            for(var i =0 ;i< imglen ;i++){
-                images.push(img.eq(i).attr('data-tab'));
-            }
             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" ){
                single = true;
             }else{
@@ -130,10 +198,15 @@
                 proposer: proposer,
                 mobile: mobile,
                 content: content,
-                mediatorid:1,
-                images:images
+                mediatorid : 15558023165
             };
             if(single){
+                data['images']=[];
+                $(".img .img1").each(function(){
+                    if($(this).data("tab")){
+                        data['images'].push($(this).data("tab")+"");
+                    }
+                });
                 // 弹窗
                 swal({
                         title: ' ',
@@ -153,21 +226,14 @@
                             timer:1500
                         });
                         setTimeout(function () {
-                            console.log(data);
                             $.ajax({
                                 type:"post",
                                 url: "{:Url('Mediation/application')}",
                                 data:data,
                                 success:function(data){
-                                    swal({
-                                        title: ' ',
-                                        text: '申请成功',
-                                        type: 'success',
-                                        timer:1500
-                                    });
-                                    setTimeout(function(){
-                                        window.history.go(-1);
-                                    },1500);
+                                    if (data.code == 1) {
+                                        history.go(-1);
+                                    }
                                 }
                             });
                         },1500)

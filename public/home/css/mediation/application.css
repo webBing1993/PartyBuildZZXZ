@@ -139,6 +139,7 @@ textarea{
     /*line-height:.9rem;*/
 }
 .image{
+    display: inline-block;
     width:.76rem;
     height:.76rem;
     /*vertical-align: middle;*/
