@@ -96,7 +96,7 @@
                         setTimeout(function () {
                             $.ajax({
                                 type:"post",
-                                url: "{:Url('Mediation/application')}",
+                                url: "{:Url('Feedback/publish')}",
                                 data:data,
                                 success:function(data){
                                     if (data.code == 1) {

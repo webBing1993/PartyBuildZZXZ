@@ -43,6 +43,10 @@
             {/volist}
         </div>
     </div>
+    <div class="tip tip1"></div>
+    <div class="loading hidden loading1">
+        <div class="typing_loader"></div>
+    </div>
 </div>
 <div class="mediationContenr" id="side2">
     <!--banner-->
@@ -146,11 +150,12 @@
         </a>
     </div>
     {/eq}
+    <div class="tip tip3"></div>
+    <div class="loading hidden loading3">
+        <div class="typing_loader"></div>
+    </div>
 </div>
-<div class="tip"></div>
-<div class="loading hidden">
-    <div class="typing_loader"></div>
-</div>
+
 
 
 {/block}
@@ -165,6 +170,8 @@ var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
             $('.mediationContenr').hide();
             $('#side'+side).show();
             localStorage.setItem('medNum',side);
+            $(".loading1").addClass('hidden');
+            $(".loading3").addClass('hidden');
         }
     }
 $('.top>div').removeClass('active');
@@ -172,7 +179,7 @@ $('.top>div').eq(med-1).addClass('active');
 $('.subject').hide();
 $('#side'+med).show();
     var scrollNow = true;
-    loadScroll()
+    loadScroll();
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
@@ -180,8 +187,10 @@ $('#side'+med).show();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.caseSort a').length;
             var len1=$('.user .lists').length;
-            var tip = $(".tip");
-            var loading = $('.loading');
+            var tip1 = $(".tip1");
+            var tip3 = $(".tip3");
+            var loading1 = $('.loading1');
+            var loading3 = $('.loading3');
             if(med==1){
                 if(dh == end && scrollNow){
                     scrollNow = false;
@@ -192,28 +201,23 @@ $('#side'+med).show();
                             length:len,
                         },
                         beforeSend: function(XMLHttpRequest){
-                            tip.hide();
-                            loading.toggleClass('hidden');
+                            tip1.hide();
+                            loading1.removeClass('hidden');
                         },
                         success:function(data){
-                            console.log(data)
-                            console.log(med)
-                            loading.toggleClass('hidden');
-                            tip.show();
+                            loading1.addClass('hidden');
+                            tip1.show();
                             if(data.code == 1){
                                 addLists(data,med);
                                 var dataLen =data.data.length;
                                 if(data.data.length >= 6){
-                                    tip.text('上拉加载更多');
+                                    tip1.text('上拉加载更多');
                                 } else {
-                                    tip.text('没有更多了');
+                                    tip1.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
-//                                $('.evaluate').on('click',function(){
-//                                    window.location.href = '/home/mediation/evaluate.html'
-//                                })
                             }else{
-                                tip.text('没有更多了');
+                                tip1.text('没有更多了');
                                 $(window ).off("scroll");
                             }
                             scrollNow = true;
@@ -221,6 +225,7 @@ $('#side'+med).show();
                     })
                 }
             }else if(med==3){
+                $(".loading3").addClass('hidden');
                 if(dh == end && scrollNow){
                     scrollNow = false;
                     $.ajax({
@@ -230,28 +235,26 @@ $('#side'+med).show();
                             length:len1,
                         },
                         beforeSend: function(XMLHttpRequest){
-                            tip.hide();
-                            loading.toggleClass('hidden');
+                            tip3.hide();
+                            loading3.removeClass('hidden');
                         },
                         success:function(data){
-                            console.log(data)
-                            console.log(med)
-                            loading.toggleClass('hidden');
-                            tip.show();
+                            loading3.addClass('hidden');
+                            tip3.show();
                             if(data.code == 1){
                                 addLists(data,med);
                                 var dataLen =data.data.length;
                                 if(data.data.length >= 6){
-                                    tip.text('上拉加载更多');
+                                    tip3.text('上拉加载更多');
                                 } else {
-                                    tip.text('没有更多了');
+                                    tip3.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
                                 /*$('.evaluate').on('click',function(){
                                     window.location.href = '/home/mediation/evaluate.html'
                                 })*/
                             }else{
-                                tip.text('没有更多了');
+                                tip3.text('没有更多了');
                                 $(window ).off("scroll");
                             }
                             scrollNow = true;
@@ -301,14 +304,6 @@ $('#side'+med).show();
                 $('.share').before(html);
             }
     }
-
-//    $('.user>div').each(function(){
-//        console.log( $(this).find('.evaluate'))
-//        $(this).find('.evaluate').on('click',function(){
-//
-//            window.location.href = '/home/mediation/evaluate.html'
-//        })
-//    })
 
 
     $(document).scroll(function() {
