@@ -22,47 +22,65 @@
 {/block}
 {block name="body"}
 <div class="Upload">
-    <textarea placeholder="请您填写不受理原因"></textarea>
+    <textarea  placeholder="请您填写不受理原因"></textarea>
 </div>
 <div id="btn">提交原因</div>
 {/block}
 {block name="script"}
 <script>
     $('#btn').on('click',function(){
-        $.ajax({
-            type: "post",
-            url:"{:Url('Mediation/check')}",
-            data: {
-                id:id,
-                status : 1,
-                mediatorid:1
-            },
-            success: function(data){
-                console.log(data)
-                //成功后刷新页面
-                if(data.code == 1){
+        var val=$('.Upload textarea').val();
+        var id='{$id}';
+        if(val!=''){
+            swal({
+                    title: "确定提交吗？",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true,
+                    confirmButtonText:'确定',
+                    cancelButtonText:'取消'
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            type: "post",
+                            url:"{:Url('Mediation/check')}",
+                            data: {
+                                id:id,
+                                status : 0,
+                                no_approveval:val,
+                            },
+                            success: function(data){
+                                console.log(data)
+                                //成功后刷新页面
+                                if(data.code == 1){
+                                    swal({
+                                        title: "确定！",
+                                        timer: 1500,
+                                    }),
+                                    function(){
+                                        setTimeout(function(){
+                                            history.go(-1);
+                                        }, 1500);
+                                    }
+                                }else{
+                                    setTimeout(function(){
+                                        swal("操作失败","",'error')
+                                    },200);
+                                }
+                            }
+                        })
 
-                }else{
-                    setTimeout(function(){
-                        swal("操作失败","",'error')
-                    },200);
-                }
-            }
-        })
-        swal({
-                title: "确定提交吗？",
-                type: "warning",
-                showCancelButton: true,
-                closeOnConfirm: false,
-                showLoaderOnConfirm: true,
-                confirmButtonText:'确定',
-                cancelButtonText:'取消'
-            },
-            function(){
-                setTimeout(function(){
-                    history.go(-1);
-                }, 2000);
-            });
+                    } else {
+                        swal("取消！", "你的虚拟文件是安全的:)",
+                            "error");
+                    }
+                });
+
+        }else{
+            swal("请您填写不受理原因")
+        }
     })
 </script>
 {/block}

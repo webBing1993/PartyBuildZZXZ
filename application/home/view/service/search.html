@@ -12,10 +12,22 @@
         border: 1px solid #c3c3c3;
         font-size: .24rem;
         margin-bottom:4.5vh;
+        position: relative;
+    }
+    .search:after {
+        content: '';
+        background: url(/home/images/service/icon_06.png)no-repeat;
+        position: absolute;
+        top:50%;
+        margin-top: -.2rem;
+        left:.5rem;
+        width:.36rem;
+        height:.36rem;
+        background-size: .36rem .36rem;
     }
     input{
         float: left;
-        text-indent: 2.6vw;
+        text-indent:9.6vw;
         width:85%;
         height:100%;
         background:#fff;
@@ -32,14 +44,16 @@
         padding:0 3.2vw;
     }
     ul li{
-
         border:1px solid #f5f5f5;
         width: 1.4rem;
         height: 1.8rem;
         position: relative;
         float: left;
-        margin-right: .52rem;
+        margin-right: .45rem;
         margin-bottom: .33rem;
+    }
+    li:nth-child(4n+4){
+        margin-right: 0;
     }
     li img{
         width: 1.4rem;
@@ -183,27 +197,27 @@
                         console.log(date);
                         var result = date;
                         var url = '';
-                        if(!result){
-                            html += '<div class="result limit">无搜索结果</div>'
-                        }
-                        for(var i=0;i< result.length;i++){
+                            for(var i=0;i< result.length;i++){
 //                            html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
-                            html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
+                                html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
 
-                        }
+                            }
 
+                            $('.lists' ).html(html);
+                            $('.lists li').on('click',function(){
+                                $('#fixed').stop().animate({
+                                    height:'100%'
+                                },500);
+
+                            });
+                            $('#close ').on('click',function(){
+                                $('#fixed').stop().animate({
+                                    height:0
+                                },1);
+                            });
+                    }else{
+                        html += '<li>"无搜索结果"</li>'
                         $('.lists' ).html(html);
-                        $('.lists li').on('click',function(){
-                            $('#fixed').stop().animate({
-                                height:'100%'
-                            },500);
-
-                        });
-                        $('#close ').on('click',function(){
-                            $('#fixed').stop().animate({
-                                height:0
-                            },1);
-                        });
                     }
                 }
 

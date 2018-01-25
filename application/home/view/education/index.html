@@ -375,6 +375,7 @@
                 },
                 beforeSend: function(XMLHttpRequest){},
                 success:function(data){
+                    console.log(data)
                     var result = data.data;
                     var url = '';
                     if(!data.data){
