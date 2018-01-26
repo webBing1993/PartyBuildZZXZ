@@ -8,7 +8,7 @@ body{
 }
 .tabs .tab {
     font-family:PingFang-SC-Medium;
-    color:rgba(51,51,51,1);
+    color: #333;
     font-size:0.3rem;
     display: inline-block;
     width: 32.6vw;
@@ -108,41 +108,41 @@ body{
 /*党员展示*/
 .box .search {
     width:100%;
-    height:.7rem;
-    border: 1px solid #c3c3c3;
     font-size: .24rem;
-    /*line-height: .7rem;*/
     position: relative;
+    padding: 1.6vw;
+    background-color: #f1f1f1;
 }
 .box .search:after {
     content: '';
     background: url(/home/images/service/icon_06.png)no-repeat;
     position: absolute;
     top:50%;
-    margin-top: -.18rem;
-    left:.2rem;
-    width:.36rem;
-    height:.36rem;
-    background-size: .36rem .36rem;
+    margin-top: -1.8vw;
+    left: 50%;
+    margin-left: -8vw;
+    width:3.6vw;
+    height:3.6vw;
+    background-size: 3.6vw 3.6vw;
 }
 .box .search a {
-    line-height:.7rem;
-    text-indent: 7vw;
+    line-height:8vw;
+    text-align: center;
     display: block;
     width:100%;
-    height:100%;
-    color:#333;
-    /*border-left: 1px solid #c3c3c3;*/
-    padding-left: 2vw;
+    color:#999;
+    background-color: #fff;
+    height: 8vw;
+    border-radius: 1.6vw;
+    font-size: .24rem;
 }
 .showLeft {
     float:left;
     width:22vw;
     background: #F5F5F5;
     font-size: .28rem;
-    color: #666;
+    color: #333;
     height:100%;
-    padding-top: 4vw;
     overflow-y: scroll;
 }
 .showLeft li {
