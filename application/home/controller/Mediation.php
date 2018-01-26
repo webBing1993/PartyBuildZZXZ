@@ -349,8 +349,15 @@ class Mediation extends Base
             $list = MediationUser::where($map)->order('id desc')->select();
             $this->assign('list',$list);
         }
+        $images = json_decode($model['images']);
+//        $images = $model['images'];
 
+        foreach ($images as $value){
+            $value = get_cover($value, 'path');
+        }
+//        var_dump($images);die;
         $this->assign('response',$response);
+        $this->assign('images',$images);
         $this->assign('model',$model);
         $this->assign('title',$title);
         $this->assign('id',$id);
