@@ -1,11 +1,11 @@
 <?php
 /**
- * 会议签到
+ * 参会情况
  * Created by PhpStorm.
- * User: sitff
- * Date: 2017/8/31
- * Time: 下午2:53
+ * User: ben
+ * Date: 2018/1/26
  */
+
 namespace app\admin\controller;
 use app\admin\model\Meet as MeetModel;
 
@@ -19,6 +19,10 @@ class Meet extends Admin
     {
         $map = ['status' => ['egt',0]];
         $list = $this->lists('Meet',$map);
+        int_to_string($list,array(
+            'status' => array(0 =>"已发布",1=>"已发布"),
+            'recommend' => array(0=>"否",1=>"是"),
+        ));
         $this->assign('list',$list);
 
         return $this->fetch();
@@ -33,14 +37,11 @@ class Meet extends Admin
             $data = input('post.');
             $meetModel = new MeetModel();
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
-            $data = $this->changeTime($data);
             if(empty($data['id'])) {
-
                 $statusMsg = '新增';
                 unset($data['id']);
                 $res = $meetModel->validate('Meet')->save($data);
             } else {
-
                 $statusMsg = '修改';
                 $id = $data['id'];
                 unset($data['id']);
@@ -59,28 +60,16 @@ class Meet extends Admin
             }
 
         }else{
-
             $id = input('id');
             $msg = '';
             if (!empty($id)) {
                 $msg = MeetModel::get($id);
             }
             $this->assign('msg',$msg);
+
             return $this->fetch();
         }
 
-    }
-
-    /**
-     * 时间戳转化
-     */
-    public function changeTime($data)
-    {
-        if ($data['meet_time']) {
-            $data['meet_time'] = strtotime($data['meet_time']);
-        }
-
-        return $data;
     }
 
     /**

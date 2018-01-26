@@ -9,15 +9,13 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>
-            参会情况
-        </h2>
+        <h2>十九大专区</h2>
         <ol class="breadcrumb">
             <li>
-                参会情况
+                十九大专区
             </li>
             <li class="active">
-                <strong><a href=" ">列表页</a></strong>
+                <strong><a href="{:Url('index')}">列表页</a></strong>
             </li>
         </ol>
     </div>
@@ -32,9 +30,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>列表</h5>
+                    <h5>专题列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('meet/add')}">添加</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('add')}">添加专题</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -44,8 +42,12 @@
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
                                 <th>标题</th>
+                                <th>类型</th>
                                 <th>发布人</th>
+                                <th>创建人 </th>
                                 <th>创建时间</th>
+                                <th>是否推荐</th>
+                                <th>状态</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -54,11 +56,15 @@
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.title|msubstr=0,20}</td>
+                                <td>{$vo.type_text}</td>
                                 <td>{$vo.publisher}</td>
-                                <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
+                                <td>{$vo->user->nickname}</td>
+                                <td>{$vo.create_time|time_format='Y-m-d'}</td>
+                                <td>{$vo.recommend_text}</td>
+                                <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('Meet/add?id='.$vo.id)}">修改</a>
-                                    <a href="{:Url('Meet/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('edit?id='.$vo['id'])}">修改</a>
+                                    <a href="{:Url('del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}
@@ -84,8 +90,6 @@
 {block name="script"}
 <script src="/admin/js/plugins/iCheck/icheck.min.js"></script>
 <script>
-
-
     $(document).ready(function(){
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',

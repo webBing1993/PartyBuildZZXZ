@@ -11,11 +11,12 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Meet extends Model {
+class Learns extends Model {
     protected $insert = [
         'views' => 0,
         'comments' => 0,
         'likes' => 0,
+        'collect' => 0,
         'create_time' => NOW_TIME,
     ];
 

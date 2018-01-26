@@ -11,7 +11,7 @@ namespace app\admin\validate;
 
 use think\Validate;
 
-class Meet extends Validate {
+class Learns extends Validate {
     protected $rule = [
         'front_cover' => 'require',
         'title' => 'require',
