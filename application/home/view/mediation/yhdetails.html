@@ -128,13 +128,19 @@
             $('.bot').css('display','block');
         };
         if($(this).html()=='已审核') {
-            $(this).parent().addClass('active');
             $('.remark1').css('display','block');
         };
+        if($(this).html()=='调解员待确认') {
+            console.log($(this).html()=='调解员待确认');
+            $('.remark1').css('display','block');
+            console.log($('.remark1'));
+        };
         if($(this).html()=='调解员已确认') {
-            $(this).parent().addClass('active');
             $('.remark1').css('display','none');
             $('.remark2').css('display','block')
+        };
+        if($(this).html()=='待评价') {
+            $('.remark').css('display','block')
         };
 
 
@@ -143,7 +149,6 @@
         var id= {$id};
         $('.lists .state').each(function(){
             if($(this).html()=='调解员待确认') {
-                $(this).html('调解员已确认')
                 $(this).parent().addClass('active');
                 $.ajax({
                     type: "post",
@@ -156,6 +161,7 @@
                         //成功后刷新页面
                         if(data.code == 1){
                             $('.remark1').css('display','none');
+                            history.go(0);
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')
@@ -205,17 +211,41 @@
             $('#all').show();
         }
     }
-     if($(window).width()<375){
-         for(var i=0;i<$('.list').length;i++){
-             if(i=$('.list').length){
-                 num = i;
-             };
-             if(i>3){
-                 $('.chart').css({'height':'2.8rem','overflow':'hidden'});
-                 $('#all').show();
+         if($(window).width()<375){
+             for(var i=0;i<$('.list').length;i++){
+                 if(i=$('.list').length){
+                     num = i;
+                 };
+                 if(i>3){
+                     $('.chart').css({'height':'2.8rem','overflow':'hidden'});
+                     $('#all').show();
+                 }
              }
          }
-     }
+    if($(window).width()==360){
+        for(var i=0;i<$('.list').length;i++){
+            if(i=$('.list').length){
+                num = i;
+            };
+            if(i>3){
+                $('.chart').css({'height':'2.98rem','overflow':'hidden'});
+                $('#all').show();
+            }
+        }
+    }
+    if($(window).width()==412){
+        for(var i=0;i<$('.list').length;i++){
+            if(i=$('.list').length){
+                num = i;
+            };
+            if(i>3){
+                $('.chart').css({'height':'2.87rem','overflow':'hidden'});
+                $('#all').show();
+            }
+        }
+    }
+
+
     if($(window).width()>=768){
         for(var i=0;i<$('.list').length;i++){
             if(i=$('.list').length){

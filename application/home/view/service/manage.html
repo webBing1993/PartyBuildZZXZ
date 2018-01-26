@@ -251,9 +251,7 @@
             success:function(data){
                 if (data.code == 1) {
                     var data = JSON.parse(data.data);
-                    console.log(data);
                     addLists1(data);
-                    console.log($('.showRight .lists').find("li").length)
                     check();
                     function check(){
                         if($('.showRight .lists').find("li").length === 0){
@@ -281,7 +279,6 @@
                     });
 
                     // 数据循环
-                    console.log(data);
                 } else {
                     console.log('请求失败！');
                 }
@@ -291,11 +288,13 @@
 
     });
     function addLists1(data){
+        console.log(data)
         var html = '';
         var lists = data;
         var len = lists.length;
             for(var i = 0; i< len;i++){
                 var list = lists[i];
+                console.log(list)
                 html += '<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>'+list.name+'</div></li>'
 
             }
