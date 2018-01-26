@@ -134,13 +134,6 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function(){
-        console.log($('.showRight .lists').find("li").length)
-//        function check(){
-//            if($('.showRight .lists').find("li").length == 0){
-//                $('#nomessage').show();
-//            }
-//        }
-//        check();
         var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $(".tab").on('click',function(){
             var index=$(this).index();
