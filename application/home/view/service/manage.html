@@ -337,6 +337,12 @@
                 }else{
                     lists[i].gender='女';
                 }
+                if(lists[i].birthday==null){
+                    lists[i].birthday='无'
+                }
+                if(lists[i].partytime==null){
+                    lists[i].partytime='无'
+                }
                 if(lists[i].header=='null'){
                     html += '<li><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
                     html1 +='<div class="user">'
