@@ -115,16 +115,16 @@
     </div>
 
     <div id="fixed">
-        <div class="user">
-            <div class="userImg"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
-            <div class="userName">张然</div>
-            <div class="userSex">性别：男</div>
-            <div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">1356666888</a></span></div>
-            <div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>1973-05-12</span></div>
-            <div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>1993-08-12</span></div>
-            <div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>山下湖党支部</span></div>
-            <div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>组织部委员</span></div>
-        </div>
+        <!--<div class="user">-->
+            <!--<div class="userImg"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>-->
+            <!--<div class="userName">张然</div>-->
+            <!--<div class="userSex">性别：男</div>-->
+            <!--<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">1356666888</a></span></div>-->
+            <!--<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>1973-05-12</span></div>-->
+            <!--<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>1993-08-12</span></div>-->
+            <!--<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>山下湖党支部</span></div>-->
+            <!--<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>组织部委员</span></div>-->
+        <!--</div>-->
         <img src="/home/images/service/icon_04.png" id="close">
     </div>
 
@@ -249,35 +249,41 @@
             url: "{:Url('Service/getDepartmentMember')}",
             data: {did:did},
             success:function(data){
+                console.log(data)
                 if (data.code == 1) {
                     var data = JSON.parse(data.data);
-                    addLists1(data);
-                    check();
-                    function check(){
-                        if($('.showRight .lists').find("li").length === 0){
-                            $('#nomessage').show();
-                        }else{
-                            $('#nomessage').hide();
+                    if(data!='[]'){
+                        console.log(data)
+                        addLists1(data);
+                        check();
+                        function check(){
+                            if($('.showRight .lists').find("li").length === 0){
+                                $('#nomessage').show();
+                            }else{
+                                $('#nomessage').hide();
+                            }
                         }
+
+                        $("img.lazy").lazyload({
+                            placeholder: "/home/images/loading.jpg",
+                            effect: "fadeIn",
+                            threshold: 1
+                        });
+                        $('.showRight li ').on('click',function(){
+                            console.log($(this).index());
+                            var index=$(this).index();
+                            $('#fixed').stop().animate({
+                                height:'100%'
+                            },500);
+                            $('.user').eq(index).show().siblings().hide();
+
+                        });
+                        $('#close ').on('click',function(){
+                            $('#fixed').stop().animate({
+                                height:0
+                            },1);
+                        });
                     }
-
-                    $("img.lazy").lazyload({
-                        placeholder: "/home/images/loading.jpg",
-                        effect: "fadeIn",
-                        threshold: 1
-                    });
-                    $('.showRight li ').on('click',function(){
-                        $('#fixed').stop().animate({
-                            height:'100%'
-                        },500);
-
-                    });
-                    $('#close ').on('click',function(){
-                        $('#fixed').stop().animate({
-                            height:0
-                        },1);
-                    });
-
                     // 数据循环
                 } else {
                     console.log('请求失败！');
@@ -288,17 +294,48 @@
 
     });
     function addLists1(data){
-        console.log(data)
         var html = '';
-        var lists = data;
-        var len = lists.length;
-            for(var i = 0; i< len;i++){
-                var list = lists[i];
-                console.log(list)
-                html += '<li><img data-original="/home/images/banner/1.jpg" class="lazy"><div>'+list.name+'</div></li>'
+        var html1='';
+        for(var obj in data){
+            var lists=data[obj];
+            console.log(lists);
+            for(var i=0;i<lists.length;i++){
+                console.log(lists[i]);
+                if(lists[i].gender=='1'){
+                    lists[i].gender='男';
+                }else{
+                    lists[i].gender='女';
+                }
+                if(lists[i].header=='null'){
+                    html += '<li><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
+                    html1 +='<div class="user">'
+                          +'<div class="userImg"><img data-original="'+lists[i].avatar+'" class="lazy"></div>'
+                          +'<div class="userName">'+lists[i].name+'</div>'
+                          +'<div class="userSex">性别：'+lists[i].gender+'</div>'
+                          +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">'+lists[i].mobile+'</a></span></div>'
+                          +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+lists[i].birthday+'</span></div>'
+                          +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+lists[i].partytime+'</span></div>'
+                          +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+lists[i].dname+'</span></div>'
+                          +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+lists[i].position+'</span></div>'
+                          +'</div>'
 
+                }else{
+                    html += '<li><img data-original="'+lists[i].header+'" class="lazy"><div>'+lists[i].name+'</div></li>';
+                    html1 +='<div class="user">'
+                        +'<div class="userImg"><img data-original="'+lists[i].header+'" class="lazy"></div>'
+                        +'<div class="userName">'+lists[i].name+'</div>'
+                        +'<div class="userSex">性别：'+lists[i].gender+'</div>'
+                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">'+lists[i].mobile+'</a></span></div>'
+                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+lists[i].birthday+'</span></div>'
+                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+lists[i].partytime+'</span></div>'
+                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+lists[i].dname+'</span></div>'
+                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+lists[i].position+'</span></div>'
+                        +'</div>'
+                }
             }
             $('.showRight .lists').html(html);
+            $('#close').before(html1);
+        }
     }
     $('.showRight li ').on('click',function(){
         $('#fixed').stop().animate({

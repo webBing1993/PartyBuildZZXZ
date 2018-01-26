@@ -151,6 +151,10 @@ class Mediation extends Base
             return $this->error("加载失败");
         }
     }
+
+    public function newdetail() {
+        return $this->fetch();
+    }
     /**
      * 网上申请加载更多
      */
