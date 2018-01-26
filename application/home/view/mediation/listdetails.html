@@ -30,7 +30,7 @@
             <img src="/home/images/nomessage.png" alt="无消息">
         </div>
         {volist name="list" id="vo"}
-        <div style="position: relative;" class="userlist">
+        <!--<div style="position: relative;" class="userlist">-->
             <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
                 <img class="userimg lazy" data-original="{$vo.path}"  alt="" />
                 <div class="fr1">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        <!--</div>-->
         {/volist}
     </div>
 <div class="tip"></div>
@@ -51,7 +51,7 @@
 {block name="script"}
 <script>
     function check(){
-        if($('.userlist').find(".list").length == 0){
+        if($('.apply').find(".list").length == 0){
             $('#nomessage').show();
         }
     }
@@ -109,13 +109,13 @@
         var lists = data.data;
             for(var i=0;i<len;i++){
                 html +=
-                    '<div style="position: relative" class="userlist">'
-                    + '<a href="/home/mediation/yhdetails.html/id/'+lists[i].id+'.html" class="list">'
+//                    '<div style="position: relative" class="userlist">'
+                     '<a href="/home/mediation/yhdetails.html/id/'+lists[i].id+'.html" class="list">'
                     +'<img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />'
                     +'<div class="fr1">'
                     +'<p>'+lists[i].title+'</p>'
                     +'<div class="bt">'
-                    +'<div class="time">'+lists[i].time+'</div></div></div></a></div>'
+                    +'<div class="time">'+lists[i].time+'</div></div></div></a>'
 
             }
             $('.user').append(html);

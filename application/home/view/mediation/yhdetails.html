@@ -36,7 +36,7 @@
 </style>
 {/block}
 {block name="body"}
- <div class="chart" style="position: relative;padding-bottom: 4.5vh;">
+ <div class="chart" style="position: relative">
       <div class="lists">
           {volist name="response" id="vo"}
           <div class="list {eq name='$vo.check' value='1'}active{/eq}">
@@ -248,7 +248,6 @@
             $(this).append('<div class="hr02"></div>');
         }
         if($(this).next().hasClass('active')){
-           console.log($(this))
             $(this).find('.hr02').css('height',$(this).height()+p)
         }
     })
