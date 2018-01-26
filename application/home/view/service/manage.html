@@ -71,10 +71,6 @@
                 </a>
                 {/volist}
             </div>
-            <div class="tip"></div>
-            <div class="loading hidden">
-                <div class="typing_loader"></div>
-            </div>
         </div>
         <!--流程展示模块-->
         <div class="box flow" style="display:none;">
@@ -118,11 +114,17 @@
         <img src="/home/images/service/icon_04.png" id="close">
     </div>
 
+    <div class="tip"></div>
+    <div class="loading hidden">
+        <div class="typing_loader"></div>
+    </div>
+
 {/block}
 
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
+    var scrollNow = true;
     $(function(){
         var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $(".tab").on('click',function(){
@@ -130,10 +132,12 @@
             $(this).addClass('active').siblings().removeClass('active');
             $(".box").eq(index).show().siblings().hide();
             localStorage.setItem('data',index);
-
+            loadScroll();
+            $(".tip").hide();
+            $(".loading").hide();
+            scrollNow = true;
         });
-        $('.tabs .tab').removeClass('active');
-        $('.tabs .tab').eq(number).addClass('active');
+        $('.tabs .tab').eq(number).click();
 
         // 党员展示初始化
         if (number == 0) {
@@ -148,19 +152,20 @@
             effect: "fadeIn",
             threshold : 500
         });
-    var scrollNow = true;
-        loadScroll();
+
+
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
             var len = $('.list2 .list').length;
+            var len1 = $(".flow .list").length;
             var tip = $(".tip");
             var loading = $('.loading');
-            if(number==1){
-                if(dh == end && scrollNow){
-                    scrollNow = false;
+            if(dh == end && scrollNow){
+                scrollNow = false;
+                if(number==1){
                     $.ajax({
                         type:"post",
                         url: "{:Url('Service/indexMore')}",
@@ -169,16 +174,15 @@
                         },
                         beforeSend: function(XMLHttpRequest){
                             tip.hide();
-                            loading.toggleClass('hidden');
+                            loading.removeClass('hidden');
                         },
                         success:function(data){
-                            console.log(data)
-                            loading.toggleClass('hidden');
+                            loading.addClass('hidden').show();
                             tip.show();
                             if(data.code == 1){
                                 addLists(data,number);
                                 var dataLen =data.data.length;
-                                if(data.data.length >= 2){
+                                if(data.data.length >= 6){
                                     tip.text('上拉加载更多');
                                 } else {
                                     tip.text('没有更多了');
@@ -192,7 +196,37 @@
                         }
                     })
                 }
-
+                if (number == 2) {
+                    $.ajax({
+                        type:"post",
+//                        url: "{:Url('Service/indexMore')}",
+                        data:{
+                            length:len1
+                        },
+                        beforeSend: function(XMLHttpRequest){
+                            tip.hide();
+                            loading.removeClass('hidden');
+                        },
+                        success:function(data){
+                            loading.addClass('hidden').show();
+                            tip.show();
+                            if(data.code == 1){
+                                addLists(data,number);
+                                var dataLen =data.data.length;
+                                if(data.data.length >= 10){
+                                    tip.text('上拉加载更多');
+                                } else {
+                                    tip.text('没有更多了');
+                                    $(window ).off("scroll");
+                                }
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
+                            }
+                            scrollNow = true;
+                        }
+                    })
+                }
             }
         })
     }
@@ -214,6 +248,19 @@
                     '</a>'
             }
             $('.list2').append(html);
+        }
+        if (number ==2) {
+            for(var i = 0; i< len;i++){
+                var list = lists[i];
+                html +=
+                        '<a href="#" class="list">'+
+                        '<img data-original="'+ list.path +'" alt="图片展示" class="lazy">'+
+                        '<div class="lr">'+
+                        '<p>list.content</p>'+
+                        '</div>'+
+                        '</a>';
+            }
+            $('.flow .lists').append(html);
         }
     }
         $(document).scroll(function() {
@@ -239,7 +286,7 @@
             data: {did:did},
             success:function(data){
                 if (data.code == 1) {
-                    $("#close .user").remove();
+                    $("#fixed .user").remove();
                     var data = JSON.parse(data.data);
                     if(data.length != 0){
                         $('#nomessage').hide();
