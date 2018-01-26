@@ -190,34 +190,38 @@
                 },
                 beforeSend: function(XMLHttpRequest){},
                 success:function(data){
-                    console.log(data)
-                    if (data != "[]") {
+                    console.log(data);
+                if(data.code==1){
+                    if (data.data != "[]") {
                         var date=JSON.parse(data.data);
                         console.log(date);
                         var result = date;
                         var url = '';
-                            for(var i=0;i< result.length;i++){
+                        for(var i=0;i< result.length;i++){
 //                            html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
-                                html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
+                            html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
 
-                            }
+                        }
+                        $('.lists' ).html(html);
+                        $('.lists li').on('click',function(){
+                            $('#fixed').stop().animate({
+                                height:'100%'
+                            },500);
 
-                            $('.lists' ).html(html);
-                            $('.lists li').on('click',function(){
-                                $('#fixed').stop().animate({
-                                    height:'100%'
-                                },500);
-
-                            });
-                            $('#close ').on('click',function(){
-                                $('#fixed').stop().animate({
-                                    height:0
-                                },1);
-                            });
+                        });
+                        $('#close ').on('click',function(){
+                            $('#fixed').stop().animate({
+                                height:0
+                            },1);
+                        });
                     }else{
                         html += '<li>"无搜索结果"</li>'
                         $('.lists' ).html(html);
                     }
+                }else{
+
+                }
+
                 }
 
             });

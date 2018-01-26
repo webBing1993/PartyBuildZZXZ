@@ -49,7 +49,7 @@
                             data: {
                                 id:id,
                                 status : 0,
-                                no_approveval:val,
+                                no_approve:val,
                             },
                             success: function(data){
                                 console.log(data)
@@ -59,11 +59,9 @@
                                         title: "确定！",
                                         timer: 1500,
                                     }),
-                                    function(){
                                         setTimeout(function(){
                                             history.go(-1);
                                         }, 1500);
-                                    }
                                 }else{
                                     setTimeout(function(){
                                         swal("操作失败","",'error')

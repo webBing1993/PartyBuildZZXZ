@@ -56,10 +56,10 @@
                 </a>
                 {/volist}
             </div>
+            <div class="tip"></div>
             <div class="loading hidden">
                 <div class="typing_loader"></div>
             </div>
-            <div class="tip"></div>
         </div>
         <!--流程展示模块-->
         <div class="box flow" style="display:none;">
@@ -119,13 +119,14 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function(){
+        var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $(".tab").on('click',function(){
             var index=$(this).index();
             $(this).addClass('active').siblings().removeClass('active');
             $(".box").eq(index).show().siblings().hide();
             localStorage.setItem('data',index);
+
         });
-        var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
         $('.tabs .tab').removeClass('active');
         $('.tabs .tab').eq(number).addClass('active');
 
@@ -149,12 +150,12 @@
             var number = localStorage.getItem('data')==null?0:localStorage.getItem('data');
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $('.list').length;
+            var len = $('.list2 .list').length;
             var tip = $(".tip");
             var loading = $('.loading');
-            if(dh == end && scrollNow){
-                scrollNow = false;
-                if(number==1){
+            if(number==1){
+                if(dh == end && scrollNow){
+                    scrollNow = false;
                     $.ajax({
                         type:"post",
                         url: "{:Url('Service/indexMore')}",
@@ -170,8 +171,7 @@
                             loading.toggleClass('hidden');
                             tip.show();
                             if(data.code == 1){
-                                addLists(data);
-
+                                addLists(data,number);
                                 var dataLen =data.data.length;
                                 if(data.data.length >= 2){
                                     tip.text('上拉加载更多');
@@ -191,7 +191,7 @@
             }
         })
     }
-    function addLists(data){
+    function addLists(data,number){
         var html = '';
         var lists = data.data;
         var len = lists.length;
@@ -200,7 +200,7 @@
                 var list = lists[i];
                 //var pid = $('.part div' ).eq(list.pid ).text();
                 html +=
-                    '<a href="/home/service/meetdetail/id'+ list.id+'.html" class="list">'+
+                    '<a href="/home/service/meetdetail/id/'+ list.id+'.html" class="list">'+
                     '<img class="lazy" data-original='+list.path+'>'+
                     '<div class="lr">'+
                     '<div class="title"><p>'+list.title+'</p></div>'+
