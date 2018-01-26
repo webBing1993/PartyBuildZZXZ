@@ -113,6 +113,12 @@ body{
     margin-bottom: 3.2vw;
     display: block;
 }
+.box .imgs figure {
+    display: inline-block;
+}
+.box .imgs figure a {
+    display: inline-block;
+}
 .box .imgs img {
     display: inline-block;
     width: 21.8vw;
