@@ -167,16 +167,7 @@
 
 </ul>
 <div id="fixed">
-    <div class="user">
-        <div class="userImg"><img data-original="/home/images/banner/2.jpg" class="lazy"></div>
-        <div class="userName">张然</div>
-        <div class="userSex">性别：男</div>
-        <div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:1356666888">1356666888</a></span></div>
-        <div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>1973-05-12</span></div>
-        <div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>1993-08-12</span></div>
-        <div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>山下湖党支部</span></div>
-        <div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>组织部委员</span></div>
-    </div>
+
     <img src="/home/images/service/icon_04.png" id="close">
 </div>
 {/block}
@@ -195,12 +186,9 @@
         });
         search.on('input',function(){
             var this_ = this;
-//        search.css('width','75vw');
-//        $('#cancel').show();
-//        $('body').css('position','fixed');
-//        if(!lock){
             var val = $(this_ ).val();
             var html = '';
+            var html1='';
             $.ajax({
                 type:"get",
                 url: "{:Url('Service/getMember')}",
@@ -217,16 +205,52 @@
                         var result = date;
                         var url = '';
                         for(var i=0;i< result.length;i++){
-//                            html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
-                            html +=' <li><img src="/home/images/banner/1.jpg" ><div>'+result[i].name+'</div></li>'
+                            if(result[i].gender=='1'){
+                                result[i].gender='男';
+                            }else{
+                                result[i].gender='女';
+                            }
+                            if(result[i].birthday==null){
+                                result[i].birthday='无'
+                            }
+                            if(result[i].partytime==null){
+                                result[i].partytime='无'
+                            }
+                            if(result[i].header=='null'){
+                                html += '<li><img data-original="'+result[i].avatar+'" class="lazy"><div>'+result[i].name+'</div></li>';
+                                html1 +='<div class="user">'
+                                        +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy"></div>'
+                                        +'<div class="userName">'+result[i].name+'</div>'
+                                        +'<div class="userSex">性别：'+result[i].gender+'</div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
+                                        +'</div>'
+
+                            }else{
+                                html += '<li><img data-original="'+result[i].header+'" class="lazy"><div>'+result[i].name+'</div></li>';
+                                html1 +='<div class="user">'
+                                        +'<div class="userImg"><img data-original="'+result[i].header+'" class="lazy"></div>'
+                                        +'<div class="userName">'+result[i].name+'</div>'
+                                        +'<div class="userSex">性别：'+result[i].gender+'</div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
+                                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
+                                        +'</div>'
+                            }
 
                         }
                         $('.lists' ).html(html);
+                        $("#fixed").append(html1);
                         $('.lists li').on('click',function(){
                             $('#fixed').stop().animate({
                                 height:'100%'
                             },500);
-
+                            $('.user').eq($(this).index()).show().siblings(".user").hide();
                         });
                         $('#close ').on('click',function(){
                             $('#fixed').stop().animate({
@@ -236,7 +260,7 @@
                     }else{
                         html += '<div id="nomessage">'
                              +'<img src="/home/images/nomessage.png" alt="无消息">'
-                             +'</div>'
+                             +'</div>';
                         $('.lists' ).html(html);
                     }
                 }else{
