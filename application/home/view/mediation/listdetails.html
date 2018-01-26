@@ -10,11 +10,25 @@
     .user .list{
         height:16.5vh;
     }
+    #nomessage{
+        width:26.6vw;
+        height:26.6vw;
+        margin: 50% auto;
+        display: none;
+    }
+    #nomessage img{
+        width:100%;
+        border: 0;
+        vertical-align: top;
+    }
 </style>
 {/block}
 {block name="body"}
     <!--用户网上申请-->
     <div class="apply user">
+        <div id="nomessage">
+            <img src="/home/images/nomessage.png" alt="无消息">
+        </div>
         {volist name="list" id="vo"}
         <div style="position: relative;" class="userlist">
             <a href="{:Url('Mediation/yhdetails?id='.$vo.id)}" class="list">
@@ -36,6 +50,12 @@
 {/block}
 {block name="script"}
 <script>
+    function check(){
+        if($('.userlist').find(".list").length == 0){
+            $('#nomessage').show();
+        }
+    }
+    check();
     var scrollNow = true;
     loadScroll()
     function loadScroll(){

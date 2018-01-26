@@ -202,62 +202,30 @@
     }
     var h = $('.lists').height();
     var num = 0;
+    var p=parseFloat($('.list').eq(0).css('padding-bottom'))
+    var s=parseFloat($('.state').eq(0).css('margin-bottom'))
+    var ht=$('.list').eq(0).height()+$('.num').eq(0).height()+$('#all').height()+p+s-1;
     for(var i=0;i<$('.list').length;i++){
         if(i=$('.list').length){
            num = i;
         };
         if(i>3){
-            $('.chart').css({'height':'3rem','overflow':'hidden'});
+            $('.chart').css({'height':ht+'px','overflow':'hidden'});
             $('#all').show();
         }
     }
-         if($(window).width()<375){
-             for(var i=0;i<$('.list').length;i++){
-                 if(i=$('.list').length){
-                     num = i;
-                 };
-                 if(i>3){
-                     $('.chart').css({'height':'2.8rem','overflow':'hidden'});
-                     $('#all').show();
-                 }
-             }
-         }
-    if($(window).width()==360){
-        for(var i=0;i<$('.list').length;i++){
-            if(i=$('.list').length){
-                num = i;
-            };
-            if(i>3){
-                $('.chart').css({'height':'2.98rem','overflow':'hidden'});
-                $('#all').show();
-            }
-        }
-    }
-    if($(window).width()==412){
-        for(var i=0;i<$('.list').length;i++){
-            if(i=$('.list').length){
-                num = i;
-            };
-            if(i>3){
-                $('.chart').css({'height':'2.87rem','overflow':'hidden'});
-                $('#all').show();
-            }
-        }
-    }
-
-
     if($(window).width()>=768){
         for(var i=0;i<$('.list').length;i++){
             if(i=$('.list').length){
                 num = i;
             };
             if(i>3){
-                $('.chart').css({'height':'2.69rem','overflow':'hidden'});
+                var ht=$('.list').eq(0).height()+$('.num').eq(0).height()+$('#all').height()+p+s-3;
+                $('.chart').css({'height':ht+'px','overflow':'hidden'});
                 $('#all').show();
             }
         }
     }
-
     var s = $('.list').eq(num-1).height();
 //    $('.list').eq(num-1).find('.hr02').remove()
     $('#hr01').css('height',h-s-10);
@@ -280,18 +248,13 @@
             $(this).append('<div class="hr02"></div>');
         }
         if($(this).next().hasClass('active')){
-            $(this).find('.hr02').css('height',$(this).height()*2)
-        }else {
-            if($(this).find('.direc').length>0){
-                $(this).find('.hr02').css('height',$(this).height()*.6)
-            }else {
-                $(this).find('.hr02').css('height',$(this).height()*1.1)
-            }
-        };
+           console.log($(this))
+            $(this).find('.hr02').css('height',$(this).height()+4*p)
+        }
     })
-    var lastH = $('.list').eq(num-2).find('.hr02').height()*0.8;
-    $('.list').eq(num-2).find('.hr02').css('height',lastH);
-    $('.list').eq(num-1).find('.hr02').remove();
+//    var lastH = $('.list').eq(num-2).find('.hr02').height()*0.8;
+//    $('.list').eq(num-2).find('.hr02').css('height',lastH);
+//    $('.list').eq(num-1).find('.hr02').remove();
     $('#all').on('click',function(){
         $('.chart').css({'height':'initial','overflow':'initial'});
         $('#all').hide();

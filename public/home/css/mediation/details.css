@@ -15,7 +15,7 @@ body{
     width:100%;
     position: relative;
     /*border-left:.8vw solid #DBDBDB;*/
-    padding:1.5vh 4vw 1.5vh 8.9vw;
+    padding:0 4vw 1.5vh 8.9vw;
     z-index: 9;
 }
 
@@ -29,7 +29,7 @@ body{
     width:10.4vw;
     position: absolute;
     left:-17vw;
-    top:1.5vh;
+    top:0;
     word-wrap:break-word;
     word-break:break-all;
     overflow: hidden;
