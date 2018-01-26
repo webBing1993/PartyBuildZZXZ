@@ -1,20 +1,20 @@
 @charset "utf-8";
 /*public*/
-.t_b {
-    font-size: .36rem;
-    font-weight: 600;
-}
-.banner{
-    position: relative;
-    top:0;
-    left:0;
-    width: 100vw;
-    height: 50vw;
-}
-.banner .banner-img{
-    height: 50vw;
-    width: 100vw;
-}
+/*.t_b {*/
+    /*font-size: .36rem;*/
+    /*font-weight: 600;*/
+/*}*/
+/*.banner{*/
+    /*position: relative;*/
+    /*top:0;*/
+    /*left:0;*/
+    /*width: 100vw;*/
+    /*height: 50vw;*/
+/*}*/
+/*.banner .banner-img{*/
+    /*height: 50vw;*/
+    /*width: 100vw;*/
+/*}*/
 /*banner点赞*/
 /*.banner .isgood {*/
 /*position: absolute;*/
@@ -70,9 +70,31 @@
     width: 100%;
 }
 .note{
+    width:100%;
     color: #999999;
     font-size: 12px;
     text-align: right;
+
+}
+.note .good {
+    background: url('/home/images/detail/good.png') 0 center no-repeat;
+}
+.note .good_ {
+    animation: shake 300ms ease;
+    -webkit-animation: shake 300ms ease;
+    background: url('/home/images/detail/good_.png') 0 center no-repeat;
+}
+.note .isgood {
+    background-size: .24rem .24rem;
+    padding-left: .3rem;
+}
+.read{
+    line-height:1.8vh;
+    padding-left:6.9vw;
+    background: url('/home/images/service/icon_005.png') no-repeat left top;
+    background-size: 5.3vw 1.8vh;
+    text-align: left;
+    width:.8rem;
 }
 .note_{
     padding: 0;
