@@ -150,7 +150,8 @@ body{
     text-align: center;
     /*height:.5rem;*/
     line-height: .5rem;
-    margin-bottom: .3rem;
+    padding: 1.6vw 0;
+    /*margin-bottom: .3rem;*/
 }
 .showLeft li.active {
     background: #fff;
