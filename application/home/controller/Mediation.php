@@ -152,7 +152,55 @@ class Mediation extends Base
         }
     }
 
-    public function newdetail() {
+    /**
+     * 案例详情页
+     */
+    public function newdetail(){
+        $this->anonymous();        //判断是否是游客
+        $this->jssdk();
+
+        $userId = session('userId');
+        $id = input('id');
+        $caseModel = new MediationCase();
+        //浏览加一
+        $info['views'] = ['exp','`views`+1'];
+        $caseModel::where('id',$id)->update($info);
+        if($userId != "visitor"){
+            //浏览不存在则存入pb_browse表
+            $con = [
+                'user_id' => $userId,
+                'mediation_case_id' => $id,
+            ];
+            $history = Browse::get($con);
+            if(!$history && $id != 0){
+                $s['score'] = ['exp','`score`+1'];
+//                if ($this->score_up()){
+                // 未满 15 分
+                Browse::create($con);
+                WechatUser::where('userid',$userId)->update($s);
+//                }
+            }
+        }
+        $article = $caseModel::get($id);
+        $article['user'] = session('userId');
+        //分享图片及链接及描述
+        $image = Picture::where('id',$article['front_cover'])->find();
+        $article['share_image'] = "http://".$_SERVER['SERVER_NAME'].$image['path'];
+        $article['link'] = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REDIRECT_URL'];
+        $article['desc'] = str_replace('&nbsp;','',strip_tags($article['content']));
+        $article['desc'] = str_replace(" ",'',$article['desc']);
+        $article['desc'] = str_replace("\n",'',$article['desc']);
+
+        //获取 文章点赞
+        $likeModel = new Like;
+        $like = $likeModel->getLike(9,$id,$userId);
+        $article['is_like'] = $like;
+        $this->assign('article',$article);
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(9,$id,$userId);
+        $this->assign('comment',$comment);
+
         return $this->fetch();
     }
     /**
