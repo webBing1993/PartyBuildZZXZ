@@ -82,8 +82,7 @@ body{
     color:#999999;
 }
 .form{
-    border:1px solid #D1D1D1;
-    border-bottom:none;
+    border-top:1px solid #D1D1D1;
     margin-bottom:10.5vh;
 }
 .box{
