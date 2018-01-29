@@ -47,8 +47,8 @@
 						</div>
 					</div>
 					<div class="swipeout-actions-right">
-						<a class="green" onclick='dispose1(this,{$vo.id},0,0)'>同 意</a>
-						<a class="red" onclick='dispose(this,{$vo.id},0,0)'>不同意</a>
+						<a class="green" onclick='dispose1(this,{$vo.id},1,0)'>同 意</a>
+						<a class="red" onclick='dispose(this,{$vo.id},-1,0)'>不同意</a>
 					</div>
 				</li>
 				{/volist}
@@ -87,22 +87,20 @@
 <script src="/static/framework7/framework7.js"></script>
 <script>
 
-	$(function() {
-		check();
-		//没有消息显示无消息提醒
-		function check() {
-			if ($(".list-block").find("li").length == 0) {
-				$('#nomessage').show();
-				$(".top1").hide();
-			}
-			if ($(".apply").find("li").length == 0) {
-				$('#nomessage1').show();
-			}
-			else {
-				$(".top").show();
-			}
+	check();
+	//没有消息显示无消息提醒
+	function check() {
+		if ($(".list-block").find("li").length == 0) {
+			$('#nomessage').show();
+			$(".top1").hide();
 		}
-	});
+		if ($(".apply").find("li").length == 0) {
+			$('#nomessage1').show();
+		}
+		else {
+			$(".top").show();
+		}
+	}
 
 var myApp=new Framework7;
 var $$=Dom7;
@@ -170,29 +168,42 @@ function dispose1(i,id,status,type){
         if (isConfirm) {
             $.ajax({
                 type: "post",
-                url: "{:Url('approved/review')}",
+                url: "{:Url('Audit/review')}",
                 data: {
-                    id:id,
-                    status:status,
-                    tab : type
+                    id: id,
+                    status:status
                 },
                 success: function(data){
                     //成功后刷新页面
                     if(data.code == 1){
-                        //未审核页面有操作,审核页面用来判断刷新
-                        sessionStorage.setItem("review","true");
-                        $(i).parent().parent().fadeOut(500);
-                        $(i).parent().parent().remove();
-                        //判断是否还有消息
-                        check();
                         //swal回调里继续使用swal有时不会被触发
                         setTimeout(function(){
-                            swal("操作成功！","",'success')
+							swal({
+								title: ' ',
+								text: '操作成功!',
+								type: 'success',
+								confirmButtonText:'确定',
+								timer: 1500
+							});
+							setTimeout(function () {
+								//未审核页面有操作,审核页面用来判断刷新
+								sessionStorage.setItem("review","true");
+								$(i).parent().parent().fadeOut(500);
+								$(i).parent().parent().remove();
+								//判断是否还有消息
+								check();
+							},1500)
                         },200);
                     }else{
-                        setTimeout(function(){
-                            swal("操作失败","",'error')
-                        },200);
+						setTimeout(function(){
+							swal({
+								title: ' ',
+								text: '操作失败!',
+								type: 'error',
+								confirmButtonText:'确定',
+								timer: 1500
+							})
+						},200);
                     }
                 }
             })
@@ -214,28 +225,40 @@ function dispose(i,id,status,type){
 		if (isConfirm) {
 			$.ajax({
 				type: "post",
-				url: "{:Url('approved/review')}",
+				url: "{:Url('Audit/review')}",
 				data: {
 					id:id,
-					status:status,
-					tab : type
+					status:status
 				},
 				success: function(data){
 					//成功后刷新页面
 					if(data.code == 1){
-						//未审核页面有操作,审核页面用来判断刷新
-						sessionStorage.setItem("review","true");
-						$(i).parent().parent().fadeOut(500);
-						$(i).parent().parent().remove();
-						//判断是否还有消息
-						check();
-						//swal回调里继续使用swal有时不会被触发
 						setTimeout(function(){
-                            swal("操作成功！","",'success')
+							swal({
+								title: ' ',
+								text: '操作成功!',
+								type: 'success',
+								confirmButtonText:'确定',
+								timer: 1500
+							});
+							setTimeout(function () {
+								//未审核页面有操作,审核页面用来判断刷新
+								sessionStorage.setItem("review","true");
+								$(i).parent().parent().fadeOut(500);
+								$(i).parent().parent().remove();
+								//判断是否还有消息
+								check();
+							},1500)
 						},200);
 					}else{
 						setTimeout(function(){
-                            swal("操作失败","",'error')
+                            swal({
+								title: ' ',
+								text: '操作失败!',
+								type: 'error',
+								confirmButtonText:'确定',
+								timer: 1500
+							})
 						},200);
 					}
 				}
