@@ -32,6 +32,7 @@
 				<img src="/home/images/nomessage.png" alt="无消息">
 			</div>
 			<ul>
+				{volist name="list" id="vo"}
 				<li class="swipeout" style="margin-right: 3vw;">
 					<div class="swipeout-content" onclick="jump()">
 						<a href="#" class="list" style="width:100%;">
@@ -39,11 +40,11 @@
 								<img class="yu lazy" data-original="/home/images/lxyz/icon/not.png"  alt="" />
 							</span>
 							<div class="fri">
-								<p class="title">珍珠小镇深度挖掘美丽经济珍珠小镇深度挖掘美丽经济</p>
-								<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>
+								<p class="title">{$vo.title}</p>
+								<!--<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>-->
 								<!--<div class="bt">-->
-									<span class="biao">【第一聚焦】</span>
-									<span class="time">2017-12-06</span>
+									<span class="biao">【{$vo.pre}】</span>
+									<span class="time">{$vo.time}</span>
 								<!--</div>-->
 							</div>
 
@@ -59,6 +60,7 @@
 						<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
 					</div>
 				</li>
+				{/volist}
 				<li class="swipeout" style="margin-right: 3vw;">
 					<div class="swipeout-content" onclick="jump()">
 						<a href="#" class="list" style="width:100%;">
