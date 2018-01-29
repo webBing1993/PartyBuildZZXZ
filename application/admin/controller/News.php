@@ -7,6 +7,7 @@
  */
 namespace app\admin\controller;
 
+use app\home\model\Audit;
 use think\Controller;
 use app\admin\model\Picture;
 use app\admin\model\Push;
@@ -51,6 +52,16 @@ class News extends Admin {
             $newModel = new NewsModel();
             $info = $newModel->validate('news')->save($data);
             if($info) {
+                $auditmodel = new Audit();
+                $audit['type'] = 1;
+                $audit['table'] = 'news';
+                $audit['url'] = 'news/detail';
+                $audit['aid'] = $newModel->id;
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = $data['publisher'];
+                $audit['front_cover'] = $data['front_cover'];
+                $auditmodel->save($audit);
+
                 return $this->success("新增成功",Url('News/index'));
             }else{
                 return $this->error($newModel->getError());

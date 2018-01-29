@@ -8,6 +8,7 @@
 
 namespace app\admin\controller;
 use app\admin\model\Meet as MeetModel;
+use app\home\model\Audit;
 
 class Meet extends Admin
 {
@@ -41,6 +42,17 @@ class Meet extends Admin
                 $statusMsg = '新增';
                 unset($data['id']);
                 $res = $meetModel->validate('Meet')->save($data);
+                if($res){
+                    $auditmodel = new Audit();
+                    $audit['type'] = 2;
+                    $audit['table'] = 'meet';
+                    $audit['url'] = 'service/meetdetail';
+                    $audit['aid'] = $meetModel->id;
+                    $audit['title'] = $data['title'];
+                    $audit['publisher'] = $data['publisher'];
+                    $audit['front_cover'] = $data['front_cover'];
+                    $auditmodel->save($audit);
+                }
             } else {
                 $statusMsg = '修改';
                 $id = $data['id'];

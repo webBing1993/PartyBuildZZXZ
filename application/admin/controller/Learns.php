@@ -10,6 +10,7 @@ namespace app\admin\controller;
 use app\admin\model\Learns as LearnsModel;
 use app\admin\model\Picture;
 use app\admin\model\Push;
+use app\home\model\Audit;
 use com\wechat\TPQYWechat;
 use think\Config;
 
@@ -55,6 +56,20 @@ class Learns extends Admin {
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             $model = $LearnsModel->validate('Learns')->save($data);
             if($model){
+                $auditmodel = new Audit();
+                $audit['type'] = 3;
+                $audit['table'] = 'learns';
+                if($data['type'] == 1){
+                    $audit['url'] = 'learns/video';
+                }else{
+                    $audit['url'] = 'learns/article';
+                }
+                $audit['aid'] = $LearnsModel->id;
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = $data['publisher'];
+                $audit['front_cover'] = $data['front_cover'];
+                $auditmodel->save($audit);
+
                 return $this->success('新增成功!',Url("Learns/index"));
             }else{
                 return $this->error($LearnsModel->getError());
