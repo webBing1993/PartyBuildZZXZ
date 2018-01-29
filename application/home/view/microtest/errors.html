@@ -63,9 +63,17 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function() {
-        $('.option').css({'top': '2px', 'line-height': '23px'});
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isAndroid){
+            $('.option').css('line-height','4vw')
+        }else if(isiOS){
+            $('.option').css('line-height','3.6vw')
+        }
+//        $('.option').css({'top': '2px', 'line-height': '23px'});
         if($(window).width()>1000){$('.option' ).css({'top':'.5vh'})}
-        $('.opt').css({'margin-left': '6px'});
+//        $('.opt').css({'margin-left': '6px'});
     });
     isOut();
     //防止恶意刷新

@@ -63,18 +63,22 @@
 <script>
     $(function(){
         var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isAndroid){
+            $('.option').css('line-height','4vw')
+		}else if(isiOS){
+
+		}
+
+//        var u = navigator.userAgent;
+//        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 //        $('.option' ).css({'line-height':'.3rem'});
         if($(window).width()>768){
             $('.option' ).css({'top':'4.5%'});
 
         }
-//        if($(window).width()<=320){$('.option' ).css({'top':'0.12rem','line-height':'.3rem'})}
-//        if($(window).width()>=375){
-//            $('.option' ).css({'top':'0.06rem'});
-//            $('.opt').css({"margin-left":'.1rem'})
-//        }
-//        $('.opt').css({'margin-left':'0.06rem'});
+
         //同级触发input点击的事件
         $('.option,.opt' ).on('click',function(){
             var it = $(this).siblings('input');
@@ -142,7 +146,8 @@
             window.addEventListener("popstate", function(e) {
                 if(objNow){
                     swal({
-                            title: "您未保存，是否离开当前页面?",
+                            title: "",
+						    text:"您未保存，是否离开当前页面?",
                             type: "warning",
                             showCancelButton: true,
                             closeOnConfirm: false,
@@ -223,7 +228,8 @@
             });
         }else{
             swal({
-                    title: "确定提交吗？",
+                    title: "",
+                    text: "确定提交吗？",
                     type: "warning",
                     showCancelButton: true,
                     closeOnConfirm: false,
