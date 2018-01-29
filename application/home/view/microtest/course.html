@@ -55,7 +55,7 @@ $(function(){
 //		$('#modal').modal('show');
 		$.ajax({
 			type:"post",
-			url:"{:Url('Constitution/commit')}",
+			url:"{:Url('Microtest/commit')}",
 			data:{'data':data},
 			success:function(data){
 				$('.score').html(data.url.score);

@@ -159,7 +159,7 @@
         var answer =getAnswer();
         $.ajax({
             type:"post",
-            url:"{:Url('Constitution/save')}",
+            url:"{:Url('Microtest/save')}",
             data:{arr:answer,arrId:getDataID()},
             success:function(e){
                 suc.fadeIn();
@@ -184,7 +184,7 @@
         if(isAll){
             $.ajax({
                 type:"post",
-                url:"{:Url('Constitution/submits')}",
+                url:"{:Url('Microtest/submits')}",
                 data:{arr:answer,arrId:getDataID()},
                 success:function(e){
                     suc.fadeIn();
@@ -193,7 +193,7 @@
                         timer.fadeOut();
                         up.text('提交成功');
                         setTimeout(function(){
-                            window.location.replace( "{:Url('Constitution/score')}");
+                            window.location.replace( "{:Url('Microtest/score')}");
                         },1000)
                     },2000);
                 }
@@ -212,7 +212,7 @@
                     if (isConfirm) {
                         $.ajax({
                             type:"post",
-                            url:"{:Url('Constitution/submits')}",
+                            url:"{:Url('Microtest/submits')}",
                             data:{arr:answer,arrId:getDataID()},
                             success:function(e){
                                 suc.fadeIn();
@@ -221,7 +221,7 @@
                                     timer.fadeOut();
                                     up.text('提交成功');
                                     setTimeout(function(){
-                                        window.location.replace("{:Url('Constitution/score')}");
+                                        window.location.replace("{:Url('Microtest/score')}");
                                     },1000)
                                 },2000);
                             }

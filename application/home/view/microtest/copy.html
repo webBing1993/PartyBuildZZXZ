@@ -384,7 +384,7 @@
         if(alltrue){
             $.ajax({
                 type:"post",
-                url:"{:Url('Constitution/copy')}",
+                url:"{:Url('Microtest/copy')}",
                 data:{	status:0,
                     length:len,
                     id : id
@@ -422,7 +422,7 @@
         if(alltrue && len_t == len){
             $.ajax({
                 type:"post",
-                url:"{:Url('Constitution/copy')}",
+                url:"{:Url('Microtest/copy')}",
                 data:{	status:1,
                     length:len,
                     id : id
@@ -434,7 +434,7 @@
                         timer.fadeOut();
                         up.text('上传成功');
                         setTimeout(function(){
-                            window.location.href= "{:Url('Constitution/index')}";
+                            window.location.href= "{:Url('Microtest/index')}";
                         },1000)
                     },2000);
                 }
