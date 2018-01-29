@@ -42,7 +42,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
+                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
             }
             $this->assign('list',$list);
 
@@ -56,7 +56,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
+                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -82,7 +82,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
+                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
             }
             $this->assign('list',$list);
 
@@ -96,7 +96,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
+                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -124,7 +124,7 @@ class Audit extends Base
             $img = Picture::get($value['front_cover']);
             $value['path'] = $img['path'];
             $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-            $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
+            $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
         }
         if($list){
             return $this->success("加载成功",'',$list);
