@@ -383,6 +383,19 @@ class Mediation extends Base
             $model = $opinionModel->create($data);
             if ($model) {
 //                 $this->push_review("审核通知", "【调解申请】未审核", "请尽快审核", 1);
+                $auditmodel = new \app\home\model\Audit();
+                $audit['type'] = 4;
+                $audit['table'] = 'mediation';
+                $audit['url'] = 'mediation/yhdetails';
+                $audit['aid'] = $opinionModel->id;
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = '';
+                if ($data['images']) {
+                    $audit['front_cover'] = json_decode($data['images'], true)[0];
+                } else {
+                    $audit['front_cover'] = '';
+                }
+                $auditmodel->save($audit);
                 return $this->success("提交成功");
             } else {
                 return $this->error("提交失败");

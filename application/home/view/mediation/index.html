@@ -57,7 +57,7 @@
             <li>
                 <div class="userImg"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
                 <p class="name">{$vo.name}</p>
-                <p class="num">已调解案例　<span>{$vo.num}</span>　起</p>
+                <p class="num">{$vo.description}</p>
                 <a href="{:Url('Mediation/application?id='.$vo.userid)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
                 <a href="{:Url('Mediation/medcase?id='.$vo.userid)}" class="more">查看更多</a>
             </li>
