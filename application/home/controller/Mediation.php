@@ -389,11 +389,8 @@ class Mediation extends Base
             }
         }else{
             $mediatorid = input('id');
-            $mediator = MediationUser::getMediator($mediatorid);
-
-            $mediator2 = MediationUser::where('name',$mediator)->value('front_cover');
-            $mediator3 = Picture::where('id',$mediator2)->value('path');
-
+            $mediatorModel = MediationUser::where(['userid' => $mediatorid])->find();
+            $mediatorModel['front_cover'] = Picture::where('id',$mediatorModel['front_cover'])->value('path');
             $model = WechatUser::where(['userid' => $userId])->find();
 
             $map = [
@@ -402,10 +399,8 @@ class Mediation extends Base
             $list = MediationUser::where($map)->order('id desc')->select();
             //dump($list);exit();
             $this->assign('mediatorid',$mediatorid);
-            $this->assign('mediator',$mediator);
-
-            $this->assign('mediator3',$mediator3);
-
+            $this->assign('mediator',$mediatorModel['name']);
+            $this->assign('mediator_path',$mediatorModel['front_cover']);
             $this->assign('model',$model);
             $this->assign('list',$list);
             return $this->fetch();
