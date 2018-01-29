@@ -350,12 +350,10 @@ class Mediation extends Base
             $this->assign('list',$list);
         }
         $images = json_decode($model['images']);
-//        $images = $model['images'];
-
-        foreach ($images as $value){
-            $value = get_cover($value, 'path');
+        foreach ($images as $key => $value){
+            $images[$key] = get_cover($value, 'path');
         }
-//        var_dump($images);die;
+
         $this->assign('response',$response);
         $this->assign('images',$images);
         $this->assign('model',$model);
