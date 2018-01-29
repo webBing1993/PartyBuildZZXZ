@@ -54,9 +54,9 @@ class Audit extends Base
             ];
             $list1 = AuditModel::where($map1)->order('id desc')->limit(10)->select();
             foreach ($list1 as $key => $value){
-                $list[$key]['time'] = date("Y-m-d",$value['create_time']);
+                $list1[$key]['time'] = date("Y-m-d",$value['create_time']);
                 $img = Picture::get($value['front_cover']);
-                $list[$key]['path'] = $img['path'];
+                $list1[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
                 $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
@@ -98,9 +98,9 @@ class Audit extends Base
             ];
             $list1 = AuditModel::where($map1)->order('id desc')->limit(10)->select();
             foreach ($list1 as $key => $value){
-                $list[$key]['time'] = date("Y-m-d",$value['create_time']);
+                $list1[$key]['time'] = date("Y-m-d",$value['create_time']);
                 $img = Picture::get($value['front_cover']);
-                $list[$key]['path'] = $img['path'];
+                $list1[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
                 $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
@@ -134,11 +134,13 @@ class Audit extends Base
         }
         $list = AuditModel::where($map)->order('id desc')->limit($len,6)->select();
         foreach($list as $key => $value){
-            $value['time'] = date("Y-m-d",$value['create_time']);
+            $list[$key]['time'] = date("Y-m-d",$value['create_time']);
             $img = Picture::get($value['front_cover']);
-            $value['path'] = $img['path'];
+            $list[$key]['path'] = $img['path'];
             $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
             $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
+            $list[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
+            $list[$key]['status_text'] = AuditModel::STATU_TEXT_ARRAY[$value['status']];
         }
         if($list){
             return $this->success("加载成功",'',$list);

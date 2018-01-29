@@ -97,7 +97,7 @@
         <div class="med">
             <span hidden class="last_ts">请选择调解员</span>
 
-            <img class="image" src="{$mediator3}"  alt=""/>
+            <img class="image" src="{$mediator_path}"  alt=""/>
             <span class="name">{$mediator}</span>
             <span class="g">
                 <img class="icon2"  src="/home/images/lxyz/icon/icon2.png"  alt=""/>
@@ -118,7 +118,7 @@
                 <img src="{$vo.front_cover|get_cover='path'}">
                 <div class="userSort">
                     <p class="na">{$vo.name}</p>
-                    <p>已调解案例：<span>{$vo.num}</span>起</p>
+                    <p>{$vo.description}</p>
                 </div>
                 <a href="#">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
             </li>

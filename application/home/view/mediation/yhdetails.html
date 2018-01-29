@@ -48,6 +48,40 @@
         height: .3rem;
         vertical-align: middle;
     }
+    .shadow{
+        z-index: 9999;
+        display:none;
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,.5);
+    }
+    .user {position: relative;width:100vw;margin: auto;background: #fff;}
+    .user li {width:100%;padding: 2.25vh 4vw;height:13.5vh;border-bottom: 1px solid #d1d1d1;position: relative;}
+    .user li:last-child {border-bottom: transparent;}
+    .user li img {float:left;width:1.2rem;height:1.2rem;}
+    .userSort {margin-left: 1.5rem;position: relative;height:1.2rem;}
+    .userSort p:first-child {color: #333;font-size: .3rem;position: absolute;top:0;}
+    .userSort p:last-child {color: #999;font-size: .26rem;position: absolute;bottom:0;}
+
+    .user a {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 4vw;
+        width: 24vw;
+        height: .6rem;
+        border: 1px solid #FE8B44;
+        color: #FE8B44;
+        background: rgba(254, 139, 68, .2);
+        border-radius: .4rem;
+        text-align: center;
+        line-height: .6rem;
+        font-size: .3rem;
+        margin-top: -.3rem;
+    }
 
 </style>
 {/block}
@@ -118,8 +152,20 @@
         {/notempty}
     </div>
     <div class="box high">
-        调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
-        <span class="con">{$model.mediator}</span>
+        <div class="ding">
+            调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
+            <span class="con">{$model.mediator}</span>
+        </div>
+
+
+        <div class="xuan1">
+            调解员 ：<span class="last_ts">请选择调解员</span>
+        </div>
+        <div class="xuan2 hidden">
+            调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
+            <span class="con">{$model.mediator}</span>
+        </div>
+
     </div>
 </div>
 
@@ -155,7 +201,23 @@
         </div>
     </div>
 </div>
+<div class="shadow">
+    <div class="user">
+        <ul>
+            <!--{volist name="list" id="vo"}-->
+            <li>
+                <span class="user_hide" hidden></span>
+                <img src="">
+                <div class="userSort">
+                    <p class="na"></p>
+                    <p></p>
+                </div>
+                <a href="#">找他她调解</a>
+            </li>
 
+        </ul>
+    </div>
+</div>
 {eq name="$user_tag" value="3"}
 {eq name="$model.status" value="4"}
 <a href="{:Url('Mediation/evaluate?id='.$id)}" class="remark">
@@ -185,6 +247,34 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+//    选择调解员
+
+    $('.high').on('click',function(){
+        console.log(11111)
+        $('.shadow').fadeIn();
+    });
+
+$('.shadow').on('click',function(e){
+    e.preventDefault();
+    $('.shadow').fadeOut();
+});
+
+$('.user li').each(function(){
+    $(this).find('a').on('click',function(e){
+        e.preventDefault();
+        var src=$(this).parent().find('img').attr('src');
+        var name=$(this).parent().find('.na').html();
+        $(".xuan1").hide();
+        $('.images').attr('src',src);
+        $('.con').html(name);
+        $(".xuan2").show();
+        setTimeout(function(){
+            $('.shadow').fadeOut()
+        },800);
+        id = $(this).siblings(".user_hide").html();
+    })
+});
+
 
     if($(window).width()>=768){
         $('.form').css('margin-bottom','9vh')
@@ -334,6 +424,24 @@
         $('#all').hide();
     });
 
+    //    描述查看全部
+    var hp=$('.describe-p').height();
+    if($(window).width()>=1024){
+        if($('.describe-p').height()>200){
+            $('.describe-p').css({'height':'12vh','overflow':'hidden','margin-bottom':'0'});
+            $('.quan').fadeIn();
+        }
+    }else{
+        if($('.describe-p').height()>85){
+            $('.describe-p').css({'height':'11.4vh','overflow':'hidden','margin-bottom':'0'});
+            $('.quan').fadeIn();
+        }
+    }
+
+    $('.quan').on('click',function(){
+        $('.describe-p').css({'height':'initial','overflow':'initial'});
+        $('.quan').hide();
+    })
 
 </script>
 
@@ -535,17 +643,7 @@
     // execute above function
     initPhotoSwipeFromDOM('.my-gallery');
 
-//    描述查看全部
-      var hp=$('.describe-p').height();
-    console.log(hp)
-    if($('.describe-p').height()>76){
-        $('.describe-p').css({'height':'11.4vh','overflow':'hidden','margin-bottom':'0'});
-        $('.quan').fadeIn();
-    }
-    $('.quan').on('click',function(){
-        $('.describe-p').css({'height':'initial','overflow':'initial'});
-        $('.quan').hide();
-    })
+
 
 </script>
 
