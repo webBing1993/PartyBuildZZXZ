@@ -162,7 +162,7 @@
 {block name="body"}
 <div class="search">
     <input type="text" placeholder="搜索">
-    <a class="back" href="/home/service/manage.html">取消</a>
+    <span class="back">取消</span>
 </div>
 <ul class="lists clearfix">
 
@@ -274,6 +274,12 @@
 //        }
         });
 
+
+        // 返回
+        $(".back").on("click",function (e) {
+            window.history.go(-1);
+            return false
+        })
     })
 
 </script>
