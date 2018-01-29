@@ -108,15 +108,17 @@
                                     timer: 1000,
                                 })
                             },200);
-                            setTimeout(function(){
+//                            setTimeout(function(){
                                 sessionStorage.setItem("review","true");
                                 $(i).parent().parent().fadeOut(500);
                                 $(i).parent().parent().remove();
                                 //判断是否还有消息
                                 check();
-                            },1200);
+//                            },1200);
                             //未审核页面有操作,审核页面用来判断刷新
-
+                            setTimeout(function(){
+                                swal("操作成功！","",'success')
+                            },200);
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')
