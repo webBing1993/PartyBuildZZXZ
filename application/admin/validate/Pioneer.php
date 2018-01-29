@@ -14,23 +14,30 @@ use think\Validate;
 class Pioneer extends Validate {
     protected $rule = [
         'front_cover' => 'require',
-        'type' => 'require',
-        'title' => 'require',
+        /*'type' => 'require',*/
+        'name' => 'require',
+        'birthday' => 'require',
+        'position' => 'require',
+        'description' => 'require',
         'content' => 'require',
         'publisher' => 'require',
-        'name' => 'require',
+        /*'name' => 'require',*/
     ];
 
     protected $message = [
-        'front_cover' => '封面图片不能为空',
-        'type' => '类型不能为空',
-        'title' =>  '标题不能为空',
-        'content'  =>  '内容不能为空',
-        'publisher' => '发布者不能为空',
-        'name' => '姓名不能为空',
+        'front_cover.require' => '封面图片不能为空',
+        /*'type' => '类型不能为空',*/
+        'name.require' =>  '姓名不能为空',
+        'birthday.require' =>  '出生年月不能为空',
+        'position.require' =>  '职务不能为空',
+        'description.require' =>  '简介不能为空',
+
+        'content.require'  =>  '内容不能为空',
+        'publisher.require' => '发布者不能为空',
+        /*'name' => '姓名不能为空',*/
     ];
-    protected $scene = [
+   /* protected $scene = [
         'news' => ['front_cover','type','title','content','publisher'],
-    ];
+    ];*/
 
 }

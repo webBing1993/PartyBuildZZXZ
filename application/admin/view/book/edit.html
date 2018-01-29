@@ -21,19 +21,40 @@
         top:0;
         opacity: 0;
     }
+    .plus{
+        height: 100px;
+        width: 200px;
+        font-size: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: rgba(204, 204, 204, 0.51);
+    }
+    .plus:hover{
+        font-size: 150px;
+    }
+    .plus2{
+        display: none;
+    }
+    .plusimg{
+        display: none;
+    }
 </style>
 {/block}
 
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>典型引路</h2>
+        <h2>基本书目</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('index')}">列表页</a>
+                <a href="{:Url('Book/index')}">书目列表</a>
             </li>
             <li class="active">
-                <strong>{$msg['id'] ? "编辑":"新增"}</strong>
+                {empty name="msg"}
+                <strong>添加</strong>
+                {else/}
+                <strong>修改</strong>
+                {/empty}
             </li>
         </ol>
     </div>
@@ -58,6 +79,30 @@
                     <form id="form" class="form-horizontal" method="post">
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
+                                <label>类型:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <select name="type" id="type"  class="form-control">
+                                    {empty name="msg"}
+                                    <option value="1">党的历史</option>
+                                    <option value="2">党的理论</option>
+                                    <option value="3">党的修养</option>
+                                    <option value="4">党务知识</option>
+                                    <option value="5">党规党章</option>
+                                    <option value="6">系列讲话</option>
+                                    {else/}
+                                    <option value="1" {eq name="msg.type" value="1"} selected {/eq}>党的历史</option>
+                                    <option value="2" {eq name="msg.type" value="2"} selected {/eq}>党的理论</option>
+                                    <option value="3" {eq name="msg.type" value="3"} selected {/eq}>党的修养</option>
+                                    <option value="4" {eq name="msg.type" value="4"} selected {/eq}>党务知识</option>
+                                    <option value="5" {eq name="msg.type" value="5"} selected {/eq}>党规党章</option>
+                                    <option value="6" {eq name="msg.type" value="6"} selected {/eq}>系列讲话</option>
+                                    {/empty}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
                                 <label>封面图片:</label>
                             </div>
                             {eq name="msg" value=""}
@@ -79,55 +124,64 @@
                                 <b>推荐尺寸：750*400px</b>
                             </div>
                             {/eq}
+                       </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>标题:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title || default=''}">
+                            </div>
                         </div>
                        <!-- <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>类型:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <select class="form-control" name="type">
-                                    {neq name="msg" value=""}
-                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>先锋课堂</option>
-                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>社区展示</option>
-                                    {else/}
-                                    <option value="1" >先锋课堂</option>
-                                    <option value="2" >社区展示</option>
-                                    {/neq}
-                                </select>
-                            </div>
-                        </div>-->
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>姓名:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入姓名" class="form-control form_title" name="name" value="{$msg.name || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>出生年月:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入出生年月" class="form-control form_title" name="birthday" value="{$msg.birthday || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>职务:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入职务" class="form-control form_title" name="position" value="{$msg.position || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>简介:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入简介" class="form-control form_title" name="description" value="{$msg.description || default=''}">
+                                <div class=" float-e-margins">
+                                    <div class="ibox-content no-padding borders">
+                                        <textarea  placeholder="请输入简介..." class="text form-control form_title" name="description" >{$msg.description || default=''}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>发布人:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
                             </div>
                         </div>
+                        {eq name="msg" value=""}
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>是否推荐:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <label class="i-checks">
+                                    <input type="radio" value="1" name="recommend">是
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" checked="" value="0" name="recommend">否
+                                </label>
+                            </div>
+                        </div>
+                        {else/}
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>是否推荐:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <label class="i-checks">
+                                    <input type="radio" value="1" name="recommend" {eq name="msg.recommend" value="1"}checked{/eq}>是
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" value="0" name="recommend" {eq name="msg.recommend" value="0"}checked{/eq}>否
+                                </label>
+                            </div>
+                        </div>
+                        {/eq}
                         <div class="form-group">
                             <div class="col-lg-1 control-label">
                                 <label>内容:</label>
@@ -140,15 +194,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>发布人:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
-                            </div>
-                        </div>
-
                         <input type="hidden" name="id" value="{$msg.id || default=''}">
                         <div class="form-group">
                             <div class="col-lg-11 col-lg-offset-1">
@@ -179,7 +224,7 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Pioneer/index')}");
+        highlight_subnav("{:Url('Book/index')}");
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;
@@ -234,14 +279,14 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
+                type:$("select[name='type']").val(),
                 front_cover:$("input[name='front_cover']").val(),
-               /* type:$("select[name='type']").val(),*/
-                name:$("input[name='name']").val(),
-                birthday:$("input[name='birthday']").val(),
-                position:$("input[name='position']").val(),
-                description:$("input[name='description']").val(),
+                title:$("input[name='title']").val(),
+                /*description:$("textarea[name='description']").val(),*/
                 content:ue.getContent(),
                 publisher:$("input[name='publisher']").val(),
+                recommend:$("input[name='recommend']:checked").val(),
+                status:0,
             };
             $.ajax({
                 type:"post",
@@ -279,6 +324,11 @@
             return false;
         });
     })
-
+    $("select" ).chosen({
+        no_results_text: "没有找到该选项",
+        allow_single_de: true,
+        width:'100%',
+        max_selected_options:'100'
+    });
 </script>
 {/block}

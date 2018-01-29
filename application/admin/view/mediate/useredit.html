@@ -5,21 +5,44 @@
 <link rel="stylesheet" href="/static/iCheck/custom.css">
 <link rel="stylesheet" href="/admin/css/chosen/chosen.css">
 <style>
-    .imggroup{
+    .imggroup {
         position: relative;
     }
-    .imgbox{
+
+    .imgbox {
         height: 100px;
         width: 200px;
         margin-top: 5px;
         margin-bottom: 0;
     }
-    .imgfile{
+
+    .imgfile {
         height: 100px;
         width: 200px;
         position: absolute;
-        top:0;
+        top: 0;
         opacity: 0;
+    }
+
+    .plus {
+        height: 100px;
+        width: 200px;
+        font-size: 100px;
+        line-height: 100px;
+        text-align: center;
+        color: rgba(204, 204, 204, 0.51);
+    }
+
+    .plus:hover {
+        font-size: 150px;
+    }
+
+    .plus2 {
+        display: none;
+    }
+
+    .plusimg {
+        display: none;
     }
 </style>
 {/block}
@@ -27,13 +50,17 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>典型引路</h2>
+        <h2>调解案例</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('index')}">列表页</a>
+                <a href="{:Url('Mediate/user')}">列表页</a>
             </li>
             <li class="active">
-                <strong>{$msg['id'] ? "编辑":"新增"}</strong>
+                {empty name="msg"}
+                <strong>添加</strong>
+                {else/}
+                <strong>修改</strong>
+                {/empty}
             </li>
         </ol>
     </div>
@@ -51,7 +78,8 @@
                 <div class="ibox-title">
                     <h5></h5>
                     <div class="ibox-tools">
-                        <a href="javascript:window.history.go(-1);" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
+                        <a href="javascript:window.history.go(-1);" class="btn btn-white btn-sm"><i
+                                class="fa fa-reply"></i> 返回</a>
                     </div>
                 </div>
                 <div class="ibox-content all">
@@ -64,8 +92,9 @@
                             <div class="col-lg-5">
                                 <div class="imggroup">
                                     <img src="" alt='图片' class='thumbnail imgbox'>
-                                    <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
-                                    <input type="hidden" name="front_cover" class="img"  value="" required="">
+                                    <input type="file" class="imgfile"
+                                           accept="image/jpg, image/png, image/gif, image/jpeg">
+                                    <input type="hidden" name="front_cover" class="img" value="" required="">
                                 </div>
                                 <b>推荐尺寸：750*400px</b>
                             </div>
@@ -73,51 +102,40 @@
                             <div class="col-lg-5">
                                 <div class="imggroup">
                                     <img src="{$msg.front_cover|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
-                                    <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
-                                    <input type="hidden" name="front_cover" class="img"  value="{$msg.front_cover}" required="">
+                                    <input type="file" class="imgfile"
+                                           accept="image/jpg, image/png, image/gif, image/jpeg">
+                                    <input type="hidden" name="front_cover" class="img" value="{$msg.front_cover}"
+                                           required="">
                                 </div>
                                 <b>推荐尺寸：750*400px</b>
                             </div>
                             {/eq}
                         </div>
-                       <!-- <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>类型:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <select class="form-control" name="type">
-                                    {neq name="msg" value=""}
-                                    <option value="1" {eq name="msg.type" value="1"}selected{/eq}>先锋课堂</option>
-                                    <option value="2" {eq name="msg.type" value="2"}selected{/eq}>社区展示</option>
-                                    {else/}
-                                    <option value="1" >先锋课堂</option>
-                                    <option value="2" >社区展示</option>
-                                    {/neq}
-                                </select>
-                            </div>
-                        </div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>姓名:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入姓名" class="form-control form_title" name="name" value="{$msg.name || default=''}">
+                                <input type="text" placeholder="请输入调解员姓名" class="form-control form_title" name="name"
+                                       value="{$msg.name || default=''}">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>出生年月:</label>
+                                <label>性别:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入出生年月" class="form-control form_title" name="birthday" value="{$msg.birthday || default=''}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>职务:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入职务" class="form-control form_title" name="position" value="{$msg.position || default=''}">
+                                <select name="gender" id="type" class="form-control">
+                                    {empty name="msg"}
+                                    <option value="0">未定义</option>
+                                    <option value="1">男</option>
+                                    <option value="2">女</option>
+                                    {else/}
+                                    <option value="0" {eq name="msg.gender" value="0" } selected {/eq}>未定义</option>
+                                    <option value="1" {eq name="msg.gender" value="1" } selected {/eq}>男</option>
+                                    <option value="2" {eq name="msg.gender" value="2" } selected {/eq}>女</option>
+                                    {/empty}
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,7 +143,35 @@
                                 <label>简介:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入简介" class="form-control form_title" name="description" value="{$msg.description || default=''}">
+                                <input type="text" placeholder="请输入简介" class="form-control form_title"
+                                       name="description" value="{$msg.description || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>出生年月:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入出生年月" class="form-control form_title" name="birthday"
+                                       value="{$msg.birthday || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="col-lg-1 text-right control-label">
+                            <label>政治面貌:</label>
+                        </div>
+                        <div class="col-lg-11">
+                            <input type="text" placeholder="请输入政治面貌" class="form-control form_title" name="politics_status"
+                                   value="{$msg.politics_status || default=''}">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>学历:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入学历" class="form-control form_title" name="education"
+                                       value="{$msg.education || default=''}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -140,19 +186,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-lg-1 text-right control-label">
-                                <label>发布人:</label>
-                            </div>
-                            <div class="col-lg-11">
-                                <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
-                            </div>
-                        </div>
-
                         <input type="hidden" name="id" value="{$msg.id || default=''}">
                         <div class="form-group">
                             <div class="col-lg-11 col-lg-offset-1">
-                                <button class="btn btn-primary submit-btn post-put" type="button" target-form="form-horizontal" >发布</button>
+                                <button class="btn btn-primary submit-btn post-put" type="button"
+                                        target-form="form-horizontal">发布
+                                </button>
                                 <a class="btn btn-default" href="javascript:window.history.go(-1);">返回</a>
                             </div>
                         </div>
@@ -172,113 +211,119 @@
 <script src="/static/ueditor/ueditor.all.min.js"></script>
 <script src="/admin/js/chosen.jquery.js"></script>
 <script>
-    $(function(){
+    $(function () {
         //    单选按钮
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Pioneer/index')}");
+        highlight_subnav("{:Url('Mediate/user')}");
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;
-        plus.on('click',function(){
+        plus.on('click', function () {
             var it = $(this);
             it.hide().next().fadeIn();
             imgnum = 3;
-            if(!it.hasClass('plus2')){
+            if (!it.hasClass('plus2')) {
                 plus.eq(1).fadeIn();
                 imgnum = 2
             }
         });
-        $(".imgfile").on("change",function(){
+        $(".imgfile").on("change", function () {
             var size = ($(this)[0].files[0].size / 1024).toFixed(2);
             var imgBox = $(this);
-            if(size <= 2048){
+            if (size <= 2048) {
                 var img = $(this)[0].files[0];
                 var formData = new FormData();
-                var pic=$(this);
-                formData.append("picture",img);
+                var pic = $(this);
+                formData.append("picture", img);
                 $.ajax({
-                    type:"post",
-                    url:"{:Url('File/uploadPicture')}",
-                    data:formData,
-                    processData : false,
-                    contentType : false,
-                    success:function(msg){
+                    type: "post",
+                    url: "{:Url('File/uploadPicture')}",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (msg) {
                         var msg = $.parseJSON(msg);
                         var path = msg.data.path;
-                        if(msg['code'] == 1){
+                        if (msg['code'] == 1) {
                             imgBox.siblings(".img").val(msg.data["id"]);
                             //显示图片缩略图
-                            pic.parent().find("img" ).attr({src:path});
+                            pic.parent().find("img").attr({src: path});
                         } else {
-                            warning({msg:msg['msg']});
+                            warning({msg: msg['msg']});
                             return;
                         }
                     }
                 });
             } else {
-                warning({msg:"您选择的图片超过2mb，请重新选择"});
+                warning({msg: "您选择的图片超过2mb，请重新选择"});
                 return;
             }
         });
 
-        var ue = UE.getEditor('container',{
-            initialFrameHeight:400
+        var ue = UE.getEditor('container', {
+            initialFrameHeight: 400
         });
 
         //发布
-        $(".post-put").off('click').on("click",function(){
-            var it=$(this);
+        $(".post-put").off('click').on("click", function () {
+            var it = $(this);
             var data = {
-                id:$("input[name='id']").val(),
-                front_cover:$("input[name='front_cover']").val(),
-               /* type:$("select[name='type']").val(),*/
-                name:$("input[name='name']").val(),
-                birthday:$("input[name='birthday']").val(),
-                position:$("input[name='position']").val(),
-                description:$("input[name='description']").val(),
+                id: $("input[name='id']").val(),
+                gender: $("select[name='gender']").val(),
+                front_cover: $("input[name='front_cover']").val(),
+                name: $("input[name='name']").val(),
+                description: $("input[name='description']").val(),
+                birthday: $("input[name='birthday']").val(),
+                politics_status: $("input[name='politics_status']").val(),
+                education: $("input[name='education']").val(),
                 content:ue.getContent(),
-                publisher:$("input[name='publisher']").val(),
+                status: 0,
             };
             $.ajax({
-                type:"post",
-                url:$("#form").attr("action"),
-                data:data,
-                success:function(data){
-                    if(data.code == 1){
+                type: "post",
+                url: $("#form").attr("action"),
+                data: data,
+                success: function (data) {
+                    if (data.code == 1) {
                         if (data.url) {
-                            updateAlert(data.msg + ' 页面即将自动跳转~','success');
-                        }else{
-                            updateAlert(data.msg ,'success');
+                            updateAlert(data.msg + ' 页面即将自动跳转~', 'success');
+                        } else {
+                            updateAlert(data.msg, 'success');
                         }
-                        it.prop('disabled','true');
-                        it.prev().prop('disabled','true');
-                        setTimeout(function(){
+                        it.prop('disabled', 'true');
+                        it.prev().prop('disabled', 'true');
+                        setTimeout(function () {
                             if (data.url) {
-                                location.href=data.url;
+                                location.href = data.url;
                             } else {
                                 location.reload();
                             }
                             it.removeAttr('disabled');
                             it.prev().removeAttr('disabled')
-                        },2000);
+                        }, 2000);
                     } else {
                         updateAlert(data.msg, 'error');
-                        it.attr('disabled','true');
-                        it.prev().prop('disabled','true');
-                        setTimeout(function(){
+                        it.attr('disabled', 'true');
+                        it.prev().prop('disabled', 'true');
+                        setTimeout(function () {
                             it.removeAttr('disabled');
                             it.prev().removeAttr('disabled')
-                        },2000);
+                        }, 2000);
                     }
                 }
             });
             return false;
         });
     })
-
+    $("select").chosen({
+        no_results_text: "没有找到该选项",
+        allow_single_de: true,
+        width: '100%',
+        max_selected_options: '100'
+    });
 </script>
 {/block}

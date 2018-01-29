@@ -9,13 +9,13 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>典型引路</h2>
+        <h2>调解案例</h2>
         <ol class="breadcrumb">
             <li>
-                信息管理
+                调解员管理
             </li>
             <li class="active">
-                <strong><a href="{:Url('index')}">列表页</a></strong>
+                <strong><a href="{:Url('Mediate/user')}">列表页</a></strong>
             </li>
         </ol>
     </div>
@@ -32,7 +32,7 @@
                 <div class="ibox-title">
                     <h5>详情列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('add')}">新增</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Mediate/useradd')}">新增</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -42,9 +42,8 @@
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
                                 <th>姓名</th>
-                                <th>出生年月</th>
-                                <th>发布人</th>
-                                <th>创建人 </th>
+                                <th>性别</th>
+                                <th>创建人</th>
                                 <th>创建时间</th>
                                 <th>状态</th>
                                 <th>操作</th>
@@ -55,14 +54,14 @@
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.name|msubstr=0,20}</td>
-                                <td>{$vo.birthday}</td>
-                                <td>{$vo.publisher}</td>
-                                <td>{$vo->cuser->nickname}</td>
+                                <td>{$vo.gender_text}</td>
+                               <td>{$vo->cuser->nickname}</td>
+
                                 <td>{$vo.create_time|time_format='Y-m-d'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('edit?id='.$vo['id'])}">修改</a>
-                                    <a href="{:Url('del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('Mediate/useredit?id='.$vo['id'])}">修改</a>
+                                    <a href="{:Url('Mediate/userdel?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}
