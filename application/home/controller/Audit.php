@@ -43,6 +43,8 @@ class Audit extends Base
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
+                $list[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
+                $list[$key]['status_text'] = AuditModel::STATU_TEXT_ARRAY[$value['status']];
             }
             $this->assign('list',$list);
 
@@ -57,6 +59,8 @@ class Audit extends Base
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
+                $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
+                $list1[$key]['status_text'] = AuditModel::STATU_TEXT_ARRAY[$value['status']];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -73,7 +77,7 @@ class Audit extends Base
             return $this->redirect("verify/null");
         }else{
             $map = [
-                'status' => 1,
+                'status' => ['neq',0],
                 'type' => ['neq',4],
             ];
             $list = AuditModel::where($map)->order('id desc')->limit(10)->select();
@@ -83,11 +87,13 @@ class Audit extends Base
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
+                $list[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
+                $list[$key]['status_text'] = AuditModel::STATU_TEXT_ARRAY[$value['status']];
             }
             $this->assign('list',$list);
 
             $map1 = [
-                'status' => 1,
+                'status' => ['neq',0],
                 'type' => 4,
             ];
             $list1 = AuditModel::where($map1)->order('id desc')->limit(10)->select();
@@ -97,6 +103,8 @@ class Audit extends Base
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
+                $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
+                $list1[$key]['status_text'] = AuditModel::STATU_TEXT_ARRAY[$value['status']];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -110,9 +118,15 @@ class Audit extends Base
         $len = input('length');
         $type = input('type');
         $status = input('status');
-        $map = [
-            'status' => $status,
-        ];
+        if($status == 0){
+            $map = [
+                'status' => 0,
+            ];
+        }else{
+            $map = [
+                'status' => ['neq',0],
+            ];
+        }
         if($type == 1){
             $map['type'] = 4;
         }else{

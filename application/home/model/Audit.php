@@ -22,6 +22,19 @@ class Audit extends Model {
         self::STATUS_LEARNS  => '十九大专区',
         self::STATUS_MEDIATION  => '调解',
     ];
+    const STATU_TEXT_NOPASS = -1;
+    const STATU_TEXT_APPLY = 0;
+    const STATU_TEXT_PASS = 1;
+    const STATU_TEXT_ARRAY = [
+        self::STATU_TEXT_NOPASS  => '审核未通过',
+        self::STATU_TEXT_APPLY  => '',
+        self::STATU_TEXT_PASS  => '审核已通过',
+    ];
+    const STATU_COLOR_ARRAY = [
+        self::STATU_TEXT_NOPASS  => '#F96D5D',
+        self::STATU_TEXT_APPLY  => '',
+        self::STATU_TEXT_PASS  => '#A8D354',
+    ];
     //首页获取已推送的数据
     public function get_list($length,$len){
         $map = array(
