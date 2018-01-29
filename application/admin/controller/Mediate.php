@@ -128,6 +128,14 @@ class Mediate extends Admin
     {
         if (IS_POST) {
             $data = input('post.');
+            if (!empty($data['name'])){
+                $list=Db::table('pb_wechat_user')->where('name',$data['name'])->find();
+                if ($list){
+
+                }else{
+                    return $this->error("调解员姓名错误");
+                }
+            }
             if (empty($data['id'])) {
                 unset($data['id']);
             }
