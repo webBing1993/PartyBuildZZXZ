@@ -199,9 +199,9 @@
     //提交
     function submitAnswer(){
         isAll = true;
-        var up = $('.up');
-        var suc = $('.suc');
-        var timer = $('.timer');
+//        var up = $('.up');
+//        var suc = $('.suc');
+//        var timer = $('.timer');
         var answer = getAnswer();
         objNow=null;
         if(isAll){
@@ -210,11 +210,11 @@
                 url:"{:Url('Constitution/submits')}",
                 data:{arr:answer,arrId:getDataID()},
                 success:function(e){
-                    suc.fadeIn();
+//                    suc.fadeIn();
                     setTimeout(function(){
                         objNow=null;
-                        timer.fadeOut();
-                        up.text('提交成功');
+//                        timer.fadeOut();
+//                        up.text('提交成功');
                         setTimeout(function(){
                             window.location.replace("{:Url('Constitution/score')}");
                         },1000)
@@ -238,11 +238,11 @@
                             url:"{:Url('Constitution/submits')}",
                             data:{arr:answer,arrId:getDataID()},
                             success:function(e){
-                                suc.fadeIn();
+//                                suc.fadeIn();
                                 setTimeout(function(){
                                     objNow=null;
-                                    timer.fadeOut();
-                                    up.text('提交成功');
+//                                    timer.fadeOut();
+//                                    up.text('提交成功');
                                     setTimeout(function(){
                                         window.location.replace("{:Url('Constitution/score')}");
                                     },1000)
