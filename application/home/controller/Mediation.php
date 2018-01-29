@@ -273,6 +273,7 @@ class Mediation extends Base
             'userid' => input('id'),
         ];
         $model = MediationUser::where($map)->find();
+        $model['politics'] = MediationUser::STATU_ARRAY[$model['politics_status']];
         $this->assign('model',$model);
 
         $map = [
@@ -350,9 +351,12 @@ class Mediation extends Base
             $this->assign('list',$list);
         }
         $images = json_decode($model['images']);
-        foreach ($images as $key => $value){
-            $images[$key] = get_cover($value, 'path');
+        if($images){
+            foreach ($images as $key => $value){
+                $images[$key] = get_cover($value, 'path');
+            }
         }
+
 
         $this->assign('response',$response);
         $this->assign('images',$images);
