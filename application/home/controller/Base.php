@@ -61,8 +61,8 @@ class Base extends Controller {
 
     public function _initialize(){
 //        session('userId',null);
-        session('userId','18767104335'); //申请人权限
-//        session('userId','15757118744'); //调解员1权限
+//        session('userId','18767104335'); //申请人权限
+        session('userId','15757118744'); //调解员1权限
 //        session('userId','18268031620'); //调解员2权限
 //        session('userId','13857282889'); //管理员权限
 

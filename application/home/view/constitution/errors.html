@@ -58,6 +58,14 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isAndroid){
+            $('.option').css('line-height','4vw')
+        }else if(isiOS){
+            $('.option').css('line-height','3.6vw')
+        }
 //        $('.option').css({'top': '0', 'line-height': '23px'});
         if($(window).width()==320){$('.option' ).css({'top':'19%'})}
         if($(window).width()==768){$('.option' ).css({'top':'8%'})}

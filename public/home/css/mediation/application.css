@@ -99,16 +99,17 @@ textarea{
     margin-bottom:.3rem;
 }
 .present{
+    margin-top:4vw;
     position: fixed;
     bottom:0;
     left:0;
     text-align: center;
     width:100%;
-    height:.8rem;
+    height:1rem;
     background:#FE8B44;
     color:#fff;
     font-size: .32rem;
-    line-height:.8rem;
+    line-height:1rem;
 }
 .add{
     height:1.3rem;
