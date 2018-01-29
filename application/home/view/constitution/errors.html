@@ -58,9 +58,11 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function() {
-        $('.option').css({'top': '0', 'line-height': '23px'});
+//        $('.option').css({'top': '0', 'line-height': '23px'});
+        if($(window).width()==320){$('.option' ).css({'top':'19%'})}
+        if($(window).width()==768){$('.option' ).css({'top':'8%'})}
         if($(window).width()>1000){$('.option' ).css({'top':'.5vh'})}
-        $('.opt').css({'margin-left': '6px'});
+//        $('.opt').css({'margin-left': '6px'});
     });
     isOut();
     //防止恶意刷新

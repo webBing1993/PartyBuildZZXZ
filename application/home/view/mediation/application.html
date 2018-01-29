@@ -146,14 +146,17 @@
      if (href.indexOf("id/") < 0) {
          $(".med .image,.med .name").hide();
          $(".last_ts").show();
+         click();
      }else {
          $(".med .image,.med .name").show();
          $(".last_ts").hide();
          id = '{$mediatorid}';
      };
-     $('.last').on('click',function(){
-         $('.shadow').fadeIn();
-     });
+     function click() {
+         $('.last').on('click',function(){
+             $('.shadow').fadeIn();
+         });
+     }
     $('.shadow').on('click',function(e){
         e.preventDefault();
         $('.shadow').fadeOut();

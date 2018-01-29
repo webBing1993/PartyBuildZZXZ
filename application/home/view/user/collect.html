@@ -12,7 +12,9 @@
 {/block}
 
 {block name="body"}
-<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
+{notempty name="res"}
+<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;position: fixed;top:0;left:0;z-index: 999;background: #eee;" class="top"><img src="/home/images/approved/icon_left.png" style="width:.34rem;vertical-align: middle;"> 向左滑动</div>
+{/notempty}
 <div class="list-t-wrap" style="margin-top: 6vh;">
     <div class="list-wrapper">
         <!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
@@ -67,6 +69,7 @@
     function check(){
         if($("ul").find("li").length == 0){
             $('#nomessage').show();
+            $(".top").hide();
         }
     }
 
