@@ -12,29 +12,39 @@
             <!--<img  src="{$model.front_cover|get_cover='path'}"  alt="" />-->
         </div>
         <div class="hfr">
-            <div class="row1">
-                <span>姓名：</span>
+            <div class="row1" style="padding:1.65vh 0;">
+                <!--<span>姓名：</span>-->
                 <span>{$model['name']}</span>
             </div>
-            <div class="row1">
-                <span>生日：</span>
-                <span>{$model['birthday']}</span>
+            <div >
+                <p class="kouhao">{$model['description']}</p>
             </div>
-            <div class="row1">
-                <span>职位：</span>
-                <span>{$model['position']}</span>
-            </div>
-            <div class="row1">
-                <span>已调解案例：</span>
-                <span class="red">{$model['num']}</span> 起
 
-            </div>
+            <!--<div class="row1">-->
+                <!--<span>生日：</span>-->
+                <!--<span>{$model['birthday']}</span>-->
+            <!--</div>-->
+            <!--<div class="row1">-->
+                <!--<span>职位：</span>-->
+                <!--<span>{$model['position']}</span>-->
+            <!--</div>-->
+            <!--<div class="row1">-->
+                <!--<span>已调解案例：</span>-->
+                <!--<span class="red">{$model['num']}</span> 起-->
+
+            <!--</div>-->
         </div>
     </div>
-    <div class="hbottom">
-        口号：{$model['description']}
-    </div>
+    <!--<div class="hbottom">-->
+        <!--口号：{$model['description']}-->
+    <!--</div>-->
 </div>
+<ul class="people">
+    <li><div class="zuo fl">出生年月</div><div class="you fr">{$model['birthday']}</div></li>
+    <li><div class="zuo fl">政治面貌</div><div class="you fr">党员</div></li>
+    <li><div class="zuo fl">学历</div><div class="you fr">大专</div></li>
+    <li><div class="zuo fl">工作简历</div><div class="you fr">2005年起长期担任村调解主任，2014年后任村党委副书记，2017年9月任珍珠小镇党委办主任。</div></li>
+</ul>
 <div class="lists">
     <div class="tit">
         <img class="icon" src="/home/images/lxyz/icon/default.png"  alt="" />
