@@ -174,8 +174,8 @@ body{
 .timer:after{
 	width: 1px;
 	height: 6.5vw;
-	top: 6.51vw;
-	left: 6.51vw;
+	top: 6.5vw;
+	left: 6.49vw;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
@@ -187,8 +187,8 @@ body{
 .timer:before{
 	width: 1px;
 	height: 6.5vw;
-	top: 6.51vw;
-	left: 6.51vw;
+	top: 6.5vw;
+	left: 6.49vw;
 	-webkit-transform-origin: 1px 1px;
 	-moz-transform-origin: 1px 1px;
 	transform-origin: 1px 1px;
