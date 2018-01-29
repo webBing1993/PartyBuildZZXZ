@@ -16,6 +16,7 @@ use app\home\model\WechatUserTag;
 use com\wechat\TPQYWechat;
 use think\Config;
 use app\home\model\Audit as AuditModel;
+use think\Db;
 
 /**
  * Class Audit
@@ -157,10 +158,54 @@ class Audit extends Base
         $status = input('status');
         $info = AuditModel::update(['status' => $status], ['id' => $id]);
         if ($info) {
+            if($status == 1){
+                $model = AuditModel::get($id);
+                $pre = AuditModel::STATU_ARRAY[$model['type']];
+                $url = "/home/".$model['url']."/id/".$model['aid'];
+//            $this->push($model['title'], $model['front_cover'], $url, $pre);
+                Db::name($model['table'])->update(['status' => $status, 'id' => $model['aid']]);
+            }
+
             return $this->success();
         } else {
             return $this->error();
         }
+    }
+    /**
+     * 图文推送公用方法
+     */
+    public function push($title, $front_cover, $url, $pre){
+        $httpUrl = config('http_url');
+        $img = Picture::get($front_cover);
+        $path = $httpUrl.$img['path'];
+        $info = array(
+            "title" => $pre,
+            "description" => $title,
+            "url" => $httpUrl.$url,
+            "picurl" => $path,
+        );
+        //重组成article数据
+        $send = array();
+        $send['articles'][0] = $info;
+        //发送给企业号
+        $Wechat = new TPQYWechat(Config::get('news'));
+        $newsConf = config('news');
+        $message = array(
+            "msgtype" => 'news',
+            "agentid" => $newsConf['agentid'],
+            "news" => $send,
+            "safe" => "0"
+        );
+        if($httpUrl == "http://swim.0571ztnet.com"){
+//            if(isset($model['tag'])){
+//                $message['totag'] = join('|', json_decode($model['tag'], true));
+//            }else{
+                $message['touser'] = config('touser');//发送给全体，@all
+//            }
+        }else{
+            $message['touser'] = config('touser');//发送给全体，@all
+        }
+        return $Wechat->sendMessage($message);
     }
 }
 

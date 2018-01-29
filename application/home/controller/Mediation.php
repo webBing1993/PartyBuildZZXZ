@@ -410,12 +410,13 @@ class Mediation extends Base
                 'status' => ['egt',0],
             ];
             $list = MediationUser::where($map)->order('id desc')->select();
-            //dump($list);exit();
+
             $this->assign('mediatorid',$mediatorid);
             $this->assign('mediator',$mediatorModel['name']);
             $this->assign('mediator_path',$mediatorModel['front_cover']);
             $this->assign('model',$model);
             $this->assign('list',$list);
+
             return $this->fetch();
         }
     }
@@ -457,6 +458,12 @@ class Mediation extends Base
         $data['check_time'] = time();
         $model = MediationModel::update($data,['id'=>input('id')]);
         if($model) {
+            if($status){//审核通过
+                $audit_status = 1;
+            }else{//审核不通过
+                $audit_status = -1;
+            }
+            \app\home\model\Audit::update(['status' => $audit_status], ['aid' => input('id'), 'type' => 4]);
             if($status){//审核通过
                 $userid = MediationModel::getUserid(input('id'));
 //                $this->push_review("审核通过通知", "【调解申请】审核已通过", "点击查看", 0, $userid);
