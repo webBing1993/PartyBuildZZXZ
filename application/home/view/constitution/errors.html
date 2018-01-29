@@ -63,13 +63,18 @@
         var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
         if(isAndroid){
             $('.option').css('line-height','4vw')
+            $('.option' ).css({'top':'22%'});
         }else if(isiOS){
             $('.option').css('line-height','3.6vw')
         }
 //        $('.option').css({'top': '0', 'line-height': '23px'});
         if($(window).width()==320){$('.option' ).css({'top':'19%'})}
         if($(window).width()==768){$('.option' ).css({'top':'8%'})}
-        if($(window).width()>1000){$('.option' ).css({'top':'.5vh'})}
+        if($(window).width()>=1024){
+            $('.option' ).css({'top':'3%'});
+            $('.option' ).css({'left':'0'});
+        }
+
 //        $('.opt').css({'margin-left': '6px'});
     });
     isOut();
