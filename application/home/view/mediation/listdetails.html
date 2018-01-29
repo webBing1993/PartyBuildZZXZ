@@ -57,7 +57,7 @@
     }
     check();
     var scrollNow = true;
-    loadScroll()
+    loadScroll();
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
@@ -108,9 +108,8 @@
         var lists = data.data;
             for(var i=0;i<len;i++){
                 html +=
-//                    '<div style="position: relative" class="userlist">'
-                     '<a href="/home/mediation/yhdetails.html/id/'+lists[i].id+'.html" class="list">'
-                    +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
+                     '<a href="/home/mediation/yhdetails/id/'+lists[i].id+'.html" class="list">'
+                    +'<img class="userimg lazy" data-original="'+lists[i].path+'" src="/home/images/loading.jpg"  alt="" />'
                     +'<div class="fr1">'
                     +'<p>'+lists[i].title+'</p>'
                     +'<div class="bt">'
