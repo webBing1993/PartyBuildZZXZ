@@ -9,10 +9,10 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>典型引路</h2>
+        <h2>调解案例</h2>
         <ol class="breadcrumb">
             <li>
-                信息管理
+                案例管理
             </li>
             <li class="active">
                 <strong><a href="{:Url('index')}">列表页</a></strong>
@@ -41,10 +41,9 @@
                             <thead>
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
-                                <th>姓名</th>
-                                <th>出生年月</th>
+                                <th>调解员</th>
+                                <th>申请人</th>
                                 <th>发布人</th>
-                                <th>创建人 </th>
                                 <th>创建时间</th>
                                 <th>状态</th>
                                 <th>操作</th>
@@ -54,10 +53,10 @@
                             {volist name="list" id="vo"}
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>{$vo.name|msubstr=0,20}</td>
-                                <td>{$vo.birthday}</td>
+                                <td>{$vo.mediator|msubstr=0,20}</td>
+                                <td>{$vo.proposer}</td>
                                 <td>{$vo.publisher}</td>
-                                <td>{$vo->cuser->nickname}</td>
+
                                 <td>{$vo.create_time|time_format='Y-m-d'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>

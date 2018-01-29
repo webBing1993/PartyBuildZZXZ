@@ -14,9 +14,9 @@ use com\wechat\TPQYWechat;
 use think\Config;
 
 /**
- * Class News
+ * Class Pioneer
  * @package app\admin\controller
- * 执行力建设
+ * 典型引路
  */
 class Pioneer extends Admin {
     /**
@@ -29,7 +29,6 @@ class Pioneer extends Admin {
         $list = $this->lists('Pioneer',$map);
         int_to_string($list,array(
             'status' => array(0=>"未审核",1=>'已发布'),
-            'type' => array(1=>"先锋课堂",2=>"社区展示")
         ));
         $this->assign('list',$list);
 
