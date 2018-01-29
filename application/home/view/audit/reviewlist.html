@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="/home/css/common/tip.css">
 <style>
 	body{overflow: initial;!important;font-size: 1.4rem;!important;background:#F5F5F5;}
-	.list-t-wrap>div {
-		display: none;
-	}
 
 </style>
 {/block}
@@ -27,68 +24,34 @@
 	<div class="list-wrapper">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
-			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;"><img src="/home/images/approved/icon_left.png" style="width:.4rem;vertical-align: middle;"> 向左滑动</div>
+			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;" class="top1"><img src="/home/images/approved/icon_left.png" style="width:.34rem;vertical-align: middle;"> 向左滑动</div>
 			<div id="nomessage">
 				<img src="/home/images/nomessage.png" alt="无消息">
 			</div>
-			<ul>
+			<ul class="views">
 				{volist name="list" id="vo"}
 				<li class="swipeout" style="margin-right: 3vw;">
-					<div class="swipeout-content" onclick="jump()">
-						<a href="#" class="list" style="width:100%;">
-							<span class="yuan">
-								<img class="yu lazy" data-original="/home/images/lxyz/icon/not.png"  alt="" />
+					<div class="swipeout-content" onclick="jump(this)">
+						<a href="{$vo.url}" class="list" style="width:100%;">
+							<span class="yuan fl">
+								<img class="yu lazy" data-original="{$vo.path}"  alt="" />
 							</span>
-							<div class="fri">
+							<div class="fri fr">
 								<p class="title">{$vo.title}</p>
-								<!--<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>-->
-								<!--<div class="bt">-->
 									<span class="biao">【{$vo.pre}】</span>
 									<span class="time">{$vo.time}</span>
-								<!--</div>-->
 							</div>
-
-							<!--.qingjia .chuchai .baoxiao 三种颜色-->
-							<!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
 						</a>
 						<div class="arrow">
 							<img src="/home/images/review/rightArrow.png" alt="">
 						</div>
 					</div>
 					<div class="swipeout-actions-right">
-						<a class="green" onclick='dispose(this,1,1,1)'>同 意</a>
-						<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
+						<a class="green" onclick='dispose1(this,{$vo.id},0,0)'>同 意</a>
+						<a class="red" onclick='dispose(this,{$vo.id},0,0)'>不同意</a>
 					</div>
 				</li>
 				{/volist}
-				<li class="swipeout" style="margin-right: 3vw;">
-					<div class="swipeout-content" onclick="jump()">
-						<a href="#" class="list" style="width:100%;">
-							<span class="yuan">
-								<img class="yu lazy" data-original="/home/images/lxyz/icon/not.png"  alt="" />
-							</span>
-							<div class="fri">
-								<p class="title">珍珠小镇深度挖掘美丽经济珍珠小镇深度挖掘美丽经济</p>
-								<!--<p class="cont">浙江诸暨山下湖镇立足“珍珠小镇”建设，结合…</p>-->
-								<!--<div class="bt">-->
-								<span class="biao">【第一聚焦】</span>
-								<span class="time">2017-12-06</span>
-								<!--</div>-->
-							</div>
-
-							<!--.qingjia .chuchai .baoxiao 三种颜色-->
-							<!--<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>-->
-						</a>
-						<div class="arrow">
-							<img src="/home/images/review/rightArrow.png" alt="">
-						</div>
-					</div>
-					<div class="swipeout-actions-right">
-						<a class="green" onclick='dispose1(this,1,1,1)'>同 意</a>
-						<a class="red" onclick='dispose(this,1,-1,1)'>不同意</a>
-					</div>
-				</li>
-
 
 			</ul>
 		</div>
@@ -96,15 +59,21 @@
 	<!--调解申请模块-->
 	<div class="apply">
 		<ul>
-			<li class="lists" onclick="change(46)">
-				<div class="fle1"><img class="tu" class="image" src="/home/images/lxyz/icon/not.png"  alt=""/></div>
-				<div class="fri1">
-					<p class="title1">进出口贸易有限公司劳动纠纷2</p>
-					<span class="time1">2017-12-06</span>
-				</div>
+			{volist name="list1" id="vo"}
+			<li class="lists" onclick="change(this)">
+				<a href="{$vo.url}">
+					<div class="fle1"><img class="tu image" data-original="{$vo.path}" src="/home/images/loading.jpg"  alt=""/></div>
+					<div class="fri1">
+						<p class="title1">{$vo.title}</p>
+						<span class="time1">{$vo.time}</span>
+					</div>
+				</a>
 			</li>
+			{/volist}
 		</ul>
-
+		<div id="nomessage1">
+			<img src="/home/images/nomessage.png" alt="无消息">
+		</div>
 	</div>
 	<!--加载更多-->
 	<div class="tip"></div>
@@ -117,6 +86,24 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
+
+	$(function() {
+		check();
+		//没有消息显示无消息提醒
+		function check() {
+			if ($(".list-block").find("li").length == 0) {
+				$('#nomessage').show();
+				$(".top1").hide();
+			}
+			if ($(".apply").find("li").length == 0) {
+				$('#nomessage1').show();
+			}
+			else {
+				$(".top").show();
+			}
+		}
+	});
+
 var myApp=new Framework7;
 var $$=Dom7;
 $(document).scroll(function() {
@@ -126,22 +113,13 @@ $(document).scroll(function() {
         threshold: 1
     });
 });
-$(function(){
-	check();
-});
-//没有消息显示无消息提醒
-function check(){
-	if($("ul").find("li").length == 0){
-		$('#nomessage').show();
-	}
-}
-  if($(window).width()>=768){
 
-  }
 var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
 // 初始化
-$('.top>div').find("span").removeClass("active");
-$('.top>div').eq(type).find('span').addClass('active');
+$(function () {
+	$('.top>div').find("span").eq(type).click();
+});
+
 $(".list-t-wrap >div").hide();
 $(".list-t-wrap >div").eq(type).show();
 $('.top div').on('click',function(){
@@ -174,8 +152,9 @@ if(type=='0'){
 }
 
 //跳转新闻详情
-function jump(){
-	parent.location.href= '/home/approved/detail.html';
+function jump(this_){
+	var href = $(this_).find("a").attr("href");
+	parent.location.href= href;
 }
 //同意操作
 function dispose1(i,id,status,type){
@@ -279,13 +258,22 @@ function aleats(msg,status){
 			}
 		})
 }
+
 var scrollNow = true;
 loadScroll();
 function loadScroll(){
     $(window).off("scroll").on("scroll",function(){
         var dh = $(document).height();
         var end = $(window).height() + $(window ).scrollTop();
-        var len = $('.views li').length;
+
+		if (type == 0) {
+			var len = $('.views li').length;
+			var type1 = 0;
+		}else {
+			var len = $('.apply li').length;
+			var type1 = 1;
+		}
+        
         var tip = $(".tip");
         var loading = $('.loading');
 
@@ -293,21 +281,23 @@ function loadScroll(){
             scrollNow = false;
             $.ajax({
                 type:"post",
-                url: "{:Url('approved/reviewlistMore')}",
+                url: "{:Url('Audit/indexmore')}",
                 data:{
-                    length:len
+                    length: len,
+					type: type1,
+					status: 0
                 },
                 beforeSend: function(XMLHttpRequest){
                     tip.hide();
-                    loading.toggleClass('hidden');
+                    loading.removeClass('hidden').show();
                 },
                 success:function(data){
-                    console.log(data)
-                    loading.toggleClass('hidden');
+                    console.log(data);
+                    loading.addClass('hidden');
                     tip.show();
                     if(data.code == 1){
                         addLists(data);
-                        if(data.data.length == 5){
+                        if(data.data.length > 6){
                             tip.text('上拉加载更多');
 
                         }else{
@@ -331,51 +321,54 @@ function addLists(data){
     var lists = data.data;
     var len = lists.length;
     for(var i = 0; i< len;i++){
-        var _url = '';
         var list = lists[i];
-        var _cliass = '';
-        if(list.type==1){
-            _url = '/home/approved/leavedetail/id/'+list.id+'.html';
-            _cliass = 'qingjia'
-        }else if(list.type==2){
-            _url = '/home/approved/tripdetail/id/'+list.id+'.html';
-            _cliass = 'chuchai'
-        }else if(list.type==3){
-            _url = '/home/approved/reimbursementdetail/id/'+list.id+'.html';
-            _cliass = 'baoxiao'
+        if (type == 0) {
+			html +='<li class="swipeout" style="margin-right: 3vw;">'+
+					'<div class="swipeout-content" onclick="jump(this)">'+
+					'<a href="'+list.url+'" class="list" style="width:100%;">'+
+					'<span class="yuan fl">'+
+					'<img class="yu lazy" data-original="'+list.path+'"  alt="" />'+
+					'</span>'+
+					'<div class="fri fr">'+
+					'<p class="title">'+list.title+'</p>'+
+					'<span class="biao">【'+list.pre+'】</span>'+
+					'<span class="time">'+list.time+'</span>'+
+					'</div>'+
+					'</a>'+
+					'<div class="arrow">'+
+					'<img src="/home/images/review/rightArrow.png" alt="">'+
+					'</div>'+
+					'</div>'+
+					'<div class="swipeout-actions-right">'+
+					'<a class="green" onclick="dispose(this,1,1,1)">同 意</a>'+
+					'<a class="red" onclick="dispose(this,1,-1,1)">不同意</a>'+
+					'</div>'+
+					'</li>';
         }
-        html +='<li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">'
-            +'<div class="swipeout-content" onclick="jump(\''+_url+'\')">'
-            +'<div class="list" style="width:100%;">'
-            +'<span class="title">'+list.publisher+'</span>'
-            +'<span class="sent_time" style="width:88vw;">'
-            +'<span>'+list.time+'</span>'
-            +'</span>'
-				+'<span class="yuan '+_cliass+'"><img class="yu lazy" data-original="'+list.path+'"  alt="" /></span>'
-				+'<span class="rights"><img src="/home/images/approved/icon_right.png" alt=""></span>'
-            +'</div>'
-            +'<div class="arrow"><img src="/home/images/review/rightArrow.png" alt=""></div>'
-            +'</div>'
-			+'<div class="swipeout-actions-right">'
-			+'<a class="green" onclick="dispose(this,'+list.id+',1,'+list.type+')">同 意</a>'
-			+'<a class="red" onclick="dispose(this,'+list.id+',-1,'+list.type+')">同 意</a>'
-			+'</div>'
-            +'</li>'
+		else {
+			html += '<li class="lists" onclick="change(this)">'+
+					'<a href="'+list.url+'">'+
+					'<div class="fle1"><img class="tu image" data-original="'+list.path+'" src="/home/images/loading.jpg"  alt=""/></div>'+
+					'<div class="fri1">'+
+					'<p class="title1">'+list.title+'</p>'+
+					'<span class="time1">'+list.time+'</span>'+
+					'</div>'+
+					'</a>'+
+					'</li>';
+		}
     }
-    $('#list-block-company ul').append(html);
+	if (type == 0) {
+	    $(".views").append(html);
+	}else {
+		$(".apply").append(html);
+	}
 }
 
 
-function change(id) {
-	window.location.href = "/home/mediation/yhdetails/id/" + id + ".html";
+function change(this_) {
+	var href = $(this_).find("a").attr("href");
+	window.location.href = href;
 }
-//$(function () {
-//	$(".apply a").on("click",function (e) {
-//	    e.preventDefault();
-//		$(this).attr("href",$(this).attr("href"));
-//		return false;
-//    })
-//})
 
 </script>
 {/block}

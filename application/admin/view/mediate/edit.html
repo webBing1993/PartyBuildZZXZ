@@ -59,23 +59,23 @@
 
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>纠纷图片:</label>
+                                <label>封面图片:</label>
                             </div>
                             {eq name="msg" value=""}
                             <div class="col-lg-5">
                                 <div class="imggroup">
                                     <img src="" alt='图片' class='thumbnail imgbox'>
                                     <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
-                                    <input type="hidden" name="images" class="img"  value="" required="">
+                                    <input type="hidden" name="front_cover" class="img"  value="" required="">
                                 </div>
                                 <b>推荐尺寸：750*400px</b>
                             </div>
                             {else/}
                             <div class="col-lg-5">
                                 <div class="imggroup">
-                                    <img src="{$msg.images|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
+                                    <img src="{$msg.front_cover|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
                                     <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
-                                    <input type="hidden" name="images" class="img"  value="{$msg.images}" required="">
+                                    <input type="hidden" name="front_cover" class="img"  value="{$msg.front_cover}" required="">
                                 </div>
                                 <b>推荐尺寸：750*400px</b>
                             </div>
@@ -99,23 +99,23 @@
                         </div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>申请人姓名:</label>
+                                <label>标题:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入申请人姓名" class="form-control form_title" name="proposer" value="{$msg.proposer || default=''}">
+                                <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title || default=''}">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>申请人手机号:</label>
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入申请人手机号" class="form-control form_title" name="mobile" value="{$msg.mobile || default=''}">
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>调解人:</label>
+                                <label>调解员:</label>
                             </div>
                             <div class="col-lg-11">
                                 <select name="type" id="type"  class="form-control">
@@ -132,7 +132,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                       <!-- <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>当事人姓名:</label>
                             </div>
@@ -147,7 +147,7 @@
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入事件名称" class="form-control form_title" name="title" value="{$msg.title || default=''}">
                             </div>
-                        </div>
+                        </div>-->
                        <!-- <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>职务:</label>
@@ -156,14 +156,14 @@
                                 <input type="text" placeholder="请输入职务" class="form-control form_title" name="position" value="{$msg.position || default=''}">
                             </div>
                         </div>-->
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>简介:</label>
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入简介" class="form-control form_title" name="description" value="{$msg.description || default=''}">
                             </div>
-                        </div>-->
+                        </div>
                         <div class="form-group">
                             <div class="col-lg-1 control-label">
                                 <label>内容:</label>
@@ -270,12 +270,12 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
-                images:$("input[name='images']").val(),
-                mediatorid:$("select[name='type']").val(),
-                proposer:$("input[name='proposer']").val(),
-                mobile:$("input[name='mobile']").val(),
-                parties:$("input[name='parties']").val(),
+                front_cover:$("input[name='front_cover']").val(),
+                uid:$("select[name='type']").val(),
                 title:$("input[name='title']").val(),
+               /* mobile:$("input[name='mobile']").val(),
+                parties:$("input[name='parties']").val(),*/
+                description:$("input[name='description']").val(),
                 content:ue.getContent(),
                 publisher:$("input[name='publisher']").val(),
             };
