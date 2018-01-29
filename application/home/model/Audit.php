@@ -22,12 +22,6 @@ class Audit extends Model {
         self::STATUS_LEARNS  => '十九大专区',
         self::STATUS_MEDIATION  => '调解',
     ];
-    const URL_ARRAY = [
-        self::STATUS_NEWS  => '第一聚焦',
-        self::STATUS_MEET  => '参会情况',
-        self::STATUS_LEARNS  => '十九大专区',
-        self::STATUS_MEDIATION  => '调解',
-    ];
     //首页获取已推送的数据
     public function get_list($length,$len){
         $map = array(

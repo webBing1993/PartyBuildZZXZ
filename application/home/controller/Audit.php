@@ -42,7 +42,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
-                $list[$key]['url'] = AuditModel::URL_ARRAY[$value['type']];
+                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
             }
             $this->assign('list',$list);
 
@@ -56,6 +56,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
+                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -81,6 +82,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
+                $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
             }
             $this->assign('list',$list);
 
@@ -94,6 +96,7 @@ class Audit extends Base
                 $img = Picture::get($value['front_cover']);
                 $list[$key]['path'] = $img['path'];
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
+                $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
             }
             $this->assign('list1',$list1);
             return $this->fetch();
@@ -121,6 +124,7 @@ class Audit extends Base
             $img = Picture::get($value['front_cover']);
             $value['path'] = $img['path'];
             $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
+            $list[$key]['url'] = "/home/".$value['url']."/id/".$value['id'];
         }
         if($list){
             return $this->success("加载成功",'',$list);
@@ -135,11 +139,11 @@ class Audit extends Base
     {
         $id = input('id');
         $status = input('status');
-        $info = ApprovedModel::update(['status' => $status], ['id' => $id]);
+        $info = AuditModel::update(['status' => $status], ['id' => $id]);
         if ($info) {
             return $this->success();
         } else {
-        return $this->error();
+            return $this->error();
         }
     }
 }
