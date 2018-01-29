@@ -61,8 +61,9 @@ class Base extends Controller {
 
     public function _initialize(){
 //        session('userId',null);
-//        session('userId','18767104335'); //申请人权限
-        session('userId','15757118744'); //调解员权限
+        session('userId','18767104335'); //申请人权限
+//        session('userId','15757118744'); //调解员1权限
+//        session('userId','18268031620'); //调解员2权限
 //        session('userId','13857282889'); //管理员权限
 
 //        session('header','/home/images/vistor.jpg');
@@ -198,6 +199,7 @@ class Base extends Controller {
      * 6 news
      * 7 meet
      * 8 opinion
+     * 9 mediationCase
      */
     public function like(){
         $uid = session('userId'); //点赞人
@@ -230,6 +232,9 @@ class Base extends Controller {
                 break;
             case 8:
                 $table = "opinion";
+                break;
+            case 9:
+                $table = "mediationCase";
                 break;
             default:
                 return $this->error("无该数据表");
@@ -288,6 +293,7 @@ class Base extends Controller {
      * 6 news
      * 7 meet
      * 8 opinion
+     * 9 mediationCase
      */
     public function comment(){
         if(IS_POST){
@@ -318,6 +324,9 @@ class Base extends Controller {
                     break;
                 case 8:
                     $table = "opinion";
+                    break;
+                case 9:
+                    $table = "mediationCase";
                     break;
                 default:
                     return $this->error("无该数据表");
