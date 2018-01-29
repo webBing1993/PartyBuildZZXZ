@@ -9,7 +9,7 @@
 namespace app\admin\model;
 use think\Model;
 
-class Mediation extends Base {
+class Mediation_case extends Base {
     public $insert = [
         'views' => 0,
         'collect' => 0,

@@ -7,7 +7,7 @@
  */
 namespace app\admin\controller;
 
-use app\admin\model\Mediation as MediationModel;
+use app\admin\model\Mediation_case as Mediation_caseModel;
 use think\Db;
 use app\admin\model\Mediation_user as Mediation_userModel;
 
@@ -25,7 +25,7 @@ class Mediate extends Admin
         $map = array(
             'status' => array('eq', 0),
         );
-        $list = $this->lists('Mediation', $map);
+        $list = $this->lists('Mediation_case', $map);
         int_to_string($list, array(
             'status' => array(0 => "已发布"),
             'recommend' => [0 => "否", 1 => "是"]
@@ -45,19 +45,19 @@ class Mediate extends Admin
             if (empty($data['id'])) {
                 unset($data['id']);
             }
-            $list222 = Db::table('pb_mediation_user')->where('userid', $data['mediatorid'])->find();
-            $data['mediator'] = $list222['name'];
-            $mediationModel = new MediationModel();
-            $info = $mediationModel->validate('Mediation')->save($data);
+            /*$list222 = Db::table('pb_mediation_user')->where('userid', $data['mediatorid'])->find();
+            $data['mediator'] = $list222['name'];*/
+            $mediation_caseModel = new Mediation_caseModel();
+            $info = $mediation_caseModel->validate('Mediation')->save($data);
 
             if ($info) {
                 return $this->success("新增成功", Url('Mediate/index'));
             } else {
-                return $this->error($mediationModel->getError());
+                return $this->error($mediation_caseModel->getError());
             }
         } else {
             $list = Db::table('pb_mediation_user')->where('status', 0)->select();
-
+          
             $this->assign('list', $list);
             $this->assign('msg', '');
 
@@ -72,16 +72,16 @@ class Mediate extends Admin
     {
         if (IS_POST) {
             $data = input('post.');
-            $mediationModel = new MediationModel();
-            $info = $mediationModel->validate('Mediation')->save($data, ['id' => input('id')]);
+            $mediation_caseModel = new Mediation_caseModel();
+            $info = $mediation_caseModel->validate('Mediation')->save($data, ['id' => input('id')]);
             if ($info) {
                 return $this->success("修改成功", Url("Mediate/index"));
             } else {
-                return $this->get_update_error_msg($mediationModel->getError());
+                return $this->get_update_error_msg($mediation_caseModel->getError());
             }
         } else {
             $id = input('id');
-            $msg = MediationModel::get($id);
+            $msg = Mediation_caseModel::get($id);
             $list = Db::table('pb_mediation_user')->where('status', 0)->select();
 
             $this->assign('list', $list);
@@ -98,7 +98,7 @@ class Mediate extends Admin
     {
         $id = input('id');
         $data['status'] = '-1';
-        $info = MediationModel::where('id', $id)->update($data);
+        $info = Mediation_caseModel::where('id', $id)->update($data);
         if ($info) {
             return $this->success("删除成功");
         } else {
@@ -131,7 +131,7 @@ class Mediate extends Admin
             if (!empty($data['name'])){
                 $list=Db::table('pb_wechat_user')->where('name',$data['name'])->find();
                 if ($list){
-
+                    $data['userid']=$list['userid'];
                 }else{
                     return $this->error("调解员姓名错误");
                 }
