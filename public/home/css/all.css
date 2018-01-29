@@ -230,7 +230,7 @@
 .all .content img {
     display: block;
     max-width: 100%!important;
-    margin-bottom: 3.5vw;
+    margin: 0 auto 3.5vw;
 }
 .all .content .video {
     position: relative;
@@ -252,14 +252,6 @@
     opacity: 0.5;
     display: none;
 }
-/*.all .content .video iframe {*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-/*}*/
-/*.all .content iframe {*/
-    /*width: 100vw!important;*/
-    /*height: 25vw!important;*/
-/*}*/
 .all .note {
     text-align: right;
     color: #999999;
@@ -268,7 +260,7 @@
 .all .note span {
     height: 8vw;
     display: inline-block;
-    margin-right: 3vw;
+    /*margin-right: 3vw;*/
     line-height: 8vw;
 }
 .all .note span:first-child {
@@ -286,6 +278,7 @@
     margin-right: 0;
 }
 .all .note .read {
+    margin-right: 2.7vw;
     background: url('/home/images/detail/scan_.png') 0 center no-repeat;
     background-size: .24rem .24rem;
     padding-left: .3rem;

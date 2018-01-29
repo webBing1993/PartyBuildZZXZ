@@ -1,47 +1,4 @@
 @charset "utf-8";
-/*public*/
-/*.t_b {*/
-    /*font-size: .36rem;*/
-    /*font-weight: 600;*/
-/*}*/
-/*.banner{*/
-    /*position: relative;*/
-    /*top:0;*/
-    /*left:0;*/
-    /*width: 100vw;*/
-    /*height: 50vw;*/
-/*}*/
-/*.banner .banner-img{*/
-    /*height: 50vw;*/
-    /*width: 100vw;*/
-/*}*/
-/*banner点赞*/
-/*.banner .isgood {*/
-/*position: absolute;*/
-/*right:4vw;*/
-/*bottom:-8vw;*/
-/*display: inline-block;*/
-/*height: 16vw;*/
-/*color: #EB4F38;*/
-/*line-height: 22vw;*/
-/*}*/
-/*.banner .good {*/
-/*background: url('/home/images/special/no.png') 0 0 no-repeat;*/
-/*}*/
-/*.banner .bigger{*/
-/*animation: bigger 300ms ease;*/
-/*-webkit-animation: bigger 300ms ease;*/
-/*}*/
-/*.banner .good_ {*/
-
-/*background: url('/home/images/special/yes.png') 0 0 no-repeat;*/
-/*}*/
-/*.banner .isgood {*/
-/*background-size: 16vw 16vw;*/
-/*padding-left: 18vw;*/
-/*}*/
-
-
 #addnum{
     display: none;
 }
@@ -94,7 +51,7 @@
     background: url('/home/images/service/icon_005.png') no-repeat left top;
     background-size: 5.3vw 1.8vh;
     text-align: left;
-    width:.8rem;
+    /*width:.8rem;*/
 }
 .note_{
     padding: 0;
