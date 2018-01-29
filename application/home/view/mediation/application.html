@@ -42,6 +42,13 @@
     .med .last_ts {
         color: #999;
     }
+    .pro{
+        width:45vw;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -118,7 +125,7 @@
                 <img src="{$vo.front_cover|get_cover='path'}">
                 <div class="userSort">
                     <p class="na">{$vo.name}</p>
-                    <p>{$vo.description}</p>
+                    <p class="pro">{$vo.description}</p>
                 </div>
                 <a href="#">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
             </li>

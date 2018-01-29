@@ -152,18 +152,21 @@
         {/notempty}
     </div>
     <div class="box high">
+
+        <!--已选好-->
         <div class="ding">
             调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
             <span class="con">{$model.mediator}</span>
         </div>
 
 
+      <!--管理员可选择-->
         <div class="xuan1">
             调解员 ：<span class="last_ts">请选择调解员</span>
         </div>
         <div class="xuan2 hidden">
             调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
-            <span class="con">{$model.mediator}</span>
+            <span class="con name">{$model.mediator}</span>
         </div>
 
     </div>
@@ -210,7 +213,7 @@
                 <img src="">
                 <div class="userSort">
                     <p class="na"></p>
-                    <p></p>
+                    <p class="people">1111</p>
                 </div>
                 <a href="#">找他她调解</a>
             </li>
@@ -250,7 +253,6 @@
 //    选择调解员
 
     $('.high').on('click',function(){
-        console.log(11111)
         $('.shadow').fadeIn();
     });
 
@@ -266,7 +268,7 @@ $('.user li').each(function(){
         var name=$(this).parent().find('.na').html();
         $(".xuan1").hide();
         $('.images').attr('src',src);
-        $('.con').html(name);
+        $('.name').html(name);
         $(".xuan2").show();
         setTimeout(function(){
             $('.shadow').fadeOut()
