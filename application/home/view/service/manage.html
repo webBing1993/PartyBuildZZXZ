@@ -136,6 +136,8 @@
             $(".tip").hide();
             $(".loading").hide();
             scrollNow = true;
+            var num = getCookie("num") == null? 0 : getCookie("num");
+            $(".showLeft li").eq(num).click();
         });
         $('.tabs .tab').eq(number).click();
 
