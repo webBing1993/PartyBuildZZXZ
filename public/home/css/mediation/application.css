@@ -1,11 +1,12 @@
 body{
     background: #F5F5F5;
+    min-height: 100vh;
 }
 .form{
     width:100%;
     min-height:8rem;
     background: #F5F5F5;
-    margin-bottom: 11vh;
+    margin-bottom: 15vh;
 }
 .box{
     width:100%;
@@ -96,10 +97,9 @@ textarea{
 }
 .last{
     border-top:1px solid #D1D1D1;
-    margin-bottom:.3rem;
 }
 .present{
-    margin-top:4vw;
+    /*margin-top:4vw;*/
     position: fixed;
     bottom:0;
     left:0;
