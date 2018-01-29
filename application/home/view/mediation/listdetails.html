@@ -69,33 +69,32 @@
                 if(dh == end && scrollNow){
                     scrollNow = false;
                     $.ajax({
-                        type:"post",
+                        type: "post",
                         url: "{:Url('Mediation/mediationmore')}",
-                        data:{
+                        data: {
                             length:len,
                             type:type,
                         },
-                        beforeSend: function(XMLHttpRequest){
+                        beforeSend: function (XMLHttpRequest) {
                             tip.hide();
-                            loading.toggleClass('hidden');
+                            loading.removeClass('hidden').show();
                         },
-                        success:function(data){
+                        success: function (data) {
                             console.log(data)
-
-                            loading.toggleClass('hidden');
+                            loading.addClass('hidden');
                             tip.show();
-                            if(data.code == 1){
+                            if (data.code == 1) {
                                 addLists(data);
-                                var dataLen =data.data.length;
-                                if(data.data.length >= 6){
+                                var dataLen = data.data.length;
+                                if (data.data.length >= 6) {
                                     tip.text('上拉加载更多');
                                 } else {
                                     tip.text('没有更多了');
-                                    $(window ).off("scroll");
+                                    $(window).off("scroll");
                                 }
-                            }else{
+                            } else {
                                 tip.text('没有更多了');
-                                $(window ).off("scroll");
+                                $(window).off("scroll");
                             }
                             scrollNow = true;
                         }
@@ -111,7 +110,7 @@
                 html +=
 //                    '<div style="position: relative" class="userlist">'
                      '<a href="/home/mediation/yhdetails.html/id/'+lists[i].id+'.html" class="list">'
-                    +'<img class="userimg lazy" data-original="/home/images/lxyz/icon/default.png"  alt="" />'
+                    +'<img class="userimg lazy" data-original="'+lists[i].path+'"  alt="" />'
                     +'<div class="fr1">'
                     +'<p>'+lists[i].title+'</p>'
                     +'<div class="bt">'
