@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * User: 王泽锋
- * Date: 2017/12/28
+ * Date: 2018/01/28
  * Time: 14:41
  */
 namespace app\admin\controller;
@@ -11,7 +11,7 @@ use app\admin\model\Study as StudyModel;
 use think\Db;
 /**
  * Class Book
- * @package 党建动态   控制器
+ * @package 基本书目   控制器
  */
 class Book extends Admin {
     /**
