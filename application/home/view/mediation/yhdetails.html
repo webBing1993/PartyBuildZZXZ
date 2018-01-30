@@ -382,20 +382,8 @@
     var l=$('.list').eq(0).height();
     var ht=l+n+all+p+s-1;
     $('#hr01').css('height',l+p+'px');
-    for(var i=0;i<$('.list').length;i++){
-        if(i=$('.list').length){
-           num = i;
-           console.log(num)
-        };
-        if(num ==2){
-            $('.chart').css({'height':ht+'px','overflow':'hidden'});
-        }else if(num >3){
-            $('.chart').css({'height':ht+'px','overflow':'hidden'});
-            $('#all').show();
-        }
 
-    }
-//    添加状态
+    //    添加状态
     $('.list').each(function(){
         if($(this).hasClass('active')){
             $(this).append('<div class="hr02"></div>');
@@ -405,12 +393,37 @@
         }
     });
 
+    for(var i=0;i<$('.list').length;i++){
+        if(i=$('.list').length){
+           num = i;
+           console.log(num)
+        };
+        if(num ==2){
+            $('.chart').css({'height':ht+'px','overflow':'hidden'});
+        }else if(num >3){
+            if($('.list').eq(1).hasClass('active')){
+                $('.list').eq(1).find('.hr02').remove();
+                $('.chart').css({'height':ht+'px','overflow':'hidden'});
+                $('#all').show();
+            }
+        }
+
+    }
+
 //    流程图查看全部
     $('#all').on('click',function(){
-        $('.chart').css({'height':'initial','overflow':'initial'});
-        $('#hr01').css('height',h-last-p+'px')
-        $('#all').hide();
+        if($(window).width()>1024){
+            $('.chart').css({'height':'initial','overflow':'initial'});
+            $('#hr01').css('height',h-last-p-s+'px')
+            $('#all').hide();
+        }else{
+            $('.chart').css({'height':'initial','overflow':'initial'});
+            $('#hr01').css('height',h-last-p+'px')
+            $('#all').hide();
+        }
+
     });
+
 
     //    描述查看全部
     var hp=$('.describe-p').height();
