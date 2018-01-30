@@ -19,6 +19,12 @@ body{
     line-height: 5.6vh;
     text-align: center;
 }
+@media screen and (min-width: 768px) {
+    .tabs .tab:last-of-type {
+        width: 33.8vw;
+    }
+}
+
 .tabs .active {
     color:rgba(221,93,58,1);
     border-bottom: 0.4vh solid rgba(221,93,58,1);
