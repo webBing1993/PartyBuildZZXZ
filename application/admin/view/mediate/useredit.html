@@ -152,8 +152,13 @@
                                 <label>出生年月:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入出生年月" class="form-control form_title" name="birthday"
-                                       value="{$msg.birthday || default=''}">
+                                {empty name="msg"}
+                                <input type="text" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="time" value="">
+                                {else/}
+                                <input type="text" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="time" value="{$msg.time|time_format='Y-m-d H:i'}">
+                                {/empty}
+                                <!--<input type="text" placeholder="请输入出生年月" class="form-control form_title" name="birthday"-->
+                                       <!--value="{$msg.birthday || default=''}">-->
                             </div>
                         </div>
                         <!--<div class="form-group">
@@ -230,8 +235,21 @@
 <script src="/static/ueditor/ueditor.config.js"></script>
 <script src="/static/ueditor/ueditor.all.min.js"></script>
 <script src="/admin/js/chosen.jquery.js"></script>
+<script src="/static/datepicker/bootstrap-datetimepicker.js"></script>
 <script>
     $(function () {
+
+        //    时间日历
+        $( ".datetimepicker" ).datetimepicker( {
+            language:  'cn',
+            format: 'yyyy-mm-dd hh:ii',
+            forceParse: false,
+            todayBtn: true,
+            autoclose: true,
+            todayHighlight: 1,
+            minuteStep: 5
+        });
+
         //    单选按钮
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
