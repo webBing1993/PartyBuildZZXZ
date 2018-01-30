@@ -18,8 +18,7 @@
         <div class="uecontent">
             {$article.content}
         </div>
-        <div class="note">
-            <span class="read">{$article.views}</span>
+        <div class="note clearfix">
             {eq name="visit" value="0"}
             {eq name="article.is_like" value="1"}
             <span class="fr isgood good_" onclick="isGood(this,6,{$article.id})">{$article.likes}</span>
@@ -29,6 +28,7 @@
             {else/}
             <span class="fr isgood good">{$article.likes}</span>
             {/eq}
+            <span class="fr read">{$article.views}</span>
         </div>
     </div>
 </div>

@@ -18,6 +18,7 @@
     .all .note .read {
         width: 16vw;
         margin-right: 0;
+        text-align: left;
     }
 </style>
 {/block}
@@ -39,7 +40,11 @@
             {/eq}
                 <img data-original="{$vo.front_cover|get_cover='path'}" class="lazy">
                 <p>{$vo.title}</p>
-                <div class="note notess" style="width:84vw;margin: auto;"><span class="read">{$vo.views}</span><span class="fr isgood good">{$vo.comments}</span></div>
+                <div class="note notess clearfix" style="width:84vw;margin: auto;">
+
+                    <span class="fr isgood good">{$vo.comments}</span>
+                    <span class="fr read">{$vo.views}</span>
+                </div>
             </a>
         </li>
         {/volist}

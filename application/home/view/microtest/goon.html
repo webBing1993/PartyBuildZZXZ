@@ -185,9 +185,6 @@
     }
     //提交
     function submitAnswer(){
-        var up = $('.up');
-        var suc = $('.suc');
-        var timer = $('.timer');
         var answer = getAnswer();
         objNow=null;
         if(isAll){
@@ -196,11 +193,8 @@
                 url:"{:Url('Microtest/submits')}",
                 data:{arr:answer,arrId:getDataID()},
                 success:function(e){
-                    suc.fadeIn();
                     setTimeout(function(){
                         objNow=null;
-                        timer.fadeOut();
-                        up.text('提交成功');
                         setTimeout(function(){
                             window.location.replace( "{:Url('Microtest/score')}");
                         },1000)
@@ -225,11 +219,8 @@
                             url:"{:Url('Microtest/submits')}",
                             data:{arr:answer,arrId:getDataID()},
                             success:function(e){
-                                suc.fadeIn();
                                 setTimeout(function(){
                                     objNow=null;
-                                    timer.fadeOut();
-                                    up.text('提交成功');
                                     setTimeout(function(){
                                         window.location.replace("{:Url('Microtest/score')}");
                                     },1000)

@@ -17,8 +17,7 @@
         <div id="content">
             {$music.content}
         </div>
-        <div class="note">
-            <span class="read">{$music.views}</span>
+        <div class="note clearfix">
             {eq name="visit" value="0"}
             {eq name="music.is_like" value="0"}
             <span class="fr isgood good" onclick="isGood(this,3,{$music.id})">{$music.likes}</span>
@@ -29,6 +28,7 @@
             {else/}
             <span class="fr isgood good">{$music.likes}</span>
             {/eq}
+            <span class="fr read">{$music.views}</span>
         </div>
     </div>
 </div>

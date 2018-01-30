@@ -34,7 +34,7 @@ body{
 }
 .box .list{
     display:inline-block;
-    padding:4vw;
+    padding:3.2vw;
     border-bottom:1px solid rgba(209,209,209,1);
 }
 .list img{
@@ -48,7 +48,7 @@ body{
 .lr{
     position: relative;
     float:right;
-    width:64vw;
+    width:67vw;
     height:9.7vh;
 }
 .lr p{
@@ -76,12 +76,11 @@ body{
     position: absolute;
     right:0;
     bottom: 0;
-    line-height:1.8vh;
-    padding-left:6.9vw;
-    background: url('/home/images/service/icon_005.png') no-repeat left top;
-    background-size: 5.3vw 1.8vh;
+    padding-left:4.8vw;
+    background: url('/home/images/service/icon_005.png') no-repeat left center;
+    background-size: 4vw 3vw;
     text-align: left;
-    min-width:.8rem;
+    width: 13vw;
 }
 /*流程展示模块*/
 .flow .list{

@@ -12,7 +12,7 @@
     }
     .comment .lists .list .isgood {
         line-height: 4vw;
-        background-position: center center;
+        background-position: center 0;
         padding-left: 7.6vw;
     }
 </style>
@@ -62,8 +62,7 @@
             <div class="author">——— {$book.name}</div>
         </div>
         <!--/作者简介-->
-        <div class="note">
-            <span class="read">{$book.views}</span>
+        <div class="note clearfix">
             {eq name="visit" value="0"}
             {eq name="book.is_like" value="0"}
             <span class="fr isgood good" onclick="isGood(this,4,{$book.id})">{$book.likes}</span>
@@ -73,6 +72,7 @@
             {else/}
             <span class="fr isgood good">{$book.likes}</span>
             {/eq}
+            <span class="fr read">{$book.views}</span>
         </div>
     </div>
 </div>

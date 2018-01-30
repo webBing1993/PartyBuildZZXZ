@@ -12,10 +12,16 @@
         padding: 1.6vw;
         line-height: .36rem;
     }
-    .content iframe {
-        min-width: 100% !important;
-        min-height: 100% !important;
-        position: static;
+    .all .content .video {
+        text-align: center;
+        height: 50vw;
+        width: 100%;
+        margin-bottom: 4vw;
+    }
+    .all .content iframe {
+        width: 100% !important;
+        height: 100% !important;
+        /*position: static;*/
     }
 </style>
 {/block}
@@ -26,10 +32,11 @@
         <span class="fl">{$film.create_time|time_format='Y-m-d'}</span>
     </div>
     <div class="content">
-        <iframe height=250 width=510 src='{$film.net_path}' frameborder=0 allowfullscreen></iframe>
+        <div class="video">
+            <iframe height=250 width=510 src='{$film.net_path}' frameborder=0 allowfullscreen></iframe>
+        </div>
         {$film.content}
-        <div class="note">
-            <span class="read">{$film.views}</span>
+        <div class="note clearfix">
             {eq name="visit" value="0"}
             {eq name="film.is_like" value="1"}
             <span class="fr isgood good_" onclick="isGood(this,2,{$film.id})">{$film.likes}</span>
@@ -39,6 +46,7 @@
             {else/}
             <span class="fr isgood good">{$film.likes}</span>
             {/eq}
+            <span class="fr read">{$film.views}</span>
         </div>
     </div>
 </div>
