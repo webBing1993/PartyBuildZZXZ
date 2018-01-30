@@ -113,7 +113,6 @@ body{
     color:#666;
 }
 .line{
-    height:6.6vh;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;

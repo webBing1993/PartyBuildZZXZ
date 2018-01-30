@@ -28,6 +28,7 @@
 	<div data-side="1" class="active" id="show1">我来推荐</div>
 	<div data-side="2" id="show2">典型引路</div>
 </div>
+<!--我来推荐-->
 <div id="side1" class="appraisal all">
 	<div class="appraisalSort">
 		<ul>
@@ -59,6 +60,7 @@
 	</div>
 	<a href="/home/feedback/detail.html" id="share"><img src="/home/images/lxyz/icon/share.png" alt=""></a>
 </div>
+<!--典型引路-->
 <div id="side2" class="appraisal">
 	<ul class="appraisalUser">
 		{volist name="list2" id="vo"}
@@ -128,10 +130,10 @@
         $('.headerTop>div')[P].onclick = function(){
             $('.headerTop>div').removeClass('active');
             $(this).addClass('active');
-            var type = $(this).data('side');
+            var type1 = $(this).data('side');
             $('.appraisal').hide();
-            $('#side'+type).show();
-            localStorage.setItem('appNum',type);
+            $('#side'+type1).show();
+            localStorage.setItem('appNum',type1);
             $(".tip,.loading").hide();
             loadScroll();
         }

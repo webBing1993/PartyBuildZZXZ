@@ -7,7 +7,7 @@
 {block name="body"}
 <div class="UserTop">
     <div class="UserTop_01">
-        <img src="/home/images/banner/1.jpg">
+        <img src="{$article.front_cover|get_cover='path'}">
         <div class="UserTop_Text">
             <p>姓名：<span>{$article.name}</span></p>
             <p>生日：<span>{$article.birthday}</span></p>

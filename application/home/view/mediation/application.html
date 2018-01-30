@@ -96,7 +96,7 @@
             </div>
             <input type="file" class="hide" id="upimg" accept="image/*">
         </div>
-        <p>请上传您的证据，（可为空，限4张）</p>
+        <p>请上传您的证据，（可为空，限4张，限5M）</p>
     </div>
     <div class="box last">
         <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
@@ -214,7 +214,7 @@
                     }
                 });
                 if ($(".img .img1").length == 0) {
-                    images=null;
+                    images='';
                 }
                 var data={
                     title: title,
