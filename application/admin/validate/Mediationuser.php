@@ -17,7 +17,7 @@ class Mediationuser extends Validate {
         'name' =>  'require',
         'description' =>  'require',
         'birthday' =>  'require',
-        'politics_status' =>  'require',
+       /* 'politics_status' =>  'require',*/
         'education'  =>  'require',
         'content'  =>  'require',
     ];
@@ -27,7 +27,7 @@ class Mediationuser extends Validate {
         'name.require' =>  '请添加姓名！',
         'description.require' =>  '请添加简介！',
         'birthday.require' =>  '请添加出生年月！',
-        'politics_status.require' =>  '请添加政治面貌！',
+       /* 'politics_status.require' =>  '请添加政治面貌！',*/
         'education.require'  =>  '请填写学历！',
         'content.require'  =>  '请填写内容！',
     ];
