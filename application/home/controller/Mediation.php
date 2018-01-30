@@ -57,7 +57,7 @@ class Mediation extends Base
             foreach ($list3 as $value) {
                 $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
                 $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
-                if ($value['images']) {
+                if ($value['images'] && $value['images'] != '""') {
                     $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
                 } else {
                     $value['path'] = '/home/images/lxyz/icon/default.png';
@@ -119,7 +119,7 @@ class Mediation extends Base
         foreach ($list as $value) {
             $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
             $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
-            if ($value['images']) {
+            if ($value['images'] && $value['images'] != '""') {
                 $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
             } else {
                 $value['path'] = '/home/images/lxyz/icon/default.png';
@@ -252,7 +252,7 @@ class Mediation extends Base
             $value['time'] = date("Y-m-d",$value['create_time']);
             $value['status_text'] = MediationModel::TOTAL_STATU_ARRAY[$value['status']];
             $value['status_color'] = MediationModel::STATU_COLOR_ARRAY[$value['status']];
-            if ($value['images']) {
+            if ($value['images'] && $value['images'] != '""') {
                 $value['path'] = get_cover(json_decode($value['images'], true)[0], 'path');
             } else {
                 $value['path'] = '/home/images/lxyz/icon/default.png';
@@ -357,7 +357,6 @@ class Mediation extends Base
             }
         }
 
-
         $this->assign('response',$response);
         $this->assign('images',$images);
         $this->assign('model',$model);
@@ -390,7 +389,7 @@ class Mediation extends Base
                 $audit['aid'] = $opinionModel->id;
                 $audit['title'] = $data['title'];
                 $audit['publisher'] = '';
-                if ($data['images']) {
+                if ($data['images'] && $data['images'] != '""') {
                     $audit['front_cover'] = json_decode($data['images'], true)[0];
                 } else {
                     $audit['front_cover'] = '';
@@ -402,18 +401,24 @@ class Mediation extends Base
             }
         }else{
             $mediatorid = input('id');
-            $mediatorModel = MediationUser::where(['userid' => $mediatorid])->find();
-            $mediatorModel['front_cover'] = Picture::where('id',$mediatorModel['front_cover'])->value('path');
+            if($mediatorid){
+                $mediatorModel = MediationUser::where(['userid' => $mediatorid])->find();
+                $mediatorModel['front_cover'] = Picture::where('id',$mediatorModel['front_cover'])->value('path');
+                $this->assign('mediatorid',$mediatorid);
+                $this->assign('mediator',$mediatorModel['name']);
+                $this->assign('mediator_path',$mediatorModel['front_cover']);
+            }else{
+                $this->assign('mediatorid','');
+                $this->assign('mediator','');
+                $this->assign('mediator_path','');
+            }
+
             $model = WechatUser::where(['userid' => $userId])->find();
 
             $map = [
                 'status' => ['egt',0],
             ];
             $list = MediationUser::where($map)->order('id desc')->select();
-
-            $this->assign('mediatorid',$mediatorid);
-            $this->assign('mediator',$mediatorModel['name']);
-            $this->assign('mediator_path',$mediatorModel['front_cover']);
             $this->assign('model',$model);
             $this->assign('list',$list);
 
