@@ -7,7 +7,7 @@
  */
 namespace app\admin\controller;
 
-use app\home\model\Audit;
+use app\admin\model\Audit;
 use think\Controller;
 use app\admin\model\Picture;
 use app\admin\model\Push;

@@ -8,7 +8,7 @@
 
 namespace app\admin\controller;
 use app\admin\model\Meet as MeetModel;
-use app\home\model\Audit;
+use app\admin\model\Audit;
 
 class Meet extends Admin
 {

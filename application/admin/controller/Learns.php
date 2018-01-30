@@ -10,7 +10,7 @@ namespace app\admin\controller;
 use app\admin\model\Learns as LearnsModel;
 use app\admin\model\Picture;
 use app\admin\model\Push;
-use app\home\model\Audit;
+use app\admin\model\Audit;
 use com\wechat\TPQYWechat;
 use think\Config;
 

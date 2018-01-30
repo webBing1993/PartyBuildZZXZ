@@ -383,7 +383,7 @@ class Mediation extends Base
             $model = $opinionModel->create($data);
             if ($model) {
 //                 $this->push_review("审核通知", "【调解申请】未审核", "请尽快审核", 1);
-                $auditmodel = new \app\home\model\Audit();
+                $auditmodel = new \app\admin\model\Audit();
                 $audit['type'] = 4;
                 $audit['table'] = 'mediation';
                 $audit['url'] = 'mediation/yhdetails';
@@ -463,7 +463,7 @@ class Mediation extends Base
             }else{//审核不通过
                 $audit_status = -1;
             }
-            \app\home\model\Audit::update(['status' => $audit_status], ['aid' => input('id'), 'type' => 4]);
+            \app\admin\model\Audit::update(['status' => $audit_status], ['aid' => input('id'), 'type' => 4]);
             if($status){//审核通过
                 $userid = MediationModel::getUserid(input('id'));
 //                $this->push_review("审核通过通知", "【调解申请】审核已通过", "点击查看", 0, $userid);
