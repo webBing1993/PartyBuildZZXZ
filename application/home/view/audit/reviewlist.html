@@ -75,11 +75,12 @@
 			<img src="/home/images/nomessage.png" alt="无消息">
 		</div>
 	</div>
-	<!--加载更多-->
-	<div class="tip"></div>
-	<div class="loading hidden">
-		<div class="typing_loader"></div>
-	</div>
+
+</div>
+<!--加载更多-->
+<div class="tip"></div>
+<div class="loading hidden">
+	<div class="typing_loader"></div>
 </div>
 {/block}
 
@@ -120,34 +121,25 @@ $(function () {
 
 $(".list-t-wrap >div").hide();
 $(".list-t-wrap >div").eq(type).show();
-$('.top div').on('click',function(){
-	var index=$(this).index();
-    localStorage.setItem('num',index);
-	if($(this).index()== 0){
-        $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
-        $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
-        $('.list-wrapper').show();
-        $('.apply').hide();
-	}else{
-        $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
-        $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
-        $('.list-wrapper').hide();
-        $('.apply').show();
-	}
-    $(this).siblings().find('span').removeClass('active');
-    $(this).find('span').addClass('active')
-});
-if(type=='0'){
-    $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
-    $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
-    $('.list-wrapper').show();
-    $('.apply').hide();
-}else{
-    $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
-    $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
-    $('.list-wrapper').hide();
-    $('.apply').show();
-}
+	$('.top div').on('click',function(){
+		var index=$(this).index();
+		localStorage.setItem('num',index);
+		$(".list-t-wrap>div").eq(index).show().siblings("div").hide();
+		if(index == 0){
+			$('.tab1 img').attr('src','/home/images/approved/icon/2.png');
+			$('.tab2 img').attr('src','/home/images/approved/icon/3.png');
+		}else{
+			$('.tab1 img').attr('src','/home/images/approved/icon/1.png');
+			$('.tab2 img').attr('src','/home/images/approved/icon/4.png');
+		}
+		$(this).siblings().find('span').removeClass('active');
+		$(this).find('span').addClass('active');
+		$(".tip,.loading").hide();
+		loadScroll();
+	});
+
+	// 初始化
+	$(".top div").eq(type).click();
 
 //跳转新闻详情
 function jump(this_){

@@ -4,104 +4,193 @@
 <title>消息审核</title>
 <link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
 <link rel="stylesheet" href="/static/framework7/framework7.ios.css">
-<link rel="stylesheet" href="/home/css/approved/passlist.css">
+<link rel="stylesheet" href="/home/css/approved/review1.css">
 <link rel="stylesheet" href="/home/css/common/tip.css">
 <style>
-    body{overflow: initial;!important;font-size: 1.4rem;!important;}
+    body{overflow: initial;!important;font-size: 1.4rem;!important;background:#F5F5F5;}
+    .apply .yuan {
+        width: 22.6vw;
+        height: 22.6vw;
+    }
+    .apply .fri {
+        height: 22.6vw;
+    }
+    .apply li {
+        height: auto;
+    }
 </style>
 {/block}
 
 {block name="body"}
+<div class="top">
+    <div class="tab1"><img src="/home/images/approved/icon/1.png"/><span >新闻通知</span></div>
+    <div class="tab2"><img src="/home/images/approved/icon/3.png"/><span >调解申请</span></div>
+</div>
+
 <div class="list-t-wrap">
+
+    <!--新闻通知模块-->
     <div class="list-wrapper">
         <!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
-        <div class="list-block" id="list-block-company" style="margin: 0;">
+        <div class="list-block" id="list-block-company">
             <div id="nomessage">
-                <img src="/home/images/ nomessage.png" alt="" >
+                <img src="/home/images/nomessage.png" alt="无消息">
             </div>
-            <ul>
+            <ul class="views">
                 {volist name="list" id="vo"}
-                <li class="swipeout" style="padding-left: 3vw;background: transparent;height:14.5vh;margin: 0;">
-                    <img src="/home/images/approved/icon_bg.png" style="position: absolute;top:2.26vw;left:3vw;width:94vw;height:13.5vh;">
-                    {if condition="$vo.type eq 1"}
-                    <?php $url = Url('approved/leavedetail?id='.$vo['id'].'&visit=1');?>
-                    <div class="swipeout-content" onclick="jump('{$url}')">
-                        {elseif condition="$vo.type eq 2"/}
-                        <?php $url = Url('approved/tripdetail?id='.$vo['id'].'&visit=1');?>
-                        <div class="swipeout-content" onclick="jump('{$url}')">
-                            {else/}
-                            <?php $url = Url('approved/reimbursementdetail?id='.$vo['id'].'&visit=1');?>
-                            <div class="swipeout-content" onclick="jump('{$url}')">
-                                {/if}
-                                <div class="list">
-                                    <span class="title">{$vo.publisher}</span>
-                                    <span class="sent_time">
-							            <span>{$vo.create_time|time_format='Y-m-d H:i'}</span>
-						             </span>
-                                    <span class="yuan {eq name='$vo.type' value='1'}qingjia{else/}{eq name='$vo.type' value='2'}chuchai{else/}baoxiao{/eq}{/eq}">{$vo.title}</span>
-                                </div>
-                                {eq name="$vo.status" value="1"}
-                                <div class="arrow green">
-                                    同意
-                                    <!--<img src="/home/images/review/yes.png" alt="通过">-->
-                                </div>
-                                {/eq}
-                                {eq name="$vo.status" value="-1"}
-                                <div class="arrow red">
-                                    不同意
-                                    <!--<img src="/home/images/review/tanhao.png" alt="拒绝">-->
-                                </div>
-                                {/eq}
+                <li class="swipeout" style="margin-right: 3vw;">
+                    <div class="swipeout-content" onclick="jump(this)">
+                        <a href="{$vo.url}" class="list" style="width:100%;">
+							<span class="yuan fl">
+								<img class="yu lazy" data-original="{$vo.path}"  alt="" />
+							</span>
+                            <div class="fri fr">
+                                <p class="title">{$vo.title}</p>
+                                <span class="col" style="background-color: {$vo.color}">{$vo.status_text}</span>
+                                <span class="time">{$vo.time}</span>
                             </div>
+                        </a>
+                    </div>
                 </li>
                 {/volist}
+
             </ul>
         </div>
-        <!--加载更多-->
-        <div class="tip"></div>
-        <div class="loading hidden">
-            <div class="typing_loader"></div>
+    </div>
+    <!--调解申请模块-->
+    <div class="apply">
+        <ul>
+            {volist name="list1" id="vo"}
+            <li class="swipeout clearfix" style="margin-right: 3vw;">
+                <div class="swipeout-content" onclick="jump(this)">
+                    <a href="{$vo.url}" class="list" style="width:100%;">
+							<span class="yuan fl">
+								<img class="yu lazy" data-original="{$vo.path}"  alt="" />
+							</span>
+                        <div class="fri fr">
+                            <p class="title">{$vo.title}</p>
+                            <span class="col" style="background-color: {$vo.color}">{$vo.status_text}</span>
+                            <span class="time">{$vo.time}</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+        <div id="nomessage1">
+            <img src="/home/images/nomessage.png" alt="无消息">
         </div>
     </div>
+</div>
+<!--加载更多-->
+<div class="tip"></div>
+<div class="loading hidden">
+    <div class="typing_loader"></div>
 </div>
 {/block}
 
 {block name="script"}
+<script src="/static/framework7/framework7.js"></script>
 <script>
-    if($("ul").find("li").length == 0){
-        $('#nomessage').show()
+
+    check();
+    //没有消息显示无消息提醒
+    function check() {
+        if ($(".list-block").find("li").length == 0) {
+            $('#nomessage').show();
+        }
+        if ($(".apply").find("li").length == 0) {
+            $('#nomessage1').show();
+        }
+        else {
+            $(".top").show();
+        }
     }
-    function jump(a){
-        location.href = a
+
+    var myApp=new Framework7;
+    var $$=Dom7;
+    $(document).scroll(function() {
+        $("img.lazy").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    });
+
+    var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
+    // 初始化
+    $(function () {
+        $('.top>div').find("span").eq(type).click();
+    });
+
+    $(".list-t-wrap >div").hide();
+    $(".list-t-wrap >div").eq(type).show();
+    $('.top div').on('click',function(){
+        var index=$(this).index();
+        localStorage.setItem('num',index);
+        $(".list-t-wrap>div").eq(index).show().siblings("div").hide();
+        if(index == 0){
+            $('.tab1 img').attr('src','/home/images/approved/icon/2.png');
+            $('.tab2 img').attr('src','/home/images/approved/icon/3.png');
+        }else{
+            $('.tab1 img').attr('src','/home/images/approved/icon/1.png');
+            $('.tab2 img').attr('src','/home/images/approved/icon/4.png');
+        }
+        $(this).siblings().find('span').removeClass('active');
+        $(this).find('span').addClass('active');
+        $(".tip,.loading").hide();
+        loadScroll();
+    });
+
+    // 初始化
+    $(".top div").eq(type).click();
+
+    //跳转新闻详情
+    function jump(this_){
+        var href = $(this_).find("a").attr("href");
+        parent.location.href= href;
     }
+
+
     var scrollNow = true;
     loadScroll();
     function loadScroll(){
         $(window).off("scroll").on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $('.views li').length;
+
+            if (type == 0) {
+                var len = $('.views li').length;
+                var type1 = 0;
+            }else {
+                var len = $('.apply li').length;
+                var type1 = 1;
+            }
+
             var tip = $(".tip");
             var loading = $('.loading');
+
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({
                     type:"post",
-                    url: "{:Url('approved/passlistMore')}",
+                    url: "{:Url('Audit/indexmore')}",
                     data:{
-                        length:len
+                        length: len,
+                        type: type1,
+                        status: 1
                     },
                     beforeSend: function(XMLHttpRequest){
                         tip.hide();
-                        loading.toggleClass('hidden');
+                        loading.removeClass('hidden').show();
                     },
                     success:function(data){
-                        console.log(data)
-                        loading.toggleClass('hidden');
+                        console.log(data);
+                        loading.addClass('hidden');
                         tip.show();
                         if(data.code == 1){
                             addLists(data);
-                            if(data.data.length == 5){
+                            if(data.data.length > 6){
                                 tip.text('上拉加载更多');
 
                             }else{
@@ -125,40 +214,47 @@
         var lists = data.data;
         var len = lists.length;
         for(var i = 0; i< len;i++){
-            var _url = '';
             var list = lists[i];
-            var _cliass = '';
-            if(list.type==1){
-                _url = '/home/approved/leavedetail/id/'+list.id+'.html'
-                _cliass = 'qingjia'
-            }else if(list.type==2){
-                _url = '/home/approved/tripdetail/id/'+list.id+'.html'
-                _cliass = 'chuchai'
-            }else if(list.type==3){
-                _url = '/home/approved/reimbursementdetail/id/'+list.id+'.html'
-                _cliass = 'baoxiao'
+            if (type == 0) {
+                html +='<li class="swipeout" style="margin-right: 3vw;">'+
+                        '<div class="swipeout-content" onclick="jump(this)">'+
+                        '<a href="'+list.url+'" class="list" style="width:100%;">'+
+                        '<span class="yuan fl">'+
+                        '<img class="yu lazy" data-original="'+list.path+'"  alt="" />'+
+                        '</span>'+
+                        '<div class="fri fr">'+
+                        '<p class="title">'+list.title+'</p>'+
+                        '<span class="col" style="background-color: '+list.color+'">'+list.status_text+'</span>'+
+                        '<span class="time">'+list.time+'</span>'+
+                        '</div>'+
+                        '</a>'+
+                        '</div>'+
+                        '</li>';
             }
-            var Img = '';
-            if(list.status == 1){
-                Img = '<div class="arrow green">同意</div>'
-            }else {
-                Img = '<div class="arrow red">不同意</div>'
+            else {
+                html +='<li class="swipeout clearfix" style="margin-right: 3vw;">'+
+                        '<div class="swipeout-content" onclick="jump(this)">'+
+                        '<a href="'+list.url+'" class="list" style="width:100%;">'+
+                        '<span class="yuan fl">'+
+                        '<img class="yu lazy" data-original="'+list.path+'"  alt="" />'+
+                        '</span>'+
+                        '<div class="fri fr">'+
+                        '<p class="title">'+list.title+'</p>'+
+                        '<span class="col" style="background-color: '+list.color+'">'+list.status_text+'</span>'+
+                        '<span class="time">'+list.time+'</span>'+
+                        '</div>'+
+                        '</a>'+
+                        '</div>'+
+                        '</li>';
             }
-            html +='<li class="swipeout" style="padding-left: 3vw;background: transparent;height:14.5vh;margin: 0;"><img src="/home/images/approved/icon_bg.png" style="position: absolute;top:2.26vw;left:3vw;width:94vw;height:13.5vh;">'
-                    +'<div class="swipeout-content" onclick="jump(\''+_url+'\')">'
-                    +'<div class="list">'
-                    +'<span class="title">'+list.publisher+'</span>'
-                    +'<span class="sent_time">'
-                    +'<span >'+list.time+'</span>'
-                    +'</span>'
-                    +'<span class="yuan '+_cliass+'">'+list.title+'</span>'
-                    +'</div>'
-                    +Img
-                    +'</div>'
-                    +'</li>'
         }
-        $('#list-block-company ul').append(html);
+        if (type == 0) {
+            $(".views").append(html);
+        }else {
+            $(".apply").append(html);
+        }
     }
+
 
 </script>
 {/block}

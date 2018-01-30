@@ -420,3 +420,14 @@ a:hover{
 #nomessage img,#nomessage1 img{
 	width:26.7vw;
 }
+
+.col {
+	color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 2vw;
+	font-size: .24rem;
+	padding: 1.1vw 2.7vw;
+	border-radius: 5.4vw;
+	background-color: #eee;
+}
