@@ -256,7 +256,9 @@
         $(this_ ).siblings('.tab').removeClass('active');
         if(index == 1){
             $('.words' ).removeClass('hidden');
+            $("#side2 .search").hide();
         }else{
+            $("#side2 .search").show();
             $('.books' ).removeClass('hidden');
         }
         ww = ww * index;
