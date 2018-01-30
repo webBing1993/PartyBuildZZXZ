@@ -13,6 +13,7 @@ use app\home\model\Opinion;
 use app\home\model\Pioneer;
 use app\home\model\Picture;
 use app\home\model\WechatUser;
+use app\home\model\WechatUserTag;
 use com\wechat\TPQYWechat;
 use think\Config;
 use think\Db;
@@ -73,6 +74,14 @@ class Feedback extends Base {
         ];
         $list2 = Pioneer::where($map2)->limit(6)->order('id desc')->select();
         $this->assign('list2',$list2);
+
+        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 3])->find();
+        if($tag){
+            $user_tag = 1;//党员
+        }else{
+            $user_tag = 0;//普通用户
+        }
+        $this->assign('user_tag',$user_tag);
 
         return $this->fetch();
     }

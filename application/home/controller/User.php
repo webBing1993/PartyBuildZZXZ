@@ -35,7 +35,13 @@ class User extends Base {
         }else{
             $this ->assign('tourist',0);
         }
-
+        $tag = WechatUserTag::where(['userid' => $userId, 'tagid' => 1])->find();
+        if($tag){
+            $user_tag = 1;//管理员
+        }else{
+            $user_tag = 0;//普通用户
+        }
+        $this->assign('user_tag',$user_tag);
         return $this->fetch();
     }
 

@@ -20,7 +20,7 @@ use think\Db;
 
 class Service extends Base
 {
-    static $MEMBER_TAG = 1; // 党员标签ID
+    static $MEMBER_TAG = 3; // 党员标签ID
     static $DEFAUL_AVATAR = ''; // 用户默认头像
 
     /**
