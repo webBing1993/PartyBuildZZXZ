@@ -72,14 +72,14 @@
             <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>申请人 ：</span>
         </div>
-        <input type="text"  placeholder="请输入申请人名称" size="30" name="thing"/>
+        <input type="text"  placeholder="请输入申请人名称" size="30" name="thing" value="{$model['name']}"/>
     </div>
     <div class="box">
         <div class="ev">
             <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>联系电话 ：</span>
         </div>
-        <input type="number"  placeholder="请输入联系电话" size="28" style="text-indent: .5vw;" id="phone" name="num">
+        <input type="number"  placeholder="请输入联系电话" size="28" style="text-indent: .5vw;" id="phone" name="num" value="{$model['mobile']}">
     </div>
     <div class="describe">
         <textarea name="content" id="text" placeholder="请对您的纠纷进行描述" maxlength="1000"></textarea>

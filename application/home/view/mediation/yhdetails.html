@@ -151,15 +151,9 @@
         </div>
         {/notempty}
     </div>
+    {eq name="$user_tag" value="1"}
+    {eq name="$model.status" value="1"}
     <div class="box high">
-
-        <!--已选好-->
-        <div class="ding">
-            调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
-            <span class="con">{$model.mediator}</span>
-        </div>
-
-
       <!--管理员可选择-->
         <div class="xuan1">
             调解员 ：<span class="last_ts">请选择调解员</span>
@@ -168,8 +162,25 @@
             调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
             <span class="con name">{$model.mediator}</span>
         </div>
-
     </div>
+    {else/}
+    <div class="box">
+        <!--已选好-->
+        <div class="ding">
+            调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
+            <span class="con">{$model.mediator}</span>
+        </div>
+    </div>
+    {/eq}
+    {else/}
+    <div class="box">
+        <!--已选好-->
+        <div class="ding">
+            调解员 ：<img class="images" src="/home/images/lxyz/icon/not.png"  alt=""/>
+            <span class="con">{$model.mediator}</span>
+        </div>
+    </div>
+    {/eq}
 </div>
 
 <!--<div class="fixed"></div>-->
@@ -207,17 +218,17 @@
 <div class="shadow">
     <div class="user">
         <ul>
-            <!--{volist name="list" id="vo"}-->
+            {volist name="list" id="vo"}
             <li>
-                <span class="user_hide" hidden></span>
-                <img src="">
+                <span class="user_hide" hidden>{$vo.userid}</span>
+                <img src="{$vo.front_cover|get_cover='path'}">
                 <div class="userSort">
-                    <p class="na"></p>
-                    <p class="people">1111</p>
+                    <p class="na">{$vo.name}</p>
+                    <p class="pro">{$vo.description}</p>
                 </div>
-                <a href="#">找他她调解</a>
+                <a href="#">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
             </li>
-
+            {/volist}
         </ul>
     </div>
 </div>
