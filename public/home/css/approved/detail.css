@@ -9,27 +9,25 @@ body{
     margin-bottom:7.5vh;
 }
 .top{
-    margin-bottom: 1.8vh;
+    text-align: center;
+    width: 100%;
 }
 .title{
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    font-size: .3rem;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+    font-size: .32rem;
     color:#333;
-    margin-bottom:6vh;
+    font-weight: 600;
 }
 .site{
-    font-size: .26rem;
+    font-size: .24rem;
     color:#999;
-    margin-bottom:1.9vh;
 }
 .bt{
     width:100%;
-    margin-bottom:1.8vh;
-    height:3.2vh;
-    line-height: 2.8vh;
+    line-height: 8vw;
+    height: 8vw;
 }
 .images{
     width:3.2vw;
@@ -51,7 +49,7 @@ body{
     margin-bottom:.75vh;
 }
 .content p{
-    font-size: .26rem;
+    font-size: .28rem;
     color:#666;
     line-height: 3.6vh;
 }

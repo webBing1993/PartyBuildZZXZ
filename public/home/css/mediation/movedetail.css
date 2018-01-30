@@ -68,7 +68,7 @@
     font-size: .28rem;
     line-height: 8vw;
 }
-.uecontent p {font-size: .28rem !important;text-align: justify;}
+.uecontent p {font-size: .28rem;text-align: justify;}
 .uecontent p span {font-size: .28rem !important;text-align: justify;}
 .article .note span {
     /*margin-right: 10px;*/

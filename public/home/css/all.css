@@ -212,7 +212,7 @@
 .all .title p{
     display: inline-block;
     text-align: left;
-    font-size: .36rem;
+    font-size: .32rem;
 }
 .all .content {
     width: 100%;
@@ -221,7 +221,7 @@
 }
 .all .content * {
     max-width: 100%!important;
-    font-size: .24rem;
+    font-size: .28rem;
     line-height: .36rem;
 }
 .all .content p span {
@@ -262,6 +262,7 @@
     display: inline-block;
     /*margin-right: 3vw;*/
     line-height: 8vw;
+    font-size: .24rem;
 }
 .all .note span:first-child {
     max-width:40vw;
@@ -371,7 +372,7 @@
     text-align: center;
     line-height: 10.6vw;
     color: #c1c1c1;
-    font-size: .3rem;
+    font-size: .24rem;
 }
 /*底部*/
 .bottom {
