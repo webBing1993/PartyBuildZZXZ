@@ -343,19 +343,15 @@ class Mediation extends Base
             }
         }
         $title = MediationModel::TOTAL_STATU_ARRAY[$model['status']];
-        if($model['status'] == MediationModel::STATUS_COMMIT){
-            $map = [
-                'status' => ['egt',0],
-            ];
-            $list = MediationUser::where($map)->order('id desc')->select();
-            $this->assign('list',$list);
-        }
         $images = json_decode($model['images']);
         if($images){
             foreach ($images as $key => $value){
                 $images[$key] = get_cover($value, 'path');
             }
         }
+        $front_cover = MediationUser::where(['userid' => $model['mediatorid']])->value('front_cover');
+        $front_cover = get_cover($front_cover, 'path');
+
         $map1 = [
             'status' => ['egt',0],
         ];
@@ -365,6 +361,7 @@ class Mediation extends Base
         $this->assign('response',$response);
         $this->assign('images',$images);
         $this->assign('model',$model);
+        $this->assign('mediator_path',$front_cover);
         $this->assign('title',$title);
         $this->assign('id',$id);
         $this->assign('user_tag',$user_tag);
