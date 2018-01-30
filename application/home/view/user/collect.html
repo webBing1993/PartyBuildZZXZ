@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>消息审核</title>
+<title>我的收藏</title>
 <link rel="stylesheet" href="/static/framework7/framework7.ios.colors.css">
 <link rel="stylesheet" href="/static/framework7/framework7.ios.css">
 <link rel="stylesheet" href="/home/css/approved/review.css">
@@ -22,7 +22,7 @@
             <div id="nomessage">
                 <img src="/home/images/nomessage.png" alt="无消息">
             </div>
-            <ul>
+            <ul class="views">
                 {volist name="res" id="vo"}
                 <li class="swipeout" style="width:94vw;margin-left: 3vw;margin-right: 3vw;">
                     <div class="swipeout-content" onclick="jump('{$vo.url}')">
