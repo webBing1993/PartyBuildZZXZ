@@ -250,37 +250,36 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
-//    选择调解员
-
-    $('.high').on('click',function(){
-        $('.shadow').fadeIn();
-    });
-
-$('.shadow').on('click',function(e){
-    e.preventDefault();
-    $('.shadow').fadeOut();
-});
-
-$('.user li').each(function(){
-    $(this).find('a').on('click',function(e){
-        e.preventDefault();
-        var src=$(this).parent().find('img').attr('src');
-        var name=$(this).parent().find('.na').html();
-        $(".xuan1").hide();
-        $('.images').attr('src',src);
-        $('.name').html(name);
-        $(".xuan2").show();
-        setTimeout(function(){
-            $('.shadow').fadeOut()
-        },800);
-        id = $(this).siblings(".user_hide").html();
-    })
-});
-
-
     if($(window).width()>=768){
         $('.form').css('margin-bottom','9vh')
     }
+
+//    点击选择调解员
+    $('.high').on('click',function(){
+        $('.shadow').fadeIn();
+    });
+    $('.shadow').on('click',function(e){
+        e.preventDefault();
+        $('.shadow').fadeOut();
+    });
+//    调解员
+    $('.user li').each(function(){
+        $(this).find('a').on('click',function(e){
+            e.preventDefault();
+            var src=$(this).parent().find('img').attr('src');
+            var name=$(this).parent().find('.na').html();
+            $(".xuan1").hide();
+            $('.images').attr('src',src);
+            $('.name').html(name);
+            $(".xuan2").show();
+            setTimeout(function(){
+                $('.shadow').fadeOut()
+            },800);
+            id = $(this).siblings(".user_hide").html();
+        })
+    });
+
+//    不同操作按钮
     $('.lists .state').each(function(){
         if($(this).html()=='待审核') {
             $('.bot').css('display','block');
@@ -289,9 +288,7 @@ $('.user li').each(function(){
             $('.remark1').css('display','block');
         };
         if($(this).html()=='调解员待确认') {
-            console.log($(this).html()=='调解员待确认');
             $('.remark1').css('display','block');
-            console.log($('.remark1'));
         };
         if($(this).html()=='调解员已确认') {
             $('.remark1').css('display','none');
@@ -300,11 +297,9 @@ $('.user li').each(function(){
         if($(this).html()=='待评价') {
             $('.remark').css('display','block')
         };
-
-
     });
 
-//    确认
+//    确认按钮
     $('.remark1').on('click',function(){
         var id= {$id};
         $('.lists .state').each(function(){
@@ -335,7 +330,7 @@ $('.user li').each(function(){
         });
     });
 
-//    审核通过
+//    审核通过按钮
     $('.fle').on('click',function () {
         var id='{$id}';
         $.ajax({
@@ -365,7 +360,6 @@ $('.user li').each(function(){
         window.location.href='/home/mediation/noapprove/id/'+id+'.html'
     }
 
-
 //    流程图
     var h = $('.lists').height();
     var num = 0;
@@ -373,50 +367,39 @@ $('.user li').each(function(){
     var s=parseFloat($('.state').eq(0).css('margin-bottom'));
     var last=$('.list').eq(num-1).height();
     var all=$('#all').height();
-    var ht=$('.list').eq(0).height()+$('.num').eq(0).height()+all+p+s-1;
-    console.log(p)
-//    $('#hr01').css('height',h-last-p);
-
+    var n=$('.num').eq(0).height();
+    var l=$('.list').eq(0).height();
+    var ht=l+n+all+p+s-1;
+    $('#hr01').css('height',l+p+'px');
     for(var i=0;i<$('.list').length;i++){
         if(i=$('.list').length){
            num = i;
            console.log(num)
         };
-        if(i>3){
+        if(num ==2){
+            $('.chart').css({'height':ht+'px','overflow':'hidden'});
+        }else if(num >3){
             $('.chart').css({'height':ht+'px','overflow':'hidden'});
             $('#all').show();
         }
+
     }
-//    if($(window).width()>=768){
-//        for(var i=0;i<$('.list').length;i++){
-//            if(i=$('.list').length){
-//                num = i;
-//            };
-//            if(i>3){
-//                var ht=$('.list').eq(0).height()+$('.num').eq(0).height()+$('#all').height()+p+s-3;
-//                $('.chart').css({'height':ht+'px','overflow':'hidden'});
-//                $('#all').show();
-//            }
-//        }
-//    }
-//    流程图查看全部
-    $('#all').on('click',function(){
-        $('.lists').css({'height':'initial','overflow':'initial'});
-        $('.chart').css({'height':'initial','overflow':'initial'});
-
-        $('#all').hide();
-    });
-
+//    添加状态
     $('.list').each(function(){
         if($(this).hasClass('active')){
             $(this).append('<div class="hr02"></div>');
         }
         if($(this).next().hasClass('active')){
-            $(this).find('.hr02').css('height',$(this).height()+p)
+            $(this).find('.hr02').css('height',$(this).height()+'px')
         }
     });
 
-
+//    流程图查看全部
+    $('#all').on('click',function(){
+        $('.chart').css({'height':'initial','overflow':'initial'});
+        $('#hr01').css('height',h-last-p+'px')
+        $('#all').hide();
+    });
 
     //    描述查看全部
     var hp=$('.describe-p').height();
@@ -431,7 +414,6 @@ $('.user li').each(function(){
             $('.quan').fadeIn();
         }
     }
-
     $('.quan').on('click',function(){
         $('.describe-p').css({'height':'initial','overflow':'initial'});
         $('.quan').hide();
