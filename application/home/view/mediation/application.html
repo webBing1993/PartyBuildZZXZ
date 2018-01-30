@@ -215,15 +215,16 @@
                 mediatorid : id,
                 images: images
             };
+            console.log(data)
             if(single){
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
                         images.push($(this).data("tab")+"");
                     }
                 });
-                if ($(".img .img1").length == 0) {
-                    images.push("");
-                }
+//                if ($(".img .img1").length == 0) {
+//                    images.push();
+//                }
                 // 弹窗
                 swal({
                         title: ' ',

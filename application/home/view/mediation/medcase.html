@@ -8,8 +8,8 @@
 <div class="head">
     <div class="htop">
         <div class="hfl">
-            <img  src="/home/images/lxyz/icon/default.png"  alt="" />
-            <!--<img  src="{$model.front_cover|get_cover='path'}"  alt="" />-->
+            <!--<img  src="/home/images/lxyz/icon/default.png"  alt="" />-->
+            <img  src="{$model.front_cover|get_cover='path'}"  alt="" />
         </div>
         <div class="hfr">
             <div class="row1" style="padding:1.65vh 0;">
@@ -69,7 +69,7 @@
 {block name="script"}
 <script>
     var scrollNow = true;
-    loadScroll()
+    loadScroll();
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
             var dh = $(document).height();
