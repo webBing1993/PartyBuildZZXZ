@@ -132,6 +132,8 @@
             $('.appraisal').hide();
             $('#side'+type).show();
             localStorage.setItem('appNum',type);
+            $(".tip,.loading").hide();
+            loadScroll();
         }
     }
     $('.headerTop>div').removeClass('active');
@@ -248,8 +250,8 @@
         var lists = data.data;
         var len = lists.length;
         if(app==1) {
-            for (var i = 0; i < len; i++) {
-                var list = lists[i];
+            for (var j = 0; j < len; j++) {
+                var list = lists[j];
                 //var pid = $('.part div' ).eq(list.pid ).text();
                 var obj = '';
 
@@ -295,7 +297,7 @@
                         +'</div>'
                         +'<div class="appraisalUser_02">'+list.description+'</div>'
                         +'</a>'
-                        +'</li>'
+                        +'</li>';
                 }
             $('.appraisalUser').append(html);
 			}
@@ -323,7 +325,7 @@
         for(var N=0;N<_len;N++){
             if(N>8){$(this).find('figure').eq(N).remove()}
         }
-    })
+    });
 
     $('.appshow').on('click',function(){
         if($(this).html()=='展开'){

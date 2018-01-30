@@ -4,7 +4,10 @@ body{
 .tabs {
     width: 100vw;
     background:rgba(255,255,255,1);
-    margin-bottom:2.2vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
 }
 .tabs .tab {
     font-family:PingFang-SC-Medium;
@@ -27,6 +30,7 @@ body{
     width: 100vw;
     min-height: 64vw;
     background:rgba(255,255,255,1);
+    margin-top: 5.8vh;
 }
 .boxs .box {
     width: 100vw;
