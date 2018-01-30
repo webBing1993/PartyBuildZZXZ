@@ -30,12 +30,11 @@ class News extends Admin {
         );
         $list = $this->lists('News',$map);
         int_to_string($list,array(
-            'status' => array(0=>"已发布"),
+            'status' => array(0 =>"待审核",1=>"已发布"),
             'recommend' => array( 1=>"推荐" , 0=>"不 推荐")
         ));
 
         $this->assign('list',$list);
-
         return $this->fetch();
     }
 

@@ -29,7 +29,7 @@ class Learns extends Admin {
         );
         $list = $this->lists('Learns',$map);
         int_to_string($list,array(
-            'status' => array(0=>"已发布",1=>"已发布"),
+            'status' => array(0 =>"待审核",1=>"已发布"),
             'recommend' => array(0=>"否",1=>"是"),
             'type' => array(1=>"视频",2=>"文章")
         ));
