@@ -12,6 +12,10 @@
 		padding: 1.6vw;
 		line-height: .36rem;
 	}
+    .video iframe {
+        width: 100%;
+        height: 100%;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -33,23 +37,22 @@
 			{/neq}
 		</div>
 		{$video.content}
-		<div class="note">
-			<span class="read">{$video.views}</span>
+		<div class="note clearfix">
+            {eq name="video.is_collect" value="1"}
+            <span class="fr collect star_ " onclick="isCollect(this,1,{$video.id})">&nbsp;</span>
+            {else/}
+            <span class="fr collect star " onclick="isCollect(this,1,{$video.id})">&nbsp; </span>
+            {/eq}
 			{eq name="visit" value="0"}
 			{eq name="video.is_like" value="1"}
-			<span class="isgood good_" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
+			<span class="fr isgood good_" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
 			{else/}
-			<span class="isgood good" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
+			<span class="fr isgood good" onclick="isGood(this,1,{$video.id})">{$video.likes}</span>
 			{/eq}
 			{else/}
-			<span class="isgood good">{$video.likes}</span>
+			<span class="fr isgood good">{$video.likes}</span>
 			{/eq}
-
-			{eq name="video.is_collect" value="1"}
-			<span class="collect star_ " onclick="isCollect(this,1,{$video.id})">&nbsp;</span>
-			{else/}
-			<span class="collect star " onclick="isCollect(this,1,{$video.id})">&nbsp; </span>
-			{/eq}
+            <span class="fr read">{$video.views}</span>
 	</div>
 </div>
 </div>
