@@ -57,7 +57,7 @@
 	<div class="apply">
 		<ul>
 			{volist name="list1" id="vo"}
-			<li class="lists" onclick="change(this)">
+			<li class="lists celarfix" onclick="change(this)">
 				<a href="{$vo.url}">
 					<div class="fle1"><img class="tu image" data-original="{$vo.path}" src="/home/images/loading.jpg"  alt=""/></div>
 					<div class="fri1">
@@ -355,7 +355,7 @@ function addLists(data){
 					'</li>';
         }
 		else {
-			html += '<li class="lists" onclick="change(this)">'+
+			html += '<li class="lists clearfix" onclick="change(this)">'+
 					'<a href="'+list.url+'">'+
 					'<div class="fle1"><img class="tu image" data-original="'+list.path+'" src="/home/images/loading.jpg"  alt=""/></div>'+
 					'<div class="fri1">'+

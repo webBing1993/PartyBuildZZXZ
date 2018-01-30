@@ -103,8 +103,8 @@ li a {
 	margin-left: 20vw;
 }
 .yuan {
-	width:24%;
-	height:26.7vw;
+	width: 22.6vw;
+	height: 22.6vw;
 	background: #eee;
 }
 .yuan img {
@@ -115,14 +115,15 @@ li a {
 .fri{
 	display: inline-block;
 	width: 72%;
-	height: 26.7vw;
+	height: 22.6vw;
 	padding: 2vw 0 0 0;
 	position: relative;
 }
 .title{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 	overflow: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
 	margin-bottom:1.1vh;
 	font-size:.28rem;
 	color:#333333;
@@ -165,17 +166,13 @@ li a {
 .lists a {
 	display:block;
 	width:100%;
-	height:13vh;
 	padding: 4vw 2.25vh;
 	border-bottom:1px solid #F5F5F5;
 	position: relative;
 }
 .fle1{
 	width:22.6vw;
-	height:8.4vh;
-	position: absolute;
-	left:4vw;
-	top:2.24vh;
+	height:22.6vw;
 }
 .tu{
 	width:100%;
@@ -183,7 +180,7 @@ li a {
 }
 .fri1{
 	width:65.3vw;
-	height:8.4vh;
+	height:22.6vw;
 	position: absolute;
 	right:4vw;
 	top:2.24vh;
