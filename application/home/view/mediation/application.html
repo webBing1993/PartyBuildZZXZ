@@ -185,30 +185,40 @@
             id = $(this).siblings(".user_hide").html();
         })
     });
+     var single = false;
+     var title=$("input[name='name']").val();
+     var parties=$("input[name='people']").val();
+     var proposer=$("input[name='thing']").val();
+     var mobile= $("input[name='num']").val();
+     var content=$("textarea[name='content']").val();
+     var images = new Array();
+     $(document).on('click',function(){
+         console.log(1111)
+         console.log(title)
+         if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+             $('.present').css({'background':'#FE8B44','color':'#fff'})
+         }
+     })
+
     $(function(){
         //上传
         $('.present' ).on('click',function(){
-            var single = false;
-            var title=$("input[name='name']").val();
-            var parties=$("input[name='people']").val();
-            var proposer=$("input[name='thing']").val();
-            var mobile= $("input[name='num']").val();
-            var content=$("textarea[name='content']").val();
-            var images = new Array();
             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
                single = true;
-            }else{
-                single = false;
-                swal({
-                    title: ' ',
-                    text: '您还没有完成编辑！',
-                    type: 'error',
-                    confirmButtonText:'确定',
-                    timer: 1500
-                })
             }
+//            }else{
+//                single = false;
+//                swal({
+//                    title: ' ',
+//                    text: '请输入必填项',
+//                    type: 'error',
+//                    confirmButtonText:'确定',
+//                    timer: 1500
+//                })
+//            }
 //            console.log(data)
             if(single){
+//                $('.present').css({'background':'#FE8B44','color':'#fff'})
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
                         images.push($(this).data("tab")+"");
