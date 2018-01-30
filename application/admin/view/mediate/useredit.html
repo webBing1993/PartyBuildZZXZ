@@ -156,7 +156,7 @@
                                        value="{$msg.birthday || default=''}">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                         <div class="col-lg-1 text-right control-label">
                             <label>政治面貌:</label>
                         </div>
@@ -164,7 +164,27 @@
                             <input type="text" placeholder="请输入政治面貌" class="form-control form_title" name="politics_status"
                                    value="{$msg.politics_status || default=''}">
                         </div>
-                    </div>
+                    </div>-->
+
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>政治面貌:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <select name="politics_status" id="type" class="form-control">
+                                    {empty name="msg"}
+                                    <option value="1">群众</option>
+                                    <option value="2">团员</option>
+                                    <option value="3">党员</option>
+                                    {else/}
+                                    <option value="1" {eq name="msg.politics_status" value="1" } selected {/eq}>群众</option>
+                                    <option value="2" {eq name="msg.politics_status" value="2" } selected {/eq}>团员</option>
+                                    <option value="3" {eq name="msg.politics_status" value="3" } selected {/eq}>党员</option>
+                                    {/empty}
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>学历:</label>
@@ -278,7 +298,7 @@
                 name: $("input[name='name']").val(),
                 description: $("input[name='description']").val(),
                 birthday: $("input[name='birthday']").val(),
-                politics_status: $("input[name='politics_status']").val(),
+                politics_status: $("select[name='politics_status']").val(),
                 education: $("input[name='education']").val(),
                 content:ue.getContent(),
                 status: 0,
