@@ -183,10 +183,23 @@
                 $('.shadow').fadeOut()
             },800);
             id = $(this).siblings(".user_hide").html();
+
+            var title=$("input[name='name']").val();
+            var parties=$("input[name='people']").val();
+            var proposer=$("input[name='thing']").val();
+            var mobile= $("input[name='num']").val();
+            var content=$("textarea[name='content']").val();
+            if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                $('.present').css({'background':'#FE8B44','color':'#fff'});
+                single = true;
+            }else {
+                $('.present').css({'background':'#dddddd','color':'##999'});
+                single = false;
+            }
         })
     });
 
-     $(document).on('click',function(){
+     /*$(document).on('click',function(){
          var single = false;
          var title=$("input[name='name']").val();
          var parties=$("input[name='people']").val();
@@ -196,34 +209,94 @@
          if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
              $('.present').css({'background':'#FE8B44','color':'#fff'})
          }
-     })
+     });*/
+     var single = false;
+
+     // 提交按钮变化
+     $(function () {
+         $("input[name='name']").on("input", function (e) {
+             var title=$("input[name='name']").val();
+             var parties=$("input[name='people']").val();
+             var proposer=$("input[name='thing']").val();
+             var mobile= $("input[name='num']").val();
+             var content=$("textarea[name='content']").val();
+             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                 $('.present').css({'background':'#FE8B44','color':'#fff'});
+                 single = true;
+             }else {
+                 $('.present').css({'background':'#dddddd','color':'##999'});
+                 single = false;
+             }
+         });
+         $("input[name='people']").on("input", function (e) {
+             var title=$("input[name='name']").val();
+             var parties=$("input[name='people']").val();
+             var proposer=$("input[name='thing']").val();
+             var mobile= $("input[name='num']").val();
+             var content=$("textarea[name='content']").val();
+             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                 $('.present').css({'background':'#FE8B44','color':'#fff'});
+                 single = true;
+             }else {
+                 $('.present').css({'background':'#dddddd','color':'##999'});
+                 single = false;
+             }
+         });
+         $("input[name='thing']").on("input", function (e) {
+             var title=$("input[name='name']").val();
+             var parties=$("input[name='people']").val();
+             var proposer=$("input[name='thing']").val();
+             var mobile= $("input[name='num']").val();
+             var content=$("textarea[name='content']").val();
+             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                 $('.present').css({'background':'#FE8B44','color':'#fff'});
+                 single = true;
+             }else {
+                 $('.present').css({'background':'#dddddd','color':'##999'});
+                 single = false;
+             }
+         });
+         $("input[name='num']").on("input", function (e) {
+             var title=$("input[name='name']").val();
+             var parties=$("input[name='people']").val();
+             var proposer=$("input[name='thing']").val();
+             var mobile= $("input[name='num']").val();
+             var content=$("textarea[name='content']").val();
+             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                 $('.present').css({'background':'#FE8B44','color':'#fff'});
+                 single = true;
+             }else {
+                 $('.present').css({'background':'#dddddd','color':'##999'});
+                 single = false;
+             }
+         });
+         $("textarea[name='content']").on("input", function (e) {
+             var title=$("input[name='name']").val();
+             var parties=$("input[name='people']").val();
+             var proposer=$("input[name='thing']").val();
+             var mobile= $("input[name='num']").val();
+             var content=$("textarea[name='content']").val();
+             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
+                 $('.present').css({'background':'#FE8B44','color':'#fff'});
+                 single = true;
+             }else {
+                 $('.present').css({'background':'#dddddd','color':'##999'});
+                 single = false;
+             }
+             return false;
+         });
+     });
 
     $(function(){
+        var title=$("input[name='name']").val();
+        var parties=$("input[name='people']").val();
+        var proposer=$("input[name='thing']").val();
+        var mobile= $("input[name='num']").val();
+        var content=$("textarea[name='content']").val();
+        var images = new Array();
         //上传
         $('.present' ).on('click',function(){
-            var single = false;
-            var title=$("input[name='name']").val();
-            var parties=$("input[name='people']").val();
-            var proposer=$("input[name='thing']").val();
-            var mobile= $("input[name='num']").val();
-            var content=$("textarea[name='content']").val();
-            var images = new Array();
-            if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
-               single = true;
-            }
-//            }else{
-//                single = false;
-//                swal({
-//                    title: ' ',
-//                    text: '请输入必填项',
-//                    type: 'error',
-//                    confirmButtonText:'确定',
-//                    timer: 1500
-//                })
-//            }
-//            console.log(data)
             if(single){
-//                $('.present').css({'background':'#FE8B44','color':'#fff'})
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
                         images.push($(this).data("tab")+"");
