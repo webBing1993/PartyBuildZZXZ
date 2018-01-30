@@ -14,9 +14,12 @@ body{
 .list{
     width:100%;
     position: relative;
-    /*border-left:.8vw solid #DBDBDB;*/
+    border-left:.04rem solid #DBDBDB;
     padding:0 4vw 1.5vh 8.9vw;
     z-index: 9;
+}
+.list:nth-of-type(5){
+    border-left:none;
 }
 
 .list span{
@@ -50,7 +53,7 @@ body{
     -moz-border-radius: 50%;
     border-radius: 50%;
     position: absolute;
-    left:-2.8vw;
+    left:-2.5vw;
     color:#fff;
 }
 .direc{
@@ -77,7 +80,7 @@ body{
     background:#E1DEE2;
 }
 #hr01 {position: absolute;top:1.5vh;left:-.6vw;border-left: .04rem solid #C5C5C5;z-index: 7;}
-.hr02 {position: absolute;top:1.5vh;left:-.6vw;border-left: .04rem solid #52BDE3;z-index: -1;}
+.hr02 {position: absolute;top:1.5vh;left:-.3vw;border-left: .04rem solid #52BDE3;z-index: -1;}
 .list .grc{
     color:#999999;
 }
