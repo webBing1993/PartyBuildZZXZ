@@ -47,10 +47,21 @@
 {/block}
 {block name="script"}
 <script>
+    var single = false;
+    $("textarea[name='content']").on("input", function (e) {
+        var content=$("textarea[name='content']").val();
+        if(content != "" ){
+            $('.present').css({'background':'#FE8B44','color':'#fff'});
+            single = true;
+        }else {
+            $('.present').css({'background':'#dddddd','color':'##999'});
+            single = false;
+        }
+    });
+
     $(function(){
         //上传
         $('.present' ).on('click',function(){
-            var single = false;
             var content=$("textarea[name='content']").val();
             var img=$('.img1');
             var imglen=img.length;
@@ -61,18 +72,19 @@
             if (imglen == 0) {
                 images="";
             }
-            if(content != "" ){
-                single = true;
-            }else{
-                single = false;
-                swal({
-                    title: ' ',
-                    text: '请输入必填项',
-                    type: 'error',
-                    confirmButtonText:'确定',
-                    timer: 1500
-                })
-            }
+//            if(content != "" ) {
+//                single = true;
+//
+//            }else{
+//                single = false;
+//                swal({
+//                    title: ' ',
+//                    text: '请输入必填项',
+//                    type: 'error',
+//                    confirmButtonText:'确定',
+//                    timer: 1500
+//                })
+//            }
             var data={
                 content: content,
                 images:images
