@@ -356,7 +356,12 @@ class Mediation extends Base
                 $images[$key] = get_cover($value, 'path');
             }
         }
+        $map1 = [
+            'status' => ['egt',0],
+        ];
+        $list = MediationUser::where($map1)->order('id desc')->select();
 
+        $this->assign('list',$list);
         $this->assign('response',$response);
         $this->assign('images',$images);
         $this->assign('model',$model);
