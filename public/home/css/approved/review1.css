@@ -76,9 +76,6 @@ li a {
 .swipeout-content{
 	height:100%;
 	width:100%;
-	padding-left:4vw;
-	/*height:90px;*/
-	/*padding-left: 10px;*/
 }
 .swipeout-content>img {
 	border-radius: 4px;
