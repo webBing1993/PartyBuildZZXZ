@@ -15,8 +15,8 @@ body{
     display: inline-block;
     /*width:90px;*/
     /*height:90px;*/
-    width:24.5vw;
-    height:100%;
+    width:24vw;
+    height:24vw;
     float: left;
     margin-right:4vw;
 }

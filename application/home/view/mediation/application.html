@@ -193,7 +193,7 @@
             var proposer=$("input[name='thing']").val();
             var mobile= $("input[name='num']").val();
             var content=$("textarea[name='content']").val();
-            var images = [];
+            var images = new Array();
             if(title != "" && parties != "" && proposer != "" && mobile != "" && content != "" && id != undefined ){
                single = true;
             }else{
@@ -206,25 +206,26 @@
                     timer: 1500
                 })
             }
-            var data={
-                title: title,
-                parties: parties,
-                proposer: proposer,
-                mobile: mobile,
-                content: content,
-                mediatorid : id,
-                images: images
-            };
-            console.log(data)
+//            console.log(data)
             if(single){
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
                         images.push($(this).data("tab")+"");
                     }
                 });
-//                if ($(".img .img1").length == 0) {
-//                    images.push();
-//                }
+                if ($(".img .img1").length == 0) {
+                    images=null;
+                }
+                var data={
+                    title: title,
+                    parties: parties,
+                    proposer: proposer,
+                    mobile: mobile,
+                    content: content,
+                    mediatorid : id,
+                    images: images
+                };
+                console.log(data)
                 // 弹窗
                 swal({
                         title: ' ',
@@ -250,7 +251,7 @@
                                 data:data,
                                 success:function(data){
                                     if (data.code == 1) {
-                                        history.go(-1);
+//                                        history.go(-1);
                                     }
                                 }
                             });
