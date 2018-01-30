@@ -241,13 +241,13 @@
 
         //    时间日历
         $( ".datetimepicker" ).datetimepicker( {
-            language:  'cn',
-            format: 'yyyy-mm-dd hh:ii',
-            forceParse: false,
-            todayBtn: true,
+            format: 'yyyy-mm',
+            weekStart: 1,
             autoclose: true,
-            todayHighlight: 1,
-            minuteStep: 5
+            startView: 3,
+            minView: 3,
+            forceParse: false,
+            language: 'cn'
         });
 
         //    单选按钮
