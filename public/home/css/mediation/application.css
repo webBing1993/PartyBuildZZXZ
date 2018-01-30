@@ -194,7 +194,7 @@ textarea{
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    z-index:9999;
+    z-index:99;
 }
 .x .im2{
     display:inline;
