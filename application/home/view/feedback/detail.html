@@ -59,7 +59,7 @@
                 images.push(img.eq(i).attr('data-tab'));
             }
             if (imglen == 0) {
-                images.push("");
+                images="";
             }
             if(content != "" ){
                 single = true;
@@ -77,6 +77,7 @@
                 content: content,
                 images:images
             };
+            console.log(data)
             if(single){
                 // 弹窗
                 swal({
