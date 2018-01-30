@@ -18,9 +18,7 @@
         <div class="uecontent">
             {$article.content}
         </div>
-        <div class="note">
-            <span class="read">{$article.views}</span>
-
+        <div class="note clearfix">
             {eq name="article.is_collect" value="1"}
             <span class="fr collect star_ " onclick="isCollect(this,1,{$article.id})">&nbsp;</span>
             {else/}
@@ -36,7 +34,7 @@
             {else/}
             <span class="fr isgood good">{$article.likes}</span>
             {/eq}
-
+            <span class="fr read">{$article.views}</span>
         </div>
     </div>
 </div>
@@ -237,7 +235,7 @@
             var len = $(".list" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
-            var id = 1;
+            var id = {$article['id']};
             if(dh == end && scrollNow){
                 scrollNow = false;
                 $.ajax({
