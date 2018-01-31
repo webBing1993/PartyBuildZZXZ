@@ -74,6 +74,15 @@
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
+    var url = document.referrer;
+    if (url.indexOf("audit") > 0) {
+        $(".bottom,.comment,.note.clearfix").hide();
+    }else {
+        $(".bottom,.comment,.note.clearfix").show();
+    }
+
+
+
     var scrollNow = true;
     $(function(){
         var len = $(".list" ).length;
