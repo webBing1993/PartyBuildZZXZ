@@ -176,13 +176,12 @@ class Audit extends Base
         $status = input('status');
         $info = AuditModel::update(['status' => $status], ['id' => $id]);
         if ($info) {
-            if($status == 1){
-                $model = AuditModel::get($id);
-                $pre = AuditModel::STATU_ARRAY[$model['type']];
-                $url = "/home/".$model['url']."/id/".$model['aid'];
+            $model = AuditModel::get($id);
+            $pre = AuditModel::STATU_ARRAY[$model['type']];
+            $url = "/home/".$model['url']."/id/".$model['aid'];
 //            $this->push($model['title'], $model['front_cover'], $url, $pre);
-                Db::name($model['table'])->update(['status' => $status, 'id' => $model['aid']]);
-            }
+            Db::name($model['table'])->update(['status' => $status, 'id' => $model['aid']]);
+        
 
             return $this->success();
         } else {
