@@ -124,20 +124,24 @@
      <div id="all">查看全部信息</div>
  </div>
 <div class="form">
-    <div class="box">
-        <span class="describe-title">事件名称 :</span><p class="describe-t">{$model.title}</p>
+    <div class="box clearfix">
+        <span class="describe-title fl">事件名称 :</span><p class="describe-t fl">{$model.title}</p>
         <!--事件名称 ：<span class="con">{$model.title}</span>-->
     </div>
-    <div class="box">
-        当事人 ：<span class="con">{$model.parties}</span>
+    <div class="box clearfix">
+        <span class="describe-sp fl">当事人 :</span>
+        <span class="describe-t fl">{$model.parties}</span>
     </div>
-    <div class="box">
-       联系电话 ：<span class="con">{$model.mobile}</span>
+    <div class="box clearfix">
+        <span class="describe-sp fl">联系电话 :</span>
+        <span class="describe-t fr">{$model.mobile}</span>
     </div>
-    <div class="box describe">
-        <span class="describe-sp">描述 ：</span>
-        <div class="describe-p">
-            {$model.content}
+    <div class="box describe clearfix">
+        <div class="clearfix">
+            <span class="describe-sp fl">描述 :</span>
+            <div class="describe-p fl">
+                {$model.content}
+            </div>
         </div>
         <div class="quan">
             查看全部信息
