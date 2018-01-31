@@ -34,7 +34,7 @@ class News extends Model {
      */
     public static function getTop() {
         $map = array(
-            'status' => array('egt',0),
+            'status' => array('gt',0),
             'recommend' =>1,
         );
         $order = 'create_time desc';
