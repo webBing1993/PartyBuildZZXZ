@@ -26,7 +26,7 @@ class Audit extends Model {
     const STATU_TEXT_APPLY = 0;
     const STATU_TEXT_PASS = 1;
     const STATU_TEXT_ARRAY = [
-        self::STATU_TEXT_NOPASS  => '审核未通过',
+        self::STATU_TEXT_NOPASS  => '审核不通过',
         self::STATU_TEXT_APPLY  => '',
         self::STATU_TEXT_PASS  => '审核已通过',
     ];
