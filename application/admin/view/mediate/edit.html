@@ -126,7 +126,7 @@
                                     {/volist}
                                     {else/}
                                     {volist name="list" id="so"}
-                                    <option value="{$so.userid}"{if condition="$so.userid eq $msg.mediatorid"} selected {/if}>{$so.name}</option>
+                                    <option value="{$so.userid}"{if condition="$so.userid eq $msg.uid"} selected {/if}>{$so.name}</option>
                                     {/volist}
                                     {/empty}
                                 </select>

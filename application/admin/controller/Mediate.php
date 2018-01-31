@@ -26,11 +26,15 @@ class Mediate extends Admin
             'status' => array('eq', 0),
         );
         $list = $this->lists('Mediation_case', $map);
+        foreach($list as $key=>$v){
+            $list2 = Db::table('pb_mediation_user')->where('status', 0)->where('userid',$v['uid'])->find();
+            $list[$key]['uid']=$list2['name'];
+        }
         int_to_string($list, array(
             'status' => array(0 => "已发布"),
             'recommend' => [0 => "否", 1 => "是"]
         ));
-
+        
         $this->assign('list', $list);
         return $this->fetch();
     }

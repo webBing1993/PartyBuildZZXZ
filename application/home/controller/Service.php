@@ -30,7 +30,7 @@ class Service extends Base
         $this->anonymous();
         //数据列表
         $map = [
-            'status' => ['gt',2],
+            'status' => ['gt',0],
         ];
         $list = Meet::where($map)->limit(10)->order('id desc')->select();
         $this->assign('list',$list);
