@@ -97,6 +97,13 @@
                   <span>{$vo.s_time}</span>
               </p>
               {/notempty}
+              {eq name="$vo.num" value="2"}
+              {notempty name="$model.no_approve"}
+              <p class="direc">
+                  情况反馈：{$model.no_approve}
+              </p>
+              {/notempty}
+              {/eq}
               {eq name="$vo.num" value="4"}
               {notempty name="$model.feedback_mediator"}
               <p class="direc">
