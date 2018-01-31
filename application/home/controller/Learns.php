@@ -243,7 +243,7 @@ class Learns extends Base
         //数据列表
         $map = [
             'type' => ['in',[1,2]],
-            'status' => ['egt',0],
+            'status' => ['gt',0],
         ];
         $list = LearnsModel::where($map)->limit(5)->order('id desc')->select();
         foreach($list as $value){
@@ -267,7 +267,7 @@ class Learns extends Base
         $len = input('length');
         $map = [
             'type' => ['in',[1,2]],
-            'status' => ['egt',0],
+            'status' => ['gt',0],
         ];
         $list = LearnsModel::where($map)->order('id desc')->limit($len,3)->select();
         foreach($list as $value){
