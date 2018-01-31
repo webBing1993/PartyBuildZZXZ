@@ -143,10 +143,10 @@
         <span class="describe-t fr">{$model.mobile}</span>
     </div>
     <div class="box describe clearfix">
-        <div class="clearfix">
-            <span class="describe-sp fl">描述 :</span>
-            <div class="describe-p fl">
-                {$model.content}
+        <div class="clearfix des">
+            <span class="describe-m">描述 :</span>
+            <div class="describe-ps">
+                <p class="desc">{$model.content}</p>
             </div>
         </div>
         <div class="quan">
@@ -250,7 +250,7 @@
 {/eq}
 {eq name="$user_tag" value="2"}
     {eq name="$model.status" value="2"}
-    <a href="#" class="remark1">确认</a>
+    <a href="javascript:;" class="remark1">确认</a>
     {/eq}
     {eq name="$model.status" value="3"}
     <a class="remark2" href="{:Url('Mediation/opinion?id='.$id)}">处理反馈</a>
@@ -337,7 +337,7 @@
                         //成功后刷新页面
                         if(data.code == 1){
                             $('.remark1').css('display','none');
-                            history.go(0);
+                            history.go(-1);
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')

@@ -156,12 +156,26 @@ body{
     /*-webkit-line-clamp: 2;*/
     /*overflow: hidden;*/
 }
-
+.des{
+    position: relative;
+}
+.describe-m{
+  position: absolute;
+    left:0;
+    top:0;
+}
+.describe-ps{
+    text-indent: 27.5vw;
+    color:#333;
+    width:100%;
+}
 .images{
+    display: inline-block;
     position: relative;
     margin-top:1.6vw;
     width:10.2vw;
     height:10.2vw;
+    margin-left:10vw;
 }
 .remark, .remark1, .remark2{
     display:none;

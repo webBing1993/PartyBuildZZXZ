@@ -93,7 +93,7 @@
   color: #666666;
 }
 .book .content .book-img {
-  display: inline-block;
+  /*display: inline-block;*/
   width: 35vw;
   height: 50vw;
   margin: 10vw 29vw 10vw 29vw;

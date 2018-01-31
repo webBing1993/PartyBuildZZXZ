@@ -1,7 +1,7 @@
 {extend name="public/common"}
 
 {block name="style"}
-<title>网上申请</title>
+<title>titile</title>
 <link rel="stylesheet" href="/home/css/mediation/index.css">
 <style>
     .list:active{
@@ -50,7 +50,24 @@
 {/block}
 {block name="script"}
 <script>
-    function check(){
+      var titile;
+      var url=document.location.toString();
+      var arrUrl = url.split("//");
+      var start = arrUrl[1].indexOf("/");
+      var relUrl = arrUrl[1].substring(start);
+      var num=parseInt(relUrl.split('/')[5]);
+        console.log(num)
+      if(num==1){
+          titile='审核不通过'
+      }else if(num==2){
+          titile='调解员待确认'
+      }else if(num==3){
+          titile='纠纷待处理'
+      }else if(num==4){
+          titile='已完成'
+      }
+      document.title=titile;
+      function check(){
         if($('.apply').find(".list").length == 0){
             $('#nomessage').show();
         }
