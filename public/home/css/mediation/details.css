@@ -128,7 +128,7 @@ body{
     height: 21.8vw;
 }
 .describe-sp,.describe-title{
-   /*position: absolute;*/
+   position: absolute;
     display: inline-block;
 }
 .describe-t{
