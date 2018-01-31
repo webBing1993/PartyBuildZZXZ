@@ -34,7 +34,7 @@ class News extends Base
         $this->assign('top',$top);
         $userId = session('userId');
         $map = [
-            'status' => ['egt',0],
+            'status' => ['gt',0],
         ];
         $list = NewsModel::where($map)->order('id desc')->limit(10)->select();
         $this->assign('list',$list);
@@ -47,7 +47,7 @@ class News extends Base
     public function indexmore(){
         $len = input('length');
         $map = [
-            'status' => ['egt',0],
+            'status' => ['gt',0],
         ];
         $list = NewsModel::where($map)->order('id desc')->limit($len,6)->select();
         foreach($list as $value){
