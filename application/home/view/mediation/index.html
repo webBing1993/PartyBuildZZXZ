@@ -7,6 +7,11 @@
      .list:active{
         background: #F3F2F7;
     }
+     .mediator ul li .hui{
+        background: #DDDDDD;
+        color:#999;
+        border-color:#DDDDDD;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -61,7 +66,7 @@
                 {eq name="$user_tag" value="3"}
                 <a href="{:Url('Mediation/application?id='.$vo.userid)}" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
                 {else/}
-                <a href="#" class="liao">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
+                <a href="#" class="liao hui">找{eq name="$vo.gender" value="1"}他{else/}她{/eq}调解</a>
                 {/eq}
                 <a href="{:Url('Mediation/medcase?id='.$vo.userid)}" class="more">查看更多</a>
             </li>

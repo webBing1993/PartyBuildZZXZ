@@ -130,11 +130,11 @@ body{
 .describe-sp,.describe-title{
    /*position: absolute;*/
     display: inline-block;
-    width: 24%;
+    width: 30%;
 }
 .describe-t{
     /*text-indent:20.5vw;*/
-    width:76%;
+    width:70%;
     height:100%;
     color:#333333;
     word-break:break-all;
@@ -145,7 +145,7 @@ body{
 }
 .describe-p{
     /*text-indent:13.6vw;*/
-    width:76%;
+    width:70%;
     height:100%;
     color:#333;
     margin-bottom: 3.2vw;
