@@ -337,7 +337,7 @@
                         //成功后刷新页面
                         if(data.code == 1){
                             $('.remark1').css('display','none');
-                            history.go(-1);
+                            history.go(0);
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')

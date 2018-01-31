@@ -10,16 +10,16 @@ body {
     /*margin-top: 10px;*/
 }
 .lists .list {
-    height: 50px;
+    height: 7.5vh;
     width: 100%;
-    padding-left: 13px;
-    padding-right: 13px;
+    padding-left: 3.5vw;
+    padding-right: 3.5vw;
     background: #ffffff;
     border-top: 1px solid #f1f1f1;
-    line-height: 50px;
+    line-height: 7.5vh;
 }
 .lists .list img {
-    width: 40px;
+    width: 10.6vw;
     /*height: 40px;*/
     /*margin-top: 4px;*/
     /*border: 2px solid #ffffff;*/
@@ -30,7 +30,7 @@ body {
 }
 .lists .list .fl {
     color: #333333;
-    font-size: 15px;
+    font-size: .15rem;
 }
 .lists .list .fr {
     color: #999999;

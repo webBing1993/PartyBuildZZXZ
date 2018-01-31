@@ -25,9 +25,7 @@
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
 			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;" class="top1"><img src="/home/images/approved/icon_left.png" style="width:.34rem;vertical-align: middle;"> 向左滑动</div>
-			<div id="nomessage">
-				<img src="/home/images/nomessage.png" alt="无消息">
-			</div>
+			{notempty name="$list"}
 			<ul class="views">
 				{volist name="list" id="vo"}
 				<li class="swipeout" style="margin-right: 3vw;">
@@ -51,10 +49,16 @@
 				{/volist}
 
 			</ul>
+			{else/}
+			<div id="nomessage">
+				<img src="/home/images/nomessage.png" alt="无消息">
+			</div>
+			{/notempty}
 		</div>
 	</div>
 	<!--调解申请模块-->
 	<div class="apply">
+		{notempty name="$list1"}
 		<ul>
 			{volist name="list1" id="vo"}
 			<li class="lists celarfix" onclick="change(this)">
@@ -68,9 +72,11 @@
 			</li>
 			{/volist}
 		</ul>
+		{else/}
 		<div id="nomessage1">
 			<img src="/home/images/nomessage.png" alt="无消息">
 		</div>
+		{/notempty}
 	</div>
 
 </div>
@@ -132,6 +138,7 @@ $(".list-t-wrap >div").eq(type).show();
 		$(this).siblings().find('span').removeClass('active');
 		$(this).find('span').addClass('active');
 		$(".tip,.loading").hide();
+        $(window ).scrollTop("0");
 		loadScroll();
 	});
 
