@@ -56,8 +56,13 @@ class Audit extends Base
             $list1 = AuditModel::where($map1)->order('id desc')->limit(10)->select();
             foreach ($list1 as $key => $value){
                 $list1[$key]['time'] = date("Y-m-d",$value['create_time']);
-                $img = Picture::get($value['front_cover']);
-                $list1[$key]['path'] = $img['path'];
+                if($value['front_cover']){
+                    $img = Picture::get($value['front_cover']);
+                    $list1[$key]['path'] = $img['path'];
+                }else{
+                    $list1[$key]['path'] = '/home/images/lxyz/icon/default.png';
+                }
+
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
                 $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
@@ -100,8 +105,12 @@ class Audit extends Base
             $list1 = AuditModel::where($map1)->order('id desc')->limit(10)->select();
             foreach ($list1 as $key => $value){
                 $list1[$key]['time'] = date("Y-m-d",$value['create_time']);
-                $img = Picture::get($value['front_cover']);
-                $list1[$key]['path'] = $img['path'];
+                if($value['front_cover']){
+                    $img = Picture::get($value['front_cover']);
+                    $list1[$key]['path'] = $img['path'];
+                }else{
+                    $list1[$key]['path'] = '/home/images/lxyz/icon/default.png';
+                }
                 $list1[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
                 $list1[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
                 $list1[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
@@ -136,8 +145,17 @@ class Audit extends Base
         $list = AuditModel::where($map)->order('id desc')->limit($len,6)->select();
         foreach($list as $key => $value){
             $list[$key]['time'] = date("Y-m-d",$value['create_time']);
-            $img = Picture::get($value['front_cover']);
-            $list[$key]['path'] = $img['path'];
+            if($type == 1) {
+                if ($value['front_cover']) {
+                    $img = Picture::get($value['front_cover']);
+                    $list[$key]['path'] = $img['path'];
+                } else {
+                    $list[$key]['path'] = '/home/images/lxyz/icon/default.png';
+                }
+            }else{
+                $img = Picture::get($value['front_cover']);
+                $list[$key]['path'] = $img['path'];
+            }
             $list[$key]['pre'] = AuditModel::STATU_ARRAY[$value['type']];
             $list[$key]['url'] = "/home/".$value['url']."/id/".$value['aid'];
             $list[$key]['color'] = AuditModel::STATU_COLOR_ARRAY[$value['status']];
