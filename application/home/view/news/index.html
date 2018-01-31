@@ -22,23 +22,10 @@
 </style>
 {/block}
 {block name="body"}
-<div class="banners" style="height:50vw;">
-    <div class="swiper-container">
-        <div class="imgs swiper-wrapper">
-            {volist name="top" id="vo"}
-            <div class="banner swiper-slide">
-                <a href="{:Url('news/detail?id='.$vo.id)}">
-                    <img data-src="{$vo.front_cover|get_cover='path'}"  class="banner-img swiper-lazy">
-                    <div class="title_ limit">{$vo.title}</div>
-                    <div class="swiper-lazy-preloader"></div>
-                </a>
-            </div>
-            {/volist}
-        </div>
-        <!--<div class="swiper-pagination"></div>-->
-    </div>
+<div class="banners">
+    <img data-src="/home/images/news/news.png" src="/home/images/news/news.png">
 </div>
-<div class="blocks" style="padding-top: 3.75vh;">
+<div class="blocks">
     <div class="block lists">
         {volist name="list" id="vo"}
         <a href="{:Url('detail?id='.$vo.id)}" class="list clear">
@@ -72,7 +59,7 @@
 
 <script>
     function check(){
-        if($('img').length == 1){
+        if($('img').length <= 2){
             $('#nomessage').show();
             $("body").css("backgroundColor","rgba(245,245,245,1)");
         }else {
@@ -89,14 +76,14 @@
     var scrollNow = true;
     $(function(){
         //轮播
-        var mySwiper = new Swiper('.swiper-container', {
+       /* var mySwiper = new Swiper('.swiper-container', {
             autoplay: 3000,
             loop:true,
             autoplayDisableOnInteraction:false,
             pagination: '.swiper-pagination',
             lazyLoading : true,
             lazyLoadingInPrevNext : true,
-        });
+        });*/
         init();
         $('.tab' ).off('click' ).on('click',function(){
             var this_ = $(this );
