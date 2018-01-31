@@ -224,7 +224,7 @@
                             tip.show();
                             if(data.code == 1){
                                 addLists(data);
-                                /*$('.appraisalSort li').each(function(){
+                                $('.appraisalSort li').each(function(){
                                     if($(this).find('.appText').height()>120){
                                         $(this).find('.appText').addClass('_height');
                                         $(this).find('.appshow').show();
@@ -238,7 +238,8 @@
                                     if($(this).find('.appImg figure').length==4){
                                         $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
                                     }
-                                });*/
+                                });
+                                initPhotoSwipeFromDOM('.my-gallery');
                                 var dataLen =data.data.length;
 //                                console.log(dataLen)
                                 if(data.data.length > 6){
