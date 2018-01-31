@@ -388,7 +388,7 @@ class Mediation extends Base
                 $audit['type'] = 4;
                 $audit['table'] = 'mediation';
                 $audit['url'] = 'mediation/yhdetails';
-                $audit['aid'] = $opinionModel->id;
+                $audit['aid'] = $model->id;
                 $audit['title'] = $data['title'];
                 $audit['publisher'] = '';
                 if ($data['images'] && $data['images'] != '""') {
