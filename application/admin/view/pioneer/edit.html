@@ -21,6 +21,9 @@
         top:0;
         opacity: 0;
     }
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        background-color: #fff;
+    }
 </style>
 {/block}
 
@@ -110,9 +113,9 @@
                             </div>
                             <div class="col-lg-11">
                                 {empty name="msg"}
-                                <input type="text" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="birthday" value="">
+                                <input type="text" readonly="readonly" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="birthday" value="">
                                 {else/}
-                                <input type="text" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="birthday" value="{$msg.birthday}">
+                                <input type="text" readonly="readonly" placeholder="请输入出生年月" class="form-control form_title datetimepicker" name="birthday" value="{$msg.birthday}">
                                 {/empty}
                             </div>
                         </div>
