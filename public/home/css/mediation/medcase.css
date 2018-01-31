@@ -79,27 +79,35 @@ body{
 /*}*/
 .lists{
     padding-top:4vw;
-    background: #fff;
 }
 .tit{
-    line-height: 2.5vh;
-    height:2.5vh;
+    line-height: 8vw;
+    /*height:2.5vh;*/
+    position: relative;
+    padding: 0 4vw;
+    background: #fff;
 }
 .list{
     text-decoration: none;
     display: block;
-    padding:4vw;
     border-bottom:1px solid #D1D1D1;
+    background: #fff;
+    padding: 1.6vw 4vw;
 }
 .icon{
-    margin-left:4vw;
-    margin-right:1.3vw;
     width:4vw;
     height:4vw;
+    position: absolute;
+    left: 4vw;
+    top: 50%;
+    margin-top: -2vw;
 }
 .case, .title{
     font-size:.3rem;
     color:#333;
+}
+.case {
+    padding-left: 6vw;
 }
 .title{
     margin-bottom:1.5vh;
