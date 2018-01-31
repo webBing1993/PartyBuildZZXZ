@@ -144,7 +144,7 @@
             <img class="q" src="/home/images/icon_more.png"/>
         </div>
         {notempty name="$images"}
-        <div class="imgs">
+        <div class="imgs my-gallery" data-pswp-uid="1">
             {volist name="$images" id="img"}
             <figure><a href="{$img}" data-size="800x800"><img data-original="{$img}" class="lazy"></a></figure>
             {/volist}

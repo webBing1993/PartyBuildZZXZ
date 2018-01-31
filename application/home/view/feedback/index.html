@@ -39,7 +39,7 @@
 					<div class="appTop"><p class="appraisalName">{$vo.username}</p><p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p></div>
 					<div class="appText">{$vo.content}</div>
 					<p class="appshow">展开</p>
-					<div class="appImg my-gallery">
+					<div class="appImg my-gallery" data-pswp-uid="1">
 						{volist name="$vo.images" id="img"}
 						<figure><a href="{$img|get_cover='path'}" data-size="800x800"><img data-original="{$img|get_cover='path'}" class="lazy"></a></figure>
 						{/volist}
@@ -274,7 +274,7 @@
                     + '<div class="appTop"><p class="appraisalName">' + list.username + '</p><p class="appraisalTime">' + list.time + '</p></div>'
                     + '<div class="appText">' + list.content + '</div>'
                     + '<p class="appshow">展开</p>'
-                    + '<div class="appImg my-gallery">'
+                    + '<div class="appImg my-gallery"  data-pswp-uid="1">'
                     + obj1
                     + '</div>'
                     + '<div class="note">'

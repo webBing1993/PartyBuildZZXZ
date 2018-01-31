@@ -9,7 +9,7 @@
         width:26.6vw;
         height:26.6vw;
         margin: 50% auto;
-        display: none;
+        /*display: none;*/
     }
     #nomessage img{
         width:100%;
@@ -36,9 +36,6 @@
     </div>
 </div>
 <div class="blocks" style="padding-top: 3.75vh;">
-    <div id="nomessage">
-        <img src="/home/images/nomessage.png" alt="无消息">
-    </div>
     <div class="block lists">
         {notempty name="$list"}
         {volist name="list" id="vo"}
@@ -56,9 +53,8 @@
         </a>
         {/volist}
         {else/}
-        <div style="text-align: center;">
-            <img src="/home/images/news/icon_null.png" alt="" style="width:26.7vw;height:11.24vh;">
-            <p style="text-align: center;margin-top: 1.5vh;font-size: .3rem;color: #999;">暂无数据</p>
+        <div id="nomessage">
+            <img src="/home/images/nomessage.png" alt="无消息">
         </div>
         {/notempty}
     </div>
