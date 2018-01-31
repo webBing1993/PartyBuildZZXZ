@@ -107,6 +107,7 @@
 .appraisalRight {
     margin-left: 14.7vw;
     display: block;
+    overflow: hidden;
 }
 
 .appTop {
