@@ -110,7 +110,7 @@ body{
 }
 .line, .site,.time{
     font-size:.26rem;
-    color:#666;
+    color:#999;
 }
 .line{
     display: -webkit-box;
@@ -118,6 +118,7 @@ body{
     -webkit-line-clamp: 2;
     overflow: hidden;
     margin-bottom:1.8vh;
+    color:#666;
 }
 .time{
     float: right;

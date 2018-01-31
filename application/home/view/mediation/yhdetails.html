@@ -159,10 +159,7 @@
     {eq name="$model.status" value="1"}
     <div class="box high">
       <!--管理员可选择-->
-        <div class="xuan1">
-            调解员 ：<span class="last_ts">请选择调解员</span>
-        </div>
-        <div class="xuan2 hidden">
+        <div class="xuan2">
             调解员 ：<img class="images" src="{$mediator_path}"  alt=""/>
             <span class="con name">{$model.mediator}</span>
         </div>
@@ -268,7 +265,7 @@
     if($(window).width()>=768){
         $('.form').css('margin-bottom','9vh')
     }
-
+    var userid={$model.mediatorid};
 //    点击选择调解员
     $('.high').on('click',function(){
         $('.shadow').fadeIn();
@@ -283,10 +280,9 @@
             e.preventDefault();
             var src=$(this).parent().find('img').attr('src');
             var name=$(this).parent().find('.na').html();
-            $(".xuan1").hide();
             $('.images').attr('src',src);
             $('.name').html(name);
-            $(".xuan2").show();
+            userid =$('.user_hide').html();
             setTimeout(function(){
                 $('.shadow').fadeOut()
             },800);
@@ -354,7 +350,7 @@
             data: {
                 id:id,
                 status : 1,
-                mediatorid:1
+                mediatorid:userid
             },
             success: function(data){
                 console.log(data)

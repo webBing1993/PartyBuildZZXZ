@@ -76,20 +76,22 @@
 <script src="/static/flot/Chart1.min.js"></script>
 <script src="/static/flot/radialIndicator.js"></script>
 <script>
-    setTimeout(function(){
+
         var myGender = echarts.init(document.getElementById('pie3'));
         window.onload = function(){
             $("#cir1 canvas").css({"width":"100%","height":"auto"});
             $("#cir2 canvas").css({"width":"100%","height":"auto"});
 
         }
-        console.log({$partyName})
+
         $(function() {
             //大饼图数据：data1、data2、data3，条形图数据：data4、data5，环形图数据：data6
             //党组织总数量表
             // 党组织总人数表
+
             var data1 = {
-                labels: {$partyName},
+//                labels: {$partyName},
+                labels:["椒江区", "黄岩区", "路桥区", "临海市", "温岭市","玉环市","天台县","仙居县","三门县","开发区","温岭监管局"],
                 datasets: [
                     {
                         label: "各支部人数",
@@ -97,17 +99,30 @@
                         strokeColor: "rgba(26,179,148,0.8)",
                         highlightFill: "rgba(26,179,148,0.75)",
                         highlightStroke: "rgba(26,179,148,1)",
-                        data: {$partySum}
+//                        data: {$partySum}
+                        data:[12,34,26,56,67,34,35,13,24,24,25]
+
                     }
                 ]
 
             };
-    },1000)
+//            var data1 = {
+//                labels: ["20岁以下", "20-30岁", "30-40岁", "40-50岁", "50岁以上"],
+//                datasets: [
+//                    {
+//                        label: "平均年龄",
+//                        fillColor: "rgba(26,179,148,0.5)",
+//                        strokeColor: "rgba(26,179,148,0.8)",
+//                        highlightFill: "rgba(26,179,148,0.75)",
+//                        highlightStroke: "rgba(26,179,148,1)",
+//                        data: [{$msg['agepercent1']},{$msg['agepercent2']}, {$msg['agepercent3']}, {$msg['agepercent4']}, {$msg['agepercent5']}]
+//                    }
+//                ]
+//            };
 
 
         //	党员总人数表
         var data3 = [{
-            label: "关注人数："+{$msg['concernnum']}+"人",
             label: "关注人数："+{$msg['concernnum']}+"人",
             data: {$msg['concernnum']},
             color: "#5FB8C5"
