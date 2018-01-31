@@ -4,7 +4,7 @@ body{background: #f5f5f5;}
 .top .swiper-slide-active {border-bottom: .45vh solid #dd5d3a;color: #dd5d3a;}
 .wrapper03 {position:fixed;left: 0;top:0;height:6vh;line-height: 6vh;width: 100%;overflow: hidden;margin:0 auto;background: #fff;}
 .wrapper03 .scroller {position:absolute}
-.wrapper03 .scroller li {height: 6vh;color:#333;float: left;line-height: 6vh;font-size: .3rem;text-align: center}
+.wrapper03 .scroller li {width:30vw;height: 6vh;color:#333;float: left;line-height: 6vh;font-size: .3rem;text-align: center}
 .wrapper03 .scroller li a{color:#333;display:block;margin:0 .3rem;padding:0 .1rem}
 .wrapper03 .scroller li a:active {background: transparent;text-decoration: none;}
 .wrapper03 .scroller li.cur{border-bottom: .45vh solid #dd5d3a;color: #dd5d3a;}
