@@ -34,13 +34,17 @@ body{
 }
 .boxs {
     width: 100vw;
-    min-height: 64vw;
+    /*min-height: 64vw;*/
     background:rgba(255,255,255,1);
     margin-top: 5.8vh;
 }
 .boxs .box {
     width: 100vw;
-    min-height: 64vw;
+    /*min-height: 64vw;*/
+    background-color: rgba(245,245,245,1);
+}
+.boxs .box .lists {
+    background-color: #fff;
 }
 .box .list{
     display:inline-block;
