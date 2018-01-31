@@ -28,6 +28,7 @@ class Microtest extends Base
 //        $this->checkAnonymous();
         $wechatModel = new WechatUser();
         $userId = session('userId');
+        
         //所在部门名称
         $dp = Db::table('pb_wechat_department_user')
             ->alias('a')
@@ -36,6 +37,7 @@ class Microtest extends Base
             ->find();
         //个人信息
         $personal = $wechatModel::where('userid',$userId)->find();
+        //dump($personal);exit;
 //        $personal['score'] = $personal['score'] + 10;  // 关注企业号  基础分10
         $personal['dpname'] = $dp['name'];
 
@@ -64,20 +66,35 @@ class Microtest extends Base
             foreach($data as $value){
                 $question[]=Question::get($value);
             }
+            
             $this->assign('question',$question);
         }else{  //  有数据
             // 当天已经答过题
             $Qid = json_decode($Answers->question_id);
             $rights=json_decode($Answers->value);
             $re = array();
-            foreach($Qid as $key => $value){
-                $re[$key] = Question::get($value);
-                $re[$key]['right'] = $rights[$key];
+            if (!empty($Qid)) {
+                foreach ($Qid as $key => $value) {
+                    $re[$key] = Question::get($value);
+                    $re[$key]['right'] = $rights[$key];
+                }
             }
             $this->assign('question',$re);
             $this->assign('check',1);//1为答过题
         }
         //在线答题
+        $da=strtotime(date('Y-m-d',time()));
+        $where2['create_time']=array(array('gt',$da),array('lt',$da+86400),"OR");
+        //dump($da);exit;
+        $info2=Db::table('pb_answer')->where('userid',$userId)->where($where2)->find();
+        //dump($info2);exit();
+        if (!empty($info2)){
+            $check2=1;
+            $this->assign('check2',$check2);
+        }else{
+            $check2=0;
+            $this->assign('check2',$check2);
+        }
         $info = Answer::get(['userid'=>$userId]);
         if($info) {
             $exist=$info->exist;
@@ -89,7 +106,7 @@ class Microtest extends Base
         }
 
         //总榜
-        $answer = Answers::where('1=1')->select();
+        $answer = Answer::where('1=1')->select();
         $list4 = array();
         foreach($answer as $value){
             $k = $value['userid'];
@@ -123,9 +140,11 @@ class Microtest extends Base
         $final_s = array();
         foreach ($news_s as $key => $value){
             if($key<20){
-                $user = WechatUser::where('userid',$value['userid'])->find();
-                $value['name'] = $user['name'];
-                $final_s[$key] = $value;
+                if ($value['score']!=0) {
+                    $user = WechatUser::where('userid', $value['userid'])->find();
+                    $value['name'] = $user['name'];
+                    $final_s[$key] = $value;
+                }
             }
             if($value['userid'] == $userId){
                 $personal['rank'] = $key+1;
@@ -160,7 +179,8 @@ class Microtest extends Base
             default:
         }
         // 本周答题
-        $answer = Answers::where(['create_time' => array('egt',$t)])->select();
+        $answer = Answer::where(['create_time' => array('egt',$t)])->select();
+
         $list4 = array();
         foreach($answer as $value){
             $k = $value['userid'];
@@ -196,11 +216,14 @@ class Microtest extends Base
         $final = array();
         foreach ($news_w as $key => $value){
             if($key<20){
-                $user = WechatUser::where('userid',$value['userid'])->find();
-                $value['name'] = $user['name'];
-                $final[$key] = $value;
+                if ($value['score']!=0) {
+                    $user = WechatUser::where('userid', $value['userid'])->find();
+                    $value['name'] = $user['name'];
+                    $final[$key] = $value;
+                }
             }
         }
+
         $this->assign('week',$final);
 
         //获取月榜信息
@@ -209,7 +232,7 @@ class Microtest extends Base
         $end = mktime(23,59,59,date('m'),date('t'),date('Y'));
 
         // 本月答题
-        $answer_m = Answers::where(['create_time' => array('between',[$start,$end])])->select();
+        $answer_m = Answer::where(['create_time' => array('between',[$start,$end])])->select();
         $list4_m = array();
         foreach($answer_m as $value){
             $k = $value['userid'];
@@ -244,9 +267,11 @@ class Microtest extends Base
         $final_m = array();
         foreach ($news_m as $key => $value){
             if($key<20){
-                $user = WechatUser::where('userid',$value['userid'])->find();
-                $value['name'] = $user['name'];
-                $final_m[$key] = $value;
+                if ($value['score']!=0) {
+                    $user = WechatUser::where('userid', $value['userid'])->find();
+                    $value['name'] = $user['name'];
+                    $final_m[$key] = $value;
+                }
             }
         }
         $this->assign('month',$final_m);

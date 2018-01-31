@@ -114,8 +114,8 @@
             </div>
             <div class="topName">{$personal.name}</div>
             <ul class="now">
-                <li>当前积分 {$personal.score}</li>
-                {eq name="$personal.score" value="0"}
+                <li>当前积分 {$personal.game_score}</li>
+                {eq name="$personal.game_score" value="0"}
                 <li>当前排名 无</li>
                 {else/}
                 <li>当前排名 {$personal.rank}</li>
@@ -347,7 +347,12 @@
     }
 
     $(".party .start1").click(function(){
-        window.location.href = "{:Url('microtest/answer')}";
+        if ({$check2}==0) {
+            window.location.href = "{:Url('microtest/answer')}";
+        }else if({$check2}==1) {
+            window.location.href = "{:Url('constitution/errors')}";
+        }
+
     })
     $(".party .goon").click(function(){
         window.location.href = "{:Url('microtest/goon')}";
