@@ -15,8 +15,8 @@ body{
     font-size:0.3rem;
     display: inline-block;
     width: 32.6vw;
-    height: 5.6vh;
-    line-height: 5.6vh;
+    height: 10.1vw;
+    line-height: 10.1vw;
     text-align: center;
 }
 @media screen and (min-width: 768px) {
@@ -41,10 +41,6 @@ body{
 .boxs .box {
     width: 100vw;
     /*min-height: 64vw;*/
-    background-color: rgba(245,245,245,1);
-}
-.boxs .box .lists {
-    background-color: #fff;
 }
 .box .list{
     display:inline-block;
@@ -155,8 +151,8 @@ body{
     background: #F5F5F5;
     font-size: .28rem;
     color: #333;
-    height:100%;
     overflow-y: scroll;
+    height: calc(100vh - 20.3vw);
 }
 .showLeft li {
     width:100%;
@@ -177,6 +173,7 @@ body{
     margin-left: 22vw;
     padding: 4vw;
     overflow-y: scroll;
+    height: calc(100vh - 20.3vw);
 }
 
 .showRight .title {
