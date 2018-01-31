@@ -73,8 +73,8 @@
                         <span class="message">{$vo.views}</span>
                     </div>
                 </a>
+                {/volist}
             </div>
-            {/volist}
             {else/}
             <div id="nomessage1">
                 <img src="/home/images/nomessage.png" alt="无消息">
@@ -147,6 +147,7 @@
             scrollNow = true;
             var num = getCookie("num") == null? 0 : getCookie("num");
             $(".showLeft li").eq(num).click();
+            imglazy();
         });
         $('.tabs .tab').eq(number).click();
 
@@ -354,7 +355,7 @@
                 if(lists[i].partytime==null){
                     lists[i].partytime='无'
                 }
-                if(lists[i].header=='null'){
+                if(lists[i].header==null){
                     html += '<li><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
                     html1 +='<div class="user">'
                           +'<div class="userImg"><img data-original="'+lists[i].avatar+'" class="lazy"></div>'
@@ -420,12 +421,20 @@
                     html+= '<a href="/home/education/bookdetail/?id='+obj+'" class="result limit">'+result[obj]+'</a>';
                 }
                 $('.results' ).html(html);
+                imglazy();
             }
 
         });
 //        }
     });
 
+    function imglazy() {
+        $("img").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+    }
 
 </script>
 {/block}

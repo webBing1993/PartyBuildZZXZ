@@ -210,7 +210,6 @@
                 },
                 beforeSend: function(XMLHttpRequest){},
                 success:function(data){
-                    console.log(data);
                 if(data.code==1){
                     if (data.data != "[]") {
                         var date=JSON.parse(data.data);
@@ -218,6 +217,7 @@
                         var result = date;
                         var url = '';
                         for(var i=0;i< result.length;i++){
+                            console.log(result[i].header);
                             if(result[i].gender=='1'){
                                 result[i].gender='男';
                             }else{
@@ -229,7 +229,7 @@
                             if(result[i].partytime==null){
                                 result[i].partytime='无'
                             }
-                            if(result[i].header=='null'){
+                            if(result[i].header==null){
                                 html += '<li><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
                                 html1 +='<div class="user">'
                                         +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"></div>'
@@ -269,6 +269,11 @@
                             $('#fixed').stop().animate({
                                 height:0
                             },1);
+                        });
+                        $("img").lazyload({
+                            placeholder: "/home/images/loading.jpg",
+                            effect: "fadeIn",
+                            threshold: 1
                         });
                     }else{
                         html += '<div id="nomessage">'
