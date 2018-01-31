@@ -30,7 +30,7 @@ class Service extends Base
         $this->anonymous();
         //数据列表
         $map = [
-            'status' => ['egt',0],
+            'status' => ['gt',2],
         ];
         $list = Meet::where($map)->limit(10)->order('id desc')->select();
         $this->assign('list',$list);
@@ -194,7 +194,7 @@ class Service extends Base
     public function indexmore(){
         $len = input('length');
         $map = [
-            'status' => ['egt',0],
+            'status' => ['gt',0],
         ];
         $list = Meet::where($map)->order('id desc')->limit($len,6)->select();
         foreach($list as $value){
