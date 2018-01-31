@@ -288,14 +288,14 @@
      });
 
     $(function(){
-        var title=$("input[name='name']").val();
-        var parties=$("input[name='people']").val();
-        var proposer=$("input[name='thing']").val();
-        var mobile= $("input[name='num']").val();
-        var content=$("textarea[name='content']").val();
-        var images = new Array();
         //上传
         $('.present' ).on('click',function(){
+            var title=$("input[name='name']").val();
+            var parties=$("input[name='people']").val();
+            var proposer=$("input[name='thing']").val();
+            var mobile= $("input[name='num']").val();
+            var content=$("textarea[name='content']").val();
+            var images = new Array();
             if(single){
                 $(".img .img1").each(function(){
                     if($(this).data("tab")){
