@@ -1,11 +1,11 @@
 body {background: #F5F5F5;}
 .banner {width:100vw;height:28.11vh;position: relative;}
 .banner img {width:100%;height:100%;}
-.department {width:92vw;position: relative;margin:2.25vh auto 0;background: #fff;border-radius: .3rem;font-size: .28rem;color: #333;padding: 3.9vh 0;box-shadow: 0 0 .5rem rgba(0,0,0,.2);overflow: hidden;}
+.department {width:92vw;position: relative;margin:2.25vh auto 0;background: #fff;border-radius: .3rem;font-size: .28rem;color: #333;padding: 4vh 0;box-shadow: 0 0 .5rem rgba(0,0,0,.2);overflow: hidden;}
 .department p {line-height: .36rem;text-indent: 2em;width:84vw;margin: auto;}
-.department .departmentTop {position: absolute;top:0;left:0;font-size: .18rem;width:17vw;text-align: center;height:3.9vh;line-height:3.9vh;}
-.department .departmentTop span{position: relative;z-index: 8;padding-left:.8vw;}
-.department .departmentTop img {width:17vw;position: absolute;top:0;left:-.45vw;z-index: 1;}
+.department .departmentTop {position: absolute;top:0;left:0;font-size: .2rem;width:17vw;text-align: center;height:3.9vh;line-height:3.9vh;}
+.department .departmentTop span{position: relative;z-index: 8;}
+.department .departmentTop img {width:17vw;position: absolute;top:-.35vh;left:-.1vw;z-index: 1;}
 .organization {width:92vw;margin: auto;padding-bottom: 4vh;}
 .organizationTop {font-size: .28rem;color: #333;;margin: 2.25vh auto 1.6vh;}
 .organizationTop img {width:3.733vw;height:2.1vh;vertical-align: middle;margin-right: 1vw;}
