@@ -135,6 +135,8 @@
     font-size: .28rem;
     color: #333;
     text-align: justify;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .appshow {
