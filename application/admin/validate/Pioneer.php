@@ -30,7 +30,7 @@ class Pioneer extends Validate {
         'name.require' =>  '姓名不能为空',
         'birthday.require' =>  '出生年月不能为空',
         'position.require' =>  '职务不能为空',
-        'description.require' =>  '简介不能为空',
+        'description.require' =>  '口号不能为空',
 
         'content.require'  =>  '内容不能为空',
         'publisher.require' => '发布者不能为空',
