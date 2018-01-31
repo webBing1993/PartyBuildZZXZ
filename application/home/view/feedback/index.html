@@ -161,41 +161,23 @@
 <script>
     // 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
 
-    var type = 1;
+    var type1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
-    for(var P = 0;P < $('.headerTop>div').length; P++){
-        $('.headerTop>div')[P].onclick = function(){
-            $('.headerTop>div').removeClass('active');
-            $(this).addClass('active');
-            var type1 = $(this).data('side');
-            $('.appraisal').hide();
-            $('#side'+type1).show();
-            localStorage.setItem('appNum',type1);
-            $(".tip,.loading").hide();
-            loadScroll();
-        }
-    }
-    $('.headerTop>div').removeClass('active');
-    $('.headerTop>div').eq(app-1).addClass('active');
-    $('.appraisal').hide();
-    $('#side'+app).show();
-    $(function(){
-        $('.appraisal').each(function(){
-            if($(this).css('display')=='block'){
-                var len =$(this).find('.page>a').length;
-                if(len >= 6){
-                    $('.tip' ).text('上拉加载更多');
-                    //上拉加载
-                    loadScroll();
-                }
-//                $('a').off('click' ).on('click',function(){
-//                    window.location.href  =$(this ).attr('href');
-//                });
-
-                loadScroll()
-            }
-        })
+    $('.headerTop>div').on("click",function(){
+        $(this).addClass('active').siblings("div").removeClass("active");
+        type1 = $(this).data('side');
+        console.log(type1);
+        $('.appraisal').hide();
+        $('#side'+type1).show();
+        localStorage.setItem('appNum',type1);
+        $(".tip,.loading").hide();
+        app = localStorage.getItem('appNum');
+        $(window ).scrollTop("0");
+        loadScroll();
     });
+    // 初始化
+    $('.headerTop>div').eq(app-1).click();
+
     var scrollNow = true;
     loadScroll();
     //上拉加载
@@ -203,7 +185,7 @@
         $(window ).on("scroll",function(){
             var dh = $(document).height();
             var end = $(window).height() + $(window ).scrollTop();
-            var len = $('#side'+type).find('li').length;
+            var len = $('#side'+type1).find('li').length;
             var tip = $(".tip");
             var loading = $('.loading');
             if(dh == end && scrollNow){
@@ -217,10 +199,10 @@
                         },
                         beforeSend: function(XMLHttpRequest){
                             tip.hide();
-                            loading.toggleClass('hidden');
+                            loading.removeClass('hidden').show();
                         },
                         success:function(data){
-                            loading.toggleClass('hidden');
+                            loading.addClass('hidden');
                             tip.show();
                             if(data.code == 1){
                                 addLists(data);
@@ -246,6 +228,9 @@
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
                             }
                             scrollNow = true;
                         }
@@ -259,10 +244,10 @@
                         },
                         beforeSend: function(XMLHttpRequest){
                             tip.hide();
-                            loading.toggleClass('hidden');
+                            loading.removeClass('hidden').show();
                         },
                         success:function(data){
-                            loading.toggleClass('hidden');
+                            loading.addClass('hidden');
                             tip.show();
                             console.log(data);
                             if(data.code == 1){
@@ -274,6 +259,9 @@
                                     tip.text('没有更多了');
                                     $(window ).off("scroll");
                                 }
+                            }else{
+                                tip.text('没有更多了');
+                                $(window ).off("scroll");
                             }
                             scrollNow = true;
                         }
@@ -324,7 +312,7 @@
                 //var pid = $('.part div' ).eq(list.pid ).text();
                 html +=
                         '<li>'
-                        +'<a href="/home/feedback/pioneer/id'+ list.id+'.html">'
+                        +'<a href="/home/feedback/pioneer/id/'+ list.id+'.html">'
                         +'<div class="appraisalUser_01">'
                         +'<img src="'+list.path+'">'
                         +'<div>'
