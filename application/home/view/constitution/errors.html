@@ -77,7 +77,18 @@
 
 //        $('.opt').css({'margin-left': '6px'});
     });
-    isOut();
+    var href = document.referrer;
+    if (href.indexOf("score") > 0) {
+        pushHistory();
+        setTimeout(function(){
+            window.addEventListener("popstate", function(e) {
+                localStorage.setItem("c", 2);
+                window.history.go(-4);
+            }, false);
+        },200)
+    }else {
+        isOut();
+    }
     //防止恶意刷新
     function pushHistory(){
         var sta = {
@@ -94,7 +105,7 @@
         setTimeout(function(){
             window.addEventListener("popstate", function(e) {
                 localStorage.setItem("c", 2);
-                window.history.go(-4);
+                window.history.go(-1);
             }, false);
         },200)
     }
