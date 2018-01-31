@@ -115,8 +115,9 @@ class Statistics extends Base {
             $ids = rtrim($ids[0]['ids'], ',');
             $value['sum'] = WechatDepartmentUser::where(['departmentid' => ['in', $ids]])->count();
         }
-        $partyName = array_column($partyList, 'name');
-        $partySum = array_column($partyList, 'sum');
+
+        $partyName = i_array_column($partyList, 'name');
+        $partySum = i_array_column($partyList, 'sum');
 
         $avg = WechatUser::avg('age');  //平均年龄
         $age = substr($avg,0,2);
