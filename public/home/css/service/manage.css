@@ -35,12 +35,15 @@ body{
 .boxs {
     width: 100vw;
     /*min-height: 64vw;*/
-    background:rgba(255,255,255,1);
+    /*background:rgba(255,255,255,1);*/
     margin-top: 5.8vh;
 }
 .boxs .box {
     width: 100vw;
     /*min-height: 64vw;*/
+}
+.box .lists {
+    background:rgba(255,255,255,1);
 }
 .box .list{
     display:inline-block;

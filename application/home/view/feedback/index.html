@@ -22,6 +22,17 @@
         -o-text-overflow:ellipsis;
         overflow: hidden;
     }
+    #nomessage1,#nomessage2{
+        width:26.6vw;
+        height:26.6vw;
+        margin: 50vw auto;
+        /*display: none;*/
+    }
+    #nomessage1 img,#nomessage2 img{
+        width:100%;
+        border: 0;
+        vertical-align: top;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -31,6 +42,7 @@
 </div>
 <!--我来推荐-->
 <div id="side1" class="appraisal all">
+    {notempty name="$list"}
     <div class="appraisalSort">
         <ul>
             {volist name="list" id="vo"}
@@ -59,12 +71,18 @@
             {/volist}
         </ul>
     </div>
+    {else/}
+    <div id="nomessage1">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
     {eq name="$user_tag" value="1"}
     <a href="/home/feedback/detail.html" id="share"><img src="/home/images/lxyz/icon/share.png" alt=""></a>
     {/eq}
 </div>
 <!--典型引路-->
 <div id="side2" class="appraisal">
+    {notempty name="$list2"}
     <ul class="appraisalUser">
         {volist name="list2" id="vo"}
         <li>
@@ -82,6 +100,11 @@
         </li>
         {/volist}
     </ul>
+    {else/}
+    <div id="nomessage2">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">

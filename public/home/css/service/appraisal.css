@@ -1,4 +1,6 @@
-
+body{
+    background:rgba(245,245,245,1);
+}
 .headerTop {
     width: 100vw;
     height: 8.4vh;

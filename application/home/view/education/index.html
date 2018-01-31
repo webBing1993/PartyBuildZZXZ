@@ -8,6 +8,9 @@
 <!--<link rel="stylesheet" href="/home/css/redcollection/book.css">-->
 <!--<link rel="stylesheet" href="/home/css/redcollection/music.css">-->
 <style>
+    body {
+        background-color: rgba(245,245,245,1);
+    }
     .swiper-container {
         position: relative;
         width: 100vw;
@@ -52,6 +55,18 @@
         font-size: .28rem;
         overflow: initial;
     }
+    #nomessage1,#nomessage2,#nomessage3,#nomessage4,#nomessage5{
+        width:26.6vw;
+        height:26.6vw;
+        margin: 10vw auto;
+        /*display: none;*/
+    }
+    #nomessage1 img,#nomessage2 img,#nomessage3 img,#nomessage4 img,#nomessage5 img{
+        width:100%;
+        height: auto;
+        border: 0;
+        vertical-align: top;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -90,6 +105,7 @@
     </div>
     <div class="lists-title">最新上映</div>
     <div class="side1_lists">
+        {notempty name="$new"}
         <ul>
             {volist name="new" id="ne"}
             <li><a href="{:Url('Education/movedetail?id='.$ne['id'])}" class="list">
@@ -99,25 +115,35 @@
             </a></li>
             {/volist}
         </ul>
-
+        {else/}
+        <div id="nomessage1">
+            <img src="/home/images/nomessage.png" alt="无消息">
+        </div>
+        {/notempty}
     </div>
     <div class="lists-title clear listsline">
         经典热播
         <a href="{:Url('Education/morefilm')}" class="fr" style="color: #999;">更多>></a>
     </div>
+    {notempty name="$classic"}
     <div class="side1_lists">
-    <ul>
-        {volist name="classic" id="cla"}
-        <li><a href="{:Url('Education/movedetail?id='.$cla['id'])}" class="list">
-            <img data-original="{$cla.front_cover|get_cover='path'}" class="lazy">
-            <div class="listTitle">{$cla.title}</div>
-            <div class="listSummary">{$cla.introduction}</div>
-        </a></li>
-        {/volist}
-    </ul>
+        <ul>
+            {volist name="classic" id="cla"}
+            <li><a href="{:Url('Education/movedetail?id='.$cla['id'])}" class="list">
+                <img data-original="{$cla.front_cover|get_cover='path'}" class="lazy">
+                <div class="listTitle">{$cla.title}</div>
+                <div class="listSummary">{$cla.introduction}</div>
+            </a></li>
+            {/volist}
+        </ul>
 
-</div>
-</div>
+    </div>
+    {else/}
+    <div id="nomessage2">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
+    </div>
 <div class="subject" id="side2">
     <div class="banner">
         <img data-original="/home/images/banner/1.jpg"  class="banner-img lazy">
@@ -134,6 +160,7 @@
     <div class="listbox">
         <div class="books active">
             <!--经典书籍列表-->
+            {notempty name="$books"}
             {volist name="books" id="book"}
             <a href="{:Url('education/bookdetail?id='.$book['id'])}" class="list">
                 <img data-original="{$book.front_cover|get_cover='path'}" class="lazy">
@@ -145,9 +172,15 @@
                 <span class="fa fa-angle-right"></span>
             </a>
             {/volist}
+            {else/}
+            <div id="nomessage3">
+                <img src="/home/images/nomessage.png" alt="无消息">
+            </div>
+            {/notempty}
             <!--经典书籍列表-->
         </div>
         <div class="words hidden">
+            {notempty name="$remark"}
             <!--经典语录列表-->
             {volist name="remark" id="re"}
             <a href="{:Url('education/textdetail?id='.$re['id'])}" class="list clear">
@@ -156,6 +189,11 @@
             </a>
             {/volist}
             <!--经典语录列表-->
+            {else/}
+            <div id="nomessage4">
+                <img src="/home/images/nomessage.png" alt="无消息">
+            </div>
+            {/notempty}
         </div>
     </div>
 </div>
@@ -163,6 +201,7 @@
     <div class="banner">
         <img src="/home/images/redcollection/bookbg.jpg"  class="banner-img lazy">
     </div>
+    {notempty name="$list"}
     <div class="lists">
         {volist name="list" id="vo"}
         <a href="{:Url('education/musicdetail?id='.$vo['id'])}" class="list">
@@ -171,6 +210,11 @@
         </a>
         {/volist}
     </div>
+    {else/}
+    <div id="nomessage5">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
     <div class="tip"></div>
     <div class="loading hidden">
         <div class="typing_loader"></div>
@@ -208,7 +252,7 @@
                 });
             }
             if(side==2){
-                $('body').css('background','#fff');
+                $('body').css('background','rgba(245,245,245,1)');
             }else {
                 $('body').css('background','#f5f5f5')
             }

@@ -30,10 +30,11 @@ body {background: #F5F5F5;}
 .vrText {position: absolute;width:100vw;text-align: center;color: #fff;font-size: .3rem;top:50%;left:0;margin-top: -6vh;}
 #isVR img {width:7.73vw;height:7.73vw;margin-bottom: 2vh;}
 #noVR img {width:10.22vw;height:3.9vh;margin-bottom: 2vh;}
-.user {width:100vw;position: relative;margin:1.5vh auto 0;background: #fff;}
-.userTop {width:100%;padding: 0 4vw;border-top:1px solid #D1D1D1;border-bottom: 1px solid #D1D1D1;height:4.35vh;line-height: 4.35vh;font-size: .28rem;color: #333;}
+.user {width:100vw;position: relative;margin:1.5vh auto 0;}
+.userTop {background: #fff;width:100%;padding: 0 4vw;border-top:1px solid #D1D1D1;border-bottom: 1px solid #D1D1D1;height:4.35vh;line-height: 4.35vh;font-size: .28rem;color: #333;}
 .userTop img {width:4.8vw;height:2.7vh;vertical-align: middle;margin-right: 1vw;}
 .userSort {width:100%;border-bottom: 1px solid #D1D1D1;}
+.userSort ul {background: #fff;}
 .userSort ul li {width:81vw;position: relative;margin-left: 19vw;border-bottom: 1px solid #D1D1D1;padding: 4vw 4vw 4vw 0;}
 .userSort ul li div {display: inline-block;vertical-align: top;}
 .userSort ul li div.userleft {width:10.8vw;height: 10.8vw;background: red;border-radius: 2.2vw;text-align: center;/*line-height: 10.8vw*/;color: #fff;font-size: .28rem;position: absolute;top: 50%;left:-14.7vw;margin-top: -5.4vw;white-space: nowrap;display: flex; justify-content: center; align-items: center;}

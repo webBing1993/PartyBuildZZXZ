@@ -28,6 +28,17 @@
         margin-right: 0;
         text-align: left;
     }
+    #nomessage1,#nomessage2,#nomessage3,#nomessage4,#nomessage5,#nomessage6{
+        width:26.6vw;
+        height:26.6vw;
+        margin: 10vw auto;
+        /*display: none;*/
+    }
+    #nomessage1 img,#nomessage2 img,#nomessage3 img,#nomessage4 img,#nomessage5 img, #nomessage6 img{
+        width:100%;
+        border: 0;
+        vertical-align: top;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -45,6 +56,7 @@
 </div>
 <div class="banner"><img src="/home/images/banner/1.jpg" class="lazy"></div>
 <div class="subject all" id="side1">
+    {notempty name="$list1"}
     {volist name="list1" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top">中共一大</div>
@@ -58,8 +70,14 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage1">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="subject all" id="side2">
+    {notempty name="$list2"}
     {volist name="list2" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
@@ -73,8 +91,14 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage2">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="subject all" id="side3">
+    {notempty name="$list3"}
     {volist name="list3" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
@@ -88,8 +112,14 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage3">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="subject all" id="side4">
+    {notempty name="$list4"}
     {volist name="list4" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
@@ -103,8 +133,14 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage4">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="subject all" id="side5">
+    {notempty name="$list5"}
     {volist name="list5" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
@@ -118,8 +154,14 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage5">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="subject all" id="side6">
+    {notempty name="$list6"}
     {volist name="list6" id="vo"}
     <a class="side1Content" href="{:Url('study/detail?id='.$vo['id'])}">
         <div class="side1Content_Top"></div>
@@ -130,6 +172,11 @@
         </div>
     </a>
     {/volist}
+    {else/}
+    <div id="nomessage6">
+        <img src="/home/images/nomessage.png" alt="无消息">
+    </div>
+    {/notempty}
 </div>
 <div class="tip"></div>
 <div class="loading hidden">

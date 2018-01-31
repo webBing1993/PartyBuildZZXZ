@@ -3,6 +3,20 @@
 {block name="style"}
 <title>两学一做教育平台</title>
 <link rel="stylesheet" href="/home/css/lxyz/index.css">
+<style>
+    #nomessage{
+        width:26.6vw;
+        height:26.6vw;
+        margin: 10vw auto;
+        display: none;
+    }
+    #nomessage img{
+        width:100%;
+        height: auto;
+        border: 0;
+        vertical-align: top;
+    }
+</style>
 {/block}
 
 {block name="body"}
@@ -29,6 +43,9 @@
             <!--</div>-->
         <!--</a>-->
     </div>
+</div>
+<div id="nomessage">
+    <img src="/home/images/nomessage.png" alt="无消息">
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
@@ -62,6 +79,11 @@
             console.log(data)
             if(data.code == 1){
                 addCourse(data);
+                if ($(".lists .list").length == 0) {
+                    $("#nomessage").show()
+                }else {
+                    $("#nomessage").hide();
+                }
                 var dataLen =data.data.length;
                 if(data.data.length == 5){
                     tip.text('上拉加载更多');
@@ -77,7 +99,7 @@
             }
             scrollNow = true;
         }
-    })
+    });
     var scrollNow = true;
     $(function(){
         var len = $(".lists a" ).length;
