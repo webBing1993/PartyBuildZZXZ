@@ -535,6 +535,8 @@
             // define options (if needed)
             options = {
                 // define gallery index (for URL)
+                //点击图片关闭
+                tapToClose: true,
                 galleryUID: galleryElement.getAttribute('data-pswp-uid'),
                 getThumbBoundsFn: function(index) {
                     // See Options -> getThumbBoundsFn section of documentation for more info
@@ -592,10 +594,13 @@
         if (hashData.pid && hashData.gid) {
             openPhotoSwipe(hashData.pid, galleryElements[ hashData.gid - 1 ], true, true);
         }
+
+//        $(".pswp").photoSwipe();
     };
 
     // execute above function
     initPhotoSwipeFromDOM('.my-gallery');
+
 
 
 
