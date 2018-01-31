@@ -543,6 +543,8 @@ class Mediation extends Base
             }
         }else{
             $id = input('id');
+            $title = MediationModel::where(['id' => $id])->value("title");
+            $this->assign('title',$title);
             $this->assign('id',$id);
             return $this->fetch();
         }
