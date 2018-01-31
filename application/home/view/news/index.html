@@ -74,7 +74,9 @@
     function check(){
         if($('img').length == 1){
             $('#nomessage').show();
+            $("body").css("backgroundColor","rgba(245,245,245,1)");
         }else {
+            $("body").css("backgroundColor","#fff");
             $('#nomessage').hide();
         }
     }
