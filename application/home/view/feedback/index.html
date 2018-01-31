@@ -1,9 +1,10 @@
 {extend name="public/common"}
 
 {block name="style"}
-<link rel="stylesheet" href="/home/css/service/appraisal.css">
 <link rel="stylesheet" href="/home/css/service/photoswipe.css"/>
 <link rel="stylesheet" href="/home/css/service/default-skin.css"/>
+<link rel="stylesheet" href="/home/css/service/appraisal.css">
+
 <title>示范评比</title>
 <style>
     .headerTop {
@@ -15,118 +16,152 @@
     .appraisal {
         margin-top: 10.5vh;
     }
-	.appraisalUser_01 p {
-		white-space:nowrap;
-		text-overflow:ellipsis;
-		-o-text-overflow:ellipsis;
-		overflow: hidden;
-	}
+    .appraisalUser_01 p {
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        overflow: hidden;
+    }
 </style>
 {/block}
 {block name="body"}
 <div class="headerTop">
-	<div data-side="1" class="active" id="show1">我来推荐</div>
-	<div data-side="2" id="show2">典型引路</div>
+    <div data-side="1" class="active" id="show1">我来推荐</div>
+    <div data-side="2" id="show2">典型引路</div>
 </div>
 <!--我来推荐-->
 <div id="side1" class="appraisal all">
-	<div class="appraisalSort">
-		<ul>
-			{volist name="list" id="vo"}
-			<li>
-				<div class="headerImg"><img data-original="{$vo.header}" class="lazy"></div>
-				<div class="appraisalRight">
-					<div class="appTop"><p class="appraisalName">{$vo.username}</p><p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p></div>
-					<div class="appText">{$vo.content}</div>
-					<p class="appshow">展开</p>
-					<div class="appImg my-gallery" data-pswp-uid="1">
-						{volist name="$vo.images" id="img"}
-						<figure><a href="{$img|get_cover='path'}" data-size="800x800"><img data-original="{$img|get_cover='path'}" class="lazy"></a></figure>
-						{/volist}
-					</div>
-					<div class="note">
-						{eq name="visit" value="0"}
-						{eq name="vo.is_like" value="1"}
-						<span class="isgood good_" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
-						{else/}
-						<span class="isgood good" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
-						{/eq}
-						{/eq}
-					</div>
-				</div>
-			</li>
-			{/volist}
-		</ul>
-	</div>
-	{eq name="$user_tag" value="1"}
-	<a href="/home/feedback/detail.html" id="share"><img src="/home/images/lxyz/icon/share.png" alt=""></a>
-	{/eq}
+    <div class="appraisalSort">
+        <ul>
+            {volist name="list" id="vo"}
+            <li>
+                <div class="headerImg"><img data-original="{$vo.header}" class="lazy"></div>
+                <div class="appraisalRight">
+                    <div class="appTop"><p class="appraisalName">{$vo.username}</p><p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p></div>
+                    <div class="appText">{$vo.content}</div>
+                    <p class="appshow">展开</p>
+                    <div class="appImg my-gallery" data-pswp-uid="{$vo.id}">
+                        {volist name="$vo.images" id="img"}
+                        <figure><a href="{$img|get_cover='path'}" data-size="800x800"><img data-original="{$img|get_cover='path'}" class="lazy"></a></figure>
+                        {/volist}
+                    </div>
+                    <div class="note">
+                        {eq name="visit" value="0"}
+                        {eq name="vo.is_like" value="1"}
+                        <span class="isgood good_" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
+                        {else/}
+                        <span class="isgood good" onclick="isGood(this,8,{$vo.id})">{$vo.likes}</span>
+                        {/eq}
+                        {/eq}
+                    </div>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+    {eq name="$user_tag" value="1"}
+    <a href="/home/feedback/detail.html" id="share"><img src="/home/images/lxyz/icon/share.png" alt=""></a>
+    {/eq}
 </div>
 <!--典型引路-->
 <div id="side2" class="appraisal">
-	<ul class="appraisalUser">
-		{volist name="list2" id="vo"}
-		<li>
-			<a href="{:Url('pioneer?id='.$vo.id)}">
-				<div class="appraisalUser_01">
-					<img src="{$vo.front_cover|get_cover='path'}">
-					<div>
-						<p>姓名：<span>{$vo.name}</span></p>
-						<p>生日：<span>{$vo.birthday}</span></p>
-						<p>职位：<span>{$vo.position | default='无'}</span></p>
-					</div>
-				</div>
-				<div class="appraisalUser_02">{$vo.description}</div>
-			</a>
-		</li>
-		{/volist}
-	</ul>
+    <ul class="appraisalUser">
+        {volist name="list2" id="vo"}
+        <li>
+            <a href="{:Url('pioneer?id='.$vo.id)}">
+                <div class="appraisalUser_01">
+                    <img src="{$vo.front_cover|get_cover='path'}">
+                    <div>
+                        <p>姓名：<span>{$vo.name}</span></p>
+                        <p>生日：<span>{$vo.birthday}</span></p>
+                        <p>职位：<span>{$vo.position | default='无'}</span></p>
+                    </div>
+                </div>
+                <div class="appraisalUser_02">{$vo.description}</div>
+            </a>
+        </li>
+        {/volist}
+    </ul>
 </div>
 <div class="tip"></div>
 <div class="loading hidden">
-	<div class="typing_loader"></div>
+    <div class="typing_loader"></div>
 </div>
 
-<!--<div class="fixed"></div>-->
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="pswp__bg"></div>
-	<div class="pswp__scroll-wrap">
-		<div class="pswp__container">
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-		</div>
-		<div class="pswp__ui pswp__ui--hidden">
-			<div class="pswp__top-bar">
-				<div class="pswp__counter"></div>
-				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-				<div class="pswp__preloader">
-					<div class="pswp__preloader__icn">
-						<div class="pswp__preloader__cut">
-							<div class="pswp__preloader__donut"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-				<div class="pswp__share-tooltip"></div>
-			</div>
-			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-			<div class="pswp__caption">
-				<div class="pswp__caption__center"></div>
-			</div>
-		</div>
-	</div>
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 {/block}
 {block name="script"}
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
-	// 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
+    // 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
 
-	var type = 1;
+    var type = 1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
     for(var P = 0;P < $('.headerTop>div').length; P++){
         $('.headerTop>div')[P].onclick = function(){
@@ -153,9 +188,9 @@
                     //上拉加载
                     loadScroll();
                 }
-                $('a').off('click' ).on('click',function(){
-                    window.location.href  =$(this ).attr('href');
-                });
+//                $('a').off('click' ).on('click',function(){
+//                    window.location.href  =$(this ).attr('href');
+//                });
 
                 loadScroll()
             }
@@ -189,7 +224,7 @@
                             tip.show();
                             if(data.code == 1){
                                 addLists(data);
-                                $('.appraisalSort li').each(function(){
+                                /*$('.appraisalSort li').each(function(){
                                     if($(this).find('.appText').height()>120){
                                         $(this).find('.appText').addClass('_height');
                                         $(this).find('.appshow').show();
@@ -203,7 +238,7 @@
                                     if($(this).find('.appImg figure').length==4){
                                         $(this).find('.appImg figure , .appImg img ,.appImg a').css({'width':'25.33vw'})
                                     }
-                                });
+                                });*/
                                 var dataLen =data.data.length;
 //                                console.log(dataLen)
                                 if(data.data.length > 6){
@@ -216,10 +251,10 @@
                             scrollNow = true;
                         }
                     })
-				}else if(app==2){
+                }else if(app==2){
                     $.ajax({
                         type:"post",
-                    	url:"{:Url('Feedback/pioneermore')}",//典型引路
+                        url:"{:Url('Feedback/pioneermore')}",//典型引路
                         data:{
                             length:len
                         },
@@ -244,7 +279,7 @@
                             scrollNow = true;
                         }
                     })
-				}
+                }
 
             }
         })
@@ -269,29 +304,29 @@
                     obj1 += '<figure><a href="' + list.images[i] + '" data-size="800x800"><img data-original="' + list.images[i] + '" class="lazy"></a></figure>'
                 }
                 html += '<li>'
-                    + '<div class="headerImg"><img data-original="' + list.path + '" class="lazy"></div>'
-                    + '<div class="appraisalRight">'
-                    + '<div class="appTop"><p class="appraisalName">' + list.username + '</p><p class="appraisalTime">' + list.time + '</p></div>'
-                    + '<div class="appText">' + list.content + '</div>'
-                    + '<p class="appshow">展开</p>'
-                    + '<div class="appImg my-gallery"  data-pswp-uid="1">'
-                    + obj1
-                    + '</div>'
-                    + '<div class="note">'
-                    + obj
-                    + '</div>'
-                    + '</div>'
-                    + '</li>'
+                        + '<div class="headerImg"><img data-original="' + list.path + '" class="lazy"></div>'
+                        + '<div class="appraisalRight">'
+                        + '<div class="appTop"><p class="appraisalName">' + list.username + '</p><p class="appraisalTime">' + list.time + '</p></div>'
+                        + '<div class="appText">' + list.content + '</div>'
+                        + '<p class="appshow">展开</p>'
+                        + '<div class="appImg my-gallery" data-pswp-uid="'+list.id+'">'
+                        + obj1
+                        + '</div>'
+                        + '<div class="note">'
+                        + obj
+                        + '</div>'
+                        + '</div>'
+                        + '</li>'
             }
             $('.appraisalSort').append(html);
         }else if (app == 2){
-                for(var i = 0; i< len;i++){
-                    var list = lists[i];
-                    //var pid = $('.part div' ).eq(list.pid ).text();
-                    html +=
-						'<li>'
+            for(var i = 0; i< len;i++){
+                var list = lists[i];
+                //var pid = $('.part div' ).eq(list.pid ).text();
+                html +=
+                        '<li>'
                         +'<a href="/home/feedback/pioneer/id'+ list.id+'.html">'
-						+'<div class="appraisalUser_01">'
+                        +'<div class="appraisalUser_01">'
                         +'<img src="'+list.path+'">'
                         +'<div>'
                         +'<p>姓名：<span>'+list.name+'</span></p>'
@@ -302,9 +337,9 @@
                         +'<div class="appraisalUser_02">'+list.description+'</div>'
                         +'</a>'
                         +'</li>';
-                }
+            }
             $('.appraisalUser').append(html);
-			}
+        }
     }
     var Imgsrc='';
     var newarr = [];
@@ -371,12 +406,12 @@
         // (children of gallerySelector)
         var parseThumbnailElements = function(el) {
             var thumbElements = el.childNodes,
-                numNodes = thumbElements.length,
-                items = [],
-                figureEl,
-                linkEl,
-                size,
-                item;
+                    numNodes = thumbElements.length,
+                    items = [],
+                    figureEl,
+                    linkEl,
+                    size,
+                    item;
 
             for (var i = 0; i < numNodes; i++) {
 
@@ -437,10 +472,10 @@
             // find index of clicked item by looping through all child nodes
             // alternatively, you may define index via data- attribute
             var clickedGallery = clickedListItem.parentNode,
-                childNodes = clickedListItem.parentNode.childNodes,
-                numChildNodes = childNodes.length,
-                nodeIndex = 0,
-                index;
+                    childNodes = clickedListItem.parentNode.childNodes,
+                    numChildNodes = childNodes.length,
+                    nodeIndex = 0,
+                    index;
 
             for (var i = 0; i < numChildNodes; i++) {
                 if (childNodes[i].nodeType !== 1) {
@@ -464,7 +499,7 @@
         };
         var photoswipeParseHash = function() {
             var hash = window.location.hash.substring(1),
-                params = {};
+                    params = {};
 
             if (hash.length < 5) {
                 return params;
@@ -491,9 +526,9 @@
 
         var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
             var pswpElement = document.querySelectorAll('.pswp')[0],
-                gallery,
-                options,
-                items;
+                    gallery,
+                    options,
+                    items;
 
             items = parseThumbnailElements(galleryElement);
 
@@ -504,8 +539,8 @@
                 getThumbBoundsFn: function(index) {
                     // See Options -> getThumbBoundsFn section of documentation for more info
                     var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
-                        pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                        rect = thumbnail.getBoundingClientRect();
+                            pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                            rect = thumbnail.getBoundingClientRect();
 
                     return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
                 }
@@ -549,7 +584,7 @@
         var galleryElements = document.querySelectorAll(gallerySelector);
 
         for (var i = 0, l = galleryElements.length; i < l; i++) {
-            galleryElements[i].setAttribute('data-pswp-uid', i + 1);
+//            galleryElements[i].setAttribute('data-pswp-uid', i + 1);
             galleryElements[i].onclick = onThumbnailsClick;
         }
 
@@ -561,6 +596,8 @@
 
     // execute above function
     initPhotoSwipeFromDOM('.my-gallery');
+
+
 
 </script>
 {/block}
