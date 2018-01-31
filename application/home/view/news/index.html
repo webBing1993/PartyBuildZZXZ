@@ -37,7 +37,6 @@
 </div>
 <div class="blocks" style="padding-top: 3.75vh;">
     <div class="block lists">
-        {notempty name="$list"}
         {volist name="list" id="vo"}
         <a href="{:Url('detail?id='.$vo.id)}" class="list clear">
             <div class="fl">
@@ -52,12 +51,10 @@
             </div>
         </a>
         {/volist}
-        {else/}
-        <div id="nomessage">
-            <img src="/home/images/nomessage.png" alt="无消息">
-        </div>
-        {/notempty}
     </div>
+</div>
+<div id="nomessage">
+    <img src="/home/images/nomessage.png" alt="无消息">
 </div>
 <div class="bg"></div>
 <div class="tip"></div>
@@ -72,8 +69,10 @@
 
 <script>
     function check(){
-        if($('.lists').find(".list").length == 0){
+        if($('img').length == 1){
             $('#nomessage').show();
+        }else {
+            $('#nomessage').hide();
         }
     }
     check();
