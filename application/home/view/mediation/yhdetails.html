@@ -159,9 +159,11 @@
     <div class="box high">
       <!--管理员可选择-->
         <div class="xuan2">
-            调解员 ：<img class="images" src="{$mediator_path}"  alt=""/>
+            选择调解员 ：<img class="images" src="{$mediator_path}"  alt=""/>
             <span class="con name">{$model.mediator}</span>
+            <img class="icon2"  src="/home/images/lxyz/icon/icon2.png"  alt=""/>
         </div>
+
     </div>
     {else/}
     <div class="box">
@@ -265,6 +267,7 @@
         $('.form').css('margin-bottom','9vh')
     }
     var userid={$model.mediatorid};
+    console.log(userid);
 //    点击选择调解员
     $('.high').on('click',function(){
         $('.shadow').fadeIn();
@@ -282,6 +285,7 @@
             $('.images').attr('src',src);
             $('.name').html(name);
             userid =$('.user_hide').html();
+            console.log(userid)
             setTimeout(function(){
                 $('.shadow').fadeOut()
             },800);

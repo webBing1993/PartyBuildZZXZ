@@ -214,7 +214,17 @@ body{
     overflow: hidden;
 }
 
-
+.xuan{
+    position: relative;
+}
+.icon2{
+    position: absolute;
+    top:50%;
+    margin-top:-.2rem;
+    right:4vw;
+    width:4.2vw;
+    height:.4rem;
+}
 
 
 
