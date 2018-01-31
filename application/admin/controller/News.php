@@ -15,6 +15,7 @@ use app\admin\model\PushReview;
 use com\wechat\TPQYWechat;
 use app\admin\model\News as NewsModel;
 use think\Config;
+use think\Db;
 /**
  * Class News
  * @package 第一聚焦控制器
@@ -83,6 +84,11 @@ class News extends Admin {
             $newModel = new NewsModel();
             $info = $newModel->validate('news')->save($data,['id'=>input('id')]);
             if($info){
+                //更新审核表内信息
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = $data['publisher'];
+                $audit['front_cover'] = $data['front_cover'];
+                Db::table('pb_audit')->where('type', 1)->where('aid',input('id'))->update($audit);
                 return $this->success("修改成功",Url("News/index"));
             }else{
                 return $this->get_update_error_msg($newModel->getError());

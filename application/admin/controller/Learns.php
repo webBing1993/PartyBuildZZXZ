@@ -13,7 +13,7 @@ use app\admin\model\Push;
 use app\admin\model\Audit;
 use com\wechat\TPQYWechat;
 use think\Config;
-
+use think\Db;
 /**
  * Class Learns
  * @package 十九大专题
@@ -95,6 +95,11 @@ class Learns extends Admin {
             $LearnsModel = new LearnsModel();
             $model = $LearnsModel->validate('Learns')->save($data,['id'=>input('id')]);
             if($model){
+                //更新审核表内信息
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = $data['publisher'];
+                $audit['front_cover'] = $data['front_cover'];
+                Db::table('pb_audit')->where('type', 3)->where('aid',input('id'))->update($audit);
                 return $this->success('修改成功!',Url("Learns/index"));
             }else{
                 return $this->get_update_error_msg($LearnsModel->getError());

@@ -9,7 +9,7 @@
 namespace app\admin\controller;
 use app\admin\model\Meet as MeetModel;
 use app\admin\model\Audit;
-
+use think\Db;
 class Meet extends Admin
 {
 
@@ -61,7 +61,11 @@ class Meet extends Admin
             }
 
             if($res){
-
+                //更新审核表内信息
+                $audit['title'] = $data['title'];
+                $audit['publisher'] = $data['publisher'];
+                $audit['front_cover'] = $data['front_cover'];
+                Db::table('pb_audit')->where('type', 2)->where('aid',$id)->update($audit);
                 return $this->success($statusMsg.'成功!');
             } else if ($res === 0){
 
