@@ -47,7 +47,7 @@ class Learns extends Base
             ->union("SELECT 'redbook' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redbook where status>=0 and recommend=1")
             ->union("SELECT 'redremark' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, 0 as views, 0 as comments, 0 as likes FROM pb_redremark where status>=0 and recommend=1")
             ->union("SELECT 'redmusic' as tab, id, '' as type, title, create_time, front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redmusic where status>=0 and recommend=1")
-            ->union("SELECT 'learns' as tab, id, type, title, create_time, front_cover, publisher, status, recommend, views, comments, likes FROM pb_learns where status>=0 and recommend=1 order by create_time desc limit $len,6")
+            ->union("SELECT 'learns' as tab, id, type, title, create_time, front_cover, publisher, status, recommend, views, comments, likes FROM pb_learns where status>0 and recommend=1 order by create_time desc limit $len,6")
             ->select();
         foreach ($res as $k=>$v) {
             if ($v['front_cover']) {
