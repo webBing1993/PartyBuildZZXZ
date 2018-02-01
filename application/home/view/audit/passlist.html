@@ -89,19 +89,7 @@
 <script src="/static/framework7/framework7.js"></script>
 <script>
 
-    check();
-    //没有消息显示无消息提醒
-    function check() {
-        if ($(".list-block").find("li").length == 0) {
-            $('#nomessage').show();
-        }
-        if ($(".apply").find("li").length == 0) {
-            $('#nomessage1').show();
-        }
-        else {
-            $(".top").show();
-        }
-    }
+    var scrollNow = true;
 
     var myApp=new Framework7;
     var $$=Dom7;
@@ -136,6 +124,12 @@
         $(this).find('span').addClass('active');
         $(".tip,.loading").hide();
         loadScroll();
+        $("img").lazyload({
+            placeholder: "/home/images/loading.jpg",
+            effect: "fadeIn",
+            threshold: 1
+        });
+        scrollNow = false;
     });
 
     // 初始化
@@ -148,7 +142,7 @@
     }
 
 
-    var scrollNow = true;
+
     loadScroll();
     function loadScroll(){
         $(window).off("scroll").on("scroll",function(){
@@ -158,15 +152,21 @@
             if (type == 0) {
                 var len = $('.views li').length;
                 var type1 = 0;
+                if (len >= 10) {
+                    scrollNow = true;
+                }
             }else {
                 var len = $('.apply li').length;
                 var type1 = 1;
+                if (len >= 10) {
+                    scrollNow = true;
+                }
             }
 
             var tip = $(".tip");
             var loading = $('.loading');
 
-            if(dh == end && scrollNow){
+            if(dh == end && scrollNow == true){
                 scrollNow = false;
                 $.ajax({
                     type:"post",
