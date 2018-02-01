@@ -30,30 +30,45 @@ return [
 
     /* 企业配置   新手指南*/
     'party' => array(
-        'login' => 'http://dzgcpb.0571ztnet.com/home/index/login',
+        'login' => 'http://zzxz.0571ztnet.com/home/index/login',
         'token' => '',
         'encodingaeskey' => '',
-        'appid' => 'ww361a838e44ae696f',
-        'appsecret' => '1S1aMeIkq7YeESEjDiP5e5h2YTefvs47b88deKUNdlg',
-        'agentid' => 1000003,
+        'appid' => 'ww728d8759e9caec88',
+        'appsecret' => 'klgnsaRedcgV8q5iHhWZggl6q6EoUKQBYjJ28cgBNus',
+        'agentid' => 1000002,
     ),
 
-    //消息通知模块
+    //第一聚焦模块
     'news' => [
-        'appid' => 'ww361a838e44ae696f',
-        'appsecret' => '05FC2Dycjf421Uhz2_YGb7j_IeArwgCe47u2Ucd1tZE',
+        'appid' => 'ww728d8759e9caec88',
+        'appsecret' => 'yO0QwVNkzO9HPsYmwcVByYfD5h9gclXE2Q451Oigk9w',
+        'agentid' => 1000006
+    ],
+
+    //两学一做模块
+    'learns' => [
+        'appid' => 'ww728d8759e9caec88',
+        'appsecret' => '5dvYWpDTVCVj6cDtFQbjW1vjb0odKlNSbsdE4DGXhXM',
         'agentid' => 1000004
     ],
+
+    //综合服务模块
+    'meet' => [
+        'appid' => 'ww728d8759e9caec88',
+        'appsecret' => 'yIF_jhTPPe91F1M-5_QEIVYdbHioJ2wCedvqYWQBbE8',
+        'agentid' => 1000003
+    ],
+
     //消息审核模块
-    'review' => [
-        'appid' => 'ww361a838e44ae696f',
-        'appsecret' => 'lXzi5CRoSBp0MoTw-pQY7LS1EVNDWXQfOO1Lzoi1lx4',
-        'agentid' => 1000002
+    'audit' => [
+        'appid' => 'ww728d8759e9caec88',
+        'appsecret' => 'vYCfKc9CbzKiywjsm7kmpRLLJ9va0yPRqTlXhSa952A',
+        'agentid' => 1000007
     ],
 
 
     //  推送网站域名
-    'http_url' => "http://xpf.free.cn",
+    'http_url' => "http://zzxz.0571ztnet.com",
     // 推送对象 发送给全体 @all  个人测试15700004138
     'touser' => '18767104335',
     /* UC用户中心配置 */

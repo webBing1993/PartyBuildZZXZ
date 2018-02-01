@@ -179,7 +179,7 @@ class Audit extends Base
             $model = AuditModel::get($id);
             $pre = AuditModel::STATU_ARRAY[$model['type']];
             $url = "/home/".$model['url']."/id/".$model['aid'];
-//            $this->push($model['title'], $model['front_cover'], $url, $pre);
+            $this->push($model['table'], $model['title'], $model['front_cover'], $url, $pre);
             Db::name($model['table'])->update(['status' => $status, 'id' => $model['aid']]);
         
 
@@ -191,7 +191,7 @@ class Audit extends Base
     /**
      * 图文推送公用方法
      */
-    public function push($title, $front_cover, $url, $pre){
+    public function push($table, $title, $front_cover, $url, $pre){
         $httpUrl = config('http_url');
         $img = Picture::get($front_cover);
         $path = $httpUrl.$img['path'];
@@ -205,15 +205,15 @@ class Audit extends Base
         $send = array();
         $send['articles'][0] = $info;
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('news'));
-        $newsConf = config('news');
+        $Wechat = new TPQYWechat(Config::get($table));
+        $newsConf = config($table);
         $message = array(
             "msgtype" => 'news',
             "agentid" => $newsConf['agentid'],
             "news" => $send,
             "safe" => "0"
         );
-        if($httpUrl == "http://swim.0571ztnet.com"){
+        if($httpUrl == "http://zzxz.0571ztnet.com"){
 //            if(isset($model['tag'])){
 //                $message['totag'] = join('|', json_decode($model['tag'], true));
 //            }else{

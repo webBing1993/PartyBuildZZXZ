@@ -383,7 +383,7 @@ class Mediation extends Base
             $opinionModel = new MediationModel();
             $model = $opinionModel->create($data);
             if ($model) {
-//                 $this->push_review("审核通知", "【调解申请】未审核", "请尽快审核", 1);
+                 $this->push_review("审核通知", "【调解申请】未审核", "请尽快审核", 1);
                 $auditmodel = new \app\admin\model\Audit();
                 $audit['type'] = 4;
                 $audit['table'] = 'mediation';
@@ -473,12 +473,12 @@ class Mediation extends Base
             \app\admin\model\Audit::update(['status' => $audit_status], ['aid' => input('id'), 'type' => 4]);
             if($status){//审核通过
                 $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("审核通过通知", "【调解申请】审核已通过", "点击查看", 0, $userid);
+                $this->push_review("审核通过通知", "【调解申请】审核已通过", "点击查看", 0, $userid, input('id'));
                 $mediatorid = MediationModel::getMediatorid(input('id'));
-//                $this->push_review("调解确认通知", "【调解申请】未确认", "请尽快确认", 0, $mediatorid);
+                $this->push_review("调解确认通知", "【调解申请】未确认", "请尽快确认", 0, $mediatorid, input('id'));
             }else{//审核不通过
                 $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("审核不通过通知", "【调解申请】审核不通过", "点击查看", 0, $userid);
+                $this->push_review("审核不通过通知", "【调解申请】审核不通过", "点击查看", 0, $userid, input('id'));
             }
             return $this->success("提交成功");
         }else{
@@ -495,7 +495,7 @@ class Mediation extends Base
         $model = MediationModel::update($data,['id'=>input('id')]);
         if($model) {
             $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("调解员已确认通知", "【调解申请】调解员已确认", "点击查看", 0, $userid);
+                $this->push_review("调解员已确认通知", "【调解申请】调解员已确认", "点击查看", 0, $userid, input('id'));
             return $this->success("提交成功");
         }else{
             return $this->error("提交失败");
@@ -513,7 +513,7 @@ class Mediation extends Base
             $model = MediationModel::update($data,['id'=>input('id')]);
             if($model) {
                 $userid = MediationModel::getUserid(input('id'));
-//                $this->push_review("评价通知", "【调解申请】未评价", "快去评价吧", 0, $userid);
+                $this->push_review("评价通知", "【调解申请】未评价", "快去评价吧", 0, $userid, input('id'));
                 return $this->success("提交成功");
             }else{
                 return $this->error("提交失败");
@@ -536,15 +536,20 @@ class Mediation extends Base
             $model = MediationModel::update($data,['id'=>input('id')]);
             if($model) {
                 $mediatorid = MediationModel::getMediatorid(input('id'));
-//                $this->push_review("评价查看通知", "【调解申请】评价未查看", "快去看看吧", 0, $mediatorid);
+                $this->push_review("评价查看通知", "【调解申请】评价未查看", "快去看看吧", 0, $mediatorid, input('id'));
                 return $this->success("提交成功");
             }else{
                 return $this->error("提交失败");
             }
         }else{
             $id = input('id');
-            $title = MediationModel::where(['id' => $id])->value("title");
-            $this->assign('title',$title);
+            $model = MediationModel::get($id);
+            if ($model['images'] && $model['images'] != '""') {
+                $model['path'] = get_cover(json_decode($model['images'], true)[0], 'path');
+            } else {
+                $model['path'] = '/home/images/lxyz/icon/default.png';
+            }
+            $this->assign('model',$model);
             $this->assign('id',$id);
             return $this->fetch();
         }
@@ -553,24 +558,42 @@ class Mediation extends Base
     /**
      * 文本卡片推送公用方法
      */
-    public function push_review($title, $pre, $end, $tag, $user=null){
+    public function push_review($title, $pre, $end, $tag, $user=null, $id=0){
         $httpUrl = config('http_url');
-        $send = array(
-            "title" => $title,
-            "description" => "您有一条".$pre."<br>".$end,
-            "url" => $httpUrl."/home/approved/reviewlist",
-        );
         //发送给企业号
-        $Wechat = new TPQYWechat(Config::get('review'));
-        $newsConf = config('review');
+        if($tag) {
+            $send = array(
+                "title" => $title,
+                "description" => "您有一条".$pre."<br>".$end,
+                "url" => $httpUrl."/home/audit/reviewlist",
+            );
+            $Wechat = new TPQYWechat(Config::get('audit'));
+            $newsConf = config('audit');
+        }else{
+            $send = array(
+                "title" => $title,
+                "description" => "您有一条".$pre."<br>".$end,
+                "url" => $httpUrl."/home/mediation/yhdetails/id/".$id,
+            );
+            $Wechat = new TPQYWechat(Config::get('party'));
+            $newsConf = config('party');
+        }
         $message = array(
             "msgtype" => 'textcard',
             "agentid" => $newsConf['agentid'],
             "textcard" => $send,
             "safe" => "0"
         );
-        if($httpUrl == "http://dzgcpb.0571ztnet.com"){
-            $message['totag'] = $tag;
+        if($httpUrl == "http://zzxz.0571ztnet.com"){
+            if($tag){
+                $message['totag'] = $tag;
+            }else{
+                if($user){
+                    $message['touser'] = $user;
+                }else{
+                    $message['touser'] = "18767104335";
+                }
+            }
         }else{
             if($tag){
                 $message['totag'] = $tag;
@@ -578,7 +601,7 @@ class Mediation extends Base
                 if($user){
                     $message['touser'] = $user;
                 }else{
-                    $message['touser'] = config('touser');
+                    $message['touser'] = "18767104335";
                 }
 
             }

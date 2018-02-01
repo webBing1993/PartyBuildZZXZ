@@ -31,7 +31,7 @@ class Structure extends Base{
         $modelAll = WechatDepartmentUser::where(['departmentid' => $party])->order('id')->select();
 //        $bg_color=["#b1e3fc", "#aeefef", "#ffa351", "#9393f5", "#cf88f7", "#65abfa", "#ebcffb", "#76f4f0", "#ffcf6e", "#ff8ff4"];
         foreach ($modelAll as $k => $model){
-            $tag = WechatUserTag::where(['userid' => $model['userid'], 'tagid' => 1])->find();
+            $tag = WechatUserTag::where(['userid' => $model['userid'], 'tagid' => 4])->find();
             if(!$tag){
                 unset($modelAll[$k]);
                 continue;

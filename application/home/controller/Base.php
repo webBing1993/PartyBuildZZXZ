@@ -23,6 +23,43 @@ use think\Db;
 
 class Base extends Controller {
 
+    public function _initialize(){
+//        session('userId',null);
+        session('userId','18329199210'); //申请人权限
+//        session('userId','15558023165'); //调解员权限
+//        session('userId','18767104335'); //管理员权限
+//        session('userId','15700004138'); //党员权限
+//        session('userId','15158887880'); //组织领导权限
+
+//        session('header','/home/images/vistor.jpg');
+//        session('nickname','游客');
+        session('requestUri', 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]);
+        $userId = session('userId');
+
+        if(Config::get('WEB_SITE_CLOSE')){
+            return $this->error('站点维护中，请稍后访问~');
+        }
+        //如果是游客的话默认userid为visitors
+        if($userId == 'visitor'){
+            session('nickname','游客');
+            session('header','/home/images/vistor.jpg');
+        }else{
+            //微信认证
+            $Wechat = new TPQYWechat(Config::get('party'));
+            // 1用户认证是否登陆
+            if(empty($userId)) {
+                $redirect_uri = Config::get("party.login");
+                $url = $Wechat->getOauthRedirect($redirect_uri);
+                $this->redirect($url);
+            }
+
+            // 2获取jsapi_ticket
+            $jsApiTicket = session('jsapiticket');
+            if(empty($jsApiTicket) || $jsApiTicket=='') {
+                session('jsapiticket', $Wechat->getJsTicket()); // 官方7200,设置7000防止误差
+            }
+        }
+    }
 
     /*static $app;
     public function _initialize()
@@ -57,46 +94,6 @@ class Base extends Controller {
     }*/
 
 
-
-
-    public function _initialize(){
-//        session('userId',null);
-//        session('userId','18767104335'); //申请人权限
-//        session('userId','15757118744'); //调解员1权限
-//        session('userId','18268031620'); //调解员2权限
-        session('userId','13857282889'); //管理员权限
-//        session('userId','15700004138'); //党员权限
-
-//        session('header','/home/images/vistor.jpg');
-//        session('nickname','游客');
-        session('requestUri', 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]);
-        $userId = session('userId');
-
-        if(Config::get('WEB_SITE_CLOSE')){
-            return $this->error('站点维护中，请稍后访问~');
-        }
-        //如果是游客的话默认userid为visitors
-        if($userId == 'visitor'){
-            session('nickname','游客');
-            session('header','/home/images/vistor.jpg');
-        }else{
-            //微信认证
-            $Wechat = new TPQYWechat(Config::get('party'));
-            // 1用户认证是否登陆
-            if(empty($userId)) {
-                $redirect_uri = Config::get("party.login");
-                $url = $Wechat->getOauthRedirect($redirect_uri);
-                $this->redirect($url);
-            }
-
-            // 2获取jsapi_ticket
-            $jsApiTicket = session('jsapiticket');
-            if(empty($jsApiTicket) || $jsApiTicket=='') {
-                session('jsapiticket', $Wechat->getJsTicket()); // 官方7200,设置7000防止误差
-            }
-        }
-    }
-   
     /**
      * 微信官方认证URL
      */

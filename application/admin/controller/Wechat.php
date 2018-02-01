@@ -103,27 +103,30 @@ class Wechat extends Admin
                         switch ($value['name']){
                             case "出生日期":
                                 $user['birthday'] = $value['value'];
-                                if(!empty($value['value'])) {
-                                    $user['age'] = date("Y",time()) - substr($value['value'],0,4);
-                                }else{
-                                    $user['age'] = null;
-                                }
+//                                if(!empty($value['value'])) {
+//                                    $user['age'] = date("Y",time()) - substr($value['value'],0,4);
+//                                }else{
+//                                    $user['age'] = null;
+//                                }
                                 break;
-                            case "所属支部":
-                                $user['branch'] = $value['value'];
-                                break;
+//                            case "所属支部":
+//                                $user['branch'] = $value['value'];
+//                                break;
                             case "学历":
                                 $user['education'] = $value['value'];
                                 break;
                             case "入党时间":
                                 $user['partytime'] = $value['value'];
                                 break;
-                            case "党员承诺":
-                                $user['promise'] = $value['value'];
+                            case "部门简称":
+                                $user['department_short'] = $value['value'];
                                 break;
-                            case "党员荣誉":
-                                $user['honor'] = $value['value'];
-                                break;
+//                            case "党员承诺":
+//                                $user['promise'] = $value['value'];
+//                                break;
+//                            case "党员荣誉":
+//                                $user['honor'] = $value['value'];
+//                                break;
                             default:
                                 break;
                         }
