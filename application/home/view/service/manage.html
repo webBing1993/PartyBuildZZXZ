@@ -127,11 +127,7 @@
         });
         $('.tabs .tab').eq(number).click();
 
-        // 党员展示初始化
-        if (number == 0) {
-            var num = getCookie("num") == null? 0 : getCookie("num");
-            $(".showLeft li").eq(num).click();
-        }
+
 
         $(".box").eq(number).show();
 
