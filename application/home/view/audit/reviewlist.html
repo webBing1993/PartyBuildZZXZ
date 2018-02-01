@@ -332,7 +332,7 @@ function loadScroll(){
                     tip.show();
                     if(data.code == 1){
                         addLists(data);
-                        if(data.data.length == 5){
+                        if(data.data.length >= 5){
                             tip.text('上拉加载更多');
 
                         }else{
