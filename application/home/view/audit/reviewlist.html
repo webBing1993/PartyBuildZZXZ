@@ -188,6 +188,8 @@ function dispose1(i,id,status,type){
 								$(i).parent().parent().remove();
 								//判断是否还有消息
 								check();
+								// 加载操作
+								loadScroll();
 							},1500)
                         },200);
                     }else{
@@ -242,8 +244,10 @@ function dispose(i,id,status,type){
 								sessionStorage.setItem("review","true");
 								$(i).parent().parent().fadeOut(500);
 								$(i).parent().parent().remove();
-								//判断是否还有消息
+								// 判断是否还有消息
 								check();
+								// 加载操作
+								loadScroll();
 							},1500)
 						},200);
 					}else{
@@ -316,7 +320,7 @@ function loadScroll(){
                     tip.show();
                     if(data.code == 1){
                         addLists(data);
-                        if(data.data.length > 6){
+                        if(data.data.length >= 6){
                             tip.text('上拉加载更多');
 
                         }else{
