@@ -461,7 +461,13 @@ class Microtest extends Base
         // 统计该成员  答题总数   答对 题数
         Db::name('answer_data')->insert(['userid' => $users,'create_time' => time(),'num' => $num,'sum' => $sum]);
         //若该用户存在则修改数据
-        if(Answer::get(['userid'=>session('userId')])){
+        $da=strtotime(date('Y-m-d',time()));
+        $da2=$da+86400;
+        //dump($da2);exit;//1517414400//1517500800
+        $where3['create_time']=array(array('gt',$da),array('lt',$da2));
+        $where3['exist']=0;
+        $info3=Db::table('pb_answer')->where('userid',session('userId'))->where($where3)->find();
+        if($info3){
             $answer=Answer::get(['userid'=>session('userId')]);
             $answer->question_id=$questions;
             $answer->value=$rights;
