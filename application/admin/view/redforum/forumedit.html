@@ -103,7 +103,7 @@
         highlight_subnav("{:Url('Redforum/forum')}");
 
         //发布
-        $(".post-put").one("click",function(){
+        $(".post-put").off("click").on("click",function(){
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
@@ -116,13 +116,13 @@
                 data:data,
                 success:function(data){
                     if(data.code == 1){
+                        it.prop('disabled','true');
+                        it.prev().prop('disabled','true');
                         if (data.url) {
                             updateAlert(data.msg + ' 页面即将自动跳转~','success');
                         }else{
                             updateAlert(data.msg ,'success');
                         }
-                        it.prop('disabled','true');
-                        it.prev().prop('disabled','true');
                         setTimeout(function(){
                             if (data.url) {
                                 location.href=data.url;

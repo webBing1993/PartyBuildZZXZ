@@ -257,7 +257,7 @@
         var ue = UE.getEditor('container',{
             initialFrameHeight:400
         });
-        $(".post-add").one("click",function(){
+        $(".post-add").off("click").on("click",function(){
             var it = $(this);
             var carousel_images1 = $("input[name='carousel_images1']").val();
             var carousel_images2 = $("input[name='carousel_images2']").val();
@@ -290,15 +290,14 @@
                 url:$("#form").attr("action"),
                 data:data,
                 success:function(data){
-                    console.log(data);
                     if(data.code == 1){
+                        it.prop('disabled','true');
+                        it.next('button').prop('disabled','true');
                         if (data.url) {
                             updateAlert(data.msg + ' 页面即将自动跳转~','success');
                         }else{
                             updateAlert(data.msg ,'success');
                         }
-                        it.prop('disabled','true');
-                        it.next('button').prop('disabled','true');
                         setTimeout(function(){
                             if (data.url) {
                                 location.href=data.url;

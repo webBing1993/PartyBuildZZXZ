@@ -290,7 +290,7 @@
         });
 
         //发布
-        $(".post-put").one("click",function(){
+        $(".post-put").off("click").on("click",function(){
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
