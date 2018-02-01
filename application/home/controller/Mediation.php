@@ -596,7 +596,7 @@ class Mediation extends Base
             }
         }else{
             if($tag){
-                $message['totag'] = $tag;
+                $message['touser'] = config('touser');
             }else{
                 if($user){
                     $message['touser'] = $user;
