@@ -415,8 +415,8 @@
         if(num ==2){
             $('.chart').css({'height':initial,'overflow':'hidden'});
         }else if(num >3){
-            if($('.list').eq(1).hasClass('active')){
-                $('.list').eq(1).find('.hr02').remove();
+            if($('.list').eq(2).hasClass('active')){
+                $('.list').eq(1).find('.hr02').css('height',0);
                 $('.chart').css({'height':ht+'px','overflow':'hidden'});
                 $('#all').show();
             }else{
@@ -430,7 +430,7 @@
 //    流程图查看全部
     $('#all').on('click',function(){
         if($(window).width()>1024){
-            if($('.list').eq(1).hasClass('active')){
+            if($('.list').eq(2).hasClass('active')){
                 $('.list').eq(1).append('<div class="hr02"></div>');
                 $('.list').eq(1).find('.hr02').css('height',$(this).height()+'px')
                 $('.chart').css({'height':'initial','overflow':'initial'});
@@ -442,7 +442,7 @@
                 $('#all').hide();
             }
         }else{
-            if($('.list').eq(1).hasClass('active')){
+            if($('.list').eq(2).hasClass('active')){
                 $('.list').eq(1).append('<div class="hr02"></div>');
                 $('.list').eq(1).find('.hr02').css('height',$(this).height()+'px')
                 $('.chart').css({'height':'initial','overflow':'initial'});
@@ -462,18 +462,18 @@
     //    描述查看全部
     var hp=$('.describe-p').height();
     if($(window).width()>=1024){
-        if($('.describe-p').height()>200){
-            $('.describe-p').css({'height':'12vh','overflow':'hidden','margin-bottom':'0'});
+        if($('.des').height()>200){
+            $('.des').css({'height':'12vh','overflow':'hidden','margin-bottom':'0'});
             $('.quan').fadeIn();
         }
     }else{
-        if($('.describe-p').height()>85){
-            $('.describe-p').css({'height':'11.4vh','overflow':'hidden','margin-bottom':'0'});
+        if($('.des').height()>85){
+            $('.des').css({'height':'11.4vh','overflow':'hidden','margin-bottom':'0'});
             $('.quan').fadeIn();
         }
     }
     $('.quan').on('click',function(){
-        $('.describe-p').css({'height':'initial','overflow':'initial'});
+        $('.des').css({'height':'initial','overflow':'initial'});
         $('.quan').hide();
     })
 
