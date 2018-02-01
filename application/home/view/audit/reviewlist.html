@@ -113,11 +113,8 @@ $(document).scroll(function() {
     });
 });
 
-var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
-// 初始化
-$(function () {
-	$('.top>div').find("span").eq(type).click();
-});
+	var type= localStorage.getItem('num')==null?0:localStorage.getItem('num');
+
 
 	$(".list-t-wrap >div").hide();
 	$(".list-t-wrap >div").eq(type).show();
