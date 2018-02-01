@@ -25,7 +25,7 @@ class Mediationuser extends Validate {
     protected $message = [
         'front_cover.require'  =>  '请添加封面图片！',
         'name.require' =>  '请添加姓名！',
-        'description.require' =>  '请添加简介！',
+        'description.require' =>  '请添加口号！',
         'birthday.require' =>  '请添加出生年月！',
        /* 'politics_status.require' =>  '请添加政治面貌！',*/
         'education.require'  =>  '请填写学历！',

@@ -57,15 +57,16 @@ class Meet extends Admin
                 $statusMsg = '修改';
                 $id = $data['id'];
                 unset($data['id']);
-                $res = $meetModel->validate('Meet')->save($data,['id' => $id]);
+                $res = $meetModel->validate('Meet')->save($data, ['id' => $id]);
+                if ($res) {
+                    //更新审核表内信息
+                    $audit['title'] = $data['title'];
+                    $audit['publisher'] = $data['publisher'];
+                    $audit['front_cover'] = $data['front_cover'];
+                    Db::table('pb_audit')->where('type', 2)->where('aid', $id)->update($audit);
+                }
             }
-
             if($res){
-                //更新审核表内信息
-                $audit['title'] = $data['title'];
-                $audit['publisher'] = $data['publisher'];
-                $audit['front_cover'] = $data['front_cover'];
-                Db::table('pb_audit')->where('type', 2)->where('aid',$id)->update($audit);
                 return $this->success($statusMsg.'成功!');
             } else if ($res === 0){
 
