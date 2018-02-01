@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/home/css/common/tip.css">
 <style>
 	body{overflow: initial;!important;font-size: 1.4rem;!important;background:#F5F5F5;}
-
+	body.stop-scrolling {overflow: initial;}
 </style>
 {/block}
 
@@ -21,7 +21,7 @@
 <div class="list-t-wrap">
 
 	<!--新闻通知模块-->
-	<div class="list-wrapper">
+	<div class="list-wrapper" id="cccc">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
 			{notempty name="$list"}
@@ -194,7 +194,8 @@ function dispose1(i,id,status,type){
 								loadScroll();
 							},1500)
                         },200);
-                    }else{
+                    }
+                    else{
 						setTimeout(function(){
 							swal({
 								title: ' ',
@@ -205,13 +206,15 @@ function dispose1(i,id,status,type){
 							})
 						},200);
                     }
+                    $('html').css('overflow','initial');
                 }
             })
         }
     });
+	$('html').css('overflow','hidden');
 }
 
-//不同意操作
+    //不同意操作
 function dispose(i,id,status,type){
 	swal({
 		title: ' ',
@@ -263,10 +266,12 @@ function dispose(i,id,status,type){
 							})
 						},200);
 					}
+                    $('html').css('overflow','initial');
 				}
 			})
 		}
 	});
+    $('html').css('overflow','hidden');
 }
 
 function aleats(msg,status){
@@ -367,7 +372,7 @@ function addLists(data){
 					'</a>'+
 					'</div>'+
 					'<div class="swipeout-actions-right">'+
-					'<a class="green" onclick="dispose(this,'+list.id+',1,0)">同 意</a>'+
+					'<a class="green" onclick="dispose1(this,'+list.id+',1,0)">同 意</a>'+
 					'<a class="red" onclick="dispose(this,'+list.id+',-1,0)">不同意</a>'+
 					'</div>'+
 					'</li>';

@@ -189,7 +189,6 @@
     $('.headerTop>div').on("click",function(){
         $(this).addClass('active').siblings("div").removeClass("active");
         type1 = $(this).data('side');
-        console.log(type1);
         $('.appraisal').hide();
         $('#side'+type1).show();
         localStorage.setItem('appNum',type1);
@@ -197,6 +196,12 @@
         app = localStorage.getItem('appNum');
         $(window ).scrollTop("0");
         loadScroll();
+        console.log($('#side'+type1).find('li').length == 0)
+        if($('#side'+type1).find('li').length == 0){
+            $('.tip').hide();
+        }else {
+            $('.tip').show();
+        }
     });
     // 初始化
     $('.headerTop>div').eq(app-1).click();
@@ -213,7 +218,7 @@
             var loading = $('.loading');
             if(dh == end && scrollNow){
                 scrollNow = false;
-                if(app==1){
+                if(app==1 && $('#side1').find('li').length>0){
                     $.ajax({
                         type:"post",
                         url:"{:Url('Feedback/indexmore')}",//我来推荐
@@ -258,7 +263,8 @@
                             scrollNow = true;
                         }
                     })
-                }else if(app==2){
+                }
+                else if(app==2 && $('#side2').find('li').length>0){
                     $.ajax({
                         type:"post",
                         url:"{:Url('Feedback/pioneermore')}",//典型引路
@@ -298,6 +304,7 @@
         var html = '';
         var lists = data.data;
         var len = lists.length;
+        console.log(data)
         if(app==1) {
             for (var j = 0; j < len; j++) {
                 var list = lists[j];

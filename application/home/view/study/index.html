@@ -227,10 +227,14 @@
                 $('.banner img').attr('src','/home/images/banner/7.jpg')
             }
             loadScroll();
+            if($('#side'+side).find('a').length==0){
+                $('.tip').hide();
+            }else {
+                $('.tip').show();
+            }
         }
     }
     $('.subject').hide();
-    console.log(study)
     $('.clearfix li').removeClass('cur');
     $('.clearfix li').eq(study-1).addClass('cur');
     $('#side'+study).show();
@@ -276,8 +280,7 @@
             var len = $(".subject").eq(num-1).find('a').length;
             var tip = $(".tip");
             var loading = $('.loading');
-//            console.log(dh,end)
-            if(dh == end && scrollNow){
+            if(dh == end && scrollNow && $('#side'+num).find('a').length>0){
                 scrollNow = false;
                 $.ajax({
                     type:"post",

@@ -227,6 +227,11 @@
 {block name="script"}
 <script src="/static/swiper/swiper-3.3.1.jquery.min.js"></script>
 <script>
+    if($('.swiper-wrapper').find('.swiper-slide').length==0){
+        $('.swiper-wrapper').html('<div style="width:100%;text-align: center;line-height: 3rem;font-size: .36rem;">暂无推荐</div>')
+    }
+</script>
+<script>
     $('.search>input').val('')
     var edu = localStorage.getItem('eduNum')==null?1:localStorage.getItem('eduNum');
     var num = 0;
