@@ -294,7 +294,10 @@
 
         // 返回
         $(".back").on("click",function (e) {
-            window.history.go(-1);
+            $('.search>input').blur();
+           setTimeout(function () {
+               window.history.go(-1);
+           },200);
             return false
         })
     })
