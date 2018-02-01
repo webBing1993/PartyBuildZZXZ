@@ -24,8 +24,8 @@
 	<div class="list-wrapper">
 		<!--列表一定要放到容器内,因为会有一个div append到mui-scroll中,需要在底部才能起作用-->
 		<div class="list-block" id="list-block-company">
-			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;" class="top1"><img src="/home/images/approved/icon_left.png" style="width:.34rem;vertical-align: middle;"> 向左滑动</div>
 			{notempty name="$list"}
+			<div style="width:100vw;height:5.55vh;line-height: 5.55vh;color: #999;font-size: .3rem;text-align: center;background: #eee;" class="top1"><img src="/home/images/approved/icon_left.png" style="width:.34rem;vertical-align: middle;"> 向左滑动</div>
 			<ul class="views">
 				{volist name="list" id="vo"}
 				<li class="swipeout" style="margin-right: 3vw;">
@@ -94,7 +94,6 @@
 
 	//没有消息显示无消息提醒
 	function check() {
-	    console.log($(".list-block").find("li").length)
 		if ($(".list-block").find("li").length == 0) {
 	        $(".list-block").append('<div id="nomessage"><img src="/home/images/nomessage.png" alt="无消息"></div>');
 			$(".top1").hide();
