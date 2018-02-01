@@ -111,6 +111,8 @@ class News extends Admin {
         $data['status'] = '-1';
         $info = NewsModel::where('id',$id)->update($data);
         if($info) {
+            //更新审核表数据
+            Db::table('pb_audit')->where('type', 1)->where('aid',input('id'))->update($data);
             return $this->success("删除成功");
         }else{
             return $this->error("删除失败");
