@@ -330,7 +330,7 @@
             initialFrameHeight:400
         });
 
-        $(".post-add").on("click",function(){
+        $(".post-add").one("click",function(){
             /*重组轮播图，删除多余字符串（i是键值，1表示几位开始*/
             var carousel_images1 = $("input[name='carousel_images1']").val();
             var carousel_images2 = $("input[name='carousel_images2']").val();

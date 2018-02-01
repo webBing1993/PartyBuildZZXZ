@@ -257,7 +257,7 @@
         var ue = UE.getEditor('container',{
             initialFrameHeight:400
         });
-        $(".post-add").off('click').on("click",function(){
+        $(".post-add").one("click",function(){
             var it = $(this);
             var carousel_images1 = $("input[name='carousel_images1']").val();
             var carousel_images2 = $("input[name='carousel_images2']").val();
