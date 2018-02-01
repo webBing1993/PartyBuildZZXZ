@@ -462,7 +462,6 @@
                 url:$("#form").attr("action"),
                 data:data,
                 success:function(data){
-                    console.log(data);
                     if(data.code == 1){
                         it.prop('disabled','true');
                         it.next('button').prop('disabled','true');

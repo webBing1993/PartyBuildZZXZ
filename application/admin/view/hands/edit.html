@@ -221,6 +221,7 @@
                 url:$("#form").attr("action"),
                 data:data,
                 success:function(data){
+
                     if(data.code == 1){
                         it.prop('disabled','true');
                         it.prev().prop('disabled','true');
