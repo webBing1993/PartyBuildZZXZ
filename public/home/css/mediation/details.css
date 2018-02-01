@@ -162,10 +162,10 @@ body{
 .describe-m{
     position: absolute;
     left:0;
-    top:1.8vh;
+    top:2.5vh;
 }
 .describe-ps{
-    padding-top:1.8vh;
+    padding-top:2.5vh;
     text-indent: 27.5vw;
     min-height:6vh;
     color:#333;
