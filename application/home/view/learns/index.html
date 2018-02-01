@@ -65,43 +65,41 @@
     var len = $(".lists a" ).length;
     if(len==0){
         tip.hide();
-    }
-    $.ajax({
-        type:"post",
-        url:"{:Url('Learns/moreDataList')}",
-        data:{
-            length:len
-        },
-        beforeSend: function(XMLHttpRequest){
-            tip.hide();
-            loading.toggleClass('hidden');
-        },
-        success:function(data){
-            loading.toggleClass('hidden');
-            tip.show();
-            if(data.code == 1){
-                addCourse(data);
-                if ($(".lists .list").length == 0) {
-                    $("#nomessage").show()
-                }else {
-                    $("#nomessage").hide();
-                }
-                var dataLen =data.data.length;
-                if(data.data.length == 5){
-                    tip.text('上拉加载更多');
-                }
-                $("img.lazy").lazyload({
-                    placeholder: "/home/images/loading.jpg",
-                    effect: "fadeIn",
-                    threshold: 1
-                });
-            }else{
+        $("#nomessage").show();
+    }else {
+        $.ajax({
+            type:"post",
+            url:"{:Url('Learns/moreDataList')}",
+            data:{
+                length:len
+            },
+            beforeSend: function(XMLHttpRequest){
                 tip.hide();
-                $(window ).off("scroll");
+                loading.toggleClass('hidden');
+            },
+            success:function(data){
+                loading.toggleClass('hidden');
+                tip.show();
+                if(data.code == 1){
+                    addCourse(data);
+                    var dataLen =data.data.length;
+                    if(data.data.length == 5){
+                        tip.text('上拉加载更多');
+                    }
+                    $("img.lazy").lazyload({
+                        placeholder: "/home/images/loading.jpg",
+                        effect: "fadeIn",
+                        threshold: 1
+                    });
+                }else{
+                    tip.hide();
+                    $(window ).off("scroll");
+                }
+                scrollNow = true;
             }
-            scrollNow = true;
-        }
-    });
+        });
+    }
+
     var scrollNow = true;
     $(function(){
         var len = $(".lists a" ).length;
