@@ -84,8 +84,9 @@ class Microtest extends Base
         }
         //在线答题
         $da=strtotime(date('Y-m-d',time()));
-        $where2['create_time']=array(array('gt',$da),array('lt',$da+86400),"OR");
-        //dump($da);exit;
+        $da2=$da+86400;
+        //dump($da2);exit;//1517414400//1517500800
+        $where2['create_time']=array(array('gt',$da),array('lt',$da2));
         $info2=Db::table('pb_answer')->where('userid',$userId)->where($where2)->find();
         //dump($info2);exit();
         if (!empty($info2)){
@@ -96,6 +97,7 @@ class Microtest extends Base
             $this->assign('check2',$check2);
         }
         $info = Answer::get(['userid'=>$userId]);
+        //dump($info);exit();
         if($info) {
             $exist=$info->exist;
             $this->assign('exist',$exist);
@@ -460,7 +462,7 @@ class Microtest extends Base
         // 统计该成员  答题总数   答对 题数
         Db::name('answer_data')->insert(['userid' => $users,'create_time' => time(),'num' => $num,'sum' => $sum]);
         //若该用户存在则修改数据
-        if(Answer::get(['userid'=>session('userId')])){
+        /*if(Answer::get(['userid'=>session('userId')])){
             $answer=Answer::get(['userid'=>session('userId')]);
             $answer->question_id=$questions;
             $answer->value=$rights;
@@ -472,7 +474,7 @@ class Microtest extends Base
             }else{
                 return $this->error('提交失败');
             };
-        }else{
+        }else{*/
             //若该用户不存在则添加数据
             $Answer=new Answer();
             $Answer->userid=$users;
@@ -487,7 +489,7 @@ class Microtest extends Base
                 return $this->error('提交失败');
             }
         }
-    }
+    //}
     /*
      * 查看分数
      */
