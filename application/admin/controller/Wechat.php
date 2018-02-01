@@ -96,6 +96,15 @@ class Wechat extends Admin
         foreach ($list['department'] as $key=>$value) {
             $users = $Wechat->getUserListInfo($list['department'][$key]['id']);
 //            $user =  $users['userlist'][0];
+            $dname = $value['name'];
+            $dname = str_replace('中共诸暨市','',$dname);
+            $dname = str_replace('浙江省','',$dname);
+            $dname = str_replace('浙江','',$dname);
+            $dname = str_replace('支部委员会','',$dname);
+            $dname = str_replace('股份有限公司','',$dname);
+            $dname = str_replace('有限公司','',$dname);
+            $dname = str_replace('公司','',$dname);
+            $dname = str_replace('山下湖镇','',$dname);
             foreach ($users['userlist'] as $user) {
                 $user['department'] = json_encode($user['department']);
                 if(isset($user['extattr'])){
@@ -119,7 +128,7 @@ class Wechat extends Admin
                                 $user['partytime'] = $value['value'];
                                 break;
                             case "部门简称":
-                                $user['department_short'] = $value['value'];
+                                $user['department_short'] = $dname;
                                 break;
 //                            case "党员承诺":
 //                                $user['promise'] = $value['value'];
@@ -162,6 +171,16 @@ class Wechat extends Admin
         /* 同步部门 */
         $list = $Wechat->getDepartment();
         foreach ($list['department'] as $key=>$value) {
+            $dname = $value['name'];
+            $dname = str_replace('中共诸暨市','',$dname);
+            $dname = str_replace('浙江省','',$dname);
+            $dname = str_replace('浙江','',$dname);
+            $dname = str_replace('支部委员会','',$dname);
+            $dname = str_replace('股份有限公司','',$dname);
+            $dname = str_replace('有限公司','',$dname);
+            $dname = str_replace('公司','',$dname);
+            $dname = str_replace('山下湖镇','',$dname);
+            $value['short_name'] = $dname;
             if(WechatDepartment::get($value['id'])){
                 WechatDepartment::update($value);
             } else {

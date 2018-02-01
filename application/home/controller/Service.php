@@ -37,7 +37,7 @@ class Service extends Base
 
         // 党员情况
 
-        $dLists = WechatDepartment::where(['parentid'=>1])->select(); // 部门列表
+        $dLists = WechatDepartment::where(['parentid'=>1, 'id'=>['neq', 2]])->select(); // 部门列表
         $this->assign('dList',$dLists);
 
         return $this->fetch();

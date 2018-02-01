@@ -38,9 +38,9 @@
                 <ul class="nav">
                     {volist name="dList" id="vo" key="k"}
                         {eq name="$k" value="1"}
-                        <li class="active" data-id="{$vo.id}">{$vo.name}</li>
+                        <li class="active" data-id="{$vo.id}">{$vo.short_name}</li>
                         {else/}
-                        <li data-id="{$vo.id}">{$vo.name}</li>
+                        <li data-id="{$vo.id}">{$vo.short_name}</li>
                         {/eq}
                     {/volist}
                 </ul>
