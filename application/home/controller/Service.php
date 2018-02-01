@@ -56,8 +56,8 @@ class Service extends Base
                 ->alias('a')
                 ->join('pb_wechat_department_user b','a.userid = b.userid')
                 ->join('pb_wechat_user_tag c','a.userid = c.userid')
-                ->join('pb_wechat_department d','b.departmentid = d.id')
-                ->field('d.name as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
+//                ->join('pb_wechat_department d','b.departmentid = d.id')
+                ->field('a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
                 ->where(['departmentid'=>$did,'tagid'=>$this::$MEMBER_TAG])
                 ->select();
 
@@ -161,8 +161,8 @@ class Service extends Base
                 ->alias('a')
                 ->join('pb_wechat_department_user b','a.userid = b.userid','left')
                 ->join('pb_wechat_user_tag c','a.userid = c.userid','left')
-                ->join('pb_wechat_department d','b.departmentid = d.id','left')
-                ->field('d.name as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.position')
+                //->join('pb_wechat_department d','b.departmentid = d.id','left')
+                ->field('a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
                 ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG])
                 ->select();
 

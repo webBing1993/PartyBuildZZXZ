@@ -43,7 +43,7 @@ class Index extends Controller {
                 'mobile' => $userInfo['mobile'],
                 'gender' => $userInfo['gender'],
                 'avatar' => $userInfo['avatar'],
-                'department' => $userInfo['department'][0], //只选第一个所属部门
+                'department' => json_encode($userInfo['department']),
                 'status' => $userInfo['status'],
                 'order' => $userInfo['order'][0],
             ];
@@ -62,7 +62,7 @@ class Index extends Controller {
             session('name', $userInfo['name']);
             session('gender', $userInfo['gender']);
             session('avatar', $userInfo['avatar']);
-            session('department', $userInfo['department'][0]);
+            session('department', json_encode($userInfo['department']));
 
             $this->redirect(session('requestUri'));
         }
