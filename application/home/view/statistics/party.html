@@ -8,6 +8,7 @@
         height:100%;
         width:100%;
         overflow: hidden;
+        background: #efefef;
     }
     .tabs{
         margin-bottom:1px;
@@ -45,11 +46,11 @@
         var WH = $(window).height();
         var WW = $(window).width();
         $('#tab0').height(WH);
-        $("iframe").css("margin-top",".88rem");
+        $("iframe").css("margin-top","1rem");
         //tab切换
         var number = getCookie('num')==null?0:getCookie('num');
         $('.tabs>.tab ').on('click',function(){
-            $("iframe").css("margin-top",".88rem");
+            $("iframe").css("margin-top","1rem");
             var eq = $(this ).index();
             setCookie('num',eq);
             $(this ).siblings('.tab' ).find('span' ).removeClass('active');
