@@ -97,7 +97,6 @@ class Microtest extends Base
             $this->assign('check2',$check2);
         }
         $info = Answer::get(['userid'=>$userId]);
-        //dump($info);exit();
         if($info) {
             $exist=$info->exist;
             $this->assign('exist',$exist);
@@ -462,7 +461,7 @@ class Microtest extends Base
         // 统计该成员  答题总数   答对 题数
         Db::name('answer_data')->insert(['userid' => $users,'create_time' => time(),'num' => $num,'sum' => $sum]);
         //若该用户存在则修改数据
-        /*if(Answer::get(['userid'=>session('userId')])){
+        if(Answer::get(['userid'=>session('userId')])){
             $answer=Answer::get(['userid'=>session('userId')]);
             $answer->question_id=$questions;
             $answer->value=$rights;
@@ -474,7 +473,7 @@ class Microtest extends Base
             }else{
                 return $this->error('提交失败');
             };
-        }else{*/
+        }else{
             //若该用户不存在则添加数据
             $Answer=new Answer();
             $Answer->userid=$users;
@@ -489,7 +488,7 @@ class Microtest extends Base
                 return $this->error('提交失败');
             }
         }
-    //}
+    }
     /*
      * 查看分数
      */
