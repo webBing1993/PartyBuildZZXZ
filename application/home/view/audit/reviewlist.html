@@ -90,16 +90,13 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
-
+	var scrollNow = false;
 
 	//没有消息显示无消息提醒
 	function check() {
 		if ($(".list-block").find("li").length == 0) {
 	        $(".list-block").append('<div id="nomessage"><img src="/home/images/nomessage.png" alt="无消息"></div>');
 			$(".top1").hide();
-		}
-		if ($(".apply").find("li").length == 0) {
-			$('#nomessage1').show();
 		}
 		else {
 			$(".top").show();
@@ -109,7 +106,7 @@
 var myApp=new Framework7;
 var $$=Dom7;
 $(document).scroll(function() {
-    $("img.lazy").lazyload({
+    $("img").lazyload({
         placeholder: "/home/images/loading.jpg",
         effect: "fadeIn",
         threshold: 1
@@ -122,8 +119,9 @@ $(function () {
 	$('.top>div').find("span").eq(type).click();
 });
 
-$(".list-t-wrap >div").hide();
-$(".list-t-wrap >div").eq(type).show();
+	$(".list-t-wrap >div").hide();
+	$(".list-t-wrap >div").eq(type).show();
+
 	$('.top div').on('click',function(){
 		var index=$(this).index();
 		localStorage.setItem('num',index);
@@ -139,7 +137,14 @@ $(".list-t-wrap >div").eq(type).show();
 		$(this).find('span').addClass('active');
 		$(".tip,.loading").hide();
         $(window ).scrollTop("0");
+		type= localStorage.getItem('num');
 		loadScroll();
+		$("img").lazyload({
+			placeholder: "/home/images/loading.jpg",
+			effect: "fadeIn",
+			threshold: 1
+		});
+		scrollNow = false;
 	});
 
 	// 初始化
@@ -282,7 +287,6 @@ function aleats(msg,status){
 		})
 }
 
-var scrollNow = true;
 loadScroll();
 function loadScroll(){
     $(window).off("scroll").on("scroll",function(){
@@ -292,15 +296,22 @@ function loadScroll(){
 		if (type == 0) {
 			var len = $('.views li').length;
 			var type1 = 0;
+			if (len >= 10) {
+				scrollNow = true;
+			}
 		}else {
 			var len = $('.apply li').length;
 			var type1 = 1;
+			if (len >= 10) {
+				scrollNow = true;
+			}
 		}
-        
+		console.log(type);
+        console.log(len);
         var tip = $(".tip");
         var loading = $('.loading');
 
-        if(dh == end && scrollNow){
+        if(dh == end && scrollNow == true){
             scrollNow = false;
             $.ajax({
                 type:"post",
