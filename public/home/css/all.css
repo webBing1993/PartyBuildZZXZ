@@ -342,6 +342,7 @@
     word-break: break-all;
     font-size: .26rem;
     color: #666;
+    margin-bottom:2vw;
 }
 .comment .lists .list .mid .time {
     font-size: .24rem;

@@ -144,6 +144,8 @@
     }
     //评论
     var send = function(e,type,id){
+//        var h=$(window).height();
+//        $("body,html").css({"overflow":"hidden","height":h+"px","position":"fixed"});
         swal({
             title: '',
             text: '请输入您的评论！',
@@ -209,6 +211,7 @@
                     });
                 }
             });
+//            $("body,html").css({"overflow":"auto","height":"auto","position":"relative"});
         })
     };
     var wAlert = window.alert;
