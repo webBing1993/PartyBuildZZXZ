@@ -287,7 +287,7 @@ function aleats(msg,status){
 		})
 }
 
-var scrollNow = true;
+
 loadScroll();
 function loadScroll(){
     $(window).off("scroll").on("scroll",function(){
@@ -330,7 +330,7 @@ function loadScroll(){
                     tip.show();
                     if(data.code == 1){
                         addLists(data);
-                        if(data.data.length >= 6){
+                        if(data.data.length == 5){
                             tip.text('上拉加载更多');
 
                         }else{
