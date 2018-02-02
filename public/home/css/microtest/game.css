@@ -18,7 +18,7 @@
 	float: right;
 }
 
-a:active{
+.notice a:active{
 	background: #d61920;
 }
 .modal-footer a:active{
