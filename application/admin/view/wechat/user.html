@@ -195,6 +195,26 @@
                 },
                 success:function(data){
                     console.log(data);
+                    if(data.code == 1){
+                        swal({
+                            title: "",
+                            text: data.msg,
+                            type: "success",
+                            timer: 1000,
+                            confirmButtonText:'确定',
+                            showConfirmButton: false
+                        });
+                    }else {
+                        swal({
+                            title: "",
+                            text: data.msg,
+                            type: "error",
+                            timer: 1000,
+                            confirmButtonText:'确定',
+                            showConfirmButton: false
+                        });
+                    }
+
                 }
             });
             // ajax
