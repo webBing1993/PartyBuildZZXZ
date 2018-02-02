@@ -24,6 +24,7 @@
         -webkit-line-clamp: 2;
         overflow: hidden;
     }
+    .showLeft ul::-webkit-scrollbar {display: none;}
 </style>
 {/block}
 {block name="body"}
@@ -41,7 +42,7 @@
                 <a href='/home/service/search.html'>搜索</a>
             </div>
             <div class="showLeft">
-                <ul class="nav"style="overflow-y:scroll;overflow-x:hidden;">
+                <ul class="nav"style="overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling: touch;">
                     {volist name="dList" id="vo" key="k"}
                         {eq name="$k" value="1"}
                     <li class="active" data-id="{$vo.id}"><p class="line">{$vo.short_name}</p></li>
