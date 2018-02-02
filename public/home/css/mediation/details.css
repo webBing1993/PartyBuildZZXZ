@@ -134,7 +134,7 @@ body{
 }
 .describe-t{
     /*text-indent:20.5vw;*/
-    width:75%;
+    width:76%;
     height:100%;
     color:#333333;
     word-break:break-all;
@@ -145,7 +145,7 @@ body{
 }
 .describe-p{
     /*text-indent:13.6vw;*/
-    width:75%;
+    width:76%;
     height:100%;
     color:#333;
     margin-bottom: 3.2vw;
@@ -168,9 +168,9 @@ body{
     top:2.5vh;
 }
 .describe-ps{
-    line-height: 4.8vh;
+    line-height: 4.2vh;
     padding-top:2.5vh;
-    text-indent: 15vw;
+    text-indent: 8.8vw;
     min-height:6vh;
     color:#333;
     width:100%;

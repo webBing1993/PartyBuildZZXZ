@@ -42,6 +42,7 @@
         text-align: center;
         font-size: .3rem;
         color: #FE8B44;
+        padding-bottom:1.8vh;
     }
     .q{
         width: .3rem;
@@ -277,6 +278,9 @@
     if($(window).width()>=768){
         $('.form').css('margin-bottom','9vh')
     }
+    if($(window).width()>1024){
+        $('.describe-ps').css('text-indent','4.5vh')
+    }
     var userid={$model.mediatorid};
     console.log(userid);
 //    点击选择调解员
@@ -462,13 +466,13 @@
     //    描述查看全部
     var hp=$('.describe-p').height();
     if($(window).width()>=1024){
-        if($('.des').height()>200){
-            $('.des').css({'height':'17.8vh','overflow':'hidden','margin-bottom':'0'});
+        if($('.des').height()>260){
+            $('.des').css({'height':'15.8vh','overflow':'hidden','margin-bottom':'0'});
             $('.quan').fadeIn();
         }
     }else{
         if($('.des').height()>100){
-            $('.des').css({'height':'17vh','overflow':'hidden','margin-bottom':'0'});
+            $('.des').css({'height':'15.5vh','overflow':'hidden','margin-bottom':'0'});
             $('.quan').fadeIn();
         }
     }
