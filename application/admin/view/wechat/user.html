@@ -185,6 +185,18 @@
             var data = JSON.parse(evt.target.responseText);
             console.log(data.data.path);
             console.log('用户ID'+userId);
+
+            $.ajax({
+                type:"post",
+                url:"{:Url('wechat/Img')}",
+                data:{
+                    id:userId,
+                    path:data.data.path
+                },
+                success:function(data){
+                    console.log(data);
+                }
+            });
             // ajax
         }
         //上传失败
