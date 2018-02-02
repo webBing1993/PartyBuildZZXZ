@@ -137,7 +137,7 @@ class Mediate extends Admin
                 if ($list){
                     $data['name']=$list['name'];
                 }else{
-                    return $this->error("调解员还未导入通讯录");
+                    return $this->error("此调解员还未导入通讯录");
                 }
             }
             if (empty($data['id'])) {
@@ -163,6 +163,12 @@ class Mediate extends Admin
     {
         if (IS_POST) {
             $data = input('post.');
+            if (!empty($data['userid'])){
+                $list=Db::table('pb_wechat_user')->where('userid',$data['userid'])->find();
+                if ($list){
+                    $data['name']=$list['name'];
+                }
+            }
             $mediation_userModel = new Mediation_userModel();
             $info = $mediation_userModel->validate('Mediationuser')->save($data, ['id' => input('id')]);
             if ($info) {
