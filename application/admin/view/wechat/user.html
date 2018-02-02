@@ -183,7 +183,7 @@
         //上传成功响应
         function uploadComplete(evt) {
             var data = JSON.parse(evt.target.responseText);
-            console.log(data);
+            console.log(data.data.path);
             console.log('用户ID'+userId);
             // ajax
         }
