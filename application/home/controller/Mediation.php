@@ -33,7 +33,7 @@ class Mediation extends Base
         $list1 = MediationCase::where($map)->limit(5)->order('id desc')->select();
         $this->assign('list1',$list1);
 
-        $list2 = MediationUser::where($map)->order('id desc')->select();
+        $list2 = MediationUser::where($map)->order('id')->select();
         $this->assign('list2',$list2);
 
 
@@ -355,7 +355,7 @@ class Mediation extends Base
         $map1 = [
             'status' => ['egt',0],
         ];
-        $list = MediationUser::where($map1)->order('id desc')->select();
+        $list = MediationUser::where($map1)->order('id')->select();
 
         $this->assign('list',$list);
         $this->assign('response',$response);
@@ -420,7 +420,7 @@ class Mediation extends Base
             $map = [
                 'status' => ['egt',0],
             ];
-            $list = MediationUser::where($map)->order('id desc')->select();
+            $list = MediationUser::where($map)->order('id')->select();
             $this->assign('model',$model);
             $this->assign('list',$list);
 
@@ -443,7 +443,7 @@ class Mediation extends Base
         $map = [
             'status' => ['egt',0],
         ];
-        $list = MediationUser::where($map)->order('id desc')->select();
+        $list = MediationUser::where($map)->order('id')->select();
         $this->assign('list',$list);
         return $this->fetch();
     }
