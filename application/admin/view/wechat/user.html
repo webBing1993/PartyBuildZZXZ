@@ -59,6 +59,7 @@
                                 <th>性别 </th>
                                 <th>邮箱</th>
                                 <th>微信号</th>
+                                <th>党员头像</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -75,13 +76,22 @@
                                 <td>{$vo.gender_text}</td>
                                 <td>{$vo.email}</td>
                                 <td>{$vo.weixinid}</td>
+                                <td>
+                                    {eq name="vo.header" value=""}
+                                    未上传
+                                    {else/}
+                                    已上传
+                                    {/eq}
+                                </td>
                                 <td>{switch name="vo.status"}
                                     {case value="2"}<span class="label label-danger">{$vo.status_text}</span>{/case}
                                     {case value="4"}<span class="label label-warning">{$vo.status_text}</span>{/case}
                                     {default /}<span class="label label-info">{$vo.status_text}</span>
                                     {/switch}
                                 </td>
-                                <td>查看详情</td>
+                                <td>
+                                    <a  data-id="{$vo.userid}" class="changeUserheader">修改头像</a>
+                                </td>
                             </tr>
                             {/volist}
                             </tbody>
@@ -99,6 +109,7 @@
         </div>
     </div>
 </div>
+<input type="file" class="imgfile" id="file" accept="image/jpg, image/png, image/gif, image/jpeg" hidden>
 {/block}
 
 {block name="script"}
@@ -133,6 +144,57 @@
                 }
             });
         });
+        // 记录用户ID
+        var userId;
+        $('.changeUserheader').click(function(){
+            $(".imgfile").click();
+            userId = $(this).attr('data-id');
+        });
+        $(".imgfile").on("change",function(){
+            var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+            var formData = new FormData();
+            formData.append("picture",fileObj);
+            var url = "{:Url('File/uploadPicture')}"; // 接收上传文件的后台地址
+            var form = new FormData(); // FormData 对象
+            if(fileObj.size/1024 > 1025) { //大于1M，进行压缩上传
+                photoCompress(fileObj, {
+                    quality: 0.2
+                }, function(base64Codes){
+                    //console.log("压缩后：" + base.length / 1024 + " " + base);
+                    var bl = convertBase64UrlToBlob(base64Codes);
+                    form.append("picture", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+                    xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+                    xhr.open("post", url, true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+                    xhr.onload = uploadComplete; //请求完成
+                    xhr.onerror =  uploadFailed; //请求失败
+                    xhr.send(form); //开始上传，发送form数据
+                });
+            }
+            else{ //小于等于1M 原图上传
+                form.append("picture", fileObj); // 文件对象
+                xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+                xhr.open("post", url, true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+                xhr.onload = uploadComplete; //请求完成
+                xhr.onerror =  uploadFailed; //请求失败
+                xhr.send(form); //开始上传，发送form数据
+            }
+        });
+
+        //上传成功响应
+        function uploadComplete(evt) {
+            var data = JSON.parse(evt.target.responseText);
+            console.log(data);
+            console.log('用户ID'+userId);
+            // ajax
+        }
+        //上传失败
+        function uploadFailed(evt) {
+            alert("上传失败！");
+        }
+        //取消上传
+        function cancleUploadFile(){
+            xhr.abort();
+        }
     });
 </script>
 {/block}
