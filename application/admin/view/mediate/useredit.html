@@ -136,7 +136,7 @@
                                 <label>调解员姓名:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" readonly="readonly"  placeholder="调解员姓名" class="form-control form_title" name="name"
+                                <input type="text" disabled  placeholder="调解员姓名" class="form-control form_title" name="name"
                                        value="{$msg.name || default=''}">
                             </div>
                         </div>
@@ -244,8 +244,18 @@
                                 <label>学历:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入学历" class="form-control form_title" name="education"
-                                       value="{$msg.education || default=''}">
+                                <select class="form-control" name="education">
+                                    <option value="">请选择学历</option>
+                                    <option value="硕士及以上">硕士及以上</option>
+                                    <option value="本科">本科</option>
+                                    <option value="大专">大专</option>
+                                    <option value="高中">高中</option>
+                                    <option value="中专">中专</option>
+                                    <option value="初中">初中</option>
+                                    <option value="小学">小学</option>
+                                </select>
+                                <!--<input type="text" placeholder="请输入学历" class="form-control form_title" name="education"-->
+                                       <!--value="{$msg.education || default=''}">-->
                             </div>
                         </div>
                         <div class="form-group">
@@ -385,7 +395,7 @@
                 description: $("input[name='description']").val(),
                 birthday: $("input[name='birthday']").val(),
                 politics_status: $("select[name='politics_status']").val(),
-                education: $("input[name='education']").val(),
+                education: $("select[name='education']").val(),
                 content:ue.getContent(),
                 status: 0,
             };
