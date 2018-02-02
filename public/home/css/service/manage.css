@@ -42,7 +42,7 @@ body{
     width: 100vw;
     /*min-height: 64vw;*/
     /*background:rgba(255,255,255,1);*/
-    margin-top: 5.8vh;
+    margin-top: 10.1vw;
 }
 .boxs .box {
     width: 100vw;
@@ -131,7 +131,7 @@ body{
     width:100%;
     font-size: .24rem;
     position: relative;
-    padding: 1.6vw;
+    padding: 1.6vw 1.6vw;
     background-color: #f1f1f1;
 }
 .box .search:after {
@@ -168,16 +168,19 @@ body{
 }
 .showLeft li {
     width:100%;
+    border-left: .03rem solid rgba(245,245,245,1);
     text-align: center;
     /*height:.5rem;*/
     line-height: .5rem;
-    padding: 1.6vw 0;
+    padding: 1.6vw 1vw;
+    border-bottom: 1px solid rgba(255,255,255,1);
     /*margin-bottom: .3rem;*/
 }
 .showLeft li.active {
     background: #fff;
     color: #FF6E00;
     border-left: .03rem solid #FF6E00;
+    border-bottom: 1px solid #fff;
 }
 .showRight {
     width:78vw;
