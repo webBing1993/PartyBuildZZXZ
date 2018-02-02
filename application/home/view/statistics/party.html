@@ -17,7 +17,8 @@
         width:100vw;
         /*display:none;*/
         float:left;
-        height:0;
+        min-height: 93.4vh;
+        margin-top: 6.6vh;
     }
     .tabs .tab {
         width: 49vw;
@@ -43,10 +44,10 @@
 <script src="/home/js/reset.js"></script>
 <script>
     $(function(){
-        var WH = $(window).height();
-        var WW = $(window).width();
-        $('#tab0').height(WH);
-        $("iframe").css("margin-top","1rem");
+//        var WH = $(window).height();
+//        var WW = $(window).width();
+//        $('#tab0').height(WH);
+//        $("iframe").css("margin-top","1rem");
         //tab切换
         var number = getCookie('num')==null?0:getCookie('num');
         $('.tabs>.tab ').on('click',function(){
@@ -55,14 +56,14 @@
             setCookie('num',eq);
             $(this ).siblings('.tab' ).find('span' ).removeClass('active');
             $(this ).find('span' ).addClass('active');
-            $('#tab'+eq).height(WH);
+//            $('#tab'+eq).height(WH);
             $('#tab'+eq).show().siblings("iframe").hide();
         });
 
         // 初始化
         $('.tab').eq(number).siblings('.tab' ).find('span' ).removeClass('active');
         $('.tab').eq(number).find('span' ).addClass('active');
-        $('#tab'+number).height(WH);
+//        $('#tab'+number).height(WH);
         $('#tab'+number).show().siblings("iframe").hide();
     });
 

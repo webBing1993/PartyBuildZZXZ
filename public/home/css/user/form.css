@@ -100,29 +100,22 @@ body {
 }
 .message .title {
   width: 100%;
-  padding-left: 3.4vw;
-  padding-right: 3.4vw;
-  height: 4.5vh;
+  padding: 1.6vw 3.2vw;
   background: #e82a2a;
   color: #ffffff;
   font-size: .26rem;
-  line-height:4.5vh;
 }
 .message .list {
   width: 100%;
-  /*padding-left: 3.4vw;*/
-  /*padding-right: 3.4vw;*/
   padding: 2vw 3.2vw;
-  /*height: 7.5vh;*/
   background: #ffffff;
   border-bottom: 1px solid #f1f1f1;
-  /*line-height: 7.5vh;*/
 }
 .message .list .fl {
   color: #333333;
   font-size: .3rem;
   display: inline-block;
-  width: 92%;
+  width: 88%;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -137,10 +130,11 @@ body {
 }
 .message .box .list .tri {
   position: absolute;
-  top: 3vh;
+  top: 50%;
   left: 4.5vw;
   content: '';
   height: 1.5vh;
+  margin-top: -.75vh;
   width: 2.6vw;
   background: url('/home/images/statistics/tri.png') 0 0 no-repeat;
   background-size: 2.6vw 1.5vh;
@@ -164,11 +158,8 @@ body {
 }
 .message .box li {
   width: 100%;
-  padding-left: 4.5vw;
-  padding-right: 4.5vw;
-  padding-left: 11.5vw;
-  height: 6vh;
+  padding: 1.6vw 3.2vw 1.6vw 11.2vw;
   border-bottom: 1px solid #f1f1f1;
   background: #efefef;
-  line-height: 6vh;
+  font-size: 0.26rem;
 }
