@@ -18,7 +18,7 @@ use com\wechat\QYWechat;
 use com\wechat\TPWechat;
 use think\Config;
 use think\Input;
-
+use think\Db;
 class Wechat extends Admin
 {
     public function index() {
@@ -277,5 +277,18 @@ class Wechat extends Admin
         return $this->fetch();
     }
 
-
+    //修改头像
+    public function Img(){
+        $id=input('id');
+        $path=input('path');
+        $list=Db::table('pb_wechat_user')->where('userid',$id)->update(['header' => $path]);
+        if($list){
+            return $this->success("头像修改成功!",'',$list);
+        }else{
+            return $this->error("头像修改失败!");
+        }
+    }
+    
+    
+    
 }
