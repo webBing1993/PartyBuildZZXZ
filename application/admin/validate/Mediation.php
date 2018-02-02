@@ -13,7 +13,7 @@ use think\Validate;
 
 class Mediation extends Validate {
     protected $rule = [
-        'front_cover'  =>  'require',
+       /* 'front_cover'  =>  'require',*/
        /* 'proposer' =>  'require',
         'mobile' =>  'require',
         'parties' =>  'require',*/
@@ -24,7 +24,7 @@ class Mediation extends Validate {
     ];
 
     protected $message = [
-        'front_cover.require'  =>  '请添加封面图片！',
+       /* 'front_cover.require'  =>  '请添加封面图片！',*/
        /* 'proposer.require' =>  '请添加申请人姓名！',
         'mobile.require' =>  '请添加申请人手机号！',
         'parties.require' =>  '请添加当事人姓名！',*/

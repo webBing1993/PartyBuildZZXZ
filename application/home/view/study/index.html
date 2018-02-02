@@ -189,6 +189,15 @@
 <script type="text/javascript" src="/home/js/study/iscroll.js"></script>
 <script type="text/javascript" src="/home/js/study/navbarscroll.js"></script>
 <script>
+
+    // tab的点击样式变化（用户体验）
+    $(".wrapper03 .scroller li a").on("touchstart", function () {
+        $(this).css("background","#eee");
+    }).on("touchend",function () {
+        $(this).css("background","transparent");
+    });
+
+
     $('.wrapper').navbarscroll();
     var study = localStorage.getItem('studyNum')==undefined?1:localStorage.getItem('studyNum');
     var num = parseInt(study);

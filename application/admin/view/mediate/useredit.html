@@ -192,7 +192,7 @@
                                 <label>口号:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入口号" class="form-control form_title"
+                                <input type="text" maxlength="30" placeholder="请输入口号(30字以内)" class="form-control form_title"
                                        name="description" value="{$msg.description || default=''}">
                             </div>
                         </div>
@@ -364,11 +364,11 @@
                 url: "{:Url('Mediate/username')}",
                 data: data,
                 success: function (data) {
-                    console.log(data);
                     if (data.code == 1) {
-                        $("input[name='name']").val();
+                        var name = data.data.name;
+                        $("input[name='name']").val(name);
                     }else {
-                        updateAlert("请输入正确的手机号码!", 'error');
+                        updateAlert("此调解员还未导入通讯录!", 'error');
                     }
                 }
             })
