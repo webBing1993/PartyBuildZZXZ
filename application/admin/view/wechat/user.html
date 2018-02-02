@@ -203,7 +203,10 @@
                             timer: 1000,
                             confirmButtonText:'确定',
                             showConfirmButton: false
-                        });
+                        },
+                            function(){
+                                window.location.reload()
+                            })
                     }else {
                         swal({
                             title: "",
