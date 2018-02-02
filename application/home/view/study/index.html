@@ -191,10 +191,10 @@
 <script>
 
     // tab的点击样式变化（用户体验）
-    $(".wrapper03 .scroller li").on("mousestart", function () {
-//        $(this).css("background","#eee");
-    }).("mouseend",function () {
-//        $(this).css("background","#eee");
+    $(".wrapper03 .scroller li a").on("touchstart", function () {
+        $(this).css("background","#eee");
+    }).on("touchend",function () {
+        $(this).css("background","transparent");
     });
 
 
