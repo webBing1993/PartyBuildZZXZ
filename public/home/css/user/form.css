@@ -110,16 +110,22 @@ body {
 }
 .message .list {
   width: 100%;
-  padding-left: 3.4vw;
-  padding-right: 3.4vw;
-  height: 7.5vh;
+  /*padding-left: 3.4vw;*/
+  /*padding-right: 3.4vw;*/
+  padding: 2vw 3.2vw;
+  /*height: 7.5vh;*/
   background: #ffffff;
   border-bottom: 1px solid #f1f1f1;
-  line-height: 7.5vh;
+  /*line-height: 7.5vh;*/
 }
 .message .list .fl {
   color: #333333;
   font-size: .3rem;
+  display: inline-block;
+  width: 92%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .message .list .fr {
   color: #666666;
