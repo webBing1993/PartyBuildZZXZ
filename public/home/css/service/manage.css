@@ -189,7 +189,9 @@ body{
     padding: 4vw;
     overflow-y: scroll;
     height: calc(100vh - 20.3vw);
+    -webkit-overflow-scrolling: touch;
 }
+.showRight::-webkit-scrollbar {display: none;}
 
 .showRight .title {
     width:100%;
@@ -234,6 +236,7 @@ body{
     background: #f5f5f5;
     text-align: center;
     color: #666;
+    font-size: .24rem;
 }
 
 #fixed {
