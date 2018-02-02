@@ -59,14 +59,14 @@
             <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>事件名称 ：</span>
         </div>
-        <input type="text" placeholder="请输入事件名称" size="28" name="name"/>
+        <input type="text" placeholder="请输入事件名称(30字以内)" size="28" name="name" maxlength="30"/>
     </div>
     <div class="box">
         <div class="ev">
             <img class="star" src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>当事人 ：</span>
         </div>
-        <input  type="text" placeholder="请输入当事人名称" size="28" name="people"/>
+        <input  type="text" placeholder="请输入当事人名称(30字以内)" size="28" name="people" maxlength="30"/>
     </div>
     <div class="box">
         <div class="ev">
@@ -360,78 +360,6 @@
             $('#upimg').click().off("change").on('change',function(){
                 $('.showbox').show();
                 var size = ($(this)[0].files[0].size / 1024).toFixed(2);
-//                var f=$(this)[0].files[0];
-//                var fileReader = new FileReader();
-//                fileReader.readAsDataURL(f);
-//                fileReader.onload = function(event) {
-//                    var result = event.target.result; //url路径
-//                    var image = new Image();
-//                    image.src = result;
-//                    //若图片大小大于1M，压缩后再上传，否则直接上传
-//                    if(size>1024&&size<= 5120){
-//                        console.log(1111111111111)
-//                        $('.showbox').hide();
-//                        clearImg();
-//                        image.onload = function() { //创建一个image对象，给canvas绘制使用
-//                            var canvas = document.createElement('canvas');
-//                            var ctx = canvas.getContext('2d');
-//                            canvas.width = 120;
-//                            canvas.height = 120;
-//                            var ctx = canvas.getContext('2d');
-//                            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-//                            var newImageData = canvas.toDataURL('image/jpeg', 0.7); //重新生成图片
-//                            $("canvas").hide();
-//
-//                            $('.img').eq(imglen).removeClass('hide' )
-//                                        .append('<img class="img1" src='+newImageData+' alt="笔记图片" data-tab='+newImageData+'>');
-//                            if(imglen == 3){
-//                                $('.add' ).hide()
-//                            }
-//                            if(imglen>=0){
-//////                                    添加删除按钮
-//                                    $('.x').on('click',function(){
-//                                        $(this).parents(".img").remove();
-//                                        $('.add').before('<div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>');
-//                                        if(imglen<4){
-//                                            $('.add' ).show();
-//                                        }
-//                                    })
-//                            }
-//                        }
-//                        addImg();
-//                    }else if(size<1024){
-//                        console.log(22222222222)
-//                        $('.showbox').hide();
-//                        clearImg();
-//                        $('.img').eq(imglen).removeClass('hide' )
-//                            .append('<img class="img1" src='+result+' alt="笔记图片" data-tab='+result+'>');
-//                        if(imglen == 3){
-//                            $('.add' ).hide()
-//                        }
-//                        if(imglen>=0){
-//    ////                         添加删除按钮
-//                            $('.x').on('click',function(){
-//                                $(this).parents(".img").remove();
-//                                $('.add').before('<div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>');
-//                                if(imglen<4){
-//                                    $('.add' ).show();
-//                                }
-//                            })
-//                        }
-//                        addImg();
-//                    }else{
-//                        $('.showbox').hide();
-//                        clearImg();
-//                        swal({
-//                        title: ' ',
-//                        text: '您的图片超过5M',
-//                        type: 'warning',
-//                        showConfirmButton:false,
-//                        timer:2500
-//                       });
-//                        addImg();
-//                    }
-//                }
                 if(size <= 5120){
                     var img = $(this)[0].files[0];
                     var formData = new FormData();
@@ -471,7 +399,7 @@
                             } else {
                                 swal({
                                     title: ' ',
-                                    html: '上传失败',
+                                    text: '上传失败',
                                     type: 'error',
                                     showConfirmButton:false,
                                     timer:1500
@@ -541,5 +469,20 @@
             $('.contentnum span').text(num);
         }).css("ime-mode", "disabled"); //CSS设置输入法不可用
     }
+
+
+    // 手机号码判断
+     $("input[name='num']").on("blur", function () {
+         var val = $(this).val();
+         if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(val))) {
+             swal({
+                 title: ' ',
+                 text: '请输入正确的手机号码！',
+                 type: 'error',
+                 showConfirmButton:false,
+                 timer:1500
+             });
+         }
+     });
 </script>
 {/block}
