@@ -137,7 +137,7 @@ class Mediate extends Admin
                 if ($list){
                     $data['name']=$list['name'];
                 }else{
-                    return $this->error("调解员手机号错误");
+                    return $this->error("调解员还未导入通讯录");
                 }
             }
             if (empty($data['id'])) {
@@ -192,6 +192,18 @@ class Mediate extends Admin
             return $this->error("删除失败");
         }
 
+    }
+
+
+    //调解员手机号调取姓名
+    public function username(){
+         $data=input('userid');
+        $list=Db::table('pb_wechat_user')->where('userid',$data)->find();
+        if($list){
+            return $this->success("加载成功",'',$list);
+        }else{
+            return $this->error("加载失败");
+        }
     }
    
 }
