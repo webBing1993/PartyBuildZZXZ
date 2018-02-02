@@ -34,8 +34,8 @@ class Statistics extends Base {
         $userNum = WechatUser::where($map)->count();     //总人数
         $concernNum = WechatUser::where('status',1)->where($map)->count(); //关注人数
         // 党总支 总个数
-        $party_num = WechatDepartment::where(['parentid' => 1 ,'name' => ['notlike','测试']])->count();
-        $partyList = WechatDepartment::where(['parentid' => 1 ,'name' => ['notlike','测试']])->field('id,name')->select();
+        $party_num = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->count();
+        $partyList = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->field('id,short_name name')->select();
         foreach($partyList as $value){
             $sql = "select GROUP_CONCAT(a0,',',a1,',',a2) ids from (select IFNULL(GROUP_CONCAT(DISTINCT t1.id),'') a0,IFNULL(GROUP_CONCAT(DISTINCT t2.id),'') a1,IFNULL(GROUP_CONCAT(DISTINCT t3.id),'') a2 from pb_wechat_department t1 left join pb_wechat_department t2 on t1.id=t2.parentid left join pb_wechat_department t3 on t2.id=t3.parentid where t1.id=".$value['id'].") t4";
             $ids = Db::query($sql);
@@ -108,7 +108,7 @@ class Statistics extends Base {
         $concernNum = WechatUser::where('status',1)->where($map)->count(); //关注人数
         $nonNum = $userNum - $concernNum; //未关注人数
         // 党总支 总个数
-        $partyList = WechatDepartment::where(['parentid' => 1 ,'name' => ['notlike','测试']])->field('id,name')->select();
+        $partyList = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->field('id,short_name')->select();
         foreach($partyList as $value){
             $sql = "select GROUP_CONCAT(a0,',',a1,',',a2) ids from (select IFNULL(GROUP_CONCAT(DISTINCT t1.id),'') a0,IFNULL(GROUP_CONCAT(DISTINCT t2.id),'') a1,IFNULL(GROUP_CONCAT(DISTINCT t3.id),'') a2 from pb_wechat_department t1 left join pb_wechat_department t2 on t1.id=t2.parentid left join pb_wechat_department t3 on t2.id=t3.parentid where t1.id=".$value['id'].") t4";
             $ids = Db::query($sql);
@@ -116,7 +116,7 @@ class Statistics extends Base {
             $value['sum'] = WechatDepartmentUser::where(['departmentid' => ['in', $ids]])->count();
         }
 
-        $partyName = i_array_column($partyList, 'name');
+        $partyName = i_array_column($partyList, 'short_name');
         $partySum = i_array_column($partyList, 'sum');
 
         $avg = WechatUser::avg('age');  //平均年龄
