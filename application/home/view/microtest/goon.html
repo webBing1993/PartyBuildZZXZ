@@ -81,20 +81,13 @@
                     it.next('.option').addClass('active' );
                     it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
                 }
-            }else if(isiOS && it.attr('type')== 'checkbox'){
+            }else if(it.attr('type')== 'checkbox'){
                 //ios多选二次触发
-                if(it.prop('checked')){
-                    it.removeAttr('checked')
-                }else{
-                    it.prop('checked','true')
-                }
-                if(!it.prop('checked')){
-                    it.next('.option' ).toggleClass('active');
-                }
+                it.next('.option' ).toggleClass('active');
             }
         });
         //选中样式变化
-        $('input[type=radio]' ).on('click',function(e){
+        /*$('input[type=radio]' ).on('click',function(e){
             var it = $(this);
             if(it.prop('checked')){
                 it.next('.option').addClass('active' );
@@ -104,7 +97,7 @@
         $('input[type=checkbox]' ).on('click',function(e){
             var it = $(this);
             it.next('.option' ).toggleClass('active');
-        });
+        });*/
         //退出提示
         isOut();
     });

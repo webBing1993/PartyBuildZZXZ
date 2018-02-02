@@ -70,10 +70,6 @@
 		}else if(isiOS){
             $('.option').css('line-height','3.6vw')
 		}
-
-//        var u = navigator.userAgent;
-//        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-//        $('.option' ).css({'line-height':'.3rem'});
         if($(window).width()>768){
             $('.option' ).css({'top':'4.5%'});
 
@@ -82,8 +78,6 @@
         //同级触发input点击的事件
         $('.option,.opt' ).on('click',function(){
             var it = $(this).siblings('input');
-            console.log(it)
-//			var it = $(this).parent('.option_');
             it.click();
             if(it.attr('type')== 'radio'){
                 //单选需要二次触发
@@ -91,20 +85,13 @@
                     it.next('.option').addClass('active' );
                     it.parent('.option_' ).siblings('.option_' ).find('.option' ).removeClass('active');
                 }
-            }else if(isiOS && it.attr('type')== 'checkbox'){
+            }else if(it.attr('type')== 'checkbox'){
                 //ios多选二次触发
-                if(it.prop('checked')){
-                    it.removeAttr('checked')
-                }else{
-                    it.prop('checked','true')
-                }
-                if(it.prop('checked')){
-                    it.next('.option' ).toggleClass('active');
-                }
+                it.next('.option').toggleClass('active');
             }
         });
         //选中样式变化
-        $('input[type=radio]' ).on('click',function(e){
+        /*$('input[type=radio]' ).on('click',function(e){
             var it = $(this);
             if(it.prop('checked')){
                 it.next('.option').addClass('active' );
@@ -114,7 +101,7 @@
         $('input[type=checkbox]' ).on('click',function(e){
             var it = $(this);
             it.next('.option' ).toggleClass('active');
-        });
+        });*/
         //退出提示
         isOut();
     });
@@ -134,15 +121,6 @@
     function isOut(){
         pushHistory();
         setTimeout(function(){
-//            swal({
-//                title: ' ',
-//                text: '提交成功',
-//                type: 'success',
-//                confirmButtonText:'确定'
-//            },function(){
-//                console.log(1)
-////                javascript:history.go(-1);
-//            });
             window.addEventListener("popstate", function(e) {
                 if(objNow){
                     swal({
@@ -204,9 +182,6 @@
     //提交
     function submitAnswer(){
         isAll = true;
-//        var up = $('.up');
-//        var suc = $('.suc');
-//        var timer = $('.timer');
         var answer = getAnswer();
         objNow=null;
         if(isAll){
@@ -215,11 +190,8 @@
                 url:"{:Url('Microtest/submits')}",
                 data:{arr:answer,arrId:getDataID()},
                 success:function(e){
-//                    suc.fadeIn();
                     setTimeout(function(){
                         objNow=null;
-//                        timer.fadeOut();
-//                        up.text('提交成功');
                         setTimeout(function(){
                             window.location.replace("{:Url('Constitution/score')}");
                         },1000)
@@ -276,7 +248,9 @@
         var len = list.length;
         for(var i = 0;i < len ;i++){
             var checked = list.eq(i).find('input:checked');
+            console.log(checked);
             var len_a = checked.length;
+            console.log(len_a);
             if(len_a === 0){
                 isAll = false;
                 answer.push(0);
