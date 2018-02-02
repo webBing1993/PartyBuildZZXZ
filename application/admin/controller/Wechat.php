@@ -288,7 +288,5 @@ class Wechat extends Admin
             return $this->error("头像修改失败!");
         }
     }
-    
-    
-    
+
 }
