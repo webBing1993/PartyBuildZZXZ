@@ -284,7 +284,9 @@ class Wechat extends Admin
         $list=Db::table('pb_wechat_user')->where('userid',$id)->update(['header' => $path]);
         if($list){
             return $this->success("头像修改成功!");
-        }else{
+        }else if ($list === 0){
+            return $this->success('头像修改成功!');
+        } else {
             return $this->error("头像修改失败!");
         }
     }
