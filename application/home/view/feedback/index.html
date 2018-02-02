@@ -50,7 +50,7 @@
     <div class="appraisalSort">
         <ul>
             {volist name="list" id="vo"}
-            <li>
+            <li class="list">
                 <div class="headerImg"><img data-original="{$vo.header}" class="lazy"></div>
                 <div class="appraisalRight">
                     <div class="appTop"><p class="appraisalName">{$vo.username}</p><p class="appraisalTime">{$vo.create_time|time_format="Y-m-d"}</p></div>
@@ -187,7 +187,14 @@
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
     // 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
-
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if(isAndroid){
+        $('.list').last().css('margin-bottom','0')
+    }else if(isiOS){
+        $('.list').last().css('margin-bottom','0')
+    }
     var type1;
     var app = localStorage.getItem('appNum')==null?1:localStorage.getItem('appNum');
     $('.headerTop>div').on("click",function(){

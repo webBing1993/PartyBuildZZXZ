@@ -130,11 +130,11 @@ body{
 .describe-sp,.describe-title{
    /*position: absolute;*/
     display: inline-block;
-    width: 30%;
+    width: 24%;
 }
 .describe-t{
     /*text-indent:20.5vw;*/
-    width:70%;
+    width:75%;
     height:100%;
     color:#333333;
     word-break:break-all;
@@ -145,7 +145,7 @@ body{
 }
 .describe-p{
     /*text-indent:13.6vw;*/
-    width:70%;
+    width:75%;
     height:100%;
     color:#333;
     margin-bottom: 3.2vw;
@@ -159,14 +159,18 @@ body{
 .des{
     position: relative;
 }
+.desc{
+   margin-top:4.5vh;
+}
 .describe-m{
     position: absolute;
     left:0;
     top:2.5vh;
 }
 .describe-ps{
+    line-height: 4.8vh;
     padding-top:2.5vh;
-    text-indent: 27.5vw;
+    text-indent: 15vw;
     min-height:6vh;
     color:#333;
     width:100%;
@@ -178,7 +182,7 @@ body{
     margin-top:1.6vw;
     width:10.2vw;
     height:10.2vw;
-    margin-left:10vw;
+    margin-left:4.5vw;
 }
 .remark, .remark1, .remark2{
     display:none;

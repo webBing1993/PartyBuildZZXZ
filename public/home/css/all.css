@@ -279,20 +279,20 @@
     margin-right: 0;
 }
 .all .note .read {
-    margin-right: 2.7vw;
+    margin-right: 3.2vw;
     background: url('/home/images/detail/scan_.png') 0 center no-repeat;
-    background-size: .24rem .24rem;
-    padding-left: .3rem;
+    background-size: .32rem .32rem;
+    padding-left: .4rem;
 }
 .all .note .good {
     background: url('/home/images/detail/good.png') 0 center no-repeat;
-    background-size: .24rem .24rem;
-    padding-left: .3rem;
+    background-size: .3rem .3rem;
+    padding-left: .38rem;
 }
 .all .note .good_ {
     background: url('/home/images/detail/good_.png') 0 center no-repeat;
-    background-size: .24rem .24rem;
-    padding-left: .3rem;
+    background-size: .3rem .3rem;
+    padding-left: .38rem;
     animation: shake 300ms ease;
     -webkit-animation: shake 300ms ease;
 }
@@ -443,8 +443,8 @@
 
 .all .content .note .star {
     background: url('/home/images/star-border.png') 0 center no-repeat ;
-    background-size: .24rem .24rem;
-    padding-left: 3vw;
+    background-size: .3rem .3rem;
+    padding-left: .4rem;
     margin-left: 2vw;
     margin-right: 0;
 }
@@ -452,8 +452,8 @@
     /*animation: bigger2 300ms ease;*/
     /*-webkit-animation: bigger2 300ms ease;*/
     background: url('/home/images/detail/star-yellow.png') 0 center no-repeat;
-    background-size: .24rem .24rem;
-    padding-left: 3vw;
+    background-size: .3rem .3rem;
+    padding-left: .4rem;
     margin-left: 2vw;
     margin-right: 0;
 }
