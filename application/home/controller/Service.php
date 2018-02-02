@@ -187,6 +187,9 @@ class Service extends Base
     public function detail(){
         return $this->fetch();
     }
+    public function detail2(){
+        return $this->fetch();
+    }
 
     /**
      * 参会情况加载更多
