@@ -123,7 +123,36 @@
                                        value="{$msg.name || default=''}">
                             </div>
                         </div>
+                        {eq name="msg" value=""}
                         <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>性别:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <label class="i-checks">
+                                    <input type="radio" checked="" value="1" name="gender">男
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" value="2" name="gender">女
+                                </label>
+                            </div>
+                        </div>
+                        {else/}
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>性别:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <label class="i-checks">
+                                    <input type="radio" value="1" name="gender" {eq name="msg.gender" value="1"}checked{/eq}>男
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" value="2" name="gender" {eq name="msg.gender" value="2"}checked{/eq}>女
+                                </label>
+                            </div>
+                        </div>
+                        {/eq}
+                       <!-- <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>性别:</label>
                             </div>
@@ -140,7 +169,7 @@
                                     {/empty}
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
                                 <label>口号:</label>
@@ -314,7 +343,7 @@
             var it = $(this);
             var data = {
                 id: $("input[name='id']").val(),
-                gender: $("select[name='gender']").val(),
+                gender: $("input[name='gender']:checked").val(),
                 front_cover: $("input[name='front_cover']").val(),
                 name: $("input[name='name']").val(),
                 description: $("input[name='description']").val(),
