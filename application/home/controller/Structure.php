@@ -17,7 +17,7 @@ class Structure extends Base{
      * 组织架构主页
      */
     public function index(){
-        $list = WechatDepartment::where(['parentid' => 1])->order('id')->select();
+        $list = WechatDepartment::where(['parentid'=>1, 'id'=>['neq', 2]])->order('id')->select(); // 部门列表
         $this->assign('list',$list);
         return $this->fetch();
     }
