@@ -43,10 +43,10 @@ class Learns extends Base
         $res = Db::field("'study' as tab, id, '' as type, title, create_time, front_cover, publisher, status, recommend, views, comments, likes")
             ->table('pb_study')
             ->where('status>=0 and recommend=1')
-            ->union("SELECT 'redfilm' as tab, id, '' as type, title, create_time, front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redfilm where status>=0 and recommend=1")
-            ->union("SELECT 'redbook' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redbook where status>=0 and recommend=1")
-            ->union("SELECT 'redremark' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, 0 as views, 0 as comments, 0 as likes FROM pb_redremark where status>=0 and recommend=1")
-            ->union("SELECT 'redmusic' as tab, id, '' as type, title, create_time, front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redmusic where status>=0 and recommend=1")
+            //->union("SELECT 'redfilm' as tab, id, '' as type, title, create_time, front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redfilm where status>=0 and recommend=1")
+            //->union("SELECT 'redbook' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redbook where status>=0 and recommend=1")
+            //->union("SELECT 'redremark' as tab, id, '' as type, title, create_time, '' as front_cover, '' as publisher, status, recommend, 0 as views, 0 as comments, 0 as likes FROM pb_redremark where status>=0 and recommend=1")
+           // ->union("SELECT 'redmusic' as tab, id, '' as type, title, create_time, front_cover, '' as publisher, status, recommend, views, comments, likes FROM pb_redmusic where status>=0 and recommend=1")
             ->union("SELECT 'learns' as tab, id, type, title, create_time, front_cover, publisher, status, recommend, views, comments, likes FROM pb_learns where status>0 and recommend=1 order by create_time desc limit $len,6")
             ->select();
         foreach ($res as $k=>$v) {
@@ -62,7 +62,7 @@ class Learns extends Base
                     $res[$k]['pre'] = "【基本书目】";
                     $res[$k]['url'] = "/home/study/detail/id/".$v['id'];
                     break;
-                case 'redfilm':
+               /* case 'redfilm':
                     $res[$k]['pre'] = "【远程教育】";
                     $res[$k]['url'] = "/home/education/movedetail/id/".$v['id'];
                     break;
@@ -77,7 +77,7 @@ class Learns extends Base
                 case 'redmusic':
                     $res[$k]['pre'] = "【远程教育】";
                     $res[$k]['url'] = "/home/education/musicdetail/id/".$v['id'];
-                    break;
+                    break;*/
                 case 'learns':
                     $res[$k]['pre'] = "【十九大专区】";
                     $res[$k]['url'] = $v['type']==1 ? "/home/learns/video/id/".$v['id'] : "/home/learns/article/id/".$v['id'];

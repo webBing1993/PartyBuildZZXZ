@@ -186,6 +186,9 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+
+    var scrollNow = false;
+
     // 我来推荐接口 post url: "{:Url('Feedback/publish')}" data: {content:'内容'，images:[]}
     var u = navigator.userAgent;
     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
@@ -217,7 +220,6 @@
     // 初始化
     $('.headerTop>div').eq(app-1).click();
 
-    var scrollNow = true;
     loadScroll();
     //上拉加载
     function loadScroll(){
@@ -227,7 +229,12 @@
             var len = $('#side'+type1).find('li').length;
             var tip = $(".tip");
             var loading = $('.loading');
-            if(dh == end && scrollNow){
+            if (len >= 6) {
+                scrollNow = true;
+            }else {
+                scrollNow = false;
+            }
+            if(dh == end && scrollNow == true){
                 scrollNow = false;
                 if(app==1 && $('#side1').find('li').length>0){
                     $.ajax({
@@ -346,7 +353,7 @@
                         + '</div>'
                         + '</li>'
             }
-            $('.appraisalSort').append(html);
+            $('.appraisalSort ul').append(html);
         }else if (app == 2){
             for(var i = 0; i< len;i++){
                 var list = lists[i];
