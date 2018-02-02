@@ -91,11 +91,13 @@ class Wechat extends Admin
             return $this->error("同步出错");
         }
         /* 同步部门 */
+        $num = 0;
         $list = $Wechat->getDepartment();
 //        /* 同步最顶级部门下面的用户 */
         foreach ($list['department'] as $key=>$value) {
             $users = $Wechat->getUserListInfo($list['department'][$key]['id']);
 //            $user =  $users['userlist'][0];
+            $num += count($users['userlist']);
             $dname = $value['name'];
             $dname = str_replace('中共诸暨市','',$dname);
             $dname = str_replace('浙江省','',$dname);
@@ -156,8 +158,8 @@ class Wechat extends Admin
             }
 
         }
-        $data = "用户数:".count($users['userlist'])."!";
-        return $this->success("同步成功", '', $data);
+        $data = "用户数:".$num."!";
+        return $this->success("同步成功", Url('user'), $data);
     }
     /**
      * 同步部门
@@ -209,7 +211,7 @@ class Wechat extends Admin
 
         $data = "同步部门数:".count($list['department'])."!";
 
-        return $this->success("同步成功", '', $data);
+        return $this->success("同步成功", Url('department'), $data);
     }
 
     /**
@@ -258,7 +260,7 @@ class Wechat extends Admin
 
         $data = "同步标签数:".count($tags['taglist'])."!";
 
-        return $this->success("同步成功", '', $data);
+        return $this->success("同步成功", Url('tag'), $data);
     }
     
     public function department(){
