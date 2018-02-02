@@ -83,7 +83,7 @@
                 {volist name="carousel" id="car"}
                 <div class="swiper-slide">
                     <a href="{:Url('Education/movedetail?id='.$car['id'])}" class="list">
-                        <img data-original="{$car.carousel_image|get_cover='path'}" class="lazy">
+                        <img src="{$car.carousel_image|get_cover='path'}" class="lazy">
                         <div class="banner-bg"></div>
                         <div class="banner-info limit">{$car.title}</div>
                     </a>
