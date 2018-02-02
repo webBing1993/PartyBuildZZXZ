@@ -364,9 +364,9 @@
                 url: "{:Url('Mediate/username')}",
                 data: data,
                 success: function (data) {
-                    console.log(data);
                     if (data.code == 1) {
-                        $("input[name='name']").val();
+                        var name = data.data.name;
+                        $("input[name='name']").val(name);
                     }else {
                         updateAlert("请输入正确的手机号码!", 'error');
                     }
