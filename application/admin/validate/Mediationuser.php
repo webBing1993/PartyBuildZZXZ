@@ -14,7 +14,7 @@ use think\Validate;
 class Mediationuser extends Validate {
     protected $rule = [
         'front_cover'  =>  'require',
-        'name' =>  'require',
+        'userid' =>  'require',
         'description' =>  'require',
         'birthday' =>  'require',
        /* 'politics_status' =>  'require',*/
@@ -24,7 +24,7 @@ class Mediationuser extends Validate {
 
     protected $message = [
         'front_cover.require'  =>  '请添加封面图片！',
-        'name.require' =>  '请添加姓名！',
+        'userid.require' =>  '请添加调解员手机号！',
         'description.require' =>  '请添加口号！',
         'birthday.require' =>  '请添加出生年月！',
        /* 'politics_status.require' =>  '请添加政治面貌！',*/

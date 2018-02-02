@@ -124,10 +124,19 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
-                                <label>姓名:</label>
+                                <label>调解员手机号:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="请输入调解员姓名" class="form-control form_title" name="name"
+                                <input type="text" placeholder="请输入调解员手机号" class="form-control form_title" name="userid"
+                                       value="{$msg.userid || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>调解员姓名:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="调解员姓名" class="form-control form_title" name="name"
                                        value="{$msg.name || default=''}">
                             </div>
                         </div>
@@ -353,7 +362,7 @@
                 id: $("input[name='id']").val(),
                 gender: $("input[name='gender']:checked").val(),
                 front_cover: $("input[name='front_cover']").val(),
-                name: $("input[name='name']").val(),
+                userid: $("input[name='userid']").val(),
                 description: $("input[name='description']").val(),
                 birthday: $("input[name='birthday']").val(),
                 politics_status: $("select[name='politics_status']").val(),
