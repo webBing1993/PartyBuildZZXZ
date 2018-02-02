@@ -24,6 +24,12 @@ body {background: #F5F5F5;}
     border-bottom: 1px solid #D1D1D1;
     border-left: red;
 }
+.bumen{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
 
 .vr {width:100vw;height:37.5vh;padding: 4vw;position: relative;background: #fff;}
 .vr>img {width:92vw;height:100%;border-radius: 20px;}
@@ -33,6 +39,11 @@ body {background: #F5F5F5;}
 .user {width:100vw;position: relative;margin:1.5vh auto 0;}
 .userTop {background: #fff;width:100%;padding: 0 4vw;border-top:1px solid #D1D1D1;border-bottom: 1px solid #D1D1D1;height:4.35vh;line-height: 4.35vh;font-size: .28rem;color: #333;}
 .userTop img {width:4.8vw;height:2.7vh;vertical-align: middle;margin-right: 1vw;}
+.bu{width:92%;float: right;display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;}
+
 .userSort {width:100%;border-bottom: 1px solid #D1D1D1;}
 .userSort ul {background: #fff;}
 .userSort ul li {width:81vw;position: relative;margin-left: 19vw;border-bottom: 1px solid #D1D1D1;padding: 4vw 4vw 4vw 0;}
