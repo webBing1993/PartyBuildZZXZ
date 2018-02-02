@@ -136,7 +136,7 @@
                                 <label>调解员姓名:</label>
                             </div>
                             <div class="col-lg-11">
-                                <input type="text" placeholder="调解员姓名" class="form-control form_title" name="name"
+                                <input type="text" readonly="readonly"  placeholder="调解员姓名" class="form-control form_title" name="name"
                                        value="{$msg.name || default=''}">
                             </div>
                         </div>
@@ -353,6 +353,25 @@
 
         var ue = UE.getEditor('container', {
             initialFrameHeight: 400
+        });
+
+        $("input[name='userid']").on("blur", function () {
+            var data = {
+                userid: $("input[name='userid']").val()
+            };
+            $.ajax({
+                type: "post",
+                url: "{:Url('Mediate/username')}",
+                data: data,
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == 1) {
+                        $("input[name='name']").val();
+                    }else {
+                        updateAlert("请输入正确的手机号码!", 'error');
+                    }
+                }
+            })
         });
 
         //发布
