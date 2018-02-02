@@ -21,7 +21,7 @@ use think\Db;
 class Service extends Base
 {
     static $MEMBER_TAG = 3; // 党员标签ID
-    static $DEFAUL_AVATAR = ''; // 用户默认头像
+    static $DEFAUL_AVATAR = '/home/images/vistor.jpg'; // 用户默认头像
 
     /**
      * 党员管理
@@ -37,7 +37,7 @@ class Service extends Base
 
         // 党员情况
 
-        $dLists = WechatDepartment::where(['parentid'=>1, 'id'=>['neq', 2]])->order('id')->select(); // 部门列表
+        $dLists = WechatDepartment::where(['parentid'=>1])->order('id')->select(); // 部门列表
         $this->assign('dList',$dLists);
 
         return $this->fetch();
@@ -66,8 +66,8 @@ class Service extends Base
                 $name = $user['name'];
                 if (!empty($user['header'])) { // 获取用户头像
 
-                    $img = Picture::get($user['header']);
-                    $user['header'] = $img['path'];
+//                    $img = Picture::get($user['header']);
+//                    $user['header'] = $img['path'];
                 } else if (empty($user['avatar'])) { // 无头像设置默认
 
                     $user['header'] = $this::$DEFAUL_AVATAR;
@@ -169,8 +169,8 @@ class Service extends Base
             foreach ($list as $user) {
                 if (!empty($user['header'])) { // 获取用户头像
 
-                    $img = Picture::get($user['header']);
-                    $user['header'] = $img['path'];
+//                    $img = Picture::get($user['header']);
+//                    $user['header'] = $img['path'];
                 } else if (empty($user['avatar'])) { // 无头像设置默认
 
                     $user['header'] = $this::$DEFAUL_AVATAR;
