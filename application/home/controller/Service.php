@@ -70,7 +70,7 @@ class Service extends Base
 //                    $user['header'] = $img['path'];
                 } else if (empty($user['avatar'])) { // 无头像设置默认
 
-                    $list[$key]['header'] = $this::$DEFAUL_AVATAR;
+                    $user['header'] = $this::$DEFAUL_AVATAR;
                 }
 
                 $char = $this->getFirstChar($name);
