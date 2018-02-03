@@ -292,12 +292,10 @@
             lazyLoadingInPrevNext : true,
         });
     }
-    $(document).scroll(function() {
         $("img.lazy").lazyload({
             placeholder: "/home/images/loading.jpg",
             effect: "fadeIn",
-            threshold: 1
-        });
+            threshold: 200
     });
     $('.tab' ).off('click').on('click',function(){
         var this_ = this ;
@@ -376,7 +374,7 @@
                             $("img.lazy").lazyload({
                                 placeholder: "/home/images/loading.jpg",
                                 effect: "fadeIn",
-                                threshold: 1
+                                threshold: 200
                             });
                         }
                         else{

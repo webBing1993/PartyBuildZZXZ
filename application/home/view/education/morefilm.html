@@ -148,6 +148,7 @@ $(function(){
 					}
                     $('.results').show();
 					$('.results' ).html(html);
+					imglazy();
 				}
 
 			});
@@ -229,6 +230,17 @@ function addCourse(data){
 				+'</li>'
     }
     $(".side1_lists ul" ).append(html);
+	imglazy();
 }
+
+
+	function imglazy() {
+		$("img.lazy").lazyload({
+			placeholder: "/home/images/loading.jpg",
+			effect: "fadeIn",
+			threshold: 200
+		});
+	}
+	imglazy();
 </script>
 {/block}
