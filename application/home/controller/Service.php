@@ -62,7 +62,7 @@ class Service extends Base
                 ->select();
 
             $charArray = [];//将姓名按照姓的首字母与相对的首字母键进行配对
-            foreach ($list as $user) {
+            foreach ($list as $key => $user) {
                 $name = $user['name'];
                 if (!empty($user['header'])) { // 获取用户头像
 
@@ -70,7 +70,7 @@ class Service extends Base
 //                    $user['header'] = $img['path'];
                 } else if (empty($user['avatar'])) { // 无头像设置默认
 
-                    $user['header'] = $this::$DEFAUL_AVATAR;
+                    $list[$key]['header'] = $this::$DEFAUL_AVATAR;
                 }
 
                 $char = $this->getFirstChar($name);
@@ -166,14 +166,15 @@ class Service extends Base
                 ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG])
                 ->select();
 
-            foreach ($list as $user) {
+            foreach ($list as $key => $user) {
+
                 if (!empty($user['header'])) { // 获取用户头像
 
 //                    $img = Picture::get($user['header']);
-//                    $user['header'] = $img['path'];
+//                    $list[$key]['header'] = $img['path'];
                 } else if (empty($user['avatar'])) { // 无头像设置默认
 
-                    $user['header'] = $this::$DEFAUL_AVATAR;
+                    $list[$key]['header'] = $this::$DEFAUL_AVATAR;
                 }
             }
 
