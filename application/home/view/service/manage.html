@@ -261,7 +261,7 @@
             $('.flow .lists').append(html);
         }
     }
-        $(document).scroll(function() {
+        $(".showRight").scroll(function() {
             $("img.lazy").lazyload({
                 placeholder: "/home/images/loading.jpg",
                 effect: "fadeIn",
@@ -290,12 +290,6 @@
                     if(data.length != 0){
                         $('#nomessage').hide();
                         addLists1(data);
-
-                        $("img.lazy").lazyload({
-                            placeholder: "/home/images/loading.jpg",
-                            effect: "fadeIn",
-                            threshold: 1
-                        });
                         $('.showRight li ').on('click',function(){
                             var index=$(this).index();
                             $('#fixed').stop().animate({
@@ -309,6 +303,7 @@
                                 height:0
                             },1);
                         });
+                        imglazy();
                     }else {
                         var html = $(".showRight .lists").html();
                         html = "";
@@ -419,7 +414,7 @@
         $("img").lazyload({
             placeholder: "/home/images/loading.jpg",
             effect: "fadeIn",
-            threshold: 1
+            threshold: 200
         });
     }
     imglazy();
