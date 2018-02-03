@@ -11,6 +11,7 @@ use app\home\model\WechatDepartmentUser;
 use app\home\model\WechatTest;
 use app\home\model\WechatUser;
 use app\home\model\WechatUserTag;
+use think\Db;
 
 class Structure extends Base{
     /*
@@ -18,6 +19,9 @@ class Structure extends Base{
      */
     public function index(){
         $list = WechatDepartment::where(['parentid'=>1, 'id'=>['neq', 2]])->order('id')->select(); // 部门列表
+        $arr = $list[28];
+        unset($list[28]);
+        array_unshift($list, $arr);
         $this->assign('list',$list);
         return $this->fetch();
     }
@@ -28,19 +32,18 @@ class Structure extends Base{
         $this ->checkAnonymous();
         $party = input('id');
         $departmentName = WechatDepartment::where(['id' => $party])->order('id')->value('name');
-        $modelAll = WechatDepartmentUser::where(['departmentid' => $party])->order('id')->select();
-//        $bg_color=["#b1e3fc", "#aeefef", "#ffa351", "#9393f5", "#cf88f7", "#65abfa", "#ebcffb", "#76f4f0", "#ffcf6e", "#ff8ff4"];
+        $modelAll = Db::table('pb_wechat_department_user')
+            ->alias('a')
+            ->join('pb_wechat_user b','a.userid = b.userid')
+            ->join('pb_wechat_user_tag c','a.userid = c.userid')
+            ->field('b.*')
+            ->where(['departmentid'=>$party,'tagid'=>4])
+            ->order('a.id')
+            ->select();
         foreach ($modelAll as $k => $model){
-            $tag = WechatUserTag::where(['userid' => $model['userid'], 'tagid' => 4])->find();
-            if(!$tag){
-                unset($modelAll[$k]);
-                continue;
-            }
-            $model['name'] = WechatUser::where(['userid' => $model['userid']])->value('name');
-            $model['surname'] = mb_substr($model['name'], 0, 1,'utf-8');
+            $modelAll[$k]['surname'] = mb_substr($model['name'], 0, 1,'utf-8');
 //            $model['color'] = $bg_color[substr($model['mobile'], 7, 1)];
         }
-//        var_dump($modelAll);die;
         $this->assign('departmentName',$departmentName);
         $this->assign('modelAll',$modelAll);
 

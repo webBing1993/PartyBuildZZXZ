@@ -38,6 +38,9 @@ class Service extends Base
         // 党员情况
 
         $dLists = WechatDepartment::where(['parentid'=>1, 'id'=>['neq', 2]])->order('id')->select(); // 部门列表
+        $arr = $dLists[28];
+        unset($dLists[28]);
+        array_unshift($dLists, $arr);
         $this->assign('dList',$dLists);
 
         return $this->fetch();

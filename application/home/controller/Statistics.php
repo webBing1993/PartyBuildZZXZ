@@ -36,6 +36,9 @@ class Statistics extends Base {
         // 党总支 总个数
         $party_num = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->count();
         $partyList = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->field('id,short_name name')->select();
+        $arr = $partyList[28];
+        unset($partyList[28]);
+        array_unshift($partyList, $arr);
         foreach($partyList as $value){
             $sql = "select GROUP_CONCAT(a0,',',a1,',',a2) ids from (select IFNULL(GROUP_CONCAT(DISTINCT t1.id),'') a0,IFNULL(GROUP_CONCAT(DISTINCT t2.id),'') a1,IFNULL(GROUP_CONCAT(DISTINCT t3.id),'') a2 from pb_wechat_department t1 left join pb_wechat_department t2 on t1.id=t2.parentid left join pb_wechat_department t3 on t2.id=t3.parentid where t1.id=".$value['id'].") t4";
             $ids = Db::query($sql);
@@ -109,6 +112,9 @@ class Statistics extends Base {
         $nonNum = $userNum - $concernNum; //未关注人数
         // 党总支 总个数
         $partyList = WechatDepartment::where(['parentid' => 1 ,'short_name' => ['notlike','%测试%']])->field('id,short_name')->select();
+        $arr = $partyList[28];
+        unset($partyList[28]);
+        array_unshift($partyList, $arr);
         foreach($partyList as $value){
             $sql = "select GROUP_CONCAT(a0,',',a1,',',a2) ids from (select IFNULL(GROUP_CONCAT(DISTINCT t1.id),'') a0,IFNULL(GROUP_CONCAT(DISTINCT t2.id),'') a1,IFNULL(GROUP_CONCAT(DISTINCT t3.id),'') a2 from pb_wechat_department t1 left join pb_wechat_department t2 on t1.id=t2.parentid left join pb_wechat_department t3 on t2.id=t3.parentid where t1.id=".$value['id'].") t4";
             $ids = Db::query($sql);
