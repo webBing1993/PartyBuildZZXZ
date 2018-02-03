@@ -271,8 +271,8 @@
   });
 
 //    党员展示
-    var h = $(window).height()-$('.tab').height();
-    $('.showLeft , .showRight').css('height',h);
+//    var h = $(window).height()-$('.tab').height();
+//    $('.showLeft , .showRight').css('height',h);
     $('.showLeft li ').on('click',function(){
         setCookie("num",$(this).index());
         $('.showLeft li ').removeClass('active');
@@ -418,6 +418,8 @@
         });
     }
     imglazy();
-
+    var preHandler=function(e){e.preventDefault();};// 注意此处代码片段必须这样提出来已保证传入下边两个事件的处理程序一样才生效，分别写到事件处理程序中不生效。
+            document.addEventListener('touchmove', me.preHandler,false);//阻止默认滑动事件
+    document.removeEventListener('touchmove', me.preHandler, false);//浮层关闭时解除事件处理程序
 </script>
 {/block}
