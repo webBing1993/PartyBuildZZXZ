@@ -194,14 +194,14 @@
     $(function() {
         $('.search>input').focus();
         var search = $('.search>input');
-        var lock = false;
+        /*var lock = false;
         search.on('compositionstart',function(){
             lock = true;
         });
         search.on('compositionend',function(){
             lock = false;
-        });
-        search.on('input',function(){
+        });*/
+        search.on('input propertychange',function(){
             var this_ = this;
             var val = $(this_ ).val();
             var html = '';
@@ -214,85 +214,81 @@
                 },
                 beforeSend: function(XMLHttpRequest){},
                 success:function(data){
-                if(data.code==1){
-                    if (data.data != "[]") {
-                        var date=JSON.parse(data.data);
-                        console.log(date);
-                        var result = date;
-                        var url = '';
-                        for(var i=0;i< result.length;i++){
-                            console.log(result[i].header);
-                            if(result[i].gender=='1'){
-                                result[i].gender='男';
-                            }else{
-                                result[i].gender='女';
-                            }
-                            if(result[i].birthday==null){
-                                result[i].birthday='无'
-                            }
-                            if(result[i].partytime==null){
-                                result[i].partytime='无'
-                            }
-                            if(result[i].header==null){
-                                html += '<li><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                html1 +='<div class="user">'
-                                        +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"></div>'
-                                        +'<div class="userName">'+result[i].name+'</div>'
-                                        +'<div class="userSex">性别：'+result[i].gender+'</div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
-                                        +'</div>'
+                    if(data.code==1){
+                        if (data.data != "[]") {
+                            var result = JSON.parse(data.data);
+                            for(var i=0;i< result.length;i++){
+                                if(result[i].gender=='1'){
+                                    result[i].gender='男';
+                                }else{
+                                    result[i].gender='女';
+                                }
+                                if(result[i].birthday==null){
+                                    result[i].birthday='无'
+                                }
+                                if(result[i].partytime==null){
+                                    result[i].partytime='无'
+                                }
+                                if(result[i].header==null){
+                                    html += '<li><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
+                                    html1 +='<div class="user">'
+                                            +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"></div>'
+                                            +'<div class="userName">'+result[i].name+'</div>'
+                                            +'<div class="userSex">性别：'+result[i].gender+'</div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
+                                            +'</div>'
 
-                            }else{
-                                html += '<li><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                html1 +='<div class="user">'
-                                        +'<div class="userImg"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"></div>'
-                                        +'<div class="userName">'+result[i].name+'</div>'
-                                        +'<div class="userSex">性别：'+result[i].gender+'</div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
-                                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
-                                        +'</div>'
-                            }
+                                }else{
+                                    html += '<li><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
+                                    html1 +='<div class="user">'
+                                            +'<div class="userImg"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"></div>'
+                                            +'<div class="userName">'+result[i].name+'</div>'
+                                            +'<div class="userSex">性别：'+result[i].gender+'</div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
+                                            +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
+                                            +'</div>'
+                                }
 
+                            }
+                            setTimeout(function () {
+                                $('.lists' ).html(html);
+                                $("#fixed").append(html1);
+                                $('.lists li').on('click',function(){
+                                    $('#fixed').stop().animate({
+                                        height:'100%'
+                                    },500);
+                                    $('.user').eq($(this).index()).show().siblings(".user").hide();
+                                });
+                                $('#close ').on('click',function(){
+                                    $('#fixed').stop().animate({
+                                        height:0
+                                    },1);
+                                });
+                                $("img").lazyload({
+                                    placeholder: "/home/images/loading.jpg",
+                                    effect: "fadeIn",
+                                    threshold: 200
+                                });
+                            },20);
+                        }else{
+                            html += '<div id="nomessage">'
+                                 +'<img src="/home/images/nomessage.png" alt="无消息">'
+                                 +'</div>';
+                            $('.lists' ).html(html);
                         }
-                        $('.lists' ).html(html);
-                        $("#fixed").append(html1);
-                        $('.lists li').on('click',function(){
-                            $('#fixed').stop().animate({
-                                height:'100%'
-                            },500);
-                            $('.user').eq($(this).index()).show().siblings(".user").hide();
-                        });
-                        $('#close ').on('click',function(){
-                            $('#fixed').stop().animate({
-                                height:0
-                            },1);
-                        });
-                        $("img").lazyload({
-                            placeholder: "/home/images/loading.jpg",
-                            effect: "fadeIn",
-                            threshold: 200
-                        });
                     }else{
-                        html += '<div id="nomessage">'
-                             +'<img src="/home/images/nomessage.png" alt="无消息">'
-                             +'</div>';
-                        $('.lists' ).html(html);
+                        $('.lists' ).html('');
                     }
-                }else{
-                    $('.lists' ).html('');
-                }
-
                 }
 
             });
-//        }
         });
 
 
