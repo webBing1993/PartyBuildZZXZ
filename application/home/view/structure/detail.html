@@ -58,6 +58,12 @@
 {block name="script"}
 
 <script>
+    var url = document.referrer;
+    if (url.indexOf(31) > 0) {
+
+    }else {
+
+    }
     $("img.lazy").lazyload({
         placeholder: "/home/images/loading.jpg",
         effect: "fadeIn",
