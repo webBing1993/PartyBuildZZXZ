@@ -479,6 +479,25 @@
         $('.quan').hide();
     })
 
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            setTimeout(function () {
+                window.location.replace(history.go(-1));event.returnValue=false;
+            },100);
+        }, false);
+        function pushHistory() {
+            var sta = {
+                title: "title"
+            };
+            if( window.history.state === null )
+            {
+                window.history.pushState( sta, "title" );
+            }
+        }
+    });
+
+
 </script>
 
 <script type="text/javascript">

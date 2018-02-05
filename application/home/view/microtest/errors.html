@@ -92,7 +92,10 @@
         setTimeout(function(){
             window.addEventListener("popstate", function(e) {
                 localStorage.setItem("c", 2);
-                window.history.go(-3);
+                if (document.referrer.indexOf("score") > 0) {
+                    window.history.go(-3);
+                }
+                window.history.go(-1);
             }, false);
         },200)
     }
