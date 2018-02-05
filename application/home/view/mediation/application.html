@@ -73,7 +73,7 @@
             <img class="star"  src="/home/images/lxyz/icon/star.png"  alt=""/>
             <span>申请人 ：</span>
         </div>
-        <input type="text"  placeholder="请输入申请人名称" size="30" name="thing" value="{$model['name']}"/>
+        <input type="text"  placeholder="请输入申请人名称" size="30"maxlength="15" name="thing" value="{$model['name']}"/>
     </div>
     <div class="box">
         <div class="ev">
@@ -253,8 +253,6 @@
              var proposer=$("input[name='thing']").val();
              var mobile= parseInt($("input[name='num']").val());
              var content=$("textarea[name='content']").val();
-//             var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
-//             var phone = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
              if(isNaN(mobile)){
                  swal({
                      title: ' ',
