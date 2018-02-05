@@ -344,8 +344,18 @@
                         console.log(data)
                         //成功后刷新页面
                         if(data.code == 1){
-                            $('.remark1').css('display','none');
-                            history.go(0);
+
+                            swal({
+                                title: ' ',
+                                text: '您已确认，请尽快处理！',
+                                type: "success",
+                                confirmButtonText:'确定',
+                                timer: 1500
+                            });
+                            setTimeout(function () {
+                                $('.remark1').css('display','none');
+                                window.location.replace("/home/mediation/index.html");
+                            },1500);
                         }else{
                             setTimeout(function(){
                                 swal("操作失败","",'error')
