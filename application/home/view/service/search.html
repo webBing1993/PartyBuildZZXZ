@@ -215,6 +215,8 @@
                 beforeSend: function(XMLHttpRequest){},
                 success:function(data){
                     if(data.code==1){
+                        $('.lists li').remove();
+                        $('#fixed .user').remove();
                         if (data.data != "[]") {
                             var result = JSON.parse(data.data);
                             for(var i=0;i< result.length;i++){
@@ -263,7 +265,7 @@
                                 $('.lists li').on('click',function(){
                                     $('#fixed').stop().animate({
                                         height:'100%'
-                                    },500);
+                                    },200);
                                     $('.user').eq($(this).index()).show().siblings(".user").hide();
                                 });
                                 $('#close ').on('click',function(){
@@ -285,6 +287,7 @@
                         }
                     }else{
                         $('.lists' ).html('');
+                        $('#fixed .user').remove();
                     }
                 }
 
