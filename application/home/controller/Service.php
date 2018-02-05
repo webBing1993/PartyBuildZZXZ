@@ -99,7 +99,8 @@ class Service extends Base
     protected function getFirstChar($s)
     {
         $s0 = mb_substr($s,0,3); // 获取名字的姓
-        $s = iconv('UTF-8','gb2312', $s0); // 将UTF-8转换成GB2312编码
+//        $s = iconv('UTF-8','gbk', $s0); // 将UTF-8转换成GB2312编码
+        $s = mb_convert_encoding($s0, "gb2312", "utf-8");
         if (ord($s0)>128) { // 汉字开头，汉字没有以U、V开头的
             $asc=ord($s{0})*256+ord($s{1})-65536;
             if($asc>=-20319 and $asc<=-20284)return "A";
