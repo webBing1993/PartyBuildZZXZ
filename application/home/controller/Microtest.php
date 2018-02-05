@@ -106,6 +106,10 @@ class Microtest extends Base
             $this->assign('info',"");
         }
 
+        //判断当天是否有保存的记录，有的话显示继续按钮。
+        $info4=Db::table('pb_answer')->where('userid',$userId)->where($where2)->find();
+        $this->assign('info4',$info4);
+
         //总榜
         $answer = Answer::where('1=1')->select();
         $list4 = array();

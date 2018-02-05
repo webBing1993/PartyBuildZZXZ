@@ -84,9 +84,9 @@
             <!--<img src="/home/images/game2.png" alt="" class="text">-->
             {if condition='$info eq null'}
             <a class="start start1" style="color: #fff;">开始答题</a>
-            {elseif condition='$exist eq 0'/}
+            {elseif condition="($info4['exist'] == 0)"}
             <a class="start goon" style="color: #fff;">继续答题</a>
-            <a class="continue" style="color: #fff;">重新开始</a>
+            <!--<a class="continue" style="color: #fff;">重新开始</a>-->
             {else/}
             <a class="start start1" style="color: #fff;">开始答题</a>
             {/if}
