@@ -23,7 +23,7 @@ class Meet extends Validate {
         'front_cover' => '封面图片不能为空',
         'title' =>  '标题不能为空',
         'content'  =>  '内容不能为空',
-        'publisher' => '发布者不能为空',
+        'publisher' => '发布人不能为空',
     ];
 
 }
