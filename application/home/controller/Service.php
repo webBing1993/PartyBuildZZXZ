@@ -166,7 +166,7 @@ class Service extends Base
                 ->join('pb_wechat_user_tag c','a.userid = c.userid','left')
                 //->join('pb_wechat_department d','b.departmentid = d.id','left')
                 ->field('a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
-                ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG])
+                ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG,'departmentid'=>['neq', 2]])
                 ->select();
 
             foreach ($list as $key => $user) {
