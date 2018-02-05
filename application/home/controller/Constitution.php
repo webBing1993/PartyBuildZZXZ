@@ -434,12 +434,17 @@ class Constitution extends Base {
      * 查看错题
      */
     public function errors(){
-        $Answer=Answer::get(['userid'=>session('userId')]);
-        $arr=json_decode($Answer->status,true);
-        $lists=json_decode($Answer->question_id,true);
-        $rights=json_decode($Answer->value,true);
+        //$Answer1=Answer::get(['userid'=>session('userId')]);
+        $da=strtotime(date('Y-m-d',time()));
+        $da2=$da+86400;
+        $where3['create_time']=array(array('gt',$da),array('lt',$da2));
+        $where3['exist']=1;
+        $Answer=Db::table('pb_answer')->where('userid',session('userId'))->where($where3)->find();
+        $arr=json_decode($Answer['status'],true);
+        $lists=json_decode($Answer['question_id'],true);
+        $rights=json_decode($Answer['value'],true);
         foreach($arr as $key=>$value){
-            if($value == 0){
+            //if($value == 0){
                 $Question=Question::get($lists[$key]);
                 if($key <20 ){
                     $re[$key]=$Question;
@@ -448,8 +453,9 @@ class Constitution extends Base {
                     $res[$key]=$Question;
                     $right2[$key]=$rights[$key];
                 }
-            }
+            //}
         }
+        //dump($re);dump($rights);exit();
         $this->assign('question',$re);
         $this->assign('questions',$res);
         $this->assign('right1',$right1);
