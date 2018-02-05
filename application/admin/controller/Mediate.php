@@ -136,9 +136,9 @@ class Mediate extends Admin
                 $list=Db::table('pb_wechat_user')->where('userid',$data['userid'])->find();
                 if ($list){
                     $data['name']=$list['name'];
-                }else{
+                }/*else{
                     return $this->error("此调解员还未导入通讯录");
-                }
+                }*/
             }
             if (empty($data['id'])) {
                 unset($data['id']);

@@ -523,6 +523,7 @@ class Microtest extends Base
         $arr=json_decode($Answer->status,true);
         $lists=json_decode($Answer->question_id,true);
         $rights=json_decode($Answer->value,true);
+        //dump($rights);exit();
         foreach($arr as $key=>$value){
             if($value == 0){
                 $Question=Question::get($lists[$key]);
