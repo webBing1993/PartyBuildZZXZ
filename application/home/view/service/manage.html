@@ -130,7 +130,9 @@
             $(this).addClass('active').siblings().removeClass('active');
             $(".box").eq(index).show().siblings().hide();
             localStorage.setItem('data',index);
-            loadScroll();
+            if (index == 1) {
+                loadScroll();
+            }
             $(".tip").hide();
             $(".loading").hide();
             scrollNow = true;
@@ -271,8 +273,6 @@
   });
 
 //    党员展示
-//    var h = $(window).height()-$('.tab').height();
-//    $('.showLeft , .showRight').css('height',h);
     $('.showLeft li ').on('click',function(){
         setCookie("num",$(this).index());
         $('.showLeft li ').removeClass('active');
