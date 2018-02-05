@@ -37,8 +37,6 @@
     <div class="tab"><span class="active">图表型</span></div>
     <div class="tab"><span>文字型</span></div>
 </div>
-<iframe src="" frameborder="0"  id="tab0"></iframe>
-<iframe src="" frameborder="0"  id="tab1"></iframe>
 {/block}
 {block name="script"}
 <script src="/home/js/reset.js"></script>
@@ -46,18 +44,18 @@
     //tab切换
     var number = getCookie('num')==null?0:getCookie('num');
     $('.tabs>.tab ').on('click',function(){
-        $("iframe").css("margin-top","1rem");
         var eq = $(this ).index();
         setCookie('num',eq);
         $(this ).siblings('.tab' ).find('span' ).removeClass('active');
         $(this ).find('span' ).addClass('active');
-        $('#tab'+eq).show().siblings("iframe").hide();
         if (eq == 0) {
-            $("#tab0").attr("src","/home/statistics/chart.html");
-            $("#tab1").attr("src","");
+            $("iframe").remove();
+            $("body").append('<iframe src="/home/statistics/chart.html" frameborder="0"  id="tab"></iframe>');
+            $("iframe").css("margin-top","1rem");
         }else {
-            $("#tab0").attr("src","");
-            $("#tab1").attr("src","/home/statistics/form.html");
+            $("iframe").remove();
+            $("body").append('<iframe src="/home/statistics/form.html" frameborder="0"  id="tab"></iframe>');
+            $("iframe").css("margin-top","1rem");
         }
     });
 
