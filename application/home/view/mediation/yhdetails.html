@@ -136,13 +136,14 @@
         <!--事件名称 ：<span class="con">{$model.title}</span>-->
     </div>
     <div class="box clearfix">
-        <span class="describe-sp fl">申请人 :</span>
-        <span class="describe-t fl">{$model.proposer}</span>
-    </div>
-    <div class="box clearfix">
         <span class="describe-sp fl">当事人 :</span>
         <span class="describe-t fl">{$model.parties}</span>
     </div>
+    <div class="box clearfix">
+        <span class="describe-sp fl">申请人 :</span>
+        <span class="describe-t fl">{$model.proposer}</span>
+    </div>
+
     <div class="box clearfix">
         <span class="describe-sp fl">联系电话 :</span>
         <span class="describe-t fr">{$model.mobile}</span>
@@ -417,7 +418,7 @@
            console.log(num)
         };
         if(num ==2){
-            $('.chart').css({'height':initial,'overflow':'hidden'});
+            $('.chart').css({'height':'initial','overflow':'hidden'});
         }else if(num >3){
             if($('.list').eq(2).hasClass('active')){
                 $('.list').eq(1).find('.hr02').css('height',0);
@@ -471,7 +472,7 @@
             $('.quan').fadeIn();
         }
     }else{
-        if($('.des').height()>100){
+        if($('.des').height()>113){
             $('.des').css({'height':'15.5vh','overflow':'hidden','margin-bottom':'0'});
             $('.quan').fadeIn();
         }
