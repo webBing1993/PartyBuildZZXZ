@@ -37,35 +37,31 @@
     <div class="tab"><span class="active">图表型</span></div>
     <div class="tab"><span>文字型</span></div>
 </div>
-<iframe src="/home/statistics/form.html" frameborder="0"  id="tab1"></iframe>
-<iframe src="/home/statistics/chart.html" frameborder="0"  id="tab0"></iframe>
+<iframe src="" frameborder="0"  id="tab0"></iframe>
+<iframe src="" frameborder="0"  id="tab1"></iframe>
 {/block}
 {block name="script"}
 <script src="/home/js/reset.js"></script>
 <script>
-    $(function(){
-//        var WH = $(window).height();
-//        var WW = $(window).width();
-//        $('#tab0').height(WH);
-//        $("iframe").css("margin-top","1rem");
-        //tab切换
-        var number = getCookie('num')==null?0:getCookie('num');
-        $('.tabs>.tab ').on('click',function(){
-            $("iframe").css("margin-top","1rem");
-            var eq = $(this ).index();
-            setCookie('num',eq);
-            $(this ).siblings('.tab' ).find('span' ).removeClass('active');
-            $(this ).find('span' ).addClass('active');
-//            $('#tab'+eq).height(WH);
-            $('#tab'+eq).show().siblings("iframe").hide();
-        });
-
-        // 初始化
-        $('.tab').eq(number).siblings('.tab' ).find('span' ).removeClass('active');
-        $('.tab').eq(number).find('span' ).addClass('active');
-//        $('#tab'+number).height(WH);
-        $('#tab'+number).show().siblings("iframe").hide();
+    //tab切换
+    var number = getCookie('num')==null?0:getCookie('num');
+    $('.tabs>.tab ').on('click',function(){
+        $("iframe").css("margin-top","1rem");
+        var eq = $(this ).index();
+        setCookie('num',eq);
+        $(this ).siblings('.tab' ).find('span' ).removeClass('active');
+        $(this ).find('span' ).addClass('active');
+        $('#tab'+eq).show().siblings("iframe").hide();
+        if (eq == 0) {
+            $("#tab0").attr("src","/home/statistics/chart.html");
+            $("#tab1").attr("src","");
+        }else {
+            $("#tab0").attr("src","");
+            $("#tab1").attr("src","/home/statistics/form.html");
+        }
     });
 
+    // 初始化
+    $('.tab').eq(number).click();
 </script>
 {/block}

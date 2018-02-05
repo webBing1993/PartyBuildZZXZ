@@ -77,12 +77,14 @@
 <script src="/static/flot/radialIndicator.js"></script>
 <script>
 
-        var myGender = echarts.init(document.getElementById('pie3'));
+
         window.onload = function(){
             $("#cir1 canvas").css({"width":"100%","height":"auto"});
             $("#cir2 canvas").css({"width":"100%","height":"auto"});
+//            $("#pie3 div").css({"width":"100%","height":"100%"});
+//            $("#pie3 canvas").css({"width":"100%","height":"80%"});
 
-        }
+        };
 
         $(function() {
             //大饼图数据：data1、data2、data3，条形图数据：data4、data5，环形图数据：data6
@@ -104,7 +106,7 @@
             };
 
         //	党员总人数表
-       /* var data3 = [{
+        /*var data3 = [{
             label: "关注人数："+{$msg['concernnum']}+"人",
             data: {$msg['concernnum']},
             color: "#5FB8C5"
@@ -209,60 +211,33 @@
         });
         $(".m").append({$msg['malenum']}+"人");
         $(".f").append({$msg['femalenum']}+"人");
-    });
-
-    //修改提示信息
-    /*var genderOption={
-        calculable : true,
-        series : [
-            {
-                name:'',
-                type:'pie',
-                color:["#5EB8C5","#2E8B57"],
-                selectedMode: 'single',
-                itemStyle : {
-                    normal : {
-                        label : {
-                            show : true
-                        },
-                        labelLine : {
-                            show : true,
-                            length:5
-                        }
-                    },
-                },
-                data:[
-                    {value:81, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
-                    {value:23, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
-                ]
-            }
-        ]
-    }*/
 
 
-    var genderOption = {
-        tooltip : {
-            trigger: 'item',
-            formatter: "{c}人 ({d}%)"
-        },
+        var myGender = echarts.init(document.getElementById('pie3'));
+        var genderOption = {
+            tooltip : {
+                trigger: 'item',
+                formatter: "{c}人 ({d}%)"
+            },
 
-        series : [
-            {
-                type: 'pie',
-                radius : '65%',
-                center: ['50%', '50%'],
+            series : [
+                {
+                    type: 'pie',
+                    radius : '65%',
+                    center: ['50%', '50%'],
 //                selectedMode: 'single',
-                color:["#5EB8C5","#2E8B57"],
-                data:[
-                    {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
-                    {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
-                ],
-            }
-        ]
-    };
+                    color:["#5EB8C5","#2E8B57"],
+                    data:[
+                        {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
+                        {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
+                    ],
+                }
+            ]
+        };
 
+        myGender.setOption(genderOption);
 
-    myGender.setOption(genderOption);
+    });
 
 </script>
 {/block}
