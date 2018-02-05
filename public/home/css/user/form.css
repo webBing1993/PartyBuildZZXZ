@@ -146,12 +146,14 @@ body {
   animation: todown 0.4s linear alternate;
   transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
+  transform-origin: 50% 50%;
 }
 .message .box .list .toup {
   -webkit-animation: toup 0.4s linear alternate;
   animation: toup 0.4s linear alternate;
   transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
+  transform-origin: 50% 50%;
 }
 .message .box ul {
   display: none;
