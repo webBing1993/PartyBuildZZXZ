@@ -109,6 +109,7 @@ class Wechat extends Admin
             $dname = str_replace('山下湖镇','',$dname);
             foreach ($users['userlist'] as $user) {
                 $user['department'] = json_encode($user['department']);
+                $user['department_short'] = $dname;
                 if(isset($user['extattr'])){
                     foreach ($user['extattr']['attrs'] as $value) {
                         switch ($value['name']){
@@ -129,9 +130,9 @@ class Wechat extends Admin
                             case "入党时间":
                                 $user['partytime'] = $value['value'];
                                 break;
-                            case "部门简称":
-                                $user['department_short'] = $dname;
-                                break;
+//                            case "部门简称":
+//                                $user['department_short'] = $dname;
+//                                break;
 //                            case "党员承诺":
 //                                $user['promise'] = $value['value'];
 //                                break;
