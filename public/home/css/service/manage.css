@@ -93,6 +93,7 @@ body{
     left:0;
     bottom:0;
     line-height:1.8vh;
+    padding-bottom: .6vh;
 }
 .message{
     position: absolute;
@@ -299,7 +300,7 @@ body{
     display: block;
     float:left;
 }
-.userSort span:nth-child(1) {width:.76rem;}
+.userSort span:nth-child(1) {width:.76rem;line-height: .75rem;}
 .userSort span:nth-child(1) img {
     width:.42rem;
     height:.42rem;

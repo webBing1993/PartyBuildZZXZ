@@ -108,7 +108,13 @@ $(function(){
             })
 
         }else{
-            alert('请对本次调解结果做出评价')
+            swal({
+                type: "error",
+                title: "",
+                text:"请对本次调解做出评价",
+                timer: 1500,
+                showConfirmButton: false
+            });
         }
 
 
