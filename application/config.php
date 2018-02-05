@@ -68,7 +68,7 @@ return [
 
 
     //  推送网站域名
-    'http_url' => "http://zzxz.0571ztnet.com",
+    'http_url' => "http://xpf.free.cn",
     // 推送对象 发送给全体 @all  个人测试15700004138
     'touser' => '18767104335',
     /* UC用户中心配置 */
