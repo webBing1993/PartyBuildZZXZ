@@ -141,16 +141,16 @@
     });
 
     // 初始化图片懒加载
-    $(function () {
-        function lazy() {
-            $("img.lazy").lazyload({
-                placeholder: "/home/images/loading.jpg",
-                effect: "fadeIn",
-                threshold: 1
-            });
-        }
-        lazy();
-    })
+      function lazy() {
+          $("img.lazy").lazyload({
+              placeholder: "/home/images/loading.jpg",
+              effect: "fadeIn",
+              threshold: 1
+          });
+      }
+      $(function () {
+          lazy();
+      })
 
 </script>
 {/block}
