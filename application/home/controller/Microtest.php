@@ -527,8 +527,8 @@ class Microtest extends Base
         $Answer=Db::table('pb_answer')->where('userid',session('userId'))->where($where3)->find();
         $arr=json_decode($Answer['status'],true);
         $lists=json_decode($Answer['question_id'],true);
-        $rights=json_decode($Answer['value'],true);
-        //dump($rights);exit();
+        $rights=json_decode($Answer['value'],true);  
+        //dump($rights);exit();  
         foreach($arr as $key=>$value){
             //if($value == 0){
                 $Question=Question::get($lists[$key]);
