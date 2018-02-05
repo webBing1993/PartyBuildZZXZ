@@ -283,7 +283,6 @@
         $('.describe-ps').css('text-indent','4.5vh')
     }
     var userid={$model.mediatorid};
-    console.log(userid);
 //    点击选择调解员
     $('.high').on('click',function(){
         $('.shadow').fadeIn();
@@ -401,7 +400,6 @@
     var l=$('.list').eq(0).height();
     var ht=l+n+all+p+s-1;
     $('#hr01').css('height',l+p+'px');
-
     //    添加状态
     $('.list').each(function(){
         if($(this).hasClass('active')){
@@ -415,7 +413,6 @@
     for(var i=0;i<$('.list').length;i++){
         if(i=$('.list').length){
            num = i;
-           console.log(num)
         };
         if(num ==2){
             $('.chart').css({'height':'initial','overflow':'hidden'});
@@ -443,7 +440,7 @@
                 $('#all').hide();
             }else{
                 $('.chart').css({'height':'initial','overflow':'initial'});
-                $('#hr01').css('height',h-last-p+'px')
+                $('#hr01').css('height',h-last-p-s+'px')
                 $('#all').hide();
             }
         }else{

@@ -24,7 +24,7 @@ class Redfilm extends Validate {
         'front_cover.require'  =>  '请添加封面图片！',
         'net_path.require' => '请填写电影地址路径',
         'title.require' =>  '请填写电影名称！',
-        'introduction.require' => '请填写地址路径',
+        'introduction.require' => '请填写简介',
         'content.require'  =>  '请填写内容！',
     ];
 }

@@ -22,6 +22,7 @@ class Redbook extends Validate {
         'header'  =>  'require',
         'birth_and_death'  =>  'require',
         'author_introduction'  =>  'require',
+        'famous_remark'  =>  'require',
     ];
 
     protected $message = [
@@ -32,7 +33,8 @@ class Redbook extends Validate {
         'works_introduction.require'  =>  '请填写书籍简介！',
         'name.require'  =>  '请填写作者名称！',
         'header.require'  =>  '请添加作者头像！',
-        'birth_and_death.require'  =>  '请填写作者生卒！',
+        'birth_and_death.require'  =>  '请填写生卒！',
         'author_introduction.require'  =>  '请填写作者简介！',
+        'famous_remark.require'  =>  '请填写经典名句！',
     ];
 }

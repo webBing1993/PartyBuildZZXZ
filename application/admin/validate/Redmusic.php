@@ -20,7 +20,7 @@ class Redmusic extends Validate {
 
     protected $message = [
         'front_cover.require'  =>  '请添加封面图片！',
-        'title.require' =>  '请填写音乐名称！',
+        'title.require' =>  '请填写标题！',
         'content.require'  =>  '请填写内容！',
     ];
 }

@@ -183,6 +183,7 @@ body{
     width:10.2vw;
     height:10.2vw;
     margin-left:4.5vw;
+    border-radius: 50%;
 }
 .remark, .remark1, .remark2{
     display:none;
