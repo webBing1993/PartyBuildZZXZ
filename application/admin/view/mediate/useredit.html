@@ -245,6 +245,7 @@
                             </div>
                             <div class="col-lg-11">
                                 <select class="form-control" name="education">
+                                    {empty name="msg"}
                                     <option value="">请选择学历</option>
                                     <option value="初中以下">初中以下</option>
                                     <option value="初中">初中</option>
@@ -254,6 +255,17 @@
                                     <option value="本科">本科</option>
                                     <option value="硕士">硕士</option>
                                     <option value="硕士以上">硕士以上</option>
+                                    {else/}
+                                    <option value="" {eq name="msg.education" value="1"} selected {/eq}>请选择学历</option>
+                                    <option value="初中以下" {eq name="msg.education" value="初中以下"} selected {/eq}>初中以下</option>
+                                    <option value="初中" {eq name="msg.education" value="初中"} selected {/eq}>初中</option>
+                                    <option value="高中" {eq name="msg.education" value="高中"} selected {/eq}>高中</option>
+                                    <option value="中专" {eq name="msg.education" value="中专"} selected {/eq}>中专</option>
+                                    <option value="大专" {eq name="msg.education" value="大专"} selected {/eq}>大专</option>
+                                    <option value="本科" {eq name="msg.education" value="本科"} selected {/eq}>本科</option>
+                                    <option value="硕士" {eq name="msg.education" value="硕士"} selected {/eq}>硕士</option>
+                                    <option value="硕士以上" {eq name="msg.education" value="硕士以上"} selected {/eq}>硕士以上</option>
+                                    {/empty}
                                 </select>
                                 <!--<input type="text" placeholder="请输入学历" class="form-control form_title" name="education"-->
                                        <!--value="{$msg.education || default=''}">-->
