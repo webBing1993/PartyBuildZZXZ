@@ -355,7 +355,9 @@
                             });
                             setTimeout(function () {
                                 $('.remark1').css('display','none');
-                                window.location.replace("/home/mediation/index.html");
+//                                window.location.replace("/home/mediation/index.html");
+                                history.go(-1);
+                                return false;
                             },1500);
                         }else{
                             setTimeout(function(){
