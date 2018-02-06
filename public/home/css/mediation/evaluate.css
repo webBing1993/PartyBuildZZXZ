@@ -2,16 +2,17 @@ body{
     background: #fff;
 }
 .head{
-    height:10.5vh;
-    padding:4vw 2.2vh;
+    height:18.7vw;
+    padding:4vw 4vw;
     overflow: hidden;
-    margin-bottom:2.2vh;
+    margin-bottom:4vw;
 }
 .padding{
-    height:2.2vh;
+    height:4vw;
     background: #F5F5F5;
 }
 .icon{
+    display: inline-block;
     width:10.7vw;
     height:100%;
 }
@@ -30,22 +31,22 @@ body{
 }
 .con{
     width:100%;
-    /*height:26vh;*/
+    /*height:213.4vw;*/
     font-size: .3rem;
     color:#333;
-    padding:4vw 2.2vh;
+    padding:4vw 4vw;
     padding-bottom:0;
 }
 .yn{
-    margin-bottom:2.8vh;
+    margin-bottom:4.8vw;
 }
 .yn1{
-    margin-bottom:2.2vh;
+    margin-bottom:4vw;
 }
 .pic{
     width:100%;
-    height:3.1vh;
-    margin-bottom:3.7vh;
+    height:5.4vw;
+    margin-bottom:6.5vw;
 }
 .pic img{
     display: inline-block;
@@ -54,7 +55,7 @@ body{
     margin-right:4vw;
 }
 .pic2{
-    margin-bottom:4vh;
+    margin-bottom:7.1vw;
 }
 .code, .code1{
     margin-left:4vw;
@@ -62,9 +63,9 @@ body{
 }
 textarea{
     width:100%;
-    height:27vh;
+    height:48vw;
     background: #F5F5F5;
-    padding:4vw 2.2vh;
+    padding:4vw 4vw;
     font-size:.3rem;
     color:#999;
 }
@@ -75,18 +76,18 @@ textarea{
     left:50%;
     top:50%;
     margin-left:-20vw;
-    margin-top:-7.5vh;
+    margin-top:-13.4vw;
     width:40vw;
-    height:15vh;
+    height:26.7vw;
     background:rgba(0,0,0,.6);
     font-size: .3rem;
     text-align: center;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 2.7vw;
+    -moz-border-radius: 2.7vw;
+    border-radius: 2.7vw;
 }
 .tupian{
-    margin:3vh auto;
+    margin:5.4vw auto;
     width:7.4vw;
     height:7.4vw;
 }
@@ -95,14 +96,18 @@ textarea{
     height:100%;
 }
 .bot{
-    margin:4.5vh auto;
+    margin:5.4vw auto;
     width:92vw;
-    height:6vh;
+    height:13.4vw;
     background: #DD5D3A;
     border:1px solid #FE8B44;
     color:#fff;
     font-size: .3rem;
     box-sizing: border-box;
     text-align: center;
-    line-height: 6vh;
+    line-height: 13.4vw;
+    /*position: fixed;*/
+    /*bottom: 4vw;*/
+    /*left: 50%;*/
+    /*margin-left: -46vw;*/
 }
