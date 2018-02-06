@@ -264,6 +264,14 @@
                         console.log(data)
                         if(data.code == 1){
                             addComment(data);
+                            function imglazy() {
+                                $("img").lazyload({
+                                    placeholder: "/home/images/loading.jpg",
+                                    effect: "fadeIn",
+                                    threshold: 200
+                                });
+                            }
+                            imglazy();
                             var dataLen =data.data.length;
                             if(data.data.length == 5){
                                 tip.text('上拉加载更多');

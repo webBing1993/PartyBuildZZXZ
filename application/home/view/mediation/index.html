@@ -199,6 +199,9 @@
 {/block}
 {block name="script"}
 <script>
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) location.reload();    //如果检测到页面是从“往返缓存”中读取的，刷新页面
+    });
 var med = localStorage.getItem('medNum')==null?1:localStorage.getItem('medNum');
 var scrollNow = true;
 $('.top>div').on("click",function(){

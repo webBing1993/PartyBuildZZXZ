@@ -15,6 +15,9 @@
         border: 0;
         vertical-align: top;
     }
+	.tit1{
+		padding-top:3vh;
+	}
 </style>
 {/block}
 {block name="body"}
@@ -27,6 +30,7 @@
 	<div class="vrText" id="noVR">
 		<img class="pic2" src="/home/images/lxyz/icon_014.png">
 		<p class="tit">全景拍摄中....</p>
+		<p class="tit1">{$departmentName}</p>
 
 	</div>
 </div>
@@ -66,11 +70,11 @@
     var num=parseInt(relUrl.split('/')[5]);
     console.log(num)
     if(num===31){
+        $('.tit1').hide();
+    }else{
         $('.pic1').attr('data-original','/home/images/lxyz/16.png');
         $('.pic2').hide();
-        $('.tit').html('{$departmentName}')
-    }else{
-
+        $('.tit').hide();
 	}
     $("img.lazy").lazyload({
         placeholder: "/home/images/loading.jpg",
