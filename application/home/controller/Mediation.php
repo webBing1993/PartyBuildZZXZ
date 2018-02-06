@@ -371,6 +371,7 @@ class Mediation extends Base
 
     /**
      * 调解申请页面
+     * 参数proposer  （申请人姓名），mediatorid （调解员ID），parties（当事人姓名），mobile（申请人手机），title（事件名称），content（事件内容），images（图片ID数组）
      */
     public function application(){
         $this->checkAnonymous();
@@ -450,16 +451,14 @@ class Mediation extends Base
 
     /**
      * 管理员审核
+     * 通过：参数id  {$id}，status = 1，mediatorid（调解员ID）
+     * 不通过：参数id  {$id}，status = 0，no_approve（不通过原因）
      */
     public function check(){
         $data = input('post.');
         $status = input('status');
-        //dump($data);exit();
         if($status){//审核通过
             $data['status'] = MediationModel::STATUS_CHECK;
-            Db::table('pb_mediation')->where('id', $data['id'])->update(['mediatorid' => $data['mediatorid']]);
-            $a=Db::table('pb_mediation_user')->where('userid',$data['mediatorid'])->find();
-            Db::table('pb_mediation')->where('id', $data['id'])->update(['mediator' => $a['name']]);
             if($data['mediatorid']){
                 $data['mediator'] = MediationUser::getMediator($data['mediatorid']);
             }
@@ -492,6 +491,7 @@ class Mediation extends Base
 
     /**
      * 调解员确认
+     * 参数id  {$id}
      */
     public function confirm(){
         $data['status'] = MediationModel::STATUS_CONFIRM;
@@ -508,6 +508,7 @@ class Mediation extends Base
 
     /**
      * 调解员处理反馈
+     * 参数id  {$id}，feedback_mediator（调解员反馈）
      */
     public function opinion(){
         if(IS_POST) {
@@ -531,6 +532,7 @@ class Mediation extends Base
 
     /**
      * 申请人情况反馈
+     * 参数id  {$id}，satisfact（本次协调满意度），satisfact_mediator（调解员满意度），feedback_user（申请人反馈）
      */
     public function evaluate(){
         if(IS_POST) {
