@@ -62,7 +62,9 @@
                             },
                             success:function(data){
                                 if (data.code == 1) {
-                                    window.location.replace("/home/mediation/listdetails/type/3.html");
+//                                    window.location.replace("/home/mediation/listdetails/type/3.html");
+                                    history.go(-2);
+                                    return false;
                                 }
                             }
                         });
