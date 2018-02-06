@@ -63,15 +63,15 @@ class Statistics extends Base {
         $male = round(($m/$userNum)*100).'%';
         $w = WechatUser::where('gender','eq',2)->where($map)->count(); //女性人数
         $female = round(($w/$userNum)*100).'%';
-
-        $edu1 = WechatUser::where('education','eq',"初中以下")->where($map)->count();    //统计学历人数
-        $edu2 = WechatUser::where('education','eq',"初中")->where($map)->count();
-        $edu3 = WechatUser::where('education','eq',"高中")->where($map)->count();
-        $edu4 = WechatUser::where('education','eq',"中专")->where($map)->count();
-        $edu5 = WechatUser::where('education','eq',"大专")->where($map)->count();
-        $edu6 = WechatUser::where('education','eq',"本科")->where($map)->count();
-        $edu7 = WechatUser::where('education','eq',"硕士")->where($map)->count();
-        $edu8 = WechatUser::where('education','eq',"硕士以上")->where($map)->count();
+        //统计学历人数
+        $edu1 = WechatUser::where('education','eq',"小学")->where($map)->count();    //初中以下
+        $edu2 = WechatUser::where('education','eq',"初中")->where($map)->count();    //初中
+        $edu3 = WechatUser::where(['education' => [["eq", "高中"], ["eq", "普通高中"], 'or']])->where($map)->count();    //高中
+        $edu4 = WechatUser::where(['education' => [["eq", "中专"], ["eq", "技工学校"], ["eq", "中等专科"], 'or']])->where($map)->count();    //中专
+        $edu5 = WechatUser::where(['education' => [["eq", "大专"], ["eq", "中央党校大专"], ["eq", "省（区、市）委党校大专"], 'or']])->where($map)->count();    //大专
+        $edu6 = WechatUser::where(['education' => [["eq", "本科"], ["eq", "大学"], 'or']])->where($map)->count();    //本科
+        $edu7 = WechatUser::where(['education' => [["eq", "硕士"], ["eq", "研究生"], ["eq", "硕士研究生"], 'or']])->where($map)->count();    //硕士
+        $edu8 = WechatUser::where(['education' => [["eq", "硕士以上"], ["eq", "博士研究生"], 'or']])->where($map)->count();    //硕士以上
 
         $msg = array(
             'usernum' => $userNum, //总人数
@@ -138,14 +138,15 @@ class Statistics extends Base {
         $w = WechatUser::where('gender','eq',2)->where($map)->count(); //女性人数
         $female = round(($w/$userNum)*100);
 
-        $edu1 = WechatUser::where('education','eq',"初中以下")->where($map)->count();    //统计学历人数
-        $edu2 = WechatUser::where('education','eq',"初中")->where($map)->count();
-        $edu3 = WechatUser::where('education','eq',"高中")->where($map)->count();
-        $edu4 = WechatUser::where('education','eq',"中专")->where($map)->count();
-        $edu5 = WechatUser::where('education','eq',"大专")->where($map)->count();
-        $edu6 = WechatUser::where('education','eq',"本科")->where($map)->count();
-        $edu7 = WechatUser::where('education','eq',"硕士")->where($map)->count();
-        $edu8 = WechatUser::where('education','eq',"硕士以上")->where($map)->count();
+        //统计学历人数
+        $edu1 = WechatUser::where('education','eq',"小学")->where($map)->count();    //初中以下
+        $edu2 = WechatUser::where('education','eq',"初中")->where($map)->count();    //初中
+        $edu3 = WechatUser::where(['education' => [["eq", "高中"], ["eq", "普通高中"], 'or']])->where($map)->count();    //高中
+        $edu4 = WechatUser::where(['education' => [["eq", "中专"], ["eq", "技工学校"], ["eq", "中等专科"], 'or']])->where($map)->count();    //中专
+        $edu5 = WechatUser::where(['education' => [["eq", "大专"], ["eq", "中央党校大专"], ["eq", "省（区、市）委党校大专"], 'or']])->where($map)->count();    //大专
+        $edu6 = WechatUser::where(['education' => [["eq", "本科"], ["eq", "大学"], 'or']])->where($map)->count();    //本科
+        $edu7 = WechatUser::where(['education' => [["eq", "硕士"], ["eq", "研究生"], ["eq", "硕士研究生"], 'or']])->where($map)->count();    //硕士
+        $edu8 = WechatUser::where(['education' => [["eq", "硕士以上"], ["eq", "博士研究生"], 'or']])->where($map)->count();    //硕士以上
 
         $msg = array(
             'usernum' => $userNum, //总人数
