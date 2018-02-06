@@ -270,7 +270,7 @@
             $('.flow .lists').append(html);
         }
     }
-        $(".showRight").scroll(function() {
+        $(".showRight,.showLeft").scroll(function() {
             $("img.lazy").lazyload({
                 placeholder: "/home/images/loading.jpg",
                 effect: "fadeIn",
@@ -293,7 +293,6 @@
                 if (data.code == 1) {
                     $("#fixed .user").remove();
                     var data = JSON.parse(data.data);
-                    console.log(data)
                     if(data.length != 0){
                         $('#nomessage').hide();
                         addLists1(data);
@@ -304,6 +303,7 @@
                             },200);
                             $('.user').eq(index).show().siblings().hide();
                             $("#close").show();
+                            setTimeout(imglazy,600);
                         });
                         $('#close ').on('click',function(){
                             $('#fixed').stop().animate({
@@ -331,7 +331,6 @@
         var html1='';
         for(var obj in data){
             var lists=data[obj];
-            console.log(lists);
             for(var i=0;i<lists.length;i++){
                 if(lists[i].gender=='1'){
                     lists[i].gender='男';
@@ -421,7 +420,7 @@
         $("img").lazyload({
             placeholder: "/home/images/loading.jpg",
             effect: "fadeIn",
-            threshold: 200
+            threshold: 2000
         });
     }
     imglazy();
