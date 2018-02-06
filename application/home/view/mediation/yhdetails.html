@@ -298,10 +298,9 @@
             e.preventDefault();
             var src=$(this).parent().find('img').attr('src');
             var name=$(this).parent().find('.na').html();
+           userid = $(this).siblings('.user_hide').html();
             $('.images').attr('src',src);
             $('.name').html(name);
-           userid = $(this).siblings('.user_hide').html();
-            console.log(userid);
             setTimeout(function(){
                 $('.shadow').fadeOut()
             },800);
