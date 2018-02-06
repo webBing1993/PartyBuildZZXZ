@@ -190,12 +190,17 @@
                 url:"{:Url('Microtest/submits')}",
                 data:{arr:answer,arrId:getDataID()},
                 success:function(e){
+                    swal({
+                            title: "",
+                            text: "您已完成，正在提交中。。。",
+                            type: "success",
+                            confirmButtonText:'确定',
+                            timer: 1500
+                    });
                     setTimeout(function(){
                         objNow=null;
-                        setTimeout(function(){
-                            window.location.replace("{:Url('Microtest/score')}");
-                        },1000)
-                    },2000);
+                        window.location.replace("{:Url('Microtest/score')}");
+                    },1500);
                 }
             });
         }else{
