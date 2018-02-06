@@ -530,7 +530,7 @@ class Microtest extends Base
         $rights=json_decode($Answer['value'],true);  
         //dump($rights);exit();  
         foreach($arr as $key=>$value){
-            //if($value == 0){
+            //if($value == 0){  
                 $Question=Question::get($lists[$key]);
                 if($key <20 ){
                     $re[$key]=$Question;
