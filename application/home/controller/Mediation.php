@@ -454,8 +454,12 @@ class Mediation extends Base
     public function check(){
         $data = input('post.');
         $status = input('status');
+        //dump($data);exit();
         if($status){//审核通过
             $data['status'] = MediationModel::STATUS_CHECK;
+            Db::table('pb_mediation')->where('id', $data['id'])->update(['mediatorid' => $data['mediatorid']]);
+            $a=Db::table('pb_mediation_user')->where('userid',$data['mediatorid'])->find();
+            Db::table('pb_mediation')->where('id', $data['id'])->update(['mediator' => $a['name']]);
             if($data['mediatorid']){
                 $data['mediator'] = MediationUser::getMediator($data['mediatorid']);
             }

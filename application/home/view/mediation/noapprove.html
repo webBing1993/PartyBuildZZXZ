@@ -57,7 +57,7 @@
                                 //成功后刷新页面
                                 if(data.code == 1){
                                         setTimeout(function(){
-                                            history.go(-2);
+                                            window.location.replace("/home/audit/reviewlist.html");
                                         }, 1500);
                                 }else{
                                     setTimeout(function(){

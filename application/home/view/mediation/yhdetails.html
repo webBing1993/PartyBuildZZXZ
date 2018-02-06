@@ -52,7 +52,7 @@
     .shadow{
         z-index: 9999;
         display:none;
-        position: absolute;
+        position: fixed;
         left:0;
         top:0;
         width:100%;
@@ -276,13 +276,14 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+    var userid;
+    userid = {$model.mediatorid};
     if($(window).width()>=768){
         $('.form').css('margin-bottom','9vh')
     }
     if($(window).width()>1024){
         $('.describe-ps').css('text-indent','4.5vh')
     }
-    var userid={$model.mediatorid};
 //    点击选择调解员
     $('.high').on('click',function(){
         $('.shadow').fadeIn();
@@ -299,8 +300,8 @@
             var name=$(this).parent().find('.na').html();
             $('.images').attr('src',src);
             $('.name').html(name);
-            userid =$('.user_hide').html();
-            console.log(userid)
+           userid = $(this).siblings('.user_hide').html();
+            console.log(userid);
             setTimeout(function(){
                 $('.shadow').fadeOut()
             },800);

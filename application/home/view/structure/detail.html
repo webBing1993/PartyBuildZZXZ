@@ -19,14 +19,15 @@
 {/block}
 {block name="body"}
 <div class="vr">
-	<img data-original="/home/images/lxyz/icon_016.png" class="lazy">
+	<img data-original="/home/images/lxyz/icon_016.png" class="lazy pic1">
 	<!--<div class="vrText" id="isVR">-->
 	<!--<img src="/home/images/lxyz/icon_015.png">-->
 	<!--<p>点击进入全景展示</p>-->
 	<!--</div>-->
 	<div class="vrText" id="noVR">
-		<img src="/home/images/lxyz/icon_014.png">
-		<p>全景拍摄中....</p>
+		<img class="pic2" src="/home/images/lxyz/icon_014.png">
+		<p class="tit">全景拍摄中....</p>
+
 	</div>
 </div>
 <div class="user">
@@ -58,12 +59,19 @@
 {block name="script"}
 
 <script>
-    var url = document.referrer;
-    if (url.indexOf(31) > 0) {
+    var url=document.location.toString();
+    var arrUrl = url.split("//");
+    var start = arrUrl[1].indexOf("/");
+    var relUrl = arrUrl[1].substring(start);
+    var num=parseInt(relUrl.split('/')[5]);
+    console.log(num)
+    if(num===31){
+        $('.pic1').attr('data-original','/home/images/lxyz/16.png');
+        $('.pic2').hide();
+        $('.tit').html('{$departmentName}')
+    }else{
 
-    }else {
-
-    }
+	}
     $("img.lazy").lazyload({
         placeholder: "/home/images/loading.jpg",
         effect: "fadeIn",
