@@ -91,9 +91,9 @@
         pushHistory();
         setTimeout(function(){
             window.addEventListener("popstate", function(e) {
-                localStorage.setItem("c", 2);
+//                localStorage.setItem("c", 2);
                 if (document.referrer.indexOf("score") > 0) {
-                    window.history.go(-3);
+                    window.history.go(-2);
                 }
                 window.history.go(-1);
             }, false);
