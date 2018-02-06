@@ -276,6 +276,25 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
+
+    $(function(){
+        var url=  document.referrer;
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            setTimeout(function () {
+                window.location.replace(url);event.returnValue=false;
+            },100);
+        }, false);
+        function pushHistory() {
+            var sta = {
+                title: "title"
+            };
+            if( window.history.state === null )
+            {
+                window.history.pushState( sta, "title" );
+            }
+        }
+    });
     var userid;
     userid = {$model.mediatorid};
     if($(window).width()>=768){

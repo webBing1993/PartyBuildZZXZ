@@ -373,6 +373,46 @@
             $('#upimg').click().off("change").on('change',function(){
                 $('.showbox').show();
                 var size = ($(this)[0].files[0].size / 1024).toFixed(2);
+//                if(size>=1024 && size<=5120){
+//                    $('.showbox').show();
+//                    var reader = new FileReader();//读取用户上传的图片
+//                    reader.readAsDataURL(file);//readAsDataURL可以获取API异步读取文件数据另存为数据URL;将该URL绑定到img标签的src属性上，可以实现图片上传预览
+//                    reader.onload = function(e) {
+//                        var img = new Image,
+//                            width = 140, //图像调整
+//                            quality = 0.7, //图片质量
+//                            canvas = document.createElement("canvas"),
+//                            drawer = canvas.getContext("2d");
+//                        img.src = this.result;//这句不好理解
+//                        console.log(this.result);
+//                        img.onload = function() {
+//                            canvas.width = width;
+//                            canvas.height = width * (img.height / img.width);
+//                            drawer.drawImage(img, 0, 0, canvas.width, canvas.height);//使用canvas drawInmage接口绘制canvas 2d中
+//                            img.src = canvas.toDataURL("image/jpeg", quality);//toDataUrl接口把图片转成base64编码字符串
+//                            console.log(img.src);
+////                            result.innerHTML = '<img src="' + "data:image/png;base64,"+img.src + '" alt=""/>';
+////                            img_area.innerHTML = '<div class="sitetip">preview：</div><img src="' + img.src + '" alt="" id="generate" value="generate" /><input type="hidden" id="hide" name="hide" value="'+ img.src+'" />';
+//                        }
+//                    }
+//                }else if(size<1024){
+//
+//                } else {
+//                    clearImg();
+//                    swal({
+//                        title: ' ',
+//                        text: '您的图片超过5M',
+//                        type: 'warning',
+//                        showConfirmButton:false,
+//                        timer:1500
+//                    });
+//                    addImg();
+//                }
+
+
+
+
+
                 if(size <= 5120){
                     var img = $(this)[0].files[0];
                     var formData = new FormData();
@@ -506,7 +546,7 @@
          pushHistory();
          window.addEventListener("popstate", function(e) {
              setTimeout(function () {
-                 window.location.replace(history.go(-1));event.returnValue=false;
+                 window.location.replace('/home/mediation/index.html');event.returnValue=false;
              },100);
          }, false);
          function pushHistory() {

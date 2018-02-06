@@ -91,24 +91,6 @@
 {block name="script"}
 <script src="/static/framework7/framework7.js"></script>
 <script>
-
-    $(function(){
-        pushHistory();
-        window.addEventListener("popstate", function(e) {
-            setTimeout(function () {
-                window.location.replace('/home/audit/reviewlist.html');event.returnValue=false;
-            },100);
-        }, false);
-        function pushHistory() {
-            var sta = {
-                title: "title"
-            };
-            if( window.history.state === null )
-            {
-                window.history.pushState( sta, "title" );
-            }
-        }
-    });
 	var scrollNow = true;
 
 	//没有消息显示无消息提醒
