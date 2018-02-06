@@ -11,6 +11,7 @@
         line-height: 6.2vw;
     }
     .list .pie {
+
         width: 80vw;
         height: 45vw;
         margin-top: 4vw;
@@ -33,13 +34,13 @@
 {block name="body"}
 <div class="list clear" id="eee">
     <div class="title">党组织人数分布</div>
-    <div class="bar">
-        <canvas id="pie1" height="400"></canvas>
+    <div class="bar" id="pie" style="overflow-x: scroll;">
+        <canvas id="pie1" height="400" ></canvas>
     </div>
 </div>
 <div class="list">
     <div class="title">年龄分布</div>
-    <div class="bar">
+    <div class="bar" id="bar">
         <canvas id="bar1" height="200"></canvas>
     </div>
 </div>
@@ -151,9 +152,10 @@
             scaleShowHorizontalLines: true, // 是否显示横向线
             scaleShowVerticalLines: true, // 是否显示竖向线
             barShowStroke : true,
-            barStrokeWidth : 2,
-            barValueSpacing : 5,
-            barDatasetSpacing : 1,// 在同一x值内的柱状块之间的间距
+            barStrokeWidth : 1,
+            scaleFontSize : 8,
+            barValueSpacing : 1,
+//            barDatasetSpacing :200,// 在同一x值内的柱状块之间的间距
             animation : true,//是否有动画效果
             animationSteps : 60,//动画的步数
             showTooltips: false,
@@ -174,7 +176,18 @@
                 });
             }
         };
+        if($(window).width()>1024){
+            var $withd=$("#bar").width();
+            console.log($withd)
+            document.getElementById("bar1").width=$withd-50;
+            document.getElementById("bar1").height=$withd/1.8;
+            var $with2=$("#pie").width();
+            document.getElementById("pie1").width=$with2-50;
+            document.getElementById("pie1").height=$with2/1.8;
 
+            document.getElementById("bar2").width=$with2-50;
+            document.getElementById("bar2").height=$with2/1.8;
+        }
 
         var ctx1 = document.getElementById("bar1").getContext("2d");
         var myNewChart1 = new Chart(ctx1).Bar(data4, configs);
@@ -187,14 +200,14 @@
         //	环形图
         $('#cir1').radialIndicator({
             barColor: '#A2DBB3',
-            barWidth: 10,
+            barWidth: 6,
             initValue: data6.male,//男百分比
             roundCorner : true,
             percentage: true
         });
         $('#cir2').radialIndicator({
             barColor: '#5EB8C5',
-            barWidth: 10,
+            barWidth:6,
             initValue: data6.female,//女百分比
             roundCorner : true,
             percentage: true

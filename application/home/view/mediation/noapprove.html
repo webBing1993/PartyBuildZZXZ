@@ -42,35 +42,62 @@
                     confirmButtonText:'确定',
                     cancelButtonText:'取消'
                 },
-                function(isConfirm){
-                    if (isConfirm) {
+                function(){
+                    swal({
+                        title: ' ',
+                        text: '发送中...',
+                        type: 'success',
+                        timer:1500
+                    });
+                    setTimeout(function () {
                         $.ajax({
-                            type: "post",
+                            type:"post",
                             url:"{:Url('Mediation/check')}",
                             data: {
                                 id:id,
                                 status : 0,
                                 no_approve:val,
                             },
-                            success: function(data){
-                                console.log(data)
-                                //成功后刷新页面
-                                if(data.code == 1){
-                                        setTimeout(function(){
-                                            window.location.replace("/home/audit/reviewlist.html");
-                                        }, 1500);
-                                }else{
-                                    setTimeout(function(){
-                                        swal("操作失败","",'error')
-                                    },200);
+                            success:function(data){
+                                console.log(data);
+                                if (data.code == 1) {
+                                  setTimeout(function(){
+                                      window.location.replace("/home/audit/reviewlist.html");
+                                  }, 1500);
                                 }
                             }
-                        })
-
-                    } else {
-
-                    }
+                        });
+                    },1500)
                 });
+//                function(isConfirm){
+//                    if (isConfirm) {
+//                        $.ajax({
+//                            type: "post",
+//                            url:"{:Url('Mediation/check')}",
+//                            data: {
+//                                id:id,
+//                                status : 0,
+//                                no_approve:val,
+//                            },
+//                            success: function(data){
+//                                console.log(data)
+//                                //成功后刷新页面
+//                                if(data.code == 1){
+//                                        setTimeout(function(){
+//                                            window.location.replace("/home/audit/reviewlist.html");
+//                                        }, 1500);
+//                                }else{
+//                                    setTimeout(function(){
+//                                        swal("操作失败","",'error')
+//                                    },200);
+//                                }
+//                            }
+//                        })
+//
+//                    } else {
+//
+//                    }
+//                });
 
         }else{
             swal("请您填写不受理原因")
