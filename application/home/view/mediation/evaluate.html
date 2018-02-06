@@ -1,7 +1,117 @@
 {extend name="public/common"}
 
 {block name="style"}
-<link rel="stylesheet" href="/home/css/mediation/evaluate.css">
+<!--<link rel="stylesheet" href="/home/css/mediation/evaluate.css">-->
+<style>
+    body{
+        background: #fff;
+    }
+    .head{
+        height:18.7vw;
+        padding:4vw 4vw;
+        /*overflow: hidden;*/
+        margin-bottom:4vw;
+    }
+    .padding{
+        height:4vw;
+        background: #F5F5F5;
+    }
+    .icon{
+        display: inline-block;
+        width:10.7vw;
+        height:100%;
+    }
+    .tit{
+        width:77vw;
+        height:100%;
+        padding-left:4vw;
+    }
+    .tit p{
+        font-size:.28rem;
+        color:#333;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+    .con{
+        width:100%;
+        /*height:213.4vw;*/
+        font-size: .3rem;
+        color:#333;
+        padding:4vw 4vw 0;
+    }
+    .yn{
+        margin-bottom:4.8vw;
+    }
+    .yn1{
+        margin-bottom:4vw;
+    }
+    .pic{
+        width:100%;
+        height:5.4vw;
+        margin-bottom:6.5vw;
+    }
+    .pic img{
+        display: inline-block;
+        width:5.6vw;
+        height:100%;
+        margin-right:4vw;
+    }
+    .pic2{
+        margin-bottom:7.1vw;
+    }
+    .code, .code1{
+        margin-left:4vw;
+        color:#999;
+    }
+    textarea{
+        width:100%;
+        height:48vw;
+        background: #F5F5F5;
+        padding:4vw 4vw;
+        font-size:.3rem;
+        color:#999;
+    }
+    .shake{
+        display:none;
+        color:#fff;
+        position: fixed;
+        left:50%;
+        top:50%;
+        margin-left:-20vw;
+        margin-top:-13.4vw;
+        width:40vw;
+        height:26.7vw;
+        background:rgba(0,0,0,.6);
+        font-size: .3rem;
+        text-align: center;
+        -webkit-border-radius: 2.7vw;
+        -moz-border-radius: 2.7vw;
+        border-radius: 2.7vw;
+    }
+    .tupian{
+        margin:5.4vw auto;
+        width:7.4vw;
+        height:7.4vw;
+    }
+    .icon3{
+        width:100%;
+        height:100%;
+    }
+    .bot{
+        margin:5.4vw auto;
+        width:92vw;
+        height:13.4vw;
+        background: #DD5D3A;
+        border:1px solid #FE8B44;
+        color:#fff;
+        font-size: .3rem;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 13.4vw;
+    }
+</style>
 <title>情况反馈</title>
 {/block}
 {block name="body"}
@@ -32,12 +142,12 @@
 </div>
 
 <textarea name="content" id="text" placeholder="请输入评论信息" maxlength="1000"></textarea>
-<div class="shake">
+<!--<div class="shake">
     <div class="tupian">
         <img class="icon3" src="/home/images/lxyz/m3.png"  alt=""/>
     </div>
     <span>提交成功</span>
-</div>
+</div>-->
 <div class="bot">提交反馈</div>
 
 
@@ -68,6 +178,14 @@ $(function(){
         }
     })
 });
+$(document).ready(function () {
+    $('body').height($('body')[0].clientHeight);
+});
+//
+$("textarea[name='content']").on("input ", function () {
+
+});
+
     $('.bot').on('click',function(){
         var val=$('#text').val();
         var id= '{$id}';

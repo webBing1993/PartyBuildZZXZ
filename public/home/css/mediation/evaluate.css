@@ -4,7 +4,7 @@ body{
 .head{
     height:18.7vw;
     padding:4vw 4vw;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom:4vw;
 }
 .padding{
@@ -34,8 +34,7 @@ body{
     /*height:213.4vw;*/
     font-size: .3rem;
     color:#333;
-    padding:4vw 4vw;
-    padding-bottom:0;
+    padding:4vw 4vw 0;
 }
 .yn{
     margin-bottom:4.8vw;
@@ -106,8 +105,4 @@ textarea{
     box-sizing: border-box;
     text-align: center;
     line-height: 13.4vw;
-    /*position: fixed;*/
-    /*bottom: 4vw;*/
-    /*left: 50%;*/
-    /*margin-left: -46vw;*/
 }
