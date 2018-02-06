@@ -195,7 +195,7 @@ body{background: #f5f5f5;}
     position: absolute;
     right:4vw;
     bottom:2.2vh;
-    margin-top:-6.7vh;
+    /*margin-top:-6.7vh;*/
     display:block;
     width:20vw;
     height:4.5vh;
@@ -203,11 +203,12 @@ body{background: #f5f5f5;}
     padding:1px;
     padding-color:#FE8B44;
     text-align: center;
-    line-height:4.2vh;
+    line-height:4.5vh;
     color:#fff;
-    -webkit-border-radius: .6vw;
-    -moz-border-radius: .6vw;
-    border-radius: .6vw;
+    -webkit-border-radius: 1.6vw;
+    -moz-border-radius: 1.6vw;
+    border-radius: 1.6vw;
+    border: 1px solid #DD5D3A;
 }
 .user p{
     width:66.4vw;
