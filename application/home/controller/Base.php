@@ -64,7 +64,7 @@ class Base extends Controller {
 //        session('userId',null);
         session('userId','18329199210'); //申请人权限
 //        session('userId','15558023165'); //调解员权限
-//        session('userId','18767104335'); //管理员权限
+        //   session('userId','18767104335'); //管理员权限
 //        session('userId','15700004138'); //党员权限
 //        session('userId','15158887880'); //组织领导权限
 

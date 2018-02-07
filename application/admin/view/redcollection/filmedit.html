@@ -171,7 +171,7 @@
                             {eq name="msg" value=""}
                             <div class="col-lg-5">
                                 <div class="imggroup">
-                                    <img src="" alt='图片' class='thumbnail imgbox imgbox2'>
+                                    <img src="" alt='' class='thumbnail imgbox imgbox2'>
                                     <input type="file" class="imgfile imgfile2" accept="image/jpg, image/png, image/gif, image/jpeg">
                                     <input type="hidden" name="carousel_image" class="img"  value="" required="">
                                 </div>
@@ -180,7 +180,7 @@
                             {else/}
                             <div class="col-lg-5">
                                 <div class="imggroup">
-                                    <img src="{$msg.carousel_image|get_cover='path'}" alt='图片' class='thumbnail imgbox imgbox2'>
+                                    <img src="{$msg.carousel_image|get_cover='path'}" alt='' class='thumbnail imgbox imgbox2'>
                                     <input type="file" class="imgfile imgfile2" accept="image/jpg, image/png, image/gif, image/jpeg">
                                     <input type="hidden" name="carousel_image" class="img"  value="{$msg.carousel_image}" required="">
                                 </div>
