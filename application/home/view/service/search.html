@@ -2,6 +2,7 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/mediation/evaluate.css">
+<link rel="stylesheet" href="/home/css/service/animate.min.css">
 <title>党员搜索</title>
 <style>
     .search {
@@ -189,7 +190,7 @@
 {/block}
 
 {block name="script"}
-
+<script src="/home/js/jquery.hdialog.min.js"></script>
 <script>
     $(function() {
         $('.search>input').focus();
@@ -232,8 +233,8 @@
                                     result[i].partytime='无'
                                 }
                                 if(result[i].header==null){
-                                    html += '<li><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                    html1 +='<div class="user">'
+                                    html += '<li class="bounceInUp dialog"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
+                                    html1 +='<div class="user" id="HBox">'
                                             +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"></div>'
                                             +'<div class="userName">'+result[i].name+'</div>'
                                             +'<div class="userSex">性别：'+result[i].gender+'</div>'
@@ -245,8 +246,8 @@
                                             +'</div>'
 
                                 }else{
-                                    html += '<li><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                    html1 +='<div class="user">'
+                                    html += '<li class="bounceInUp dialog"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
+                                    html1 +='<div class="user" id="HBox">'
                                             +'<div class="userImg"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"></div>'
                                             +'<div class="userName">'+result[i].name+'</div>'
                                             +'<div class="userSex">性别：'+result[i].gender+'</div>'
@@ -262,12 +263,14 @@
                             setTimeout(function () {
                                 $('.lists' ).html(html);
                                 $("#fixed").append(html1);
-                                $('.lists li').on('click',function(){
-                                    $('#fixed').stop().animate({
-                                        height:'100%'
-                                    },200);
-                                    $('.user').eq($(this).index()).show().siblings(".user").hide();
-                                });
+                                var $el = $('.dialog');
+                                $el.hDialog(
+                                    {
+                                        width: '100vw',
+                                        height: '100%',
+                                        effect: 'slideOutDown'
+                                    }
+                                ); //默认调用
                                 $('#close ').on('click',function(){
                                     $('#fixed').stop().animate({
                                         height:0
