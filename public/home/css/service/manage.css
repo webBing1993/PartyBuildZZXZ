@@ -247,7 +247,7 @@ body{
 
 #fixed {
     width:100vw;
-    height:0;
+    /*height:100vw;*/
     background: rgba(0,0,0,.6);
     position: fixed;
     bottom:0;
@@ -315,8 +315,8 @@ body{
 }
 #close {
     position: absolute;
-    top:20%;
-    right:4vw;
+    top:0;
+    right:0;
     width:.48rem;
     height:.48rem;
 }

@@ -61,6 +61,7 @@ body{
     background: #FFF8D3;
     color:#DD5D3A;
     font-size:.24rem;
+    margin-left:-4vw;
     padding:4vw;
 }
 .active .state {color: #52BDE3;}

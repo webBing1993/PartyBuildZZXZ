@@ -2,6 +2,7 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/service/manage.css">
+<link rel="stylesheet" href="/home/css/service/animate.min.css">
 <title>党员管理</title>
 <style>
     #nomessage,#nomessage1{
@@ -127,6 +128,7 @@
 
 {block name="script"}
 <script src="/home/js/reset.js"></script>
+<script src="/home/js/jquery.hdialog.min.js"></script>
 <script>
     var scrollNow = true;
     $(function(){
@@ -296,15 +298,24 @@
                     if(data.length != 0){
                         $('#nomessage').hide();
                         addLists1(data);
-                        $('.showRight li ').on('click',function(){
-                            var index=$(this).index();
-                            $('#fixed').stop().animate({
-                                height:'100%'
-                            },200);
-                            $('.user').eq(index).show().siblings().hide();
-                            $("#close").show();
-                            setTimeout(imglazy,600);
-                        });
+                        var $el = $('.dialog');
+                        $el.hDialog(
+                            {
+                                width: '100vw',
+                                height: '100%',
+                                effect: 'slideOutDown'
+                            }
+                        ); //默认调用
+//                        $('.demo38').hDialog({effect: 'slideOutDown'});
+//                        $('.showRight li ').on('click',function(){
+//                            var index=$(this).index();
+//                            $('#fixed').stop().animate({
+//                                height:'100%'
+//                            },200);
+//                            $('.user').eq(index).show().siblings().hide();
+//                            $("#close").show();
+//                            setTimeout(imglazy,600);
+//                        });
                         $('#close ').on('click',function(){
                             $('#fixed').stop().animate({
                                 height:0
@@ -344,8 +355,8 @@
                     lists[i].partytime='无'
                 }
                 if(lists[i].header==null){
-                    html += '<li><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
-                    html1 +='<div class="user">'
+                    html += '<li class="bounceInUp dialog"><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
+                    html1 +='<div class="user demo38" id="HBox">'
                           +'<div class="userImg"><img data-original="'+lists[i].avatar+'" class="lazy"></div>'
                           +'<div class="userName">'+lists[i].name+'</div>'
                           +'<div class="userSex">性别：'+lists[i].gender+'</div>'
@@ -357,8 +368,8 @@
                           +'</div>'
 
                 }else{
-                    html += '<li><img data-original="'+lists[i].header+'" class="lazy"><div>'+lists[i].name+'</div></li>';
-                    html1 +='<div class="user">'
+                    html += '<li class="bounceInUp dialog"><img data-original="'+lists[i].header+'" class="lazy"><div>'+lists[i].name+'</div></li>';
+                    html1 +='<div class="user demo38" id="HBox">'
                         +'<div class="userImg"><img data-original="'+lists[i].header+'" class="lazy"></div>'
                         +'<div class="userName">'+lists[i].name+'</div>'
                         +'<div class="userSex">性别：'+lists[i].gender+'</div>'

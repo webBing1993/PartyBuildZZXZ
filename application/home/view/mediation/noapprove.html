@@ -38,7 +38,6 @@
                     type: "warning",
                     showCancelButton: true,
                     closeOnConfirm: false,
-                    showLoaderOnConfirm: true,
                     confirmButtonText:'确定',
                     cancelButtonText:'取消'
                 },
@@ -62,7 +61,9 @@
                                 console.log(data);
                                 if (data.code == 1) {
                                   setTimeout(function(){
-                                      window.location.replace("/home/audit/reviewlist.html");
+//                                      window.location.replace("/home/audit/reviewlist.html");
+                                      history.go(-2);
+                                      return false;
                                   }, 1500);
                                 }
                             }

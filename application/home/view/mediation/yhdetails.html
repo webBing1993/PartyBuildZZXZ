@@ -276,7 +276,9 @@
 <script src="/home/js/appraisal/photoswipe.min.js"></script>
 <script src="/home/js/appraisal/photoswipe-ui-default.min.js"></script>
 <script>
-
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) location.reload();    //如果检测到页面是从“往返缓存”中读取的，刷新页面
+    });
     var userid;
     userid = {$model.mediatorid};
     if($(window).width()>=768){

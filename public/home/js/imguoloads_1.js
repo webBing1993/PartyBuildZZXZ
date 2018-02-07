@@ -1,9 +1,9 @@
 function selectFileImage(fileObj) {
+    $('.showbox').show();
     var file = fileObj.files['0'];
     //图片方向角 added by lzk
     var Orientation = null;
     if (file) {
-        console.log("正在上传,请稍后...");
         var rFilter = /^(image\/jpeg|image\/png)$/i; // 检查图片格式
         if (!rFilter.test(file.type)) {
             //showMyTips("请选择jpeg、png格式的图片", false);
@@ -124,10 +124,11 @@ function selectFileImage(fileObj) {
                     data:form,
                     processData : false,
                     contentType : false,
-                    beforeSend: function(XMLHttpRequest){
-                        $('.showbox').show();
-                    },
+                    // beforeSend: function(XMLHttpRequest){
+                    //     $('.showbox').show();
+                    // },
                     success:function(data){
+                        $("input[type = 'file']").remove();
                         $('.showbox').hide();
                         var msg = $.parseJSON(data);
                         if(msg.code == 1){
