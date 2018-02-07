@@ -157,6 +157,7 @@
             animation: "slider-form-top"
 
         }, function(inputValue) {
+            if (inputValue) {
             if (inputValue === false) return false;
 
             if (inputValue.length < 1) {
@@ -213,6 +214,7 @@
                     $("body").css("position","relative")
                 }
             });
+
         })
     };
     var wAlert = window.alert;
