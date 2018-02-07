@@ -19,7 +19,7 @@ body{
     color:#333333;
 }
 input{
-    width:66.6vw;
+    width:64.6vw;
     border:none;
     color:#333;
     height:.8rem;
@@ -34,7 +34,7 @@ input{
     margin-right:1.3vw;
 }
 .ev{
-    width:26vw;
+    width:28vw;
     float:left;
     height:100%;
 }

@@ -50,6 +50,9 @@
         -webkit-line-clamp: 1;
         overflow: hidden;
     }
+    .imgs {
+        position: relative;
+    }
 </style>
 {/block}
 {block name="body"}
@@ -96,6 +99,7 @@
                 </div>
             </div>
             <input type="file" class="hide" id="upimg" accept="image/*">
+            <input type="file" accept="image/*" id="uploadImage"  onchange="selectFileImage(this);"  style="position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;opacity: 0;display:none;" />
         </div>
         <p>请上传您的证据（可为空，限4张，大小限5M）</p>
     </div>
@@ -145,6 +149,8 @@
 {/block}
 
 {block name="script"}
+<script src="/home/js/exif.js"></script>
+<script src="/home/js/imguoloads_1.js"></script>
 <script>
      if($(window).width()>=768){
          $('.form').css('margin-bottom','11.5vh')
@@ -364,11 +370,12 @@
         }
 
         //--------------------------------------------------------------------------
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Linux') > -1; //android终端或者uc浏览器
+        var isiOS = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);  // ios终端
 //            图片预览
         $('.new' ).on('click',function(){
             var imglen = $('.img  .img1' ).length;
-            var ua = navigator.userAgent.toLowerCase();
-            var isiOS = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);  // ios终端
             if(!isiOS){
                 $(this).next("input").attr('capture','camera');
             }
@@ -428,53 +435,6 @@
                             }
                         });
                     });
-//                } else if(size < 1024){
-//                    formData.append("picture",fileObj);
-//                    console.log(formData)
-//                    $.ajax({
-//                        type: "post",
-//                        url: "{:Url('File/uploadPicture')}",
-//                        data: formData,
-//                        processData : false,
-//                        contentType : false,
-//                        beforeSend: function(XMLHttpRequest){
-//                            $('.showbox').show();
-//                        },
-//                        success:function(data){
-//                            $('.showbox').hide();
-//                            clearImg();
-//                            var msg = $.parseJSON(data);
-//                            if(msg.code == 1){
-//                                //图片添加
-//                                if(imglen == 3){
-//                                    $('.add' ).hide()
-//                                }
-//                                $('.img').eq(imglen).removeClass('hide' )
-//                                    .append('<img class="img1" src='+msg.data.path+' alt="笔记图片" data-tab='+msg.data.id+'>');
-//                                if(imglen>=0){
-////                                    添加删除按钮
-//                                    $('.x').on('click',function(){
-//                                        $(this).parents(".img").remove();
-//                                        $('.add').before('<div class="img fl hide"><div class="x"><img class="im2" src="/home/images/chacha.png"/></div></div>');
-//                                        if(imglen<4){
-//                                            $('.add' ).show();
-//                                        }
-//                                    })
-//                                }
-//                                imgresize();
-//
-//                            } else {
-//                                swal({
-//                                    title: ' ',
-//                                    text: '上传失败',
-//                                    type: 'error',
-//                                    showConfirmButton:false,
-//                                    timer:1500
-//                                });
-//                            }
-//                            addImg();
-//                        }
-//                    });
                 } else{
                     clearImg();
                     swal({
@@ -490,6 +450,14 @@
             });
 
         });
+
+
+        if(isAndroid){
+            $('#upload').show();
+        }
+        if(isiOS){
+            $('#uploadImage').show();
+        }
 
 //        // 字数限定
         numlimit(400)
