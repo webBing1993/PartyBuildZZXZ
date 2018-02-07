@@ -219,28 +219,101 @@
 
 
         var myGender = echarts.init(document.getElementById('pie3'));
-        var genderOption = {
-            tooltip : {
-                trigger: 'item',
-                formatter: "{c}人 ({d}%)"
-            },
+        if($(window).width()>=375&&$(window).width()<768){
+            var genderOption = {
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{c}人 ({d}%)"
+                },
 
-            series : [
-                {
-                    type: 'pie',
-                    radius : '65%',
-                    center: ['50%', '50%'],
+                series : [
+                    {
+                        type: 'pie',
+                        radius : '65%',
+                        center: ['50%', '50%'],
+                        label : {
+                            normal : {
+                                textStyle : {
+                                    fontWeight : 'normal',
+                                    fontSize : 16
+                                }
+                            }
+                        },
 //                selectedMode: 'single',
-                    color:["#5EB8C5","#2E8B57"],
-                    data:[
-                        {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
-                        {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
-                    ],
-                }
-            ]
+                        color:["#5EB8C5","#2E8B57"],
+                        data:[
+                            {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
+            {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
+        ],
+        }
+        ]
         };
 
-        myGender.setOption(genderOption);
+            myGender.setOption(genderOption);
+        }else if($(window).width()>=768){
+            var genderOption = {
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{c}人 ({d}%)"
+                },
+
+                series : [
+                    {
+                        type: 'pie',
+                        radius : '65%',
+                        center: ['50%', '50%'],
+                        label : {
+                            normal : {
+                                textStyle : {
+                                    fontWeight : 'normal',
+                                    fontSize : 32
+                                }
+                            }
+                        },
+//                selectedMode: 'single',
+                        color:["#5EB8C5","#2E8B57"],
+                        data:[
+                            {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
+            {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
+        ],
+        }
+        ]
+        };
+
+            myGender.setOption(genderOption);
+        }else{
+            var genderOption = {
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{c}人 ({d}%)"
+                },
+
+                series : [
+                    {
+                        type: 'pie',
+                        radius : '65%',
+                        center: ['50%', '50%'],
+                        label : {
+                            normal : {
+                                textStyle : {
+                                    fontWeight : 'normal',
+                                    fontSize : 13
+                                }
+                            }
+                        },
+//                selectedMode: 'single',
+                        color:["#5EB8C5","#2E8B57"],
+                        data:[
+                            {value:{$msg.concernnum}, name:'关注：'+Math.round(('{$msg.concernnum}'/ '{$msg.usernum}' )*100)+'%'},
+            {value:{$msg.nonnum}, name:'未关注：'+Math.round(('{$msg.nonnum}' / '{$msg.usernum}')*100)+'%'},
+        ],
+        }
+        ]
+        };
+
+            myGender.setOption(genderOption);
+        }
+
 
     });
 
