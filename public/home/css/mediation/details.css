@@ -62,7 +62,6 @@ body{
     color:#DD5D3A;
     font-size:.24rem;
     padding:4vw;
-    margin-left:-4.8vw;
 }
 .active .state {color: #52BDE3;}
 .active .gray {background: #52BDE3;}
