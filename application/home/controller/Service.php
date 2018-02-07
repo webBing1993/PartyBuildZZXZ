@@ -60,20 +60,19 @@ class Service extends Base
                 ->join('pb_wechat_department_user b','a.userid = b.userid')
                 ->join('pb_wechat_user_tag c','a.userid = c.userid')
 //                ->join('pb_wechat_department d','b.departmentid = d.id')
-                ->field('a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
+                ->field('a.id,a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
                 ->where(['departmentid'=>$did,'tagid'=>$this::$MEMBER_TAG])
                 ->select();
 
             $charArray = [];//将姓名按照姓的首字母与相对的首字母键进行配对
             foreach ($list as $key => $user) {
                 $name = $user['name'];
-                if (!empty($user['header'])) { // 获取用户头像
-
-//                    $img = Picture::get($user['header']);
-//                    $user['header'] = $img['path'];
-                } else if (empty($user['avatar'])) { // 无头像设置默认
-
-                    $user['header'] = $this::$DEFAUL_AVATAR;
+                if (empty($user['header'])) {
+                    if (!empty($user['avatar'])) { // 获取用户头像
+                        $user['header'] = $user['avatar'];
+                    } else { // 无头像设置默认
+                        $user['header'] = $this::$DEFAUL_AVATAR;
+                    }
                 }
 
                 $char = $this->getFirstChar($name);
@@ -166,19 +165,17 @@ class Service extends Base
 //                ->join('pb_wechat_department_user b','a.userid = b.userid','left')
                 ->join('pb_wechat_user_tag c','a.userid = c.userid','left')
                 //->join('pb_wechat_department d','b.departmentid = d.id','left')
-                ->field('a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
+                ->field('a.id,a.department_short as dname,a.userid,a.name,a.mobile,a.avatar,a.header,a.gender,a.birthday,a.partytime,a.position')
                 ->where(['a.name'=>['like',"%$search%"],'tagid'=>$this::$MEMBER_TAG,'department'=>['neq', '[2]']])
                 ->select();
 
             foreach ($list as $key => $user) {
-
-                if (!empty($user['header'])) { // 获取用户头像
-
-//                    $img = Picture::get($user['header']);
-//                    $list[$key]['header'] = $img['path'];
-                } else if (empty($user['avatar'])) { // 无头像设置默认
-
-                    $list[$key]['header'] = $this::$DEFAUL_AVATAR;
+                if (empty($user['header'])) {
+                    if (!empty($user['avatar'])) { // 获取用户头像
+                        $list[$key]['header'] = $user['avatar'];
+                    } else { // 无头像设置默认
+                        $list[$key]['header'] = $this::$DEFAUL_AVATAR;
+                    }
                 }
             }
 
@@ -186,6 +183,31 @@ class Service extends Base
         }
 
     }
+
+    /**
+     * 党员单人查询
+     */
+    public function getUser($id)
+    {
+        if (empty($id)) {
+            $this->error('参数错误！');
+        } else {
+            $model = wechatUser::get($id);
+            $model['dname'] = $model['department_short'];
+
+            if (empty($model['header'])) {
+                if (!empty($model['avatar'])) { // 获取用户头像
+                    $model['header'] = $model['avatar'];
+                } else { // 无头像设置默认
+                    $model['header'] = $this::$DEFAUL_AVATAR;
+                }
+            }
+
+            return $this->success('获取成功！',null,json_encode($model));
+        }
+
+    }
+
     public function search(){
         return $this->fetch();
     }
