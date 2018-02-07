@@ -115,8 +115,7 @@
         </div>
     </div>
 
-    <div id="fixed">
-        <img src="/home/images/service/icon_04.png" id="close">
+    <div id="HBox">
     </div>
 
     <div class="tip"></div>
@@ -279,33 +278,37 @@
                 threshold: 1
             });
         });
-  });
-
-//    党员展示
-    $('.showLeft li ').on('click',function(){
-        setCookie("num",$(this).index());
-        $('.showLeft li ').removeClass('active');
-        $(this).addClass('active');
-        var did = $(this).attr('data-id');
-        $.ajax({
-            type: "get",
-            url: "{:Url('Service/getDepartmentMember')}",
-            data: {did:did},
-            success:function(data){
-                if (data.code == 1) {
-                    $("#fixed .user").remove();
-                    var data = JSON.parse(data.data);
-                    if(data.length != 0){
-                        $('#nomessage').hide();
-                        addLists1(data);
-                        var $el = $('.dialog');
-                        $el.hDialog(
-                            {
-                                width: '100vw',
-                                height: '100%',
-                                effect: 'slideOutDown'
-                            }
-                        ); //默认调用
+        //    党员展示
+        $('.showLeft li ').on('click',function(){
+            setCookie("num",$(this).index());
+            $('.showLeft li ').removeClass('active');
+            $(this).addClass('active');
+            var did = $(this).attr('data-id');
+            $.ajax({
+                type: "get",
+                url: "{:Url('Service/getDepartmentMember')}",
+                data: {did:did},
+                success:function(data){
+                    if (data.code == 1) {
+                        $("#fixed .user").remove();
+                        var data = JSON.parse(data.data);
+                        if(data.length != 0){
+                            $('#nomessage').hide();
+                            addLists1(data);
+                            var $el = $('.dialog');
+                            $el.hDialog(
+                                {
+                                    width: '100vw',
+                                    height: '100%',
+                                    effect: 'slideOutDown',
+                                    beforeShow: function(){
+                                        var id=localStorage.getItem('ShowId');
+                                        show(id)
+                                    },
+                                    afterHide: function () {
+                                    }
+                                }
+                            ); //默认调用
 //                        $('.demo38').hDialog({effect: 'slideOutDown'});
 //                        $('.showRight li ').on('click',function(){
 //                            var index=$(this).index();
@@ -316,30 +319,78 @@
 //                            $("#close").show();
 //                            setTimeout(imglazy,600);
 //                        });
-                        $('#close ').on('click',function(){
-                            $('#fixed').stop().animate({
-                                height:0
-                            },1);
-                        });
-                        imglazy();
-                    }else {
-                        var html = $(".showRight .lists").html();
-                        html = "";
-                        $(".showRight .lists").html(html);
-                        $('#nomessage').show();
+                            $('#close ').on('click',function(){
+                                $('#fixed').stop().animate({
+                                    height:0
+                                },1);
+                            });
+                            imglazy();
+                        }else {
+                            var html = $(".showRight .lists").html();
+                            html = "";
+                            $(".showRight .lists").html(html);
+                            $('#nomessage').show();
+                        }
+                        // 数据循环
+                    } else {
+                        console.log('请求失败！');
                     }
-                    // 数据循环
-                } else {
-                    console.log('请求失败！');
+
                 }
+            })
 
+        });
+
+  });
+    var did = $('.nav li').eq(0).attr('data-id');
+    $.ajax({
+        type: "get",
+        url: "{:Url('Service/getDepartmentMember')}",
+        data: {did:did},
+        success:function(data){
+            if (data.code == 1) {
+                $("#fixed .user").remove();
+                var data = JSON.parse(data.data);
+                if(data.length != 0){
+                    $('#nomessage').hide();
+                    addLists1(data);
+                    var $el = $('.dialog');
+                    $el.hDialog(
+                        {
+                            width: '100vw',
+                            height: '100%',
+                            effect: 'slideOutDown',
+                            beforeShow: function(){
+                                var id=localStorage.getItem('ShowId');
+                                show(id)
+                            },
+                            afterHide: function () {
+                            }
+                        }
+                    ); //默认调用
+                    $('#close ').on('click',function(){
+                        $('#fixed').stop().animate({
+                            height:0
+                        },1);
+                    });
+                    imglazy();
+                }else {
+                    var html = $(".showRight .lists").html();
+                    html = "";
+                    $(".showRight .lists").html(html);
+                    $('#nomessage').show();
+                }
+                // 数据循环
+            } else {
+                console.log('请求失败！');
             }
-        })
 
-    });
+        }
+    })
     function addLists1(data){
         var html = '';
         var html1='';
+        console.log(data)
         for(var obj in data){
             var lists=data[obj];
             for(var i=0;i<lists.length;i++){
@@ -354,36 +405,57 @@
                 if(lists[i].partytime==null){
                     lists[i].partytime='无'
                 }
+                var _header = '';
                 if(lists[i].header==null){
-                    html += '<li class="bounceInUp dialog"><img data-original="'+lists[i].avatar+'" class="lazy"><div>'+lists[i].name+'</div></li>';
-                    html1 +='<div class="user demo38" id="HBox">'
-                          +'<div class="userImg"><img data-original="'+lists[i].avatar+'" class="lazy"></div>'
-                          +'<div class="userName">'+lists[i].name+'</div>'
-                          +'<div class="userSex">性别：'+lists[i].gender+'</div>'
-                          +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+lists[i].mobile+'">'+lists[i].mobile+'</a></span></div>'
-                          +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+lists[i].birthday+'</span></div>'
-                          +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+lists[i].partytime+'</span></div>'
-                          +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+lists[i].dname+'</span></div>'
-                          +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+lists[i].position+'</span></div>'
-                          +'</div>'
+                    _header = lists[i].avatar
 
                 }else{
-                    html += '<li class="bounceInUp dialog"><img data-original="'+lists[i].header+'" class="lazy"><div>'+lists[i].name+'</div></li>';
-                    html1 +='<div class="user demo38" id="HBox">'
-                        +'<div class="userImg"><img data-original="'+lists[i].header+'" class="lazy"></div>'
-                        +'<div class="userName">'+lists[i].name+'</div>'
-                        +'<div class="userSex">性别：'+lists[i].gender+'</div>'
-                        +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+lists[i].mobile+'">'+lists[i].mobile+'</a></span></div>'
-                        +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+lists[i].birthday+'</span></div>'
-                        +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+lists[i].partytime+'</span></div>'
-                        +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+lists[i].dname+'</span></div>'
-                        +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+lists[i].position+'</span></div>'
-                        +'</div>'
+                    _header = lists[i].header
                 }
+                html += '<li class="bounceInUp dialog" data-id="'+lists[i].id+'"><img data-original="'+_header+'" class="lazy"><div>'+lists[i].name+'</div></li>';
             }
         }
         $('.showRight .lists').html(html);
-        $('#close').before(html1);
+    }
+    function show(id){
+        var str=''
+        $.ajax({
+            type: "get",
+            url: "{:Url('Service/getUser')}",
+            data: {id:id},
+            success:function(data){
+                var list = JSON.parse(data.data);
+                var _header  = '';
+                if(list.gender=='1'){
+                    list.gender='男';
+                }else{
+                    list.gender='女';
+                }
+                if(list.birthday==null){
+                    list.birthday='无'
+                }
+                if(list.partytime==null){
+                    list.partytime='无'
+                }
+                if(list.header == null){
+                    _header = list.avatar
+                }else {
+                    _header = list.header
+                }
+                str ='<div class="user demo38">'
+                    + '<div class="userImg"><img src="' + _header + '" class="lazy"></div>'
+                    + '<div class="userName">' + list.name + '</div>'
+                    + '<div class="userSex">性别：' + list.gender + '</div>'
+                    + '<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:' + list.mobile + '">' + list.mobile + '</a></span></div>'
+                    + '<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>' + list.birthday + '</span></div>'
+                    + '<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>' + list.partytime + '</span></div>'
+                    + '<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>' + list.dname + '</span></div>'
+                    + '<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>' + list.position + '</span></div>'
+                    + '</div>'
+                $('.user').remove();
+                $('#HBox').append(str);
+            }
+        })
     }
 
 

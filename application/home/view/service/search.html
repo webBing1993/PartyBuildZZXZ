@@ -183,10 +183,12 @@
 <ul class="lists clearfix">
 
 </ul>
-<div id="fixed">
-
-    <img src="/home/images/service/icon_04.png" id="close">
+<div id="HBox" style="display: none;">
 </div>
+<!--<div id="fixed">-->
+
+    <!--<img src="/home/images/service/icon_04.png" id="close">-->
+<!--</div>-->
 {/block}
 
 {block name="script"}
@@ -232,43 +234,31 @@
                                 if(result[i].partytime==null){
                                     result[i].partytime='无'
                                 }
+                                var _header = '';
                                 if(result[i].header==null){
-                                    html += '<li class="bounceInUp dialog"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                    html1 +='<div class="user" id="HBox">'
-                                            +'<div class="userImg"><img data-original="'+result[i].avatar+'" class="lazy" src="/home/images/loading.jpg"></div>'
-                                            +'<div class="userName">'+result[i].name+'</div>'
-                                            +'<div class="userSex">性别：'+result[i].gender+'</div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
-                                            +'</div>'
+                                    _header = result[i].avatar
 
                                 }else{
-                                    html += '<li class="bounceInUp dialog"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"><div>'+result[i].name+'</div></li>';
-                                    html1 +='<div class="user" id="HBox">'
-                                            +'<div class="userImg"><img data-original="'+result[i].header+'" class="lazy" src="/home/images/loading.jpg"></div>'
-                                            +'<div class="userName">'+result[i].name+'</div>'
-                                            +'<div class="userSex">性别：'+result[i].gender+'</div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:'+result[i].mobile+'">'+result[i].mobile+'</a></span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>'+result[i].birthday+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>'+result[i].partytime+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>'+result[i].dname+'</span></div>'
-                                            +'<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>'+result[i].position+'</span></div>'
-                                            +'</div>'
+                                    _header = result[i].header
                                 }
+                                html += '<li class="bounceInUp dialog" data-id="'+result[i].id+'"><img data-original="'+_header+'" class="lazy"><div>'+result[i].name+'</div></li>';
 
                             }
                             setTimeout(function () {
                                 $('.lists' ).html(html);
-                                $("#fixed").append(html1);
+                                $("#HBox").append(html1);
                                 var $el = $('.dialog');
                                 $el.hDialog(
                                     {
                                         width: '100vw',
                                         height: '100%',
-                                        effect: 'slideOutDown'
+                                        effect: 'slideOutDown',
+                                        beforeShow: function(){
+                                            var id=localStorage.getItem('ShowId');
+                                            show(id)
+                                        },
+                                        afterHide: function () {
+                                        }
                                     }
                                 ); //默认调用
                                 $('#close ').on('click',function(){
@@ -296,7 +286,46 @@
 
             });
         });
-
+        function show(id){
+            var str=''
+            $.ajax({
+                type: "get",
+                url: "{:Url('Service/getUser')}",
+                data: {id:id},
+                success:function(data){
+                    var list = JSON.parse(data.data);
+                    var _header  = '';
+                    if(list.gender=='1'){
+                        list.gender='男';
+                    }else{
+                        list.gender='女';
+                    }
+                    if(list.birthday==null){
+                        list.birthday='无'
+                    }
+                    if(list.partytime==null){
+                        list.partytime='无'
+                    }
+                    if(list.header == null){
+                        _header = list.avatar
+                    }else {
+                        _header = list.header
+                    }
+                    str ='<div class="user demo38">'
+                        + '<div class="userImg"><img src="' + _header + '" class="lazy"></div>'
+                        + '<div class="userName">' + list.name + '</div>'
+                        + '<div class="userSex">性别：' + list.gender + '</div>'
+                        + '<div class="userSort"><span><img src="/home/images/service/icon_03.png" alt=""></span><span>联系方式</span><span><a href="tel:' + list.mobile + '">' + list.mobile + '</a></span></div>'
+                        + '<div class="userSort"><span><img src="/home/images/service/icon_05.png" alt=""></span><span>出生年月</span><span>' + list.birthday + '</span></div>'
+                        + '<div class="userSort"><span><img src="/home/images/service/icon_02.png" alt=""></span><span>入党时间</span><span>' + list.partytime + '</span></div>'
+                        + '<div class="userSort"><span><img src="/home/images/service/icon_01.png" alt=""></span><span>所属党支部</span><span>' + list.dname + '</span></div>'
+                        + '<div class="userSort"><span><img src="/home/images/service/icon_07.png" alt=""></span><span>担任职务</span><span>' + list.position + '</span></div>'
+                        + '</div>'
+                    $('.user').remove();
+                    $('#HBox').append(str);
+                }
+            })
+        }
 
         // 返回
         $(".back").on("click",function (e) {
