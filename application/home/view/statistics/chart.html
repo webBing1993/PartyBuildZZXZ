@@ -58,11 +58,11 @@
 <div class="list">
     <div class="title">男女比例</div>
     <div class="cir">
-        <div id="cir1"></div>
+        <div id="cir1" style="width:100%;height:70%;"></div>
         <div id="cir2"></div>
         <div class="box">
-            <span class="m">男：</span>
-            <span class="f">女：</span>
+            <span class="m">女：</span>
+            <span class="f">男：</span>
         </div>
 
     </div>
@@ -154,7 +154,6 @@
             scaleShowVerticalLines: true, // 是否显示竖向线
             barShowStroke : true,
             barStrokeWidth : 1,
-            scaleFontSize : 8,
             barValueSpacing : 1,
 //            barDatasetSpacing :200,// 在同一x值内的柱状块之间的间距
             animation : true,//是否有动画效果
@@ -199,22 +198,115 @@
 
 
         //	环形图
-        $('#cir1').radialIndicator({
-            barColor: '#A2DBB3',
-            barWidth: 10,
-            initValue: data6.male,//男百分比
-            roundCorner : true,
-            percentage: true
-        });
-        $('#cir2').radialIndicator({
-            barColor: '#5EB8C5',
-            barWidth:10,
-            initValue: data6.female,//女百分比
-            roundCorner : true,
-            percentage: true
-        });
-        $(".m").append({$msg['malenum']}+"人");
-        $(".f").append({$msg['femalenum']}+"人");
+            var myChart1 = echarts.init(document.getElementById('cir1'));
+            if($(window).width()>=375&&$(window).width()<768){
+                option1 = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{d}%"
+                    },
+                    color:['#A2DBB3', '#5EB8C5'],
+                    calculable : true,
+                    series: [
+                        {
+
+                            type:'pie',
+                            radius: ['50%', '70%'],
+                            label : {
+                                normal : {
+                                    textStyle : {
+                                        fontWeight : 'normal',
+                                        fontSize : 16
+                                    }
+                                }
+                            },
+                            avoidLabelOverlap: false,
+                            data:[
+                                {value:data6.male,name:'男:'+data6.male+'%'},
+                                {value:data6.female, name:'女:'+data6.female+'%'}
+                            ]
+                        }
+                    ]
+                };
+                myChart1.setOption(option1);
+            }else if($(window).width()>=768){
+                option1 = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{d}%"
+                    },
+                    color:['#A2DBB3', '#5EB8C5'],
+                    calculable : true,
+                    series: [
+                        {
+
+                            type:'pie',
+                            radius: ['50%', '70%'],
+                            label : {
+                                normal : {
+                                    textStyle : {
+                                        fontWeight : 'normal',
+                                        fontSize : 32
+                                    }
+                                }
+                            },
+                            avoidLabelOverlap: false,
+                            data:[
+                                {value:data6.male,name:'男:'+data6.male+'%'},
+                                {value:data6.female, name:'女:'+data6.female+'%'}
+                            ]
+                        }
+                    ]
+                };
+                myChart1.setOption(option1);
+            }else{
+                option1 = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{d}%"
+                    },
+                    color:['#A2DBB3', '#5EB8C5'],
+                    calculable : true,
+                    series: [
+                        {
+
+                            type:'pie',
+                            radius: ['50%', '70%'],
+                            label : {
+                                normal : {
+                                    textStyle : {
+                                        fontWeight : 'normal',
+                                        fontSize : 13
+                                    }
+                                }
+                            },
+                            avoidLabelOverlap: false,
+                            data:[
+                                {value:data6.male,name:'男:'+data6.male+'%'},
+                                {value:data6.female, name:'女:'+data6.female+'%'}
+                            ]
+                        }
+                    ]
+                };
+                myChart1.setOption(option1);
+            }
+
+//        $('#cir1').radialIndicator({
+//            barColor: '#A2DBB3',
+//            barWidth: 10,
+//            initValue: data6.male,//男百分比
+//            roundCorner : true,
+//            percentage: true
+//        });
+//        $('#cir2').radialIndicator({
+//            barColor: '#5EB8C5',
+//            barWidth:10,
+//            initValue: data6.female,//女百分比
+//            roundCorner : true,
+//            percentage: true
+//        });
+        $(".m").append({$msg['femalenum']}+"人");
+        $(".f").append({$msg['malenum']}+"人");
 
 
         var myGender = echarts.init(document.getElementById('pie3'));
