@@ -62,12 +62,11 @@ class Base extends Controller {
     public function _initialize(){
 //        session('userId',null);
 //        session('userId',null);
-        session('userId','18329199210'); //申请人权限
-//        session('userId','15558023165'); //调解员权限
+//       session('userId','18329199210'); //申请人权限
+//       session('userId','15558023165'); //调解员权限
 //        session('userId','18767104335'); //管理员权限
-//        session('userId','15700004138'); //党员权限
-//        session('userId','15158887880'); //组织领导权限
-
+      session('userId','15700004138'); //党员权限
+//
 //        session('header','/home/images/vistor.jpg');
 //        session('nickname','游客');
         session('requestUri', 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]);
