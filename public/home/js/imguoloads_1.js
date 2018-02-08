@@ -112,9 +112,6 @@ function selectFileImage(fileObj) {
                 }
                 var bl = convertBase64UrlToBlob(base64);
                 form.append("picture", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
-                //uploadImage(base64);
-                // $("#myImage").attr("src", base64);
-                // $('.up').css({"background-image":'url('+base64+')'});
                 var up = $('.new');
                 var imglen = $('.img  .img1' ).length;
                 var ww = up.width();
@@ -132,23 +129,13 @@ function selectFileImage(fileObj) {
                         $('.showbox').hide();
                         var msg = $.parseJSON(data);
                         if(msg.code == 1){
-                            /*var image = new Image();
-                            image.src = msg.data.path ;
-                            up.css({"background-image":'url('+msg.data.path+')'});
-                            image.onload = function(){
-                                if(image.width > image.height){
-                                    up.css({"background-size":'auto '+ww +'px'});
-                                }else{
-                                    up.css({"background-size":ww +'px'+' auto '});
-                                }
-                            };*/
                             $.ajax({
                                 type:"post",
                                 url:"/home/User/setHeader",
                                 data:{header:msg.data.path},
                                 dataType: "Json",
                                 success:function(data){
-                                    $("input[type = 'file'].upimg").remove();
+                                    $("input[type = 'file']").remove();
                                     if(msg.code == 1){
                                         //图片添加
                                         if(imglen == 3){
@@ -177,7 +164,7 @@ function selectFileImage(fileObj) {
                                             timer:1500
                                         });
                                     }
-                                    var addImg = '<input type="file" class="hide" id="upimg" accept="image/*">';
+                                    var addImg = '<input type="file" class="hide" id="upimg" accept="image/*"><input type="file" accept="image/*" id="uploadImage"  onchange="selectFileImage(this);"  style="position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;opacity: 0;display:block;" />';
                                     $(".imgs").append(addImg);
                                 }
                             })
