@@ -98,6 +98,8 @@ function isGood(e,type,id){
 }
 //评论
 	var send = function(e,type,id){
+		$('body').css({'position':'fixed',"width":"100%"});
+		document.body.addEventListener('touchmove',bodyScroll,false);
 		swal({
 			title: '',
 			text: '请输入您的评论！',
@@ -109,7 +111,11 @@ function isGood(e,type,id){
 			animation: "slider-form-top"
 
 		}, function(inputValue) {
-			if (inputValue === false) return false;
+			if (inputValue === false){
+				$("body").css({"position":"initial","height":"auto"});
+				document.body.removeEventListener('touchmove',bodyScroll,false);
+				return false;
+			}
 
 			if (inputValue.length < 1) {
 				swal.showInputError("评论字数不能少于1个字！");
@@ -161,10 +167,17 @@ function isGood(e,type,id){
 						confirmButtonText: '确定',
 						timer: 3000
 					});
+					$("body").css({"position":"initial","height":"auto"});
+					document.body.removeEventListener('touchmove',bodyScroll,false);
 				}
 			});
 		})
 	};
+
+	function bodyScroll(event){
+		event.preventDefault();
+	}
+
 var wAlert = window.alert;
 window.alert = function (message) {
 	try {

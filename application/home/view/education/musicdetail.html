@@ -96,6 +96,8 @@
     }
     //发送评论
     var send = function(e,type,id){
+        $('body').css({'position':'fixed',"width":"100%"});
+        document.body.addEventListener('touchmove',bodyScroll,false);
         swal({
                 title: '',
                 text: '请输入您的评论！',
@@ -108,7 +110,11 @@
 
             },
             function(inputValue){
-                if (inputValue === false) return false;
+                if (inputValue === false){
+                    $("body").css({"position":"initial","height":"auto"});
+                    document.body.removeEventListener('touchmove',bodyScroll,false);
+                    return false;
+                }
 
                 if (inputValue.length < 1) {
                     swal.showInputError("评论字数不能少于1个字！");
@@ -160,10 +166,16 @@
                             confirmButtonText:'确定',
                             timer:3000
                         });
+                        $("body").css({"position":"initial","height":"auto"});
+                        document.body.removeEventListener('touchmove',bodyScroll,false);
                     }
                 });
             });
     };
+
+    function bodyScroll(event){
+        event.preventDefault();
+    }
 
 
     //评论加载更多

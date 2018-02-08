@@ -155,35 +155,7 @@
                 timer:3000
             });
         }
-//        $.ajax({
-//            type:"post",
-//            url:"/home/base/collect.html",
-//            data:{
-//                type:type,
-//                aid:id,
-//            },
-//            success:function(data){
-//                $(e).toggleClass('star' ).toggleClass('star_');
-//                if($(e).hasClass('star')){
-//                    swal({
-//                        title: '提示',
-//                        text: '即将取消收藏',
-//                        type: 'error',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }else{
-//                    swal({
-//                        title: ' ',
-//                        text: '收藏成功',
-//                        type: 'success',
-//                        confirmButtonText:'确定',
-//                        timer:3000
-//                    });
-//                }
-//            }
-//        })
-    }
+
     //点赞
     function isGood(e,type,id){
         //type：1文章，2评论
@@ -205,6 +177,8 @@
     }
     //发送评论
     var send = function(e,type,id){
+        $('body').css({'position':'fixed',"width":"100%"});
+        document.body.addEventListener('touchmove',bodyScroll,false);
         swal({
                 title: '',
                 text: '请输入您的评论！',
@@ -217,7 +191,11 @@
 
             },
             function(inputValue){
-                if (inputValue === false) return false;
+                if (inputValue === false) {
+                    $("body").css({"position":"initial","height":"auto"});
+                    document.body.removeEventListener('touchmove',bodyScroll,false);
+                    return false;
+                }
 
                 if (inputValue.length < 1) {
                     swal.showInputError("评论字数不能少于1个字！");
@@ -269,10 +247,17 @@
                             confirmButtonText:'确定',
                             timer:3000
                         });
+                        $("body").css({"position":"initial","height":"auto"});
+                        document.body.removeEventListener('touchmove',bodyScroll,false);
                     }
                 });
             });
-    };
+        };
+
+        function bodyScroll(event){
+            event.preventDefault();
+        }
+
     //评论加载更多
     function loadScroll(){
         $(window ).off("scroll" ).on("scroll",function(){
